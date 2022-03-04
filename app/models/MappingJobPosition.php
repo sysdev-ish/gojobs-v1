@@ -13,7 +13,7 @@ use Yii;
  * @property string $kode_posisi
  * @property int $id_subjobfamily
  */
-class MappingJobPosition extends \yii\db\ActiveRecord
+class Mappingjobposition extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
