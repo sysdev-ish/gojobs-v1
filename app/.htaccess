@@ -1,0 +1,15 @@
+#<IfModule authz_core_module>
+#	Require all denied
+#</IfModule>
+#<IfModule !authz_core_module>
+#	Deny from all
+#</IfModule>
+
+# BEGIN Disable access to all files EXCEPT
+Order deny,allow
+Deny from all
+
+# Files
+<Files ~ ".(jpeg|jpg|gif|png|doc|xlsx|xlsm|xls|pdf|docx|txt|rtf|rdf|odf)$">
+    Allow from all
+</Files>
