@@ -9551,3 +9551,557 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1646387513.6676
     'REQUEST_TIME' => 1646387513
 ]
+2022-03-07 02:44:18 [::1][104728][lmpqd7189t8hesda0n9p932so0][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "mastersubjobfamily/index". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('mastersubjobfam...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-07 02:44:18 [::1][104728][lmpqd7189t8hesda0n9p932so0][info][application] $_GET = [
+    'mastersubjobfamily/index' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'lmpqd7189t8hesda0n9p932so0'
+    '_csrf' => '87d1cd63601e416eb95c927113eacf836c9dba8c12a15d64f0d3740f45e162e3a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"C6kg23XnxLKelevxP2EzbhOBc6VeBQcI\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1646621058
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/mappingjobposition/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=lmpqd7189t8hesda0n9p932so0; _csrf=87d1cd63601e416eb95c927113eacf836c9dba8c12a15d64f0d3740f45e162e3a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22C6kg23XnxLKelevxP2EzbhOBc6VeBQcI%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '58953'
+    'REDIRECT_URL' => '/rekrut/mastersubjobfamily/index'
+    'REDIRECT_QUERY_STRING' => 'mastersubjobfamily/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'mastersubjobfamily/index'
+    'REQUEST_URI' => '/rekrut/mastersubjobfamily/index'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646617458.2336
+    'REQUEST_TIME' => 1646617458
+]
+2022-03-07 02:45:27 [::1][104728][lmpqd7189t8hesda0n9p932so0][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "mastersubjobfamily/index". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('mastersubjobfam...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-07 02:45:27 [::1][104728][lmpqd7189t8hesda0n9p932so0][info][application] $_GET = [
+    'mastersubjobfamily/index' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'lmpqd7189t8hesda0n9p932so0'
+    '_csrf' => '87d1cd63601e416eb95c927113eacf836c9dba8c12a15d64f0d3740f45e162e3a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"C6kg23XnxLKelevxP2EzbhOBc6VeBQcI\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1646621127
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/mappingjobposition/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=lmpqd7189t8hesda0n9p932so0; _csrf=87d1cd63601e416eb95c927113eacf836c9dba8c12a15d64f0d3740f45e162e3a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22C6kg23XnxLKelevxP2EzbhOBc6VeBQcI%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '64325'
+    'REDIRECT_URL' => '/rekrut/mastersubjobfamily/index'
+    'REDIRECT_QUERY_STRING' => 'mastersubjobfamily/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'mastersubjobfamily/index'
+    'REQUEST_URI' => '/rekrut/mastersubjobfamily/index'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646617527.3777
+    'REQUEST_TIME' => 1646617527
+]
+2022-03-07 02:45:30 [::1][104728][lmpqd7189t8hesda0n9p932so0][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "mastersubjobfamily/index". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('mastersubjobfam...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-07 02:45:30 [::1][104728][lmpqd7189t8hesda0n9p932so0][info][application] $_GET = [
+    'mastersubjobfamily/index' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'lmpqd7189t8hesda0n9p932so0'
+    '_csrf' => '87d1cd63601e416eb95c927113eacf836c9dba8c12a15d64f0d3740f45e162e3a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"C6kg23XnxLKelevxP2EzbhOBc6VeBQcI\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1646621130
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=lmpqd7189t8hesda0n9p932so0; _csrf=87d1cd63601e416eb95c927113eacf836c9dba8c12a15d64f0d3740f45e162e3a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22C6kg23XnxLKelevxP2EzbhOBc6VeBQcI%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '64325'
+    'REDIRECT_URL' => '/rekrut/mastersubjobfamily/index'
+    'REDIRECT_QUERY_STRING' => 'mastersubjobfamily/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'mastersubjobfamily/index'
+    'REQUEST_URI' => '/rekrut/mastersubjobfamily/index'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646617530.4689
+    'REQUEST_TIME' => 1646617530
+]
+2022-03-07 02:46:04 [::1][104728][lmpqd7189t8hesda0n9p932so0][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "mastersubjobfamily/index". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('mastersubjobfam...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-07 02:46:04 [::1][104728][lmpqd7189t8hesda0n9p932so0][info][application] $_GET = [
+    'mastersubjobfamily/index' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'lmpqd7189t8hesda0n9p932so0'
+    '_csrf' => '87d1cd63601e416eb95c927113eacf836c9dba8c12a15d64f0d3740f45e162e3a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"C6kg23XnxLKelevxP2EzbhOBc6VeBQcI\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1646621164
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/site/dashboard'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=lmpqd7189t8hesda0n9p932so0; _csrf=87d1cd63601e416eb95c927113eacf836c9dba8c12a15d64f0d3740f45e162e3a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22C6kg23XnxLKelevxP2EzbhOBc6VeBQcI%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '60565'
+    'REDIRECT_URL' => '/rekrut/mastersubjobfamily/index'
+    'REDIRECT_QUERY_STRING' => 'mastersubjobfamily/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'mastersubjobfamily/index'
+    'REQUEST_URI' => '/rekrut/mastersubjobfamily/index'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646617564.0673
+    'REQUEST_TIME' => 1646617564
+]
+2022-03-07 02:46:32 [::1][104728][lmpqd7189t8hesda0n9p932so0][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "masterjobfamily/index". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('masterjobfamily...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-07 02:46:32 [::1][104728][lmpqd7189t8hesda0n9p932so0][info][application] $_GET = [
+    'masterjobfamily/index' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'lmpqd7189t8hesda0n9p932so0'
+    '_csrf' => '87d1cd63601e416eb95c927113eacf836c9dba8c12a15d64f0d3740f45e162e3a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"C6kg23XnxLKelevxP2EzbhOBc6VeBQcI\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1646621192
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/site/dashboard'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=lmpqd7189t8hesda0n9p932so0; _csrf=87d1cd63601e416eb95c927113eacf836c9dba8c12a15d64f0d3740f45e162e3a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22C6kg23XnxLKelevxP2EzbhOBc6VeBQcI%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '60566'
+    'REDIRECT_URL' => '/rekrut/masterjobfamily/index'
+    'REDIRECT_QUERY_STRING' => 'masterjobfamily/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'masterjobfamily/index'
+    'REQUEST_URI' => '/rekrut/masterjobfamily/index'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646617592.8697
+    'REQUEST_TIME' => 1646617592
+]
+2022-03-07 02:46:45 [::1][104728][lmpqd7189t8hesda0n9p932so0][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "mastersubjobfamily/index". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('mastersubjobfam...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-07 02:46:45 [::1][104728][lmpqd7189t8hesda0n9p932so0][info][application] $_GET = [
+    'mastersubjobfamily/index' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'lmpqd7189t8hesda0n9p932so0'
+    '_csrf' => '87d1cd63601e416eb95c927113eacf836c9dba8c12a15d64f0d3740f45e162e3a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"C6kg23XnxLKelevxP2EzbhOBc6VeBQcI\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1646621205
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/site/dashboard'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=lmpqd7189t8hesda0n9p932so0; _csrf=87d1cd63601e416eb95c927113eacf836c9dba8c12a15d64f0d3740f45e162e3a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22C6kg23XnxLKelevxP2EzbhOBc6VeBQcI%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '60578'
+    'REDIRECT_URL' => '/rekrut/mastersubjobfamily/index'
+    'REDIRECT_QUERY_STRING' => 'mastersubjobfamily/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'mastersubjobfamily/index'
+    'REQUEST_URI' => '/rekrut/mastersubjobfamily/index'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646617605.3346
+    'REQUEST_TIME' => 1646617605
+]

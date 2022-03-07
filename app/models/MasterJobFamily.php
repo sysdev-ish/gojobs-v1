@@ -5,21 +5,21 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "masterjobfamily".
+ * This is the model class for table "Masterjobfamily".
  *
  * @property int $id
  * @property string $job_family
  * @property string $createtime
  * @property string $updatetime
  */
-class MasterJobFamily extends \yii\db\ActiveRecord
+class Masterjobfamily extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'masterjobfamily';
+        return 'Masterjobfamily';
     }
 
     /**

@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\MasterJobFamily;
-use app\models\MasterJobFamilySearch;
+use app\models\Masterjobfamily;
+use app\models\Masterjobfamilysearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * MasterJobFamilyController implements the CRUD actions for MasterJobFamily model.
+ * MasterjobfamilyController implements the CRUD actions for Masterjobfamily model.
  */
-class MasterJobFamilyController extends Controller
+class MasterjobfamilyController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class MasterJobFamilyController extends Controller
     }
 
     /**
-     * Lists all MasterJobFamily models.
+     * Lists all Masterjobfamily models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new MasterJobFamilySearch();
+        $searchModel = new Masterjobfamilysearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class MasterJobFamilyController extends Controller
     }
 
     /**
-     * Displays a single MasterJobFamily model.
+     * Displays a single Masterjobfamily model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class MasterJobFamilyController extends Controller
     }
 
     /**
-     * Creates a new MasterJobFamily model.
+     * Creates a new Masterjobfamily model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new MasterJobFamily();
+        $model = new Masterjobfamily();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class MasterJobFamilyController extends Controller
     }
 
     /**
-     * Updates an existing MasterJobFamily model.
+     * Updates an existing Masterjobfamily model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class MasterJobFamilyController extends Controller
     }
 
     /**
-     * Deletes an existing MasterJobFamily model.
+     * Deletes an existing Masterjobfamily model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class MasterJobFamilyController extends Controller
     }
 
     /**
-     * Finds the MasterJobFamily model based on its primary key value.
+     * Finds the Masterjobfamily model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return MasterJobFamily the loaded model
+     * @return Masterjobfamily the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = MasterJobFamily::findOne($id)) !== null) {
+        if (($model = Masterjobfamily::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

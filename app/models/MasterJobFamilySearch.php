@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\MasterJobFamily;
+use app\models\Masterjobfamily;
 
 /**
- * MasterJobFamilySearch represents the model behind the search form of `app\models\MasterJobFamily`.
+ * Masterjobfamilysearch represents the model behind the search form of `app\models\Masterjobfamily`.
  */
-class MasterJobFamilySearch extends MasterJobFamily
+class Masterjobfamilysearch extends Masterjobfamily
 {
     /**
      * @inheritdoc
@@ -41,7 +41,7 @@ class MasterJobFamilySearch extends MasterJobFamily
      */
     public function search($params)
     {
-        $query = MasterJobFamily::find();
+        $query = Masterjobfamily::find();
 
         // add conditions that should always apply here
 

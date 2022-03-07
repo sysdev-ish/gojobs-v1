@@ -13,7 +13,7 @@ use Yii;
  * @property string $createtime
  * @property string $updatetime
  */
-class MasterSubJobFamily extends \yii\db\ActiveRecord
+class Mastersubjobfamily extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}

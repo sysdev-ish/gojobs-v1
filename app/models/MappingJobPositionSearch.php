@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\MappingJobPosition;
+use app\models\Mappingjobposition;
 
 /**
- * MappingJobPositionSearch represents the model behind the search form of `app\models\MappingJobPosition`.
+ * MappingjobpositionSearch represents the model behind the search form of `app\models\Mappingjobposition`.
  */
-class MappingJobPositionSearch extends MappingJobPosition
+class Mappingjobpositionsearch extends Mappingjobposition
 {
     /**
      * @inheritdoc
@@ -41,7 +41,7 @@ class MappingJobPositionSearch extends MappingJobPosition
      */
     public function search($params)
     {
-        $query = MappingJobPosition::find();
+        $query = Mappingjobposition::find();
 
         // add conditions that should always apply here
 
