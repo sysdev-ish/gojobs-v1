@@ -86,6 +86,7 @@ class SiteController extends Controller
   }
 
   public function init(){
+    parent::init();
     if(Yii::$app->session->get('language')) Yii::$app->language = Yii::$app->session->get('language');
   }
 

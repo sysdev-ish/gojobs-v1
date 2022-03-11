@@ -10105,3 +10105,2640 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1646617605.3346
     'REQUEST_TIME' => 1646617605
 ]
+2022-03-11 04:30:29 [::1][-][8kvlmq4o09u7kdqdn9gsfpll13][warning][yii\web\User::renewAuthStatus] Invalid session auth key attempted for user '104728' from ::1: agv9uuia8omsw98jnr501w46c
+2022-03-11 04:30:29 [::1][-][8kvlmq4o09u7kdqdn9gsfpll13][error][Error] Error: Call to a member function validateCsrfToken() on string in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Controller.php:222
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(176): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(552): yii\base\Controller->runAction('', Array)
+#2 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('', Array)
+#3 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(384): yii\web\Application->handleRequest(Object(yii\web\Request))
+#4 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#5 {main}
+2022-03-11 04:30:29 [::1][-][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646972468
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '63289'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rekrut/'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646969429.6421
+    'REQUEST_TIME' => 1646969429
+]
+2022-03-11 04:31:28 [::1][-][-][warning][yii\web\User::renewAuthStatus] Invalid session auth key attempted for user '104728' from ::1: agv9uuia8omsw98jnr501w46c
+2022-03-11 04:31:28 [::1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646972468
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '63353'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rekrut/'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646969488.3481
+    'REQUEST_TIME' => 1646969488
+]
+2022-03-11 04:31:39 [::1][-][8kvlmq4o09u7kdqdn9gsfpll13][warning][yii\web\User::renewAuthStatus] Invalid session auth key attempted for user '104728' from ::1: agv9uuia8omsw98jnr501w46c
+2022-03-11 04:31:39 [::1][-][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:561
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(384): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(384): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-11 04:31:39 [::1][-][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646972468
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36 Edg/99.0.1150.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '63363'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646969499.6118
+    'REQUEST_TIME' => 1646969499
+]
+2022-03-11 04:32:35 [::1][-][-][warning][yii\web\User::renewAuthStatus] Invalid session auth key attempted for user '104728' from ::1: agv9uuia8omsw98jnr501w46c
+2022-03-11 04:32:35 [::1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646972468
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '63407'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rekrut/'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646969555.6921
+    'REQUEST_TIME' => 1646969555
+]
+2022-03-11 04:32:47 [::1][-][8kvlmq4o09u7kdqdn9gsfpll13][warning][yii\web\User::renewAuthStatus] Invalid session auth key attempted for user '104728' from ::1: agv9uuia8omsw98jnr501w46c
+2022-03-11 04:32:47 [::1][-][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:561
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(384): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(384): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-11 04:32:47 [::1][-][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646972468
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36 Edg/99.0.1150.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '63408'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646969567.5054
+    'REQUEST_TIME' => 1646969567
+]
+2022-03-11 04:54:40 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "assets/img/user-avatar.png". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('assets/img/user...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-11 04:54:40 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'assets/img/user-avatar_png' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646974480
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_ACCEPT' => 'image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'image'
+    'HTTP_REFERER' => 'http://localhost/rekrut/site/dashboard'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '53782'
+    'REDIRECT_URL' => '/rekrut/assets/img/user-avatar.png'
+    'REDIRECT_QUERY_STRING' => 'assets/img/user-avatar.png'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'assets/img/user-avatar.png'
+    'REQUEST_URI' => '/rekrut/assets/img/user-avatar.png'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646970880.0811
+    'REQUEST_TIME' => 1646970880
+]
+2022-03-11 04:55:36 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "assets/img/user-avatar.png". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('assets/img/user...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-11 04:55:35 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'assets/img/user-avatar_png' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646974536
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_ACCEPT' => 'image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'image'
+    'HTTP_REFERER' => 'http://localhost/rekrut/site/dashboard'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '53814'
+    'REDIRECT_URL' => '/rekrut/assets/img/user-avatar.png'
+    'REDIRECT_QUERY_STRING' => 'assets/img/user-avatar.png'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'assets/img/user-avatar.png'
+    'REQUEST_URI' => '/rekrut/assets/img/user-avatar.png'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646970935.8752
+    'REQUEST_TIME' => 1646970935
+]
+2022-03-11 04:55:51 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\base\ErrorException:1] yii\base\ErrorException: During class fetch: Uncaught yii\base\ErrorException: Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\ColumnTrait.php:274
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): yii\base\ErrorHandler->handleError(8192, 'Unparenthesized...', 'C:\\xampp\\htdocs...', 274, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include()
+#2 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Col...')
+#3 C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php(35): spl_autoload_call('kartik\\grid\\Col...')
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include('C:\\xampp\\htdocs...')
+#5 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Ser...')
+#6 [internal function]: spl_autoload_call('kartik\\grid\\Ser...')
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\di\Container.php(428): ReflectionClass->__c in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php:35
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-03-11 04:55:45 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'report/reporthiring' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646974545
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/site/dashboard'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '53828'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring'
+    'REQUEST_URI' => '/rekrut/report/reporthiring'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646970945.0601
+    'REQUEST_TIME' => 1646970945
+]
+2022-03-11 04:59:15 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "assets/img/user-avatar.png". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('assets/img/user...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-11 04:59:14 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'assets/img/user-avatar_png' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646974755
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_ACCEPT' => 'image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'image'
+    'HTTP_REFERER' => 'http://localhost/rekrut/site/dashboard'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '63840'
+    'REDIRECT_URL' => '/rekrut/assets/img/user-avatar.png'
+    'REDIRECT_QUERY_STRING' => 'assets/img/user-avatar.png'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'assets/img/user-avatar.png'
+    'REQUEST_URI' => '/rekrut/assets/img/user-avatar.png'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646971154.6409
+    'REQUEST_TIME' => 1646971154
+]
+2022-03-11 05:05:01 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\base\ErrorException:1] yii\base\ErrorException: During class fetch: Uncaught yii\base\ErrorException: Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\ColumnTrait.php:274
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): yii\base\ErrorHandler->handleError(8192, 'Unparenthesized...', 'C:\\xampp\\htdocs...', 274, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include()
+#2 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Col...')
+#3 C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php(35): spl_autoload_call('kartik\\grid\\Col...')
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include('C:\\xampp\\htdocs...')
+#5 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Ser...')
+#6 [internal function]: spl_autoload_call('kartik\\grid\\Ser...')
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\di\Container.php(428): ReflectionClass->__c in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php:35
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-03-11 05:05:00 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'report/reporthiring' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646975100
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/site/dashboard'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '56387'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring'
+    'REQUEST_URI' => '/rekrut/report/reporthiring'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646971500.1224
+    'REQUEST_TIME' => 1646971500
+]
+2022-03-11 05:05:03 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\base\ErrorException:1] yii\base\ErrorException: During class fetch: Uncaught yii\base\ErrorException: Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\ColumnTrait.php:274
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): yii\base\ErrorHandler->handleError(8192, 'Unparenthesized...', 'C:\\xampp\\htdocs...', 274, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include()
+#2 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Col...')
+#3 C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php(35): spl_autoload_call('kartik\\grid\\Col...')
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include('C:\\xampp\\htdocs...')
+#5 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Ser...')
+#6 [internal function]: spl_autoload_call('kartik\\grid\\Ser...')
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\di\Container.php(428): ReflectionClass->__c in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php:35
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-03-11 05:05:03 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'report/reporthiring' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646975103
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/site/dashboard'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '56395'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring'
+    'REQUEST_URI' => '/rekrut/report/reporthiring'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646971503.0835
+    'REQUEST_TIME' => 1646971503
+]
+2022-03-11 05:05:12 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\base\ErrorException:1] yii\base\ErrorException: During class fetch: Uncaught yii\base\ErrorException: Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\ColumnTrait.php:274
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): yii\base\ErrorHandler->handleError(8192, 'Unparenthesized...', 'C:\\xampp\\htdocs...', 274, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include()
+#2 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Col...')
+#3 C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php(35): spl_autoload_call('kartik\\grid\\Col...')
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include('C:\\xampp\\htdocs...')
+#5 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Ser...')
+#6 [internal function]: spl_autoload_call('kartik\\grid\\Ser...')
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\di\Container.php(428): ReflectionClass->__c in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php:35
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-03-11 05:05:11 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'report/reporthiring' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646975112
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/site/dashboard'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '60706'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring'
+    'REQUEST_URI' => '/rekrut/report/reporthiring'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646971511.7695
+    'REQUEST_TIME' => 1646971511
+]
+2022-03-11 05:05:35 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\base\ErrorException:1] yii\base\ErrorException: During class fetch: Uncaught yii\base\ErrorException: Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\ColumnTrait.php:274
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): yii\base\ErrorHandler->handleError(8192, 'Unparenthesized...', 'C:\\xampp\\htdocs...', 274, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include()
+#2 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Col...')
+#3 C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php(35): spl_autoload_call('kartik\\grid\\Col...')
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include('C:\\xampp\\htdocs...')
+#5 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Ser...')
+#6 [internal function]: spl_autoload_call('kartik\\grid\\Ser...')
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\di\Container.php(428): ReflectionClass->__c in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php:35
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-03-11 05:05:34 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'report/reporthiring' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646975134
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/site/dashboard'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '50639'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring'
+    'REQUEST_URI' => '/rekrut/report/reporthiring'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646971534.6529
+    'REQUEST_TIME' => 1646971534
+]
+2022-03-11 05:05:38 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\base\ErrorException:1] yii\base\ErrorException: During class fetch: Uncaught yii\base\ErrorException: Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\ColumnTrait.php:274
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): yii\base\ErrorHandler->handleError(8192, 'Unparenthesized...', 'C:\\xampp\\htdocs...', 274, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include()
+#2 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Col...')
+#3 C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php(35): spl_autoload_call('kartik\\grid\\Col...')
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include('C:\\xampp\\htdocs...')
+#5 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Ser...')
+#6 [internal function]: spl_autoload_call('kartik\\grid\\Ser...')
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\di\Container.php(428): ReflectionClass->__c in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php:35
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-03-11 05:05:37 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'report/reporthiring' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646975138
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '50648'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring'
+    'REQUEST_URI' => '/rekrut/report/reporthiring'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646971537.7718
+    'REQUEST_TIME' => 1646971537
+]
+2022-03-11 05:05:48 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\base\ErrorException:1] yii\base\ErrorException: During class fetch: Uncaught yii\base\ErrorException: Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\ColumnTrait.php:274
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): yii\base\ErrorHandler->handleError(8192, 'Unparenthesized...', 'C:\\xampp\\htdocs...', 274, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include()
+#2 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Col...')
+#3 C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php(35): spl_autoload_call('kartik\\grid\\Col...')
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include('C:\\xampp\\htdocs...')
+#5 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Ser...')
+#6 [internal function]: spl_autoload_call('kartik\\grid\\Ser...')
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\di\Container.php(428): ReflectionClass->__c in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php:35
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-03-11 05:05:47 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'report/reporthiring' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646975147
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '49995'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring'
+    'REQUEST_URI' => '/rekrut/report/reporthiring'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646971547.5759
+    'REQUEST_TIME' => 1646971547
+]
+2022-03-11 05:05:55 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\base\ErrorException:1] yii\base\ErrorException: During class fetch: Uncaught yii\base\ErrorException: Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\ColumnTrait.php:274
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): yii\base\ErrorHandler->handleError(8192, 'Unparenthesized...', 'C:\\xampp\\htdocs...', 274, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include()
+#2 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Col...')
+#3 C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php(35): spl_autoload_call('kartik\\grid\\Col...')
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include('C:\\xampp\\htdocs...')
+#5 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Ser...')
+#6 [internal function]: spl_autoload_call('kartik\\grid\\Ser...')
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\di\Container.php(428): ReflectionClass->__c in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php:35
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-03-11 05:05:54 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'report/reporthiring' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646975154
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '50010'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring'
+    'REQUEST_URI' => '/rekrut/report/reporthiring'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646971553.9464
+    'REQUEST_TIME' => 1646971553
+]
+2022-03-11 05:06:12 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\base\ErrorException:1] yii\base\ErrorException: During class fetch: Uncaught yii\base\ErrorException: Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\ColumnTrait.php:274
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): yii\base\ErrorHandler->handleError(8192, 'Unparenthesized...', 'C:\\xampp\\htdocs...', 274, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include()
+#2 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Col...')
+#3 C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php(35): spl_autoload_call('kartik\\grid\\Col...')
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include('C:\\xampp\\htdocs...')
+#5 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Ser...')
+#6 [internal function]: spl_autoload_call('kartik\\grid\\Ser...')
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\di\Container.php(428): ReflectionClass->__c in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php:35
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-03-11 05:06:12 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'report/reporthiring' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646975172
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '49887'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring'
+    'REQUEST_URI' => '/rekrut/report/reporthiring'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646971572.177
+    'REQUEST_TIME' => 1646971572
+]
+2022-03-11 05:09:00 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\base\ErrorException:1] yii\base\ErrorException: During class fetch: Uncaught yii\base\ErrorException: Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\ColumnTrait.php:274
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): yii\base\ErrorHandler->handleError(8192, 'Unparenthesized...', 'C:\\xampp\\htdocs...', 274, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include()
+#2 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Col...')
+#3 C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php(35): spl_autoload_call('kartik\\grid\\Col...')
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include('C:\\xampp\\htdocs...')
+#5 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Ser...')
+#6 [internal function]: spl_autoload_call('kartik\\grid\\Ser...')
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\di\Container.php(428): ReflectionClass->__c in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php:35
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-03-11 05:09:00 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'report/reporthiring' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646975340
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '60044'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring'
+    'REQUEST_URI' => '/rekrut/report/reporthiring'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646971740.1964
+    'REQUEST_TIME' => 1646971740
+]
+2022-03-11 05:13:11 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\base\ErrorException:1] yii\base\ErrorException: During class fetch: Uncaught yii\base\ErrorException: Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)` in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\ColumnTrait.php:274
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): yii\base\ErrorHandler->handleError(8192, 'Unparenthesized...', 'C:\\xampp\\htdocs...', 274, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include()
+#2 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Col...')
+#3 C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php(35): spl_autoload_call('kartik\\grid\\Col...')
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\BaseYii.php(293): include('C:\\xampp\\htdocs...')
+#5 [internal function]: yii\BaseYii::autoload('kartik\\grid\\Ser...')
+#6 [internal function]: spl_autoload_call('kartik\\grid\\Ser...')
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\di\Container.php(428): ReflectionClass->__c in C:\xampp\htdocs\rekrut\app\vendor\kartik-v\yii2-grid\src\SerialColumn.php:35
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-03-11 05:13:10 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'report/reporthiring' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646975590
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '64317'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring'
+    'REQUEST_URI' => '/rekrut/report/reporthiring'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646971990.6851
+    'REQUEST_TIME' => 1646971990
+]
+2022-03-11 05:13:47 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "assets/img/user-avatar.png". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('assets/img/user...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-11 05:13:46 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'assets/img/user-avatar_png' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646975627
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_ACCEPT' => 'image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'image'
+    'HTTP_REFERER' => 'http://localhost/rekrut/site/dashboard'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '64326'
+    'REDIRECT_URL' => '/rekrut/assets/img/user-avatar.png'
+    'REDIRECT_QUERY_STRING' => 'assets/img/user-avatar.png'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'assets/img/user-avatar.png'
+    'REQUEST_URI' => '/rekrut/assets/img/user-avatar.png'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646972026.6495
+    'REQUEST_TIME' => 1646972026
+]
+2022-03-11 05:14:59 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "assets/img/user-avatar.png". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('assets/img/user...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-11 05:14:58 [::1][104728][8kvlmq4o09u7kdqdn9gsfpll13][info][application] $_GET = [
+    'assets/img/user-avatar_png' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '8kvlmq4o09u7kdqdn9gsfpll13'
+    '_csrf' => 'dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'language' => 'en'
+    '__id' => 104728
+    '__authKey' => 'agv9uuia8omsw98jnr501w46c'
+    '__expire' => 1646975699
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_ACCEPT' => 'image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'image'
+    'HTTP_REFERER' => 'http://localhost/rekrut/site/dashboard'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=8kvlmq4o09u7kdqdn9gsfpll13; _csrf=dbb7ed0683afea4242fabaf020db66d6d1aa70bbbfc8f8ce4ddc38c2b0e841cea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22_BqoQV5meEFHHQ1Pq7-2T4wpTAvwyb-M%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '64341'
+    'REDIRECT_URL' => '/rekrut/assets/img/user-avatar.png'
+    'REDIRECT_QUERY_STRING' => 'assets/img/user-avatar.png'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'assets/img/user-avatar.png'
+    'REQUEST_URI' => '/rekrut/assets/img/user-avatar.png'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646972098.7456
+    'REQUEST_TIME' => 1646972098
+]
+2022-03-11 05:15:25 [::1][104728][f5306t79frml85bhrrha785hod][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "assets/img/user-avatar.png". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('assets/img/user...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-11 05:15:25 [::1][104728][f5306t79frml85bhrrha785hod][info][application] $_GET = [
+    'assets/img/user-avatar_png' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'f5306t79frml85bhrrha785hod'
+    '_csrf' => 'ed698302dd114c2f71754810eb23fba6f75dc2be2a1084300883d31b3efa9f5da:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"PvymbXosxyz4DDOHAnhpEZEE1JhCWnxk\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1646975725
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Microsoft Edge\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36 Edg/99.0.1150.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_ACCEPT' => 'image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'image'
+    'HTTP_REFERER' => 'http://localhost/rekrut/site/dashboard'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=f5306t79frml85bhrrha785hod; _csrf=ed698302dd114c2f71754810eb23fba6f75dc2be2a1084300883d31b3efa9f5da%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22PvymbXosxyz4DDOHAnhpEZEE1JhCWnxk%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '53654'
+    'REDIRECT_URL' => '/rekrut/assets/img/user-avatar.png'
+    'REDIRECT_QUERY_STRING' => 'assets/img/user-avatar.png'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'assets/img/user-avatar.png'
+    'REQUEST_URI' => '/rekrut/assets/img/user-avatar.png'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646972125.4924
+    'REQUEST_TIME' => 1646972125
+]
+2022-03-11 05:16:58 [::1][104728][3hc724h59017j95im5li46tn47][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "assets/img/user-avatar.png". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('assets/img/user...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-11 05:16:58 [::1][104728][3hc724h59017j95im5li46tn47][info][application] $_GET = [
+    'assets/img/user-avatar_png' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '3hc724h59017j95im5li46tn47'
+    '_csrf' => '2b1c562a534090e6f91fdfb171bf043727b94d60126b5fb820e8e398422e2663a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"AoEOPRqNwAxPdqJdO7brdwqARgffSIWv\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1646975818
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_ACCEPT' => 'image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'image'
+    'HTTP_REFERER' => 'http://localhost/rekrut/site/dashboard'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=3hc724h59017j95im5li46tn47; _csrf=2b1c562a534090e6f91fdfb171bf043727b94d60126b5fb820e8e398422e2663a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22AoEOPRqNwAxPdqJdO7brdwqARgffSIWv%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '53702'
+    'REDIRECT_URL' => '/rekrut/assets/img/user-avatar.png'
+    'REDIRECT_QUERY_STRING' => 'assets/img/user-avatar.png'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'assets/img/user-avatar.png'
+    'REQUEST_URI' => '/rekrut/assets/img/user-avatar.png'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646972218.4116
+    'REQUEST_TIME' => 1646972218
+]
+2022-03-11 05:17:15 [::1][104728][3hc724h59017j95im5li46tn47][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "assets/img/user-avatar.png". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('assets/img/user...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-11 05:17:15 [::1][104728][3hc724h59017j95im5li46tn47][info][application] $_GET = [
+    'assets/img/user-avatar_png' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '3hc724h59017j95im5li46tn47'
+    '_csrf' => '2b1c562a534090e6f91fdfb171bf043727b94d60126b5fb820e8e398422e2663a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"AoEOPRqNwAxPdqJdO7brdwqARgffSIWv\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1646975835
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_ACCEPT' => 'image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'image'
+    'HTTP_REFERER' => 'http://localhost/rekrut/masterregion/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=3hc724h59017j95im5li46tn47; _csrf=2b1c562a534090e6f91fdfb171bf043727b94d60126b5fb820e8e398422e2663a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22AoEOPRqNwAxPdqJdO7brdwqARgffSIWv%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '53709'
+    'REDIRECT_URL' => '/rekrut/assets/img/user-avatar.png'
+    'REDIRECT_QUERY_STRING' => 'assets/img/user-avatar.png'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'assets/img/user-avatar.png'
+    'REQUEST_URI' => '/rekrut/assets/img/user-avatar.png'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646972235.607
+    'REQUEST_TIME' => 1646972235
+]
+2022-03-11 05:17:19 [::1][104728][3hc724h59017j95im5li46tn47][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "assets/img/user-avatar.png". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('assets/img/user...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-03-11 05:17:18 [::1][104728][3hc724h59017j95im5li46tn47][info][application] $_GET = [
+    'assets/img/user-avatar_png' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '3hc724h59017j95im5li46tn47'
+    '_csrf' => '2b1c562a534090e6f91fdfb171bf043727b94d60126b5fb820e8e398422e2663a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"AoEOPRqNwAxPdqJdO7brdwqARgffSIWv\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1646975839
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_ACCEPT' => 'image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'image'
+    'HTTP_REFERER' => 'http://localhost/rekrut/masteroffice/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=3hc724h59017j95im5li46tn47; _csrf=2b1c562a534090e6f91fdfb171bf043727b94d60126b5fb820e8e398422e2663a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22AoEOPRqNwAxPdqJdO7brdwqARgffSIWv%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '53708'
+    'REDIRECT_URL' => '/rekrut/assets/img/user-avatar.png'
+    'REDIRECT_QUERY_STRING' => 'assets/img/user-avatar.png'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'assets/img/user-avatar.png'
+    'REQUEST_URI' => '/rekrut/assets/img/user-avatar.png'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646972238.9578
+    'REQUEST_TIME' => 1646972238
+]
+2022-03-11 05:17:22 [::1][104728][3hc724h59017j95im5li46tn47][error][yii\base\ErrorException:8192] yii\base\ErrorException: Array and string offset access syntax with curly braces is deprecated in C:\xampp\htdocs\rekrut\app\vendor\ezyang\htmlpurifier\library\HTMLPurifier\Encoder.php:162
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\composer\ClassLoader.php(444): yii\base\ErrorHandler->handleError(8192, 'Array and strin...', 'C:\\xampp\\htdocs...', 162, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\composer\ClassLoader.php(444): include()
+#2 C:\xampp\htdocs\rekrut\app\vendor\composer\ClassLoader.php(322): Composer\Autoload\includeFile('C:\\xampp\\htdocs...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('HTMLPurifier_En...')
+#4 C:\xampp\htdocs\rekrut\app\vendor\ezyang\htmlpurifier\library\HTMLPurifier.php(177): spl_autoload_call('HTMLPurifier_En...')
+#5 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\helpers\BaseHtmlPurifier.php(58): HTMLPurifier->purify('PT. Taisho Phar...')
+#6 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\i18n\Formatter.php(523): yii\helpers\BaseHtmlPurifier::process('PT. Taisho Phar...', NULL)
+#7 [internal function]: yii\i18n\Formatter->asHtml('PT. Taisho Phar...')
+#8 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\i18n\Formatter.php(439): call_user_func_array(Array, Array)
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\DataColumn.php(244): yii\i18n\Formatter->format('PT. Taisho Phar...', 'html')
+#10 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\Column.php(111): yii\grid\DataColumn->renderDataCellContent(Object(app\models\Masterroom), 55, 0)
+#11 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\GridView.php(520): yii\grid\Column->renderDataCell(Object(app\models\Masterroom), 55, 0)
+#12 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\GridView.php(489): yii\grid\GridView->renderTableRow(Object(app\models\Masterroom), 55, 0)
+#13 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\GridView.php(353): yii\grid\GridView->renderTableBody()
+#14 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\widgets\BaseListView.php(160): yii\grid\GridView->renderItems()
+#15 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\GridView.php(321): yii\widgets\BaseListView->renderSection('{items}')
+#16 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\widgets\BaseListView.php(135): yii\grid\GridView->renderSection('{items}')
+#17 [internal function]: yii\widgets\BaseListView->yii\widgets\{closure}(Array)
+#18 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\widgets\BaseListView.php(138): preg_replace_callback('/{\\w+}/', Object(Closure), '{items}\n{summar...')
+#19 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\GridView.php(296): yii\widgets\BaseListView->run()
+#20 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Widget.php(140): yii\grid\GridView->run()
+#21 C:\xampp\htdocs\rekrut\app\views\masterroom\index.php(132): yii\base\Widget::widget(Array)
+#22 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\View.php(336): require('C:\\xampp\\htdocs...')
+#23 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\View.php(254): yii\base\View->renderPhpFile('C:\\xampp\\htdocs...', Array)
+#24 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\View.php(156): yii\base\View->renderFile('C:\\xampp\\htdocs...', Array, Object(app\controllers\MasterroomController))
+#25 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(384): yii\base\View->render('index', Array, Object(app\controllers\MasterroomController))
+#26 C:\xampp\htdocs\rekrut\app\controllers\MasterroomController.php(62): yii\base\Controller->render('index', Array)
+#27 [internal function]: app\controllers\MasterroomController->actionIndex()
+#28 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#29 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#30 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#31 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('masterroom/inde...', Array)
+#32 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#33 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#34 {main}
+2022-03-11 05:17:21 [::1][104728][3hc724h59017j95im5li46tn47][info][application] $_GET = [
+    'masterroom/index' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '3hc724h59017j95im5li46tn47'
+    '_csrf' => '2b1c562a534090e6f91fdfb171bf043727b94d60126b5fb820e8e398422e2663a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"AoEOPRqNwAxPdqJdO7brdwqARgffSIWv\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1646975841
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/masteroffice/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=3hc724h59017j95im5li46tn47; _csrf=2b1c562a534090e6f91fdfb171bf043727b94d60126b5fb820e8e398422e2663a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22AoEOPRqNwAxPdqJdO7brdwqARgffSIWv%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '53713'
+    'REDIRECT_URL' => '/rekrut/masterroom/index'
+    'REDIRECT_QUERY_STRING' => 'masterroom/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'masterroom/index'
+    'REQUEST_URI' => '/rekrut/masterroom/index'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646972241.2442
+    'REQUEST_TIME' => 1646972241
+]
+2022-03-11 05:19:10 [::1][104728][3hc724h59017j95im5li46tn47][error][yii\base\ErrorException:8192] yii\base\ErrorException: Array and string offset access syntax with curly braces is deprecated in C:\xampp\htdocs\rekrut\app\vendor\ezyang\htmlpurifier\library\HTMLPurifier\Encoder.php:162
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\composer\ClassLoader.php(444): yii\base\ErrorHandler->handleError(8192, 'Array and strin...', 'C:\\xampp\\htdocs...', 162, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\composer\ClassLoader.php(444): include()
+#2 C:\xampp\htdocs\rekrut\app\vendor\composer\ClassLoader.php(322): Composer\Autoload\includeFile('C:\\xampp\\htdocs...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('HTMLPurifier_En...')
+#4 C:\xampp\htdocs\rekrut\app\vendor\ezyang\htmlpurifier\library\HTMLPurifier.php(177): spl_autoload_call('HTMLPurifier_En...')
+#5 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\helpers\BaseHtmlPurifier.php(58): HTMLPurifier->purify('PT. Taisho Phar...')
+#6 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\i18n\Formatter.php(523): yii\helpers\BaseHtmlPurifier::process('PT. Taisho Phar...', NULL)
+#7 [internal function]: yii\i18n\Formatter->asHtml('PT. Taisho Phar...')
+#8 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\i18n\Formatter.php(439): call_user_func_array(Array, Array)
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\DataColumn.php(244): yii\i18n\Formatter->format('PT. Taisho Phar...', 'html')
+#10 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\Column.php(111): yii\grid\DataColumn->renderDataCellContent(Object(app\models\Masterroom), 55, 0)
+#11 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\GridView.php(520): yii\grid\Column->renderDataCell(Object(app\models\Masterroom), 55, 0)
+#12 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\GridView.php(489): yii\grid\GridView->renderTableRow(Object(app\models\Masterroom), 55, 0)
+#13 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\GridView.php(353): yii\grid\GridView->renderTableBody()
+#14 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\widgets\BaseListView.php(160): yii\grid\GridView->renderItems()
+#15 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\GridView.php(321): yii\widgets\BaseListView->renderSection('{items}')
+#16 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\widgets\BaseListView.php(135): yii\grid\GridView->renderSection('{items}')
+#17 [internal function]: yii\widgets\BaseListView->yii\widgets\{closure}(Array)
+#18 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\widgets\BaseListView.php(138): preg_replace_callback('/{\\w+}/', Object(Closure), '{items}\n{summar...')
+#19 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\GridView.php(296): yii\widgets\BaseListView->run()
+#20 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Widget.php(140): yii\grid\GridView->run()
+#21 C:\xampp\htdocs\rekrut\app\views\masterroom\index.php(132): yii\base\Widget::widget(Array)
+#22 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\View.php(336): require('C:\\xampp\\htdocs...')
+#23 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\View.php(254): yii\base\View->renderPhpFile('C:\\xampp\\htdocs...', Array)
+#24 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\View.php(156): yii\base\View->renderFile('C:\\xampp\\htdocs...', Array, Object(app\controllers\MasterroomController))
+#25 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(384): yii\base\View->render('index', Array, Object(app\controllers\MasterroomController))
+#26 C:\xampp\htdocs\rekrut\app\controllers\MasterroomController.php(62): yii\base\Controller->render('index', Array)
+#27 [internal function]: app\controllers\MasterroomController->actionIndex()
+#28 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#29 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#30 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#31 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('masterroom/inde...', Array)
+#32 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#33 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#34 {main}
+2022-03-11 05:19:10 [::1][104728][3hc724h59017j95im5li46tn47][info][application] $_GET = [
+    'masterroom/index' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '3hc724h59017j95im5li46tn47'
+    '_csrf' => '2b1c562a534090e6f91fdfb171bf043727b94d60126b5fb820e8e398422e2663a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"AoEOPRqNwAxPdqJdO7brdwqARgffSIWv\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1646975950
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/masteroffice/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=3hc724h59017j95im5li46tn47; _csrf=2b1c562a534090e6f91fdfb171bf043727b94d60126b5fb820e8e398422e2663a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22AoEOPRqNwAxPdqJdO7brdwqARgffSIWv%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '59578'
+    'REDIRECT_URL' => '/rekrut/masterroom/index'
+    'REDIRECT_QUERY_STRING' => 'masterroom/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'masterroom/index'
+    'REQUEST_URI' => '/rekrut/masterroom/index'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646972349.9984
+    'REQUEST_TIME' => 1646972349
+]
+2022-03-11 05:19:17 [::1][104728][3hc724h59017j95im5li46tn47][error][yii\base\ErrorException:8192] yii\base\ErrorException: Array and string offset access syntax with curly braces is deprecated in C:\xampp\htdocs\rekrut\app\vendor\ezyang\htmlpurifier\library\HTMLPurifier\Encoder.php:162
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\composer\ClassLoader.php(444): yii\base\ErrorHandler->handleError(8192, 'Array and strin...', 'C:\\xampp\\htdocs...', 162, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\composer\ClassLoader.php(444): include()
+#2 C:\xampp\htdocs\rekrut\app\vendor\composer\ClassLoader.php(322): Composer\Autoload\includeFile('C:\\xampp\\htdocs...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('HTMLPurifier_En...')
+#4 C:\xampp\htdocs\rekrut\app\vendor\ezyang\htmlpurifier\library\HTMLPurifier.php(177): spl_autoload_call('HTMLPurifier_En...')
+#5 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\helpers\BaseHtmlPurifier.php(58): HTMLPurifier->purify('PT. Taisho Phar...')
+#6 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\i18n\Formatter.php(523): yii\helpers\BaseHtmlPurifier::process('PT. Taisho Phar...', NULL)
+#7 [internal function]: yii\i18n\Formatter->asHtml('PT. Taisho Phar...')
+#8 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\i18n\Formatter.php(439): call_user_func_array(Array, Array)
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\DataColumn.php(244): yii\i18n\Formatter->format('PT. Taisho Phar...', 'html')
+#10 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\Column.php(111): yii\grid\DataColumn->renderDataCellContent(Object(app\models\Masterroom), 55, 0)
+#11 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\GridView.php(520): yii\grid\Column->renderDataCell(Object(app\models\Masterroom), 55, 0)
+#12 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\GridView.php(489): yii\grid\GridView->renderTableRow(Object(app\models\Masterroom), 55, 0)
+#13 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\GridView.php(353): yii\grid\GridView->renderTableBody()
+#14 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\widgets\BaseListView.php(160): yii\grid\GridView->renderItems()
+#15 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\GridView.php(321): yii\widgets\BaseListView->renderSection('{items}')
+#16 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\widgets\BaseListView.php(135): yii\grid\GridView->renderSection('{items}')
+#17 [internal function]: yii\widgets\BaseListView->yii\widgets\{closure}(Array)
+#18 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\widgets\BaseListView.php(138): preg_replace_callback('/{\\w+}/', Object(Closure), '{items}\n{summar...')
+#19 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\grid\GridView.php(296): yii\widgets\BaseListView->run()
+#20 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Widget.php(140): yii\grid\GridView->run()
+#21 C:\xampp\htdocs\rekrut\app\views\masterroom\index.php(132): yii\base\Widget::widget(Array)
+#22 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\View.php(336): require('C:\\xampp\\htdocs...')
+#23 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\View.php(254): yii\base\View->renderPhpFile('C:\\xampp\\htdocs...', Array)
+#24 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\View.php(156): yii\base\View->renderFile('C:\\xampp\\htdocs...', Array, Object(app\controllers\MasterroomController))
+#25 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(384): yii\base\View->render('index', Array, Object(app\controllers\MasterroomController))
+#26 C:\xampp\htdocs\rekrut\app\controllers\MasterroomController.php(62): yii\base\Controller->render('index', Array)
+#27 [internal function]: app\controllers\MasterroomController->actionIndex()
+#28 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#29 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#30 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#31 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('masterroom/inde...', Array)
+#32 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#33 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#34 {main}
+2022-03-11 05:19:17 [::1][104728][3hc724h59017j95im5li46tn47][info][application] $_GET = [
+    'masterroom/index' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '3hc724h59017j95im5li46tn47'
+    '_csrf' => '2b1c562a534090e6f91fdfb171bf043727b94d60126b5fb820e8e398422e2663a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"AoEOPRqNwAxPdqJdO7brdwqARgffSIWv\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1646975957
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Google Chrome\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/masteroffice/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=3hc724h59017j95im5li46tn47; _csrf=2b1c562a534090e6f91fdfb171bf043727b94d60126b5fb820e8e398422e2663a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22AoEOPRqNwAxPdqJdO7brdwqARgffSIWv%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/7.4.27'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '59586'
+    'REDIRECT_URL' => '/rekrut/masterroom/index'
+    'REDIRECT_QUERY_STRING' => 'masterroom/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'masterroom/index'
+    'REQUEST_URI' => '/rekrut/masterroom/index'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1646972357.6663
+    'REQUEST_TIME' => 1646972357
+]
