@@ -44,6 +44,10 @@
         "process-timeout": 1800,
         "fxp-asset": {
             "enabled": false
+        },
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true,
+            "composer/installers": true
         }
     },
     "scripts": {
