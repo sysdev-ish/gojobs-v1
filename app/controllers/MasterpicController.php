@@ -84,6 +84,7 @@ class MasterpicController extends Controller
     public function actionCreate()
     {
         $model = new Masterpic();
+        
         $office = ArrayHelper::map(Masteroffice::find()->asArray()->all(), 'id', 'officename');
         $userlogin = ArrayHelper::map(Userlogin::find()->asArray()->where(['!=','role',2])->all(), 'id', 'name');
         if ($model->load(Yii::$app->request->post())) {

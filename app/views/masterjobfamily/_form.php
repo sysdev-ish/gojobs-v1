@@ -12,11 +12,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
     <div class="box-body table-responsive">
 
-        <?= $form->field($model, 'job_family')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'createtime')->textInput() ?>
-
-        <?= $form->field($model, 'updatetime')->textInput() ?>
+        <?= $form->field($model, 'jobfamily')->textInput(['maxlength' => true]) ?>
 
     </div>
     <div class="box-footer">

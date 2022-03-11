@@ -8,6 +8,9 @@ use app\models\MappingjobpositionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
+use yii\filters\AccessControl;
 
 /**
  * MappingjobpositionController implements the CRUD actions for Mappingjobposition model.
@@ -20,6 +23,21 @@ class MappingjobpositionController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'update', 'create', 'view', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'update', 'create', 'view', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function () {
+                            return (Yii::$app->utils->permission(Yii::$app->user->identity->role, 'm51'));
+                        }
+
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -65,11 +83,16 @@ class MappingjobpositionController extends Controller
     {
         $model = new Mappingjobposition();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
+        if ($model->load(Yii::$app->request->post())) {
+            $model->createtime = date('Y-m-d H-i-s');
+            $model->updatetime = date('Y-m-d H-i-s');
+            $model->save();
+            return $this->redirect(['index']);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
+                'jobfamily' => $jobfamily,
             ]);
         }
     }
@@ -84,11 +107,15 @@ class MappingjobpositionController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
+        if ($model->load(Yii::$app->request->post())) {
+            $model->updatetime = date('Y-m-d H-i-s');
+            $model->save();
+            return $this->redirect(['index']);
         } else {
-            return $this->render('update', [
+            return $this->render('create', [
                 'model' => $model,
+                'jobfamily' => $jobfamily,
             ]);
         }
     }

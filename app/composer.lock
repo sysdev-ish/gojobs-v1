@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1bb272266fc5849472f7c869a6491d01",
+    "content-hash": "984519e1933373d3a07b87c1a8755f8b",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1092,7 +1092,7 @@
         },
         {
             "name": "kartik-v/yii2-widget-activeform",
-            "version": "dev-master",
+            "version": "v1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-activeform.git",
@@ -1107,7 +1107,6 @@
             "require": {
                 "kartik-v/yii2-krajee-base": ">=3.0.3"
             },
-            "default-branch": true,
             "type": "yii2-extension",
             "extra": {
                 "branch-alias": {
@@ -6398,8 +6397,7 @@
         "kartik-v/yii2-widget-datepicker": 20,
         "kartik-v/yii2-widget-fileinput": 20,
         "kartik-v/yii2-widget-datetimepicker": 20,
-        "kartik-v/yii2-mpdf": 20,
-        "kartik-v/yii2-widget-activeform": 20
+        "kartik-v/yii2-mpdf": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

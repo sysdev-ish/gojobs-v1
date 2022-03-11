@@ -18,8 +18,6 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($model, 'kode_posisi')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'id_subjobfamily')->textInput() ?>
-
     </div>
     <div class="box-footer">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success btn-flat']) ?>

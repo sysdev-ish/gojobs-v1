@@ -5,13 +5,13 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "mappingjob_position".
+ * This is the model class for table "mappingjobposition".
  *
  * @property int $id
  * @property string $jabatan_sap
  * @property string $kode_jabatan
  * @property string $kode_posisi
- * @property int $id_subjobfamily
+ * @property int $subjobfamily_id
  */
 class Mappingjobposition extends \yii\db\ActiveRecord
 {
@@ -20,7 +20,7 @@ class Mappingjobposition extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'mappingjob_position';
+        return 'mappingjobposition';
     }
 
     /**
@@ -29,8 +29,8 @@ class Mappingjobposition extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['jabatan_sap', 'kode_jabatan', 'kode_posisi', 'id_subjobfamily'], 'required'],
-            [['id_subjobfamily'], 'integer'],
+            [['jabatan_sap', 'kode_jabatan', 'kode_posisi', 'subjobfamily_id'], 'required'],
+            [['subjobfamily_id'], 'integer'],
             [['jabatan_sap', 'kode_jabatan', 'kode_posisi'], 'string', 'max' => 50],
         ];
     }
@@ -45,7 +45,7 @@ class Mappingjobposition extends \yii\db\ActiveRecord
             'jabatan_sap' => 'Jabatan Sap',
             'kode_jabatan' => 'Kode Jabatan',
             'kode_posisi' => 'Kode Posisi',
-            'id_subjobfamily' => 'Id Subjobfamily',
+            'subjobfamily_id' => 'Id Subjobfamily',
         ];
     }
 }

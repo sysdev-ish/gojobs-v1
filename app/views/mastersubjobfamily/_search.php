@@ -15,15 +15,9 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?= $form->field($model, 'jobfamily_id') ?>
 
-    <?= $form->field($model, 'id_job_family') ?>
-
-    <?= $form->field($model, 'sub_job_family') ?>
-
-    <?= $form->field($model, 'createtime') ?>
-
-    <?= $form->field($model, 'updatetime') ?>
+    <?= $form->field($model, 'subjobfamily') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

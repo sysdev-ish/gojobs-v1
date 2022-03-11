@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'jabatan_sap',
                 'kode_jabatan',
                 'kode_posisi',
-                'id_subjobfamily',
+                'subjobfamily_id',
             ],
         ]) ?>
     </div>

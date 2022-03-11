@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "Masterjobfamily".
  *
  * @property int $id
- * @property string $job_family
+ * @property string $jobfamily
  * @property string $createtime
  * @property string $updatetime
  */
@@ -28,9 +28,9 @@ class Masterjobfamily extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['job_family', 'createtime', 'updatetime'], 'required'],
+            [['jobfamily', 'createtime', 'updatetime'], 'required'],
             [['createtime', 'updatetime'], 'safe'],
-            [['job_family'], 'string', 'max' => 256],
+            [['jobfamily'], 'string', 'max' => 256],
         ];
     }
 
@@ -41,7 +41,7 @@ class Masterjobfamily extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'job_family' => 'Job Family',
+            'jobfamily' => 'Job Family',
             'createtime' => 'Createtime',
             'updatetime' => 'Updatetime',
         ];

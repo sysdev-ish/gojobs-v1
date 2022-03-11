@@ -19,7 +19,7 @@ class MasterindustrySearch extends Masterindustry
     {
         return [
             [['id'], 'integer'],
-            [['type_industry', 'createtime', 'updatetime'], 'safe'],
+            [['industry_type', 'createtime', 'updatetime'], 'safe'],
         ];
     }
 
@@ -65,7 +65,7 @@ class MasterindustrySearch extends Masterindustry
             'updatetime' => $this->updatetime,
         ]);
 
-        $query->andFilterWhere(['like', 'type_industry', $this->type_industry]);
+        $query->andFilterWhere(['like', 'industry_type', $this->industry_type]);
 
         return $dataProvider;
     }

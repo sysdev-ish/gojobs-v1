@@ -8,6 +8,7 @@ use app\models\MasterindustrySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * MasterindustryController implements the CRUD actions for Masterindustry model.
@@ -20,6 +21,21 @@ class MasterindustryController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'update', 'create', 'view', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'update', 'create', 'view', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function () {
+                            return (Yii::$app->utils->permission(Yii::$app->user->identity->role, 'm51'));
+                        }
+
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -65,8 +81,11 @@ class MasterindustryController extends Controller
     {
         $model = new Masterindustry();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->createtime = date('Y-m-d H-i-s');
+            $model->updatetime = date('Y-m-d H-i-s');
+            $model->save();
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -84,8 +103,10 @@ class MasterindustryController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->updatetime = date('Y-m-d H-i-s');
+            $model->save();
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,

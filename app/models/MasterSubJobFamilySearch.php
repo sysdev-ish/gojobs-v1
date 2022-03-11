@@ -18,8 +18,8 @@ class Mastersubjobfamilysearch extends Mastersubjobfamily
     public function rules()
     {
         return [
-            [['id', 'id_job_family'], 'integer'],
-            [['sub_job_family', 'createtime', 'updatetime'], 'safe'],
+            [['id', 'jobfamily_id'], 'integer'],
+            [['subjobfamily', 'createtime', 'updatetime'], 'safe'],
         ];
     }
 
@@ -61,12 +61,12 @@ class Mastersubjobfamilysearch extends Mastersubjobfamily
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'id_job_family' => $this->id_job_family,
+            'jobfamily_id' => $this->jobfamily_id,
             'createtime' => $this->createtime,
             'updatetime' => $this->updatetime,
         ]);
 
-        $query->andFilterWhere(['like', 'sub_job_family', $this->sub_job_family]);
+        $query->andFilterWhere(['like', 'subjobfamily', $this->subjobfamily]);
 
         return $dataProvider;
     }

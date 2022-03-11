@@ -5,9 +5,13 @@ namespace app\controllers;
 use Yii;
 use app\models\Mastersubjobfamily;
 use app\models\Mastersubjobfamilysearch;
+use app\models\Masterjobfamily;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
+use yii\filters\AccessControl;
 
 /**
  * MastersubjobfamilyController implements the CRUD actions for Mastersubjobfamily model.
@@ -20,6 +24,21 @@ class MastersubjobfamilyController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'update', 'create', 'view', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'update', 'create', 'view', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function () {
+                            return (Yii::$app->utils->permission(Yii::$app->user->identity->role, 'm51'));
+                        }
+
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -65,11 +84,16 @@ class MastersubjobfamilyController extends Controller
     {
         $model = new Mastersubjobfamily();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
+        if ($model->load(Yii::$app->request->post())) {
+            $model->createtime = date('Y-m-d H-i-s');
+            $model->updatetime = date('Y-m-d H-i-s');
+            $model->save();
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'jobfamily' => $jobfamily,
             ]);
         }
     }
@@ -84,11 +108,15 @@ class MastersubjobfamilyController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
+        if ($model->load(Yii::$app->request->post())) {
+            $model->updatetime = date('Y-m-d H-i-s');
+            $model->save();
+            return $this->redirect(['index']);
         } else {
-            return $this->render('update', [
+            return $this->render('create', [
                 'model' => $model,
+                'jobfamily' => $jobfamily,
             ]);
         }
     }

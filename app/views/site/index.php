@@ -1,5 +1,6 @@
 <?php
 use yii\widgets\ListView;
+use kartik\select2\Select2Asset;
 use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
 use app\models\MappingCity;

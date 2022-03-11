@@ -18,7 +18,7 @@ class Mappingjobpositionsearch extends Mappingjobposition
     public function rules()
     {
         return [
-            [['id', 'id_subjobfamily'], 'integer'],
+            [['id', 'subjobfamily_id'], 'integer'],
             [['jabatan_sap', 'kode_jabatan', 'kode_posisi'], 'safe'],
         ];
     }
@@ -61,7 +61,7 @@ class Mappingjobpositionsearch extends Mappingjobposition
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'id_subjobfamily' => $this->id_subjobfamily,
+            'subjobfamily_id' => $this->subjobfamily_id,
         ]);
 
         $query->andFilterWhere(['like', 'jabatan_sap', $this->jabatan_sap])

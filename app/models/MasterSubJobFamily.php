@@ -8,8 +8,8 @@ use Yii;
  * This is the model class for table "mastersubjobfamily".
  *
  * @property int $id
- * @property int $id_job_family
- * @property string $sub_job_family
+ * @property int $jobfamily_id
+ * @property string $subjobfamily
  * @property string $createtime
  * @property string $updatetime
  */
@@ -29,10 +29,10 @@ class Mastersubjobfamily extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_job_family', 'sub_job_family', 'createtime', 'updatetime'], 'required'],
-            [['id_job_family'], 'integer'],
+            [['jobfamily_id', 'subjobfamily', 'createtime', 'updatetime'], 'required'],
+            [['jobfamily_id'], 'integer'],
             [['createtime', 'updatetime'], 'safe'],
-            [['sub_job_family'], 'string', 'max' => 256],
+            [['subjobfamily'], 'string', 'max' => 256],
         ];
     }
 
@@ -43,10 +43,14 @@ class Mastersubjobfamily extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_job_family' => 'Id Job Family',
-            'sub_job_family' => 'Sub Job Family',
+            'jobfamily_id' => 'Id Job Family',
+            'subjobfamily' => 'Sub Job Family',
             'createtime' => 'Createtime',
             'updatetime' => 'Updatetime',
         ];
+    }
+    public function getMasterjobfamily()
+    {
+        return $this->hasOne(Masterjobfamily::className(), ['id' => 'masterjobfamilyid']);
     }
 }

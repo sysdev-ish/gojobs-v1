@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "masterindustry".
  *
  * @property int $id
- * @property string $type_industry
+ * @property string $industry_type
  * @property string $createtime
  * @property string $updatetime
  */
@@ -28,9 +28,9 @@ class Masterindustry extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type_industry', 'createtime', 'updatetime'], 'required'],
+            [['industry_type', 'createtime', 'updatetime'], 'required'],
             [['createtime', 'updatetime'], 'safe'],
-            [['type_industry'], 'string', 'max' => 256],
+            [['industry_type'], 'string', 'max' => 256],
         ];
     }
 
@@ -41,7 +41,7 @@ class Masterindustry extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'type_industry' => 'Type Industry',
+            'industry_type' => 'Type Industry',
             'createtime' => 'Createtime',
             'updatetime' => 'Updatetime',
         ];
