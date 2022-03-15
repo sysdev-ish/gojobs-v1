@@ -15,9 +15,6 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
-        "yiisoft/yii2": "~2.0.14",
-        "yiisoft/yii2-bootstrap": "~2.0.0",
-        "yiisoft/yii2-swiftmailer": "~2.0.0",
         "dmstr/yii2-adminlte-asset": "^2.1",
         "linslin/yii2-curl": "*",
         "kartik-v/yii2-widget-select2": "@dev",
@@ -28,7 +25,11 @@
         "kartik-v/yii2-widget-datetimepicker": "dev-master",
         "kartik-v/yii2-mpdf": "dev-master",
         "kartik-v/yii2-field-range": "*",
-        "kartik-v/yii2-export": "*"
+        "kartik-v/yii2-export": "*",
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-bootstrap": "*",
+        "yiisoft/yii2-swiftmailer": "*",
+        "kartik-v/yii2-grid": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
@@ -43,9 +44,6 @@
         "process-timeout": 1800,
         "fxp-asset": {
             "enabled": false
-        },
-        "allow-plugins": {
-            "yiisoft/yii2-composer": false
         }
     },
     "scripts": {
