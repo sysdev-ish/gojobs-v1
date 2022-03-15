@@ -416,6 +416,7 @@ class SiteController extends Controller
       $accesstoken = Yii::$app->oauth->getaccesstoken($auth_code);
       $token = json_decode($accesstoken);
       $user = Yii::$app->oauth->getuserdata($token->data->access_token);
+      // var_dump($token);
       // var_dump($user);die;
       if($user){
       return $this->goHome();
