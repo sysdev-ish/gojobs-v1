@@ -191,6 +191,170 @@ $(function () {
           .append(html);
       });
   });
+  $('.viewmasterindustry-modal-click').click(function (e) {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#viewmasterindustry-modal')
+          .modal('show')
+          .find('#masterindustryview')
+          .empty()
+          .append(html);
+      });
+  });
+  $('.updatemasterindustry-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#updatemasterindustry-modal')
+          .modal('show')
+          .find('#updatemasterindustry')
+          .empty()
+          .append(html);
+      });
+  });
+  $('.createmasterindustry-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#createmasterindustry-modal')
+          .modal('show')
+          .find('#createmasterindustry')
+          .empty()
+          .append(html);
+      });
+  });
+  
+  $('.viewmasterjobfamily-modal-click').click(function (e) {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#viewmasterjobfamily-modal')
+          .modal('show')
+          .find('#masterjobfamilyview')
+          .empty()
+          .append(html);
+      });
+  });
+  $('.updatemasterjobfamily-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#updatemasterjobfamily-modal')
+          .modal('show')
+          .find('#updatemasterjobfamily')
+          .empty()
+          .append(html);
+      });
+  });
+  $('.createmasterjobfamily-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#createmasterjobfamily-modal')
+          .modal('show')
+          .find('#createmasterjobfamily')
+          .empty()
+          .append(html);
+      });
+  });
+  $('.viewmastersubjobfamily-modal-click').click(function (e) {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#viewmastersubjobfamily-modal')
+          .modal('show')
+          .find('#mastersubjobfamilyview')
+          .empty()
+          .append(html);
+      });
+  });
+  $('.updatemastersubjobfamily-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#updatemastersubjobfamily-modal')
+          .modal('show')
+          .find('#updatemastersubjobfamily')
+          .empty()
+          .append(html);
+      });
+  });
+  $('.createmastersubjobfamily-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#createmastersubjobfamily-modal')
+          .modal('show')
+          .find('#createmastersubjobfamily')
+          .empty()
+          .append(html);
+      });
+  });
+
   $('.viewmasteroffice-modal-click').click(function (e) {
     var loading = new Loading({
       direction: 'hor',

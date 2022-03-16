@@ -29,7 +29,7 @@ class Mastersubjobfamily extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['jobfamily_id', 'subjobfamily', 'createtime', 'updatetime'], 'required'],
+            [['jobfamily_id', 'subjobfamily'], 'required'],
             [['jobfamily_id'], 'integer'],
             [['createtime', 'updatetime'], 'safe'],
             [['subjobfamily'], 'string', 'max' => 256],
@@ -51,6 +51,6 @@ class Mastersubjobfamily extends \yii\db\ActiveRecord
     }
     public function getMasterjobfamily()
     {
-        return $this->hasOne(Masterjobfamily::className(), ['id' => 'masterjobfamilyid']);
+        return $this->hasOne(Masterjobfamily::className(), ['id' => 'jobfamily_id']);
     }
 }

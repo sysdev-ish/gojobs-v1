@@ -66,7 +66,7 @@ class MasterjobfamilyController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        return $this->renderAjax('view', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -86,7 +86,7 @@ class MasterjobfamilyController extends Controller
             $model->save();
             return $this->redirect(['index']);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }
@@ -107,7 +107,7 @@ class MasterjobfamilyController extends Controller
             $model->save();
             return $this->redirect(['index']);
         } else {
-            return $this->render('update', [
+            return $this->renderAjax('update', [
                 'model' => $model,
             ]);
         }

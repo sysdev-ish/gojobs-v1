@@ -15,6 +15,12 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
+    <?= $form->field($model, 'id') ?>
+
+    <?= $form->field($model, 'createtime') ?>
+
+    <?= $form->field($model, 'updatetime') ?>
+
     <?= $form->field($model, 'industry_type') ?>
 
     <div class="form-group">

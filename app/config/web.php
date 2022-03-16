@@ -12,6 +12,7 @@ $config = [
     'bootstrap' => ['log'],
     'name'=> 'GO JOBS',
 
+    'timeZone' => 'Asia/Jakarta',
     'language' => 'id',
 
     'on beforeRequest' => function($event) {

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\MasterSubJobFamily */
@@ -12,7 +13,21 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
     <div class="box-body table-responsive">
 
-        <?= $form->field($model, 'jobfamily_id')->textInput() ?>
+        <?php
+        if (!$model->isNewRecord) {
+            $dropdownparent = new yii\web\JsExpression('$("#updatemastersubjobfamily-modal")');
+        } else {
+            $dropdownparent = new yii\web\JsExpression('$("#createmastersubjobfamily-modal")');
+        };
+        echo   $form->field($model, 'jobfamily_id')->widget(Select2::classname(), [
+            'data' => $jobfamily,
+            'options' => ['placeholder' => '- select -'],
+            'pluginOptions' => [
+                'dropdownParent' => $dropdownparent,
+                'allowClear' => true,
+            ],
+        ]);
+        ?>
 
         <?= $form->field($model, 'subjobfamily')->textInput(['maxlength' => true]) ?>
 

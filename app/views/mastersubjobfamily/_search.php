@@ -15,7 +15,13 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
+    <?= $form->field($model, 'id') ?>
+
     <?= $form->field($model, 'jobfamily_id') ?>
+
+    <?= $form->field($model, 'createtime') ?>
+
+    <?= $form->field($model, 'updatetime') ?>
 
     <?= $form->field($model, 'subjobfamily') ?>
 

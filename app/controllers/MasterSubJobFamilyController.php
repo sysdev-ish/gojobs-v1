@@ -70,7 +70,7 @@ class MastersubjobfamilyController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        return $this->renderAjax('view', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -91,7 +91,7 @@ class MastersubjobfamilyController extends Controller
             $model->save();
             return $this->redirect(['index']);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
                 'jobfamily' => $jobfamily,
             ]);
@@ -114,7 +114,7 @@ class MastersubjobfamilyController extends Controller
             $model->save();
             return $this->redirect(['index']);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
                 'jobfamily' => $jobfamily,
             ]);
@@ -148,5 +148,34 @@ class MastersubjobfamilyController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    public function actionGetsubjobfamily()
+    {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            $jobfamily_id = empty($parents[0]) ? null : $parents[0];
+            $model = Mastersubjobfamily::find()->asArray()->where(['jobfamily_id' => $jobfamily_id])->all();
+            $selected  = null;
+            if ($parents != null && count($model) > 0) {
+                $selected = '';
+                $id1 = '';
+                if (!empty($_POST['depdrop_params'])) {
+                    $params = $_POST['depdrop_params'];
+                    $id1 = $params[0]; // get the value of model_id1
+                    foreach ($model as $key => $value) {
+                        $out[] = ['id' => $value['id'], 'jobfamily' => $value['subjobfamily']];
+                        $oc[] = $value['id'];
+                        if ($key == 0) {
+                            $aux = $value['id'];
+                        }
+                    }
+                    ((in_array($id1, $oc))) ? $selected = $id1 : $selected = $aux;
+                }
+                echo Json::encode(['output' => $out, 'selected' => $selected]);
+                return;
+            }
+        }
+        echo Json::encode(['output' => '', 'selected' => '']);
     }
 }
