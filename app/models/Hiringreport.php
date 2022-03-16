@@ -29,6 +29,7 @@ class Hiringreport extends Hiring
   public $statuspekerja;
   public $startresign;
   public $endresign;
+  
     /**
      * @inheritdoc
      */

@@ -34,6 +34,8 @@ use app\models\Masterareaish;
 use app\models\Masterregion;
 use app\models\Mappingregionarea;
 use app\models\Mastercity;
+use app\models\Masterjobfamily;
+use app\models\Mastersubjobfamily;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -119,12 +121,8 @@ class ReportController extends Controller
   //   ]);
   // }
 
-
-
   public function actionReporthiring()
   {
-
-
     $searchModel = new Hiringreport();
     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
     $area = ArrayHelper::map(Saparea::find()->asArray()->all(), 'value1', 'value2');
@@ -132,6 +130,8 @@ class ReportController extends Controller
     $jabatan = ArrayHelper::map(Sapjob::find()->asArray()->all(), 'value1', 'value2');
     $areaish = ArrayHelper::map(Masterareaish::find()->asArray()->all(), 'id', 'area');
     $region = ArrayHelper::map(Masterregion::find()->asArray()->all(), 'id', 'regionname');
+    $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
+    $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
     return $this->render('reporthiring', [
       'searchModel' => $searchModel,
       'dataProvider' => $dataProvider,
@@ -140,12 +140,12 @@ class ReportController extends Controller
       'jabatan' => $jabatan,
       'areaish' => $areaish,
       'region' => $region,
+      'jobfamily' => $jobfamily,
+      'subjobfamily' => $subjobfamily,
     ]);
   }
   public function actionReportapplicant()
   {
-
-
     $searchModel = new Applicantreport();
     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
     $education = ArrayHelper::map(Mastereducation::find()->asArray()->all(), 'idmastereducation', 'education');
@@ -301,7 +301,6 @@ class ReportController extends Controller
   //return zip archive name without path
   Yii::$app->response->sendFile($zipPath);
 
-
     // return $this->redirect(['recruitmentcandidate/index']);
     // return $this->goBack();
 
@@ -351,6 +350,74 @@ class ReportController extends Controller
     }
     echo Json::encode(['output'=>'', 'selected'=>'']);
   }
+
+  public function actionGetjobfamily() {
+    $out = [];
+    if (isset($_POST['depdrop_parents'])) {
+      $parents = $_POST['depdrop_parents'];
+      $areaish = empty($parents[0]) ? null : $parents[0];
+
+      $model = Masterjobfamily::find()->asArray()->where(['areaid'=>$areaish])->groupby(['regionalid'])->all();
+      $selected  = null;
+      if ($parents != null && count($model) > 0 ) {
+        $selected = '';
+        $id1 = '';
+        if (!empty($_POST['depdrop_params'])) {
+          $params = $_POST['depdrop_params'];
+          $id1 = $params[0]; // get the value of model_id1
+          foreach ($model as $key => $value) {
+            $out[] = ['id'=>$value['regionalid'],'name'=> 'Region '.$value['regionalid']];
+            $oc[] = $value['regionalid'];
+            if($key == 0){
+            $out[] = ['id'=>'0','name'=>'all'];
+            $aux = '0';
+            }
+            }
+            ((in_array($id1, $oc))) ? $selected = $id1 : $selected = $aux;
+        }
+        sort($out);
+        echo Json::encode(['output'=>$out, 'selected'=>$selected]);
+        return;
+      }
+    }
+    echo Json::encode(['output'=>'', 'selected'=>'']);
+  }
+
+  public function actionGetsubjobfamily() {
+    $out = [];
+    if (isset($_POST['depdrop_parents'])) {
+      $parents = $_POST['depdrop_parents'];
+      $areaish = empty($parents[0]) ? null : $parents[0];
+
+      $model = Saparea::find()->asArray()->where(['areaid'=>$areaish])->groupby(['regionalid'])->all();
+      // var_dump($model);die;
+      $selected  = null;
+      if ($parents != null && count($model) > 0 ) {
+        $selected = '';
+        $id1 = '';
+        if (!empty($_POST['depdrop_params'])) {
+          $params = $_POST['depdrop_params'];
+          $id1 = $params[0]; // get the value of model_id1
+          foreach ($model as $key => $value) {
+            $out[] = ['id'=>$value['regionalid'],'name'=> 'Region '.$value['regionalid']];
+            $oc[] = $value['regionalid'];
+            if($key == 0){
+            $out[] = ['id'=>'0','name'=>'all'];
+            $aux = '0';
+            }
+            }
+            ((in_array($id1, $oc))) ? $selected = $id1 : $selected = $aux;
+        }
+        // $outs = array_push($out, ['id'=>"0",'name'=>'all']);
+        // var_dump($outs);die;
+        sort($out);
+        echo Json::encode(['output'=>$out, 'selected'=>$selected]);
+        return;
+      }
+    }
+    echo Json::encode(['output'=>'', 'selected'=>'']);
+  }
+
   protected function findModel($id)
   {
     if (($model = Hiring::findOne($id)) !== null) {

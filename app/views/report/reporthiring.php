@@ -28,6 +28,8 @@ use app\models\Transperner;
 use app\models\Transrincianori;
 use app\models\Hiring;
 use app\models\Uservaksin;
+use app\models\Masterjobfamily;
+use app\models\Mastersubjobfamily;
 use yii\helpers\ArrayHelper;
 use kartik\export\ExportMenu;
 use linslin\yii2\curl;
@@ -57,6 +59,8 @@ app\assets\ReportAsset::register($this);
           'jabatan' => $jabatan,
           'areaish' => $areaish,
           'region' => $region,
+          'jobfamily' => $jobfamily,
+          'subjobfamily' => $subjobfamily,
         ]); ?>
     </div>
 </div>

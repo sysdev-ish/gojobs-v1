@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Masterjobfamily;
-use app\models\Masterjobfamilysearch;
+use app\models\MasterjobfamilySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -50,7 +50,7 @@ class MasterjobfamilyController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new Masterjobfamilysearch();
+        $searchModel = new MasterjobfamilySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

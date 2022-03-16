@@ -10,7 +10,7 @@ use app\models\Mappingjobposition;
 /**
  * MappingjobpositionSearch represents the model behind the search form of `app\models\Mappingjobposition`.
  */
-class Mappingjobpositionsearch extends Mappingjobposition
+class MappingjobpositionSearch extends Mappingjobposition
 {
     /**
      * @inheritdoc

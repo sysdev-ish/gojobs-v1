@@ -10,7 +10,7 @@ use app\models\Mastersubjobfamily;
 /**
  * Mastersubjobfamilysearch represents the model behind the search form of `app\models\Mastersubjobfamily`.
  */
-class Mastersubjobfamilysearch extends Mastersubjobfamily
+class MastersubjobfamilySearch extends Mastersubjobfamily
 {
     /**
      * @inheritdoc

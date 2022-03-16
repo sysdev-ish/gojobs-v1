@@ -48,4 +48,9 @@ class Mappingjobposition extends \yii\db\ActiveRecord
             'subjobfamily_id' => 'Id Subjobfamily',
         ];
     }
+
+    public function getMasterkodeposisi()
+    {
+        return $this->hasOne(Transrincianrekrut::className(), ['id' => 'kode_posisi']);
+    }
 }

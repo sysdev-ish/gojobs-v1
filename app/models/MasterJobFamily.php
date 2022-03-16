@@ -19,7 +19,7 @@ class Masterjobfamily extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'Masterjobfamily';
+        return 'masterjobfamily';
     }
 
     /**

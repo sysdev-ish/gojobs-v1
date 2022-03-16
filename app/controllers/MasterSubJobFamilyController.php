@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Mastersubjobfamily;
-use app\models\Mastersubjobfamilysearch;
+use app\models\MastersubjobfamilySearch;
 use app\models\Masterjobfamily;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -54,7 +54,7 @@ class MastersubjobfamilyController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new Mastersubjobfamilysearch();
+        $searchModel = new MastersubjobfamilySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
