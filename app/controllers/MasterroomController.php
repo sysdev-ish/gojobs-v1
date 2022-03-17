@@ -173,6 +173,6 @@ class MasterroomController extends Controller
   				return;
   			}
   		}
-  		echo Json::encode(['output'=>'', 'selected'=>'']);
-  	}
+  	    echo Json::encode(['output'=>'', 'selected'=>'']);
+    }
 }

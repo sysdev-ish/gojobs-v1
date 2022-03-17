@@ -5,6 +5,8 @@ namespace app\controllers;
 use Yii;
 use app\models\Mappingjobposition;
 use app\models\MappingjobpositionSearch;
+use app\models\Transrincianrekrut;
+use app\models\Mastersubjobfamily;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -83,7 +85,9 @@ class MappingjobpositionController extends Controller
     {
         $model = new Mappingjobposition();
 
-        $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
+        $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
+        $jabatansap = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'jabatan_sap');
+        $kodeposisi = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'hire_jabatan_sap');
         if ($model->load(Yii::$app->request->post())) {
             $model->createtime = date('Y-m-d H-i-s');
             $model->updatetime = date('Y-m-d H-i-s');
@@ -92,7 +96,9 @@ class MappingjobpositionController extends Controller
         } else {
             return $this->renderAjax('create', [
                 'model' => $model,
-                'jobfamily' => $jobfamily,
+                'subjobfamily' => $subjobfamily,
+                'jabatansap' => $jabatansap,
+                'kodeposisi' => $kodeposisi,
             ]);
         }
     }
@@ -107,15 +113,19 @@ class MappingjobpositionController extends Controller
     {
         $model = $this->findModel($id);
 
-        $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
+        $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
+        $jabatansap = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'jabatan_sap');
+        $kodeposisi = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'hire_jabatan_sap');
         if ($model->load(Yii::$app->request->post())) {
             $model->updatetime = date('Y-m-d H-i-s');
             $model->save();
             return $this->redirect(['index']);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
-                'jobfamily' => $jobfamily,
+                'subjobfamily' => $subjobfamily,
+                'jabatansap' => $jabatansap,
+                'kodeposisi' => $kodeposisi,
             ]);
         }
     }

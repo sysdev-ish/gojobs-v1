@@ -531,8 +531,6 @@ app\assets\ReportAsset::register($this);
                         }else{
                           return "";
                         }
-
-
                     }
 
                     ],

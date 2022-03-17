@@ -54,13 +54,21 @@ class MastersubjobfamilyController extends Controller
      */
     public function actionIndex()
     {
+        $jobfamily = Masterjobfamily::find()->all();
         $searchModel = new MastersubjobfamilySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if ($jobfamily==null) {
+            // return $this->redirect(array(‘rekrut/masterjobfamily/index));
+            return $this->redirect(['masterjobfamily/index']);
+        } else {
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);            
+        }
+        
+
     }
 
     /**

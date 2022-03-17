@@ -168,6 +168,8 @@ class ReportController extends Controller
     $parea = ArrayHelper::map(Sappersonalarea::find()->asArray()->all(), 'value1', 'value2');
     $areaish = ArrayHelper::map(Masterareaish::find()->asArray()->all(), 'id', 'area');
     $region = ArrayHelper::map(Masterregion::find()->asArray()->all(), 'id', 'regionname');
+    $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
+    $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
     return $this->render('reportjoborder', [
       'searchModel' => $searchModel,
       'dataProvider' => $dataProvider,
@@ -175,6 +177,9 @@ class ReportController extends Controller
       'parea' => $parea,
       'areaish' => $areaish,
       'region' => $region,
+      'jobfamily' => $jobfamily,
+      'subjobfamily' => $subjobfamily,
+
     ]);
   }
   protected function generateCV($userid)
@@ -317,73 +322,6 @@ class ReportController extends Controller
   */
 
   public function actionGetregion() {
-    $out = [];
-    if (isset($_POST['depdrop_parents'])) {
-      $parents = $_POST['depdrop_parents'];
-      $areaish = empty($parents[0]) ? null : $parents[0];
-
-      $model = Saparea::find()->asArray()->where(['areaid'=>$areaish])->groupby(['regionalid'])->all();
-      // var_dump($model);die;
-      $selected  = null;
-      if ($parents != null && count($model) > 0 ) {
-        $selected = '';
-        $id1 = '';
-        if (!empty($_POST['depdrop_params'])) {
-          $params = $_POST['depdrop_params'];
-          $id1 = $params[0]; // get the value of model_id1
-          foreach ($model as $key => $value) {
-            $out[] = ['id'=>$value['regionalid'],'name'=> 'Region '.$value['regionalid']];
-            $oc[] = $value['regionalid'];
-            if($key == 0){
-            $out[] = ['id'=>'0','name'=>'all'];
-            $aux = '0';
-            }
-            }
-            ((in_array($id1, $oc))) ? $selected = $id1 : $selected = $aux;
-        }
-        // $outs = array_push($out, ['id'=>"0",'name'=>'all']);
-        // var_dump($outs);die;
-        sort($out);
-        echo Json::encode(['output'=>$out, 'selected'=>$selected]);
-        return;
-      }
-    }
-    echo Json::encode(['output'=>'', 'selected'=>'']);
-  }
-
-  public function actionGetjobfamily() {
-    $out = [];
-    if (isset($_POST['depdrop_parents'])) {
-      $parents = $_POST['depdrop_parents'];
-      $areaish = empty($parents[0]) ? null : $parents[0];
-
-      $model = Masterjobfamily::find()->asArray()->where(['areaid'=>$areaish])->groupby(['regionalid'])->all();
-      $selected  = null;
-      if ($parents != null && count($model) > 0 ) {
-        $selected = '';
-        $id1 = '';
-        if (!empty($_POST['depdrop_params'])) {
-          $params = $_POST['depdrop_params'];
-          $id1 = $params[0]; // get the value of model_id1
-          foreach ($model as $key => $value) {
-            $out[] = ['id'=>$value['regionalid'],'name'=> 'Region '.$value['regionalid']];
-            $oc[] = $value['regionalid'];
-            if($key == 0){
-            $out[] = ['id'=>'0','name'=>'all'];
-            $aux = '0';
-            }
-            }
-            ((in_array($id1, $oc))) ? $selected = $id1 : $selected = $aux;
-        }
-        sort($out);
-        echo Json::encode(['output'=>$out, 'selected'=>$selected]);
-        return;
-      }
-    }
-    echo Json::encode(['output'=>'', 'selected'=>'']);
-  }
-
-  public function actionGetsubjobfamily() {
     $out = [];
     if (isset($_POST['depdrop_parents'])) {
       $parents = $_POST['depdrop_parents'];

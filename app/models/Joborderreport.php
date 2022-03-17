@@ -7,6 +7,8 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Hiring;
 use app\models\Mappingregionarea;
+use app\models\Masterjobfamily;
+use app\models\Mastersubjobfamily;
 
 /**
  * Hiringsearch represents the model behind the search form of `app\models\Hiring`.
@@ -22,6 +24,8 @@ class Joborderreport extends Transrincian
   public $status;
   public $areaish;
   public $region;
+  public $jobfamily;
+  public $subjobfamily;
     /**
      * @inheritdoc
      */
@@ -30,7 +34,7 @@ class Joborderreport extends Transrincian
         return [
             // [['startjo','endjo'], 'required'],
             [['typejo','status'], 'integer'],
-            [['startjo','endjo','area','personalarea','tanggal','areaish','region'], 'safe'],
+            [['startjo','endjo','area','personalarea','tanggal','areaish','region','jobfamily','subjobfamily'], 'safe'],
         ];
     }
 
@@ -182,6 +186,8 @@ class Joborderreport extends Transrincian
             'personalarea' => 'Personal Area',
             'areaish' => 'Area ISH',
             'region' => 'Region',
+            'jobfamily' => 'jobfamily',
+            'subjobfamily' => 'subjobfamily',
         ];
     }
 }

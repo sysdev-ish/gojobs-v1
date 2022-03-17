@@ -32,6 +32,8 @@ class Mappingjobposition extends \yii\db\ActiveRecord
             [['jabatan_sap', 'kode_jabatan', 'kode_posisi', 'subjobfamily_id'], 'required'],
             [['subjobfamily_id'], 'integer'],
             [['jabatan_sap', 'kode_jabatan', 'kode_posisi'], 'string', 'max' => 50],
+            [['jabatan_sap', 'kode_jabatan', 'kode_posisi'], 'unique', 'targetAttribute' => ['jabatan_sap', 'kode_jabatan', 'kode_posisi'], 'message' => 'Data sudah ada']
+
         ];
     }
 
@@ -45,12 +47,22 @@ class Mappingjobposition extends \yii\db\ActiveRecord
             'jabatan_sap' => 'Jabatan Sap',
             'kode_jabatan' => 'Kode Jabatan',
             'kode_posisi' => 'Kode Posisi',
-            'subjobfamily_id' => 'Id Subjobfamily',
+            'subjobfamily_id' => 'Sub Job Family',
         ];
     }
 
     public function getMasterkodeposisi()
     {
-        return $this->hasOne(Transrincianrekrut::className(), ['id' => 'kode_posisi']);
+        return $this->hasOne(Transrincianrekrut::className(), ['hire_jabatan_sap' => 'kode_posisi']);
+    }
+
+    public function getMasterjabatansap()
+    {
+        return $this->hasOne(Transrincianrekrut::className(), ['jabatan_sap' => 'jabatan_sap']);
+    }
+
+    public function getMastersubjobfamily()
+    {
+        return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamily_id']);
     }
 }

@@ -31,6 +31,9 @@ class Masterjobfamily extends \yii\db\ActiveRecord
             [['jobfamily', 'createtime', 'updatetime'], 'required'],
             [['createtime', 'updatetime'], 'safe'],
             [['jobfamily'], 'string', 'max' => 256],
+            [['jobfamily'], 'unique', 'targetAttribute'=>['jobfamily'],'message'=>'Data sudah ada'],
+            // type_id needs to exist in the column "id" in the table defined in ProductType class
+            // ['id', 'exist', 'targetClass' => Mastersubjobfamily::class, 'targetAttribute' => ['id' => 'id']],
         ];
     }
 

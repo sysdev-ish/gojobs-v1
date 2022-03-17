@@ -76,17 +76,15 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                 ['class' => 'yii\grid\SerialColumn'],
 
                 // 'id',
-                // 'jobfamily_id',
-                // 'id',
-                [
-                    'label' => 'Job Family',
-                    'attribute' => 'jobfamily',
-                    'format' => 'html',
-                    'value' => function ($data) {
-                        return $data->masterjobfamily->jobfamily;
-                    }
-
-                ],
+                'jobfamily_id',
+                // [
+                //     'label' => 'Job Family',
+                //     'attribute' => 'jobfamily',
+                //     'format' => 'html',
+                //     'value' => function ($data) {
+                //         return $data->masterjobfamily->jobfamily_id;
+                //     }
+                // ],
                 // 'createtime',
                 // 'updatetime'
                 'subjobfamily',

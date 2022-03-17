@@ -5,10 +5,12 @@ namespace app\controllers;
 use Yii;
 use app\models\Masterjobfamily;
 use app\models\MasterjobfamilySearch;
+use app\models\Mastersubjobfamily;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+
 /**
  * MasterjobfamilyController implements the CRUD actions for Masterjobfamily model.
  */
@@ -121,7 +123,9 @@ class MasterjobfamilyController extends Controller
      */
     public function actionDelete($id)
     {
+        // $jobfamily = Masterjobfamily::find()->all();
         $this->findModel($id)->delete();
+        Mastersubjobfamily::deleteAll('jobfamily_id= :jobfamily_id', [':jobfamily_id' => $id]);
 
         return $this->redirect(['index']);
     }
