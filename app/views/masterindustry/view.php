@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'attributes' => [
                 'id',
                 'industry_type',
+                'status',
                 'createtime',
                 'updatetime',
             ],

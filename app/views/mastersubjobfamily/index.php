@@ -88,7 +88,25 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                 // 'createtime',
                 // 'updatetime'
                 'subjobfamily',
+                [
+                    'attribute' => 'status',
+                    'contentOptions' => ['style' => 'min-width: 200px;'],
+                    'format' => 'html',
+                    'filter' => \kartik\select2\Select2::widget([
+                        'model' => $searchModel,
+                        'attribute' => 'status',
+                        'data' => ['1' => 'Publish', '0' => 'Unpublished'],
+                        'options' => ['placeholder' => '--'],
+                        'pluginOptions' => [
+                            'allowClear' => true,
+                            'min-width' => '200px',
+                        ],
+                    ]),
+                    'value' => function ($data) {
+                        return ($data->status == 1) ? 'Published' : 'Unpublished';
+                    }
 
+                ],
                 [
                     'class' => 'yii\grid\ActionColumn',
                     'contentOptions' => ['style' => 'min-width: 150px;'],

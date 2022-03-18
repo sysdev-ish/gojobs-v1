@@ -371,7 +371,6 @@ class Hiringreport extends Hiring
             'startresign' => 'Periode Resign',
             'jobfamily' => 'jobfamily',
             'subjobfamily' => 'subjobfamily',
-
         ];
     }
 }

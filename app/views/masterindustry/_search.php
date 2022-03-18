@@ -22,6 +22,9 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'updatetime') ?>
 
     <?= $form->field($model, 'industry_type') ?>
+    
+    <?= $form->field($model, 'status') ?>
+
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

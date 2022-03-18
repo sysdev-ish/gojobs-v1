@@ -463,6 +463,60 @@ $(function () {
           .append(html);
       });
   });
+  $('.viewmappingjobposition-modal-click').click(function (e) {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#viewmappingjobposition-modal')
+          .modal('show')
+          .find('#mappingjobpositionview')
+          .empty()
+          .append(html);
+      });
+  });
+  $('.updatemappingjobposition-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#updatemappingjobposition-modal')
+          .modal('show')
+          .find('#updatemappingjobposition')
+          .empty()
+          .append(html);
+      });
+  });
+  $('.createmappingjobposition-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#createmappingjobposition-modal')
+          .modal('show')
+          .find('#createmappingjobposition')
+          .empty()
+          .append(html);
+      });
+  });
   $('.viewmasterregion-modal-click').click(function (e) {
     var loading = new Loading({
       direction: 'hor',

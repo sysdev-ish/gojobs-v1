@@ -10,6 +10,7 @@ use kartik\select2\Select2;
 ?>
 
 <div class="master-sub-job-family-form box box-primary">
+    <?= $form->errorSummary($model) ?>
     <?php $form = ActiveForm::begin(); ?>
     <div class="box-body table-responsive">
 
@@ -28,7 +29,6 @@ use kartik\select2\Select2;
             ],
         ]);
         ?>
-
         <?= $form->field($model, 'subjobfamily')->textInput(['maxlength' => true]) ?>
 
     </div>

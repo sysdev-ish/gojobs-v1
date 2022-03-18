@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Modal;
+use app\models\Masterindustry;
+use phpDocumentor\Reflection\DocBlock\Tags\Return_;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\MasterindustrySearch */
@@ -78,11 +81,32 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                 // 'createtime',
                 // 'updatetime'
                 'industry_type',
-
-
+                [
+                    'attribute' => 'status',
+                    'contentOptions' => ['style' => 'min-width: 200px;'],
+                    'format' => 'html',
+                    'filter' => \kartik\select2\Select2::widget([
+                        'model' => $searchModel,
+                        'attribute' => 'status',
+                        'data' => ['1' => 'Publish', '0' => 'Unpublished'],
+                        'options' => ['placeholder' => '--'],
+                        'pluginOptions' => [
+                            'allowClear' => true,
+                            'min-width' => '200px',
+                        ],
+                    ]),
+                    'value' => function ($data) {
+                        // if ($data->status == 1) {
+                        //     return 'Publish';
+                        // } elseif ($data->status == 0) {
+                        //     return 'Unpublished';
+                        // }
+                        return ($data->status == 1) ? 'Published' : 'Unpublished';
+                    }
+                ],
                 [
                     'class' => 'yii\grid\ActionColumn',
-                    'contentOptions' => ['style' => 'min-width: 150px;'],
+                    'contentOptions' => ['style' => 'width: 130px;'],
                     'template' => '<div class="btn-group pull-right">' . $action . '</div>',
                     'buttons' => [
                         'view' => function ($url, $model, $key) {

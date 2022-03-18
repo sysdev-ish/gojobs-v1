@@ -60,9 +60,6 @@ use yii\widgets\Pjax;
 
                 ],
 
-
-
-
                 ['class' => 'yii\grid\ActionColumn',
                 'contentOptions'=>['style'=>'min-width: 100px;'],
                 'template'=>'<div id = "actionpjax" class="btn-group pull-right">{addcandidate}</div>',
@@ -105,18 +102,10 @@ use yii\widgets\Pjax;
                            "
                        ]);
                      }
-
-
-
                 ]
               ],
             ],
         ]); ?>
-
-
-
-
-
     </div>
 </div>
 <?php Pjax::end()?>

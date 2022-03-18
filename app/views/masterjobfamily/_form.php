@@ -10,10 +10,9 @@ use yii\widgets\ActiveForm;
 
 <div class="master-job-family-form box box-primary">
     <?php $form = ActiveForm::begin(); ?>
+    <?= $form->errorSummary($model) ?>
     <div class="box-body table-responsive">
-
         <?= $form->field($model, 'jobfamily')->textInput(['maxlength' => true]) ?>
-
     </div>
     <div class="box-footer">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success btn-flat']) ?>

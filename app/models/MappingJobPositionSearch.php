@@ -62,12 +62,12 @@ class MappingjobpositionSearch extends Mappingjobposition
         $query->andFilterWhere([
             'id' => $this->id,
             'subjobfamily_id' => $this->subjobfamily_id,
+            'kode_posisi' => $this->kode_posisi,
         ]);
 
         $query->andFilterWhere(['like', 'jabatan_sap', $this->jabatan_sap])
-            ->andFilterWhere(['like', 'kode_jabatan', $this->kode_jabatan])
-            ->andFilterWhere(['like', 'kode_posisi', $this->kode_posisi]);
-
+            ->andFilterWhere(['like', 'kode_jabatan', $this->kode_jabatan]);
+            
         return $dataProvider;
     }
 }

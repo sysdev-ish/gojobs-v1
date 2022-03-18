@@ -84,6 +84,7 @@ class MasterindustryController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->createtime = date('Y-m-d H-i-s');
             $model->updatetime = date('Y-m-d H-i-s');
+            $model->status = 1;
             $model->save();
             return $this->redirect(['index']);
         } else {

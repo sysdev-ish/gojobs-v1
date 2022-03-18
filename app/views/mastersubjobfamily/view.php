@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'id',
                 'masterjobfamily.jobfamily',
                 'subjobfamily',
+                'status',
                 'createtime',
                 'updatetime',
             ],

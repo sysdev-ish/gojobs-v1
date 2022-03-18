@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'attributes' => [
                 'id',
                 'jobfamily',
+                'status',
                 'createtime',
                 'updatetime',
             ],

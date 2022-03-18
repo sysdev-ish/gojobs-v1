@@ -28,9 +28,11 @@ class Masterindustry extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['industry_type', 'createtime', 'updatetime'], 'required'],
+            [['industry_type', 'status', 'createtime', 'updatetime'], 'required'],
+            [['status'], 'integer'],
             [['createtime', 'updatetime'], 'safe'],
             [['industry_type'], 'string', 'max' => 256],
+            [['industry_type'], 'unique', 'targetAttribute' => ['industry_type'], 'message' => 'Data sudah ada'],
         ];
     }
 
@@ -42,6 +44,7 @@ class Masterindustry extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'industry_type' => 'Type Industry',
+            'status' => 'Status',
             'createtime' => 'Createtime',
             'updatetime' => 'Updatetime',
         ];

@@ -33,6 +33,7 @@ class Mastersubjobfamily extends \yii\db\ActiveRecord
             [['jobfamily_id'], 'integer'],
             [['createtime', 'updatetime'], 'safe'],
             [['subjobfamily'], 'string', 'max' => 256],
+            [['status'], 'integer'],
             [['subjobfamily'], 'unique', 'targetAttribute' => ['subjobfamily'], 'message' => 'Data sudah ada']
 
         ];
@@ -47,6 +48,7 @@ class Mastersubjobfamily extends \yii\db\ActiveRecord
             'id' => 'ID',
             'jobfamily_id' => 'Job Family',
             'subjobfamily' => 'Sub Job Family',
+            'status' => 'Status',
             'createtime' => 'Createtime',
             'updatetime' => 'Updatetime',
         ];

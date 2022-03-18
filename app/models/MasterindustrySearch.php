@@ -65,7 +65,7 @@ class MasterindustrySearch extends Masterindustry
             'updatetime' => $this->updatetime,
         ]);
 
-        $query->andFilterWhere(['like', 'industry_type', $this->industry_type]);
+        $query->andFilterWhere(['like', 'industry_type', $this->industry_type])->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;
     }
