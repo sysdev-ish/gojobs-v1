@@ -5,7 +5,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="<?php echo $assetUrl; ?>/img/user-avatar.png" class="img-circle" alt="User Image" />
+        <img src="<?php echo $assetUrl; ?>/images/user-avatar.png" class="img-circle" alt="User Image" />
 
         <!-- <img src="../assets/img/user-avatar.png" class="img-circle" alt="User Image"/> -->
       </div>

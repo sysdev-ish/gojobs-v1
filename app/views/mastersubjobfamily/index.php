@@ -24,7 +24,6 @@ Modal::begin([
     'id' => 'updatemastersubjobfamily-modal',
     'size' => 'modal-md'
 ]);
-
 echo "<div id='updatemastersubjobfamily'></div>";
 Modal::end();
 
@@ -33,7 +32,6 @@ Modal::begin([
     'id' => 'createmastersubjobfamily-modal',
     'size' => 'modal-md'
 ]);
-
 echo "<div id='createmastersubjobfamily'></div>";
 Modal::end();
 
@@ -76,10 +74,11 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                 ['class' => 'yii\grid\SerialColumn'],
 
                 // 'id',
-                'jobfamily_id',
+                // 'jobfamily_id',
+                'masterjobfamily.jobfamily',
                 // [
                 //     'label' => 'Job Family',
-                //     'attribute' => 'jobfamily',
+                //     'attribute' => 'jobfamily_id',
                 //     'format' => 'html',
                 //     'value' => function ($data) {
                 //         return $data->masterjobfamily->jobfamily_id;

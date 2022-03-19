@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property int $jobfamily_id
+ * @property int $status
  * @property string $subjobfamily
  * @property string $createtime
  * @property string $updatetime

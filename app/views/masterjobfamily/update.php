@@ -10,9 +10,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Master Job Families', 'url' => ['i
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="master-job-family-update">
+<div class="masterjobfamily-update">
 
-    <?= $this->render('_formupdate', [
+    <?= $this->render('_update', [
         'model' => $model,
     ]) ?>
 

@@ -18,7 +18,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'attributes' => [
                 'id',
                 'industry_type',
-                'status',
+                [
+                    'attribute' => 'status',
+                    'format' => 'html',
+                    'value' => function($data) {
+                        return ($data->typeinterview == 1) ? 'Published' : 'Unpublished';
+                    }
+                ],
                 'createtime',
                 'updatetime',
             ],

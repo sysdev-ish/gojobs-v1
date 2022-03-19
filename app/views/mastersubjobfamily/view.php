@@ -10,7 +10,7 @@ $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Master Job Families', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="masterjobfamily-view box box-solid">
+<div class="mastersubjobfamily-view box box-solid">
 
     <div class="box-body table-responsive no-padding">
         <?= DetailView::widget([
@@ -19,7 +19,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'id',
                 'masterjobfamily.jobfamily',
                 'subjobfamily',
-                'status',
+                [
+                    'attribute' => 'status',
+                    'format' => 'html',
+                    'value' => function ($data) {
+                        return ($data->status == 1) ? 'Publish' : 'Unpublished';
+                    }
+
+                ],
                 'createtime',
                 'updatetime',
             ],

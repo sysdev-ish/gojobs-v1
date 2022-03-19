@@ -19,7 +19,7 @@ class MasterindustrySearch extends Masterindustry
     {
         return [
             [['id'], 'integer'],
-            [['industry_type', 'createtime', 'updatetime'], 'safe'],
+            [['industry_type', 'status', 'createtime', 'updatetime'], 'safe'],
         ];
     }
 
@@ -52,7 +52,7 @@ class MasterindustrySearch extends Masterindustry
 
         $this->load($params);
 
-        if (!$this->validate()) {
+        if (!$this->validate(Yii::$app->get('db'))) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
@@ -61,11 +61,14 @@ class MasterindustrySearch extends Masterindustry
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            // 'status' => $this->status,
             'createtime' => $this->createtime,
             'updatetime' => $this->updatetime,
         ]);
 
-        $query->andFilterWhere(['like', 'industry_type', $this->industry_type])->andFilterWhere(['like', 'status', $this->status]);
+        $query->andFilterWhere(['like', 'industry_type', $this->industry_type])
+        ->andFilterWhere(['like', 'status', $this->status])
+        ;
 
         return $dataProvider;
     }

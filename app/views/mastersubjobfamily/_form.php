@@ -9,8 +9,7 @@ use kartik\select2\Select2;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="master-sub-job-family-form box box-primary">
-    <?= $form->errorSummary($model) ?>
+<div class="mastersubjobfamily-form box box-primary">
     <?php $form = ActiveForm::begin(); ?>
     <div class="box-body table-responsive">
 

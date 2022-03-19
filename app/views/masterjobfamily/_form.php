@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="master-job-family-form box box-primary">
+<div class="masterjobfamily-form box box-primary">
     <?php $form = ActiveForm::begin(); ?>
     <?= $form->errorSummary($model) ?>
     <div class="box-body table-responsive">

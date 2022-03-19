@@ -88,7 +88,7 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                     'filter' => \kartik\select2\Select2::widget([
                         'model' => $searchModel,
                         'attribute' => 'status',
-                        'data' => ['1' => 'Publish', '0' => 'Unpublished'],
+                        'data' => ['0' => 'Unpublished', '1' => 'Publish'],
                         'options' => ['placeholder' => '--'],
                         'pluginOptions' => [
                             'allowClear' => true,

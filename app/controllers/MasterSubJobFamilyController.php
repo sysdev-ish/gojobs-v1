@@ -54,14 +54,13 @@ class MastersubjobfamilyController extends Controller
      */
     public function actionIndex()
     {
-        $jobfamily = Masterjobfamily::find()->all();
-        $searchModel = new MastersubjobfamilySearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $jobfamily = Masterjobfamily::find()->all();        
         if ($jobfamily==null) {
             // return $this->redirect(array(‘rekrut/masterjobfamily/index));
             return $this->redirect(['masterjobfamily/index']);
         } else {
+            $searchModel = new MastersubjobfamilySearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
             return $this->render('index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
@@ -96,6 +95,7 @@ class MastersubjobfamilyController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->createtime = date('Y-m-d H-i-s');
             $model->updatetime = date('Y-m-d H-i-s');
+            $model->status = 1;
             $model->save();
             return $this->redirect(['index']);
         } else {
@@ -138,7 +138,6 @@ class MastersubjobfamilyController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 

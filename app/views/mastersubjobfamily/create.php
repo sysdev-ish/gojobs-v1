@@ -13,8 +13,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="mastersubjobfamily-create">
 
     <?= $this->render('_form', [
-    'model' => $model,
-    'jobfamily' => $jobfamily,
+        'model' => $model,
+        'jobfamily' => $jobfamily,
     ]) ?>
 
 </div>

@@ -19,7 +19,7 @@ class MasterjobfamilySearch extends Masterjobfamily
     {
         return [
             [['id'], 'integer'],
-            [['jobfamily', 'createtime', 'updatetime'], 'safe'],
+            [['jobfamily', 'status', 'createtime', 'updatetime'], 'safe'],
         ];
     }
 
@@ -65,7 +65,9 @@ class MasterjobfamilySearch extends Masterjobfamily
             'updatetime' => $this->updatetime,
         ]);
 
-        $query->andFilterWhere(['like', 'jobfamily', $this->jobfamily]);
+        $query->andFilterWhere(['like', 'jobfamily', $this->jobfamily])
+        ->andFilterWhere(['like', 'status', $this->status])
+        ;
 
         return $dataProvider;
     }
