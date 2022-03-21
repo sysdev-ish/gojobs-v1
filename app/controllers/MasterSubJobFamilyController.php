@@ -96,7 +96,11 @@ class MastersubjobfamilyController extends Controller
             $model->createtime = date('Y-m-d H-i-s');
             $model->updatetime = date('Y-m-d H-i-s');
             // $model->status = 1;
-            $model->save();
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', "Data ditambahkan.");
+            } else {
+                Yii::$app->session->setFlash('error', "Data sudah ada.");
+            }
             return $this->redirect(['index']);
         } else {
             return $this->renderAjax('create', [
