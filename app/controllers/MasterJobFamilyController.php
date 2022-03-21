@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 
 /**
  * MasterjobfamilyController implements the CRUD actions for Masterjobfamily model.
@@ -81,12 +82,15 @@ class MasterjobfamilyController extends Controller
     public function actionCreate()
     {
         $model = new Masterjobfamily();
-
         if ($model->load(Yii::$app->request->post())) {
             $model->createtime = date('Y-m-d H-i-s');
             $model->updatetime = date('Y-m-d H-i-s');
             $model->status = 1;
-            $model->save();
+            if ($model->save()){
+                Yii::$app->session->setFlash('success', "Data ditambahkan.");
+            } else {
+                Yii::$app->session->setFlash('error', "Data sudah ada.");
+            }
             return $this->redirect(['index']);
         } else {
             return $this->renderAjax('create', [
@@ -125,10 +129,18 @@ class MasterjobfamilyController extends Controller
     public function actionDelete($id)
     {
         // $jobfamily = Masterjobfamily::find()->all();
+        // Mastersubjobfamily::deleteAll('jobfamily_id= :jobfamily_id', [':jobfamily_id' => $id]);
+        // $model = $this->findModel($id);
+        // $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'jobfamily_id');
         $this->findModel($id)->delete();
-        Mastersubjobfamily::deleteAll('jobfamily_id= :jobfamily_id', [':jobfamily_id' => $id]);
+        if ($this === null) {
+            throw new \yii\web\HttpException(404, 'The requested Item could not be found.');
+            return $this->redirect(['index']);
+        } else {
+            return $this->redirect(['index']);
+        }
+        
 
-        return $this->redirect(['index']);
     }
 
     /**

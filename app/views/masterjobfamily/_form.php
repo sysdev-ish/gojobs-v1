@@ -10,7 +10,6 @@ use yii\widgets\ActiveForm;
 
 <div class="masterjobfamily-form box box-primary">
     <?php $form = ActiveForm::begin(); ?>
-    <?= $form->errorSummary($model) ?>
     <div class="box-body table-responsive">
         <?= $form->field($model, 'jobfamily')->textInput(['maxlength' => true]) ?>
     </div>

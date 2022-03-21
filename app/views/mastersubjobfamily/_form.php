@@ -12,7 +12,7 @@ use kartik\select2\Select2;
 <div class="mastersubjobfamily-form box box-primary">
     <?php $form = ActiveForm::begin(); ?>
     <div class="box-body table-responsive">
-
+        <?php echo $form->field($model, 'status')->dropdownList([1 => 'Publish', 0 => 'Unpublish'], ['prompt' => 'Select']); ?>
         <?php
         if (!$model->isNewRecord) {
             $dropdownparent = new yii\web\JsExpression('$("#updatemastersubjobfamily-modal")');
