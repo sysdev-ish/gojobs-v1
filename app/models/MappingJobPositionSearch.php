@@ -42,6 +42,7 @@ class MappingjobpositionSearch extends Mappingjobposition
     public function search($params)
     {
         $query = Mappingjobposition::find();
+        $query->joinWith('trans_rincian_rekrut');
 
         // add conditions that should always apply here
 

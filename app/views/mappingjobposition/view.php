@@ -10,7 +10,7 @@ $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Mapping Job Positions', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="mapping-job-position-view box box-primary">
+<div class="mappingjobposition-view box box-primary">
     <div class="box-header">
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-flat']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [

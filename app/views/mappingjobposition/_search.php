@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="mapping-job-position-search">
+<div class="mappingjobposition-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],

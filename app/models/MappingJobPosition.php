@@ -26,6 +26,7 @@ class Mappingjobposition extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+
     public function rules()
     {
         return [
@@ -53,12 +54,12 @@ class Mappingjobposition extends \yii\db\ActiveRecord
 
     public function getMasterkodeposisi()
     {
-        return $this->hasOne(Transrincianrekrut::className(), ['hire_jabatan_sap' => 'kode_posisi']);
+        return $this->hasOne(Transrincianrekrut::className(), ['id' => 'kode_posisi']);
     }
 
     public function getMasterjabatansap()
     {
-        return $this->hasOne(Transrincianrekrut::className(), ['jabatan_sap' => 'jabatan_sap']);
+        return $this->hasOne(Transrincianrekrut::className(), ['id' => 'jabatan_sap']);
     }
 
     public function getMastersubjobfamily()

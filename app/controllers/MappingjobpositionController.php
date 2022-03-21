@@ -86,8 +86,8 @@ class MappingjobpositionController extends Controller
         $model = new Mappingjobposition();
 
         $subjobfamily_id = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily_id');
-        $jabatan_sap = ArrayHelper::map(Transrincianrekrut::find()->all(), 'jabatan_sap', 'jabatan_sap');
-        $kode_posisi = ArrayHelper::map(Transrincianrekrut::find()->all(), 'hire_jabatan_sap', 'kode_posisi');
+        $jabatan_sap = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'jabatan_sap');
+        $kode_posisi = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'kode_posisi');
         if ($model->load(Yii::$app->request->post())) {
             $model->createtime = date('Y-m-d H-i-s');
             $model->updatetime = date('Y-m-d H-i-s');
@@ -98,7 +98,7 @@ class MappingjobpositionController extends Controller
                 'model' => $model,
                 'subjobfamily_id' => $subjobfamily_id,
                 'jabatan_sap' => $jabatan_sap,
-                'hire_jabatan_sap' => $kode_posisi,
+                'kode_posisi' => $kode_posisi,
             ]);
         }
     }
@@ -114,8 +114,8 @@ class MappingjobpositionController extends Controller
         $model = $this->findModel($id);
 
         $subjobfamily_id = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily_id');
-        $jabatan_sap = ArrayHelper::map(Transrincianrekrut::find()->all(), 'jabatan_sap', 'jabatan_sap');
-        $kode_posisi = ArrayHelper::map(Transrincianrekrut::find()->all(), 'hire_jabatan_sap', 'kode_posisi');
+        $jabatan_sap = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'jabatan_sap');
+        $kode_posisi = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'kode_posisi');
         if ($model->load(Yii::$app->request->post())) {
             $model->updatetime = date('Y-m-d H-i-s');
             $model->save();
@@ -125,7 +125,7 @@ class MappingjobpositionController extends Controller
                 'model' => $model,
                 'subjobfamily_id' => $subjobfamily_id,
                 'jabatan_sap' => $jabatan_sap,
-                'hire_jabatan_sap' => $kode_posisi,
+                'kode_posisi' => $kode_posisi,
             ]);
         }
     }

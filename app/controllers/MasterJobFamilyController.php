@@ -11,6 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
+use yii\db\IntegrityException;
 
 /**
  * MasterjobfamilyController implements the CRUD actions for Masterjobfamily model.
@@ -126,19 +127,28 @@ class MasterjobfamilyController extends Controller
      * @param integer $id
      * @return mixed
      */
+    // public function beforeDelete()
+    // {
+    //     if (parent::beforeDelete()) {
+    //         Masterjobfamily::deleteAll(['id' => $this->id]);
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
     public function actionDelete($id)
     {
-        // $jobfamily = Masterjobfamily::find()->all();
-        // Mastersubjobfamily::deleteAll('jobfamily_id= :jobfamily_id', [':jobfamily_id' => $id]);
-        // $model = $this->findModel($id);
-        // $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'jobfamily_id');
-        $this->findModel($id)->delete();
-        if ($this === null) {
-            throw new \yii\web\HttpException(404, 'The requested Item could not be found.');
-            return $this->redirect(['index']);
-        } else {
-            return $this->redirect(['index']);
+        $jobfamily = Masterjobfamily::find()->all();
+        foreach ($jobfamily as $jobfamily) {
+            try {
+                if ($jobfamily->delete()) {
+                Yii::$app->session->setFlash('success', "Data Dihapus.");
+                }
+            } catch (\Exception $e) {
+                Yii::$app->session->setFlash('error', "Data Digunakan Di Tabel Lain.");
+            }
         }
+        return $this->redirect(['index']);
         
 
     }
