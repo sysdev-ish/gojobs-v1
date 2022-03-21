@@ -1103,11 +1103,7 @@ app\assets\ReportAsset::register($this);
               }
 
               ],
-
-
-
-
-                    // ['class' => 'kartik\grid\ActionColumn', 'urlCreator'=>function(){return '#';}]
+                // ['class' => 'kartik\grid\ActionColumn', 'urlCreator'=>function(){return '#';}]
                 ];
                 echo ExportMenu::widget([
                     'dataProvider' => $dataProvider['dataProvider'],
@@ -1181,10 +1177,6 @@ app\assets\ReportAsset::register($this);
         </div>
         </div>
         </div>
-
-
-
-
       </div>
 <script>
       //-------------

@@ -20,7 +20,7 @@ class Userprofilesearch extends Userprofile
     {
         return [
             [['id', 'userid'], 'integer'],
-            [['createtime', 'updatetime', 'fullname', 'nickname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'phone', 'domicilestatus', 'domicilestatusdescription', 'addressktp', 'nationality', 'religion', 'maritalstatus', 'weddingdate', 'bloodtype', 'identitynumber', 'jamsosteknumber', 'npwpnumber', 'drivinglicencecarnumber', 'drivinglicencemotorcyclenumber','cityname'], 'safe'],
+            [['createtime', 'updatetime', 'fullname', 'nickname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'phone', 'domicilestatus', 'domicilestatusdescription', 'addressktp', 'nationality', 'religion', 'maritalstatus', 'weddingdate', 'bloodtype', 'identitynumber', 'jamsosteknumber', 'npwpnumber', 'drivinglicencecarnumber', 'drivinglicencemotorcyclenumber','cityname','jobfamily','subjobfamily'], 'safe'],
         ];
     }
 
@@ -91,7 +91,9 @@ class Userprofilesearch extends Userprofile
             ->andFilterWhere(['like', 'npwpnumber', $this->npwpnumber])
             ->andFilterWhere(['like', 'drivinglicencecarnumber', $this->drivinglicencecarnumber])
             ->andFilterWhere(['like', 'drivinglicencemotorcyclenumber', $this->drivinglicencemotorcyclenumber])
-            ->andFilterWhere(['like', 'kota', $this->cityname]);
+            ->andFilterWhere(['like', 'kota', $this->cityname])
+            ->andFilterWhere(['like', 'jobfamily', $this->jobfamily])
+            ->andFilterWhere(['like', 'subjobfamily', $this->subjobfamily]);
 
         return $dataProvider;
     }

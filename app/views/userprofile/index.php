@@ -1,5 +1,7 @@
 <?php
 
+use app\models\Masterjobfamily;
+use app\models\Mastersubjobfamily;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
@@ -80,6 +82,38 @@ if(Yii::$app->utils->permission($role,'m14')){
                 [
                   'attribute' => 'phone',
                   'contentOptions'=>['style'=>'width: 150px;']
+
+                ],
+                [
+                  'attribute' => 'jobfamily',
+                  'filter' => \kartik\select2\Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'jobfamily',
+                    // 'data' => $jobfamily,
+                    'data' => ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily'),
+                    'options' => ['placeholder' => '--'],
+                    'pluginOptions' => [
+                      'allowClear' => true,
+                      'width' => '100px',
+                    ],
+                  ]),
+                  'contentOptions' => ['style' => 'max-width: 100px;']
+
+                ],
+                [
+                  'attribute' => 'subjobfamily',
+                  'filter' => \kartik\select2\Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'subjobfamily',
+                    // 'data' => $subjobfamily,
+                    'data' => ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily'),
+                    'options' => ['placeholder' => '--'],
+                    'pluginOptions' => [
+                      'allowClear' => true,
+                      'width' => '100px',
+                    ],
+                  ]),
+                  'contentOptions' => ['style' => 'max-width: 100px;']
 
                 ],
                 // 'domicilestatus',

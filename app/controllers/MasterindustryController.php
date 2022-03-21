@@ -110,7 +110,11 @@ class MasterindustryController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model->updatetime = date('Y-m-d H-i-s');
-            $model->save();
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', "Data diupdate.");
+            } else {
+                Yii::$app->session->setFlash('error', "Data sudah ada.");
+            }
             return $this->redirect(['index']);
         } else {
             return $this->renderAjax('update', [
@@ -127,8 +131,12 @@ class MasterindustryController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $model = $this->findModel($id);
+        if ($model->delete()) {
+            Yii::$app->session->setFlash('success', "Data dihapus.");
+        } else {
+            Yii::$app->session->setFlash('error', "Data tidak dihapus.");
+        }
         return $this->redirect(['index']);
     }
 

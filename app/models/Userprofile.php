@@ -50,8 +50,8 @@ class Userprofile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['userid', 'createtime', 'updatetime', 'fullname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'postalcodektp','phone', 'addressktp', 'nationality','maritalstatus', 'religion', 'bloodtype','cityid','provinceid','cityidktp','provinceidktp','identitynumber','tinggibadan','beratbadan', 'lokasikerja','jenispekerjaan'], 'required'],
-            [['userid','havejamsostek','havenpwp','havebpjs', 'npwpnumber','bpjsnumber','postalcode','postalcodektp','identitynumber','kknumber'], 'integer'],
+            [['userid', 'createtime', 'updatetime', 'fullname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'postalcodektp','phone', 'addressktp', 'nationality','maritalstatus', 'religion', 'bloodtype','cityid','provinceid','cityidktp','provinceidktp','identitynumber','tinggibadan','beratbadan', 'lokasikerja','jenispekerjaan', 'jobfamily', 'subjobfamily'], 'required'],
+            [['userid','havejamsostek','havenpwp','havebpjs', 'npwpnumber','bpjsnumber','postalcode','postalcodektp','identitynumber','kknumber','jobfamily','subjobfamily'], 'integer'],
             [['postalcode','postalcodektp'], 'string', 'min'=> 5, 'max'=> 5 ],
             [['identitynumber','kknumber'], 'string', 'min'=> 16, 'max'=> 16 ],
             [['npwpnumber'], 'string', 'min'=> 15, 'max'=> 15],
@@ -186,6 +186,8 @@ class Userprofile extends \yii\db\ActiveRecord
             'lokasikerja' => Yii::t('app', 'Work Location'),
             'cvupload' => 'Curriculum Vitae',
             'jenispekerjaan' => Yii::t('app', 'Working type'),
+            'jobfamily' => Yii::t('app', 'Job Family'),
+            'subjobfamily' => Yii::t('app', 'Sub Job Family'),
         ];
     }
     public function getCity()
@@ -215,6 +217,14 @@ class Userprofile extends \yii\db\ActiveRecord
     public function getDatavaksin()
     {
         return $this->hasOne(Uservaksin::className(), ['userid' => 'userid']);
+    }
+    public function getJobfamily()
+    {
+        return $this->hasOne(Masterjobfamily::className(), ['id' => 'jobfamily']);
+    }
+    public function getSubjobfamily()
+    {
+        return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamily']);
     }
 
 }

@@ -22,6 +22,8 @@ use app\models\Recruitmentcandidate;
 use app\models\Userprofilesearch;
 use app\models\Uservaksin;
 use app\models\Masteralasanvaksin;
+use app\models\Masterjobfamily;
+use app\models\Mastersubjobfamily;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -196,6 +198,8 @@ class UserprofileController extends Controller
           $provincektp = ArrayHelper::map(MasterProvince::find()->asArray()->all(), 'provinsiid', 'provinsi');
           $kotaktp = ArrayHelper::map(Mastercity::find()->asArray()->where(['kotaid'=>$model->cityidktp])->all(), 'kotaid', 'kota');
 
+          $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all, 'id', 'jobfamily');
+          $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all, 'id', 'subjobfamily');
 
           if ($model->load(Yii::$app->request->post()) && $modelvaksin->load(Yii::$app->request->post())) {
             if($model->havejamsostek == 0 OR $model->jamsosteknumber == ''){
@@ -264,6 +268,8 @@ class UserprofileController extends Controller
                     'kotaktp' => $kotaktp,
                     'userid'=>$userid,
                     'alasanvaksin'=>$alasanvaksin,
+                    'jobfamily'=>$jobfamily,
+                    'subjobfamily'=>$subjobfamily,
                 ]);
               }
           }
@@ -275,6 +281,8 @@ class UserprofileController extends Controller
                   'kota' => $kota,
                   'provincektp' => $provincektp,
                   'kotaktp' => $kotaktp,
+                  'jobfamily' => $jobfamily,
+                  'subjobfamily' => $subjobfamily,
                   'userid'=>$userid,
               ]);
 
@@ -294,6 +302,9 @@ class UserprofileController extends Controller
           $kota = ArrayHelper::map(Mastercity::find()->asArray()->where(['kotaid'=>$model->cityid])->all(), 'kotaid', 'kota');
           $provincektp = ArrayHelper::map(MasterProvince::find()->asArray()->all(), 'provinsiid', 'provinsi');
           $kotaktp = ArrayHelper::map(Mastercity::find()->asArray()->where(['kotaid'=>$model->cityidktp])->all(), 'kotaid', 'kota');
+
+          $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all, 'id', 'jobfamily');
+          $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all, 'id', 'subjobfamily');
 
           if ($model->load(Yii::$app->request->post()) && $modelvaksin->load(Yii::$app->request->post())) {
 
@@ -358,16 +369,18 @@ class UserprofileController extends Controller
                return $this->redirect(['views', 'userid' => $model->userid]);
              }else{
                return $this->render('create', [
-                   'model' => $model,
-                   'province' => $province,
-                   'kota' => $kota,
-                   'provincektp' => $provincektp,
-                   'kotaktp' => $kotaktp,
-                   'userid'=>$id,
-                   'modelvaksin' => $modelvaksin,
-                   'alasanvaksin'=>$alasanvaksin,
-               ]);
-             }
+                    'model' => $model,
+                    'province' => $province,
+                    'kota' => $kota,
+                    'provincektp' => $provincektp,
+                    'kotaktp' => $kotaktp,
+                    'userid'=>$id,
+                    'modelvaksin' => $modelvaksin,
+                    'alasanvaksin'=>$alasanvaksin,
+                    'jobfamily' => $jobfamily,
+                    'subjobfamily' => $subjobfamily,
+                  ]);
+                }
 
           }
               return $this->render('create', [
@@ -379,8 +392,10 @@ class UserprofileController extends Controller
                   'userid'=>$id,
                   'modelvaksin' => $modelvaksin,
                   'alasanvaksin'=>$alasanvaksin,
-              ]);
-
+                  'jobfamily' => $jobfamily,
+                  'subjobfamily' => $subjobfamily,
+                ]);
+                
       }else{
         // var_dump('test');die;
         $model = Userprofile::find()->where(['userid'=>$id])->one();
@@ -423,6 +438,10 @@ class UserprofileController extends Controller
         $kota = ArrayHelper::map(Mastercity::find()->asArray()->where(['kotaid'=>$model->cityid])->all(), 'kotaid', 'kota');
         $provincektp = ArrayHelper::map(MasterProvince::find()->asArray()->all(), 'provinsiid', 'provinsi');
         $kotaktp = ArrayHelper::map(Mastercity::find()->asArray()->where(['kotaid'=>$model->cityidktp])->all(), 'kotaid', 'kota');
+
+        $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all, 'id', 'jobfamily');
+        $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all, 'id', 'subjobfamily');
+
 
         if ($model->load(Yii::$app->request->post()) && $modelvaksin->load(Yii::$app->request->post())) {
 
@@ -511,6 +530,8 @@ class UserprofileController extends Controller
                 'kotaktp' => $kotaktp,
                 'modelvaksin' => $modelvaksin,
                 'alasanvaksin'=>$alasanvaksin,
+                'jobfamily' => $jobfamily,
+                'subjobfamily' => $subjobfamily,
             ]);
           }
         } else {
@@ -522,6 +543,8 @@ class UserprofileController extends Controller
                 'kotaktp' => $kotaktp,
                 'modelvaksin' => $modelvaksin,
                 'alasanvaksin'=>$alasanvaksin,
+                'jobfamily' => $jobfamily,
+                'subjobfamily' => $subjobfamily,
             ]);
         }
     }
@@ -554,6 +577,9 @@ class UserprofileController extends Controller
         $kota = ArrayHelper::map(Mastercity::find()->asArray()->where(['kotaid'=>$model->cityid])->all(), 'kotaid', 'kota');
         $provincektp = ArrayHelper::map(MasterProvince::find()->asArray()->all(), 'provinsiid', 'provinsi');
         $kotaktp = ArrayHelper::map(Mastercity::find()->asArray()->where(['kotaid'=>$model->cityidktp])->all(), 'kotaid', 'kota');
+
+        $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all, 'id', 'jobfamily');
+        $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all, 'id', 'subjobfamily');
 
         if ($model->load(Yii::$app->request->post()) && $modelvaksin->load(Yii::$app->request->post())) {
 
@@ -643,6 +669,8 @@ class UserprofileController extends Controller
                 'userid'=>$model->userid,
                 'modelvaksin' => $modelvaksin,
                 'alasanvaksin'=>$alasanvaksin,
+                'jobfamily' => $jobfamily,
+                'subjobfamily' => $subjobfamily,
             ]);
           }
         } else {
@@ -655,6 +683,8 @@ class UserprofileController extends Controller
               'userid'=>$model->userid,
               'modelvaksin' => $modelvaksin,
               'alasanvaksin'=>$alasanvaksin,
+              'jobfamily' => $jobfamily,
+              'subjobfamily' => $subjobfamily,
           ]);
         }
     }

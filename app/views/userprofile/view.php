@@ -129,6 +129,9 @@ $this->params['breadcrumbs'][] = $this->title;
                   'npwpnumber',
                   'drivinglicencecarnumber',
                   'drivinglicencemotorcyclenumber',
+                  'jobfamily.jobfamily',
+                  'subjobfamily.subjobfamily',
+
                   [
                     'label'=>'Bank Name',
                     'format' => 'html',

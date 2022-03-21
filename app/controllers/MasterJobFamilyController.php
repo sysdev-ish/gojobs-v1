@@ -112,7 +112,11 @@ class MasterjobfamilyController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model->updatetime = date('Y-m-d H-i-s');
-            $model->save();
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', "Data diupdate.");
+            } else {
+                Yii::$app->session->setFlash('error', "Data sudah ada.");
+            }
             return $this->redirect(['index']);
         } else {
             return $this->renderAjax('update', [
@@ -138,7 +142,7 @@ class MasterjobfamilyController extends Controller
     // }
     public function actionDelete($id)
     {
-        $jobfamily = Masterjobfamily::find()->all();
+        $jobfamily = Masterjobfamily::find($id)->all();
         foreach ($jobfamily as $jobfamily) {
             try {
                 if ($jobfamily->delete()) {

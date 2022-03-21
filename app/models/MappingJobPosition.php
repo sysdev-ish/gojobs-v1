@@ -8,10 +8,10 @@ use Yii;
  * This is the model class for table "mappingjobposition".
  *
  * @property int $id
- * @property string $jabatan_sap
- * @property string $kode_jabatan
- * @property string $kode_posisi
- * @property int $subjobfamily_id
+ * @property string $jabatansap
+ * @property string $kodejabatan
+ * @property string $kodeposisi
+ * @property int $subjobfamilyid
  */
 class Mappingjobposition extends \yii\db\ActiveRecord
 {
@@ -30,10 +30,10 @@ class Mappingjobposition extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['jabatan_sap', 'kode_jabatan', 'kode_posisi', 'subjobfamily_id'], 'required'],
-            [['subjobfamily_id'], 'integer'],
-            [['jabatan_sap', 'kode_jabatan', 'kode_posisi'], 'string', 'max' => 50],
-            [['jabatan_sap', 'kode_jabatan', 'kode_posisi'], 'unique', 'targetAttribute' => ['jabatan_sap', 'kode_jabatan', 'kode_posisi'], 'message' => 'Data sudah ada']
+            [['jabatansap', 'kodejabatan', 'kodeposisi', 'subjobfamilyid'], 'required'],
+            [['subjobfamilyid'], 'integer'],
+            [['jabatansap', 'kodejabatan', 'kodeposisi'], 'string', 'max' => 50],
+            [['jabatansap', 'kodejabatan', 'kodeposisi'], 'unique', 'targetAttribute' => ['jabatansap', 'kodejabatan', 'kodeposisi'], 'message' => 'Data sudah ada']
 
         ];
     }
@@ -45,25 +45,25 @@ class Mappingjobposition extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'jabatan_sap' => 'Jabatan Sap',
-            'kode_jabatan' => 'Kode Jabatan',
-            'kode_posisi' => 'Kode Posisi',
-            'subjobfamily_id' => 'Sub Job Family',
+            'jabatansap' => 'Jabatan Sap',
+            'kodejabatan' => 'Kode Jabatan',
+            'kodeposisi' => 'Kode Posisi',
+            'subjobfamilyid' => 'Sub Job Family',
         ];
     }
 
     public function getMasterkodeposisi()
     {
-        return $this->hasOne(Transrincianrekrut::className(), ['id' => 'kode_posisi']);
+        return $this->hasOne(Transrincianrekrut::className(), ['id' => 'kodeposisi']);
     }
 
     public function getMasterjabatansap()
     {
-        return $this->hasOne(Transrincianrekrut::className(), ['id' => 'jabatan_sap']);
+        return $this->hasOne(Transrincianrekrut::className(), ['id' => 'jabatansap']);
     }
 
     public function getMastersubjobfamily()
     {
-        return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamily_id']);
+        return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamilyid']);
     }
 }
