@@ -87,11 +87,11 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
 
                 // 'id',
                 [
-                    'attribute' => 'subjobfamily_id',
+                    'attribute' => 'subjobfamilyid',
                     'format' => 'html',
                     'filter' => \kartik\select2\Select2::widget([
                         'model' => $searchModel,
-                        'attribute' => 'subjobfamily_id',
+                        'attribute' => 'subjobfamilyid',
                         'data' => ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily'),
                         'options' => ['placeholder' => '--'],
                         'pluginOptions' => [
@@ -104,28 +104,28 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
 
                 ],
                 [
-                    'attribute' => 'jabatan_sap',
+                    'attribute' => 'jabatansap',
                     'format' => 'html',
                     'filter' => \kartik\select2\Select2::widget([
                         'model' => $searchModel,
-                        'attribute' => 'jabatan_sap',
-                        'data' => ArrayHelper::map(Transrincianrekrut::find()->asArray()->all(), 'id', 'jabatan_sap'),
+                        'attribute' => 'jabatansap',
+                        'data' => ArrayHelper::map(Transrincianrekrut::find()->asArray()->all(), 'id', 'jabatansap'),
                         'options' => ['placeholder' => '--'],
                         'pluginOptions' => [
                             'allowClear' => true,
                         ],
                     ]),
                     'value' => function ($data) {
-                        return ($data->transrincianrekrut) ? $data->transrincianrekrut->jabatan_sap : '';
+                        return ($data->transrincianrekrut) ? $data->transrincianrekrut->jabatansap : '';
                     }
 
                 ],
                 [
-                    'attribute' => 'kode_posisi',
+                    'attribute' => 'kodeposisi',
                     'format' => 'html',
                     'filter' => \kartik\select2\Select2::widget([
                         'model' => $searchModel,
-                        'attribute' => 'kode_posisi',
+                        'attribute' => 'kodeposisi',
                         'data' => ArrayHelper::map(Transrincianrekrut::find()->asArray()->all(), 'id', 'hire_jabatan_sap'),
                         'options' => ['placeholder' => '--'],
                         'pluginOptions' => [

@@ -85,9 +85,9 @@ class MappingjobpositionController extends Controller
     {
         $model = new Mappingjobposition();
 
-        $subjobfamily_id = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily_id');
-        $jabatan_sap = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'jabatan_sap');
-        $kode_posisi = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'kode_posisi');
+        $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamilyid');
+        $jabatansap = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'jabatansap');
+        $kodeposisi = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'kodeposisi');
         if ($model->load(Yii::$app->request->post())) {
             $model->createtime = date('Y-m-d H-i-s');
             $model->updatetime = date('Y-m-d H-i-s');
@@ -96,9 +96,9 @@ class MappingjobpositionController extends Controller
         } else {
             return $this->renderAjax('create', [
                 'model' => $model,
-                'subjobfamily_id' => $subjobfamily_id,
-                'jabatan_sap' => $jabatan_sap,
-                'kode_posisi' => $kode_posisi,
+                'subjobfamilyid' => $subjobfamilyid,
+                'jabatansap' => $jabatansap,
+                'kodeposisi' => $kodeposisi,
             ]);
         }
     }
@@ -113,9 +113,9 @@ class MappingjobpositionController extends Controller
     {
         $model = $this->findModel($id);
 
-        $subjobfamily_id = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily_id');
-        $jabatan_sap = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'jabatan_sap');
-        $kode_posisi = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'kode_posisi');
+        $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamilyid');
+        $jabatansap = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'jabatansap');
+        $kodeposisi = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'kodeposisi');
         if ($model->load(Yii::$app->request->post())) {
             $model->updatetime = date('Y-m-d H-i-s');
             $model->save();
@@ -123,9 +123,9 @@ class MappingjobpositionController extends Controller
         } else {
             return $this->renderAjax('create', [
                 'model' => $model,
-                'subjobfamily_id' => $subjobfamily_id,
-                'jabatan_sap' => $jabatan_sap,
-                'kode_posisi' => $kode_posisi,
+                'subjobfamilyid' => $subjobfamilyid,
+                'jabatansap' => $jabatansap,
+                'kodeposisi' => $kodeposisi,
             ]);
         }
     }

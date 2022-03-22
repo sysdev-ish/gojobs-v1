@@ -20,8 +20,8 @@ if ($model->isNewRecord) {
     <?= $form->errorSummary($model) ?>
     <div class="box-body table-responsive">
         <?php
-        echo   $form->field($model, 'subjobfamily_id')->widget(Select2::classname(), [
-            'data' => $subjobfamily_id,
+        echo   $form->field($model, 'subjobfamilyid')->widget(Select2::classname(), [
+            'data' => $subjobfamilyid,
             // 'initValueText' => $recruitreqs, // set the initial display text
             'options' => ['placeholder' => '- select -'],
             'pluginOptions' => [
@@ -31,8 +31,8 @@ if ($model->isNewRecord) {
         ]);
         ?>
         <?php
-        echo   $form->field($model, 'jabatan_sap')->widget(Select2::classname(), [
-            'data' => $jabatan_sap,
+        echo   $form->field($model, 'jabatansap')->widget(Select2::classname(), [
+            'data' => $jabatansap,
             // 'initValueText' => $recruitreqs, // set the initial display text
             'options' => ['placeholder' => '- select -'],
             'pluginOptions' => [
@@ -42,8 +42,8 @@ if ($model->isNewRecord) {
         ]);
         ?>
         <?php
-        echo   $form->field($model, 'kode_posisi')->widget(Select2::classname(), [
-            'data' => $hire_jabatan_sap,
+        echo   $form->field($model, 'kodeposisi')->widget(Select2::classname(), [
+            'data' => $kodeposisi,
             // 'initValueText' => $recruitreqs, // set the initial display text
             'options' => ['placeholder' => '- select -'],
             'pluginOptions' => [
@@ -53,7 +53,7 @@ if ($model->isNewRecord) {
         ]);
         ?>
 
-        <?= $form->field($model, 'kode_jabatan')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'kodejabatan')->textInput(['maxlength' => true]) ?>
 
     </div>
     <div class="box-footer">

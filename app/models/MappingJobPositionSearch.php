@@ -41,9 +41,12 @@ class MappingjobpositionSearch extends Mappingjobposition
      */
     public function search($params)
     {
-        $query = Mappingjobposition::find();
-        $query->joinWith('trans_rincian_rekrut');
+        // $query = Mappingjobposition::find();
+        $query = Transrincianrekrut::find();
+        $query->joinWith('jabatan_sap');
+        $query->joinWith('hire_jabatan_sap');
 
+        $query->andWhere('trans_rincian_rekrut.skema = 1');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -62,13 +65,11 @@ class MappingjobpositionSearch extends Mappingjobposition
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'trans_rincian_rekrut.jabatan_sap' => $this->jabatansap,
+            'trans_rincian_rekrut.hire_jabatan_sap' => $this->kodejabatan,
             'subjobfamilyid' => $this->subjobfamilyid,
             'kodeposisi' => $this->kodeposisi,
-        ]);
-
-        $query->andFilterWhere(['like', 'jabatansap', $this->jabatansap])
-            ->andFilterWhere(['like', 'kodejabatan', $this->kodejabatan]);
-            
+        ]);            
         return $dataProvider;
     }
 }

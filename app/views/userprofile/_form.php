@@ -306,11 +306,6 @@ use yii\helpers\Url;
               </div>
             </div>
             <div class="col-md-12">
-              <div class="col-md-12">
-                <?= $form->field($model, 'jenispekerjaan')->textInput(['maxlength' => true]) ?>
-              </div>
-            </div>
-            <div class="col-md-12">
               <div class="col-md-6">
                 <?php
                 echo   $form->field($model, 'jobfamily')->widget(Select2::classname(), [
@@ -332,7 +327,13 @@ use yii\helpers\Url;
                   ],
                 ]);
                 ?>
-                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="col-md-12">
+                <?= $form->field($model, 'jenispekerjaan')->textInput(['maxlength' => true]) ?>
+              </div>
             </div>
             <div class="col-md-12">
               <div class="col-md-12">
