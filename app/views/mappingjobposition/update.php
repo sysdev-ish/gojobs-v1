@@ -14,6 +14,9 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'subjobfamilyid' => $subjobfamilyid,
+        'jabatansap' => $jabatansap,
+        'kodeposisi' => $kodeposisi,
     ]) ?>
 
 </div>

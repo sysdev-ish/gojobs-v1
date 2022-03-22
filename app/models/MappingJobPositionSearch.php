@@ -41,12 +41,12 @@ class MappingjobpositionSearch extends Mappingjobposition
      */
     public function search($params)
     {
-        // $query = Mappingjobposition::find();
-        $query = Transrincianrekrut::find();
-        $query->joinWith('jabatan_sap');
-        $query->joinWith('hire_jabatan_sap');
+        $query = Mappingjobposition::find();
+        // $query = Transrincianrekrut::find();
+        // $query->joinWith('jabatan_sap');
+        // $query->joinWith('hire_jabatan_sap');
 
-        $query->andWhere('trans_rincian_rekrut.skema = 1');
+        // $query->andWhere('trans_rincian_rekrut.skema = 1');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -65,11 +65,60 @@ class MappingjobpositionSearch extends Mappingjobposition
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'trans_rincian_rekrut.jabatan_sap' => $this->jabatansap,
-            'trans_rincian_rekrut.hire_jabatan_sap' => $this->kodejabatan,
+            // 'trans_rincian_rekrut.jabatan_sap' => $this->jabatansap,
+            // 'trans_rincian_rekrut.hire_jabatan_sap' => $this->kodejabatan,
             'subjobfamilyid' => $this->subjobfamilyid,
-            'kodeposisi' => $this->kodeposisi,
-        ]);            
+            'kodejabatan' => $this->kodejabatan,
+        ]);
+
+        $query->andFilterWhere(['like', 'jabatansap', $this->jabatansap])
+            ->andFilterWhere(['like', 'kodeposisi', $this->kodeposisi]);
+        if ($this->jabatansap) {
+            $getjabatansap = $this->byjabsap();
+            if ($getjabatansap) {
+                $getjabatansap = '"' . implode('","', $getjabatansap) . '"';
+                $query->andWhere('jabatansap IN (' . $getjabatansap . ')');
+            }
+        }
+        if ($this->kodeposisi) {
+            $getkodeposisi = $this->bykodepos();
+            if ($getkodeposisi) {
+                $getkodeposisi = '"' . implode('","', $getkodeposisi) . '"';
+                $query->andWhere('kodeposisi IN (' . $getkodeposisi . ')');
+            }
+        }
+
         return $dataProvider;
+    }
+    protected function byjabsap()
+    {
+        $ret = null;
+        $jabsap = Transrincianrekrut::find();
+        if ($this->jabsap) {
+            $getjabatansap = Transrincianrekrut::find()->andWhere('jabatansap LIKE :jabatansap', [':jabatansap' => '%' . $this->jabsap . '%'])->all();
+            if ($getjabatansap) {
+                $jabatansap = array();
+                foreach ($getjabatansap as $value) {
+                    $jabatansap[] = $value->jabatan_sap;
+                }
+                $ret = $jabatansap;
+            }
+        }
+        return $ret;
+    }
+    protected function bykodepos()
+    {
+        $ret = null;
+        if ($this->kodepos) {
+            $getkodeposisi = Transrincianrekrut::find()->andWhere('kodeposisi LIKE :kodeposisi', [':kodeposisi' => '%' . $this->kodepos . '%'])->all();
+            if ($getkodeposisi) {
+                $kodeposisi = array();
+                foreach ($getkodeposisi as $value) {
+                    $kodeposisi[] = $value->hire_jabatan_sap;
+                }
+                $ret = $kodeposisi;
+            }
+        }
+        return $ret;
     }
 }

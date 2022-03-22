@@ -109,14 +109,14 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                     'filter' => \kartik\select2\Select2::widget([
                         'model' => $searchModel,
                         'attribute' => 'jabatansap',
-                        'data' => ArrayHelper::map(Transrincianrekrut::find()->asArray()->all(), 'id', 'jabatansap'),
+                        'data' => ArrayHelper::map(Transrincianrekrut::find()->asArray()->all(), 'id', 'jabatan_sap'),
                         'options' => ['placeholder' => '--'],
                         'pluginOptions' => [
                             'allowClear' => true,
                         ],
                     ]),
                     'value' => function ($data) {
-                        return ($data->transrincianrekrut) ? $data->transrincianrekrut->jabatansap : '';
+                        return ($data->transrincianrekrut) ? $data->transrincianrekrut->jabatan_sap : '';
                     }
 
                 ],

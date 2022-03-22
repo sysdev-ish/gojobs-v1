@@ -71,7 +71,7 @@ class MappingjobpositionController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        return $this->renderAjax('view', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -85,9 +85,9 @@ class MappingjobpositionController extends Controller
     {
         $model = new Mappingjobposition();
 
-        $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamilyid');
-        $jabatansap = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'jabatansap');
-        $kodeposisi = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'kodeposisi');
+        $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
+        $jabatansap = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'jabatan_sap');
+        $kodeposisi = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'hire_jabatan_sap');
         if ($model->load(Yii::$app->request->post())) {
             $model->createtime = date('Y-m-d H-i-s');
             $model->updatetime = date('Y-m-d H-i-s');
@@ -113,9 +113,9 @@ class MappingjobpositionController extends Controller
     {
         $model = $this->findModel($id);
 
-        $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamilyid');
-        $jabatansap = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'jabatansap');
-        $kodeposisi = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'kodeposisi');
+        $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
+        $jabatansap = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'jabatan_sap');
+        $kodeposisi = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'hire_jabatan_sap');
         if ($model->load(Yii::$app->request->post())) {
             $model->updatetime = date('Y-m-d H-i-s');
             $model->save();

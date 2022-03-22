@@ -339,7 +339,6 @@ class Hiringreport extends Hiring
                 foreach($transRincianquery as $tr){
                     $transRincianIds[] = $tr->id;
                 }
-
                 $ret = $transRincianIds;
             }
       return $ret;

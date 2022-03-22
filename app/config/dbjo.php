@@ -2,6 +2,7 @@
 
 return [
     'class' => 'yii\db\Connection',
+    // 'class' => 'CDbConnection',  
     'dsn' => 'mysql:host=localhost;dbname=ish_catalog_baru',
     'username' => 'root',
     'password' => '',

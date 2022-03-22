@@ -259,6 +259,24 @@ app\assets\ReportAsset::register($this);
 
                     ],
                     [
+                      'label' => 'Job Family',
+                      'format' => 'raw',
+                      'value'=>function ($data) {
+
+                        return ($data->recrequest->jobfamily)?$data->recrequest->jobfamily : "";
+                    }
+
+                    ],
+                    [
+                      'label' => 'Sub Job Family',
+                      'format' => 'raw',
+                      'value'=>function ($data) {
+
+                        return ($data->recrequest->subjobfamily)?$data->recrequest->subjobfamily : "";
+                    }
+
+                    ],
+                    [
                       'label' => 'Jumlah Permintaan SDM',
                       'format' => 'raw',
                       'value'=>function ($data) {

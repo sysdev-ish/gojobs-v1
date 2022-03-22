@@ -2,6 +2,7 @@
 
 return [
   'class' => 'yii\db\Connection',
+  // 'class' => 'CDbConnection',
   'dsn' => 'mysql:host=localhost;dbname=recruitment_dev',
   'username' => 'root',
   'password' => '',
