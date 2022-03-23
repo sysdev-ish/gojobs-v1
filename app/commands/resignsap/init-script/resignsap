@@ -1,0 +1,73 @@
+#!/bin/bash
+#
+# reportprocess	ResignSap
+#
+# chkconfig: - 64 36
+# description: ResignSap background process
+# processname: nohup /usr/bin/java -jar /var/www/html/rekrut/app/commands/resignsap/ResignSap.jar &
+check_status() {
+	s=`pgrep -f "ResignSap"`
+	if [ $s ] ; then
+		echo $s
+	else
+		echo 0
+	fi
+}
+
+start() {
+	pid=$(check_status)
+
+	if [ $pid -ne 0 ] ; then
+		echo "ResignSap is already started [PID: $pid]."
+		exit 1
+	fi
+
+	echo -n "Starting ResignSap: "
+	nohup /usr/bin/java -jar /var/www/html/rekrut/app/commands/resignsap/ResignSap.jar > /dev/null 2>&1 &
+	echo $! > "/var/www/html/rekrut/app/runtime/ResignSap.pid"
+	echo "[OK]"
+}
+
+stop() {
+	pid=$(check_status)
+
+	if [ $pid -eq 0 ] ; then
+		echo "ResignSap is already stopped."
+		exit 1
+	fi
+
+	echo -n "Stopping ResignSap: "
+	kill -9 $pid &
+	echo "[OK]"
+}
+
+status() {
+	pid=$(check_status $1)
+
+	if [ $pid -ne 0 ] ; then
+		echo "ResignSap is started [PID: $pid]."
+	else
+		echo "ResignSap is stopped."
+	fi
+}
+
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	status)
+		status
+		;;
+	restart|reload)
+		stop
+		start
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart|reload|status}"
+		exit 1
+esac
+
+exit 0
