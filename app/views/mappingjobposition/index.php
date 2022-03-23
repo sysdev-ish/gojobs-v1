@@ -89,25 +89,16 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                 [
                     'attribute' => 'subjobfamilyid',
                     'format' => 'html',
-<<<<<<< HEAD
-=======
                     'contentOptions' => ['style' => 'min-width: 100px;'],
->>>>>>> origin/main
                     'filter' => \kartik\select2\Select2::widget([
                         'model' => $searchModel,
                         'attribute' => 'subjobfamilyid',
                         'data' => ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily'),
-<<<<<<< HEAD
-                        'options' => ['placeholder' => '--'],
-                        'pluginOptions' => [
-                            'allowClear' => true,
-=======
                         'options' => ['placeholder' => 'Sub Job Family'],
                         'pluginOptions' => [
                             'allowClear' => true,
                             'minimumInputLength' => 1,
                             'min-width' => '100px',
->>>>>>> origin/main
                         ],
                     ]),
                     'value' => function ($data) {
@@ -118,24 +109,15 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                 [
                     'attribute' => 'jabatansap',
                     'format' => 'html',
-<<<<<<< HEAD
-=======
                     'contentOptions' => ['style' => 'min-width: 100px;'],
->>>>>>> origin/main
                     'filter' => \kartik\select2\Select2::widget([
                         'model' => $searchModel,
                         'attribute' => 'jabatansap',
                         'data' => ArrayHelper::map(Transrincianrekrut::find()->asArray()->all(), 'id', 'jabatan_sap'),
-<<<<<<< HEAD
-                        'options' => ['placeholder' => '--'],
-                        'pluginOptions' => [
-                            'allowClear' => true,
-=======
                         'options' => ['placeholder' => '2xxxxxxx'],
                         'pluginOptions' => [
                             'allowClear' => true,
                             'minimumInputLength' => 5,
->>>>>>> origin/main
                         ],
                     ]),
                     'value' => function ($data) {
@@ -146,24 +128,15 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                 [
                     'attribute' => 'kodeposisi',
                     'format' => 'html',
-<<<<<<< HEAD
-=======
                     'contentOptions' => ['style' => 'min-width: 100px;'],
->>>>>>> origin/main
                     'filter' => \kartik\select2\Select2::widget([
                         'model' => $searchModel,
                         'attribute' => 'kodeposisi',
                         'data' => ArrayHelper::map(Transrincianrekrut::find()->asArray()->all(), 'id', 'hire_jabatan_sap'),
-<<<<<<< HEAD
-                        'options' => ['placeholder' => '--'],
-                        'pluginOptions' => [
-                            'allowClear' => true,
-=======
                         'options' => ['placeholder' => '2xxxxxxx'],
                         'pluginOptions' => [
                             'allowClear' => true,
                             'minimumInputLength' => 5,
->>>>>>> origin/main
                         ],
                     ]),
                     'value' => function ($data) {
@@ -171,24 +144,16 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                     }
 
                 ],
-<<<<<<< HEAD
-                'kodejabatan',
-=======
                 [
                     'attribute' => 'kodejabatan',
                     'format' => 'html',
                     'contentOptions' => ['style' => 'min-width: 100px;'],
                 ],
->>>>>>> origin/main
                 // 'createtime',
                 // 'updatetime',
                 [
                     'class' => 'yii\grid\ActionColumn',
-<<<<<<< HEAD
-                    'contentOptions' => ['style' => 'max-width: 50px;'],
-=======
                     'contentOptions' => ['style' => 'max-width: 100px;'],
->>>>>>> origin/main
                     'template' => '<div class="btn-group pull-right">' . $action . '</div>',
                     'buttons' => [
                         'view' => function ($url, $model, $key) {
