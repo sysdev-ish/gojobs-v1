@@ -89,13 +89,16 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                 [
                     'attribute' => 'subjobfamilyid',
                     'format' => 'html',
+                    'contentOptions' => ['style' => 'min-width: 100px;'],
                     'filter' => \kartik\select2\Select2::widget([
                         'model' => $searchModel,
                         'attribute' => 'subjobfamilyid',
                         'data' => ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily'),
-                        'options' => ['placeholder' => '--'],
+                        'options' => ['placeholder' => 'Sub Job Family'],
                         'pluginOptions' => [
                             'allowClear' => true,
+                            'minimumInputLength' => 1,
+                            'min-width' => '100px',
                         ],
                     ]),
                     'value' => function ($data) {
@@ -106,13 +109,15 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                 [
                     'attribute' => 'jabatansap',
                     'format' => 'html',
+                    'contentOptions' => ['style' => 'min-width: 100px;'],
                     'filter' => \kartik\select2\Select2::widget([
                         'model' => $searchModel,
                         'attribute' => 'jabatansap',
                         'data' => ArrayHelper::map(Transrincianrekrut::find()->asArray()->all(), 'id', 'jabatan_sap'),
-                        'options' => ['placeholder' => '--'],
+                        'options' => ['placeholder' => '2xxxxxxx'],
                         'pluginOptions' => [
                             'allowClear' => true,
+                            'minimumInputLength' => 5,
                         ],
                     ]),
                     'value' => function ($data) {
@@ -123,13 +128,15 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                 [
                     'attribute' => 'kodeposisi',
                     'format' => 'html',
+                    'contentOptions' => ['style' => 'min-width: 100px;'],
                     'filter' => \kartik\select2\Select2::widget([
                         'model' => $searchModel,
                         'attribute' => 'kodeposisi',
                         'data' => ArrayHelper::map(Transrincianrekrut::find()->asArray()->all(), 'id', 'hire_jabatan_sap'),
-                        'options' => ['placeholder' => '--'],
+                        'options' => ['placeholder' => '2xxxxxxx'],
                         'pluginOptions' => [
                             'allowClear' => true,
+                            'minimumInputLength' => 5,
                         ],
                     ]),
                     'value' => function ($data) {
@@ -137,12 +144,16 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                     }
 
                 ],
-                'kodejabatan',
+                [
+                    'attribute' => 'kodejabatan',
+                    'format' => 'html',
+                    'contentOptions' => ['style' => 'min-width: 100px;'],
+                ],
                 // 'createtime',
                 // 'updatetime',
                 [
                     'class' => 'yii\grid\ActionColumn',
-                    'contentOptions' => ['style' => 'max-width: 50px;'],
+                    'contentOptions' => ['style' => 'max-width: 100px;'],
                     'template' => '<div class="btn-group pull-right">' . $action . '</div>',
                     'buttons' => [
                         'view' => function ($url, $model, $key) {

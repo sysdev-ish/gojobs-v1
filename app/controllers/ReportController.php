@@ -144,8 +144,6 @@ class ReportController extends Controller
   }
   public function actionReportapplicant()
   {
-
-
     $searchModel = new Applicantreport();
     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
     $education = ArrayHelper::map(Mastereducation::find()->asArray()->all(), 'idmastereducation', 'education');
