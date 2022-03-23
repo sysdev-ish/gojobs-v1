@@ -23,18 +23,11 @@ if ($model->isNewRecord) {
         echo   $form->field($model, 'subjobfamilyid')->widget(Select2::classname(), [
             'data' => $subjobfamilyid,
             // 'initValueText' => $recruitreqs, // set the initial display text
-<<<<<<< HEAD
-            'options' => ['placeholder' => '- select -'],
-            'pluginOptions' => [
-                'dropdownParent' => $dropdownparent,
-                'allowClear' => true,
-=======
             'options' => ['placeholder' => '- Select Sub Jobfamily -'],
             'pluginOptions' => [
                 'dropdownParent' => $dropdownparent,
                 'allowClear' => true,
                 'minimumInputLength' => 1,
->>>>>>> origin/main
             ],
         ]);
         ?>
@@ -42,18 +35,11 @@ if ($model->isNewRecord) {
         echo   $form->field($model, 'jabatansap')->widget(Select2::classname(), [
             'data' => $jabatansap,
             // 'initValueText' => $recruitreqs, // set the initial display text
-<<<<<<< HEAD
-            'options' => ['placeholder' => '- select -'],
-            'pluginOptions' => [
-                'dropdownParent' => $dropdownparent,
-                'allowClear' => true,
-=======
             'options' => ['placeholder' => '- 2XXXXXXX -'],
             'pluginOptions' => [
                 'dropdownParent' => $dropdownparent,
                 'allowClear' => true,
                 'minimumInputLength' => 5,
->>>>>>> origin/main
             ],
         ]);
         ?>
@@ -61,29 +47,18 @@ if ($model->isNewRecord) {
         echo   $form->field($model, 'kodeposisi')->widget(Select2::classname(), [
             'data' => $kodeposisi,
             // 'initValueText' => $recruitreqs, // set the initial display text
-<<<<<<< HEAD
-            'options' => ['placeholder' => '- select -'],
-            'pluginOptions' => [
-                'dropdownParent' => $dropdownparent,
-                'allowClear' => true,
-=======
             'options' => ['placeholder' => '- 2XXXXXXX -'],
             'pluginOptions' => [
                 'dropdownParent' => $dropdownparent,
                 'allowClear' => true,
                 'minimumInputLength' => 5,
->>>>>>> origin/main
             ],
         ]);
         ?>
 
-<<<<<<< HEAD
-        <?= $form->field($model, 'kodejabatan')->textInput(['maxlength' => true]) ?>
-=======
         <?= $form->field($model, 'kodejabatan')->textInput(['maxlength' => true])
         // ->input(['placeholder'=>"Kode Jabatan"]) 
         ?>
->>>>>>> origin/main
 
     </div>
     <div class="box-footer">
