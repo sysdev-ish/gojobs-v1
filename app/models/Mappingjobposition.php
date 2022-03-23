@@ -34,8 +34,7 @@ class Mappingjobposition extends \yii\db\ActiveRecord
             [['subjobfamilyid'], 'integer'],
             [['createtime', 'updatetime'], 'safe'],
             [['jabatansap', 'kodejabatan', 'kodeposisi'], 'string', 'max' => 50],
-            // [['jabatansap', 'kodejabatan', 'kodeposisi'], 'unique', 'targetAttribute' => ['jabatansap', 'kodejabatan', 'kodeposisi'], 'message' => 'Data sudah ada']
-
+            [['jabatansap', 'kodejabatan', 'kodeposisi'], 'unique', 'targetAttribute' => ['jabatansap', 'kodejabatan', 'kodeposisi'], 'message' => 'Data sudah ada']
         ];
     }
 
