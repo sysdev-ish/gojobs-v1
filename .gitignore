@@ -13,6 +13,9 @@ nbproject
 Thumbs.db
 
 # composer vendor dir
+/app/runtime
+
+# composer vendor dir
 /app/vendor
 
 # composer itself is not needed

@@ -29,6 +29,9 @@ class Hiringreport extends Hiring
   public $statuspekerja;
   public $startresign;
   public $endresign;
+  public $jobfamily;
+  public $subjobfamily;
+  
     /**
      * @inheritdoc
      */
@@ -37,7 +40,7 @@ class Hiringreport extends Hiring
         return [
             // [['startawalkontrak','endawalkontrak'], 'required'],
             [['id', 'userid', 'perner', 'statushiring', 'statusbiodata','typejo','nojo','sap','statuspekerja'], 'integer'],
-            [['createtime', 'updatetime', 'fullname','startawalkontrak','endawalkontrak','area','personalarea','jabatan','areaish','region','startresign','endresign'], 'safe'],
+            [['createtime', 'updatetime', 'fullname','startawalkontrak','endawalkontrak','area','personalarea','jabatan','areaish','region','startresign','endresign','jobfamily','subjobfamily'], 'safe'],
         ];
     }
 
@@ -176,13 +179,12 @@ class Hiringreport extends Hiring
 
         if($this->region <> "0"){
           // var_dump($this->region);die;
-
           $mappingregionarea->andWhere([
               'areaishid' => $this->areaish,
               'regionid' => $this->region,
           ]);
-        }else{
-
+        }
+        else{
           $mappingregionarea->andWhere([
               'areaishid' => $this->areaish,
           ]);
@@ -195,17 +197,17 @@ class Hiringreport extends Hiring
             foreach($mappingregionareaquery as $value){
                 $areaid[] = $value->areaid;
             }
-
             $resultareaid = $areaid;
         }
+
         $transRincian = Transrincian::find();
         if($resultareaid){
           $getareasbyregionarea = '"'.implode('","', $resultareaid).'"';
           // var_dump($getareasbyregionarea);die;
-
           $transRincian = Transrincian::find();
           $transRincian->andWhere('trans_rincian_rekrut.area_sap IN (' . $getareasbyregionarea . ')');
-        }else{
+        }
+        else{
           $getareasbyregionarea = 0;
         }
         $transRincianquery = $transRincian->all();
@@ -214,11 +216,8 @@ class Hiringreport extends Hiring
             foreach($transRincianquery as $tr){
                 $transRincianIds[] = $tr->id;
             }
-
             $ret = $transRincianIds;
         }
-
-
 
       return $ret;
     }
@@ -236,15 +235,10 @@ class Hiringreport extends Hiring
       ->post('http://192.168.88.5/service/index.php/sap_profile/getdatabyresign');
       $datapekerjabyresigndate  = json_decode($getdatapekerjabyresigndate);
       // $datapekerjabyresigndate  = implode(',', $getdatapekerjabyresigndate);
-
-
       if($datapekerjabyresigndate){
         $ret = $datapekerjabyresigndate;
       }
       // var_dump($ret);die;
-
-
-
       return $ret;
     }
     protected function joGroupBypersa($param, $dataProvider){
@@ -268,8 +262,6 @@ class Hiringreport extends Hiring
           'query' => $transRincian,
           'sort' => ['defaultOrder' => ['id' => SORT_DESC]]
       ]);
-
-
       if (!$this->validate()) {
           // uncomment the following line if you do not want to return any records when validation fails
 
@@ -281,6 +273,8 @@ class Hiringreport extends Hiring
 
       return $dataProvider;
     }
+
+
     protected function dataGroupByedusd($param, $dataProvider,$leveledu){
 
       $hiring = $dataProvider->query->all();
@@ -345,7 +339,6 @@ class Hiringreport extends Hiring
                 foreach($transRincianquery as $tr){
                     $transRincianIds[] = $tr->id;
                 }
-
                 $ret = $transRincianIds;
             }
       return $ret;
@@ -375,6 +368,8 @@ class Hiringreport extends Hiring
             'areaish' => 'Area ISH',
             'region' => 'Region',
             'startresign' => 'Periode Resign',
+            'jobfamily' => 'jobfamily',
+            'subjobfamily' => 'subjobfamily',
         ];
     }
 }

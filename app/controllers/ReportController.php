@@ -34,6 +34,8 @@ use app\models\Masterareaish;
 use app\models\Masterregion;
 use app\models\Mappingregionarea;
 use app\models\Mastercity;
+use app\models\Masterjobfamily;
+use app\models\Mastersubjobfamily;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -119,12 +121,8 @@ class ReportController extends Controller
   //   ]);
   // }
 
-
-
   public function actionReporthiring()
   {
-
-
     $searchModel = new Hiringreport();
     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
     $area = ArrayHelper::map(Saparea::find()->asArray()->all(), 'value1', 'value2');
@@ -132,6 +130,8 @@ class ReportController extends Controller
     $jabatan = ArrayHelper::map(Sapjob::find()->asArray()->all(), 'value1', 'value2');
     $areaish = ArrayHelper::map(Masterareaish::find()->asArray()->all(), 'id', 'area');
     $region = ArrayHelper::map(Masterregion::find()->asArray()->all(), 'id', 'regionname');
+    $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
+    $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
     return $this->render('reporthiring', [
       'searchModel' => $searchModel,
       'dataProvider' => $dataProvider,
@@ -140,6 +140,8 @@ class ReportController extends Controller
       'jabatan' => $jabatan,
       'areaish' => $areaish,
       'region' => $region,
+      'jobfamily' => $jobfamily,
+      'subjobfamily' => $subjobfamily,
     ]);
   }
   public function actionReportapplicant()
@@ -166,6 +168,8 @@ class ReportController extends Controller
     $parea = ArrayHelper::map(Sappersonalarea::find()->asArray()->all(), 'value1', 'value2');
     $areaish = ArrayHelper::map(Masterareaish::find()->asArray()->all(), 'id', 'area');
     $region = ArrayHelper::map(Masterregion::find()->asArray()->all(), 'id', 'regionname');
+    $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
+    $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
     return $this->render('reportjoborder', [
       'searchModel' => $searchModel,
       'dataProvider' => $dataProvider,
@@ -173,6 +177,9 @@ class ReportController extends Controller
       'parea' => $parea,
       'areaish' => $areaish,
       'region' => $region,
+      'jobfamily' => $jobfamily,
+      'subjobfamily' => $subjobfamily,
+
     ]);
   }
   protected function generateCV($userid)
@@ -298,7 +305,6 @@ class ReportController extends Controller
 
   //return zip archive name without path
   Yii::$app->response->sendFile($zipPath);
-
 
     // return $this->redirect(['recruitmentcandidate/index']);
     // return $this->goBack();

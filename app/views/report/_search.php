@@ -21,33 +21,56 @@ use yii\helpers\Url;
 
     <div class="col-md-12">
       <!-- <div class="col-md-12">
-        <?php //echo $form->field($model, 'fullname')->textInput(['maxlength' => true]) ?>
+        <?php //echo $form->field($model, 'fullname')->textInput(['maxlength' => true]) 
+        ?>
       </div> -->
-      <div class="col-md-6">
-
+      <div class="col-md-4">
         <?= $form->field($model, 'startawalkontrak')->widget(
-          DatePicker::className(), [
+          DatePicker::className(),
+          [
             'type' => DatePicker::TYPE_RANGE,
-            'options' => ['placeholder' => 'Date','autocomplete' => 'off'],
+            'options' => ['placeholder' => 'Date', 'autocomplete' => 'off'],
             'readonly' => false,
             'removeButton' => false,
             'attribute2' => 'endawalkontrak',
             'pluginOptions' => [
               'autoclose' => true,
-              'startDate'=>'2019-01-01',
-              'endDate'=>'-0y',
+              'startDate' => '2019-01-01',
+              'endDate' => '-0y',
               // 'timePickerIncrement'=>60,
               'format' => 'yyyy-mm-dd',
               'todayHighlight' => true
             ]
-          ]);
-          ?>
+          ]
+        );
+        ?>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
+        <?= $form->field($model, 'startresign')->widget(
+          DatePicker::className(),
+          [
+            'type' => DatePicker::TYPE_RANGE,
+            'options' => ['placeholder' => 'Date', 'autocomplete' => 'off'],
+            'readonly' => false,
+            'removeButton' => false,
+            'attribute2' => 'endresign',
+            'pluginOptions' => [
+              'autoclose' => true,
+              'startDate' => '2019-01-01',
+              'endDate' => '-0y',
+              // 'timePickerIncrement'=>60,
+              'format' => 'yyyy-mm-dd',
+              'todayHighlight' => true
+            ]
+          ]
+        );
+        ?>
+      </div>
+      <div class="col-md-4">
         <?php
         echo   $form->field($model, 'area')->widget(Select2::classname(), [
           'data' => $area,
-          'options' => ['placeholder' => '- select -', 'id'=>'area'],
+          'options' => ['placeholder' => '- select -', 'id' => 'area'],
           'pluginOptions' => [
             'allowClear' => true,
             'multiple' => true
@@ -57,44 +80,35 @@ use yii\helpers\Url;
       </div>
     </div>
     <div class="col-md-12">
-      <div class="col-md-6">
-        <?= $form->field($model, 'startresign')->widget(
-          DatePicker::className(), [
-            'type' => DatePicker::TYPE_RANGE,
-            'options' => ['placeholder' => 'Date','autocomplete' => 'off'],
-            'readonly' => false,
-            'removeButton' => false,
-            'attribute2' => 'endresign',
-            'pluginOptions' => [
-              'autoclose' => true,
-              'startDate'=>'2019-01-01',
-              'endDate'=>'-0y',
-              // 'timePickerIncrement'=>60,
-              'format' => 'yyyy-mm-dd',
-              'todayHighlight' => true
-            ]
-          ]);
-          ?>
-      </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <?php
         echo   $form->field($model, 'jabatan')->widget(Select2::classname(), [
           'data' => $jabatan,
-          'options' => ['placeholder' => '- select -', 'id'=>'jabatan'],
+          'options' => ['placeholder' => '- select -', 'id' => 'jabatan'],
           'pluginOptions' => [
             'allowClear' => true
           ],
         ]);
         ?>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <?php
-        echo   $form->field($model, 'personalarea')->widget(Select2::classname(), [
-          'data' => $parea,
-          'options' => ['placeholder' => '- select -', 'id'=>'personalarea'],
+        echo   $form->field($model, 'jobfamily')->widget(Select2::classname(), [
+          'data' => $jobfamily,
+          'options' => ['placeholder' => '- select -', 'id' => 'jobfamily'],
           'pluginOptions' => [
-            'allowClear' => true,
-            'initialize' => false,
+            'allowClear' => true
+          ],
+        ]);
+        ?>
+      </div>
+      <div class="col-md-4">
+        <?php
+        echo   $form->field($model, 'subjobfamily')->widget(Select2::classname(), [
+          'data' => $subjobfamily,
+          'options' => ['placeholder' => '- select -', 'id' => 'subjobfamily'],
+          'pluginOptions' => [
+            'allowClear' => true
           ],
         ]);
         ?>
@@ -103,9 +117,21 @@ use yii\helpers\Url;
     <div class="col-md-12">
       <div class="col-md-3">
         <?php
+        echo   $form->field($model, 'personalarea')->widget(Select2::classname(), [
+          'data' => $parea,
+          'options' => ['placeholder' => '- select -', 'id' => 'personalarea'],
+          'pluginOptions' => [
+            'allowClear' => true,
+            'initialize' => false,
+          ],
+        ]);
+        ?>
+      </div>
+      <div class="col-md-3">
+        <?php
         echo   $form->field($model, 'sap')->widget(Select2::classname(), [
-          'data' => [ 1 =>"ISH", 2 =>"Peralihan"],
-          'options' => ['placeholder' => '- select -', 'id'=>'sap'],
+          'data' => [1 => "ISH", 2 => "Peralihan"],
+          'options' => ['placeholder' => '- select -', 'id' => 'sap'],
           'pluginOptions' => [
             'allowClear' => true
           ],
@@ -116,7 +142,7 @@ use yii\helpers\Url;
         <?php
         echo   $form->field($model, 'areaish')->widget(Select2::classname(), [
           'data' => $areaish,
-          'options' => ['placeholder' => '- select -', 'id'=>'areaish'],
+          'options' => ['placeholder' => '- select -', 'id' => 'areaish'],
           'pluginOptions' => [
             'allowClear' => true,
             'initialize' => false,
@@ -124,31 +150,31 @@ use yii\helpers\Url;
         ]);
         ?>
       </div>
-      <div class="col-md-6">
-        <?php echo  Html::hiddenInput('model_id2', $model->region, ['id'=>'model_id2']);
+      <div class="col-md-3">
+        <?php echo  Html::hiddenInput('model_id2', $model->region, ['id' => 'model_id2']);
         echo $form->field($model, 'region')->widget(DepDrop::classname(), [
-          'data'=> $region,
+          'data' => $region,
           'type' => DepDrop::TYPE_SELECT2,
-          'options' => ['id'=>'region'],
-          'select2Options'=>['pluginOptions'=>['allowClear'=>true]],
-          'pluginOptions'=>[
-            'depends'=>['areaish'],
-            'placeholder'=>'Select Area ISH',
-            'url'=>Url::to(['/report/getregion']),
+          'options' => ['id' => 'region'],
+          'select2Options' => ['pluginOptions' => ['allowClear' => true]],
+          'pluginOptions' => [
+            'depends' => ['areaish'],
+            'placeholder' => 'Select Area ISH',
+            'url' => Url::to(['/report/getregion']),
             'loadingText' => 'Loading ...',
-            'params'=>['model_id2'],
+            'params' => ['model_id2'],
             'initialize' => true,
           ],
-
-
         ]); ?>
       </div>
     </div>
     <div class="col-md-12">
-      <div class="col-md-12">
+      <div class="col-md-12 order-1">
         <div class="form-group">
-          <?php //Html::submitButton('Search', ['class' => 'btn btn-primary', 'onClick'=>'alert("test");return false;']) ?>
-          <?= Html::submitButton('Search', ['class' => 'btn btn-primary','onClick'=>'
+          <?php //Html::submitButton('Search', ['class' => 'btn btn-primary', 'onClick'=>'alert("test");return false;']) 
+          ?>
+          <?= Html::submitButton('Search', [
+            'class' => 'btn btn-primary', 'onClick' => '
           var startdate = $("#hiringreport-startawalkontrak").val();
           var enddate = $("#hiringreport-endawalkontrak").val();
           var startdater = $("#hiringreport-startresign").val();
@@ -175,13 +201,9 @@ use yii\helpers\Url;
               return false;
             }
           }
-
-
-
           '
-
           ]) ?>
-          <?= Html::a('Reset', ['/report/reporthiring'],['class' => 'btn btn-default','id'=>'resethiringreport']) ?>
+          <?= Html::a('Reset', ['/report/reporthiring'], ['class' => 'btn btn-default', 'id' => 'resethiringreport']) ?>
         </div>
       </div>
     </div>

@@ -22,11 +22,7 @@ $assetUrl = Yii::$app->request->baseUrl . '/assets';
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?php echo $assetUrl; ?>/img/user-avatar.png" class="user-image" alt="User Image"/>
                         <span class="hidden-xs"><?php echo Yii::$app->user->isGuest ? 'Guest' : Yii::$app->user->identity->username; ?></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <!-- User image -->
                         <li class="user-header">
                             <img src="<?php echo $assetUrl; ?>/img/user-avatar.png" class="img-circle"
                                  alt="User Image"/>

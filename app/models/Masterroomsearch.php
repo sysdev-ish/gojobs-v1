@@ -12,7 +12,7 @@ use app\models\Masterroom;
  */
 class Masterroomsearch extends Masterroom
 {
-  public $office;
+    public $office;
     /**
      * @inheritdoc
      */

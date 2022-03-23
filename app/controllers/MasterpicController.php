@@ -84,6 +84,7 @@ class MasterpicController extends Controller
     public function actionCreate()
     {
         $model = new Masterpic();
+        
         $office = ArrayHelper::map(Masteroffice::find()->asArray()->all(), 'id', 'officename');
         $userlogin = ArrayHelper::map(Userlogin::find()->asArray()->where(['!=','role',2])->all(), 'id', 'name');
         if ($model->load(Yii::$app->request->post())) {
@@ -156,12 +157,12 @@ class MasterpicController extends Controller
       $out = [];
   		if (isset($_POST['depdrop_parents'])) {
   			$parents = $_POST['depdrop_parents'];
-        $officeid = empty($parents[0]) ? null : $parents[0];
+            $officeid = empty($parents[0]) ? null : $parents[0];
   			$model = Masterpic::find()->asArray()->joinWith('userlogin')->where(['masterofficeid'=>$officeid])->all();
   			$selected  = null;
   			if ($parents != null && count($model) > 0 ) {
   				$selected = '';
-          $id1 = '';
+                $id1 = '';
   				if (!empty($_POST['depdrop_params'])) {
   					$params = $_POST['depdrop_params'];
   					$id1 = $params[0]; // get the value of model_id1

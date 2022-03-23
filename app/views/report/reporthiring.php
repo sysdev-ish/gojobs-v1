@@ -28,6 +28,8 @@ use app\models\Transperner;
 use app\models\Transrincianori;
 use app\models\Hiring;
 use app\models\Uservaksin;
+use app\models\Masterjobfamily;
+use app\models\Mastersubjobfamily;
 use yii\helpers\ArrayHelper;
 use kartik\export\ExportMenu;
 use linslin\yii2\curl;
@@ -57,6 +59,8 @@ app\assets\ReportAsset::register($this);
           'jabatan' => $jabatan,
           'areaish' => $areaish,
           'region' => $region,
+          'jobfamily' => $jobfamily,
+          'subjobfamily' => $subjobfamily,
         ]); ?>
     </div>
 </div>
@@ -251,6 +255,24 @@ app\assets\ReportAsset::register($this);
                       'value'=>function ($data) {
 
                         return ($data->recrequest->abkrs_sap)?$data->recrequest->abkrs_sap : "";
+                    }
+
+                    ],
+                    [
+                      'label' => 'Job Family',
+                      'format' => 'raw',
+                      'value'=>function ($data) {
+
+                        return ($data->recrequest->jobfamily)?$data->recrequest->jobfamily : "";
+                    }
+
+                    ],
+                    [
+                      'label' => 'Sub Job Family',
+                      'format' => 'raw',
+                      'value'=>function ($data) {
+
+                        return ($data->recrequest->subjobfamily)?$data->recrequest->subjobfamily : "";
                     }
 
                     ],
@@ -527,8 +549,6 @@ app\assets\ReportAsset::register($this);
                         }else{
                           return "";
                         }
-
-
                     }
 
                     ],
@@ -1101,11 +1121,7 @@ app\assets\ReportAsset::register($this);
               }
 
               ],
-
-
-
-
-                    // ['class' => 'kartik\grid\ActionColumn', 'urlCreator'=>function(){return '#';}]
+                // ['class' => 'kartik\grid\ActionColumn', 'urlCreator'=>function(){return '#';}]
                 ];
                 echo ExportMenu::widget([
                     'dataProvider' => $dataProvider['dataProvider'],
@@ -1179,10 +1195,6 @@ app\assets\ReportAsset::register($this);
         </div>
         </div>
         </div>
-
-
-
-
       </div>
 <script>
       //-------------

@@ -33,6 +33,8 @@ app\assets\ReportAsset::register($this);
             'parea' => $parea,
             'areaish' => $areaish,
             'region' => $region,
+            'jobfamily' => $jobfamily,
+            'subjobfamily' => $subjobfamily,
           ]); ?>
     </div>
 </div>
@@ -221,11 +223,8 @@ app\assets\ReportAsset::register($this);
                             $status = '';
                             break;
                         }
-
-
                       return $status;
                     }
-
                     ],
 
 
@@ -236,19 +235,14 @@ app\assets\ReportAsset::register($this);
                         $hired = Hiring::find()->where(['recruitreqid'=>$data->id,'statushiring'=>[4,7,8]])->count();
                         $hiredpending = Hiring::find()->where(['recruitreqid'=>$data->id,'statushiring'=>3])->count();
                         return ($hired)?$hired:(($hiredpending)?"Fail On Hiring":"-");
-                    }
-
+                      }
                     ],
 
                     [
                       'label' => 'Area ISH',
                       'format' => 'raw',
                       'value'=>function ($data) {
-
                           return ($data->areasap)? 'Area '.$data->areasap->areaid:'';
-
-
-
                     }
 
                     ],
@@ -256,11 +250,7 @@ app\assets\ReportAsset::register($this);
                       'label' => 'Region',
                       'format' => 'raw',
                       'value'=>function ($data) {
-
                           return ($data->areasap)? 'Region '.$data->areasap->regionalid:'';
-
-
-
                     }
 
                     ],
@@ -390,9 +380,22 @@ app\assets\ReportAsset::register($this);
                     'format' => 'raw',
                     'value'=>function ($data) {
                     return ($data->jumlah)?$data->jumlah:"";
-                  }
-
+                    }
                   ],
+                  // [
+                  //   'label' => 'job family',
+                  //   'format' => 'raw',
+                  //   'value'=>function ($data) {
+                  //   return ($data->jobfamily)?$data->jobfamily:"";
+                  //   }
+                  // ],
+                  // [
+                  //   'label' => 'sub job family',
+                  //   'format' => 'raw',
+                  //   'value'=>function ($data) {
+                  //   return ($data->subjobfamily)?$data->subjobfamily:"";
+                  //   }
+                  // ],
                   [
                     'label' => 'Hired',
                     'format' => 'raw',

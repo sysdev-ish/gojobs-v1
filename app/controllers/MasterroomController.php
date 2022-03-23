@@ -151,7 +151,7 @@ class MasterroomController extends Controller
       $out = [];
   		if (isset($_POST['depdrop_parents'])) {
   			$parents = $_POST['depdrop_parents'];
-        $officeid = empty($parents[0]) ? null : $parents[0];
+            $officeid = empty($parents[0]) ? null : $parents[0];
   			$model = Masterroom::find()->asArray()->where(['masterofficeid'=>$officeid])->all();
   			$selected  = null;
   			if ($parents != null && count($model) > 0 ) {
@@ -173,6 +173,6 @@ class MasterroomController extends Controller
   				return;
   			}
   		}
-  		echo Json::encode(['output'=>'', 'selected'=>'']);
-  	}
+  	    echo Json::encode(['output'=>'', 'selected'=>'']);
+    }
 }
