@@ -355,7 +355,6 @@ class ReportController extends Controller
     }
     echo Json::encode(['output'=>'', 'selected'=>'']);
   }
-
   protected function findModel($id)
   {
     if (($model = Hiring::findOne($id)) !== null) {

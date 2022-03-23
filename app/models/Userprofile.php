@@ -50,8 +50,13 @@ class Userprofile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+<<<<<<< HEAD
             [['userid', 'createtime', 'updatetime', 'fullname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'postalcodektp','phone', 'addressktp', 'nationality','maritalstatus', 'religion', 'bloodtype','cityid','provinceid','cityidktp','provinceidktp','identitynumber','tinggibadan','beratbadan', 'lokasikerja','jenispekerjaan', 'jobfamily', 'subjobfamily'], 'required'],
             [['userid','havejamsostek','havenpwp','havebpjs', 'npwpnumber','bpjsnumber','postalcode','postalcodektp','identitynumber','kknumber','jobfamily','subjobfamily'], 'integer'],
+=======
+            [['userid', 'createtime', 'updatetime', 'fullname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'postalcodektp','phone', 'addressktp', 'nationality','maritalstatus', 'religion', 'bloodtype','cityid','provinceid','cityidktp','provinceidktp','identitynumber','tinggibadan','beratbadan', 'lokasikerja','jenispekerjaan'], 'required'],
+            [['userid','havejamsostek','havenpwp','havebpjs', 'npwpnumber','bpjsnumber','postalcode','postalcodektp','identitynumber','kknumber'], 'integer'],
+>>>>>>> origin/main
             [['postalcode','postalcodektp'], 'string', 'min'=> 5, 'max'=> 5 ],
             [['identitynumber','kknumber'], 'string', 'min'=> 16, 'max'=> 16 ],
             [['npwpnumber'], 'string', 'min'=> 15, 'max'=> 15],
@@ -186,8 +191,11 @@ class Userprofile extends \yii\db\ActiveRecord
             'lokasikerja' => Yii::t('app', 'Work Location'),
             'cvupload' => 'Curriculum Vitae',
             'jenispekerjaan' => Yii::t('app', 'Working type'),
+<<<<<<< HEAD
             'jobfamily' => Yii::t('app', 'Job Family'),
             'subjobfamily' => Yii::t('app', 'Sub Job Family'),
+=======
+>>>>>>> origin/main
         ];
     }
     public function getCity()
@@ -218,6 +226,7 @@ class Userprofile extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Uservaksin::className(), ['userid' => 'userid']);
     }
+<<<<<<< HEAD
     public function getJobfamily()
     {
         return $this->hasOne(Masterjobfamily::className(), ['id' => 'jobfamily']);
@@ -226,5 +235,7 @@ class Userprofile extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamily']);
     }
+=======
+>>>>>>> origin/main
 
 }

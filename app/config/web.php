@@ -43,7 +43,7 @@ $config = [
         ],
         'session' => [
             'class' => 'yii\web\Session',
-            'timeout' => 3600 * 4,
+            'timeout' => 3600,
         ],
       'pdf' => [
             'class' => Pdf::classname(),
