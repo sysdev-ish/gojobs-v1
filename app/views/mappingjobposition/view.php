@@ -26,10 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'model' => $model,
             'attributes' => [
                 'id',
-                'jabatansap',
+                'masterjabatansap.jabatan_sap',
                 'kodejabatan',
-                'kodeposisi',
-                'subjobfamilyid',
+                'masterkodeposisi.hire_jabatan_sap',
+                'mastersubjobfamily.subjobfamily',
             ],
         ]) ?>
     </div>

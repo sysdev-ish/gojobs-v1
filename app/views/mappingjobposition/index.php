@@ -25,7 +25,7 @@ echo "<div id='mappingjobpositionview'></div>";
 
 Modal::end();
 Modal::begin([
-    'header' => '<h4 class="modal-title">Update Mapping Job Position ISH</h4>',
+    'header' => '<h4 class="modal-title">Update Mapping Job Position</h4>',
     'id' => 'updatemappingjobposition-modal',
     'size' => 'modal-md'
 ]);
@@ -35,7 +35,7 @@ echo "<div id='updatemappingjobposition'></div>";
 
 Modal::end();
 Modal::begin([
-    'header' => '<h4 class="modal-title">Create New Area ISH</h4>',
+    'header' => '<h4 class="modal-title">Create New Job Position</h4>',
     'id' => 'createmappingjobposition-modal',
     'size' => 'modal-md'
 ]);
@@ -69,7 +69,7 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
             'class' => 'btn btn-md btn-success createmappingjobposition-modal-click',
             'data-toggle' => 'tooltip',
             'data-placement' => 'bottom',
-            'title' => 'Create New Mapping Job Position'
+            'title' => 'Create New Job Position'
         ]); ?>
     </div>
     <div class="box-body table-responsive">
@@ -116,7 +116,7 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                         ],
                     ]),
                     'value' => function ($data) {
-                        return ($data->transrincianrekrut) ? $data->transrincianrekrut->jabatan_sap : '';
+                        return ($data->masterjabatansap) ? $data->masterjabatansap->jabatan_sap : '';
                     }
 
                 ],
@@ -133,11 +133,11 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                         ],
                     ]),
                     'value' => function ($data) {
-                        return ($data->transrincianrekrut) ? $data->transrincianrekrut->hire_jabatan_sap : '';
+                        return ($data->masterkodeposisi) ? $data->masterkodeposisi->hire_jabatan_sap : '';
                     }
 
                 ],
-                'kode_jabatan',
+                'kodejabatan',
                 // 'createtime',
                 // 'updatetime',
                 [

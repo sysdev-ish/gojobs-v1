@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\MappingJobPosition */
 
-$this->title = 'Create Mapping Job Position';
+$this->title = 'Create Job Position';
 $this->params['breadcrumbs'][] = ['label' => 'Mapping Job Positions', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

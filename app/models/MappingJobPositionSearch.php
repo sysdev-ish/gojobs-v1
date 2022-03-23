@@ -19,7 +19,7 @@ class MappingjobpositionSearch extends Mappingjobposition
     {
         return [
             [['id', 'subjobfamilyid'], 'integer'],
-            [['jabatansap', 'kodejabatan', 'kodeposisi'], 'safe'],
+            [['jabatansap', 'kodejabatan', 'kodeposisi','createtime', 'updatetime'], 'safe'],
         ];
     }
 
@@ -69,6 +69,8 @@ class MappingjobpositionSearch extends Mappingjobposition
             // 'trans_rincian_rekrut.hire_jabatan_sap' => $this->kodejabatan,
             'subjobfamilyid' => $this->subjobfamilyid,
             'kodejabatan' => $this->kodejabatan,
+            'createtime' => $this->createtime,
+            'updatetime' => $this->updatetime,
         ]);
 
         $query->andFilterWhere(['like', 'jabatansap', $this->jabatansap])

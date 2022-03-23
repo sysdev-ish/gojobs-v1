@@ -32,9 +32,9 @@ class Mappingjobposition extends \yii\db\ActiveRecord
         return [
             [['jabatansap', 'kodejabatan', 'kodeposisi', 'subjobfamilyid'], 'required'],
             [['subjobfamilyid'], 'integer'],
+            [['createtime', 'updatetime'], 'safe'],
             [['jabatansap', 'kodejabatan', 'kodeposisi'], 'string', 'max' => 50],
-            // [['jabatansap', 'kodejabatan', 'kodeposisi'], 'unique', 'targetAttribute' => ['jabatansap', 'kodejabatan', 'kodeposisi'], 'message' => 'Data sudah ada']
-
+            [['jabatansap', 'kodejabatan', 'kodeposisi'], 'unique', 'targetAttribute' => ['jabatansap', 'kodejabatan', 'kodeposisi'], 'message' => 'Data sudah ada']
         ];
     }
 
@@ -49,6 +49,8 @@ class Mappingjobposition extends \yii\db\ActiveRecord
             'kodejabatan' => 'Kode Jabatan',
             'kodeposisi' => 'Kode Posisi',
             'subjobfamilyid' => 'Sub Job Family',
+            'createtime' => 'Createtime',
+            'updatetime' => 'Updatetime',
         ];
     }
     public function getMastersubjobfamily()
