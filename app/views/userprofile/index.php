@@ -62,10 +62,10 @@ if(Yii::$app->utils->permission($role,'m14')){
                     'options' => ['placeholder' => '--'],
                     'pluginOptions' => [
                        'allowClear' => true,
-                       'width' => '100px',
+                       'width' => '80px',
                        ],
                   ]),
-                  'contentOptions'=>['style'=>'max-width: 100px;']
+                  'contentOptions'=>['style'=>'width: 80px;']
 
                 ],
 
@@ -81,11 +81,12 @@ if(Yii::$app->utils->permission($role,'m14')){
                 // 'postalcode',
                 [
                   'attribute' => 'phone',
-                  'contentOptions'=>['style'=>'width: 150px;']
+                  'contentOptions'=>['style'=>'width: 120px;']
 
                 ],
                 [
                   'attribute' => 'jobfamily',
+                  'contentOptions' => ['style' => 'min-width: 150px;'],
                   'filter' => \kartik\select2\Select2::widget([
                     'model' => $searchModel,
                     'attribute' => 'jobfamily',
@@ -94,14 +95,16 @@ if(Yii::$app->utils->permission($role,'m14')){
                     'options' => ['placeholder' => '--'],
                     'pluginOptions' => [
                       'allowClear' => true,
-                      'width' => '100px',
+                      'min-width' => '150px',
                     ],
                   ]),
-                  'contentOptions' => ['style' => 'max-width: 100px;']
-
+                  'value' => function ($data) {
+                  return ($data->jobfamily) ? $data->jobfamily->jobfamily : '';
+                  }
                 ],
                 [
                   'attribute' => 'subjobfamily',
+                  'contentOptions' => ['style' => 'min-width: 150px;'],
                   'filter' => \kartik\select2\Select2::widget([
                     'model' => $searchModel,
                     'attribute' => 'subjobfamily',
@@ -110,10 +113,12 @@ if(Yii::$app->utils->permission($role,'m14')){
                     'options' => ['placeholder' => '--'],
                     'pluginOptions' => [
                       'allowClear' => true,
-                      'width' => '100px',
+                      'min-width' => '150px',
                     ],
                   ]),
-                  'contentOptions' => ['style' => 'max-width: 100px;']
+                  'value' => function ($data) {
+                  return ($data->subjobfamily) ? $data->subjobfamily->subjobfamily : '';
+                  }
 
                 ],
                 // 'domicilestatus',

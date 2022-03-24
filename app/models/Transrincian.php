@@ -92,6 +92,8 @@ class Transrincian extends \yii\db\ActiveRecord
             [['n_pic_hi', 'n_pic_manar', 'n_pic_rekrut', 'zparam', 'upd_skema'], 'string', 'max' => 100],
             [['level', 'skilllayanan'], 'string', 'max' => 10],
             [['skilllayanan_txt', 'jabatan_sap_nm'], 'string', 'max' => 150],
+            [['jobfamily', 'subjobfamily'], 'string', 'max' => 256],
+
         ];
     }
 
@@ -149,6 +151,8 @@ class Transrincian extends \yii\db\ActiveRecord
             'lup_skema' => 'Lup Skema',
             'upd_skema' => 'Upd Skema',
             'n_project' => 'Project',
+            'jobfamily' => 'jobfamily',
+            'subjobfamily' => 'subjobfamily',
         ];
     }
     public function getCity()
@@ -197,5 +201,12 @@ class Transrincian extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Transperner::className(), ['id' => 'idpktable']);
     }
-
+    public function getJobfammily()
+    {
+        return $this->hasOne(Masterjobfamily::className(), ['id' => 'jobfamily']);
+    }
+    public function getSubjobfammily()
+    {
+        return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamily']);
+    }
 }
