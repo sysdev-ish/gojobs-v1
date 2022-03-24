@@ -5,9 +5,9 @@ namespace app\controllers;
 use Yii;
 use app\models\Mappingjobposition;
 use app\models\MappingjobpositionSearch;
-use app\models\Transrincianrekrut;
-use app\models\Mastersubjobfamily;
 use app\models\Sapjob;
+use app\models\Mastersubjobfamily;
+use app\models\Transrincianrekrut;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -88,7 +88,7 @@ class MappingjobpositionController extends Controller
 
         $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
         $jabatansap = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value2');
-        $kodejabatan = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'hire_jabatan_sap');
+        $kodejabatan = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value3');
         if ($model->load(Yii::$app->request->post())) {
             $model->createtime = date('Y-m-d H-i-s');
             $model->updatetime = date('Y-m-d H-i-s');
@@ -121,7 +121,7 @@ class MappingjobpositionController extends Controller
 
         $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
         $jabatansap = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value2');
-        $kodejabatan = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'hire_jabatan_sap');
+        $kodejabatan = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value3');
         if ($model->load(Yii::$app->request->post())) {
             $model->updatetime = date('Y-m-d H-i-s');
             if ($model->save()) {

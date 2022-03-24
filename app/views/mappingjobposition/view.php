@@ -25,7 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
 
                 ],
-                'masterkodejabatan.hire_jabatan_sap',
+                // 'masterkodejabatan.hire_jabatan_sap',
+                'masterkodejabatan.value3',
                 'mastersubjobfamily.subjobfamily',
             ],
         ]) ?>

@@ -65,7 +65,7 @@ class Mappingjobposition extends \yii\db\ActiveRecord
     
     public function getMasterkodejabatan()
     {
-        return $this->hasOne(Transrincianrekrut::className(), ['id' => 'kodejabatan']);
+        return $this->hasOne(Sapjob::className(), ['value1' => 'kodejabatan']);
     }
 
 }

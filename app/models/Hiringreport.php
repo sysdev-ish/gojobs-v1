@@ -368,8 +368,8 @@ class Hiringreport extends Hiring
             'areaish' => 'Area ISH',
             'region' => 'Region',
             'startresign' => 'Periode Resign',
-            'jobfamily' => 'jobfamily',
-            'subjobfamily' => 'subjobfamily',
+            'jobfamily' => 'Job Family',
+            'subjobfamily' => 'Sub Job Family',
         ];
     }
 }

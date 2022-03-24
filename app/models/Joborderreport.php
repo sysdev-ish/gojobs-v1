@@ -186,8 +186,8 @@ class Joborderreport extends Transrincian
             'personalarea' => 'Personal Area',
             'areaish' => 'Area ISH',
             'region' => 'Region',
-            'jobfamily' => 'jobfamily',
-            'subjobfamily' => 'subjobfamily',
+            'jobfamily' => 'Job Family',
+            'subjobfamily' => 'Sub Job Family',
         ];
     }
 }

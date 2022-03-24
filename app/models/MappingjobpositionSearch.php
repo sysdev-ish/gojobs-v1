@@ -83,55 +83,58 @@ class MappingjobpositionSearch extends Mappingjobposition
             }
         }
         if ($this->jabatansap) {
-            $getJoId = $this->joByjabatan();
-            // var_dump($getJoId);die;
-            if ($getJoId) {
-                $getJoid = implode(',', $getJoId);
-                $query->andWhere('recruitreqid IN (' . $getJoid . ')');
-            } else {
-                $query->andWhere('recruitreqid IN (null)');
+            $getjabatansap = $this->byjabsap();
+            if ($getjabatansap) {
+                $getjabatansap = implode(',', $getjabatansap);
+                $query->andWhere('jabatansap IN (' . $getjabatansap . ')');
             }
         }
         return $dataProvider;
     }
     //searchkodejabatan from Transrincianrekrut table trans_rincian_rekrut field hire_jabatan_sap
+    // protected function bykodejab()
+    // {
+    //     $ret = null;
+    //     if ($this->kodejab) {
+    //         $getkodejabatan = Transrincianrekrut::find()->andWhere('kodejabatan LIKE :kodejabatan', [':kodejabatan' => '%' . $this->kodejab . '%'])->all();
+    //         if ($getkodejabatan) {
+    //             $kodejabatan = array();
+    //             foreach ($getkodejabatan as $value) {
+    //                 $kodejabatan[] = $value->hire_jabatan_sap;
+    //             }
+    //             $ret = $kodejabatan;
+    //         }
+    //     }
+    //     return $ret;
+    // }
     protected function bykodejab()
     {
         $ret = null;
-        if ($this->kodejab) {
-            $getkodejabatan = Transrincianrekrut::find()->andWhere('kodejabatan LIKE :kodejabatan', [':kodejabatan' => '%' . $this->kodepos . '%'])->all();
+        // $kodejabatan = Sapjob::find();
+        if ($this->kodejabatan) {
+            $getkodejabatan = Sapjob::find()->andWhere('value3 LIKE :value3', [':value3' => '%' . $this->kodejabatan . '%'])->all();
             if ($getkodejabatan) {
                 $kodejabatan = array();
                 foreach ($getkodejabatan as $value) {
-                    $kodejabatan[] = $value->hire_jabatan_sap;
+                    $kodejabatan[] = $value->value1;
                 }
                 $ret = $kodejabatan;
             }
         }
         return $ret;
     }
-    protected function joByjabatan()
+    protected function byjabsap()
     {
         $ret = null;
-        $jabatansap = $this->jabatansap;
-        if ($jabatansap) {
-            $getJabatan = Sapjob::find()->andWhere('value2 LIKE :value2', [':value2' => '%' . $jabatansap . '%'])->all();
-            if ($getJabatan) {
-                $jabatanIds = array();
-                foreach ($getJabatan as $value) {
-                    $jabatanIds[] = $value->value1;
+        // $jabatansap = Sapjob::find();
+        if ($this->jabatansap) {
+            $getjabatansap = Sapjob::find()->andWhere('value2 LIKE :value2', [':value2' => '%' . $this->jabatansap . '%'])->all();
+            if ($getjabatansap) {
+                $jabatansap = array();
+                foreach ($getjabatansap as $value) {
+                    $jabatansap[] = $value->value1;
                 }
-
-                if (count($jabatanIds) > 0) {
-                    $transRincian = Transrincian::find()->andWhere('hire_jabatan_sap IN ("' . implode('","', $jabatanIds) . '")', [])->all();
-                    if ($transRincian) {
-                        $transRincianIds = array();
-                        foreach ($transRincian as $tr) {
-                            $transRincianIds[] = $tr->id;
-                        }
-                        $ret = $transRincianIds;
-                    }
-                }
+                $ret = $jabatansap;
             }
         }
         return $ret;

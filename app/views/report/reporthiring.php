@@ -258,24 +258,24 @@ app\assets\ReportAsset::register($this);
                     }
 
                     ],
-                    [
-                      'label' => 'Job Family',
-                      'format' => 'raw',
-                      'value'=>function ($data) {
-
-                        return ($data->recrequest->jobfamily)?$data->recrequest->jobfamily : "";
+                  [
+                    'label' => 'Job Family',
+                    'format' => 'raw',
+                    'value' => function ($data) {
+                      $jobfamily = Masterjobfamily::find()->where(['id' => $data->recrequest->jobfamily])->one();
+                      return ($jobfamily) ? $jobfamily->jobfamily : "";
                     }
 
-                    ],
-                    [
-                      'label' => 'Sub Job Family',
-                      'format' => 'raw',
-                      'value'=>function ($data) {
-
-                        return ($data->recrequest->subjobfamily)?$data->recrequest->subjobfamily : "";
+                  ],
+                  [
+                    'label' => 'Sub Job Family',
+                    'format' => 'raw',
+                    'value' => function ($data) {
+                      $subjobfamily = Mastersubjobfamily::find()->where(['id' => $data->recrequest->subjobfamily])->one();
+                      return ($subjobfamily) ? $subjobfamily->subjobfamily : "";
                     }
 
-                    ],
+                  ],
                     [
                       'label' => 'Jumlah Permintaan SDM',
                       'format' => 'raw',

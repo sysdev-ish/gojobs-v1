@@ -98,7 +98,7 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                         'options' => ['placeholder' => 'Sub Job Family'],
                         'pluginOptions' => [
                             'allowClear' => true,
-                            'minimumInputLength' => 1,
+                            // 'minimumInputLength' => 1,
                             'min-width' => '100px',
                         ],
                     ]),
@@ -114,15 +114,15 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                     'filter' => \kartik\select2\Select2::widget([
                         'model' => $searchModel,
                         'attribute' => 'kodejabatan',
-                        'data' => ArrayHelper::map(Transrincianrekrut::find()->asArray()->all(), 'id', 'hire_jabatan_sap'),
-                        'options' => ['placeholder' => '- 2xxxxxxx -'],
+                        'data' => ArrayHelper::map(Sapjob::find()->asArray()->all(), 'value1', 'value3'),
+                        'options' => ['placeholder' => '- Select -'],
                         'pluginOptions' => [
                             'allowClear' => true,
                             // 'minimumInputLength' => 5,
                         ],
                     ]),
                     'value' => function ($data) {
-                        return ($data->masterkodejabatan) ? $data->masterkodejabatan->hire_jabatan_sap : '';
+                        return ($data->masterkodejabatan) ? $data->masterkodejabatan->value3 : '';
                     }
 
                 ],

@@ -31,11 +31,11 @@ use kartik\select2\Select2;
     echo   $form->field($model, 'kodejabatan')->widget(Select2::classname(), [
       'data' => $kodejabatan,
       // 'initValueText' => $recruitreqs, // set the initial display text
-      'options' => ['placeholder' => '- 2XXXXXXX -'],
+      'options' => ['placeholder' => '- Select -'],
       'pluginOptions' => [
         'dropdownParent' => $dropdownparent,
         'allowClear' => true,
-        'minimumInputLength' => 5,
+        // 'minimumInputLength' => 5,
       ],
     ]);
     ?>
