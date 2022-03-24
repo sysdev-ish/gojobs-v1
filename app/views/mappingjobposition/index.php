@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use yii\bootstrap\Modal;
 use app\models\Transrincianrekrut;
 use app\models\Mastersubjobfamily;
+use app\models\Sapjob;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
@@ -107,48 +108,63 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
 
                 ],
                 [
+                    'attribute' => 'kodejabatan',
+                    'format' => 'html',
+                    'contentOptions' => ['style' => 'min-width: 100px;'],
+                    'filter' => \kartik\select2\Select2::widget([
+                        'model' => $searchModel,
+                        'attribute' => 'kodejabatan',
+                        'data' => ArrayHelper::map(Transrincianrekrut::find()->asArray()->all(), 'id', 'hire_jabatan_sap'),
+                        'options' => ['placeholder' => '- 2xxxxxxx -'],
+                        'pluginOptions' => [
+                            'allowClear' => true,
+                            // 'minimumInputLength' => 5,
+                        ],
+                    ]),
+                    'value' => function ($data) {
+                        return ($data->masterkodejabatan) ? $data->masterkodejabatan->hire_jabatan_sap : '';
+                    }
+
+                ],
+                [
                     'attribute' => 'jabatansap',
                     'format' => 'html',
                     'contentOptions' => ['style' => 'min-width: 100px;'],
                     'filter' => \kartik\select2\Select2::widget([
                         'model' => $searchModel,
                         'attribute' => 'jabatansap',
-                        'data' => ArrayHelper::map(Transrincianrekrut::find()->asArray()->all(), 'id', 'jabatan_sap'),
-                        'options' => ['placeholder' => '2xxxxxxx'],
+                        'data' => ArrayHelper::map(Sapjob::find()->asArray()->all(), 'value1', 'value2'),
+                        'options' => ['placeholder' => '- Select -'],
                         'pluginOptions' => [
                             'allowClear' => true,
-                            'minimumInputLength' => 5,
+                            // 'minimumInputLength' => 5,
                         ],
                     ]),
                     'value' => function ($data) {
-                        return ($data->masterjabatansap) ? $data->masterjabatansap->jabatan_sap : '';
+                        return ($data->masterjabatansap) ? $data->masterjabatansap->value2 : '';
                     }
 
                 ],
                 [
-                    'attribute' => 'kodeposisi',
+                    'attribute' => 'status',
+                    'contentOptions' => ['style' => 'min-width: 200px;'],
                     'format' => 'html',
-                    'contentOptions' => ['style' => 'min-width: 100px;'],
                     'filter' => \kartik\select2\Select2::widget([
                         'model' => $searchModel,
-                        'attribute' => 'kodeposisi',
-                        'data' => ArrayHelper::map(Transrincianrekrut::find()->asArray()->all(), 'id', 'hire_jabatan_sap'),
-                        'options' => ['placeholder' => '2xxxxxxx'],
+                        'attribute' => 'status',
+                        'data' => ['1' => 'Publish', '0' => 'Unpublished'],
+                        'options' => ['placeholder' => '--'],
                         'pluginOptions' => [
                             'allowClear' => true,
-                            'minimumInputLength' => 5,
+                            'min-width' => '200px',
                         ],
                     ]),
                     'value' => function ($data) {
-                        return ($data->masterkodeposisi) ? $data->masterkodeposisi->hire_jabatan_sap : '';
+                        return ($data->status == 1) ? 'Published' : 'Unpublished';
                     }
 
                 ],
-                [
-                    'attribute' => 'kodejabatan',
-                    'format' => 'html',
-                    'contentOptions' => ['style' => 'min-width: 100px;'],
-                ],
+
                 // 'createtime',
                 // 'updatetime',
                 [

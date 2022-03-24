@@ -16,9 +16,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'model' => $model,
             'attributes' => [
                 'id',
-                'masterjabatansap.jabatan_sap',
-                'kodejabatan',
-                'masterkodeposisi.hire_jabatan_sap',
+                'masterjabatansap.value2',
+                [
+                    'attribute' => 'status',
+                    'format' => 'html',
+                    'value' => function ($data) {
+                        return ($data->status == 1) ? 'Publish' : 'Unpublished';
+                    }
+
+                ],
+                'masterkodejabatan.hire_jabatan_sap',
                 'mastersubjobfamily.subjobfamily',
             ],
         ]) ?>

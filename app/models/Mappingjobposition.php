@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property string $jabatansap
  * @property string $kodejabatan
- * @property string $kodeposisi
+ * @property int $status
  * @property int $subjobfamilyid
  */
 class Mappingjobposition extends \yii\db\ActiveRecord
@@ -30,11 +30,11 @@ class Mappingjobposition extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['jabatansap', 'kodejabatan', 'kodeposisi', 'subjobfamilyid'], 'required'],
-            [['subjobfamilyid'], 'integer'],
+            [['jabatansap', 'kodejabatan', 'status', 'subjobfamilyid'], 'required'],
+            [['subjobfamilyid', 'status'], 'integer'],
             [['createtime', 'updatetime'], 'safe'],
-            [['jabatansap', 'kodejabatan', 'kodeposisi'], 'string', 'max' => 50],
-            [['jabatansap', 'kodejabatan', 'kodeposisi'], 'unique', 'targetAttribute' => ['jabatansap', 'kodejabatan', 'kodeposisi'], 'message' => 'Data sudah ada']
+            [['jabatansap', 'kodejabatan'], 'string', 'max' => 50],
+            [['jabatansap', 'kodejabatan'], 'unique', 'targetAttribute' => ['jabatansap', 'kodejabatan'], 'message' => 'Data sudah ada']
         ];
     }
 
@@ -47,7 +47,7 @@ class Mappingjobposition extends \yii\db\ActiveRecord
             'id' => 'ID',
             'jabatansap' => 'Jabatan Sap',
             'kodejabatan' => 'Kode Jabatan',
-            'kodeposisi' => 'Kode Posisi',
+            'status' => 'Status',
             'subjobfamilyid' => 'Sub Job Family',
             'createtime' => 'Createtime',
             'updatetime' => 'Updatetime',
@@ -60,12 +60,12 @@ class Mappingjobposition extends \yii\db\ActiveRecord
 
     public function getMasterjabatansap()
     {
-        return $this->hasOne(Transrincianrekrut::className(), ['id' => 'jabatansap']);
+        return $this->hasOne(Sapjob::className(), ['value1' => 'jabatansap']);
     }
     
-    public function getMasterkodeposisi()
+    public function getMasterkodejabatan()
     {
-        return $this->hasOne(Transrincianrekrut::className(), ['id' => 'kodeposisi']);
+        return $this->hasOne(Transrincianrekrut::className(), ['id' => 'kodejabatan']);
     }
 
 }

@@ -12,11 +12,11 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="mappingjobposition-update">
 
-    <?= $this->render('_form', [
+    <?= $this->render('_update', [
         'model' => $model,
         'subjobfamilyid' => $subjobfamilyid,
         'jabatansap' => $jabatansap,
-        'kodeposisi' => $kodeposisi,
+        'kodejabatan' => $kodejabatan,
     ]) ?>
 
 </div>
