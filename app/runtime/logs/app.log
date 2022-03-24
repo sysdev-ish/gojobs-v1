@@ -53446,3 +53446,488 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1648046782.8966
     'REQUEST_TIME' => 1648046782
 ]
+2022-03-24 10:04:13 [::1][104728][7ijv30dnbfgubtf0h6i3g5s9om][error][yii\base\ErrorException:8] yii\base\ErrorException: Undefined variable: kodeposisi in C:\xampp\htdocs\rekrut\app\views\mappingjobposition\create.php:19
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\views\mappingjobposition\create.php(19): yii\base\ErrorHandler->handleError(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 19, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\View.php(336): require('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\View.php(254): yii\base\View->renderPhpFile('C:\\xampp\\htdocs...', Array)
+#3 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\View.php(212): yii\base\View->renderFile('C:\\xampp\\htdocs...', Array, Object(app\controllers\MappingjobpositionController))
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Controller.php(49): yii\web\View->renderAjax('create', Array, Object(app\controllers\MappingjobpositionController))
+#5 C:\xampp\htdocs\rekrut\app\controllers\MappingjobpositionController.php(107): yii\web\Controller->renderAjax('create', Array)
+#6 [internal function]: app\controllers\MappingjobpositionController->actionCreate()
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('create', Array)
+#10 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('mappingjobposit...', Array)
+#11 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#13 {main}
+2022-03-24 10:04:10 [::1][104728][7ijv30dnbfgubtf0h6i3g5s9om][info][application] $_GET = [
+    'mappingjobposition/create' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '7ijv30dnbfgubtf0h6i3g5s9om'
+    '_csrf' => '22fc0a3f57d9891c15883146490bf4bccd72c06fc4a63de6f0ed8dfafb7c3b3fa:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"uEnGJPxcZXGoHTSNIJxnEC7xIMjq-ReG\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1648094651
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Microsoft Edge\";v=\"99\"'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36 Edg/99.0.1150.46'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost/rekrut/mappingjobposition/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=7ijv30dnbfgubtf0h6i3g5s9om; _csrf=22fc0a3f57d9891c15883146490bf4bccd72c06fc4a63de6f0ed8dfafb7c3b3fa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22uEnGJPxcZXGoHTSNIJxnEC7xIMjq-ReG%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '52534'
+    'REDIRECT_URL' => '/rekrut/mappingjobposition/create'
+    'REDIRECT_QUERY_STRING' => 'mappingjobposition/create'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'mappingjobposition/create'
+    'REQUEST_URI' => '/rekrut/mappingjobposition/create'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1648091050.974
+    'REQUEST_TIME' => 1648091050
+]
+2022-03-24 10:09:08 [::1][104728][7ijv30dnbfgubtf0h6i3g5s9om][error][yii\base\UnknownPropertyException] yii\base\UnknownPropertyException: Getting unknown property: app\models\Mappingjobposition::kodeposisi in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Component.php:154
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\BaseActiveRecord.php(296): yii\base\Component->__get('kodeposisi')
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\validators\UniqueValidator.php(260): yii\db\BaseActiveRecord->__get('kodeposisi')
+#2 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\validators\UniqueValidator.php(128): yii\validators\UniqueValidator->prepareConditions(Array, Object(app\models\Mappingjobposition), 'jabatansap')
+#3 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\validators\Validator.php(267): yii\validators\UniqueValidator->validateAttribute(Object(app\models\Mappingjobposition), 'jabatansap')
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Model.php(367): yii\validators\Validator->validateAttributes(Object(app\models\Mappingjobposition), Array)
+#5 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ActiveRecord.php(509): yii\base\Model->validate(Array)
+#6 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\BaseActiveRecord.php(670): yii\db\ActiveRecord->insert(true, NULL)
+#7 C:\xampp\htdocs\rekrut\app\controllers\MappingjobpositionController.php(96): yii\db\BaseActiveRecord->save()
+#8 [internal function]: app\controllers\MappingjobpositionController->actionCreate()
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('create', Array)
+#12 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('mappingjobposit...', Array)
+#13 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#15 {main}
+2022-03-24 10:09:06 [::1][104728][7ijv30dnbfgubtf0h6i3g5s9om][info][application] $_GET = [
+    'mappingjobposition/create' => ''
+]
+
+$_POST = [
+    'Mappingjobposition' => [
+        'subjobfamilyid' => '6'
+        'kodejabatan' => '231'
+        'jabatansap' => '21000027'
+    ]
+]
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '7ijv30dnbfgubtf0h6i3g5s9om'
+    '_csrf' => '22fc0a3f57d9891c15883146490bf4bccd72c06fc4a63de6f0ed8dfafb7c3b3fa:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"uEnGJPxcZXGoHTSNIJxnEC7xIMjq-ReG\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1648094946
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '124'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Microsoft Edge\";v=\"99\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_ORIGIN' => 'http://localhost'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36 Edg/99.0.1150.46'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/mappingjobposition/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=7ijv30dnbfgubtf0h6i3g5s9om; _csrf=22fc0a3f57d9891c15883146490bf4bccd72c06fc4a63de6f0ed8dfafb7c3b3fa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22uEnGJPxcZXGoHTSNIJxnEC7xIMjq-ReG%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '50472'
+    'REDIRECT_URL' => '/rekrut/mappingjobposition/create'
+    'REDIRECT_QUERY_STRING' => 'mappingjobposition/create'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'mappingjobposition/create'
+    'REQUEST_URI' => '/rekrut/mappingjobposition/create'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1648091346.8395
+    'REQUEST_TIME' => 1648091346
+]
+2022-03-24 10:12:19 [::1][104728][7ijv30dnbfgubtf0h6i3g5s9om][error][yii\base\UnknownPropertyException] yii\base\UnknownPropertyException: Getting unknown property: app\models\Transrincianrekrut::value2 in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Component.php:154
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\BaseActiveRecord.php(296): yii\base\Component->__get('value2')
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\helpers\BaseArrayHelper.php(208): yii\db\BaseActiveRecord->__get('value2')
+#2 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\helpers\BaseArrayHelper.php(579): yii\helpers\BaseArrayHelper::getValue(Object(app\models\Transrincianrekrut), 'value2')
+#3 C:\xampp\htdocs\rekrut\app\controllers\MappingjobpositionController.php(123): yii\helpers\BaseArrayHelper::map(Array, 'id', 'value2')
+#4 [internal function]: app\controllers\MappingjobpositionController->actionUpdate('3')
+#5 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#8 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('mappingjobposit...', Array)
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#10 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#11 {main}
+2022-03-24 10:12:18 [::1][104728][7ijv30dnbfgubtf0h6i3g5s9om][info][application] $_GET = [
+    'mappingjobposition/update' => ''
+    'id' => '3'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '7ijv30dnbfgubtf0h6i3g5s9om'
+    '_csrf' => '22fc0a3f57d9891c15883146490bf4bccd72c06fc4a63de6f0ed8dfafb7c3b3fa:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"uEnGJPxcZXGoHTSNIJxnEC7xIMjq-ReG\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1648095138
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Microsoft Edge\";v=\"99\"'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36 Edg/99.0.1150.46'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost/rekrut/mappingjobposition/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=7ijv30dnbfgubtf0h6i3g5s9om; _csrf=22fc0a3f57d9891c15883146490bf4bccd72c06fc4a63de6f0ed8dfafb7c3b3fa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22uEnGJPxcZXGoHTSNIJxnEC7xIMjq-ReG%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '49923'
+    'REDIRECT_URL' => '/rekrut/mappingjobposition/update'
+    'REDIRECT_QUERY_STRING' => 'mappingjobposition/update&id=3'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'mappingjobposition/update&id=3'
+    'REQUEST_URI' => '/rekrut/mappingjobposition/update?id=3'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1648091538.114
+    'REQUEST_TIME' => 1648091538
+]
+2022-03-24 10:13:36 [::1][104728][7ijv30dnbfgubtf0h6i3g5s9om][error][yii\base\UnknownPropertyException] yii\base\UnknownPropertyException: Getting unknown property: app\models\Transrincianrekrut::value2 in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Component.php:154
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\BaseActiveRecord.php(296): yii\base\Component->__get('value2')
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\helpers\BaseArrayHelper.php(208): yii\db\BaseActiveRecord->__get('value2')
+#2 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\helpers\BaseArrayHelper.php(579): yii\helpers\BaseArrayHelper::getValue(Object(app\models\Transrincianrekrut), 'value2')
+#3 C:\xampp\htdocs\rekrut\app\controllers\MappingjobpositionController.php(123): yii\helpers\BaseArrayHelper::map(Array, 'id', 'value2')
+#4 [internal function]: app\controllers\MappingjobpositionController->actionUpdate('3')
+#5 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#8 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('mappingjobposit...', Array)
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#10 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#11 {main}
+2022-03-24 10:13:32 [::1][104728][7ijv30dnbfgubtf0h6i3g5s9om][info][application] $_GET = [
+    'mappingjobposition/update' => ''
+    'id' => '3'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '7ijv30dnbfgubtf0h6i3g5s9om'
+    '_csrf' => '22fc0a3f57d9891c15883146490bf4bccd72c06fc4a63de6f0ed8dfafb7c3b3fa:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"uEnGJPxcZXGoHTSNIJxnEC7xIMjq-ReG\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1648095212
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Microsoft Edge\";v=\"99\"'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36 Edg/99.0.1150.46'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost/rekrut/mappingjobposition/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=7ijv30dnbfgubtf0h6i3g5s9om; _csrf=22fc0a3f57d9891c15883146490bf4bccd72c06fc4a63de6f0ed8dfafb7c3b3fa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22uEnGJPxcZXGoHTSNIJxnEC7xIMjq-ReG%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '51496'
+    'REDIRECT_URL' => '/rekrut/mappingjobposition/update'
+    'REDIRECT_QUERY_STRING' => 'mappingjobposition/update&id=3'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'mappingjobposition/update&id=3'
+    'REQUEST_URI' => '/rekrut/mappingjobposition/update?id=3'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1648091612.5538
+    'REQUEST_TIME' => 1648091612
+]
+2022-03-24 10:14:18 [::1][104728][7ijv30dnbfgubtf0h6i3g5s9om][error][yii\base\UnknownPropertyException] yii\base\UnknownPropertyException: Getting unknown property: app\models\Transrincianrekrut::value1 in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Component.php:154
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\BaseActiveRecord.php(296): yii\base\Component->__get('value1')
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\helpers\BaseArrayHelper.php(208): yii\db\BaseActiveRecord->__get('value1')
+#2 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\helpers\BaseArrayHelper.php(578): yii\helpers\BaseArrayHelper::getValue(Object(app\models\Transrincianrekrut), 'value1')
+#3 C:\xampp\htdocs\rekrut\app\controllers\MappingjobpositionController.php(123): yii\helpers\BaseArrayHelper::map(Array, 'value1', 'value2')
+#4 [internal function]: app\controllers\MappingjobpositionController->actionUpdate('3')
+#5 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('update', Array)
+#8 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('mappingjobposit...', Array)
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#10 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#11 {main}
+2022-03-24 10:14:16 [::1][104728][7ijv30dnbfgubtf0h6i3g5s9om][info][application] $_GET = [
+    'mappingjobposition/update' => ''
+    'id' => '3'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '7ijv30dnbfgubtf0h6i3g5s9om'
+    '_csrf' => '22fc0a3f57d9891c15883146490bf4bccd72c06fc4a63de6f0ed8dfafb7c3b3fa:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"uEnGJPxcZXGoHTSNIJxnEC7xIMjq-ReG\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1648095257
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"99\", \"Microsoft Edge\";v=\"99\"'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36 Edg/99.0.1150.46'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost/rekrut/mappingjobposition/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=7ijv30dnbfgubtf0h6i3g5s9om; _csrf=22fc0a3f57d9891c15883146490bf4bccd72c06fc4a63de6f0ed8dfafb7c3b3fa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22uEnGJPxcZXGoHTSNIJxnEC7xIMjq-ReG%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '62029'
+    'REDIRECT_URL' => '/rekrut/mappingjobposition/update'
+    'REDIRECT_QUERY_STRING' => 'mappingjobposition/update&id=3'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'mappingjobposition/update&id=3'
+    'REQUEST_URI' => '/rekrut/mappingjobposition/update?id=3'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1648091656.9405
+    'REQUEST_TIME' => 1648091656
+]

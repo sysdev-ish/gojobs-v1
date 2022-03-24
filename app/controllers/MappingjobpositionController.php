@@ -7,6 +7,7 @@ use app\models\Mappingjobposition;
 use app\models\MappingjobpositionSearch;
 use app\models\Transrincianrekrut;
 use app\models\Mastersubjobfamily;
+use app\models\Sapjob;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -86,11 +87,12 @@ class MappingjobpositionController extends Controller
         $model = new Mappingjobposition();
 
         $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
-        $jabatansap = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'jabatan_sap');
-        $kodeposisi = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'hire_jabatan_sap');
+        $jabatansap = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value2');
+        $kodejabatan = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'hire_jabatan_sap');
         if ($model->load(Yii::$app->request->post())) {
             $model->createtime = date('Y-m-d H-i-s');
             $model->updatetime = date('Y-m-d H-i-s');
+            $model->status = 1;
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', "Data ditambahkan.");
             } else {
@@ -102,7 +104,7 @@ class MappingjobpositionController extends Controller
                 'model' => $model,
                 'subjobfamilyid' => $subjobfamilyid,
                 'jabatansap' => $jabatansap,
-                'kodeposisi' => $kodeposisi,
+                'kodejabatan' => $kodejabatan,
             ]);
         }
     }
@@ -118,12 +120,12 @@ class MappingjobpositionController extends Controller
         $model = $this->findModel($id);
 
         $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
-        $jabatansap = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'jabatan_sap');
-        $kodeposisi = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'hire_jabatan_sap');
+        $jabatansap = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value2');
+        $kodejabatan = ArrayHelper::map(Transrincianrekrut::find()->all(), 'id', 'hire_jabatan_sap');
         if ($model->load(Yii::$app->request->post())) {
             $model->updatetime = date('Y-m-d H-i-s');
             if ($model->save()) {
-                Yii::$app->session->setFlash('success', "Data ditambahkan.");
+                Yii::$app->session->setFlash('success', "Data diupdate.");
             } else {
                 Yii::$app->session->setFlash('error', "Data sudah ada.");
             }
@@ -133,7 +135,7 @@ class MappingjobpositionController extends Controller
                 'model' => $model,
                 'subjobfamilyid' => $subjobfamilyid,
                 'jabatansap' => $jabatansap,
-                'kodeposisi' => $kodeposisi,
+                'kodejabatan' => $kodejabatan,
             ]);
         }
     }
