@@ -114,7 +114,7 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                     'filter' => \kartik\select2\Select2::widget([
                         'model' => $searchModel,
                         'attribute' => 'kodejabatan',
-                        'data' => ArrayHelper::map(Sapjob::find()->asArray()->all(), 'value1', 'value3'),
+                        'data' => ArrayHelper::map(Sapjob::find()->asArray()->all(), 'value1', 'value1'),
                         'options' => ['placeholder' => '- Select -'],
                         'pluginOptions' => [
                             'allowClear' => true,
@@ -122,7 +122,7 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                         ],
                     ]),
                     'value' => function ($data) {
-                        return ($data->masterkodejabatan) ? $data->masterkodejabatan->value3 : '';
+                        return ($data->masterkodejabatan) ? $data->masterkodejabatan->value1 : '';
                     }
 
                 ],

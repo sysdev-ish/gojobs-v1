@@ -33,8 +33,8 @@ $this->params['breadcrumbs'][] = 'Create';
             'kotaktp' => $kotaktp,
             'userid' => $userid,
             'alasanvaksin'=>$alasanvaksin,
-            'jobfamily' => $jobfamily,
-            'subjobfamily' => $subjobfamily,
+            'jobfamilyid' => $jobfamily,
+            'subjobfamilyid' => $subjobfamily,
             ]) ?>
 
           </div>
@@ -98,8 +98,8 @@ $this->params['breadcrumbs'][] = 'Create';
                         'kotaktp' => $kotaktp,
                         'userid' => $userid,
                         'alasanvaksin'=>$alasanvaksin,
-                        'jobfamily' => $jobfamily,
-                        'subjobfamily' => $subjobfamily,
+                        'jobfamilyid' => $jobfamily,
+                        'subjobfamilyid' => $subjobfamily,
                         ]) ?>
                       </div>
 

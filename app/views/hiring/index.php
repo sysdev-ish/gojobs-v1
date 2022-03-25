@@ -88,12 +88,6 @@ if(Yii::$app->utils->permission($role,'m37')){
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
                 'id',
-                // [
-                //   'attribute' => 'id',
-                //   'contentOptions'=>['style'=>'width: 20px;'],
-                //   'format' => 'raw',
-                //
-                // ],
                 // 'userid',
                 [
                   'label' => 'Full Name',

@@ -123,4 +123,12 @@ class Hiring extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Chagerequestdata::className(), ['userid' => 'userid']);
     }
+    public function getJobfammily()
+    {
+        return $this->hasOne(Masterjobfamily::className(), ['id' => 'jobfamily']);
+    }
+    public function getSubjobfammily()
+    {
+        return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamily']);
+    }
 }

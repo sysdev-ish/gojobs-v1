@@ -308,9 +308,9 @@ use yii\helpers\Url;
             <div class="col-md-12">
               <div class="col-md-6">
                 <?php
-                echo   $form->field($model, 'jobfamily')->widget(Select2::classname(), [
+                echo   $form->field($model, 'jobfamilyid')->widget(Select2::classname(), [
                   'data' => $jobfamily,
-                  'options' => ['placeholder' => '- select -', 'id' => 'jobfamily'],
+                  'options' => ['placeholder' => '- select -', 'id' => 'jobfamilyid'],
                   'pluginOptions' => [
                     'allowClear' => true
                   ],
@@ -319,9 +319,9 @@ use yii\helpers\Url;
               </div>
               <div class="col-md-6">
                 <?php
-                echo   $form->field($model, 'subjobfamily')->widget(Select2::classname(), [
+                echo   $form->field($model, 'subjobfamilyid')->widget(Select2::classname(), [
                   'data' => $subjobfamily,
-                  'options' => ['placeholder' => '- select -', 'id' => 'subjobfamily'],
+                  'options' => ['placeholder' => '- select -', 'id' => 'subjobfamilyid'],
                   'pluginOptions' => [
                     'allowClear' => true
                   ],

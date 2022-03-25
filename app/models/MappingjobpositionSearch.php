@@ -112,7 +112,7 @@ class MappingjobpositionSearch extends Mappingjobposition
         $ret = null;
         // $kodejabatan = Sapjob::find();
         if ($this->kodejabatan) {
-            $getkodejabatan = Sapjob::find()->andWhere('value3 LIKE :value3', [':value3' => '%' . $this->kodejabatan . '%'])->all();
+            $getkodejabatan = Sapjob::find()->andWhere('value1 LIKE :value1', [':value1' => '%' . $this->kodejabatan . '%'])->all();
             if ($getkodejabatan) {
                 $kodejabatan = array();
                 foreach ($getkodejabatan as $value) {

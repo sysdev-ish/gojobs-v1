@@ -275,6 +275,7 @@ class UserprofileController extends Controller
           }
               return $this->render('create', [
                   'model' => $model,
+                  'userid'=>$userid,
                   'modelvaksin' => $modelvaksin,
                   'alasanvaksin'=>$alasanvaksin,
                   'province' => $province,
@@ -283,7 +284,6 @@ class UserprofileController extends Controller
                   'kotaktp' => $kotaktp,
                   'jobfamily' => $jobfamily,
                   'subjobfamily' => $subjobfamily,
-                  'userid'=>$userid,
               ]);
 
 

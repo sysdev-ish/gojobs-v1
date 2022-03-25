@@ -255,6 +255,22 @@ app\assets\ReportAsset::register($this);
 
                     ],
                     [
+                      'label' => 'Job Family',
+                      'format' => 'raw',
+                      'value'=>function ($data) {
+                          return ($data->jobfamily)? 'Job Family '.$data->jobfamily->id:'';
+                    }
+
+                    ],
+                    [
+                      'label' => 'Sub Job Family',
+                      'format' => 'raw',
+                      'value'=>function ($data) {
+                          return ($data->subjobfamily)? 'Sub Job Family '.$data->subjobfamily->id:'';
+                    }
+
+                    ],
+                    [
                       'label' => 'Bulan',
                       'format' => ['date', 'php:m'],
                       'value'=>function ($data) {

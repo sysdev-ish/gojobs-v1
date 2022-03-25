@@ -88,11 +88,11 @@ class MappingjobpositionController extends Controller
 
         $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
         $jabatansap = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value2');
-        $kodejabatan = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value3');
+        $kodejabatan = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value1');
         if ($model->load(Yii::$app->request->post())) {
             $model->createtime = date('Y-m-d H-i-s');
             $model->updatetime = date('Y-m-d H-i-s');
-            $model->status = 1;
+            // $model->status = 1;
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', "Data ditambahkan.");
             } else {
@@ -121,7 +121,7 @@ class MappingjobpositionController extends Controller
 
         $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
         $jabatansap = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value2');
-        $kodejabatan = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value3');
+        $kodejabatan = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value1');
         if ($model->load(Yii::$app->request->post())) {
             $model->updatetime = date('Y-m-d H-i-s');
             if ($model->save()) {

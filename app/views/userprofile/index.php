@@ -85,12 +85,11 @@ if(Yii::$app->utils->permission($role,'m14')){
 
                 ],
                 [
-                  'attribute' => 'jobfamily',
+                  'attribute' => 'jobfamilyid',
                   'contentOptions' => ['style' => 'min-width: 150px;'],
                   'filter' => \kartik\select2\Select2::widget([
                     'model' => $searchModel,
-                    'attribute' => 'jobfamily',
-                    // 'data' => $jobfamily,
+                    'attribute' => 'jobfamilyid',
                     'data' => ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily'),
                     'options' => ['placeholder' => '--'],
                     'pluginOptions' => [
@@ -98,17 +97,17 @@ if(Yii::$app->utils->permission($role,'m14')){
                       'min-width' => '150px',
                     ],
                   ]),
+                  // 'value' => 'jobfamily'
                   'value' => function ($data) {
-                  return ($data->jobfamily) ? $data->jobfamily->jobfamily : '';
+                    return ($data->masterjobfamily) ? $data->masterjobfamily->jobfamily : '';
                   }
                 ],
                 [
-                  'attribute' => 'subjobfamily',
+                  'attribute' => 'subjobfamilyid',
                   'contentOptions' => ['style' => 'min-width: 150px;'],
                   'filter' => \kartik\select2\Select2::widget([
                     'model' => $searchModel,
-                    'attribute' => 'subjobfamily',
-                    // 'data' => $subjobfamily,
+                    'attribute' => 'subjobfamilyid',
                     'data' => ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily'),
                     'options' => ['placeholder' => '--'],
                     'pluginOptions' => [
@@ -116,10 +115,10 @@ if(Yii::$app->utils->permission($role,'m14')){
                       'min-width' => '150px',
                     ],
                   ]),
+                  // 'value' => 'subjobfamily'
                   'value' => function ($data) {
-                  return ($data->subjobfamily) ? $data->subjobfamily->subjobfamily : '';
+                  return ($data->mastersubjobfamily) ? $data->mastersubjobfamily->subjobfamily : '';
                   }
-
                 ],
                 // 'domicilestatus',
                 // 'domicilestatusdescription:ntext',

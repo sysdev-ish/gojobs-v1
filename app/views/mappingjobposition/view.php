@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute' => 'Kode Jabatan',
                     'format' => 'html',
                     'value' => function ($data) {
-                        return ($data->masterkodejabatan) ? $data->masterkodejabatan->value3 : '';
+                        return ($data->masterkodejabatan) ? $data->masterkodejabatan->value1 : '';
                     }
                 ],
                 // 'masterjabatansap.value2',
