@@ -42,11 +42,6 @@ class MappingjobpositionSearch extends Mappingjobposition
     public function search($params)
     {
         $query = Mappingjobposition::find();
-        // $query = Transrincianrekrut::find();
-        // $query->joinWith('jabatan_sap');
-        // $query->joinWith('hire_jabatan_sap');
-
-        // $query->andWhere('trans_rincian_rekrut.skema = 1');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -91,22 +86,18 @@ class MappingjobpositionSearch extends Mappingjobposition
         }
         return $dataProvider;
     }
-    //searchkodejabatan from Transrincianrekrut table trans_rincian_rekrut field hire_jabatan_sap
-    // protected function bykodejab()
+
+
+    // public static function getJabsap()
     // {
-    //     $ret = null;
-    //     if ($this->kodejab) {
-    //         $getkodejabatan = Transrincianrekrut::find()->andWhere('kodejabatan LIKE :kodejabatan', [':kodejabatan' => '%' . $this->kodejab . '%'])->all();
-    //         if ($getkodejabatan) {
-    //             $kodejabatan = array();
-    //             foreach ($getkodejabatan as $value) {
-    //                 $kodejabatan[] = $value->hire_jabatan_sap;
-    //             }
-    //             $ret = $kodejabatan;
-    //         }
-    //     }
-    //     return $ret;
+    //     $dataJabsap = Sapjob::find()
+    //         ->select(['value2 as value', 'value2 as label', 'value1 as id'])
+    //         ->asArray()
+    //         ->all();
+
+    //     return $dataJabsap;
     // }
+
     protected function bykodejab()
     {
         $ret = null;

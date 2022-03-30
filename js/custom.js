@@ -18,67 +18,67 @@ function loadingOut(loading) {
   setTimeout(() => loading.out(), 3000);
 }
 $(function () {
-	/*
-	$(".user_language").change(function(){
-		// console.log('AA');
-		language=this.value;
-		$.ajax({
-			// url:'<?=Yii::$app->request->baseUrl?>/site/language',
-			url:'site/language',
-			type:"GET",
-			data:{language:language},
-			success:function(result){
-			  console.log(result);
-			  location.reload();
-			},
-		});
-	});
+  /*
+  $(".user_language").change(function(){
+    // console.log('AA');
+    language=this.value;
+    $.ajax({
+      // url:'<?=Yii::$app->request->baseUrl?>/site/language',
+      url:'site/language',
+      type:"GET",
+      data:{language:language},
+      success:function(result){
+        console.log(result);
+        location.reload();
+      },
+    });
+  });
 	
-	$(document).on('click','.language',function () {
-		var lang = $(this).attr('id');
-		
-		$.post('site/language',{'lang':lang},function(data){
-			// location.reload();
-		});
-	});
-	*/
+  $(document).on('click','.language',function () {
+    var lang = $(this).attr('id');
+  	
+    $.post('site/language',{'lang':lang},function(data){
+      // location.reload();
+    });
+  });
+  */
  
-	$('.addcandidate-modal-click').click(function () {
-		var loading = new Loading({
-		  direction: 'hor',
-		  discription: 'Loading...',
-			defaultApply: 	true,
-		});
+  $('.addcandidate-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+      defaultApply: true,
+    });
 
-		event.preventDefault();
-		this.blur();
-		$.get($(this).attr('value'), function(html) {
-			loading.out()
-			$('#addcandidate-modal')
-			  .modal('show')
-			  .find('#addcandidateform')
-			  .empty()
-			  .append(html);
-		  });
-	});
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#addcandidate-modal')
+        .modal('show')
+        .find('#addcandidateform')
+        .empty()
+        .append(html);
+    });
+  });
   $('.addcandidate2-modal-click').click(function () {
 
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#addcandidate2-modal')
-          .modal('show')
-          .find('#addcandidateform2')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#addcandidate2-modal')
+        .modal('show')
+        .find('#addcandidateform2')
+        .empty()
+        .append(html);
+    });
 
   });
   $('.stopjo-modal-click').click(function () {
@@ -86,383 +86,384 @@ $(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#stopjo-modal')
-          .modal('show')
-          .find('#stopjoview')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#stopjo-modal')
+        .modal('show')
+        .find('#stopjoview')
+        .empty()
+        .append(html);
+    });
 
   });
   $('.viewuserlogin-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#viewuserlogin-modal')
-          .modal('show')
-          .find('#userloginview')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#viewuserlogin-modal')
+        .modal('show')
+        .find('#userloginview')
+        .empty()
+        .append(html);
+    });
   });
   $('.viewgrouprolepermission-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#viewgrouprolepermission-modal')
-          .modal('show')
-          .find('#grouprolepermissionview')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#viewgrouprolepermission-modal')
+        .modal('show')
+        .find('#grouprolepermissionview')
+        .empty()
+        .append(html);
+    });
   });
   $('.profileviewshort-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#profileviewshort-modal')
-          .modal('show')
-          .find('#profileviewshortview')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#profileviewshort-modal')
+        .modal('show')
+        .find('#profileviewshortview')
+        .empty()
+        .append(html);
+    });
   });
   $('.recreq-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#recreq-modal')
-          .modal('show')
-          .find('#recreqview')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#recreq-modal')
+        .modal('show')
+        .find('#recreqview')
+        .empty()
+        .append(html);
+    });
   });
   $('.invite-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#invite-modal')
-          .modal('show')
-          .find('#inviteview')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#invite-modal')
+        .modal('show')
+        .find('#inviteview')
+        .empty()
+        .append(html);
+    });
   });
   $('.viewmasterindustry-modal-click').click(function (e) {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#viewmasterindustry-modal')
-          .modal('show')
-          .find('#masterindustryview')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#viewmasterindustry-modal')
+        .modal('show')
+        .find('#masterindustryview')
+        .empty()
+        .append(html);
+    });
   });
   $('.updatemasterindustry-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#updatemasterindustry-modal')
-          .modal('show')
-          .find('#updatemasterindustry')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#updatemasterindustry-modal')
+        .modal('show')
+        .find('#updatemasterindustry')
+        .empty()
+        .append(html);
+    });
   });
   $('.createmasterindustry-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#createmasterindustry-modal')
-          .modal('show')
-          .find('#createmasterindustry')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#createmasterindustry-modal')
+        .modal('show')
+        .find('#createmasterindustry')
+        .empty()
+        .append(html);
+    });
   });
   
   $('.viewmasterjobfamily-modal-click').click(function (e) {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#viewmasterjobfamily-modal')
-          .modal('show')
-          .find('#masterjobfamilyview')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#viewmasterjobfamily-modal')
+        .modal('show')
+        .find('#masterjobfamilyview')
+        .empty()
+        .append(html);
+    });
   });
   $('.updatemasterjobfamily-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#updatemasterjobfamily-modal')
-          .modal('show')
-          .find('#updatemasterjobfamily')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#updatemasterjobfamily-modal')
+        .modal('show')
+        .find('#updatemasterjobfamily')
+        .empty()
+        .append(html);
+    });
   });
   $('.createmasterjobfamily-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#createmasterjobfamily-modal')
-          .modal('show')
-          .find('#createmasterjobfamily')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#createmasterjobfamily-modal')
+        .modal('show')
+        .find('#createmasterjobfamily')
+        .empty()
+        .append(html);
+    });
   });
   $('.viewmastersubjobfamily-modal-click').click(function (e) {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#viewmastersubjobfamily-modal')
-          .modal('show')
-          .find('#mastersubjobfamilyview')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#viewmastersubjobfamily-modal')
+        .modal('show')
+        .find('#mastersubjobfamilyview')
+        .empty()
+        .append(html);
+    });
   });
   $('.updatemastersubjobfamily-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#updatemastersubjobfamily-modal')
-          .modal('show')
-          .find('#updatemastersubjobfamily')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#updatemastersubjobfamily-modal')
+        .modal('show')
+        .find('#updatemastersubjobfamily')
+        .empty()
+        .append(html);
+    });
   });
   $('.createmastersubjobfamily-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#createmastersubjobfamily-modal')
-          .modal('show')
-          .find('#createmastersubjobfamily')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#createmastersubjobfamily-modal')
+        .modal('show')
+        .find('#createmastersubjobfamily')
+        .empty()
+        .append(html);
+    });
   });
 
   $('.viewmasteroffice-modal-click').click(function (e) {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#viewmasteroffice-modal')
-          .modal('show')
-          .find('#masterofficeview')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#viewmasteroffice-modal')
+        .modal('show')
+        .find('#masterofficeview')
+        .empty()
+        .append(html);
+    });
   });
   $('.updatemasteroffice-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#updatemasteroffice-modal')
-          .modal('show')
-          .find('#updatemasteroffice')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#updatemasteroffice-modal')
+        .modal('show')
+        .find('#updatemasteroffice')
+        .empty()
+        .append(html);
+    });
   });
   $('.createmasteroffice-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#createmasteroffice-modal')
-          .modal('show')
-          .find('#createmasteroffice')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#createmasteroffice-modal')
+        .modal('show')
+        .find('#createmasteroffice')
+        .empty()
+        .append(html);
+    });
   });
   $('.viewmappingregionarea-modal-click').click(function (e) {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#viewmappingregionarea-modal')
-          .modal('show')
-          .find('#mappingregionareaview')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#viewmappingregionarea-modal')
+        .modal('show')
+        .find('#mappingregionareaview')
+        .empty()
+        .append(html);
+    });
   });
   $('.updatemappingregionarea-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#updatemappingregionarea-modal')
-          .modal('show')
-          .find('#updatemappingregionarea')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#updatemappingregionarea-modal')
+        .modal('show')
+        .find('#updatemappingregionarea')
+        .empty()
+        .append(html);
+    });
   });
   $('.createmappingregionarea-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
-        defaultApply: 	true,
+      defaultApply: true,
     });
 
     event.preventDefault();
     this.blur();
-    $.get($(this).attr('value'), function(html) {
-        loading.out()
-        $('#createmappingregionarea-modal')
-          .modal('show')
-          .find('#createmappingregionarea')
-          .empty()
-          .append(html);
-      });
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#createmappingregionarea-modal')
+        .modal('show')
+        .find('#createmappingregionarea')
+        .empty()
+        .append(html);
+    });
   });
+  
   $('.viewmappingjobposition-modal-click').click(function (e) {
     var loading = new Loading({
       direction: 'hor',

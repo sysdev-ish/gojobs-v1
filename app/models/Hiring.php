@@ -43,9 +43,11 @@ class Hiring extends \yii\db\ActiveRecord
             [['tglinput','awalkontrak','akhirkontrak'], 'required', 'on'=>'approvesso'],
             // ['recruitreqid' , 'jovalidation', 'on'=>'approve'],
 
-            [['userid', 'perner', 'statushiring', 'statusbiodata','flaginfotype022','createdby','updateby','approvedby','rejectedby','recruitreqid'], 'integer'],
+            [['userid', 'perner', 'statushiring', 'statusbiodata','flaginfotype022','createdby','updateby','approvedby','rejectedby','recruitreqid','jobfamily','subjobfamily'], 'integer'],
             [['message','keterangan'], 'string', 'max' => 445],
-            [['createtime', 'updatetime','tglinput','awalkontrak','akhirkontrak'], 'safe'],
+            [['createtime', 'updatetime','tglinput','awalkontrak','akhirkontrak'
+            ,'jobfamily','subjobfamily'
+            ], 'safe'],
         ];
     }
 
@@ -72,15 +74,17 @@ class Hiring extends \yii\db\ActiveRecord
             'updateby' => 'Updated by',
             'approvedby' => 'Approve by',
             'recruitreqid' => 'Job Order',
+            'jobfamily' => 'Job Family',
+            'subjobfamily' => 'Sub Job Family',
         ];
     }
     public function jovalidation($attribute, $params)
     {
-      $vartest = 1;
-      if ($this->recruitreqid > $vartest ) {
-           $this->addError($attribute, 'test salah.');
-           return false;
-       }
+        $vartest = 1;
+        if ($this->recruitreqid > $vartest ) {
+            $this->addError($attribute, 'test salah.');
+            return false;
+        }
     }
     public function getUserprofile()
     {
@@ -106,7 +110,6 @@ class Hiring extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Userlogin::className(), ['id' => 'createdby']);
     }
-
     public function getUpdatebyu()
     {
         return $this->hasOne(Userlogin::className(), ['id' => 'updateby']);

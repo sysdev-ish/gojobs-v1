@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'value' => function ($data) {
                         return ($data->status == 1) ? 'Publish' : 'Unpublished';
                     }
-                    
+
                 ],
                 'mastersubjobfamily.subjobfamily',
             ],

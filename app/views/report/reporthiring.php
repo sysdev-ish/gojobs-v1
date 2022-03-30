@@ -262,8 +262,7 @@ app\assets\ReportAsset::register($this);
                     'label' => 'Job Family',
                     'format' => 'raw',
                     'value' => function ($data) {
-                      $jobfamily = Masterjobfamily::find()->where(['id' => $data->recrequest->jobfamily])->one();
-                      return ($jobfamily) ? $jobfamily->jobfamily : "";
+                        return ($data->getjobfamily) ? $data->getjobfamily->jobfamily : '';
                     }
 
                   ],
@@ -271,10 +270,8 @@ app\assets\ReportAsset::register($this);
                     'label' => 'Sub Job Family',
                     'format' => 'raw',
                     'value' => function ($data) {
-                      $subjobfamily = Mastersubjobfamily::find()->where(['id' => $data->recrequest->subjobfamily])->one();
-                      return ($subjobfamily) ? $subjobfamily->subjobfamily : "";
+                      return ($data->getsubjobfamily) ? $data->getsubjobfamily->subjobfamily : '';
                     }
-
                   ],
                     [
                       'label' => 'Jumlah Permintaan SDM',

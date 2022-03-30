@@ -40,7 +40,9 @@ class Hiringreport extends Hiring
         return [
             // [['startawalkontrak','endawalkontrak'], 'required'],
             [['id', 'userid', 'perner', 'statushiring', 'statusbiodata','typejo','nojo','sap','statuspekerja'], 'integer'],
-            [['createtime', 'updatetime', 'fullname','startawalkontrak','endawalkontrak','area','personalarea','jabatan','areaish','region','startresign','endresign','jobfamily','subjobfamily'], 'safe'],
+            [['createtime', 'updatetime', 'fullname','startawalkontrak','endawalkontrak','area','personalarea','jabatan','areaish','region','startresign','endresign'
+            ,'jobfamily','subjobfamily'
+            ], 'safe'],
         ];
     }
 
@@ -149,6 +151,34 @@ class Hiringreport extends Hiring
           // var_dump($getPerner);die;
           $query->andWhere('perner IN (' . $getPerner . ')');
         }
+        if ($this->jobfamily) {
+          $getJobId = $this->joByjob($params);
+          if ($getJobId) {
+            $getJobId = '"' . implode('","', $getJobId) . '"';
+            $query->andWhere('jobfamily IN (' . $getJobId . ')');
+          }
+          // if ($getJobId) {
+          //   $getJobId = implode(',', $getJobId);
+          // } else {
+          //   $getJobId = 0;
+          // }
+          // $query->andWhere('recruitreqid IN (' . $getJobId . ')');
+        }
+        if ($this->subjobfamily) {
+          // $getSubjobId = $this->joByjob($params);
+          $getSubjobId = $this->joBysubjob($params);
+          if ($getSubjobId) {
+            $getSubjobId = '"' . implode('","', $getSubjobId) . '"';
+            $query->andWhere('subjobfamily IN (' . $getSubjobId . ')');
+          }
+          // if ($getSubjobId) {
+          //   $getSubjobId = implode(',', $getSubjobId);
+          // } else {
+          //   $getSubjobId = 0;
+          // }
+          // $query->andWhere('recruitreqid IN (' . $getSubjobId . ')');
+        }
+
         $bypersonalarea = $this->joGroupBypersa($params,$dataProvider);
         $byedusd = $this->dataGroupByedusd($params,$dataProvider,1);
         $byedusmp = $this->dataGroupByedusd($params,$dataProvider,2);
@@ -173,6 +203,110 @@ class Hiringreport extends Hiring
 
         return $alldata;
     }
+    protected function joByjob($param)
+    {
+      $ret = null;
+      $mastersubjobfamily = Mastersubjobfamily::find();
+
+      if ($this->jobfamily <> "0") {
+        // var_dump($this->jobfamily);die;
+        $mastersubjobfamily->andWhere([
+          'jobfamily_id' => $this->jobfamily,
+        ]);
+      }
+      $mastersubjobfamilyquery = $mastersubjobfamily->all();
+      $resultjobfamilyid = null;
+      if ($mastersubjobfamilyquery) {
+        $jobfamilyid = array();
+        foreach ($mastersubjobfamilyquery as $value) {
+          $jobfamilyid[] = $value->jobfamily_id;
+        }
+        $jobfamilyid = $jobfamilyid;
+      }
+      $jobfamily = Masterjobfamily::find();
+      if ($resultjobfamilyid) {
+        $getareasbyjobfamily = '"' . implode('","', $resultjobfamilyid) . '"';
+        // var_dump($getareasbyjobfamily);die;
+        $jobfamily = Masterjobfamily::find();
+        $jobfamily->andWhere('trans_rincian_rekrut.area_sap IN (' . $getareasbyjobfamily . ')');
+      } else {
+        $getareasbyjobfamily = 0;
+      }
+      $jobfamilyquery = $jobfamily->all();
+      if ($jobfamilyquery) {
+        $jobfamilyIds = array();
+        foreach ($jobfamilyquery as $tr) {
+          $jobfamilyIds[] = $tr->id;
+        }
+        $ret = $jobfamilyIds;
+      }
+      return $ret;
+    }
+    
+    protected function joBysubjob($param)
+    {
+      $ret = null;
+      $subjobfamily = Mastersubjobfamily::find();
+      if ($this->subjobfamily) {
+
+        $subjobfamilys = '"' . implode('","', $this->subjobfamily) . '"';
+        // var_dump($subjobfamilys);die;
+        // $subjobfamily->andWhere([
+        //     'subjobfamily' => $this->subjobfamily,
+        // ]);
+        $subjobfamily->andWhere('subjobfamily IN (' . $subjobfamilys . ')');
+      }
+      if ($this->jabatan) {
+        $subjobfamily->andWhere([
+          'hire_jabatan_sap' => $this->jabatan,
+        ]);
+      }
+      if ($this->subjobfamily) {
+        $subjobfamily->andWhere([
+          'persa_sap' => $this->subjobfamily,
+        ]);
+      }
+      $subjobfamilyquery = $subjobfamily->all();
+      if ($subjobfamilyquery) {
+        $subjobfamilyIds = array();
+        foreach ($subjobfamilyquery as $tr) {
+          $subjobfamilyIds[] = $tr->id;
+        }
+        $ret = $subjobfamilyIds;
+      }
+      return $ret;
+    }
+    // protected function byjob()
+    // {
+    //   $ret = null;
+    //   if ($this->jobfamily) {
+    //     $getjob = Masterjobfamily::find()->andWhere('jobfamily LIKE :jobfamily', [':jobfamily' => '%' . $this->jobfamily . '%'])->all();
+    //     if ($getjob) {
+    //       $jobfamily = array();
+    //       foreach ($getjob as $value) {
+    //         $jobfamily[] = $value->id;
+    //       }
+    //       $ret = $jobfamily;
+    //     }
+    //   }
+    //   return $ret;
+    // }
+    // protected function bysubjob()
+    // {
+    //   $ret = null;
+    //   if ($this->subjobfamily) {
+    //     $getsubjob = Mastersubjobfamily::find()->andWhere('subjobfamily LIKE :subjobfamily', [':subjobfamily' => '%' . $this->subjobfamily . '%'])->all();        
+    //     // var_dump($this->subjobfammily);die;
+    //     if ($getsubjob) {
+    //       $subjobfamily = array();
+    //       foreach ($getsubjob as $value) {
+    //         $subjobfamily[] = $value->id;
+    //       }
+    //       $ret = $subjobfamily;
+    //     }
+    //   }
+    //   return $ret;
+    // }
     protected function byregionarea(){
         $ret = null;
         $mappingregionarea = Mappingregionarea::find();
