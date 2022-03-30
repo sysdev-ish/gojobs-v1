@@ -262,7 +262,11 @@ app\assets\ReportAsset::register($this);
                     'label' => 'Job Family',
                     'format' => 'raw',
                     'value' => function ($data) {
-                        return ($data->getjobfamily) ? $data->getjobfamily->jobfamily : '';
+                      $jobfamily = Masterjobfamily::find()->where(['id' => $data->id])->one();
+                      return ($jobfamily) ? $jobfamily->jobfamily : "";
+                      // return ($data->recrequest->jobfamily) ? $data->recrequest->jobfamily : "";
+                      // $data = Hiring::find()->where(['id' => 'jobfamily'])->one();
+                        // return ($data) ? $data->jobfamily : '';
                     }
 
                   ],
@@ -270,7 +274,11 @@ app\assets\ReportAsset::register($this);
                     'label' => 'Sub Job Family',
                     'format' => 'raw',
                     'value' => function ($data) {
-                      return ($data->getsubjobfamily) ? $data->getsubjobfamily->subjobfamily : '';
+                      $subjobfamily = Mastersubjobfamily::find()->where(['id' => $data->id])->one();
+                      return ($subjobfamily) ? $subjobfamily->subjobfamily : "";
+                      // return ($data->recrequest->subjobfamily) ? $data->recrequest->subjobfamily : "";
+                      // $data = Hiring::find()->where(['id' => 'subjobfamily'])->one();
+                      // return ($data) ? $data->subjobfamily : '';
                     }
                   ],
                     [

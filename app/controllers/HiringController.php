@@ -119,11 +119,10 @@ class HiringController extends Controller
       $userprofile = Userprofile::find()->where(['userid'=>$userid])->one();
       // var_dump(Yii::$app->checkhiring->datanotcompleted($userid));die;
       $chagerequestjo = Chagerequestjo::find()->where(['recruitreqid'=>$recruitreqid])
-              ->andWhere(['or',
-               ['status'=> 1],
-               ['status'=> 2]
-             ])
-              ->one();
+      ->andWhere(['or',
+        ['status'=> 1],
+        ['status'=> 2]
+      ])->one();
       if($chagerequestjo){
         $countnewjumlah = $chagerequestjo->jumlah;
       }else{
@@ -137,137 +136,138 @@ class HiringController extends Controller
         }else if($modelcountjo >= $countnewjumlah){
           return 6;
         }else if(Yii::$app->checkhiring->datacompleted($userid)){
-                    $transjo = Transjo::find()->where(['nojo'=>$transrincian->nojo])->one();
+          $transjo = Transjo::find()->where(['nojo'=>$transrincian->nojo])->one();
 
-                    $awalkontrak =$transjo->tanggal;
-                    $lama = substr($transjo->lama,0,2);
-                    $akhirkontrak = date('Y-m-d', strtotime('+'.$lama.' month', strtotime( $awalkontrak )));
-                    if (Yii::$app->request->isAjax) {
-                      $model->userid = $userid;
-                      $model->recruitreqid = $recruitreqid;
-                      $model->createtime = date('Y-m-d H-i-s');
-                      $model->updatetime = date('Y-m-d H-i-s');
-                      $model->tglinput = date('Y-m-d');
-                      $model->awalkontrak = $awalkontrak;
-                      $model->akhirkontrak = $akhirkontrak;
-                      $model->statushiring = 1;
-                      $model->statusbiodata = 1;
-                      if($transjo->flag_peralihan == 1){
-                        $model->typejo = 2;
-                      }
-                      $model->createdby = Yii::$app->user->identity->id;
-                      $model->updateby = Yii::$app->user->identity->id;
+          $awalkontrak =$transjo->tanggal;
+          $lama = substr($transjo->lama,0,2);
+          $akhirkontrak = date('Y-m-d', strtotime('+'.$lama.' month', strtotime( $awalkontrak )));
+          if (Yii::$app->request->isAjax) {
+            $model->userid = $userid;
+            $model->recruitreqid = $recruitreqid;
+            $model->createtime = date('Y-m-d H-i-s');
+            $model->updatetime = date('Y-m-d H-i-s');
+            $model->tglinput = date('Y-m-d');
+            $model->awalkontrak = $awalkontrak;
+            $model->akhirkontrak = $akhirkontrak;
+            $model->statushiring = 1;
+            $model->statusbiodata = 1;
+            if($transjo->flag_peralihan == 1){
+              $model->typejo = 2;
+            }
+            $model->createdby = Yii::$app->user->identity->id;
+            $model->updateby = Yii::$app->user->identity->id;
 
-                      Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-                      if($transrincian->skema == 0){
-                        return 0;
-                      }else{
-                        if($model->save()){
-                          if ($transrincian->transjo->n_project == "" || $transrincian->transjo->n_project == "Pilih"){
-                            $layanan = $transrincian->transjo->project;
-                          }else{
-                            $layanan = $transrincian->transjo->n_project;
-                          }
-                          if(Yii::$app->utils->getpersonalarea($transrincian->persa_sap)){
-                            $area = Yii::$app->utils->getpersonalarea($transrincian->persa_sap);
-                          }else{
-                            $area = " ";
-                          }
-                          if(Yii::$app->utils->getskilllayanan($transrincian->skill_sap)){
-                            $skilllayanan = Yii::$app->utils->getskilllayanan($transrincian->skill_sap);
-                          }else{
-                            $skilllayanan = '';
-                          }
-                          if(Yii::$app->utils->getpayrollarea($transrincian->abkrs_sap)){
-                            $payrollarea = Yii::$app->utils->getpayrollarea($transrincian->abkrs_sap);
-                          }else{
-                            $payrollarea = '';
-                          }
-                          if(Yii::$app->utils->getjabatan($transrincian->hire_jabatan_sap)){
-                            $jabatan = Yii::$app->utils->getjabatan($transrincian->hire_jabatan_sap);
-                          }else{
-                            $jabatan = '';
-                          }
-                          $curl = new curl\Curl();
-                          $getlevels = $curl->setPostParams([
-                            'level' => $transrincian->level_sap,
-                            'token' => 'ish**2019',
-                          ])
-                          ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
-                          $level  = json_decode($getlevels);
-                          if($level){
-                            $level = $level;
-                          }else{
-                            $level = '';
-                          }
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            if($transrincian->skema == 0){
+              return 0;
+            }else{
+              if($model->save()){
+                if ($transrincian->transjo->n_project == "" || $transrincian->transjo->n_project == "Pilih"){
+                  $layanan = $transrincian->transjo->project;
+                }else{
+                  $layanan = $transrincian->transjo->n_project;
+                }
+                if(Yii::$app->utils->getpersonalarea($transrincian->persa_sap)){
+                  $area = Yii::$app->utils->getpersonalarea($transrincian->persa_sap);
+                }else{
+                  $area = " ";
+                }
+                if(Yii::$app->utils->getskilllayanan($transrincian->skill_sap)){
+                  $skilllayanan = Yii::$app->utils->getskilllayanan($transrincian->skill_sap);
+                }else{
+                  $skilllayanan = '';
+                }
+                if(Yii::$app->utils->getpayrollarea($transrincian->abkrs_sap)){
+                  $payrollarea = Yii::$app->utils->getpayrollarea($transrincian->abkrs_sap);
+                }else{
+                  $payrollarea = '';
+                }
+                if(Yii::$app->utils->getjabatan($transrincian->hire_jabatan_sap)){
+                  $jabatan = Yii::$app->utils->getjabatan($transrincian->hire_jabatan_sap);
+                }else{
+                  $jabatan = '';
+                }
+                $curl = new curl\Curl();
+                $getlevels = $curl->setPostParams([
+                  'level' => $transrincian->level_sap,
+                  'token' => 'ish**2019',
+                ])
+                ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
+                $level  = json_decode($getlevels);
+                if($level){
+                  $level = $level;
+                }else{
+                  $level = '';
+                }
 
-                          $to = 'proman@ish.co.id';
-                          $subject = 'Notifikasi Approval Hiring Gojobs';
-                          $body = 'Semangat Pagi,,
-                          <br>
-                          Anda mendapatkan permintaan Approval Hiring untuk :
+                $to = 'proman@ish.co.id';
+                $subject = 'Notifikasi Approval Hiring Gojobs';
+                $body = 'Semangat Pagi,,
+                <br>
+                Anda mendapatkan permintaan Approval Hiring untuk :
 
-                          <br>
-                          <br>
-                          <table>
-                          <tr>
-                          <td valign="top">Nama</td>
-                          <td valign="top">:</td>
-                          <td valign="top">'.$userprofile->fullname.'</td>
-                          </tr>
-                          <tr>
-                          <td valign="top">No Jo</td>
-                          <td valign="top">:</td>
-                          <td valign="top">'.$transrincian->nojo.'</td>
-                          </tr>
-                          <tr>
-                          <td valign="top">Personal Area</td>
-                          <td valign="top">:</td>
-                          <td valign="top">'.$layanan.'</td>
-                          </tr>
-                          <tr>
-                          <td valign="top">Area</td>
-                          <td valign="top">:</td>
-                          <td valign="top">'.$area.'</td>
-                          </tr>
-                          <tr>
-                          <td valign="top">Skill layanan</td>
-                          <td valign="top">:</td>
-                          <td valign="top">'.$skilllayanan.'</td>
-                          </tr>
-                          <tr>
-                          <td valign="top">Payroll Area</td>
-                          <td valign="top">:</td>
-                          <td valign="top">'.$payrollarea.'</td>
-                          </tr>
-                          <tr>
-                          <td valign="top">Jabatan</td>
-                          <td valign="top">:</td>
-                          <td valign="top">'.$jabatan.'</td>
-                          </tr>
-                          <tr>
-                          <td valign="top">Level</td>
-                          <td valign="top">:</td>
-                          <td valign="top">'.$level.'</td>
-                          </tr>
-                          </table>
-                          <br>
-                          <br>
-                          Silakan masuk ke link gojobs.id untuk melakukan verifikasi lebih lanjut.
-                          <br><br>
-                          Have a great day !
-                          ';
-                          // var_dump($body);die;
-                          $verification = Yii::$app->utils->sendmailinternal($to,$subject,$body,11);
-                          // var_dump('sampe');die;
-                          return 2;
-                        }else{
-                          return 1;
-                        }
-                      }
+                <br>
+                <br>
+                <table>
+                <tr>
+                <td valign="top">Nama</td>
+                <td valign="top">:</td>
+                <td valign="top">'.$userprofile->fullname.'</td>
+                </tr>
+                <tr>
+                <td valign="top">No Jo</td>
+                <td valign="top">:</td>
+                <td valign="top">'.$transrincian->nojo.'</td>
+                </tr>
+                <tr>
+                <td valign="top">Personal Area</td>
+                <td valign="top">:</td>
+                <td valign="top">'.$layanan.'</td>
+                </tr>
+                <tr>
+                <td valign="top">Area</td>
+                <td valign="top">:</td>
+                <td valign="top">'.$area.'</td>
+                </tr>
+                <tr>
+                <td valign="top">Skill layanan</td>
+                <td valign="top">:</td>
+                <td valign="top">'.$skilllayanan.'</td>
+                </tr>
+                <tr>
+                <td valign="top">Payroll Area</td>
+                <td valign="top">:</td>
+                <td valign="top">'.$payrollarea.'</td>
+                </tr>
+                <tr>
+                <td valign="top">Jabatan</td>
+                <td valign="top">:</td>
+                <td valign="top">'.$jabatan.'</td>
+                </tr>
+                <tr>
+                <td valign="top">Level</td>
+                <td valign="top">:</td>
+                <td valign="top">'.$level.'</td>
+                </tr>
+                </table>
+                <br>
+                <br>
+                Silakan masuk ke link gojobs.id untuk melakukan verifikasi lebih lanjut.
+                <br><br>
+                Have a great day !
+                ';
+                // var_dump($body);die;
+                $verification = Yii::$app->utils->sendmailinternal($to,$subject,$body,11);
+                // var_dump('sampe');die;
+                return 2;
+              }else{
+                return 1;
+              }
+            }
 
-                    }
-        }else{
+          }
+        }
+        else{
           return 3;
         }
       }

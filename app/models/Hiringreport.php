@@ -66,6 +66,11 @@ class Hiringreport extends Hiring
     {
         $query = Hiring::find();
         $query->joinWith("userprofile");
+
+        $query->leftJoin('masterjobfamily', 'masterjobfamily.id = hiring.jobfamily');
+        $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.id = hiring.subjobfamily');
+
+
         // $query->joinWith("useredu");
         // $query->joinWith("recrequest");
 
@@ -152,31 +157,11 @@ class Hiringreport extends Hiring
           $query->andWhere('perner IN (' . $getPerner . ')');
         }
         if ($this->jobfamily) {
-          $getJobId = $this->joByjob($params);
-          if ($getJobId) {
-            $getJobId = '"' . implode('","', $getJobId) . '"';
-            $query->andWhere('jobfamily IN (' . $getJobId . ')');
-          }
-          // if ($getJobId) {
-          //   $getJobId = implode(',', $getJobId);
-          // } else {
-          //   $getJobId = 0;
-          // }
-          // $query->andWhere('recruitreqid IN (' . $getJobId . ')');
+          $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily]);
         }
         if ($this->subjobfamily) {
-          // $getSubjobId = $this->joByjob($params);
-          $getSubjobId = $this->joBysubjob($params);
-          if ($getSubjobId) {
-            $getSubjobId = '"' . implode('","', $getSubjobId) . '"';
-            $query->andWhere('subjobfamily IN (' . $getSubjobId . ')');
-          }
-          // if ($getSubjobId) {
-          //   $getSubjobId = implode(',', $getSubjobId);
-          // } else {
-          //   $getSubjobId = 0;
-          // }
-          // $query->andWhere('recruitreqid IN (' . $getSubjobId . ')');
+          $query->andWhere('mastersubjobfamily.id = :msjId', [':msjId' => $this->subjobfamily]);
+
         }
 
         $bypersonalarea = $this->joGroupBypersa($params,$dataProvider);
@@ -225,12 +210,12 @@ class Hiringreport extends Hiring
       }
       $jobfamily = Masterjobfamily::find();
       if ($resultjobfamilyid) {
-        $getareasbyjobfamily = '"' . implode('","', $resultjobfamilyid) . '"';
+        $getbyjobfamily = '"' . implode('","', $resultjobfamilyid) . '"';
         // var_dump($getareasbyjobfamily);die;
         $jobfamily = Masterjobfamily::find();
-        $jobfamily->andWhere('trans_rincian_rekrut.area_sap IN (' . $getareasbyjobfamily . ')');
+        $jobfamily->andWhere('trans_rincian_rekrut.jobfamily IN (' . $getbyjobfamily . ')');
       } else {
-        $getareasbyjobfamily = 0;
+        $getbyjobfamily = 0;
       }
       $jobfamilyquery = $jobfamily->all();
       if ($jobfamilyquery) {
@@ -242,28 +227,17 @@ class Hiringreport extends Hiring
       }
       return $ret;
     }
-    
     protected function joBysubjob($param)
     {
       $ret = null;
       $subjobfamily = Mastersubjobfamily::find();
-      if ($this->subjobfamily) {
-
-        $subjobfamilys = '"' . implode('","', $this->subjobfamily) . '"';
-        // var_dump($subjobfamilys);die;
-        // $subjobfamily->andWhere([
-        //     'subjobfamily' => $this->subjobfamily,
-        // ]);
-        $subjobfamily->andWhere('subjobfamily IN (' . $subjobfamilys . ')');
+      if ($this->subjobfamily <> "0") {
+        //var_dump($this->subjobfamily);die;
+        $subjobfamily->andWhere('id = :id', [':id' => $this->subjobfamily]);
       }
       if ($this->jabatan) {
         $subjobfamily->andWhere([
           'hire_jabatan_sap' => $this->jabatan,
-        ]);
-      }
-      if ($this->subjobfamily) {
-        $subjobfamily->andWhere([
-          'persa_sap' => $this->subjobfamily,
         ]);
       }
       $subjobfamilyquery = $subjobfamily->all();
@@ -276,37 +250,6 @@ class Hiringreport extends Hiring
       }
       return $ret;
     }
-    // protected function byjob()
-    // {
-    //   $ret = null;
-    //   if ($this->jobfamily) {
-    //     $getjob = Masterjobfamily::find()->andWhere('jobfamily LIKE :jobfamily', [':jobfamily' => '%' . $this->jobfamily . '%'])->all();
-    //     if ($getjob) {
-    //       $jobfamily = array();
-    //       foreach ($getjob as $value) {
-    //         $jobfamily[] = $value->id;
-    //       }
-    //       $ret = $jobfamily;
-    //     }
-    //   }
-    //   return $ret;
-    // }
-    // protected function bysubjob()
-    // {
-    //   $ret = null;
-    //   if ($this->subjobfamily) {
-    //     $getsubjob = Mastersubjobfamily::find()->andWhere('subjobfamily LIKE :subjobfamily', [':subjobfamily' => '%' . $this->subjobfamily . '%'])->all();        
-    //     // var_dump($this->subjobfammily);die;
-    //     if ($getsubjob) {
-    //       $subjobfamily = array();
-    //       foreach ($getsubjob as $value) {
-    //         $subjobfamily[] = $value->id;
-    //       }
-    //       $ret = $subjobfamily;
-    //     }
-    //   }
-    //   return $ret;
-    // }
     protected function byregionarea(){
         $ret = null;
         $mappingregionarea = Mappingregionarea::find();

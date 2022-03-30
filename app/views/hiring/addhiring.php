@@ -5,6 +5,7 @@ use kartik\select2\Select2;
 use app\models\Recruitmentcandidate;
 use app\models\Hiring;
 use app\models\Transkomponen;
+use app\models\Transrincian;
 use app\models\Masterstatuscandidate;
 use yii\grid\GridView;
 use yii\widgets\Pjax;

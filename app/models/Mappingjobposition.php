@@ -53,6 +53,11 @@ class Mappingjobposition extends \yii\db\ActiveRecord
             'updatetime' => 'Updatetime',
         ];
     }
+    public function getJabatansap($value1)
+    {
+        $data = self::find()->where(['value1' => $value1])->select(['value1 AS id', 'value2 AS name'])->asArray()->all();
+        return $data;
+    }
     public function getMastersubjobfamily()
     {
         return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamilyid']);

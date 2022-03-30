@@ -61,43 +61,32 @@ class MappingjobpositionSearch extends Mappingjobposition
         $query->andFilterWhere([
             'id' => $this->id,
             'subjobfamilyid' => $this->subjobfamilyid,
-            // 'kodejabatan' => $this->kodejabatan,
+            'kodejabatan' => $this->kodejabatan,
+            'jabatansap' => $this->jabatansap,
             'status' => $this->status,
             'createtime' => $this->createtime,
             'updatetime' => $this->updatetime,
         ]);
 
-        $query->andFilterWhere(['like', 'kodejabatan', $this->kodejabatan])
-        ->andFilterWhere(['like', 'jabatansap', $this->jabatansap]);
+        // $query->andFilterWhere(['like', 'kodejabatan', $this->kodejabatan])
+        // ->andFilterWhere(['like', 'jabatansap', $this->jabatansap]);
             // ->andFilterWhere(['like', 'kodeposisi', $this->kodeposisi]);
-        if ($this->kodejabatan) {
-            $getkodejabatan = $this->bykodejab();
-            if ($getkodejabatan) {
-                $getkodejabatan = '"' . implode('","', $getkodejabatan) . '"';
-                $query->andWhere('kodejabatan IN (' . $getkodejabatan . ')');
-            }
-        }
-        if ($this->jabatansap) {
-            $getjabatansap = $this->byjabsap();
-            if ($getjabatansap) {
-                $getjabatansap = implode(',', $getjabatansap);
-                $query->andWhere('jabatansap IN (' . $getjabatansap . ')');
-            }
-        }
+        // if ($this->kodejabatan) {
+        //     $getkodejabatan = $this->bykodejab();
+        //     if ($getkodejabatan) {
+        //         $getkodejabatan = '"' . implode('","', $getkodejabatan) . '"';
+        //         $query->andWhere('kodejabatan IN (' . $getkodejabatan . ')');
+        //     }
+        // }
+        // if ($this->jabatansap) {
+        //     $getjabatansap = $this->byjabsap();
+        //     if ($getjabatansap) {
+        //         $getjabatansap = implode(',', $getjabatansap);
+        //         $query->andWhere('jabatansap IN (' . $getjabatansap . ')');
+        //     }
+        // }
         return $dataProvider;
     }
-
-
-    // public static function getJabsap()
-    // {
-    //     $dataJabsap = Sapjob::find()
-    //         ->select(['value2 as value', 'value2 as label', 'value1 as id'])
-    //         ->asArray()
-    //         ->all();
-
-    //     return $dataJabsap;
-    // }
-
     protected function bykodejab()
     {
         $ret = null;

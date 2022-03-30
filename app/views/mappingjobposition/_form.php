@@ -50,12 +50,28 @@ if ($model->isNewRecord) {
             ],
         ]);
         ?>
+        <?php
+        // $kodejabatan = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value1');
+        // echo   $form->field($model, 'jabatansap')->widget(Select2::classname(), [
+        //     'data' => $jabatansap,
+        //     // 'initValueText' => $recruitreqs, // set the initial display text
+        //     // 'options' => ['placeholder' => '- Select -'],
+        //     'options' => ['placeholder' => Yii::t('app', '- Select -')],
+        //     'pluginOptions' => [
+        //         'dropdownParent' => $dropdownparent,
+        //         'allowClear' => true,
+        //         // 'minimumInputLength' => 5,
+        //     ],
+        // ]);
+        ?>
         <?=
         $form->field($model, 'jabatansap')->widget(DepDrop::classname(), [
             'type' => DepDrop::TYPE_SELECT2,
+            // 'data' => $kodejabatan,
             'options' => ['value1' => 'mappingjobposition-jabatansap'],
             'select2Options' => ['pluginOptions' => ['allowClear' => true]],
             'pluginOptions' => [
+                // 'dropdownParent' => $dropdownparent,
                 'depends' => ['mappingjobposition-kodejabatan'],
                 'url' => Url::to(['/mappingjobposition/jabatans']),
                 'placeholder' => Yii::t('app', '- Select -'),
