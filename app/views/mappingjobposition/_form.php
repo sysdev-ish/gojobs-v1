@@ -23,7 +23,11 @@ if ($model->isNewRecord) {
     <?php $form = ActiveForm::begin(); ?>
     <?= $form->errorSummary($model) ?>
     <div class="box-body table-responsive">
-        <?php echo $form->field($model, 'status')->dropdownList([1 => 'Publish', 0 => 'Unpublish'], ['prompt' => 'Select']); ?>
+        <?php echo $form->field($model, 'status')->widget(Select2::classname(), [
+            'data' => [1 => 'Publish', 0 => 'Unpublish'],
+            'options' => ['placeholder' => '- Select Status -'],
+            ])
+        ?>
         <?php
         echo   $form->field($model, 'subjobfamilyid')->widget(Select2::classname(), [
             'data' => $subjobfamilyid,
@@ -47,25 +51,6 @@ if ($model->isNewRecord) {
             ],
         ]);
         ?>
-        <?php //echo $form->field($model, 'jabatansap')->textInput(['readonly' => true]);
-        // Html::hiddenInput('model_id2', $model->jabatansap, ['id' => 'model_id2']);
-        // $jabatansap = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value2');
-        // $form->field($model, 'jabatansap')->widget(DepDrop::classname(), [
-        //     // 'data' => $jabatansap,
-        //     'options' => ['id' => 'jabatansap'],
-        //     'type' => DepDrop::TYPE_SELECT2,
-        //     'select2Options' => ['pluginOptions' => ['allowClear' => true]],
-        //     'pluginOptions' => [
-        //         'depends' => ['kodejabatan'],
-        //         'placeholder' => '- Select -',
-        //         'url' => Url::to(['mappingjobposition/jabsap']),
-        //         // 'params' => ['model_id2'],
-        //         // 'initialize' => true,
-        //     ]
-        // ]);
-
-        ?>
-
     </div>
     <div class="box-footer">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success btn-flat pull-right']) ?>

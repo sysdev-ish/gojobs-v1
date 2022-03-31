@@ -41,7 +41,6 @@ $url = \yii\helpers\Url::to(['transrincian/recreqlist']);
               'columns' => [
                   ['class' => 'yii\grid\SerialColumn'],
 
-
                   [
                     'label' => 'Full Name',
                     'attribute' => 'fullname',
