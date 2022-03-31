@@ -47,22 +47,22 @@ if ($model->isNewRecord) {
             ],
         ]);
         ?>
-        <?php echo 
+        <?php //echo $form->field($model, 'jabatansap')->textInput(['readonly' => true]);
         // Html::hiddenInput('model_id2', $model->jabatansap, ['id' => 'model_id2']);
         // $jabatansap = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value2');
-        $form->field($model, 'jabatansap')->widget(DepDrop::classname(), [
-            // 'data' => $jabatansap,
-            'options' => ['id' => 'jabatansap'],
-            'type' => DepDrop::TYPE_SELECT2,
-            'select2Options' => ['pluginOptions' => ['allowClear' => true]],
-            'pluginOptions' => [
-                'depends' => ['kodejabatan'],
-                'placeholder' => '- Select -',
-                'url' => Url::to(['mappingjobposition/jabsap']),
-                // 'params' => ['model_id2'],
-                // 'initialize' => true,
-            ]
-        ]);
+        // $form->field($model, 'jabatansap')->widget(DepDrop::classname(), [
+        //     // 'data' => $jabatansap,
+        //     'options' => ['id' => 'jabatansap'],
+        //     'type' => DepDrop::TYPE_SELECT2,
+        //     'select2Options' => ['pluginOptions' => ['allowClear' => true]],
+        //     'pluginOptions' => [
+        //         'depends' => ['kodejabatan'],
+        //         'placeholder' => '- Select -',
+        //         'url' => Url::to(['mappingjobposition/jabsap']),
+        //         // 'params' => ['model_id2'],
+        //         // 'initialize' => true,
+        //     ]
+        // ]);
 
         ?>
 

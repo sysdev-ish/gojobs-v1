@@ -106,12 +106,15 @@ class MappingjobpositionController extends Controller
         $model = new Mappingjobposition();
 
         $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
-        $kodejabatan = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value3');
-        $jabatansap = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value2');
+        $kodejabatan = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value1');
+        // $jabatansap = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value2');
         if ($model->load(Yii::$app->request->post())) {
             $model->createtime = date('Y-m-d H-i-s');
             $model->updatetime = date('Y-m-d H-i-s');
             $model->status = 1;
+            if($model->kodejabatan){
+                $model->jabatansap = $model->kodejabatan;
+            }
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', "Data ditambahkan.");
             } else {
@@ -123,7 +126,7 @@ class MappingjobpositionController extends Controller
                 'model' => $model,
                 'subjobfamilyid' => $subjobfamilyid,
                 'kodejabatan' => $kodejabatan,
-                'jabatansap' => $jabatansap,
+                // 'jabatansap' => $jabatansap,
             ]);
         }
     }
