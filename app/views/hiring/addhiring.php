@@ -81,7 +81,7 @@ $url = \yii\helpers\Url::to(['transrincian/recreqlist']);
                       ],
                     ]),
                     'value'=>function ($data) {
-						return ($data->recrequest)?($data->recrequest->nojo):"-";
+                      return ($data->recrequest)?($data->recrequest->nojo):"-";
                   }
 
                   ],

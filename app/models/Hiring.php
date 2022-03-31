@@ -134,4 +134,8 @@ class Hiring extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamily']);
     }
+    public function getMappingjob()
+    {
+        return $this->hasMany(Mappingjobposition::className(), ['id', 'subjobfamilyid']);
+    }
 }

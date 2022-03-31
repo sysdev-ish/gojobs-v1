@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = 'Update';
     <?= $this->render('_update', [
         'model' => $model,
         'subjobfamilyid' => $subjobfamilyid,
-        // 'jabatansap' => $jabatansap,
-        // 'kodejabatan' => $kodejabatan,
+        'kodejabatan' => $kodejabatan,
+        'jabatansap' => $jabatansap,
     ]) ?>
 
 </div>

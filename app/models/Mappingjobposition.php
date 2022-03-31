@@ -53,9 +53,13 @@ class Mappingjobposition extends \yii\db\ActiveRecord
             'updatetime' => 'Updatetime',
         ];
     }
-    public function getJabatansap($value1)
+    public static function getJabsap($id)
     {
-        $data = self::find()->where(['value1' => $value1])->select(['value1 AS id', 'value2 AS name'])->asArray()->all();
+        $data = \app\models\Sapjob::find()
+            ->where(['value1' => $id])
+            // ->select(['id', 'value1'])->asArray()->all();
+            ->select(['value2','value2 AS jabatansap'])->asArray()->all();
+
         return $data;
     }
     public function getMastersubjobfamily()
@@ -63,14 +67,15 @@ class Mappingjobposition extends \yii\db\ActiveRecord
         return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamilyid']);
     }
 
+    public function getMasterkodejabatan()
+    {
+        return $this->hasOne(Sapjob::className(), ['value1' => 'kodejabatan']);
+    }
+
     public function getMasterjabatansap()
     {
         return $this->hasOne(Sapjob::className(), ['value1' => 'jabatansap']);
     }
     
-    public function getMasterkodejabatan()
-    {
-        return $this->hasOne(Sapjob::className(), ['value1' => 'kodejabatan']);
-    }
 
 }

@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_form', [
     'model' => $model,
     'subjobfamilyid' => $subjobfamilyid,
-    // 'jabatansap' => $jabatansap,
-    // 'kodejabatan' => $kodejabatan,
+    'kodejabatan' => $kodejabatan,
+    'jabatansap' => $jabatansap,
     ]) ?>
 
 </div>

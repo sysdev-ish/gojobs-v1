@@ -5,13 +5,13 @@ namespace app\controllers;
 use Yii;
 use app\models\Mappingjobposition;
 use app\models\MappingjobpositionSearch;
-use app\models\Sapjob;
 use app\models\Mastersubjobfamily;
 use app\models\Transrincian;
 use app\models\Transrincianrekrut;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Sapjob;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\filters\AccessControl;
@@ -51,10 +51,28 @@ class MappingjobpositionController extends Controller
         ];
     }
 
-    /**
-     * Lists all Mappingjobposition models.
-     * @return mixed
-     */
+    public function actionJabsap()
+    {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $id = $parents[0];
+                $out = Mappingjobposition::getJabsap($id);
+                // the getJabsapList function will query the database based on the
+                // id and return an array like below:
+                // [
+                //    ['id'=>'<sub-cat-id-1>', 'name'=>'<sub-cat-name1>'],
+                //    ['id'=>'<sub-id_2>', 'name'=>'<sub-cat-name2>']
+                // ]
+                // var_dump($out);die;
+                echo Json::encode(['output' => $out, 'selected' => '']);
+                return;
+            }
+        }
+        echo Json::encode(['output' => '', 'selected' => '']);
+    }
+
     public function actionIndex()
     {
         $searchModel = new MappingjobpositionSearch();
@@ -83,42 +101,13 @@ class MappingjobpositionController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionJabatans()
-    {
-        // $value1 = $_POST['depdrop_parents'][0];
-        // $jabsap = Sapjob::find()->where(['value1' => $value1])->all();
-        // $jabatansap = array();
-        // $i = 0;
-        // foreach ($jabsap as $value) {
-        //     // $jabatansap[$i]['id'] = $value['state_id'];
-        //     $jabatansap[$i]['name'] = $value['val'];
-        //     $i++;
-        // }
-        // echo Json::encode(['output' => $jabatansap, 'selected' => '']);
-        // return;
-        $out = [];
-
-        if (isset($_POST['depdrop_parents'])) {
-            $parents = $_POST['depdrop_parents'];
-            if ($parents != null) {
-                $value = $parents[0];
-                // $out = Sapjob::find()->where(['value1' => $value])->all();
-                $out = Sapjob::find()
-                    ->where(['value1' => $value])
-                    ->select(['value1', 'value2 AS jabatansap'])->all();
-                echo Json::encode(['output' => $out, 'selected' => '']);
-                // echo Json::encode(['output' => ArrayHelper::map($out, 'value1', 'value2'), 'selected' => '']);
-                return;
-            }
-        }
-    }
     public function actionCreate()
     {
         $model = new Mappingjobposition();
 
         $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
+        $kodejabatan = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value3');
         $jabatansap = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value2');
-        // $kodejabatan = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value3');
         if ($model->load(Yii::$app->request->post())) {
             $model->createtime = date('Y-m-d H-i-s');
             $model->updatetime = date('Y-m-d H-i-s');
@@ -128,13 +117,13 @@ class MappingjobpositionController extends Controller
             } else {
                 Yii::$app->session->setFlash('error', "Data sudah ada.");
             }
-            return $this->redirect(['index', 'id' => $model->value1]);
+            return $this->redirect(['index']);
         } else {
             return $this->renderAjax('create', [
                 'model' => $model,
                 'subjobfamilyid' => $subjobfamilyid,
+                'kodejabatan' => $kodejabatan,
                 'jabatansap' => $jabatansap,
-                // 'kodejabatan' => $kodejabatan,
             ]);
         }
     }
@@ -150,8 +139,8 @@ class MappingjobpositionController extends Controller
         $model = $this->findModel($id);
 
         $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
+        $kodejabatan = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value3');
         // $jabatansap = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value2');
-        // $kodejabatan = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value3');
         if ($model->load(Yii::$app->request->post())) {
             $model->updatetime = date('Y-m-d H-i-s');
             if ($model->save()) {
@@ -164,8 +153,8 @@ class MappingjobpositionController extends Controller
             return $this->renderAjax('create', [
                 'model' => $model,
                 'subjobfamilyid' => $subjobfamilyid,
+                'kodejabatan' => $kodejabatan,
                 // 'jabatansap' => $jabatansap,
-                // 'kodejabatan' => $kodejabatan,
             ]);
         }
     }

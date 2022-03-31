@@ -23,8 +23,7 @@ if ($model->isNewRecord) {
     <?php $form = ActiveForm::begin(); ?>
     <?= $form->errorSummary($model) ?>
     <div class="box-body table-responsive">
-        <?php echo $form->field($model, 'status')
-        ->dropdownList([1 => 'Publish', 0 => 'Unpublish'], ['prompt' => 'Select']); ?>
+        <?php echo $form->field($model, 'status')->dropdownList([1 => 'Publish', 0 => 'Unpublish'], ['prompt' => 'Select']); ?>
         <?php
         echo   $form->field($model, 'subjobfamilyid')->widget(Select2::classname(), [
             'data' => $subjobfamilyid,
@@ -37,12 +36,10 @@ if ($model->isNewRecord) {
         ]);
         ?>
         <?php
-        $kodejabatan = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value1');
         echo   $form->field($model, 'kodejabatan')->widget(Select2::classname(), [
             'data' => $kodejabatan,
             // 'initValueText' => $recruitreqs, // set the initial display text
-            // 'options' => ['placeholder' => '- Select -'],
-            'options' => ['placeholder' => Yii::t('app', '- Select -')],
+            'options' => ['placeholder' => '- Select -', 'id' => 'kodejabatan'],
             'pluginOptions' => [
                 'dropdownParent' => $dropdownparent,
                 'allowClear' => true,
@@ -50,34 +47,25 @@ if ($model->isNewRecord) {
             ],
         ]);
         ?>
-        <?php
-        // $kodejabatan = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value1');
-        // echo   $form->field($model, 'jabatansap')->widget(Select2::classname(), [
-        //     'data' => $jabatansap,
-        //     // 'initValueText' => $recruitreqs, // set the initial display text
-        //     // 'options' => ['placeholder' => '- Select -'],
-        //     'options' => ['placeholder' => Yii::t('app', '- Select -')],
-        //     'pluginOptions' => [
-        //         'dropdownParent' => $dropdownparent,
-        //         'allowClear' => true,
-        //         // 'minimumInputLength' => 5,
-        //     ],
-        // ]);
-        ?>
-        <?=
+        <?php echo 
+        // Html::hiddenInput('model_id2', $model->jabatansap, ['id' => 'model_id2']);
+        // $jabatansap = ArrayHelper::map(Sapjob::find()->all(), 'value1', 'value2');
         $form->field($model, 'jabatansap')->widget(DepDrop::classname(), [
+            // 'data' => $jabatansap,
+            'options' => ['id' => 'jabatansap'],
             'type' => DepDrop::TYPE_SELECT2,
-            // 'data' => $kodejabatan,
-            'options' => ['value1' => 'mappingjobposition-jabatansap'],
             'select2Options' => ['pluginOptions' => ['allowClear' => true]],
             'pluginOptions' => [
-                // 'dropdownParent' => $dropdownparent,
-                'depends' => ['mappingjobposition-kodejabatan'],
-                'url' => Url::to(['/mappingjobposition/jabatans']),
-                'placeholder' => Yii::t('app', '- Select -'),
+                'depends' => ['kodejabatan'],
+                'placeholder' => '- Select -',
+                'url' => Url::to(['mappingjobposition/jabsap']),
+                // 'params' => ['model_id2'],
+                // 'initialize' => true,
             ]
         ]);
+
         ?>
+
     </div>
     <div class="box-footer">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success btn-flat pull-right']) ?>
