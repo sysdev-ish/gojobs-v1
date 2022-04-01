@@ -40,8 +40,7 @@ class Hiringreport extends Hiring
         return [
             // [['startawalkontrak','endawalkontrak'], 'required'],
             [['id', 'userid', 'perner', 'statushiring', 'statusbiodata','typejo','nojo','sap','statuspekerja'], 'integer'],
-            [['createtime', 'updatetime', 'fullname','startawalkontrak','endawalkontrak','area','personalarea','jabatan','areaish','region','startresign','endresign'
-            ,'jobfamily','subjobfamily'
+            [['createtime', 'updatetime', 'fullname','startawalkontrak','endawalkontrak','area','personalarea','jabatan','areaish','region','startresign','endresign','jobfamily','subjobfamily'
             ], 'safe'],
         ];
     }

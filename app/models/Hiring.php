@@ -136,7 +136,7 @@ class Hiring extends \yii\db\ActiveRecord
     }
     public function getMappingjob()
     {
-        return $this->hasMany(Mappingjobposition::className(), ['id', 'subjobfamilyid']);
+        return $this->hasMany(Mappingjob::className(), ['id', 'subjobfamilyid']);
     }
     public function getKodeJabatanSap()
     {

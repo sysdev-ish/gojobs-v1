@@ -26,7 +26,7 @@ class Hiringsearch extends Hiring
     {
         return [
             [['id', 'userid', 'perner', 'statushiring', 'statusbiodata','typejo','typejorincian','status'], 'integer'],
-            [['createtime', 'updatetime', 'fullname','areasap','jabatansap', 'nojo', 'userpm'], 'safe'],
+            [['createtime', 'updatetime', 'fullname','areasap','jabatansap', 'nojo', 'userpm','jobfamily', 'subjobfamily'], 'safe'],
         ];
     }
 
@@ -52,6 +52,8 @@ class Hiringsearch extends Hiring
         $query->joinWith("userprofile");
         // $query->joinWith("recrequest");
 
+        $query->leftJoin('masterjobfamily', 'masterjobfamily.id = hiring.jobfamily');
+        $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.id = hiring.subjobfamily');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -135,6 +137,13 @@ class Hiringsearch extends Hiring
           }else{
             $query->andWhere('recruitreqid IN (null)');
           }
+        }
+        if ($this->jobfamily) {
+          $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily]);
+        }
+        // $query->andFilterWhere(['like', 'subjobfamily', $this->subjobfamily]);
+        if ($this->subjobfamily) {
+          $query->andWhere('mastersubjobfamily.id = :msjId', [':msjId' => $this->subjobfamily]);
         }
 
         return $dataProvider;
