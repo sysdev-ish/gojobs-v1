@@ -138,4 +138,10 @@ class Hiring extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Mappingjobposition::className(), ['id', 'subjobfamilyid']);
     }
+    public function getKodeJabatanSap()
+    {
+        //hire_jabatan_sap relate dengan kodejabatan
+        //jabatan_sap relate dengan jabatan_sap
+        return $this->hasMany(Transrincian::className(), ['jabatan_sap', 'hire_jabatan_sap']);
+    }
 }

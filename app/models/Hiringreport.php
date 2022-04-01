@@ -156,9 +156,11 @@ class Hiringreport extends Hiring
           // var_dump($getPerner);die;
           $query->andWhere('perner IN (' . $getPerner . ')');
         }
+        // $query->andFilterWhere(['like', 'jobfamily', $this->jobfamily]);
         if ($this->jobfamily) {
           $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily]);
         }
+        // $query->andFilterWhere(['like', 'subjobfamily', $this->subjobfamily]);
         if ($this->subjobfamily) {
           $query->andWhere('mastersubjobfamily.id = :msjId', [':msjId' => $this->subjobfamily]);
 
@@ -187,116 +189,6 @@ class Hiringreport extends Hiring
         ];
 
         return $alldata;
-    }
-    protected function joByjob($param)
-    {
-      $ret = null;
-      $mastersubjobfamily = Mastersubjobfamily::find();
-
-      if ($this->jobfamily <> "0") {
-        // var_dump($this->jobfamily);die;
-        $mastersubjobfamily->andWhere([
-          'jobfamily_id' => $this->jobfamily,
-        ]);
-      }
-      $mastersubjobfamilyquery = $mastersubjobfamily->all();
-      $resultjobfamilyid = null;
-      if ($mastersubjobfamilyquery) {
-        $jobfamilyid = array();
-        foreach ($mastersubjobfamilyquery as $value) {
-          $jobfamilyid[] = $value->jobfamily_id;
-        }
-        $jobfamilyid = $jobfamilyid;
-      }
-      $jobfamily = Masterjobfamily::find();
-      if ($resultjobfamilyid) {
-        $getbyjobfamily = '"' . implode('","', $resultjobfamilyid) . '"';
-        // var_dump($getareasbyjobfamily);die;
-        $jobfamily = Masterjobfamily::find();
-        $jobfamily->andWhere('trans_rincian_rekrut.jobfamily IN (' . $getbyjobfamily . ')');
-      } else {
-        $getbyjobfamily = 0;
-      }
-      $jobfamilyquery = $jobfamily->all();
-      if ($jobfamilyquery) {
-        $jobfamilyIds = array();
-        foreach ($jobfamilyquery as $tr) {
-          $jobfamilyIds[] = $tr->id;
-        }
-        $ret = $jobfamilyIds;
-      }
-      return $ret;
-    }
-    protected function joBysubjob($param)
-    {
-      $ret = null;
-      $subjobfamily = Mastersubjobfamily::find();
-      if ($this->subjobfamily <> "0") {
-        //var_dump($this->subjobfamily);die;
-        $subjobfamily->andWhere('id = :id', [':id' => $this->subjobfamily]);
-      }
-      if ($this->jabatan) {
-        $subjobfamily->andWhere([
-          'hire_jabatan_sap' => $this->jabatan,
-        ]);
-      }
-      $subjobfamilyquery = $subjobfamily->all();
-      if ($subjobfamilyquery) {
-        $subjobfamilyIds = array();
-        foreach ($subjobfamilyquery as $tr) {
-          $subjobfamilyIds[] = $tr->id;
-        }
-        $ret = $subjobfamilyIds;
-      }
-      return $ret;
-    }
-    protected function byregionarea(){
-        $ret = null;
-        $mappingregionarea = Mappingregionarea::find();
-
-        if($this->region <> "0"){
-          // var_dump($this->region);die;
-          $mappingregionarea->andWhere([
-              'areaishid' => $this->areaish,
-              'regionid' => $this->region,
-          ]);
-        }
-        else{
-          $mappingregionarea->andWhere([
-              'areaishid' => $this->areaish,
-          ]);
-        }
-        $mappingregionareaquery = $mappingregionarea->all();
-        $resultareaid = null;
-
-        if($mappingregionareaquery){
-            $areaid = array();
-            foreach($mappingregionareaquery as $value){
-                $areaid[] = $value->areaid;
-            }
-            $resultareaid = $areaid;
-        }
-
-        $transRincian = Transrincian::find();
-        if($resultareaid){
-          $getareasbyregionarea = '"'.implode('","', $resultareaid).'"';
-          // var_dump($getareasbyregionarea);die;
-          $transRincian = Transrincian::find();
-          $transRincian->andWhere('trans_rincian_rekrut.area_sap IN (' . $getareasbyregionarea . ')');
-        }
-        else{
-          $getareasbyregionarea = 0;
-        }
-        $transRincianquery = $transRincian->all();
-        if($transRincianquery){
-            $transRincianIds = array();
-            foreach($transRincianquery as $tr){
-                $transRincianIds[] = $tr->id;
-            }
-            $ret = $transRincianIds;
-        }
-
-      return $ret;
     }
     protected function byResigndate(){
       $ret = null;

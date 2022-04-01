@@ -192,8 +192,8 @@
                 'active' => Yii::$app->controller->id == 'mappingregionarea'
               ],
               [
-                'label' => 'Mapping Job Position', 'icon' => 'circle-o', 'url' => ['/mappingjobposition/index'], 'visible' => (Yii::$app->utils->permission($role, 'm51')),
-                'active' => Yii::$app->controller->id == 'mappingjobposition'
+                'label' => 'Mapping Job Position', 'icon' => 'circle-o', 'url' => ['/mappingjob/index'], 'visible' => (Yii::$app->utils->permission($role, 'm51')),
+                'active' => Yii::$app->controller->id == 'mappingjob'
               ],
               [
                 'label' => 'Industry Type', 'icon' => 'circle-o', 'url' => ['/masterindustry/index'], 'visible' => (Yii::$app->utils->permission($role, 'm51')),

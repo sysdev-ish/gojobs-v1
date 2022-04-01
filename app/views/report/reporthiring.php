@@ -262,7 +262,7 @@ app\assets\ReportAsset::register($this);
                     'label' => 'Job Family',
                     'format' => 'raw',
                     'value' => function ($data) {
-                      $jobfamily = Masterjobfamily::find()->where(['id' => $data->id])->one();
+                      $jobfamily = Masterjobfamily::find()->where(['jobfamily' => $data->recrequest->jobfamily])->one();
                       return ($jobfamily) ? $jobfamily->jobfamily : "";
                       // return ($data->recrequest->jobfamily) ? $data->recrequest->jobfamily : "";
                       // $data = Hiring::find()->where(['id' => 'jobfamily'])->one();
@@ -274,7 +274,7 @@ app\assets\ReportAsset::register($this);
                     'label' => 'Sub Job Family',
                     'format' => 'raw',
                     'value' => function ($data) {
-                      $subjobfamily = Mastersubjobfamily::find()->where(['id' => $data->id])->one();
+                      $subjobfamily = Mastersubjobfamily::find()->where(['subjobfamily' => $data->recrequest->subjobfamily])->one();
                       return ($subjobfamily) ? $subjobfamily->subjobfamily : "";
                       // return ($data->recrequest->subjobfamily) ? $data->recrequest->subjobfamily : "";
                       // $data = Hiring::find()->where(['id' => 'subjobfamily'])->one();
@@ -1133,7 +1133,7 @@ app\assets\ReportAsset::register($this);
                     'columns' => $gridColumns,
                     // 'target'=> ExportMenu::TARGET_BLANK,
                     'batchSize' => 10,
-                    'selectedColumns'=> [0,1, 2, 3, 4, 5,6,7,8,9,10,11,12,13,14,15,16],
+                    'selectedColumns'=> [0,1, 2, 3, 4, 5,6,7,8,9,10,11,12,13,14,15,16,17,18],
                     'columnSelectorOptions'=>[
                         'label' => 'Columns',
                     ],

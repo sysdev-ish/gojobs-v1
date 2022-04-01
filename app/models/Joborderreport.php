@@ -65,8 +65,8 @@ class Joborderreport extends Transrincian
       $query->andWhere('trans_rincian_rekrut.skema = 1');
       $query->andWhere('trans_rincian_rekrut.typejo <> 3');
 
-      $query->leftJoin('masterjobfamily', 'masterjobfamily.id = hiring.jobfamily');
-      $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.id = hiring.subjobfamily');
+      // $query->leftJoin('masterjobfamily', 'masterjobfamily.id = hiring.jobfamily');
+      // $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.id = hiring.subjobfamily');
 
       $dataProvider = new ActiveDataProvider([
           'query' => $query,
@@ -76,11 +76,8 @@ class Joborderreport extends Transrincian
           ],
       ]);
 
-
         $this->load($params);
         // var_dump($this->sap);die;
-
-
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
@@ -105,12 +102,12 @@ class Joborderreport extends Transrincian
           $query->andWhere('trans_rincian_rekrut.area_sap IN (' . $areas . ')');
         }
 
-        if ($this->jobfamily) {
-          $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily]);
-        }
-        if ($this->subjobfamily) {
-          $query->andWhere('mastersubjobfamily.id = :msjId', [':msjId' => $this->subjobfamily]);
-        }
+        // if ($this->jobfamily) {
+        //   $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily]);
+        // }
+        // if ($this->subjobfamily) {
+        //   $query->andWhere('mastersubjobfamily.id = :msjId', [':msjId' => $this->subjobfamily]);
+        // }
         // if($this->areaish OR $this->region){
         // $getareasbyregionarea = $this->byregionarea();
         // if($getareasbyregionarea){

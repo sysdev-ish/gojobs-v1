@@ -464,7 +464,7 @@ $(function () {
     });
   });
   
-  $('.viewmappingjobposition-modal-click').click(function (e) {
+  $('.viewmappingjob-modal-click').click(function (e) {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
@@ -475,14 +475,14 @@ $(function () {
     this.blur();
     $.get($(this).attr('value'), function(html) {
         loading.out()
-        $('#viewmappingjobposition-modal')
+        $('#viewmappingjob-modal')
           .modal('show')
-          .find('#mappingjobpositionview')
+          .find('#mappingjobview')
           .empty()
           .append(html);
       });
   });
-  $('.updatemappingjobposition-modal-click').click(function () {
+  $('.updatemappingjob-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
@@ -493,14 +493,14 @@ $(function () {
     this.blur();
     $.get($(this).attr('value'), function(html) {
         loading.out()
-        $('#updatemappingjobposition-modal')
+        $('#updatemappingjob-modal')
           .modal('show')
-          .find('#updatemappingjobposition')
+          .find('#updatemappingjob')
           .empty()
           .append(html);
       });
   });
-  $('.createmappingjobposition-modal-click').click(function () {
+  $('.createmappingjob-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
       discription: 'Loading...',
@@ -511,9 +511,9 @@ $(function () {
     this.blur();
     $.get($(this).attr('value'), function(html) {
         loading.out()
-        $('#createmappingjobposition-modal')
+        $('#createmappingjob-modal')
           .modal('show')
-          .find('#createmappingjobposition')
+          .find('#createmappingjob')
           .empty()
           .append(html);
       });
