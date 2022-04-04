@@ -14,6 +14,9 @@ use app\models\Usernonformaleducation;
 use app\models\Userabout;
 use app\models\Hiringsearch;
 use app\models\Chagerequestjo;
+use app\models\Mappingjob;
+use app\models\Masterjobfamily;
+use app\models\Mastersubjobfamily;
 use app\models\Recruitmentcandidatefhsearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -111,16 +114,15 @@ class HiringController extends Controller
     // $tglinput = $_POST['tglinput'];
     // $awalkontrak = $_POST['awalkontrak'];
     // $akhirkontrak = $_POST['akhirkontrak'];
-    //ambildata dari recruitreqid tabel recruitmencandidate
     if($recruitreqid){
       // var_dump($recruitreqid);die;
       $model = new Hiring();
       $modelcountjo = Hiring::find()->where('recruitreqid = '.$recruitreqid.' AND statushiring <> 5 AND statushiring <> 6 AND statushiring <> 7')->count();
       $transrincian = Transrincian::find()->where(['id'=>$recruitreqid])->one();
+      $transrincianid = Transrincian::find()->where(['id'=>$transrincian->id])->one();
+      
       $userprofile = Userprofile::find()->where(['userid'=>$userid])->one();
       // var_dump(Yii::$app->checkhiring->datanotcompleted($userid));die;
-      $kodejabatan = Transrincian::find()->where(['recruitreqid'=>$recruitreqid]);
-      $jabatansap = Transrincian::find()->where(['recruitreqid'=>$recruitreqid]);
       $chagerequestjo = Chagerequestjo::find()->where(['recruitreqid'=>$recruitreqid])
       ->andWhere(['or',
         ['status'=> 1],
@@ -131,12 +133,6 @@ class HiringController extends Controller
       }else{
         $countnewjumlah = $transrincian->jumlah;
       }
-      if ($kodejabatan){
-        $model = $transrincian->kodejabatan;
-      }
-      if ($jabatansap){
-        $model = $transrincian->jabatansap;
-      }
       if($transrincian->typejo == 3){
         return 5;
       }else{
@@ -145,10 +141,23 @@ class HiringController extends Controller
         }else if($modelcountjo >= $countnewjumlah){
           return 6;
         }else if(Yii::$app->checkhiring->datacompleted($userid)){
+          //pertama cari data yg mau di store dulu dari database lain ambil by id
+          $hirejabatan = Transrincian::find()->where(['hire_jabatan_sap' => $transrincianid->hire_jabatan_sap])->one();
+
+          $kodejabatan = Mappingjob::find()->where(['kodejabatan' => $hirejabatan])->one();
+          $subjobfamilyid = Mappingjob::find()->where(['subjobfamilyid' => $kodejabatan])->one();
+
+          $jobfamily = Mastersubjobfamily::find()->where(['id' => $subjobfamilyid])->one();
+          $jobfamilyid = Mastersubjobfamily::find()->where(['jobfamily_id' => $jobfamily->jobfamily_id])->one();
+
           $transjo = Transjo::find()->where(['nojo'=>$transrincian->nojo])->one();
+
           $awalkontrak =$transjo->tanggal;
           $lama = substr($transjo->lama,0,2);
           $akhirkontrak = date('Y-m-d', strtotime('+'.$lama.' month', strtotime( $awalkontrak )));
+
+          $subjobfamily_id = $subjobfamilyid->subjobfamilyid;
+          $jobfamily_id = $jobfamilyid->jobfamily_id;
           if (Yii::$app->request->isAjax) {
             $model->userid = $userid;
             $model->recruitreqid = $recruitreqid;
@@ -157,6 +166,8 @@ class HiringController extends Controller
             $model->tglinput = date('Y-m-d');
             $model->awalkontrak = $awalkontrak;
             $model->akhirkontrak = $akhirkontrak;
+            $model->subjobfamily = $subjobfamily_id;
+            $model->jobfamily = $jobfamily_id;
             $model->statushiring = 1;
             $model->statusbiodata = 1;
             if($transjo->flag_peralihan == 1){
@@ -192,22 +203,9 @@ class HiringController extends Controller
                 }
                 if(Yii::$app->utils->getjabatan($transrincian->hire_jabatan_sap)){
                   $jabatan = Yii::$app->utils->getjabatan($transrincian->hire_jabatan_sap);
-                }
-                else{
+                }else{
                   $jabatan = '';
                 }
-                // if(Yii::$app->utils->getkodejabatan($transrincian->hire_jabatan_sap)){
-                //   $kodejabatan = Yii::$app->utils->getkodejabatan($transrincian->hire_jabatan_sap);
-                // }
-                // else{
-                //   $kodejabatan = '';
-                // }
-                // if(Yii::$app->utils->getjabatansap($transrincian->jabatan_sap)){
-                //   $jabatansap = Yii::$app->utils->getjabatansap($transrincian->jabatan_sap);
-                // }
-                // else{
-                //   $jabatansap = '';
-                // }
                 $curl = new curl\Curl();
                 $getlevels = $curl->setPostParams([
                   'level' => $transrincian->level_sap,
@@ -264,16 +262,6 @@ class HiringController extends Controller
                 <td valign="top">Jabatan</td>
                 <td valign="top">:</td>
                 <td valign="top">'.$jabatan.'</td>
-                </tr>
-                <tr>
-                <td valign="top">Level</td>
-                <td valign="top">:</td>
-                <td valign="top">'.$kodejabatan.'</td>
-                </tr>
-                <tr>
-                <td valign="top">Level</td>
-                <td valign="top">:</td>
-                <td valign="top">'.$jabatansap.'</td>
                 </tr>
                 <tr>
                 <td valign="top">Level</td>

@@ -9,6 +9,8 @@ use app\models\Transjo;
 use app\models\Recruitmentcandidate;
 use yii\helpers\ArrayHelper;
 use kartik\export\ExportMenu;
+use app\models\Masterjobfamily;
+use app\models\Mastersubjobfamily;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\Hiringsearch */
@@ -398,6 +400,23 @@ app\assets\ReportAsset::register($this);
                     return ($data->jumlah)?$data->jumlah:"";
                     }
                   ],
+                  [
+                    'label' => 'Job Family',
+                    'format' => 'raw',
+                    'value' => function ($data) {
+                      $data = Masterjobfamily::find()->where(['id' => $data->jobfamily])->one();
+                      return ($data) ? $data->jobfamily : "";
+                    }
+
+                  ],
+                  [
+                    'label' => 'Sub Job Family',
+                    'format' => 'raw',
+                    'value' => function ($data) {
+                      $data = Mastersubjobfamily::find()->where(['id' => $data->subjobfamily])->one();
+                      return ($data) ? $data->subjobfamily : "";
+                    }
+                  ],
                   // [
                   //   'label' => 'job family',
                   //   'format' => 'raw',
@@ -435,8 +454,4 @@ app\assets\ReportAsset::register($this);
         </div>
         </div>
         </div>
-
-
-
-
       </div>
