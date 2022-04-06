@@ -65,6 +65,13 @@ class Joborderreport extends Transrincian
       $query->andWhere('trans_rincian_rekrut.skema = 1');
       $query->andWhere('trans_rincian_rekrut.typejo <> 3');
 
+      // filter by MyExtModel attribute
+      $query->joinWith(['jobfamily' => function ($q) {
+        $q->where('masterjobfamily.id LIKE "%' . $this->jobfamily . '%"');
+      }]);
+      $query->joinWith(['subjobfamily' => function ($q) {
+        $q->where('mastersubjobfamily.id LIKE "%' . $this->subjobfamily . '%"');
+      }]);
       // $query->leftJoin('masterjobfamily', 'masterjobfamily.id = hiring.jobfamily');
       // $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.id = hiring.subjobfamily');
 
@@ -75,13 +82,8 @@ class Joborderreport extends Transrincian
               'pageSize' => 10,
           ],
       ]);
-
         $this->load($params);
-        // var_dump($this->sap);die;
-
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-
             return $dataProvider;
         }
         $query->andFilterWhere(['between', 'trans_jo.tanggal', $this->startjo, $this->endjo]);
@@ -90,6 +92,7 @@ class Joborderreport extends Transrincian
             'trans_rincian_rekrut.typejo' => $this->typejo,
             'trans_rincian_rekrut.status_rekrut' => $this->status,
             'saparea.areaid' => $this->areaish,
+            
         ]);
         if($this->region <> 0){
           $query->andFilterWhere([
@@ -101,33 +104,44 @@ class Joborderreport extends Transrincian
           $areas = '"'.implode('","', $this->area).'"';
           $query->andWhere('trans_rincian_rekrut.area_sap IN (' . $areas . ')');
         }
-
-        // if ($this->jobfamily) {
-        //   $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily]);
-        // }
-        // if ($this->subjobfamily) {
-        //   $query->andWhere('mastersubjobfamily.id = :msjId', [':msjId' => $this->subjobfamily]);
-        // }
-        // if($this->areaish OR $this->region){
-        // $getareasbyregionarea = $this->byregionarea();
-        // if($getareasbyregionarea){
-        //   $getareasbyregionarea = '"'.implode('","', $getareasbyregionarea).'"';
-        // }else{
-        //   $getareasbyregionarea = 0;
-        // }
-        //
-        // $query->andWhere('trans_rincian_rekrut.area_sap IN (' . $getareasbyregionarea . ')');
-        // }
-
         $totalkebutuhan = $this->totalkebutuhan($dataProvider);
-        // $totalpemenuhan = $this->totalpemenuhan($dataProvider);
-
-
         $alldata = [
           'dataProvider' => $dataProvider,
           'totalkebutuhan' => $totalkebutuhan,
           // 'totalpemenuhan' => $totalpemenuhan,
         ];
+
+        // $query->andFilterWhere(['like', 'jobfamily', $this->jobfamily]);
+        // if ($this->jobfamily) {
+        //   $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily]);
+        // }
+        // // $query->andFilterWhere(['like', 'subjobfamily', $this->subjobfamily]);
+        // if ($this->subjobfamily) {
+        //   $query->andWhere('mastersubjobfamily.id = :msjId', [':msjId' => $this->subjobfamily]);
+        // }
+
+
+        // if ($this->jobfamily) {
+        //   $getJoId = $this->joByjob();
+        //   var_dump($getJoId);die;
+        //   if ($getJoId) {
+        //     $getJoid = implode(',', $getJoId);
+        //     $query->andWhere('id IN (' . $getJoid . ')');
+        //   } else {
+        //     $query->andWhere('id IN (null)');
+        //   }
+        // }
+
+        // if ($this->subjobfamily) {
+        //   $getJoId = $this->joBysubjob();
+        //   // var_dump($getJoId);die;
+        //   if ($getJoId) {
+        //     $getJoid = implode(',', $getJoId);
+        //     $query->andWhere('id IN (' . $getJoid . ')');
+        //   } else {
+        //     $query->andWhere('id IN (null)');
+        //   }
+        // }
 
         return $alldata;
     }
@@ -151,20 +165,12 @@ class Joborderreport extends Transrincian
             foreach($mappingregionareaquery as $value){
                 $areaid[] = $value->areaid;
             }
-
             $ret = $areaid;
         }
       return $ret;
     }
     protected function totalkebutuhan($dataProvider){
       $mySum = $dataProvider->query->sum('jumlah');
-      // $mySum = 0;
-      // foreach ($trincian as $item) {
-      //   // var_dump($item['lup']);die;
-      //     $mySum += $item['jumlah'];
-      //
-      // }
-
       return $mySum;
     }
     protected function totalpemenuhan($dataProvider){
@@ -183,6 +189,40 @@ class Joborderreport extends Transrincian
       return $mySum;
     }
 
+    // protected function joByjob()
+    // {
+    //   $ret = null;
+    //   $jobfamily = $this->jobfamily;
+      
+    //   if ($jobfamily) {
+    //     $jobFamily = Masterjobfamily::find()->where(['jobfamily'=>$jobfamily])->all();
+    //     if ($jobFamily) {
+    //       $jobFamilyIds = array();
+    //       foreach ($jobFamily as $tr) {
+    //         $jobFamilyIds[] = $tr->id;
+    //       }
+    //       $ret = $jobFamilyIds;
+    //     }
+    //   }
+    //   return $ret;
+    // }
+
+    // protected function joBysubjob()
+    // {
+    //   $ret = null;
+    //   $subjobfamily = $this->subjobfamily;
+    //   if ($subjobfamily) {
+    //     $subJobFamily = Mastersubjobfamily::find()->andWhere(['subjobfamily'=>$subjobfamily])->all();
+    //     if ($subJobFamily) {
+    //       $subJobFamilyIds = array();
+    //       foreach ($subJobFamily as $tr) {
+    //         $subJobFamilyIds[] = $tr->id;
+    //       }
+    //       $ret = $subJobFamilyIds;
+    //     }
+    //   }
+    //   return $ret;
+    // }
     public function attributeLabels()
     {
         return [

@@ -18,6 +18,9 @@ use app\models\Thardskill;
 use app\models\Tpasif;
 use app\models\Taktif;
 use app\models\Recruitmentcandidatesearch;
+use app\models\Mappingjob;
+use app\models\Masterjobfamily;
+use app\models\Mastersubjobfamily;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -482,18 +485,42 @@ class RecruitmentcandidateController extends Controller
         ]);
       }
     }
-    public function actionApplyjob($userid,$jobsid)
+
+    public function actionApplyjob($userid,$jobsid) //action apply job pada user page -> save ke recruitmentcandidate
     {
+      $recruitreqid = isset($array['recruitreqid']) ? $array['recruitreqid'] : '';
+    // $recruitreqid = $_POST['recruitreqid'];
+      // $recancheck = Recruitmentcandidate::find()->where(['userid' => $userid, 'recruitreqid' => $jobsid])->one();
+
       $model = new Recruitmentcandidate();
+      $transrincian = Transrincian::find()->where(['id' => $recruitreqid])->one();
+      // $transrincianid = Transrincian::find()->where(['id' => $transrincian->id])->one();
+      $hirejabatan = Transrincian::find()->where(['hire_jabatan_sap' => $transrincian->hire_jabatan_sap])->one();
+
+      $kodejabatan = Mappingjob::find()->where(['kodejabatan' => $hirejabatan])->one();
+      $subjobfamilyid = Mappingjob::find()->where(['subjobfamilyid' => $kodejabatan])->one();
+
+      // $subjobfamilyid = Mappingjob::findBySql('SELECT * FROM mappingjob')->where(['subjobfamilyid'=>$kodejabatan])->one();
+      $jobfamily = Mastersubjobfamily::find()->where(['id' => $subjobfamilyid])->one();
+      // var_dump($jobfamily);die;
+      $jobfamilyid = Mastersubjobfamily::find()->where(['jobfamily_id' => $jobfamily])->one();
+      // $jobfamilyid = 1;
+
+      $subjobfamily_id = $subjobfamilyid;
+      $jobfamily_id = $jobfamilyid;
+
       $model->createtime = date('Y-m-d H-i-s');
       $model->updatetime = date('Y-m-d H-i-s');
       $model->status = 0;
       $model->typeinterview = 1;
       $model->recruitreqid = $jobsid;
       $model->userid = $userid;
+      $model->subjobfamily = $subjobfamily_id;
+      $model->jobfamily = $jobfamily_id;
       $model->save();
       return $this->redirect(['site/searchjob']);
     }
+
     public function actionWalkin($userid,$jobsid)
     {
       $interviewcheck = Interview::find()

@@ -24,6 +24,9 @@ class Hiring extends \yii\db\ActiveRecord
   public $payrollarea;
   public $jabatan;
   public $level;
+//   public $jobfamily;
+//   public $subjobfamily;
+
     /**
      * {@inheritdoc}
      */
@@ -126,11 +129,15 @@ class Hiring extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Chagerequestdata::className(), ['userid' => 'userid']);
     }
-    public function getJobfammily()
+    public function getJobfamily()
     {
         return $this->hasOne(Masterjobfamily::className(), ['id' => 'jobfamily']);
     }
-    public function getSubjobfammily()
+    public function getJobfamilyid()
+    {
+        return $this->hasOne(Mastersubjobfamily::className(), ['jobfamily_id' => 'jobfamily']);
+    }
+    public function getSubjobfamily()
     {
         return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamily']);
     }

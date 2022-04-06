@@ -305,30 +305,6 @@ use yii\helpers\Url;
                 <?= $form->field($model, 'lokasikerja')->textInput(['maxlength' => true]) ?>
               </div>
             </div>
-            <div class="col-md-12">
-              <div class="col-md-6">
-                <?php
-                echo   $form->field($model, 'jobfamilyid')->widget(Select2::classname(), [
-                  'data' => $jobfamily,
-                  'options' => ['placeholder' => '- select -', 'id' => 'jobfamilyid'],
-                  'pluginOptions' => [
-                    'allowClear' => true
-                  ],
-                ]);
-                ?>
-              </div>
-              <div class="col-md-6">
-                <?php
-                echo   $form->field($model, 'subjobfamilyid')->widget(Select2::classname(), [
-                  'data' => $subjobfamily,
-                  'options' => ['placeholder' => '- select -', 'id' => 'subjobfamilyid'],
-                  'pluginOptions' => [
-                    'allowClear' => true
-                  ],
-                ]);
-                ?>
-              </div>
-            </div>
 
             <div class="col-md-12">
               <div class="col-md-12">

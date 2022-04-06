@@ -87,8 +87,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                   'npwpnumber',
                                                   'drivinglicencecarnumber',
                                                   'drivinglicencemotorcyclenumber',
-                                                  'jobfamily',
-                                                  'subjobfamily',
+                                                //   'jobfamily',
+                                                //   'subjobfamily',
                                               ],
                                           ]);
                                         }else{

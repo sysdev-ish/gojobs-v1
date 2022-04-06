@@ -23,7 +23,7 @@ if (!$model->isNewRecord) {
         ])
         ?>
         <?php
-        echo   $form->field($model, 'jobfamily_id')->widget(Select2::classname(), [
+        echo   $form->field($model, 'jobfamilyid')->widget(Select2::classname(), [
             'data' => $jobfamily,
             'options' => ['placeholder' => '- select -'],
             'pluginOptions' => [

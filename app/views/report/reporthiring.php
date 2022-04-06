@@ -267,7 +267,6 @@ app\assets\ReportAsset::register($this);
                         $data = Masterjobfamily::find()->where(['id' => $data->jobfamily])->one();
                         return ($data) ? $data->jobfamily : "";
                       }
-
                     ],
                     [
                       'label' => 'Sub Job Family',

@@ -118,9 +118,7 @@ class HiringController extends Controller
       // var_dump($recruitreqid);die;
       $model = new Hiring();
       $modelcountjo = Hiring::find()->where('recruitreqid = '.$recruitreqid.' AND statushiring <> 5 AND statushiring <> 6 AND statushiring <> 7')->count();
-      $transrincian = Transrincian::find()->where(['id'=>$recruitreqid])->one();
-      $transrincianid = Transrincian::find()->where(['id'=>$transrincian->id])->one();
-      
+      $transrincian = Transrincian::find()->where(['id'=>$recruitreqid])->one();      
       $userprofile = Userprofile::find()->where(['userid'=>$userid])->one();
       // var_dump(Yii::$app->checkhiring->datanotcompleted($userid));die;
       $chagerequestjo = Chagerequestjo::find()->where(['recruitreqid'=>$recruitreqid])
@@ -142,22 +140,26 @@ class HiringController extends Controller
           return 6;
         }else if(Yii::$app->checkhiring->datacompleted($userid)){
           //pertama cari data yg mau di store dulu dari database lain ambil by id
+          $transrincianid = Transrincian::find()->where(['id' => $transrincian->id])->one();
           $hirejabatan = Transrincian::find()->where(['hire_jabatan_sap' => $transrincianid->hire_jabatan_sap])->one();
 
           $kodejabatan = Mappingjob::find()->where(['kodejabatan' => $hirejabatan])->one();
-          $subjobfamilyid = Mappingjob::find()->where(['subjobfamilyid' => $kodejabatan])->one();
+          $subjobfamilyid = Mappingjob::find()->where(['subjobfamilyid' => $kodejabatan->subjobfamilyid])->one();          
 
+          // $subjobfamilyid = Mappingjob::findBySql('SELECT * FROM mappingjob')->where(['subjobfamilyid'=>$kodejabatan])->one();
           $jobfamily = Mastersubjobfamily::find()->where(['id' => $subjobfamilyid])->one();
-          $jobfamilyid = Mastersubjobfamily::find()->where(['jobfamily_id' => $jobfamily->jobfamily_id])->one();
-
+          // var_dump($jobfamily->id);die;
+          $jobfamilyid = Mastersubjobfamily::find()->where(['jobfamily_id'=> $jobfamily->jobfamily_id])->one();
+          
           $transjo = Transjo::find()->where(['nojo'=>$transrincian->nojo])->one();
-
+          
           $awalkontrak =$transjo->tanggal;
           $lama = substr($transjo->lama,0,2);
           $akhirkontrak = date('Y-m-d', strtotime('+'.$lama.' month', strtotime( $awalkontrak )));
-
+          
           $subjobfamily_id = $subjobfamilyid->subjobfamilyid;
           $jobfamily_id = $jobfamilyid->jobfamily_id;
+          // $jobfamilyid = isset($model->jobfamilyid) ? $model->jobfamily->id : 'n/a';
           if (Yii::$app->request->isAjax) {
             $model->userid = $userid;
             $model->recruitreqid = $recruitreqid;
@@ -168,6 +170,7 @@ class HiringController extends Controller
             $model->akhirkontrak = $akhirkontrak;
             $model->subjobfamily = $subjobfamily_id;
             $model->jobfamily = $jobfamily_id;
+            // var_dump($model->jobfamily);die;
             $model->statushiring = 1;
             $model->statusbiodata = 1;
             if($transjo->flag_peralihan == 1){
@@ -277,6 +280,7 @@ class HiringController extends Controller
                 ';
                 // var_dump($body);die;
                 $verification = Yii::$app->utils->sendmailinternal($to,$subject,$body,11);
+                // var_dump($jobfamily->id);die;
                 // var_dump('sampe');die;
                 return 2;
               }else{

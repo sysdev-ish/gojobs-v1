@@ -22,7 +22,7 @@ class MastersubjobfamilySearch extends Mastersubjobfamily
     public function rules()
     {
         return [
-            [['id', 'jobfamily_id'], 'integer'],
+            [['id', 'jobfamilyid'], 'integer'],
             [['subjobfamily', 'status', 'createtime', 'updatetime'], 'safe'],
         ];
     }
@@ -46,7 +46,6 @@ class MastersubjobfamilySearch extends Mastersubjobfamily
     public function search($params)
     {
         $query = Mastersubjobfamily::find();
-        // $query->joinWith('masterjobfamily');
 
         // add conditions that should always apply here
 
@@ -66,7 +65,7 @@ class MastersubjobfamilySearch extends Mastersubjobfamily
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'jobfamily_id' => $this->jobfamily_id,
+            'jobfamilyid' => $this->jobfamilyid,
             'createtime' => $this->createtime,
             'updatetime' => $this->updatetime,
         ]);

@@ -50,8 +50,10 @@ class Userprofile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['userid', 'createtime', 'updatetime', 'fullname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'postalcodektp','phone', 'addressktp', 'nationality','maritalstatus', 'religion', 'bloodtype','cityid','provinceid','cityidktp','provinceidktp','identitynumber','tinggibadan','beratbadan', 'lokasikerja','jenispekerjaan', 'jobfamilyid', 'subjobfamilyid'], 'required'],
-            [['userid','havejamsostek','havenpwp','havebpjs', 'npwpnumber','bpjsnumber','postalcode','postalcodektp','identitynumber','kknumber','jobfamilyid','subjobfamilyid'], 'integer'],
+            [['userid', 'createtime', 'updatetime', 'fullname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'postalcodektp','phone', 'addressktp', 'nationality','maritalstatus', 'religion', 'bloodtype','cityid','provinceid','cityidktp','provinceidktp','identitynumber','tinggibadan','beratbadan', 'lokasikerja','jenispekerjaan'
+            // , 'jobfamilyid', 'subjobfamilyid'
+            ], 'required'],
+            [['userid','havejamsostek','havenpwp','havebpjs', 'npwpnumber','bpjsnumber','postalcode','postalcodektp','identitynumber','kknumber'], 'integer'],
             [['postalcode','postalcodektp'], 'string', 'min'=> 5, 'max'=> 5 ],
             [['identitynumber','kknumber'], 'string', 'min'=> 16, 'max'=> 16 ],
             [['npwpnumber'], 'string', 'min'=> 15, 'max'=> 15],
@@ -186,8 +188,8 @@ class Userprofile extends \yii\db\ActiveRecord
             'lokasikerja' => Yii::t('app', 'Work Location'),
             'cvupload' => 'Curriculum Vitae',
             'jenispekerjaan' => Yii::t('app', 'Working type'),
-            'jobfamilyid' => Yii::t('app', 'Job Family'),
-            'subjobfamilyid' => Yii::t('app', 'Sub Job Family'),
+            // 'jobfamilyid' => Yii::t('app', 'Job Family'),
+            // 'subjobfamilyid' => Yii::t('app', 'Sub Job Family'),
         ];
     }
     public function getCity()

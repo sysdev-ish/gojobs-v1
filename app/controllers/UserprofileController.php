@@ -198,8 +198,8 @@ class UserprofileController extends Controller
           $provincektp = ArrayHelper::map(MasterProvince::find()->asArray()->all(), 'provinsiid', 'provinsi');
           $kotaktp = ArrayHelper::map(Mastercity::find()->asArray()->where(['kotaid'=>$model->cityidktp])->all(), 'kotaid', 'kota');
 
-          $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
-          $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
+          // $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
+          // $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
 
           if ($model->load(Yii::$app->request->post()) && $modelvaksin->load(Yii::$app->request->post())) {
             if($model->havejamsostek == 0 OR $model->jamsosteknumber == ''){
@@ -268,8 +268,8 @@ class UserprofileController extends Controller
                     'kotaktp' => $kotaktp,
                     'userid'=>$userid,
                     'alasanvaksin'=>$alasanvaksin,
-                    'jobfamily'=>$jobfamily,
-                    'subjobfamily'=>$subjobfamily,
+                    // 'jobfamily'=>$jobfamily,
+                    // 'subjobfamily'=>$subjobfamily,
                 ]);
               }
           }
@@ -282,8 +282,8 @@ class UserprofileController extends Controller
                   'kota' => $kota,
                   'provincektp' => $provincektp,
                   'kotaktp' => $kotaktp,
-                  'jobfamily' => $jobfamily,
-                  'subjobfamily' => $subjobfamily,
+                  // 'jobfamily' => $jobfamily,
+                  // 'subjobfamily' => $subjobfamily,
               ]);
 
 
@@ -303,8 +303,8 @@ class UserprofileController extends Controller
           $provincektp = ArrayHelper::map(MasterProvince::find()->asArray()->all(), 'provinsiid', 'provinsi');
           $kotaktp = ArrayHelper::map(Mastercity::find()->asArray()->where(['kotaid'=>$model->cityidktp])->all(), 'kotaid', 'kota');
 
-          $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
-          $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
+          // $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
+          // $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
 
           if ($model->load(Yii::$app->request->post()) && $modelvaksin->load(Yii::$app->request->post())) {
 
@@ -377,8 +377,8 @@ class UserprofileController extends Controller
                     'userid'=>$id,
                     'modelvaksin' => $modelvaksin,
                     'alasanvaksin'=>$alasanvaksin,
-                    'jobfamily' => $jobfamily,
-                    'subjobfamily' => $subjobfamily,
+                    // 'jobfamily' => $jobfamily,
+                    // 'subjobfamily' => $subjobfamily,
                   ]);
                 }
 
@@ -392,8 +392,8 @@ class UserprofileController extends Controller
                   'userid'=>$id,
                   'modelvaksin' => $modelvaksin,
                   'alasanvaksin'=>$alasanvaksin,
-                  'jobfamily' => $jobfamily,
-                  'subjobfamily' => $subjobfamily,
+                  // 'jobfamily' => $jobfamily,
+                  // 'subjobfamily' => $subjobfamily,
                 ]);
                 
       }else{
@@ -530,8 +530,8 @@ class UserprofileController extends Controller
                 'kotaktp' => $kotaktp,
                 'modelvaksin' => $modelvaksin,
                 'alasanvaksin'=>$alasanvaksin,
-                'jobfamily' => $jobfamily,
-                'subjobfamily' => $subjobfamily,
+                // 'jobfamily' => $jobfamily,
+                // 'subjobfamily' => $subjobfamily,
             ]);
           }
         } else {
@@ -543,8 +543,8 @@ class UserprofileController extends Controller
                 'kotaktp' => $kotaktp,
                 'modelvaksin' => $modelvaksin,
                 'alasanvaksin'=>$alasanvaksin,
-                'jobfamily' => $jobfamily,
-                'subjobfamily' => $subjobfamily,
+                // 'jobfamily' => $jobfamily,
+                // 'subjobfamily' => $subjobfamily,
             ]);
         }
     }
@@ -669,8 +669,8 @@ class UserprofileController extends Controller
                 'userid'=>$model->userid,
                 'modelvaksin' => $modelvaksin,
                 'alasanvaksin'=>$alasanvaksin,
-                'jobfamily' => $jobfamily,
-                'subjobfamily' => $subjobfamily,
+                // 'jobfamily' => $jobfamily,
+                // 'subjobfamily' => $subjobfamily,
             ]);
           }
         } else {
@@ -683,8 +683,8 @@ class UserprofileController extends Controller
               'userid'=>$model->userid,
               'modelvaksin' => $modelvaksin,
               'alasanvaksin'=>$alasanvaksin,
-              'jobfamily' => $jobfamily,
-              'subjobfamily' => $subjobfamily,
+              // 'jobfamily' => $jobfamily,
+              // 'subjobfamily' => $subjobfamily,
           ]);
         }
     }

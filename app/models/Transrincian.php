@@ -65,6 +65,10 @@ class Transrincian extends \yii\db\ActiveRecord
   {
       return Yii::$app->get('dbjo');
   }
+  public static function getDb2()
+  {
+      return Yii::$app->get('db');
+  }
 
     /**
      * {@inheritdoc}
@@ -155,6 +159,11 @@ class Transrincian extends \yii\db\ActiveRecord
             'subjobfamily' => 'subjobfamily',
         ];
     }
+    public static function tableMasterjobfamily()
+    {
+        return '{{%masterjobfamily}}';
+    }
+
     public function getCity()
     {
         return $this->hasOne(MappingCity::className(), ['city_id' => 'lokasi']);
@@ -201,11 +210,11 @@ class Transrincian extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Transperner::className(), ['id' => 'idpktable']);
     }
-    public function getJobfammily()
+    public function getJobfamily()
     {
         return $this->hasOne(Masterjobfamily::className(), ['id' => 'jobfamily']);
     }
-    public function getSubjobfammily()
+    public function getSubjobfamily()
     {
         return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamily']);
     }

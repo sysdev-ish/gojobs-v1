@@ -95,7 +95,7 @@ class MastersubjobfamilyController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->createtime = date('Y-m-d H-i-s');
             $model->updatetime = date('Y-m-d H-i-s');
-            $model->status = 1;
+            // $model->status = 1;
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', "Data ditambahkan.");
             } else {

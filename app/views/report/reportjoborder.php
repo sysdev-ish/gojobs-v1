@@ -229,7 +229,6 @@ app\assets\ReportAsset::register($this);
                     }
                     ],
 
-
                     [
                       'label' => 'Jumlah Pemenuhan (Hiring)',
                       'format' => 'raw',
@@ -259,18 +258,18 @@ app\assets\ReportAsset::register($this);
                     [
                       'label' => 'Job Family',
                       'format' => 'raw',
-                      'value'=>function ($data) {
-                          return ($data->jobfamily)? 'Job Family '.$data->jobfamily->jobfamily:'';
-                    }
-
+                      'value' => function ($data) {
+                      $data = Recruitmentcandidate::find()->where(['jobfamily' => $data->jobfamily])->one();
+                      return ($data) ? $data->jobfamily : "";
+                      }
                     ],
                     [
                       'label' => 'Sub Job Family',
                       'format' => 'raw',
-                      'value'=>function ($data) {
-                          return ($data->subjobfamily)? 'Sub Job Family '.$data->subjobfamily->subjobfamily:'';
-                    }
-
+                      'value' => function ($data) {
+                        $data = Recruitmentcandidate::find()->where(['subjobfamily' => $data->subjobfamily])->one();
+                        return ($data) ? $data->subjobfamily : "";
+                      }
                     ],
                     [
                       'label' => 'Bulan',
@@ -400,23 +399,23 @@ app\assets\ReportAsset::register($this);
                     return ($data->jumlah)?$data->jumlah:"";
                     }
                   ],
-                  [
-                    'label' => 'Job Family',
-                    'format' => 'raw',
-                    'value' => function ($data) {
-                      $data = Masterjobfamily::find()->where(['id' => $data->jobfamily])->one();
-                      return ($data) ? $data->jobfamily : "";
-                    }
+                  // [
+                  //   'label' => 'Job Family',
+                  //   'format' => 'raw',
+                  //   'value' => function ($data) {
+                  //     $data = Masterjobfamily::find()->where(['id' => $data->jobfamily])->one();
+                  //     return ($data) ? $data->jobfamily : "";
+                  //   }
 
-                  ],
-                  [
-                    'label' => 'Sub Job Family',
-                    'format' => 'raw',
-                    'value' => function ($data) {
-                      $data = Mastersubjobfamily::find()->where(['id' => $data->subjobfamily])->one();
-                      return ($data) ? $data->subjobfamily : "";
-                    }
-                  ],
+                  // ],
+                  // [
+                  //   'label' => 'Sub Job Family',
+                  //   'format' => 'raw',
+                  //   'value' => function ($data) {
+                  //     $data = Mastersubjobfamily::find()->where(['id' => $data->subjobfamily])->one();
+                  //     return ($data) ? $data->subjobfamily : "";
+                  //   }
+                  // ],
                   // [
                   //   'label' => 'job family',
                   //   'format' => 'raw',
