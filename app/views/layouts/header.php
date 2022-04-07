@@ -13,7 +13,7 @@ $assetUrl = Yii::$app->request->baseUrl . '/assets';
 <header class="main-header">
     <!-- <?= Html::a('<span class="logo-mini"></span><span class="logo-lg">' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?> -->
     <span class="logo-mini logo-lg logo">
-        <img src="../images/icon.png" class="img-responsive logo-mini" />
+        <img src="../images/logo-gojobs-colour.png" class="img-responsive logo" />
     </span>
     <nav class="navbar navbar-static-top" role="navigation">
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">

@@ -65,16 +65,6 @@ class Joborderreport extends Transrincian
       $query->andWhere('trans_rincian_rekrut.skema = 1');
       $query->andWhere('trans_rincian_rekrut.typejo <> 3');
 
-      // filter by MyExtModel attribute
-      $query->joinWith(['jobfamily' => function ($q) {
-        $q->where('masterjobfamily.id LIKE "%' . $this->jobfamily . '%"');
-      }]);
-      $query->joinWith(['subjobfamily' => function ($q) {
-        $q->where('mastersubjobfamily.id LIKE "%' . $this->subjobfamily . '%"');
-      }]);
-      // $query->leftJoin('masterjobfamily', 'masterjobfamily.id = hiring.jobfamily');
-      // $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.id = hiring.subjobfamily');
-
       $dataProvider = new ActiveDataProvider([
           'query' => $query,
           'sort' => ['defaultOrder' => ['nojo' => SORT_DESC]],
@@ -92,13 +82,14 @@ class Joborderreport extends Transrincian
             'trans_rincian_rekrut.typejo' => $this->typejo,
             'trans_rincian_rekrut.status_rekrut' => $this->status,
             'saparea.areaid' => $this->areaish,
-            
         ]);
         if($this->region <> 0){
           $query->andFilterWhere([
               'saparea.regionalid' => $this->region,
           ]);
         }
+        // $query->andFilterWhere(['like', 'jobfamily', $this->jobfamilyid])
+        // ->andFilterWhere(['like', 'subjobfamily', $this->subjobfamilyid]);
 
         if($this->area){
           $areas = '"'.implode('","', $this->area).'"';
@@ -111,40 +102,60 @@ class Joborderreport extends Transrincian
           // 'totalpemenuhan' => $totalpemenuhan,
         ];
 
-        // $query->andFilterWhere(['like', 'jobfamily', $this->jobfamily]);
-        // if ($this->jobfamily) {
-        //   $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily]);
-        // }
-        // // $query->andFilterWhere(['like', 'subjobfamily', $this->subjobfamily]);
-        // if ($this->subjobfamily) {
-        //   $query->andWhere('mastersubjobfamily.id = :msjId', [':msjId' => $this->subjobfamily]);
-        // }
+        if ($this->jobfamily) {
+          $getjobfamilyid = $this->byjobfamily();
+          if ($getjobfamilyid) {
+            $getjobfamilyid = '"' . implode('","', $getjobfamilyid) . '"';
+            $query->andWhere('id IN (' . $getjobfamilyid . ')');
+          }
+        }
 
-
-        // if ($this->jobfamily) {
-        //   $getJoId = $this->joByjob();
-        //   var_dump($getJoId);die;
-        //   if ($getJoId) {
-        //     $getJoid = implode(',', $getJoId);
-        //     $query->andWhere('id IN (' . $getJoid . ')');
-        //   } else {
-        //     $query->andWhere('id IN (null)');
-        //   }
-        // }
-
-        // if ($this->subjobfamily) {
-        //   $getJoId = $this->joBysubjob();
-        //   // var_dump($getJoId);die;
-        //   if ($getJoId) {
-        //     $getJoid = implode(',', $getJoId);
-        //     $query->andWhere('id IN (' . $getJoid . ')');
-        //   } else {
-        //     $query->andWhere('id IN (null)');
-        //   }
-        // }
+        if ($this->subjobfamily) {
+          $getsubjobfamilyid = $this->bysubjobfamily();
+          if ($getsubjobfamilyid) {
+            $getsubjobfamilyid = '"' . implode('","', $getsubjobfamilyid) . '"';
+            $query->andWhere('id IN (' . $getsubjobfamilyid . ')');
+          }
+        }
 
         return $alldata;
     }
+
+    //search value from db byvalue()
+    protected function byjobfamily()
+    {
+      $ret = null;
+      // $jobfamily = Masterjobfamily::find();
+      if ($this->jobfamily) {
+        $getjobfamilyid = Masterjobfamily::find()->andWhere('jobfamily LIKE :jobfamily', [':jobfamily' => '%' . $this->jobfamily . '%'])->all();
+        if ($getjobfamilyid) {
+          $jobfamilyid = array();
+          foreach ($getjobfamilyid as $value) {
+            $jobfamilyid[] = $value->id;
+          }
+          $ret = $jobfamilyid;
+        }
+      }
+      return $ret;
+    }
+
+    protected function bysubjobfamily()
+    {
+      $ret = null;
+      // $jobfamily = Mastersubjobfamily::find();
+      if ($this->subjobfamily) {
+        $getsubjobfamilyid = Mastersubjobfamily::find()->andWhere('subjobfamily LIKE :subjobfamily', [':subjobfamily' => '%' . $this->subjobfamily . '%'])->all();
+        if ($getsubjobfamilyid) {
+          $subjobfamilyid = array();
+          foreach ($getsubjobfamilyid as $value) {
+            $subjobfamilyid[] = $value->id;
+          }
+          $ret = $subjobfamilyid;
+        }
+      }
+      return $ret;
+    }
+
     protected function byregionarea(){
         $ret = null;
         $mappingregionarea = Mappingregionarea::find();
@@ -169,10 +180,12 @@ class Joborderreport extends Transrincian
         }
       return $ret;
     }
+
     protected function totalkebutuhan($dataProvider){
       $mySum = $dataProvider->query->sum('jumlah');
       return $mySum;
     }
+
     protected function totalpemenuhan($dataProvider){
       $trincian = $dataProvider->query->all();
       $mySum = 0;
@@ -182,47 +195,10 @@ class Joborderreport extends Transrincian
         if($checkhiring > 0){
           $mySum += $checkhiring;
         }
-
-
       }
 
       return $mySum;
     }
-
-    // protected function joByjob()
-    // {
-    //   $ret = null;
-    //   $jobfamily = $this->jobfamily;
-      
-    //   if ($jobfamily) {
-    //     $jobFamily = Masterjobfamily::find()->where(['jobfamily'=>$jobfamily])->all();
-    //     if ($jobFamily) {
-    //       $jobFamilyIds = array();
-    //       foreach ($jobFamily as $tr) {
-    //         $jobFamilyIds[] = $tr->id;
-    //       }
-    //       $ret = $jobFamilyIds;
-    //     }
-    //   }
-    //   return $ret;
-    // }
-
-    // protected function joBysubjob()
-    // {
-    //   $ret = null;
-    //   $subjobfamily = $this->subjobfamily;
-    //   if ($subjobfamily) {
-    //     $subJobFamily = Mastersubjobfamily::find()->andWhere(['subjobfamily'=>$subjobfamily])->all();
-    //     if ($subJobFamily) {
-    //       $subJobFamilyIds = array();
-    //       foreach ($subJobFamily as $tr) {
-    //         $subJobFamilyIds[] = $tr->id;
-    //       }
-    //       $ret = $subJobFamilyIds;
-    //     }
-    //   }
-    //   return $ret;
-    // }
     public function attributeLabels()
     {
         return [

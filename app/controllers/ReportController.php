@@ -179,7 +179,6 @@ class ReportController extends Controller
       'region' => $region,
       'jobfamily' => $jobfamily,
       'subjobfamily' => $subjobfamily,
-
     ]);
   }
   protected function generateCV($userid)

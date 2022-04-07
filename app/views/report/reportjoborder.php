@@ -259,17 +259,21 @@ app\assets\ReportAsset::register($this);
                       'label' => 'Job Family',
                       'format' => 'raw',
                       'value' => function ($data) {
-                      $data = Recruitmentcandidate::find()->where(['jobfamily' => $data->jobfamily])->one();
-                      return ($data) ? $data->jobfamily : "";
+                        $re = Transrincian::find()->where(['id'=>$data->id])->one();
+                        $recjob = Recruitmentcandidate::find()->where(['id' => $re->id])->one();
+                        // return ($re->jobfamily)? 'Job Family'  .$re->jobfamily : "";
+                        return ($recjob) ? $recjob->jobfamily : "";
                       }
                     ],
                     [
                       'label' => 'Sub Job Family',
                       'format' => 'raw',
                       'value' => function ($data) {
-                        $data = Recruitmentcandidate::find()->where(['subjobfamily' => $data->subjobfamily])->one();
-                        return ($data) ? $data->subjobfamily : "";
-                      }
+                        $re = Transrincian::find()->where(['id' => $data->id])->one();
+                        $recjob = Recruitmentcandidate::find()->where(['id' => $re->id])->one();
+                        // return ($re->subjobfamily)? 'Sub Job Family'  .$re->subjobfamily : "";
+                        return ($recjob) ? $recjob->subjobfamily : "";
+                        }
                     ],
                     [
                       'label' => 'Bulan',
