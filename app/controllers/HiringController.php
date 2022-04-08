@@ -141,9 +141,10 @@ class HiringController extends Controller
 
           $kodejabatan = Mappingjob::find()->where(['kodejabatan' => $hirejabatan])->one();
           $subjobfamilyid = Mappingjob::find()->where(['subjobfamilyid' => $kodejabatan->subjobfamilyid])->one();          
+          $mappingid = Mappingjob::find()->where(['id' => $subjobfamilyid])->all();          
 
           // $subjobfamilyid = Mappingjob::findBySql('SELECT * FROM mappingjob')->where(['subjobfamilyid'=>$kodejabatan])->one();
-          $jobfamily = Mastersubjobfamily::find()->where(['id' => $subjobfamilyid])->one();
+          $jobfamily = Mastersubjobfamily::find()->where(['id' => $mappingid])->one();
           // var_dump($jobfamily->id);die;
           $jobfamilyid = Mastersubjobfamily::find()->where(['jobfamily_id'=> $jobfamily->jobfamily_id])->one();
           
