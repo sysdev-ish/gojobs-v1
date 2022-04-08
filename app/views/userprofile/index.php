@@ -87,19 +87,13 @@ if(Yii::$app->utils->permission($role,'m14')){
                 [
                   'attribute' => 'lastposition',
                   'contentOptions' => ['style' => 'min-width: 150px;'],
-                  // 'filter' => \kartik\select2\Select2::widget([
-                  //   'model' => $searchModel,
-                  //   'attribute' => 'lastposition',
-                  //   'data' => ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'subjobfamily', 'subjobfamily'),
-                  //   'options' => ['placeholder' => '--'],
-                  //   'pluginOptions' => [
-                  //     'allowClear' => true,
-                  //     'min-width' => '150px',
-                  //   ],
-                  // ]),
                   'value' => 'userworkexperience.lastposition'
-
                 ],
+                // [
+                //   'attribute' => 'jobfamily',
+                //   'contentOptions'=>['style'=>'width: 120px;'],
+                //   'value' => 'mastersubjobfamily.jobfamily_id'
+                // ],
                 // 'domicilestatus',
                 // 'domicilestatusdescription:ntext',
                 // 'addressktp:ntext',

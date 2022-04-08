@@ -110,10 +110,6 @@ class HiringController extends Controller
   public function actionCreate($userid)
   {
     $recruitreqid = $_POST['recruitreqid'];
-
-    // $tglinput = $_POST['tglinput'];
-    // $awalkontrak = $_POST['awalkontrak'];
-    // $akhirkontrak = $_POST['akhirkontrak'];
     if($recruitreqid){
       // var_dump($recruitreqid);die;
       $model = new Hiring();

@@ -226,7 +226,7 @@ class Userprofile extends \yii\db\ActiveRecord
     }
     public function getMastersubjobfamily()
     {
-        return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamilyid']);
+        return $this->hasOne(Mastersubjobfamily::className(), ['userid' => 'jobfamily_id']);
     }
     public function getUserworkexperience()
     {

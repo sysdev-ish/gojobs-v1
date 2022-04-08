@@ -35,9 +35,10 @@ class Recruitmentcandidate extends \yii\db\ActiveRecord
     {
         return [
             [['recruitreqid'], 'required'],
-            [['userid', 'recruitreqid', 'status','method'], 'integer'],
+            [['userid', 'recruitreqid', 'status','method','jobfamily','subjobfamily'], 'integer'],
             [['createtime', 'updatetime'], 'safe'],
             [['invitationnumber','kodetoken'], 'string', 'max' => 45],
+            // [['jobfamily','subjobfamily'], 'string', 'max'=>256],
         ];
     }
 
@@ -57,6 +58,8 @@ class Recruitmentcandidate extends \yii\db\ActiveRecord
             'invitationnumber' => 'Invitation number',
             'typeinterview' => 'Type',
             'kodetoken' => 'Kode Token',
+            'jobfamily' => 'Job Family',
+            'subjobfamily' => 'Sub Job Family',
         ];
     }
     public function getUserprofile()
@@ -78,5 +81,13 @@ class Recruitmentcandidate extends \yii\db\ActiveRecord
     public function getHiringproc()
     {
         return $this->hasMany(Hiring::className(), ['userid' => 'userid']);
+    }
+    public function getJobfamily()
+    {
+        return $this->hasOne(Masterjobfamily::className(), ['id' => 'jobfamily']);
+    }
+    public function getSubjobfamily()
+    {
+        return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamily']);
     }
 }

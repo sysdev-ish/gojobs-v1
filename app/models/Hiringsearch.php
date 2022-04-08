@@ -56,7 +56,6 @@ class Hiringsearch extends Hiring
         $query->leftJoin('masterjobfamily', 'masterjobfamily.id = hiring.jobfamily');
         $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.id = hiring.subjobfamily');
 
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => ['defaultOrder' => ['id' => SORT_DESC]]

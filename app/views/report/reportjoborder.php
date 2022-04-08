@@ -197,7 +197,6 @@ app\assets\ReportAsset::register($this);
                       'format' => 'raw',
                       'value'=>function ($data) {
                         $getcandidate = Recruitmentcandidate::find()->where(['recruitreqid'=>$data->id])->all();
-
                       return ($getcandidate)?count($getcandidate):"";
                     }
 
@@ -259,20 +258,22 @@ app\assets\ReportAsset::register($this);
                       'label' => 'Job Family',
                       'format' => 'raw',
                       'value' => function ($data) {
-                        $re = Transrincian::find()->where(['id'=>$data->id])->one();
-                        $recjob = Recruitmentcandidate::find()->where(['id' => $re->id])->one();
-                        // return ($re->jobfamily)? 'Job Family'  .$re->jobfamily : "";
-                        return ($recjob) ? $recjob->jobfamily : "";
+                        $getcandidate = Recruitmentcandidate::find()->where(['recruitreqid' => $data->id])->one();
+                        $getjobfamily = Masterjobfamily::find()->where(['id' => $getcandidate])->one();
+                        $data = Masterjobfamily::find()->where(['jobfamily' => $getjobfamily])->one();
+                        // return ($getcandidate)? $getcandidate->jobfamily : '';
+                        return ($data) ? $data->jobfamily : "";
                       }
                     ],
                     [
                       'label' => 'Sub Job Family',
                       'format' => 'raw',
                       'value' => function ($data) {
-                        $re = Transrincian::find()->where(['id' => $data->id])->one();
-                        $recjob = Recruitmentcandidate::find()->where(['id' => $re->id])->one();
-                        // return ($re->subjobfamily)? 'Sub Job Family'  .$re->subjobfamily : "";
-                        return ($recjob) ? $recjob->subjobfamily : "";
+                          $getcandidate = Recruitmentcandidate::find()->where(['recruitreqid' => $data->id])->one();
+                          $getjobfamily = Mastersubjobfamily::find()->where(['id' => $getcandidate])->one();
+                          $data = Mastersubjobfamily::find()->where(['subjobfamily' => $getjobfamily])->one();
+                          // return ($getcandidate)? $getcandidate->jobfamily : '';
+                          return ($data) ? $data->subjobfamily : "";
                         }
                     ],
                     [
@@ -301,11 +302,6 @@ app\assets\ReportAsset::register($this);
                     'columnSelectorOptions'=>[
                         'label' => 'Columns',
                     ],
-                    // 'stream' => false, // this will automatically save file to a folder on web server
-                    // 'afterSaveView' => '_view', // this view file can be overwritten with your own that displays the generated file link
-                    // 'target' => '_blank',
-                    // 'folder' => '@webroot/exportemp', // this is default save folder on server
-                    // 'linkPath' => '/exportemp', // the web accessible location to the above folder
                     'exportConfig' => [
                         ExportMenu::FORMAT_HTML => false,
                         ExportMenu::FORMAT_TEXT => false,
@@ -403,37 +399,28 @@ app\assets\ReportAsset::register($this);
                     return ($data->jumlah)?$data->jumlah:"";
                     }
                   ],
-                  // [
-                  //   'label' => 'Job Family',
-                  //   'format' => 'raw',
-                  //   'value' => function ($data) {
-                  //     $data = Masterjobfamily::find()->where(['id' => $data->jobfamily])->one();
-                  //     return ($data) ? $data->jobfamily : "";
-                  //   }
-
-                  // ],
-                  // [
-                  //   'label' => 'Sub Job Family',
-                  //   'format' => 'raw',
-                  //   'value' => function ($data) {
-                  //     $data = Mastersubjobfamily::find()->where(['id' => $data->subjobfamily])->one();
-                  //     return ($data) ? $data->subjobfamily : "";
-                  //   }
-                  // ],
-                  // [
-                  //   'label' => 'job family',
-                  //   'format' => 'raw',
-                  //   'value'=>function ($data) {
-                  //   return ($data->jobfamily)?$data->jobfamily:"";
-                  //   }
-                  // ],
-                  // [
-                  //   'label' => 'sub job family',
-                  //   'format' => 'raw',
-                  //   'value'=>function ($data) {
-                  //   return ($data->subjobfamily)?$data->subjobfamily:"";
-                  //   }
-                  // ],
+                  [
+                    'label' => 'Job Family',
+                    'format' => 'raw',
+                    'value' => function($data) {
+                      $getcandidate = Recruitmentcandidate::find()->where(['recruitreqid' => $data->id])->one();
+                      $getjobfamily = Masterjobfamily::find()->where(['id' => $getcandidate])->one();
+                      $data = Masterjobfamily::find()->where(['jobfamily' => $getjobfamily])->one();
+                      // return ($getcandidate)? $getcandidate->jobfamily : '';
+                      return ($data) ? $data->jobfamily : "";
+                    }
+                  ],
+                  [
+                    'label' => 'Sub Job Family',
+                    'format' => 'raw',
+                    'value' => function($data) {
+                      $getcandidate = Recruitmentcandidate::find()->where(['recruitreqid' => $data->id])->one();
+                      $getjobfamily = Mastersubjobfamily::find()->where(['id' => $getcandidate])->one();
+                      $data = Mastersubjobfamily::find()->where(['subjobfamily' => $getjobfamily])->one();
+                      // return ($getcandidate)? $getcandidate->jobfamily : '';
+                      return ($data) ? $data->subjobfamily : "";
+                    }
+                  ],
                   [
                     'label' => 'Hired',
                     'format' => 'raw',

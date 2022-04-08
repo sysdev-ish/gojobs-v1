@@ -50,7 +50,7 @@ class Userprofilesearch extends Userprofile
         // $query->join('LEFT JOIN', 'MappingCity','MappingCity.city_id = Userprofile.cityid');
         $query->joinWith("city");
         $query->joinWith("userworkexperience");
-
+        $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.subjobfamily = userworkexperience.lastposition');
         // add conditions that should always apply here
 
 
@@ -98,7 +98,7 @@ class Userprofilesearch extends Userprofile
             ->andFilterWhere(['like', 'drivinglicencemotorcyclenumber', $this->drivinglicencemotorcyclenumber])
             ->andFilterWhere(['like', 'kota', $this->cityname])
             ->andFilterWhere(['like', 'userworkexperience.lastposition', $this->lastposition])
-            ->andFilterWhere(['like', 'jobfamily', $this->jobfamily])
+            ->andFilterWhere(['like', 'mastersubjobfamily.jobfamily_id', $this->jobfamily])
             ;
         return $dataProvider;
     }
