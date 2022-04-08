@@ -13,6 +13,8 @@ use app\models\Userprofile;
 class Userprofilesearch extends Userprofile
 {
   public $cityname;
+  public $lastposition;
+  public $jobfamily;
     /**
      * @inheritdoc
      */
@@ -20,7 +22,9 @@ class Userprofilesearch extends Userprofile
     {
         return [
             [['id', 'userid'], 'integer'],
-            [['createtime', 'updatetime', 'fullname', 'nickname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'phone', 'domicilestatus', 'domicilestatusdescription', 'addressktp', 'nationality', 'religion', 'maritalstatus', 'weddingdate', 'bloodtype', 'identitynumber', 'jamsosteknumber', 'npwpnumber', 'drivinglicencecarnumber', 'drivinglicencemotorcyclenumber','cityname','jobfamilyid','subjobfamilyid'], 'safe'],
+            [['createtime', 'updatetime', 'fullname', 'nickname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'phone', 'domicilestatus', 'domicilestatusdescription', 'addressktp', 'nationality', 'religion', 'maritalstatus', 'weddingdate', 'bloodtype', 'identitynumber', 'jamsosteknumber', 'npwpnumber', 'drivinglicencecarnumber', 'drivinglicencemotorcyclenumber','cityname'
+            ,'jobfamily','lastposition'
+            ], 'safe'],
         ];
     }
 
@@ -45,6 +49,7 @@ class Userprofilesearch extends Userprofile
         $query = Userprofile::find();
         // $query->join('LEFT JOIN', 'MappingCity','MappingCity.city_id = Userprofile.cityid');
         $query->joinWith("city");
+        $query->joinWith("userworkexperience");
 
         // add conditions that should always apply here
 
@@ -92,8 +97,8 @@ class Userprofilesearch extends Userprofile
             ->andFilterWhere(['like', 'drivinglicencecarnumber', $this->drivinglicencecarnumber])
             ->andFilterWhere(['like', 'drivinglicencemotorcyclenumber', $this->drivinglicencemotorcyclenumber])
             ->andFilterWhere(['like', 'kota', $this->cityname])
-            ->andFilterWhere(['like', 'jobfamilyid', $this->jobfamilyid])
-            ->andFilterWhere(['like', 'subjobfamilyid', $this->subjobfamilyid])
+            ->andFilterWhere(['like', 'userworkexperience.lastposition', $this->lastposition])
+            ->andFilterWhere(['like', 'jobfamily', $this->jobfamily])
             ;
         return $dataProvider;
     }

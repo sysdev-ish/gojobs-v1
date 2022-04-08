@@ -84,42 +84,22 @@ if(Yii::$app->utils->permission($role,'m14')){
                   'contentOptions'=>['style'=>'width: 120px;']
 
                 ],
-                // [
-                //   'attribute' => 'jobfamilyid',
-                //   'contentOptions' => ['style' => 'min-width: 150px;'],
-                //   'filter' => \kartik\select2\Select2::widget([
-                //     'model' => $searchModel,
-                //     'attribute' => 'jobfamilyid',
-                //     'data' => ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily'),
-                //     'options' => ['placeholder' => '--'],
-                //     'pluginOptions' => [
-                //       'allowClear' => true,
-                //       'min-width' => '150px',
-                //     ],
-                //   ]),
-                //   // 'value' => 'jobfamily'
-                //   'value' => function ($data) {
-                //     return ($data->masterjobfamily) ? $data->masterjobfamily->jobfamily : '';
-                //   }
-                // ],
-                // [
-                //   'attribute' => 'subjobfamilyid',
-                //   'contentOptions' => ['style' => 'min-width: 150px;'],
-                //   'filter' => \kartik\select2\Select2::widget([
-                //     'model' => $searchModel,
-                //     'attribute' => 'subjobfamilyid',
-                //     'data' => ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily'),
-                //     'options' => ['placeholder' => '--'],
-                //     'pluginOptions' => [
-                //       'allowClear' => true,
-                //       'min-width' => '150px',
-                //     ],
-                //   ]),
-                //   // 'value' => 'subjobfamily'
-                //   'value' => function ($data) {
-                //   return ($data->mastersubjobfamily) ? $data->mastersubjobfamily->subjobfamily : '';
-                //   }
-                // ],
+                [
+                  'attribute' => 'lastposition',
+                  'contentOptions' => ['style' => 'min-width: 150px;'],
+                  // 'filter' => \kartik\select2\Select2::widget([
+                  //   'model' => $searchModel,
+                  //   'attribute' => 'lastposition',
+                  //   'data' => ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'subjobfamily', 'subjobfamily'),
+                  //   'options' => ['placeholder' => '--'],
+                  //   'pluginOptions' => [
+                  //     'allowClear' => true,
+                  //     'min-width' => '150px',
+                  //   ],
+                  // ]),
+                  'value' => 'userworkexperience.lastposition'
+
+                ],
                 // 'domicilestatus',
                 // 'domicilestatusdescription:ntext',
                 // 'addressktp:ntext',

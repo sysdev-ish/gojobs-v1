@@ -259,17 +259,17 @@ $(function () {
                           echo Html::activeHiddenInput($modelwexp, "[{$index}]id");
                         } ?>
                         <td class="vcenter">
-                          <?= $form->field($modelwexp, "[{$index}]companyname")->label(false)->textInput(["maxlength" => true]) ?>
+                          <?= $form->field($modelwexp, "[{$index}]companyname")->label(false)->textInput(["maxlength" => true, 'style' => 'width:100px;']) ?>
                         </td>
                         <td class="vcenter">
-                          <?= $form->field($modelwexp, "[{$index}]companyaddress")->label(false)->textArea(["maxlength" => true, 'rows' => '3']) ?>
+                          <?= $form->field($modelwexp, "[{$index}]companyaddress")->label(false)->textArea(["maxlength" => true, 'style' => 'width:100px;', 'rows' => '3']) ?>
                         </td>
                         <td class="vcenter">
                           <?= $form->field($modelwexp, "[{$index}]startdate")->label(false)->widget(
                             DatePicker::className(),
                             [
                               'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                              'options' => ['class' => 'dob', 'placeholder' => 'Date'],
+                              'options' => ['class' => 'dob', 'placeholder' => 'Date', 'style' => 'width:100px;'],
                               'removeButton' => false,
                               'pluginOptions' => [
                                 'autoclose' => true,
@@ -287,7 +287,7 @@ $(function () {
                             DatePicker::className(),
                             [
                               'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                              'options' => ['class' => 'dob', 'placeholder' => 'Date'],
+                              'options' => ['class' => 'dob', 'placeholder' =>'Date', 'style' => 'width:100px;'],
                               'removeButton' => false,
                               'pluginOptions' => [
                                 'autoclose' => true,
@@ -305,7 +305,7 @@ $(function () {
                           echo   $form->field($modelwexp, "[{$index}]lastposition")->label(false)->widget(Select2::classname(), [
                             'data' => $subjobfamily,
                             // 'initValueText' => $recruitreqs, // set the initial display text
-                            'options' => ['placeholder' => 'Pilih Jabatan'],
+                            'options' => ['placeholder' =>'Pilih Jabatan', 'style' => 'width:100px;'],
                             'pluginOptions' => [
                               'allowClear' => true,
                             ],
@@ -313,10 +313,10 @@ $(function () {
                           ?>
                         </td>
                         <td class="vcenter">
-                          <?= $form->field($modelwexp, "[{$index}]salary")->label(false)->textInput(["maxlength" => true]) ?>
+                          <?= $form->field($modelwexp, "[{$index}]salary")->label(false)->textInput(["maxlength" => true, 'style' => 'width:100px;']) ?>
                         </td>
                         <td class="vcenter">
-                          <?= $form->field($modelwexp, "[{$index}]jobdesc")->label(false)->textArea(["maxlength" => true, 'rows' => '3']) ?>
+                          <?= $form->field($modelwexp, "[{$index}]jobdesc")->label(false)->textArea(["maxlength" => true, 'style' => 'width:100px;', 'rows' => '3']) ?>
                         </td>
                         <td class="text-center vcenter">
                           <button type="button" class="delete-item btn btn-danger btn-xs"><i class="fa fa-minus"></i></button>

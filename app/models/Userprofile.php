@@ -188,8 +188,8 @@ class Userprofile extends \yii\db\ActiveRecord
             'lokasikerja' => Yii::t('app', 'Work Location'),
             'cvupload' => 'Curriculum Vitae',
             'jenispekerjaan' => Yii::t('app', 'Working type'),
-            // 'jobfamilyid' => Yii::t('app', 'Job Family'),
-            // 'subjobfamilyid' => Yii::t('app', 'Sub Job Family'),
+            'lastposition' => Yii::t('app', 'Bidang Pekerjaan'),
+            'jobfamily' => Yii::t('app', 'Job Family'),
         ];
     }
     public function getCity()
@@ -228,5 +228,8 @@ class Userprofile extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamilyid']);
     }
-
+    public function getUserworkexperience()
+    {
+        return $this->hasOne(Userworkexperience::className(), ['userid' => 'userid']);
+    }
 }
