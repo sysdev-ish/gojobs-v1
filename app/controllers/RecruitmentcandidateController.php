@@ -21,6 +21,7 @@ use app\models\Recruitmentcandidatesearch;
 use app\models\Mappingjob;
 use app\models\Masterjobfamily;
 use app\models\Mastersubjobfamily;
+use Codeception\Lib\Di;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -486,28 +487,26 @@ class RecruitmentcandidateController extends Controller
       }
     }
 
-    public function actionApplyjob($userid,$jobsid) //action apply job pada user page -> save ke recruitmentcandidate
+    public function actionApplyjob() //action apply job pada user page -> save ke recruitmentcandidate
     {
-      $recruitreqid = isset($array['recruitreqid']) ? $array['recruitreqid'] : '';
-    // $recruitreqid = $_POST['recruitreqid'];
-      // $recancheck = Recruitmentcandidate::find()->where(['userid' => $userid, 'recruitreqid' => $jobsid])->one();
+      $jobsid = $_GET['jobsid'];
+      $userid = $_GET['userid'];
 
       $model = new Recruitmentcandidate();
-      $transrincian = Transrincian::find()->where(['id' => $recruitreqid])->one();
-      // $transrincianid = Transrincian::find()->where(['id' => $transrincian->id])->one();
-      $hirejabatan = Transrincian::find()->where(['hire_jabatan_sap' => $transrincian->hire_jabatan_sap])->one();
-
+      $recruitreqid = Recruitmentcandidate::find()->where(['recruitreqid' => $jobsid])->one();
+      $transrincian = Transrincian::find()->where(['id' => $recruitreqid])->all();
+      $hirejabatan = Transrincian::find()->where(['hire_jabatan_sap' => $transrincian])->one();
+      // var_dump($hirejabatan);die;      
       $kodejabatan = Mappingjob::find()->where(['kodejabatan' => $hirejabatan])->one();
-      $subjobfamilyid = Mappingjob::find()->where(['subjobfamilyid' => $kodejabatan])->one();
+      $subjobfamilyid = Mappingjob::find()->where(['subjobfamilyid' => $kodejabatan->subjobfamilyid])->one();
+      $mappingid = Mappingjob::find()->where(['id' => $subjobfamilyid])->all();
 
-      // $subjobfamilyid = Mappingjob::findBySql('SELECT * FROM mappingjob')->where(['subjobfamilyid'=>$kodejabatan])->one();
-      $jobfamily = Mastersubjobfamily::find()->where(['id' => $subjobfamilyid])->one();
-      // var_dump($jobfamily);die;
-      $jobfamilyid = Mastersubjobfamily::find()->where(['jobfamily_id' => $jobfamily])->one();
-      // $jobfamilyid = 1;
+      $jobfamily = Mastersubjobfamily::find()->where(['id' => $mappingid])->one();
+      // var_dump($jobfamily->id);die;
+      $jobfamilyid = Mastersubjobfamily::find()->where(['jobfamily_id' => $jobfamily->jobfamily_id])->one();
 
-      $subjobfamily_id = $subjobfamilyid;
-      $jobfamily_id = $jobfamilyid;
+      $subjobfamily_id = $subjobfamilyid->subjobfamilyid;
+      $jobfamily_id = $jobfamilyid->jobfamily_id;
 
       $model->createtime = date('Y-m-d H-i-s');
       $model->updatetime = date('Y-m-d H-i-s');

@@ -143,12 +143,11 @@ class HiringController extends Controller
           $subjobfamilyid = Mappingjob::find()->where(['subjobfamilyid' => $kodejabatan->subjobfamilyid])->one();          
           $mappingid = Mappingjob::find()->where(['id' => $subjobfamilyid])->all();          
 
-          // $subjobfamilyid = Mappingjob::findBySql('SELECT * FROM mappingjob')->where(['subjobfamilyid'=>$kodejabatan])->one();
           $jobfamily = Mastersubjobfamily::find()->where(['id' => $mappingid])->one();
-          // var_dump($jobfamily->id);die;
           $jobfamilyid = Mastersubjobfamily::find()->where(['jobfamily_id'=> $jobfamily->jobfamily_id])->one();
           
           $transjo = Transjo::find()->where(['nojo'=>$transrincian->nojo])->one();
+          // $typerekrut = Transrincian::find()->where(['type_rekrut'=>$transrincian->type_rekrut])->one();
           
           $awalkontrak =$transjo->tanggal;
           $lama = substr($transjo->lama,0,2);
@@ -167,7 +166,7 @@ class HiringController extends Controller
             $model->akhirkontrak = $akhirkontrak;
             $model->subjobfamily = $subjobfamily_id;
             $model->jobfamily = $jobfamily_id;
-            // var_dump($model->jobfamily);die;
+            // $model->type_rekrut = $typerekrut;
             $model->statushiring = 1;
             $model->statusbiodata = 1;
             if($transjo->flag_peralihan == 1){

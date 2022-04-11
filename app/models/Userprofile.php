@@ -66,6 +66,7 @@ class Userprofile extends \yii\db\ActiveRecord
 
             [['photo','cvupload'], 'file', 'skipOnEmpty' => 'true', 'maxSize' => 5072000, 'tooBig' => 'Limit is 5Mb', 'extensions' => 'png, jpg, jpeg'],
             [['identitynumber'], 'unique'],
+
             ['bpjsnumber', 'required', 'when' => function ($model) {
                   return $model->havebpjs;
               }, 'whenClient' => new \yii\web\JsExpression("
@@ -73,8 +74,6 @@ class Userprofile extends \yii\db\ActiveRecord
                     return $('#userprofile-havebpjs').is(':checked');
                 }
             ")],
-
-
             ['jamsosteknumber', 'required', 'when' => function ($model) {
                   return $model->jamsosteknumber;
               }, 'whenClient' => new \yii\web\JsExpression("

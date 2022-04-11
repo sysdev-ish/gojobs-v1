@@ -61,9 +61,9 @@ class Joborderreport extends Transrincian
       $query->joinWith("transjo");
       $query->joinWith("persasap");
       $query->joinWith("areasap");
-      // $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.id = hiring.subjobfamily');
-
       // $query->leftJoin('rekruitment_dev.recruitmentcandidate'.'recruitmentcandidate');
+      // $query->leftJoin('recruitmentcandidate', 'recruitmentcandidate.id = hiring.subjobfamily');
+
 
       $query->andWhere('trans_rincian_rekrut.skema = 1');
       $query->andWhere('trans_rincian_rekrut.typejo <> 3');

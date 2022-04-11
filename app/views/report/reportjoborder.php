@@ -381,13 +381,10 @@ app\assets\ReportAsset::register($this);
                         case 4:
                           $status = "Done (Revised JO)";
                           break;
-
                         default:
                           $status = '';
                           break;
                       }
-
-
                     return $status;
                   }
 

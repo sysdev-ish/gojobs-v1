@@ -2,6 +2,7 @@
 
 use app\models\Masterjobfamily;
 use app\models\Mastersubjobfamily;
+use app\models\Userworkexperience;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
@@ -89,11 +90,21 @@ if(Yii::$app->utils->permission($role,'m14')){
                   'contentOptions' => ['style' => 'min-width: 150px;'],
                   'value' => 'userworkexperience.lastposition'
                 ],
-                // [
-                //   'attribute' => 'jobfamily',
-                //   'contentOptions'=>['style'=>'width: 120px;'],
-                //   'value' => 'mastersubjobfamily.jobfamily_id'
-                // ],
+                [
+                  'attribute' => 'jobfamily',
+                  'contentOptions'=>['style'=>'width: 120px;'],
+                  'value' => function($data) {
+                      $getid = Userworkexperience::find()->where(['userid' => $data->userid])->one();
+                      $getexperience = Userworkexperience::find()->where(['lastposition' => $getid])->one();
+                      $getsubjobfamily = Mastersubjobfamily::find()->where(['subjobfamily' => $getexperience])->one();
+                      // var_dump($getsubjobfamily);die;
+                      // $getsubjobfamilyid = Mastersubjobfamily::find()->where(['id' => $getsubjobfamily])->all();
+                      // $jobfamilyid = Mastersubjobfamily::find()->where(['jobfamily_id' => $getsubjobfamilyid])->one();
+                      // $data = Masterjobfamily::find()->where(['jobfamily' => $jobfamilyid])->one();
+                      // return ($data) ? $data->jobfamily : "";
+                      return ($getexperience) ? $getexperience->lastposition : "";
+                    }
+                ],
                 // 'domicilestatus',
                 // 'domicilestatusdescription:ntext',
                 // 'addressktp:ntext',

@@ -45,12 +45,9 @@ class Hiring extends \yii\db\ActiveRecord
             [['tglinput','awalkontrak','akhirkontrak','persa','area','skilllayanan','payrollarea','jabatan','level'], 'required', 'on'=>'approveish'],
             [['tglinput','awalkontrak','akhirkontrak'], 'required', 'on'=>'approvesso'],
             // ['recruitreqid' , 'jovalidation', 'on'=>'approve'],
-
             [['userid', 'perner', 'statushiring', 'statusbiodata','flaginfotype022','createdby','updateby','approvedby','rejectedby','recruitreqid','jobfamily','subjobfamily'], 'integer'],
             [['message','keterangan'], 'string', 'max' => 445],
-            [['createtime', 'updatetime','tglinput','awalkontrak','akhirkontrak'
-            ,'jobfamily','subjobfamily'
-            ], 'safe'],
+            [['createtime', 'updatetime','tglinput','awalkontrak','akhirkontrak','jobfamily','subjobfamily'], 'safe'],
         ];
     }
 
@@ -147,8 +144,6 @@ class Hiring extends \yii\db\ActiveRecord
     }
     public function getKodeJabatanSap()
     {
-        //hire_jabatan_sap relate dengan kodejabatan
-        //jabatan_sap relate dengan jabatan_sap
         return $this->hasMany(Transrincian::className(), ['jabatan_sap', 'hire_jabatan_sap']);
     }
 }

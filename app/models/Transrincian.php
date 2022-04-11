@@ -155,11 +155,6 @@ class Transrincian extends \yii\db\ActiveRecord
             'n_project' => 'Project',
         ];
     }
-    public static function tableMasterjobfamily()
-    {
-        return '{{%masterjobfamily}}';
-    }
-
     public function getCity()
     {
         return $this->hasOne(MappingCity::className(), ['city_id' => 'lokasi']);

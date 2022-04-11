@@ -277,13 +277,33 @@ app\assets\ReportAsset::register($this);
                       }
                     ],
                     [
+                      'label' => 'Type Rekrut',
+                      'format' => 'raw',
+                      'value'=>function ($data) {
+                        // return ($data->recrequest->type_rekrut)?$data->recrequest->type_rekrut : "";
+                        switch ($data->recrequest->type_rekrut) {
+                          case 1:
+                            $type = "No Rekrut";
+                            break;
+                          case 2:
+                            $type = "Rekrut";
+                            break;
+                          case 3:
+                            $type = "No Rekrut Existing";
+                            break;
+                          default:
+                            $type = '';
+                            break;
+                        }
+                        return $type;
+                      }
+                    ],
+                    [
                       'label' => 'Jumlah Permintaan SDM',
                       'format' => 'raw',
                       'value'=>function ($data) {
-
                         return ($data->recrequest->jumlah)?$data->recrequest->jumlah : "";
-                    }
-
+                      }
                     ],
                     [
                       'label' => 'Status Pemenuhan (hiring)',
@@ -307,8 +327,6 @@ app\assets\ReportAsset::register($this);
                             $status = '';
                             break;
                         }
-
-
                       return $status;
                     }
 
