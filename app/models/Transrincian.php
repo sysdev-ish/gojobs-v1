@@ -190,8 +190,8 @@ class Transrincian extends \yii\db\ActiveRecord
     }
     public function getSkillsap()
     {
-         return $this->hasOne(Sapskilllayanan::className(), ['value1' => 'skill_sap']);
-         // return ($get)?$get : '-';
+        return $this->hasOne(Sapskilllayanan::className(), ['value1' => 'skill_sap']);
+        // return ($get)?$get : '-';
     }
     public function getPersasap()
     {
@@ -201,16 +201,16 @@ class Transrincian extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Transperner::className(), ['id' => 'idpktable']);
     }
-    public function getJobfamily()
+    public function getMasterjobfamily()
     {
         return $this->hasOne(Masterjobfamily::className(), ['id' => 'jobfamily']);
     }
-    public function getSubjobfamily()
+    public function getMastersubjobfamily()
     {
         return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamily']);
     }
-    // public function getRecruitmentcandidate()
-    // {
-    //     return $this->hasOne(Recruitmentcandidate::className(), [])
-    // }
+    public function getRecruitmentcandidate()
+    {
+        return $this->hasOne(Recruitmentcandidate::className(), ['id' => 'recruitreqid']);
+    }
 }

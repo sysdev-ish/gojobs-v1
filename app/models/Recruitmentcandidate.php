@@ -82,11 +82,11 @@ class Recruitmentcandidate extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Hiring::className(), ['userid' => 'userid']);
     }
-    public function getJobfamily()
+    public function getMasterobfamily()
     {
         return $this->hasOne(Masterjobfamily::className(), ['id' => 'jobfamily']);
     }
-    public function getSubjobfamily()
+    public function getMastersubjobfamily()
     {
         return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamily']);
     }

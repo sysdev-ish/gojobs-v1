@@ -61,12 +61,13 @@ class Joborderreport extends Transrincian
       $query->joinWith("transjo");
       $query->joinWith("persasap");
       $query->joinWith("areasap");
-      // $query->leftJoin('rekruitment_dev.recruitmentcandidate'.'recruitmentcandidate');
-      // $query->leftJoin('recruitmentcandidate', 'recruitmentcandidate.id = hiring.subjobfamily');
-
-
       $query->andWhere('trans_rincian_rekrut.skema = 1');
       $query->andWhere('trans_rincian_rekrut.typejo <> 3');
+
+      $query->leftJoin('recruitment_dev.recruitmentcandidate','recruitmentcandidate.recruitreqid  = trans_rincian_rekrut.id');
+      // $query->leftJoin('recruitment_dev.recruitmentcandidate', 'trans_rincian_rekrut.id = recruitmentcandidate.recruitreqid AND (recruitmentcandidate.something=1 OR recruitmentcandidate.something IS NULL)');
+      // $query->andWhere('recruitmentcandidate.jobfamily = masterjobfamily.id');
+      // $query->andWhere('recruitmentcandidate.subjobfamily = mastersubjobfamily.id');
 
       $dataProvider = new ActiveDataProvider([
           'query' => $query,
@@ -105,21 +106,21 @@ class Joborderreport extends Transrincian
           // 'totalpemenuhan' => $totalpemenuhan,
         ];
 
-        if ($this->jobfamily) {
-          $getjobfamilyid = $this->byjobfamily();
-          if ($getjobfamilyid) {
-            $getjobfamilyid = '"' . implode('","', $getjobfamilyid) . '"';
-            $query->andWhere('id IN (' . $getjobfamilyid . ')');
-          }
-        }
+        // if ($this->jobfamily) {
+        //   $getjobfamilyid = $this->byjobfamily();
+        //   if ($getjobfamilyid) {
+        //     $getjobfamilyid = '"' . implode('","', $getjobfamilyid) . '"';
+        //     $query->andWhere('masterjobfamily.id IN (' . $getjobfamilyid . ')');
+        //   }
+        // }
 
-        if ($this->subjobfamily) {
-          $getsubjobfamilyid = $this->bysubjobfamily();
-          if ($getsubjobfamilyid) {
-            $getsubjobfamilyid = '"' . implode('","', $getsubjobfamilyid) . '"';
-            $query->andWhere('id IN (' . $getsubjobfamilyid . ')');
-          }
-        }
+        // if ($this->subjobfamily) {
+        //   $getsubjobfamilyid = $this->bysubjobfamily();
+        //   if ($getsubjobfamilyid) {
+        //     $getsubjobfamilyid = '"' . implode('","', $getsubjobfamilyid) . '"';
+        //     $query->andWhere('mastersubjobfamily.id IN (' . $getsubjobfamilyid . ')');
+        //   }
+        // }
 
         return $alldata;
     }
@@ -128,8 +129,11 @@ class Joborderreport extends Transrincian
     protected function byjobfamily()
     {
       $ret = null;
-      // $jobfamily = Masterjobfamily::find();
+      $jobfamily = Masterjobfamily::find();
       if ($this->jobfamily) {
+        $jobfamily->andWhere([
+          'id' => $this->jobfamily,
+        ]);
         $getjobfamilyid = Masterjobfamily::find()->andWhere('jobfamily LIKE :jobfamily', [':jobfamily' => '%' . $this->jobfamily . '%'])->all();
         if ($getjobfamilyid) {
           $jobfamilyid = array();
@@ -145,8 +149,11 @@ class Joborderreport extends Transrincian
     protected function bysubjobfamily()
     {
       $ret = null;
-      // $jobfamily = Mastersubjobfamily::find();
+      $subjobfamily = Mastersubjobfamily::find();
       if ($this->subjobfamily) {
+        $subjobfamily->andWhere([
+          'id' => $this->subjobfamily,
+        ]);
         $getsubjobfamilyid = Mastersubjobfamily::find()->andWhere('subjobfamily LIKE :subjobfamily', [':subjobfamily' => '%' . $this->subjobfamily . '%'])->all();
         if ($getsubjobfamilyid) {
           $subjobfamilyid = array();

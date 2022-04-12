@@ -56,13 +56,9 @@ class Transrinciansearch extends Transrincian
         $query->joinWith("transjo");
         $query->joinWith("city")->distinct();
         $query->joinWith("jabatansap");
-        // $query->joinWith("transkomponen");
-        // $query->where('trans_jo.type_jo <= 2');
-        // $query->andWhere('trans_jo.type_replace = 2');
-        // $query->andWhere(['like', 'trans_komponen.komponen', 'biaya']);
-        // $query->andWhere('trans_jo.new_rekrut = 2');
         $query->andWhere('trans_rincian_rekrut.skema = 1');
         $query->andWhere('trans_rincian_rekrut.typejo <> 3');
+        // $query->leftJoin('rekruitment_dev.rekruitmentcandidate','');
 
         //type jo
         // 1 = new rekrut, 2 = replace
@@ -73,7 +69,6 @@ class Transrinciansearch extends Transrincian
         // $query->andWhere('approval <> 2');
         // $query->andWhere('trans_jo.approval = 5');
         // $query->andWhere('flag_app <> 2');
-
         // $query->andWhere('trans_jo.bekerja >= "2019-01-01" OR trans_jo.bekerja = ""');
 
 
@@ -153,7 +148,9 @@ class Transrinciansearch extends Transrincian
             ->andFilterWhere(['like', 'job_function.name_job_function', $this->jobfunclike])
             ->andFilterWhere(['like', 'mapping_city.city_name', $this->city])
             // ->andFilterWhere(['like', 'trans_jo.jumlah', $this->statusrekrut])
-            ->andFilterWhere(['or',['like', 'trans_jo.n_project', $this->project],['like', 'trans_jo.project', $this->project]]);
+            ->andFilterWhere(['or',['like', 'trans_jo.n_project', $this->project],['like', 'trans_jo.project', $this->project]])
+            // ->andFilterWhere(['like', ''])
+            ;
 
         return $dataProvider;
     }

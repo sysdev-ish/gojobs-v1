@@ -496,13 +496,11 @@ class RecruitmentcandidateController extends Controller
       $recruitreqid = Recruitmentcandidate::find()->where(['recruitreqid' => $jobsid])->one();
       $transrincian = Transrincian::find()->where(['id' => $recruitreqid])->all();
       $hirejabatan = Transrincian::find()->where(['hire_jabatan_sap' => $transrincian])->one();
-      // var_dump($hirejabatan);die;      
       $kodejabatan = Mappingjob::find()->where(['kodejabatan' => $hirejabatan])->one();
       $subjobfamilyid = Mappingjob::find()->where(['subjobfamilyid' => $kodejabatan->subjobfamilyid])->one();
       $mappingid = Mappingjob::find()->where(['id' => $subjobfamilyid])->all();
 
       $jobfamily = Mastersubjobfamily::find()->where(['id' => $mappingid])->one();
-      // var_dump($jobfamily->id);die;
       $jobfamilyid = Mastersubjobfamily::find()->where(['jobfamily_id' => $jobfamily->jobfamily_id])->one();
 
       $subjobfamily_id = $subjobfamilyid->subjobfamilyid;
