@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Mappingjob;
 use app\models\Masterjobfamily;
 use app\models\Mastersubjobfamily;
 use app\models\Userworkexperience;
@@ -93,16 +94,17 @@ if(Yii::$app->utils->permission($role,'m14')){
                 [
                   'attribute' => 'jobfamily',
                   'contentOptions'=>['style'=>'width: 120px;'],
+                  'format' => 'raw',
                   'value' => function($data) {
                       $getid = Userworkexperience::find()->where(['userid' => $data->userid])->one();
                       $getexperience = Userworkexperience::find()->where(['lastposition' => $getid])->one();
-                      $getsubjobfamily = Mastersubjobfamily::find()->where(['subjobfamily' => $getexperience])->one();
-                      // var_dump($getsubjobfamily);die;
-                      // $getsubjobfamilyid = Mastersubjobfamily::find()->where(['id' => $getsubjobfamily])->all();
-                      // $jobfamilyid = Mastersubjobfamily::find()->where(['jobfamily_id' => $getsubjobfamilyid])->one();
-                      // $data = Masterjobfamily::find()->where(['jobfamily' => $jobfamilyid])->one();
-                      // return ($data) ? $data->jobfamily : "";
-                      return ($getexperience) ? $getexperience->lastposition : "";
+                      // var_dump($getexperience);die;
+                      $subjobfamily = Mastersubjobfamily::find()->where(['subjobfamily'=> $getexperience])->one();
+                      $jobfamily = Mastersubjobfamily::find()->where(['jobfamily_id'=> $subjobfamily])->one();
+                      $jobfamilyid = Masterjobfamily::find()->where(['id'=> $jobfamily])->one();
+                      // return ($getexperience) ? $getexperience->lastposition : "";
+                      return ($jobfamilyid) ? $jobfamilyid->jobfamily : "";
+                      // return ($jobfamilyid);
                     }
                 ],
                 // 'domicilestatus',

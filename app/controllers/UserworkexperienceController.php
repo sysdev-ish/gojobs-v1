@@ -137,7 +137,6 @@ class UserworkexperienceController extends Controller
 
   }
 
-
   /**
   * Creates a new Userworkexperience model.
   * If creation is successful, the browser will be redirected to the 'view' page.
@@ -163,7 +162,6 @@ class UserworkexperienceController extends Controller
         }
 
         $valid = Modeldynamic::validateMultiple($modelwexp);
-
 
         if ($valid) {
           $transaction = \Yii::$app->db->beginTransaction();
@@ -221,7 +219,6 @@ class UserworkexperienceController extends Controller
 
         $valid = Modeldynamic::validateMultiple($modelwexp);
 
-
         if ($valid) {
           $transaction = \Yii::$app->db->beginTransaction();
           try {
@@ -276,8 +273,6 @@ class UserworkexperienceController extends Controller
 
     $modelwexps = Userworkexperience::findAll(['id' => $oldIDs]);
     $modelwexp = (empty($modelwexps)) ? [new Userworkexperience] : $modelwexps;
-
-
 
     if ($model->load(Yii::$app->request->post())) {
 

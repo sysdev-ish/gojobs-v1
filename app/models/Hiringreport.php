@@ -162,7 +162,6 @@ class Hiringreport extends Hiring
         // $query->andFilterWhere(['like', 'subjobfamily', $this->subjobfamily]);
         if ($this->subjobfamily) {
           $query->andWhere('mastersubjobfamily.id = :msjId', [':msjId' => $this->subjobfamily]);
-
         }
 
         $bypersonalarea = $this->joGroupBypersa($params,$dataProvider);

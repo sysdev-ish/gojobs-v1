@@ -78,7 +78,7 @@ $baseUrl = Yii::$app->request->baseUrl;
                         <ul class="careerfy-row">
                             <li class="careerfy-column-3">
                                 <i class="careerfy-icon careerfy-engineer"></i>
-                                <a href="#">construction / facilities</a>
+                                <a href="#"><?= Yii::t('app', "construction / facilities") ?>.</a>
                                 <span>(15 Open Vacancies)</span>
                             </li>
                             <li class="careerfy-column-3">

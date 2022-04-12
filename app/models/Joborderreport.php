@@ -64,10 +64,10 @@ class Joborderreport extends Transrincian
       $query->andWhere('trans_rincian_rekrut.skema = 1');
       $query->andWhere('trans_rincian_rekrut.typejo <> 3');
 
-      $query->leftJoin('recruitment_dev.recruitmentcandidate','recruitmentcandidate.recruitreqid  = trans_rincian_rekrut.id');
+      $query->leftJoin('recruitment_dev.recruitmentcandidate','recruitmentcandidate.recruitreqid = trans_rincian_rekrut.id');
       // $query->leftJoin('recruitment_dev.recruitmentcandidate', 'trans_rincian_rekrut.id = recruitmentcandidate.recruitreqid AND (recruitmentcandidate.something=1 OR recruitmentcandidate.something IS NULL)');
-      // $query->andWhere('recruitmentcandidate.jobfamily = masterjobfamily.id');
-      // $query->andWhere('recruitmentcandidate.subjobfamily = mastersubjobfamily.id');
+      $query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = recruitmentcandidate.jobfamily');
+      $query->leftJoin('recruitment_dev.mastersubjobfamily', 'mastersubjobfamily.id = recruitmentcandidate.subjobfamily');
 
       $dataProvider = new ActiveDataProvider([
           'query' => $query,
@@ -121,6 +121,14 @@ class Joborderreport extends Transrincian
         //     $query->andWhere('mastersubjobfamily.id IN (' . $getsubjobfamilyid . ')');
         //   }
         // }
+        // $query->andFilterWhere(['like', 'jobfamily', $this->jobfamily]);
+        if ($this->jobfamily) {
+          $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily]);
+        }
+        // $query->andFilterWhere(['like', 'subjobfamily', $this->subjobfamily]);
+        if ($this->subjobfamily) {
+          $query->andWhere('mastersubjobfamily.id = :msjId', [':msjId' => $this->subjobfamily]);
+        }
 
         return $alldata;
     }

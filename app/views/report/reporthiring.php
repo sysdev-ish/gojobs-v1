@@ -277,7 +277,7 @@ app\assets\ReportAsset::register($this);
                       }
                     ],
                     [
-                      'label' => 'Type Rekrut',
+                      'label' => 'Tipe Rekrut',
                       'format' => 'raw',
                       'value'=>function ($data) {
                         // return ($data->recrequest->type_rekrut)?$data->recrequest->type_rekrut : "";
