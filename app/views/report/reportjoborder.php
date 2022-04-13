@@ -259,10 +259,9 @@ app\assets\ReportAsset::register($this);
                     [
                       'label' => 'Job Family',
                       'format' => 'raw',
-                      'value' => function ($data) {
+                      'value' => function($data) {                      
                         $candidateid = Recruitmentcandidate::find()->where(['recruitreqid' => $data->id])->one(); //clearid
-                        $id = Recruitmentcandidate::find()->where(['jobfamily' => $candidateid])->one();
-                        $data = Masterjobfamily::find()->where(['id' => $id])->one();
+                        $data = Masterjobfamily::find()->where(['id' => $candidateid->jobfamily])->one();
                         return ($data) ? $data->jobfamily : "";
                       }
                     ],
@@ -271,8 +270,7 @@ app\assets\ReportAsset::register($this);
                       'format' => 'raw',
                       'value' => function ($data) {
                         $candidateid = Recruitmentcandidate::find()->where(['recruitreqid' => $data->id])->one(); //clearid
-                        $id = Recruitmentcandidate::find()->where(['subjobfamily' => $candidateid])->one();
-                        $data = Mastersubjobfamily::find()->where(['id' => $id])->one();
+                        $data = Mastersubjobfamily::find()->where(['id' => $candidateid->subjobfamily])->one();
                         return ($data) ? $data->subjobfamily : "";
                       }
                     ],
@@ -401,8 +399,7 @@ app\assets\ReportAsset::register($this);
                     'format' => 'raw',
                     'value' => function($data) {                      
                       $candidateid = Recruitmentcandidate::find()->where(['recruitreqid' => $data->id])->one(); //clearid
-                      $id = Recruitmentcandidate::find()->where(['jobfamily' => $candidateid])->one();
-                      $data = Masterjobfamily::find()->where(['id' => $id])->one();
+                      $data = Masterjobfamily::find()->where(['id' => $candidateid->jobfamily])->one();
                       return ($data) ? $data->jobfamily : "";
                     }
                   ],
@@ -411,10 +408,7 @@ app\assets\ReportAsset::register($this);
                     'format' => 'raw',
                     'value' => function($data) {
                       $candidateid = Recruitmentcandidate::find()->where(['recruitreqid' => $data->id])->one(); //clearid
-                      $sub = Recruitmentcandidate::find()->where(['subjobfamily' => $candidateid])->one();
-                      // var_dump($sub);die;
-                      $data = Mastersubjobfamily::find()->where(['id'=>$sub])->one();
-                      // return ($sub) ? $sub->subjobfamily : "";
+                      $data = Mastersubjobfamily::find()->where(['id' => $candidateid->subjobfamily])->one();
                       return ($data) ? $data->subjobfamily : "";
                     }
                   ],

@@ -226,10 +226,8 @@ if(Yii::$app->utils->permission($role,'m37')){
                   'attribute' => 'userpm',
                   'contentOptions'=>['style'=>'min-width: 100px;'],
                   'format' => 'html',
-
                   'value'=>function ($data) {
                     return ($data->recrequest)?(($data->recrequest->userpm)?((Yii::$app->utils->getusername($data->recrequest->userpm))?Yii::$app->utils->getusername($data->recrequest->userpm):$data->recrequest->userpm):''):"-";
-
                 }
 
                 ],

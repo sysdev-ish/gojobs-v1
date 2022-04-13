@@ -318,7 +318,7 @@ address                         { font-style: italic; }
     content: '';
     position: absolute;
     left: 0px;
-    bottom: 5px;
+    bottom: 25px;
     width: 100%;
     height: 2px;
     opacity: 0;
@@ -331,7 +331,7 @@ address                         { font-style: italic; }
 .navbar-nav > li:hover > a:before,
 .navbar-nav > li.active > a:before {
     opacity: 1;
-    bottom: -1px;
+    /* bottom: 20px; */
 }
 .navbar-nav li:hover > .sub-menu {
     opacity: 1;
@@ -486,6 +486,7 @@ address                         { font-style: italic; }
     display: inline-block;
     width: 85%;
     margin-bottom: 33px;
+    border-radius: 24px;
 }
 .careerfy-banner-search ul,
 .careerfy-banner-search input[type="text"],

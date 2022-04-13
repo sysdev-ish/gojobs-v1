@@ -18,6 +18,7 @@ use app\models\Mappingjob;
 use app\models\Masterjobfamily;
 use app\models\Mastersubjobfamily;
 use app\models\Recruitmentcandidatefhsearch;
+use app\models\Userlogin;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -70,8 +71,6 @@ class HiringController extends Controller
   */
   public function actionIndex()
   {
-
-
     $searchModel = new Hiringsearch();
     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -294,9 +293,6 @@ class HiringController extends Controller
       return 6;
     }
 
-
-
-
   }
   public function actionHiringprocessdev($id)
   {
@@ -402,12 +398,10 @@ class HiringController extends Controller
             // die;
             // echo '<br>';
 
-
             $headers  = [
               'Content-Type: application/json',
               'cache-control: no-cache"=',
             ];
-
 
             $ch = curl_init();
 
@@ -418,8 +412,6 @@ class HiringController extends Controller
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
             // var_dump('ok');die;
-
-
             $response = curl_exec($ch);
 
             curl_close($ch);
@@ -600,6 +592,45 @@ class HiringController extends Controller
                 $model->perner = $ret->pernr;
                 $model->statushiring = 4;
                 $model->message = $ret->message;
+                if($model->statushiring = 4){
+                  $modelrecreq = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
+                  $modeluprofile = Userprofile::find()->where(['userid' => $id])->one();
+                  $modelulogin = Userlogin::find()->where(['id' => $id])->one();
+                  $model->fullname = $modeluprofile->fullname;
+                  $model->userid = $modeluprofile->userid;
+
+                  $to = $modelulogin->email;
+                  $subject = 'Pemberitahuan ' . $modelrecreq->jabatan . ' PT Infomedia Solusi Humanika';
+                  if ($model->statushiring == 4) {
+                    $body = '
+                    <table>
+                    <br>
+                    Semangat Pagiii..
+                    <br>
+                    <br>
+                    Hallo Sdr/i' . $model->fullname . ' .. ,
+                    <br>
+                    </table>
+                    <br>
+                    PT Infomedia Solusi Humanika (ISH) mengucapkan selamat kepada anda yang telah lulus untuk posisi pekerjaan posisi "' . $modelrecreq->jabatan . '", di "' . $modelrecreq->area . '". Kakak telah menyelesaikan semua proses rekrutmen ISH dan dinyatakan diterima bekerja.  
+                    Mohon kesediaan Kakak untuk mengisi umpan balik terlampir dan waktu pengisian cukup +/- 3 menit.
+                    <br>
+                    Silahkan di klik link berikut https://bit.ly/survey-rekrutISH
+                    <br>
+                    Masukan Kakak sangat membantu kami untuk senantiasa memberikan pelayanan terbaik.
+                    <br>
+                    Terimakasih atas partisipasinya 
+                    Salam,  
+                    <br>
+                    <b>
+                    Tim Project Management ISH 
+                    Talented and Qualified People| Solid-Speed-Smart
+                    </b>
+                    ';
+                  }
+                  // var_dump($body);die;
+                  $verification = Yii::$app->utils->sendmail($to, $subject, $body);
+                }
                 $model->save();
               }else{
                 $model->statushiring = 3;
@@ -1911,6 +1942,51 @@ class HiringController extends Controller
       $model->approvedby = Yii::$app->user->identity->id;
       $model->updatetime = date('Y-m-d H-i-s');
       $model->save();
+      $model = $this->findModel($id);
+      $modelrecreq = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
+      $modelcountjo = Hiring::find()->where('recruitreqid = ' . $model->recruitreqid . ' and statushiring <> 5')->count();
+      // var_dump($modelcountjo);die;
+      if ($model->typejo == 1) {
+        $model->setScenario('approveish');
+      } else {
+        $model->setScenario('approvesso');
+      }
+
+      if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+        if ($model->typejo == 1) {
+          $model->statushiring = 2;
+          $model->statusbiodata = 2;
+        } else {
+          $model->statushiring = 8;
+          $model->statusbiodata = 8;
+          $maxperner = Hiring::find()->where(['typejo' => 2])->max('perner');
+          $getnumbperner = substr($maxperner, 6);
+          $getnumbperner = (int)$getnumbperner;
+          $newnumber = $getnumbperner + 1;
+          if ($newnumber < 10) {
+            $newnumber = '000' . $newnumber;
+          } else if ($newnumber < 100) {
+            $newnumber = '00' . $newnumber;
+          } else if ($newnumber < 1000) {
+            $newnumber = '0' . $newnumber;
+          } else {
+            $newnumber = $newnumber;
+          }
+          $newperner = date('Ym') . $newnumber;
+          $model->perner = $newperner;
+        }
+        $model->approvedby = Yii::$app->user->identity->id;
+        $model->updatetime = date('Y-m-d H-i-s');
+        $model->save();
+        if ($modelcountjo == $modelrecreq->jumlah) {
+          if ($modelrecreq->status_rekrut == 3) {
+            $modelrecreq->status_rekrut = 4;
+          } else {
+            $modelrecreq->status_rekrut = 2;
+          }
+          $modelrecreq->save(false);
+        }
+      } 
       if($modelcountjo == $modelrecreq->jumlah){
         if($modelrecreq->status_rekrut == 3){
           $modelrecreq->status_rekrut = 4;
