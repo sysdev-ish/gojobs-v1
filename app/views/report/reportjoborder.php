@@ -257,9 +257,23 @@ app\assets\ReportAsset::register($this);
 
                     ],
                     [
+                      'label' => 'Bulan',
+                      'format' => ['date', 'php:m'],
+                      'value'=>function ($data) {
+                        if($data->typejo == 1){
+                          return ($data->transrincian)? (($data->transrincian->lup_skema AND $data->transrincian->lup_skema <> '0000-00-00')?$data->transrincian->lup_skema : ""):'';
+
+                        }else{
+                          return ($data->transperner)? (($data->transperner->lup_skema AND $data->transperner->lup_skema <> '0000-00-00')?$data->transperner->lup_skema : ""):'';
+
+                        }
+
+                    }
+                    ],
+                    [
                       'label' => 'Job Family',
                       'format' => 'raw',
-                      'value' => function($data) {                      
+                      'value' => function ($data) {
                         $candidateid = Recruitmentcandidate::find()->where(['recruitreqid' => $data->id])->one(); //clearid
                         $data = Masterjobfamily::find()->where(['id' => $candidateid->jobfamily])->one();
                         return ($data) ? $data->jobfamily : "";
@@ -274,21 +288,6 @@ app\assets\ReportAsset::register($this);
                         return ($data) ? $data->subjobfamily : "";
                       }
                     ],
-                    [
-                      'label' => 'Bulan',
-                      'format' => ['date', 'php:m'],
-                      'value'=>function ($data) {
-                        if($data->typejo == 1){
-                          return ($data->transrincian)? (($data->transrincian->lup_skema AND $data->transrincian->lup_skema <> '0000-00-00')?$data->transrincian->lup_skema : ""):'';
-
-                        }else{
-                          return ($data->transperner)? (($data->transperner->lup_skema AND $data->transperner->lup_skema <> '0000-00-00')?$data->transperner->lup_skema : ""):'';
-
-                        }
-
-                    }
-
-                    ],
 
                     ['class' => 'kartik\grid\ActionColumn', 'urlCreator'=>function(){return '#';}]
                 ];
@@ -296,7 +295,8 @@ app\assets\ReportAsset::register($this);
                     'dataProvider' => $dataProvider['dataProvider'],
                     'columns' => $gridColumns,
                     // 'target'=> ExportMenu::TARGET_BLANK,
-                    'batchSize' => 10,
+                    'batchSize' => 12,
+                    'selectedColumns' => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,19],
                     'columnSelectorOptions'=>[
                         'label' => 'Columns',
                     ],
@@ -394,24 +394,20 @@ app\assets\ReportAsset::register($this);
                     return ($data->jumlah)?$data->jumlah:"";
                     }
                   ],
-                  [
-                    'label' => 'Job Family',
-                    'format' => 'raw',
-                    'value' => function($data) {                      
-                      $candidateid = Recruitmentcandidate::find()->where(['recruitreqid' => $data->id])->one(); //clearid
-                      $data = Masterjobfamily::find()->where(['id' => $candidateid->jobfamily])->one();
-                      return ($data) ? $data->jobfamily : "";
-                    }
-                  ],
-                  [
-                    'label' => 'Sub Job Family',
-                    'format' => 'raw',
-                    'value' => function($data) {
-                      $candidateid = Recruitmentcandidate::find()->where(['recruitreqid' => $data->id])->one(); //clearid
-                      $data = Mastersubjobfamily::find()->where(['id' => $candidateid->subjobfamily])->one();
-                      return ($data) ? $data->subjobfamily : "";
-                    }
-                  ],
+                  // [
+                  //   'label' => 'Job Family',
+                  //   'format' => 'raw',
+                  //   'value' => function($data) {
+                  //     return ($data->recruitmentcandidate) ? $data->recruitmentcandidate->jobfamily : ""; //getid from relational
+                  //   }
+                  // ],
+                  // [
+                  //   'label' => 'Sub Job Family',
+                  //   'format' => 'raw',
+                  //   'value' => function($data) {
+                  //     return ($data->recruitmentcandidate) ? $data->recruitmentcandidate->subjobfamily : ""; //getid from relational
+                  //   }
+                  // ],
                   [
                     'label' => 'Hired',
                     'format' => 'raw',

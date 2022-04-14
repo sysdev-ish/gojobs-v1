@@ -1162,7 +1162,7 @@ app\assets\ReportAsset::register($this);
                     ]
                 ]);
 
-                 ?>
+                ?>
               </div>
         </div>
         <div class="box-body">

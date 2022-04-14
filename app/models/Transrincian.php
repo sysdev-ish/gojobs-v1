@@ -211,6 +211,6 @@ class Transrincian extends \yii\db\ActiveRecord
     }
     public function getRecruitmentcandidate()
     {
-        return $this->hasOne(Recruitmentcandidate::className(), ['id' => 'recruitreqid']);
+        return $this->hasOne(Recruitmentcandidate::className(), ['recruitreqid' => 'id']);
     }
 }

@@ -91,22 +91,12 @@ if(Yii::$app->utils->permission($role,'m14')){
                   'contentOptions' => ['style' => 'min-width: 150px;'],
                   'value' => 'userworkexperience.lastposition'
                 ],
-                [
-                  'attribute' => 'jobfamily',
-                  'contentOptions'=>['style'=>'width: 120px;'],
-                  'format' => 'raw',
-                  'value' => function($data) {
-                      $getid = Userworkexperience::find()->where(['userid' => $data->userid])->one();
-                      $getexperience = Userworkexperience::find()->where(['lastposition' => $getid])->one();
-                      // var_dump($getexperience);die;
-                      $subjobfamily = Mastersubjobfamily::find()->where(['subjobfamily'=> $getexperience])->one();
-                      $jobfamily = Mastersubjobfamily::find()->where(['jobfamily_id'=> $subjobfamily])->one();
-                      $jobfamilyid = Masterjobfamily::find()->where(['id'=> $jobfamily])->one();
-                      // return ($getexperience) ? $getexperience->lastposition : "";
-                      return ($jobfamilyid) ? $jobfamilyid->jobfamily : "";
-                      // return ($jobfamilyid);
-                    }
-                ],
+                // [
+                //   'attribute' => 'jobfamily',
+                //   'contentOptions'=>['style'=>'width: 120px;'],
+                //   'format' => 'raw',
+                  // 'value' => 'userworkexperience.lastposition'
+                // ],
                 // 'domicilestatus',
                 // 'domicilestatusdescription:ntext',
                 // 'addressktp:ntext',

@@ -487,7 +487,7 @@ class RecruitmentcandidateController extends Controller
       }
     }
 
-    public function actionApplyjob() //action apply job pada user page -> save ke recruitmentcandidate
+    public function actionApplyjob($userid, $jobsid) //action apply job pada user page -> save ke recruitmentcandidate
     {
       $jobsid = $_GET['jobsid'];
       $userid = $_GET['userid'];
