@@ -23,11 +23,15 @@ ul li:hover .careerfy-employer-grid-btn,.widget_contact_form input[type="submit"
 .careerfy-modren-counter ul li:after,.careerfy-services-classic li:hover span i,.careerfy-pagination-blog ul li span.current,.careerfy-typo-wrap .careerfy-employer-profile-submit,.careerfy-cvupload-file:hover span,
 .careerfy-resume-addbtn,.careerfy-candidate-timeline small:after,.careerfy-employerdetail-btn:hover,.careerfy-company-photo .careerfy-fileUpload span {
     background-color: #00ccff;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 .careerfy-bordercolor,.careerfy-bordercolorhover:hover,.careerfy-jobdetail-btn,.careerfy-employer-list-btn,.careerfy-fileUpload span,.careerfy-employer-confitmation a,.careerfy-candidate-default-btn,
 .careerfy-candidate-download-btn,.careerfy-cvupload-file span,.active .careerfy-simple-priceplane-basic a,.careerfy-additional-priceplane-btn,.careerfy-classic-services i,.careerfy-jobdetail-btn.active,
 .careerfy-typo-wrap .careerfy-employer-profile-submit,.careerfy-typo-wrap .careerfy-findmap-btn,.careerfy-employerdetail-btn,.careerfy-company-photo .careerfy-fileUpload span {
     border-color: #00ccff;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 .careerfy-read-more {
     box-shadow: 0px 0px 0px 2px #00ccff inset;
@@ -43,6 +47,8 @@ ul li:hover .careerfy-employer-grid-btn,.widget_contact_form input[type="submit"
 .careerfy-typo-wrap button:hover, .careerfy-typo-wrap button:focus, .careerfy-typo-wrap input[type="button"]:hover, .careerfy-typo-wrap input[type="button"]:focus,
 .careerfy-typo-wrap input[type="submit"]:hover, .careerfy-typo-wrap input[type="submit"]:focus {
     background-color: #00ccff;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
 .careerfy-modren-counter ul li:after {

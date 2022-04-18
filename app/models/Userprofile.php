@@ -187,6 +187,7 @@ class Userprofile extends \yii\db\ActiveRecord
             'lokasikerja' => Yii::t('app', 'Work Location'),
             'cvupload' => 'Curriculum Vitae',
             'jenispekerjaan' => Yii::t('app', 'Working type'),
+            'industry' => Yii::t('app', 'Industri'),
             'lastposition' => Yii::t('app', 'Bidang Pekerjaan'),
             'jobfamily' => Yii::t('app', 'Job Family'),
         ];
@@ -219,16 +220,12 @@ class Userprofile extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Uservaksin::className(), ['userid' => 'userid']);
     }
-    public function getMasterjobfamily()
-    {
-        return $this->hasOne(Masterjobfamily::className(), ['id' => 'jobfamilyid']);
-    }
-    public function getMastersubjobfamily()
-    {
-        return $this->hasOne(Mastersubjobfamily::className(), ['userid' => 'jobfamily_id']);
-    }
     public function getUserworkexperience()
     {
         return $this->hasOne(Userworkexperience::className(), ['userid' => 'userid']);
+    }
+    public function getMasterjobfamily()
+    {
+        return $this->hasOne(Masterjobfamily::className(), ['jobfamily' => 'jobfamily']);
     }
 }

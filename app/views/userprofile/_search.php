@@ -65,7 +65,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'drivinglicencemotorcyclenumber') ?>
     
-    <?php // echo $form->field($model, 'jobfamily') ?>
+    <?php echo $form->field($model, 'jobfamily') ?>
     
     <?php // echo $form->field($model, 'subjobfamily') ?>
 

@@ -40,7 +40,7 @@ class Userworkexperience extends \yii\db\ActiveRecord
             [['createtime', 'updatetime', 'startdate', 'enddate'], 'safe'],
             [['companyname', 'companyaddress'], 'string', 'max' => 255],
             [['jobdesc'], 'string', 'max' => 500],
-            [['lastposition'], 'string', 'max' => 75],
+            [['lastposition','industry'], 'string', 'max' => 256],
             [['userid'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userid' => 'id']],
         ];
     }
@@ -60,6 +60,7 @@ class Userworkexperience extends \yii\db\ActiveRecord
             'startdate' => 'Start date',
             'enddate' => 'End date',
             'lastposition' => 'Last Position',
+            'industry' => 'Industry',
             'Salary' => 'Salary',
             'jobdesc' => 'Job Description',
         ];

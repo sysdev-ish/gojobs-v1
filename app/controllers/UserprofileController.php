@@ -121,10 +121,13 @@ class UserprofileController extends Controller
     {
         $searchModel = new Userprofilesearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        // $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
+
         // var_dump((Yii::$app->utils->permission(Yii::$app->user->identity->role,'m13')));die;
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            // 'jobfamily' => $jobfamily,
         ]);
     }
 

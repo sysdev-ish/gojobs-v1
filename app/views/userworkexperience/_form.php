@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Masterindustry;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use wbraganca\dynamicform\DynamicFormWidget;
@@ -94,6 +95,7 @@ $(function () {
                       <th style="width:150px; text-align: center"><?= Yii::t('app', 'Start date') ?></th>
                       <th style="width:150px; text-align: center"><?= Yii::t('app', 'End date') ?></th>
                       <th style="width:150px; text-align: center"><?= Yii::t('app', 'Position') ?></th>
+                      <th style="width:150px; text-align: center"><?= Yii::t('app', 'Industry') ?></th>
                       <th style="width:150px; text-align: center"><?= Yii::t('app', 'Salary') ?></th>
                       <th style="width:150px; text-align: center"><?= Yii::t('app', 'Job desc') ?></th>
                       <th style="width:50px; text-align: center"><?= Yii::t('app', 'Action') ?></th>
@@ -152,11 +154,23 @@ $(function () {
                             ?>
                           </td>
                           <td class="vcenter">
-                            <?php $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
+                            <?php $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'subjobfamily', 'subjobfamily');
                             echo   $form->field($modelwexp, "[{$index}]lastposition")->widget(Select2::classname(), [
                               'data' => $subjobfamily,
                               // 'initValueText' => $recruitreqs, // set the initial display text
                               'options' => ['placeholder' => '- Select Sub Jobfamily -'],
+                              'pluginOptions' => [
+                                'allowClear' => true,
+                              ],
+                            ]);
+                            ?>
+                          </td>
+                          <td class="vcenter">
+                            <?php $industry = ArrayHelper::map(Masterindustry::find()->asArray()->all(), 'industry_type', 'industry_type');
+                            echo   $form->field($modelwexp, "[{$index}]industry")->label(false)->widget(Select2::classname(), [
+                              'data' => $industry,
+                              // 'initValueText' => $recruitreqs, // set the initial display text
+                              'options' => ['placeholder' => 'Pilih Industri', 'style' => 'width:100px;'],
                               'pluginOptions' => [
                                 'allowClear' => true,
                               ],
@@ -243,6 +257,7 @@ $(function () {
                     <th style="width:150px; text-align: center"><?= Yii::t('app', 'Start date') ?></th>
                     <th style="width:150px; text-align: center"><?= Yii::t('app', 'End date') ?></th>
                     <th style="width:150px; text-align: center"><?= Yii::t('app', 'Position') ?></th>
+                    <th style="width:150px; text-align: center"><?= Yii::t('app', 'Industry') ?></th>
                     <th style="width:150px; text-align: center"><?= Yii::t('app', 'Salary') ?></th>
                     <th style="width:150px; text-align: center"><?= Yii::t('app', 'Job desc') ?></th>
                     <th style="width:50px; text-align: center"><?= Yii::t('app', 'Action') ?></th>
@@ -287,7 +302,7 @@ $(function () {
                             DatePicker::className(),
                             [
                               'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                              'options' => ['class' => 'dob', 'placeholder' =>'Date', 'style' => 'width:100px;'],
+                              'options' => ['class' => 'dob', 'placeholder' => 'Date', 'style' => 'width:100px;'],
                               'removeButton' => false,
                               'pluginOptions' => [
                                 'autoclose' => true,
@@ -305,7 +320,19 @@ $(function () {
                           echo   $form->field($modelwexp, "[{$index}]lastposition")->label(false)->widget(Select2::classname(), [
                             'data' => $subjobfamily,
                             // 'initValueText' => $recruitreqs, // set the initial display text
-                            'options' => ['placeholder' =>'Pilih Jabatan', 'style' => 'width:100px;'],
+                            'options' => ['placeholder' => 'Pilih Jabatan', 'style' => 'width:100px;'],
+                            'pluginOptions' => [
+                              'allowClear' => true,
+                            ],
+                          ]);
+                          ?>
+                        </td>
+                        <td class="vcenter">
+                          <?php $industry = ArrayHelper::map(Masterindustry::find()->asArray()->all(), 'industry_type', 'industry_type');
+                          echo   $form->field($modelwexp, "[{$index}]industry")->label(false)->widget(Select2::classname(), [
+                            'data' => $industry,
+                            // 'initValueText' => $recruitreqs, // set the initial display text
+                            'options' => ['placeholder' => 'Pilih Industri', 'style' => 'width:100px;'],
                             'pluginOptions' => [
                               'allowClear' => true,
                             ],

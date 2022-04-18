@@ -13,6 +13,7 @@ use app\models\Userprofile;
 class Userprofilesearch extends Userprofile
 {
   public $cityname;
+  public $industry;
   public $lastposition;
   public $jobfamily;
     /**
@@ -23,8 +24,7 @@ class Userprofilesearch extends Userprofile
         return [
             [['id', 'userid'], 'integer'],
             [['createtime', 'updatetime', 'fullname', 'nickname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'phone', 'domicilestatus', 'domicilestatusdescription', 'addressktp', 'nationality', 'religion', 'maritalstatus', 'weddingdate', 'bloodtype', 'identitynumber', 'jamsosteknumber', 'npwpnumber', 'drivinglicencecarnumber', 'drivinglicencemotorcyclenumber','cityname'
-            ,'jobfamily','lastposition'
-            ], 'safe'],
+            ,'jobfamily','lastposition','industry'], 'safe'],
         ];
     }
 
@@ -97,6 +97,7 @@ class Userprofilesearch extends Userprofile
             ->andFilterWhere(['like', 'drivinglicencecarnumber', $this->drivinglicencecarnumber])
             ->andFilterWhere(['like', 'drivinglicencemotorcyclenumber', $this->drivinglicencemotorcyclenumber])
             ->andFilterWhere(['like', 'kota', $this->cityname])
+            ->andFilterWhere(['like', 'userworkexperience.industry', $this->industry])
             ->andFilterWhere(['like', 'userworkexperience.lastposition', $this->lastposition])
             ->andFilterWhere(['like', 'mastersubjobfamily.jobfamily_id', $this->jobfamily])
             ;

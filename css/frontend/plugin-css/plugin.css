@@ -133,9 +133,9 @@
     padding: 12px 20px;
     color: #ffffff;
     font-weight: 500;
-    border-radius: 2px;
+    border-radius: 12px;
     background-color: rgba(0,0,0,0.50);
-    margin: 10px 6px 0px 6px;
+    /* margin: 10px 6px 0px 6px; */
     -webkit-transition: all 0.4s ease-in-out;
        -moz-transition: all 0.4s ease-in-out;
         -ms-transition: all 0.4s ease-in-out;
@@ -200,7 +200,7 @@
     color: #ffffff;
     font-weight: 600;
     text-transform: uppercase;
-    border-radius: 2px;
+    border-radius: 12px;
 }
 /* Job Listing */
 .careerfy-job-listing {

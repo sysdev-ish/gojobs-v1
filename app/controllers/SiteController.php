@@ -27,6 +27,7 @@ use app\models\Tpasif;
 use app\models\Forgotpassword;
 use app\models\Resetpassword;
 use app\models\Chagerequestjo;
+use app\models\Masterjobfamily;
 use linslin\yii2\curl;
 use yii\web\HttpException;
 
@@ -105,8 +106,10 @@ class SiteController extends Controller
     $this->layout = Yii::$app->utils->getlayout();
     $totaljo  = Transrincian::find()->joinWith("jobfunc")->joinWith("transjo")->where('trans_jo.type_jo <= 2')->andWhere('trans_jo.type_replace = 2')->andWhere('trans_rincian_rekrut.status_rekrut <> 2')->count();
     $joblocation  = Transrincian::find()->joinWith("jobfunc")->joinWith("transjo")->where('trans_jo.type_jo <= 2')->andWhere('trans_jo.type_replace = 2')->andWhere('trans_rincian_rekrut.status_rekrut <> 2')->groupBy(['lokasi'])->count();
-
     $jobfunction = Transrincian::find()->joinWith("jobfunc")->joinWith("transjo")->where('trans_jo.type_jo <= 2')->andWhere('trans_jo.type_replace = 2')->andWhere('trans_rincian_rekrut.status_rekrut <> 2')->groupBy(['job_function.name_job_function'])->orderby(['id' => SORT_DESC])->limit(8)->all();
+    $listjob = Transrincian::find()->andWhere('status_rekrut = 1')->orderby(['id' => SORT_ASC])->limit(8)->all();
+    // $listjob = Transrincian::find()->joinWith("jobfunc")->joinWith("transjo")->where("status_rekrut == 1")->all();
+    $jobcategory = Masterjobfamily::find()->andWhere('status = 1')->orderby(['jobfamily' => SORT_ASC])->all();
 
     $totalapplicant = Userprofile::find()->count();
     if(Yii::$app->user->isGuest){
@@ -117,6 +120,8 @@ class SiteController extends Controller
         'totalapplicant' => $totalapplicant,
         'joblocation' => $joblocation,
         'jobfunction' => $jobfunction,
+        'listjob' => $listjob,
+        'jobcategory' => $jobcategory,
       ]);
     }else{
       if(Yii::$app->user->identity->requestforchangepassword == 1){
@@ -129,9 +134,8 @@ class SiteController extends Controller
           if(Yii::$app->user->identity->verify_status == 1 OR Yii::$app->user->identity->role == 1){
             if(Yii::$app->check->datacompleted(Yii::$app->user->identity->id)==0 AND  Yii::$app->user->identity->role == 2){
               return $this->redirect(['userprofile/cwizard']);
-            }else{
-
-
+            }
+            else{
               return $this->render('index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
@@ -139,6 +143,7 @@ class SiteController extends Controller
                 'totalapplicant' => $totalapplicant,
                 'joblocation' => $joblocation,
                 'jobfunction' => $jobfunction,
+                'listjob' => $listjob,
               ]);
             }
 

@@ -20,11 +20,6 @@ $baseUrl = Yii::$app->request->baseUrl;
           <div class="widget_contact_wrap">
             <a class="careerfy-footer-logo" href="index.html"><img src="<?php echo $baseUrl; ?>/images/logo-gojobs-white.png" alt=""></a>
             <p>Mencari dan menyalurkan kandidat yang spesifik sesuai dengan kebutuhan perusahaan.
-              <br>
-              <br>
-              <br>
-
-            <a href="#" class="careerfy-classic-btn careerfy-bgcolor">Learn more</a>
           </div>
         </aside>
         <aside class="widget col-md-8 widget_nav_manu">
@@ -32,7 +27,7 @@ $baseUrl = Yii::$app->request->baseUrl;
           <div class="col-md-4">
             <ul>
               <li><a href="http://gojobs.id/rekrut/site/searchjob">Browse Jobs</a></li>
-              <li><a href="#">Browse Categories</a></li>
+              <li><a href="">Browse Categories</a></li>
             </ul>
           </div>
           <div class="col-md-4">
@@ -57,7 +52,7 @@ $baseUrl = Yii::$app->request->baseUrl;
   <!-- CopyRight -->
   <div class="careerfy-copyright">
     <div class="container">
-      <p>Copyrights © 2018 All Rights Reserved by <a href="https://ish.co.id/" class="careerfy-color" target="_blank">Infomedia Solusi Humanika</a></p>
+      <p>Copyrights © <?php echo date('Y'); ?> All Rights Reserved by <a href="https://ish.co.id/" class="careerfy-color" target="_blank">Infomedia Solusi Humanika</a></p>
       <ul class="careerfy-social-network">
         <li><a href="#" class="careerfy-bgcolorhover fa fa-facebook"></a></li>
         <li><a href="#" class="careerfy-bgcolorhover fa fa-twitter"></a></li>

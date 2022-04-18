@@ -7,11 +7,13 @@ use app\models\Userworkexperience;
 use app\models\Userworkexperienceposition;
 use app\models\Userworkexperiencesearch;
 use app\models\Modeldynamic;
+use app\models\Masterjobfamily;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
+use yii\helpers\Json;
 
 /**
 * UserworkexperienceController implements the CRUD actions for Userworkexperience model.

@@ -1,4 +1,5 @@
 <?php
+
 use yii\widgets\ListView;
 use kartik\select2\Select2Asset;
 use kartik\select2\Select2;
@@ -6,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use app\models\MappingCity;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use yii\helpers\HtmlPurifier;
 /* @var $this yii\web\View */
 
 $this->title = 'Search Job';
@@ -76,7 +78,7 @@ $baseUrl = Yii::$app->request->baseUrl;
 
                     <div class="categories-list">
                         <ul class="careerfy-row">
-                            <li class="careerfy-column-3">
+                            <!-- <li class="careerfy-column-3">
                                 <i class="careerfy-icon careerfy-engineer"></i>
                                 <a href="#"><?= Yii::t('app', "construction / facilities") ?>.</a>
                                 <span>(15 Open Vacancies)</span>
@@ -115,7 +117,18 @@ $baseUrl = Yii::$app->request->baseUrl;
                                 <i class="careerfy-icon careerfy-business"></i>
                                 <a href="#">Sales & Marketing</a>
                                 <span>(40 Open Vacancies)</span>
-                            </li>
+                            </li> -->
+
+                            <?php
+                            foreach ($jobcategory as $data) :
+                            ?>
+                                <li class="careerfy-column-4">
+                                    <i class="careerfy-icon careerfy-business"></i>
+                                    <a href="#"> <?php echo $data['jobfamily']; ?> </a>
+                                    <span><?php // echo $listjob; ?></span>
+                                </li>
+                            <?php endforeach; ?>
+
                         </ul>
                     </div>
                     <div class="careerfy-plain-btn"> <a href="#"><?= Yii::t('app', "Browse All Categories") ?></a> </div>
@@ -139,7 +152,9 @@ $baseUrl = Yii::$app->request->baseUrl;
                         <!-- <a href="#" class="careerfy-static-btn careerfy-bgcolor"><span>Search Jobs</span></a> -->
                     </div>
                 </aside>
-                <aside class="col-md-6 careerfy-typo-wrap"> <div class="careerfy-right"><img src="<?php echo $baseUrl; ?>/extra-images/search-illustration.png" alt=""></div> </aside>
+                <aside class="col-md-6 careerfy-typo-wrap">
+                    <div class="careerfy-right"><img src="<?php echo $baseUrl; ?>/extra-images/search-illustration.png" alt=""></div>
+                </aside>
 
             </div>
         </div>

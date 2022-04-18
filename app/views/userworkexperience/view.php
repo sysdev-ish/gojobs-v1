@@ -57,7 +57,8 @@ $this->params['breadcrumbs'][] = $this->title;
               <th><?= Yii::t('app', 'Company address') ?></th>
               <th><?= Yii::t('app', 'Start date') ?></th>
               <th><?= Yii::t('app', 'End date') ?></th>
-              <th><?= Yii::t('app', 'Position') ?></th>
+              <th><?= Yii::t('app', 'Bidang Pekerjaan') ?></th>
+              <th><?= Yii::t('app', 'Industri') ?></th>
               <th><?= Yii::t('app', 'Salary') ?></th>
               <th><?= Yii::t('app', 'Job desc') ?></th>
             </tr>
@@ -68,6 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
               <td><?php echo $model->startdate; ?></td>
               <td><?php echo $model->enddate; ?></td>
               <td><?php echo $model->lastposition; ?></td>
+              <td><?php echo $model->industry; ?></td>
               <td><?php echo $model->salary; ?></td>
               <td><?php echo $model->jobdesc; ?></td>
             </tr>

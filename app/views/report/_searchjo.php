@@ -139,8 +139,6 @@ use yii\helpers\Url;
             'params' => ['model_id2'],
             'initialize' => true,
           ],
-
-
         ]); ?>
       </div>
     </div>

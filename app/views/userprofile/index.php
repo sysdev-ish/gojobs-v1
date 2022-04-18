@@ -86,17 +86,42 @@ if(Yii::$app->utils->permission($role,'m14')){
                   'contentOptions'=>['style'=>'width: 120px;']
 
                 ],
+                // [
+                //   'attribute' => 'industry',
+                //   'contentOptions'=>['style'=>'width: 120px;'],
+                //   'format' => 'raw',
+                //   'value' => 'userworkexperience.industry'
+                // ],
                 [
                   'attribute' => 'lastposition',
                   'contentOptions' => ['style' => 'min-width: 150px;'],
                   'value' => 'userworkexperience.lastposition'
                 ],
-                // [
-                //   'attribute' => 'jobfamily',
-                //   'contentOptions'=>['style'=>'width: 120px;'],
-                //   'format' => 'raw',
-                  // 'value' => 'userworkexperience.lastposition'
-                // ],
+                [
+                  'attribute' => 'jobfamily',
+                  'contentOptions'=>['style'=>'width: 120px;'],
+                  'format' => 'raw',
+                  'filter' => \kartik\select2\Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'jobfamily',
+                    'data' => ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily'),
+                    'options' => ['placeholder' => 'Job Family'],
+                    'pluginOptions' => [
+                      'allowClear' => true,
+                      // 'minimumInputLength' => 1,
+                      'min-width' => '100px',
+                    ],
+                  ]),
+                  'value' => function ($data) {
+                    $userid = Userworkexperience::find()->where(['userid'=>$data->userid])->one();
+                    $subjob = Userworkexperience::find()->where(['lastposition'=>$userid])->one();
+                    $subjobfamily = Mastersubjobfamily::find()->where(['subjobfamily'=>$subjob])->one();
+                    $subjobfamilyid = Mastersubjobfamily::find()->where(['id'=>$subjobfamily])->one();
+                    $jobfam = Masterjobfamily::find()->where(['id'=>$subjobfamilyid])->one();
+                    // return ($subjobfamilyid) ? $subjobfamilyid->jobfamily_id : '';
+                    return ($jobfam) ? $jobfam->jobfamily : '';
+                  }
+                ],
                 // 'domicilestatus',
                 // 'domicilestatusdescription:ntext',
                 // 'addressktp:ntext',
