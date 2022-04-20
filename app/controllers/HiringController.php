@@ -216,7 +216,7 @@ class HiringController extends Controller
                 }else{
                   $level = '';
                 }
-
+                //notifikasi feedback email ke proman untuk approval hiring gojobs
                 $to = 'proman@ish.co.id';
                 $subject = 'Notifikasi Approval Hiring Gojobs';
                 $body = 'Semangat Pagi,,
@@ -442,8 +442,6 @@ class HiringController extends Controller
           $retpos = ['status'=>"NOK",'message'=>'You have already locked Position','pernr'=>null];
           print_r(json_encode($retpos));
         }
-
-
         // return $this->redirect(['index']);
       }else{
         $model->statushiring = 3;
@@ -464,6 +462,10 @@ class HiringController extends Controller
       $transrincian = Transrincian::find()->where(['id'=>$model->recruitreqid])->one();
       $userprofile = Userprofile::find()->where(['userid'=>$model->userid])->one();
       $tglinput = date_create($model->tglinput);
+      
+      $modelulogin = Userlogin::find()->where(['id' => $id])->one();
+      $model->fullname = $userprofile->fullname;
+      $model->userid = $userprofile->userid;
       // var_dump($transrincian->abkrs_sap);die;
       $curl = new curl\Curl();
       $cekposition =  $curl->setPostParams([
@@ -592,45 +594,6 @@ class HiringController extends Controller
                 $model->perner = $ret->pernr;
                 $model->statushiring = 4;
                 $model->message = $ret->message;
-                if($model->statushiring = 4){
-                  $modelrecreq = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
-                  $modeluprofile = Userprofile::find()->where(['userid' => $id])->one();
-                  $modelulogin = Userlogin::find()->where(['id' => $id])->one();
-                  $model->fullname = $modeluprofile->fullname;
-                  $model->userid = $modeluprofile->userid;
-
-                  $to = $modelulogin->email;
-                  $subject = 'Pemberitahuan ' . $modelrecreq->jabatan . ' PT Infomedia Solusi Humanika';
-                  if ($model->statushiring == 4) {
-                    $body = '
-                    <table>
-                    <br>
-                    Semangat Pagiii..
-                    <br>
-                    <br>
-                    Hallo Sdr/i' . $model->fullname . ' .. ,
-                    <br>
-                    </table>
-                    <br>
-                    PT Infomedia Solusi Humanika (ISH) mengucapkan selamat kepada anda yang telah lulus untuk posisi pekerjaan posisi "' . $modelrecreq->jabatan . '", di "' . $modelrecreq->area . '". Kakak telah menyelesaikan semua proses rekrutmen ISH dan dinyatakan diterima bekerja.  
-                    Mohon kesediaan Kakak untuk mengisi umpan balik terlampir dan waktu pengisian cukup +/- 3 menit.
-                    <br>
-                    Silahkan di klik link berikut https://bit.ly/survey-rekrutISH
-                    <br>
-                    Masukan Kakak sangat membantu kami untuk senantiasa memberikan pelayanan terbaik.
-                    <br>
-                    Terimakasih atas partisipasinya 
-                    Salam,  
-                    <br>
-                    <b>
-                    Tim Project Management ISH 
-                    Talented and Qualified People| Solid-Speed-Smart
-                    </b>
-                    ';
-                  }
-                  // var_dump($body);die;
-                  $verification = Yii::$app->utils->sendmail($to, $subject, $body);
-                }
                 $model->save();
               }else{
                 $model->statushiring = 3;
@@ -670,6 +633,39 @@ class HiringController extends Controller
         print_r(json_encode($retpos));
       }
 
+      if ($model->statushiring) {
+      $to = $modelulogin->email;
+      $subject = 'Pemberitahuan ' . $transrincian->jabatan . ' PT Infomedia Solusi Humanika';
+        if ($model->statushiring == 4) {
+          $body = '
+            <table>
+            <br>
+            Semangat Pagiii..
+            <br>
+            <br>
+            Hallo Sdr/i' . $model->fullname . ' .. ,
+            <br>
+            </table>
+            <br>
+            PT Infomedia Solusi Humanika (ISH) mengucapkan selamat kepada anda yang telah lulus untuk posisi pekerjaan posisi "' . $transrincian->jabatan . '", di "' . $transrincian->area . '". Kakak telah menyelesaikan semua proses rekrutmen ISH dan dinyatakan diterima bekerja.  
+            Mohon kesediaan Kakak untuk mengisi umpan balik terlampir dan waktu pengisian cukup +/- 3 menit.
+            <br>
+            Silahkan di klik link berikut https://bit.ly/survey-rekrutISH
+            <br>
+            Masukan Kakak sangat membantu kami untuk senantiasa memberikan pelayanan terbaik.
+            <br>
+            Terimakasih atas partisipasinya 
+            Salam,  
+            <br>
+            <b>
+            Tim Project Management ISH 
+            Talented and Qualified People| Solid-Speed-Smart
+            </b>
+            ';
+          }
+          // var_dump($body);die;
+          $verification = Yii::$app->utils->sendmail($to, $subject, $body);
+      }
   }
   public function actionHiringprocessmanual($id)
   {

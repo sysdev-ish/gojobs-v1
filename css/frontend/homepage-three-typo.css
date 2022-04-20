@@ -1,7 +1,17 @@
-
+/* @import url('https://fonts.googleapis.com/css?family=Varela+Round&subset=hebrew,latin-ext,vietnamese');
 body {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Varela Round', sans-serif !important;
 }
 h1,h2,h3,h4,h5,h6 {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Varela Round', sans-serif !important;
+} */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+	font-family: 'Poppins', sans-serif !important;
+	/* font-family: 'Varela Round', sans-serif !important; */
+}
+h1,h2,h3,h4,h5,h6 {
+	font-family: 'Poppins', sans-serif !important;
+	/* font-family: 'Varela Round', sans-serif !important; */
 }

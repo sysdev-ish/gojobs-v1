@@ -116,7 +116,7 @@ if(Yii::$app->utils->permission($role,'m14')){
                     $userid = Userworkexperience::find()->where(['userid'=>$data->userid])->one();
                     $subjob = Userworkexperience::find()->where(['lastposition'=>$userid])->one();
                     $subjobfamily = Mastersubjobfamily::find()->where(['subjobfamily'=>$subjob])->one();
-                    $subjobfamilyid = Mastersubjobfamily::find()->where(['id'=>$subjobfamily])->one();
+                    $subjobfamilyid = Mastersubjobfamily::find()->where(['jobfamily_id'=>$subjobfamily])->one();
                     $jobfam = Masterjobfamily::find()->where(['id'=>$subjobfamilyid])->one();
                     // return ($subjobfamilyid) ? $subjobfamilyid->jobfamily_id : '';
                     return ($jobfam) ? $jobfam->jobfamily : '';

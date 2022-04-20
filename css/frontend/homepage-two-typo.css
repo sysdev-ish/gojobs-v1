@@ -1,7 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Varela+Round&subset=hebrew,latin-ext,vietnamese');
+/* @import url('https://fonts.googleapis.com/css?family=Varela+Round&subset=hebrew,latin-ext,vietnamese');
 body {
 	font-family: 'Varela Round', sans-serif !important;
 }
 h1,h2,h3,h4,h5,h6 {
 	font-family: 'Varela Round', sans-serif !important;
+} */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+body {
+	font-family: 'Source Sans Pro', sans-serif !important;
+	/* font-family: 'Varela Round', sans-serif !important; */
+}
+h1,h2,h3,h4,h5,h6 {
+	font-family: 'Source Sans Pro', sans-serif !important;
+	/* font-family: 'Varela Round', sans-serif !important; */
 }

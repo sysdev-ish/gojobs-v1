@@ -78,60 +78,24 @@ $baseUrl = Yii::$app->request->baseUrl;
 
                     <div class="categories-list">
                         <ul class="careerfy-row">
+
                             <!-- <li class="careerfy-column-3">
                                 <i class="careerfy-icon careerfy-engineer"></i>
-                                <a href="#"><?= Yii::t('app', "construction / facilities") ?>.</a>
+                                <a href="#">construction / facilities.</a>
                                 <span>(15 Open Vacancies)</span>
-                            </li>
-                            <li class="careerfy-column-3">
-                                <i class="careerfy-icon careerfy-car"></i>
-                                <a href="#">automotive jobs</a>
-                                <span>(12 Open Vacancies)</span>
-                            </li>
-                            <li class="careerfy-column-3">
-                                <i class="careerfy-icon careerfy-accounting"></i>
-                                <a href="#">Accounting / Finance</a>
-                                <span>(8 Open Vacancies)</span>
-                            </li>
-                            <li class="careerfy-column-3">
-                                <i class="careerfy-icon careerfy-hospital"></i>
-                                <a href="#">Health Care</a>
-                                <span>(5 Open Vacancies)</span>
-                            </li>
-                            <li class="careerfy-column-3">
-                                <i class="careerfy-icon careerfy-antenna"></i>
-                                <a href="#">Telecommunications</a>
-                                <span>(7 Open Vacancies)</span>
-                            </li>
-                            <li class="careerfy-column-3">
-                                <i class="careerfy-icon careerfy-books"></i>
-                                <a href="#">education training</a>
-                                <span>(22 Open Vacancies)</span>
-                            </li>
-                            <li class="careerfy-column-3">
-                                <i class="careerfy-icon careerfy-fast-food"></i>
-                                <a href="#">Restaurant / food services</a>
-                                <span>(30 Open Vacancies)</span>
-                            </li>
-                            <li class="careerfy-column-3">
-                                <i class="careerfy-icon careerfy-business"></i>
-                                <a href="#">Sales & Marketing</a>
-                                <span>(40 Open Vacancies)</span>
                             </li> -->
 
-                            <?php
-                            foreach ($jobcategory as $data) :
-                            ?>
+                            <?php foreach ($jobcategory as $data) : ?>
                                 <li class="careerfy-column-4">
-                                    <i class="careerfy-icon careerfy-business"></i>
-                                    <a href="#"> <?php echo $data['jobfamily']; ?> </a>
-                                    <span><?php // echo $listjob; ?></span>
+                                    <i class="careerfy-icon careerfy-<?php echo $data['icon']; ?>"></i>
+                                    <a href="/rekrut/site/searchjob?Transrinciansearch%5Bjobfunclike%5D=&Transrinciansearch%5Blokasi%5D=&Transrinciansearch%5Bgender%5D=&Transrinciansearch%5Bjobfamily%5D=<?php echo $data['id']; ?>"> <?php echo $data['jobfamily']; ?> </a>
+                                    <span>(<?php echo $totaljocategory; ?> Open Vacancies)</span>
                                 </li>
                             <?php endforeach; ?>
 
                         </ul>
                     </div>
-                    <div class="careerfy-plain-btn"> <a href="#"><?= Yii::t('app', "Browse All Categories") ?></a> </div>
+                    <div class="careerfy-plain-btn"> <a href="/rekrut/site/searchjob"><?= Yii::t('app', "Browse All Categories") ?></a> </div>
                     <!-- Categories -->
                 </div>
 

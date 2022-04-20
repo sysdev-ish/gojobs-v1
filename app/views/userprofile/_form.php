@@ -501,7 +501,6 @@ use yii\helpers\Url;
                       'removeButton' => false,
                       'pluginOptions' => [
                         'autoclose' => true,
-                        'startDate' => '-1y',
                         'format' => 'yyyy-mm-dd',
                         'todayHighlight' => true
                       ]
@@ -570,7 +569,6 @@ use yii\helpers\Url;
                       'removeButton' => false,
                       'pluginOptions' => [
                         'autoclose' => true,
-                        'startDate' => '-1y',
                         'format' => 'yyyy-mm-dd',
                         'todayHighlight' => true
                       ]
@@ -1097,7 +1095,6 @@ use yii\helpers\Url;
                     'removeButton' => false,
                     'pluginOptions' => [
                       'autoclose' => true,
-                      'startDate' => '-1y',
                       'format' => 'yyyy-mm-dd',
                       'todayHighlight' => true
                     ]
@@ -1166,7 +1163,6 @@ use yii\helpers\Url;
                     'removeButton' => false,
                     'pluginOptions' => [
                       'autoclose' => true,
-                      'startDate' => '-1y',
                       'format' => 'yyyy-mm-dd',
                       'todayHighlight' => true
                     ]

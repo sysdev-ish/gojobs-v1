@@ -12,16 +12,17 @@ use app\models\Transrincian;
  */
 class Transrinciansearch extends Transrincian
 {
-  public $jobfunc;
-  public $jobfunclike;
-  public $project;
-  public $city;
-  public $statusrekrut;
-  public $yeardata;
-  public $projectrekrut;
-  public $jabatansap;
-  public $areasap;
-  public $persasap;
+    public $jobfunc;
+    public $jobfunclike;
+    public $project;
+    public $city;
+    public $statusrekrut;
+    public $yeardata;
+    public $projectrekrut;
+    public $jabatansap;
+    public $areasap;
+    public $persasap;
+    public $jobfamily;
     /**
      * @inheritdoc
      */
@@ -29,7 +30,7 @@ class Transrinciansearch extends Transrincian
     {
         return [
             [['id', 'jumlah', 'skema', 'flag_jobs', 'flag_app','idpktable','typejo'], 'integer'],
-            [['nojo', 'jabatan', 'gender', 'pendidikan', 'lokasi', 'atasan', 'kontrak', 'waktu', 'komentar', 'ket_done', 'upd', 'lup', 'upd_jobs', 'lup_jobs', 'upd_app', 'ket_rej', 'status_rekrut', 'ket_rekrut', 'upd_rekrut', 'pic_hi', 'n_pic_hi', 'pic_manar', 'n_pic_manar', 'pic_rekrut', 'n_pic_rekrut', 'level', 'level_txt', 'skilllayanan', 'skilllayanan_txt', 'level_sap', 'persa_sap', 'skill_sap', 'area_sap', 'jabatan_sap', 'jabatan_sap_nm', 'jenis_pro_sap', 'skema_sap', 'abkrs_sap', 'hire_jabatan_sap', 'zparam', 'lup_skema', 'upd_skema','jobfunc','jobfunclike','project','city','statusrekrut', 'n_project','yeardata','jabatansap','areasap','persasap'], 'safe'],
+            [['nojo', 'jabatan', 'gender', 'pendidikan', 'lokasi', 'atasan', 'kontrak', 'waktu', 'komentar', 'ket_done', 'upd', 'lup', 'upd_jobs', 'lup_jobs', 'upd_app', 'ket_rej', 'status_rekrut', 'ket_rekrut', 'upd_rekrut', 'pic_hi', 'n_pic_hi', 'pic_manar', 'n_pic_manar', 'pic_rekrut', 'n_pic_rekrut', 'level', 'level_txt', 'skilllayanan', 'skilllayanan_txt', 'level_sap', 'persa_sap', 'skill_sap', 'area_sap', 'jabatan_sap', 'jabatan_sap_nm', 'jenis_pro_sap', 'skema_sap', 'abkrs_sap', 'hire_jabatan_sap', 'zparam', 'lup_skema', 'upd_skema','jobfunc','jobfunclike','project','city','statusrekrut', 'n_project','yeardata','jabatansap','areasap','persasap','jobfamily'], 'safe'],
         ];
     }
 
@@ -58,7 +59,9 @@ class Transrinciansearch extends Transrincian
         $query->joinWith("jabatansap");
         $query->andWhere('trans_rincian_rekrut.skema = 1');
         $query->andWhere('trans_rincian_rekrut.typejo <> 3');
-        // $query->leftJoin('rekruitment_dev.rekruitmentcandidate','');
+
+        $query->leftJoin('recruitment_dev.recruitmentcandidate', 'recruitmentcandidate.recruitreqid = trans_rincian_rekrut.id');
+        $query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = recruitmentcandidate.jobfamily');
 
         //type jo
         // 1 = new rekrut, 2 = replace
@@ -151,6 +154,10 @@ class Transrinciansearch extends Transrincian
             ->andFilterWhere(['or',['like', 'trans_jo.n_project', $this->project],['like', 'trans_jo.project', $this->project]])
             // ->andFilterWhere(['like', ''])
             ;
+
+            if ($this->jobfamily) {
+                $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily]);
+            }
 
         return $dataProvider;
     }

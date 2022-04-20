@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\MasterJobFamily */
@@ -12,6 +13,31 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
     <div class="box-body table-responsive">
         <?= $form->field($model, 'jobfamily')->textInput(['maxlength' => true]) ?>
+        <?php echo $form->field($model, 'icon')->widget(Select2::classname(), [
+            'data' => [
+                'company-workers' => 'Architecture',
+                'accounting' => 'Accounting',
+                'buildings2' => 'Building',
+                'business' => 'Business',
+                'antenna' => 'Antenna',
+                'car' => 'Car',
+                'coding' => 'Coding',
+                'design-skills' => 'Design',
+                'books' => 'Education',
+                'discuss-issue' => 'Law Public',
+                'engineer' => 'Engineer',
+                'fast-food' => 'Food',
+                'graphic' => 'Graphic',
+                'group' => 'Human Resource',
+                'hospital' => 'Hospital',
+                'mortarboard' => 'Hospitality',
+                'briefcase' => 'Manufacturing',
+                'multimedia' => 'Marketing',
+                'technology' => 'Technology',
+            ],
+            'options' => ['placeholder' => '- Select Icon -'],
+        ])
+        ?>
     </div>
     <div class="box-footer">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success btn-flat']) ?>

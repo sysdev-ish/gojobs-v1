@@ -79,6 +79,7 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                 // 'createtime',
                 // 'updatetime'
                 'jobfamily',
+                'icon',
                 [
                     'attribute' => 'status',
                     'contentOptions' => ['style' => 'min-width: 200px;'],

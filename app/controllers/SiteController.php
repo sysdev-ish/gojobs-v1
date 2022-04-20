@@ -107,9 +107,10 @@ class SiteController extends Controller
     $totaljo  = Transrincian::find()->joinWith("jobfunc")->joinWith("transjo")->where('trans_jo.type_jo <= 2')->andWhere('trans_jo.type_replace = 2')->andWhere('trans_rincian_rekrut.status_rekrut <> 2')->count();
     $joblocation  = Transrincian::find()->joinWith("jobfunc")->joinWith("transjo")->where('trans_jo.type_jo <= 2')->andWhere('trans_jo.type_replace = 2')->andWhere('trans_rincian_rekrut.status_rekrut <> 2')->groupBy(['lokasi'])->count();
     $jobfunction = Transrincian::find()->joinWith("jobfunc")->joinWith("transjo")->where('trans_jo.type_jo <= 2')->andWhere('trans_jo.type_replace = 2')->andWhere('trans_rincian_rekrut.status_rekrut <> 2')->groupBy(['job_function.name_job_function'])->orderby(['id' => SORT_DESC])->limit(8)->all();
-    $listjob = Transrincian::find()->andWhere('status_rekrut = 1')->orderby(['id' => SORT_ASC])->limit(8)->all();
-    // $listjob = Transrincian::find()->joinWith("jobfunc")->joinWith("transjo")->where("status_rekrut == 1")->all();
     $jobcategory = Masterjobfamily::find()->andWhere('status = 1')->orderby(['jobfamily' => SORT_ASC])->all();
+    // $jobcategory = Transrincian::find()->andWhere('trans_rincian_rekrut.status_rekrut <> 1')->leftJoin('recruitment_dev.recruitmentcandidate', 'recruitmentcandidate.recruitreqid = trans_rincian_rekrut.id')->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = recruitmentcandidate.jobfamily')->andWhere('masterjobfamily.status = 1')->orderby(['masterjobfamily.jobfamily' => SORT_DESC])->limit(9)->all();
+
+    $totaljocategory  = Transrincian::find()->andWhere('trans_rincian_rekrut.status_rekrut <> 1')->groupBy(['hire_jabatan_sap'])->count();
 
     $totalapplicant = Userprofile::find()->count();
     if(Yii::$app->user->isGuest){
@@ -120,8 +121,8 @@ class SiteController extends Controller
         'totalapplicant' => $totalapplicant,
         'joblocation' => $joblocation,
         'jobfunction' => $jobfunction,
-        'listjob' => $listjob,
         'jobcategory' => $jobcategory,
+        'totaljocategory' => $totaljocategory,
       ]);
     }else{
       if(Yii::$app->user->identity->requestforchangepassword == 1){
@@ -143,7 +144,8 @@ class SiteController extends Controller
                 'totalapplicant' => $totalapplicant,
                 'joblocation' => $joblocation,
                 'jobfunction' => $jobfunction,
-                'listjob' => $listjob,
+                'jobcategory' => $jobcategory,
+                'totaljocategory' => $totaljocategory,
               ]);
             }
 
@@ -221,7 +223,6 @@ class SiteController extends Controller
       }
 
     }
-
 
     return $this->render('verifycode', [
       'model' => $model,

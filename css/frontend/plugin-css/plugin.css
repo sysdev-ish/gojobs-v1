@@ -303,10 +303,12 @@
     padding: 20px;
     margin: 0px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10);
+    border-radius: 14px;
 }
 .careerfy-subheader-form .careerfy-banner-search ul li:first-child input[type="text"] {
-  border-left: 1px solid #f2f2f2;
-  border-radius: 0px;
+    border-left: 1px solid #f2f2f2;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
 }
 /* FilterAble */
 .careerfy-filterable {
@@ -757,7 +759,9 @@
 .careerfy-joblisting-classic-wrap {
     background-color: #ffffff;
     border: 1px solid #ececec;
-    padding: 20px 19px 13px 14px;
+    /* padding: 20px 19px 13px 14px; */
+    padding: 20px 24px;
+    border-radius: 14px;
 }
 /* JobDetail SubHeader */
 .careerfy-job-subheader {
