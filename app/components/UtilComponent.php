@@ -11,6 +11,7 @@ use app\models\Rolepermission;
 use app\models\Mappinggrouprolepermission;
 
 use app\models\Hiring;
+use app\models\Transrincian;
 use app\models\Mailcounter;
 use app\models\Logactivity;
 
@@ -107,9 +108,6 @@ class UtilComponent extends Component {
         }else{
           $rolepermission = Rolepermission::find()->where(['roleid'=>$roleid,'modulecode'=>$modulecode])->one();
         }
-
-
-
         if($rolepermission){
           $ret = true;
         }else{
@@ -121,8 +119,6 @@ class UtilComponent extends Component {
         }
       }
       }
-
-
     return $ret;
   }
   protected function getroleid($grouprolepermissionid){
@@ -552,7 +548,7 @@ class UtilComponent extends Component {
 
     return $ret;
   }
-  public function getnamebynik($nik){
+  public function getnamebynik ($nik){
 
     $ret = null;
     if($nik){
@@ -580,7 +576,7 @@ class UtilComponent extends Component {
 
     return $ret;
   }
-  public function ordinal($num)
+  public function ordinal ($num)
   {
     $last=substr($num,-1);
     if( $last>3  or
@@ -624,8 +620,6 @@ class UtilComponent extends Component {
   {
     $ret = null;
     $userhired = Hiring::find()->where(['userid'=>$userid,'statushiring'=>4,'statusbiodata'=>4])->one();
-
-
     if($userhired){
       $ret = $userhired;
     }else{
@@ -634,6 +628,7 @@ class UtilComponent extends Component {
 
     return $ret;
   }
+
   function generateRandomString($length = 5) {
 			$chars = "23456789ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz";
 			$charArray = str_split($chars);
@@ -646,6 +641,8 @@ class UtilComponent extends Component {
 			}
 			return $result;
 		}
+
+
     public function insppjp($perner,$joindate){
 
       $ret = null;

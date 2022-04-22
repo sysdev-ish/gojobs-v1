@@ -5,6 +5,9 @@ use kartik\select2\Select2Asset;
 use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
 use app\models\MappingCity;
+use app\models\Masterjobfamily;
+use app\models\Mastersubjobfamily;
+use app\models\Transrincian;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
@@ -79,17 +82,18 @@ $baseUrl = Yii::$app->request->baseUrl;
                     <div class="categories-list">
                         <ul class="careerfy-row">
 
-                            <!-- <li class="careerfy-column-3">
-                                <i class="careerfy-icon careerfy-engineer"></i>
-                                <a href="#">construction / facilities.</a>
-                                <span>(15 Open Vacancies)</span>
-                            </li> -->
 
                             <?php foreach ($jobcategory as $data) : ?>
                                 <li class="careerfy-column-4">
                                     <i class="careerfy-icon careerfy-<?php echo $data['icon']; ?>"></i>
-                                    <a href="/rekrut/site/searchjob?Transrinciansearch%5Bjobfunclike%5D=&Transrinciansearch%5Blokasi%5D=&Transrinciansearch%5Bgender%5D=&Transrinciansearch%5Bjobfamily%5D=<?php echo $data['id']; ?>"> <?php echo $data['jobfamily']; ?> </a>
-                                    <span>(<?php echo $totaljocategory; ?> Open Vacancies)</span>
+                                    <?php
+                                        echo Html::a('Jobcategory', ['id' => $model->id, 'hire_jabatan_sap' => $hire_jabatan_sap], [
+                                            'class' => 'careerfy-column-4',
+                                            'rules' => '/rekrut/site/searchjob?Transrinciansearch%5Bjobfamily%5D='
+                                        ]);
+                                    ?>
+                                    <!-- <a href="/rekrut/site/searchjob?Transrinciansearch%5Bstatus_rekrut%5D=1&Transrinciansearch%5Bjobfamily%5D=<?php //echo $data['id']; ?>"> <?php //echo $data['jobfamily']; ?> </a> -->
+                                    <span>(<?php echo $countcategory; ?> Open Vacancies)</span>
                                 </li>
                             <?php endforeach; ?>
 
@@ -124,14 +128,9 @@ $baseUrl = Yii::$app->request->baseUrl;
         </div>
     </div>
     <!-- Main Section -->
-
-
-
 </div>
 <!-- Main Content -->
-
 <!-- Footer -->
-
 
 <!-- </div> -->
 <!-- Wrapper -->

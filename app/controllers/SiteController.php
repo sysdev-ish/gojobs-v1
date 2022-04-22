@@ -28,6 +28,8 @@ use app\models\Forgotpassword;
 use app\models\Resetpassword;
 use app\models\Chagerequestjo;
 use app\models\Masterjobfamily;
+use app\models\Mastersubjobfamily;
+use app\models\Mappingjob;
 use linslin\yii2\curl;
 use yii\web\HttpException;
 
@@ -107,8 +109,9 @@ class SiteController extends Controller
     $totaljo  = Transrincian::find()->joinWith("jobfunc")->joinWith("transjo")->where('trans_jo.type_jo <= 2')->andWhere('trans_jo.type_replace = 2')->andWhere('trans_rincian_rekrut.status_rekrut <> 2')->count();
     $joblocation  = Transrincian::find()->joinWith("jobfunc")->joinWith("transjo")->where('trans_jo.type_jo <= 2')->andWhere('trans_jo.type_replace = 2')->andWhere('trans_rincian_rekrut.status_rekrut <> 2')->groupBy(['lokasi'])->count();
     $jobfunction = Transrincian::find()->joinWith("jobfunc")->joinWith("transjo")->where('trans_jo.type_jo <= 2')->andWhere('trans_jo.type_replace = 2')->andWhere('trans_rincian_rekrut.status_rekrut <> 2')->groupBy(['job_function.name_job_function'])->orderby(['id' => SORT_DESC])->limit(8)->all();
+    
+    $countcategory = Transrincian::find()->andWhere('trans_rincian_rekrut.status_rekrut <> 2')->count();
     $jobcategory = Masterjobfamily::find()->andWhere('status = 1')->orderby(['jobfamily' => SORT_ASC])->all();
-    // $jobcategory = Transrincian::find()->andWhere('trans_rincian_rekrut.status_rekrut <> 1')->leftJoin('recruitment_dev.recruitmentcandidate', 'recruitmentcandidate.recruitreqid = trans_rincian_rekrut.id')->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = recruitmentcandidate.jobfamily')->andWhere('masterjobfamily.status = 1')->orderby(['masterjobfamily.jobfamily' => SORT_DESC])->limit(9)->all();
 
     $totaljocategory  = Transrincian::find()->andWhere('trans_rincian_rekrut.status_rekrut <> 1')->groupBy(['hire_jabatan_sap'])->count();
 
@@ -122,6 +125,7 @@ class SiteController extends Controller
         'joblocation' => $joblocation,
         'jobfunction' => $jobfunction,
         'jobcategory' => $jobcategory,
+        'countcategory' => $countcategory,
         'totaljocategory' => $totaljocategory,
       ]);
     }else{
@@ -145,6 +149,7 @@ class SiteController extends Controller
                 'joblocation' => $joblocation,
                 'jobfunction' => $jobfunction,
                 'jobcategory' => $jobcategory,
+                'countcategory' => $countcategory,
                 'totaljocategory' => $totaljocategory,
               ]);
             }
@@ -154,9 +159,33 @@ class SiteController extends Controller
           }
         }
       }
-
     }
+  }
+  public function actionSearch()
+  {
+    $searchModel = new Transrinciansearch();
+    $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    $this->layout = Yii::$app->utils->getlayout();
 
+    if (Yii::$app->user->isGuest) {
+      return $this->render('index', [
+        'searchModel' => $searchModel,
+        'dataProvider' => $dataProvider,
+      ]);
+    } else {
+      if (Yii::$app->check->datacompleted(Yii::$app->user->identity->id) == 0 and  Yii::$app->user->identity->role == 2) {
+        if (Yii::$app->user->identity->verify_status == 1) {
+          return $this->redirect(['userprofile/cwizard']);
+        } else {
+          return $this->redirect('verifycode');
+        }
+      } else {
+        return $this->render('index', [
+          'searchModel' => $searchModel,
+          'dataProvider' => $dataProvider,
+        ]);
+      }
+    }
   }
   public function actionChangepassword($id)
   {
@@ -184,6 +213,7 @@ class SiteController extends Controller
     $searchModel = new Transrinciansearch();
     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
     $this->layout = Yii::$app->utils->getlayout();
+
     if(Yii::$app->user->isGuest){
       return $this->render('searchjob', [
         'searchModel' => $searchModel,

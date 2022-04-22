@@ -81,9 +81,9 @@ class Hiringsearch extends Hiring
         ]);
         if($this->status){
           $query->andWhere(['or',
-             ['statushiring'=>$this->status],
-             ['statusbiodata'=>$this->status]
-         ]);
+              ['statushiring'=>$this->status],
+              ['statusbiodata'=>$this->status]
+          ]);
         }
         $query->andFilterWhere(['like', 'fullname', $this->fullname]);
 

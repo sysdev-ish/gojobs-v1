@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use app\models\Recruitmentcandidate;
 use app\models\Interview;
+
 // var_dump($model->jabatan);die;
 // if($model->jabatan){
 if ( strval($model->jabatan) !== strval(intval($model->jabatan)) ) {
