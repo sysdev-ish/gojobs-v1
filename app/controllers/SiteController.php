@@ -114,6 +114,7 @@ class SiteController extends Controller
     $jobcategory = Masterjobfamily::find()->andWhere('status = 1')->orderby(['jobfamily' => SORT_ASC])->all();
 
     $totaljocategory  = Transrincian::find()->andWhere('trans_rincian_rekrut.status_rekrut <> 1')->groupBy(['hire_jabatan_sap'])->count();
+    $jo  = Transrincian::find()->andWhere('trans_rincian_rekrut.status_rekrut <> 1')->one();
 
     $totalapplicant = Userprofile::find()->count();
     if(Yii::$app->user->isGuest){

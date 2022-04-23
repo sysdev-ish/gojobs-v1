@@ -16,6 +16,7 @@ use yii\helpers\HtmlPurifier;
 $this->title = 'Search Job';
 
 $baseUrl = Yii::$app->request->baseUrl;
+
 ?>
 <div class="careerfy-banner careerfy-typo-wrap">
     <span class="careerfy-banner-transparent"></span>
@@ -82,17 +83,10 @@ $baseUrl = Yii::$app->request->baseUrl;
                     <div class="categories-list">
                         <ul class="careerfy-row">
 
-
                             <?php foreach ($jobcategory as $data) : ?>
                                 <li class="careerfy-column-4">
                                     <i class="careerfy-icon careerfy-<?php echo $data['icon']; ?>"></i>
-                                    <?php
-                                        echo Html::a('Jobcategory', ['id' => $model->id, 'hire_jabatan_sap' => $hire_jabatan_sap], [
-                                            'class' => 'careerfy-column-4',
-                                            'rules' => '/rekrut/site/searchjob?Transrinciansearch%5Bjobfamily%5D='
-                                        ]);
-                                    ?>
-                                    <!-- <a href="/rekrut/site/searchjob?Transrinciansearch%5Bstatus_rekrut%5D=1&Transrinciansearch%5Bjobfamily%5D=<?php //echo $data['id']; ?>"> <?php //echo $data['jobfamily']; ?> </a> -->
+                                    <a href="/rekrut/site/searchjob?Transrinciansearch%5Bstatus_rekrut%5D=1&Transrinciansearch%5Bjobfamily%5D=<?php echo $data['id']; ?>"> <?php echo $data['jobfamily']; ?> </a>
                                     <span>(<?php echo $countcategory; ?> Open Vacancies)</span>
                                 </li>
                             <?php endforeach; ?>

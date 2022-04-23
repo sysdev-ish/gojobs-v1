@@ -135,17 +135,15 @@ class HiringController extends Controller
         } else if ($modelcountjo >= $countnewjumlah) {
           return 6;
         } else if (Yii::$app->checkhiring->datacompleted($userid)) {
-          $transjo = Transjo::find()->where(['nojo' => $transrincian->nojo])->one();
-          // $typerekrut = Transrincian::find()->where(['type_rekrut'=>$transrincian->type_rekrut])->one();
-          $transrincianid = Transrincian::find()->where(['id' => $transrincian->id])->one();
-          $hirejabatan = Transrincian::find()->where(['hire_jabatan_sap' => $transrincianid->hire_jabatan_sap])->one();
+          // $transrincianid = Transrincian::find()->where(['id' => $transrincian->id])->one();
+          // $hirejabatan = Transrincian::find()->where(['hire_jabatan_sap' => $transrincianid->hire_jabatan_sap])->one();
 
-          $kodejabatan = Mappingjob::find()->where(['kodejabatan' => $hirejabatan])->one();
-          $subjobfamilyid = Mappingjob::find()->where(['subjobfamilyid' => $kodejabatan->subjobfamilyid])->one();
-          $mappingid = Mappingjob::find()->where(['id' => $subjobfamilyid])->all();
+          // $kodejabatan = Mappingjob::find()->where(['kodejabatan' => $hirejabatan])->one();
+          // $subjobfamilyid = Mappingjob::find()->where(['subjobfamilyid' => $kodejabatan->subjobfamilyid])->one();
+          // $mappingid = Mappingjob::find()->where(['id' => $subjobfamilyid])->all();
 
-          $jobfamily = Mastersubjobfamily::find()->where(['id' => $mappingid])->one();
-          $jobfamilyid = Mastersubjobfamily::find()->where(['jobfamily_id' => $jobfamily->jobfamily_id])->one();
+          // $jobfamily = Mastersubjobfamily::find()->where(['id' => $mappingid])->one();
+          // $jobfamilyid = Mastersubjobfamily::find()->where(['jobfamily_id' => $jobfamily->jobfamily_id])->one();
 
           $transjo = Transjo::find()->where(['nojo' => $transrincian->nojo])->one();
           // $typerekrut = Transrincian::find()->where(['type_rekrut'=>$transrincian->type_rekrut])->one();
@@ -154,8 +152,8 @@ class HiringController extends Controller
           $lama = substr($transjo->lama, 0, 2);
           $akhirkontrak = date('Y-m-d', strtotime('+' . $lama . ' month', strtotime($awalkontrak)));
 
-          $subjobfamily_id = $subjobfamilyid->subjobfamilyid;
-          $jobfamily_id = $jobfamilyid->jobfamily_id;
+          // $subjobfamily_id = $subjobfamilyid->subjobfamilyid;
+          // $jobfamily_id = $jobfamilyid->jobfamily_id;
           // $jobfamilyid = isset($model->jobfamilyid) ? $model->jobfamily->id : 'n/a';
           if (Yii::$app->request->isAjax) {
             $model->userid = $userid;
@@ -165,8 +163,8 @@ class HiringController extends Controller
             $model->tglinput = date('Y-m-d');
             $model->awalkontrak = $awalkontrak;
             $model->akhirkontrak = $akhirkontrak;
-            $model->subjobfamily = $subjobfamily_id;
-            $model->jobfamily = $jobfamily_id;
+            // $model->subjobfamily = $subjobfamily_id;
+            // $model->jobfamily = $jobfamily_id;
             // $model->type_rekrut = $typerekrut;
             $model->statushiring = 1;
             $model->statusbiodata = 1;
@@ -460,7 +458,7 @@ class HiringController extends Controller
     $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
     $tglinput = date_create($model->tglinput);
 
-    $modelulogin = Userlogin::find()->where(['id' => $id])->one();
+    // $modelulogin = Userlogin::find()->where(['email' => $model])->one();
     $model->fullname = $userprofile->fullname;
     $model->userid = $userprofile->userid;
     // var_dump($transrincian->abkrs_sap);die;
@@ -627,7 +625,7 @@ class HiringController extends Controller
     $hiring = Yii::$app->utils->alphired($model->statushiring);
     if ($hiring == 4) {
       // $to = 'khusnul.hisyam@ish.co.id';
-      $to = $modelulogin->email;
+      $to = $model->mail->email;
       $subject = 'Pemberitahuan ' . $transrincian->jabatan . ' PT Infomedia Solusi Humanika';
       if ($model->statushiring == 4) {
         $body = Yii::$app->params['mailFeedback'];
@@ -645,19 +643,20 @@ class HiringController extends Controller
 
   public function actionTest(){
 
-    $model = Hiring::findOne(22323);
+    $model = Hiring::findOne(22323); //test dummy userid hiring
     $transrincian = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
 
-    $to = 'khusnul.hisyam@ish.co.id';
+    // $to = 'khusnul.hisyam@ish.co.id';
+    $to = $model->mail->email;
     $subject = 'Pemberitahuan ' . $transrincian->jabatan . ' PT Infomedia Solusi Humanika';
-
+    
     $body = Yii::$app->params['mailFeedback'];
     $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
     $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
     $body = str_replace('{area}', $transrincian->areasap->value2, $body);
     
     $verification = Yii::$app->utils->sendmail($to, $subject, $body, 'test hiring');
-    var_dump($verification);die;
+    var_dump($to);die;
     
   }
 

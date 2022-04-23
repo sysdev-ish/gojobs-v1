@@ -58,4 +58,9 @@ class Mappingjob extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamilyid']);
     }
+
+    public function getTransrincian()
+    {
+        return $this->hasOne(Transrincian::className(), ['hire_jabatan_sap' => 'kodejabatan']);
+    }
 }

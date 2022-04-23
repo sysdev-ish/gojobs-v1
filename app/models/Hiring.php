@@ -106,6 +106,10 @@ class Hiring extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Transrincian::className(), ['id' => 'recruitreqid']);
     }
+    public function getMail()
+    {
+        return $this->hasOne(Userlogin::className(), ['id' => 'userid']);
+    }
     public function getCreatedbyu()
     {
         return $this->hasOne(Userlogin::className(), ['id' => 'createdby']);

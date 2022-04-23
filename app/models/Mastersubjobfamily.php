@@ -58,4 +58,9 @@ class Mastersubjobfamily extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Masterjobfamily::className(), ['id' => 'jobfamily_id']);
     }
+
+    public function getMappingjob()
+    {
+        return $this->hasOne(Mappingjob::className(), ['subjobfamilyid' => 'id']);
+    }
 }

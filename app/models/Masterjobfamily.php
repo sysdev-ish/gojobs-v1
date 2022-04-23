@@ -52,4 +52,10 @@ class Masterjobfamily extends \yii\db\ActiveRecord
             'status' => 'Status',
         ];
     }
+
+    public function getSubfamily()
+    {
+        return $this->hasOne(Mastersubjobfamily::className(), ['jobfamily_id' => 'id']);
+    }
+    
 }

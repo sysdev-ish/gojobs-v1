@@ -109,6 +109,7 @@ $config = [
             '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
             '<controller:\w+>/<action:\w+>/<id:[0-9]+>'=>'<controller>/<action>',
             '<controller:\w+>/<action:\w+>/<slug:[a-zA-Z0-9_\-]+>'=>'<controller>/<action>',
+            'class' => 'app\components\SearchUrlRule',
           ],
         ],
 
