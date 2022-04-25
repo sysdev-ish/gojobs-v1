@@ -5,9 +5,11 @@ use kartik\select2\Select2Asset;
 use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
 use app\models\MappingCity;
+use app\models\MappingJob;
 use app\models\Masterjobfamily;
 use app\models\Mastersubjobfamily;
 use app\models\Transrincian;
+use Codeception\Lib\Di;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
@@ -83,7 +85,7 @@ $baseUrl = Yii::$app->request->baseUrl;
                     <div class="categories-list">
                         <ul class="careerfy-row">
 
-                            <?php foreach ($jobcategory as $data) : ?>
+                            <?php foreach ($jobcategory as $data) : ?>                                
                                 <li class="careerfy-column-4">
                                     <i class="careerfy-icon careerfy-<?php echo $data['icon']; ?>"></i>
                                     <a href="/rekrut/site/searchjob?Transrinciansearch%5Bstatus_rekrut%5D=1&Transrinciansearch%5Bjobfamily%5D=<?php echo $data['id']; ?>"> <?php echo $data['jobfamily']; ?> </a>

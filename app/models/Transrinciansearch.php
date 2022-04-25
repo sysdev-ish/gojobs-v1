@@ -61,8 +61,12 @@ class Transrinciansearch extends Transrincian
         $query->andWhere('trans_rincian_rekrut.skema = 1');
         $query->andWhere('trans_rincian_rekrut.typejo <> 3');
 
-        $query->leftJoin('recruitment_dev.recruitmentcandidate', 'recruitmentcandidate.recruitreqid = trans_rincian_rekrut.id');
-        $query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = recruitmentcandidate.jobfamily');
+        $query->leftJoin('recruitment_dev.mappingjob', 'mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
+        $query->leftJoin('recruitment_dev.mastersubjobfamily', 'mastersubjobfamily.id = mappingjob.subjobfamilyid');
+        $query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = mastersubjobfamily.jobfamily_id');
+
+        // $query->leftJoin('recruitment_dev.recruitmentcandidate', 'recruitmentcandidate.recruitreqid = trans_rincian_rekrut.id');
+        // $query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = recruitmentcandidate.jobfamily');
 
         // $query->leftJoin('recruitment_dev.mappingjob', 'mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
 

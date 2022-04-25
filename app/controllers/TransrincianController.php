@@ -61,6 +61,9 @@ class TransrincianController extends Controller
     {
         $searchModel = new Transrinciansearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        // $model =  $this->findModel($sid);
+        // $data = Transrincian::find()->one();
+        // var_dump($data->subfamily->mappingjob->hire_jabatan_sap);die();
 
         return $this->render('index', [
             'searchModel' => $searchModel,

@@ -152,6 +152,7 @@ class SiteController extends Controller
                 'jobcategory' => $jobcategory,
                 'countcategory' => $countcategory,
                 'totaljocategory' => $totaljocategory,
+      
               ]);
             }
 

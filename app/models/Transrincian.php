@@ -207,7 +207,7 @@ class Transrincian extends \yii\db\ActiveRecord
     }
     public function getMappingjob()
     {
-        return $this->hasOne(Mappingjob::className(), ['hire_jabatan_sap' => 'kodejabatan']);
+        return $this->hasOne(Mappingjob::className(), ['kodejabatan' => 'hire_jabatan_sap']);
     }
     public function getMastersubjobfamily()
     {

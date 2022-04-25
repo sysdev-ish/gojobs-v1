@@ -6,6 +6,7 @@ use Yii;
 use app\models\Masterjobfamily;
 use app\models\MasterjobfamilySearch;
 use app\models\Mastersubjobfamily;
+use app\models\Mappingjob;
 use Codeception\Lib\Di;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -57,14 +58,15 @@ class MasterjobfamilyController extends Controller
     {
         $searchModel = new MasterjobfamilySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $model = Masterjobfamily::find()->one();
+        $model = $this->findModel(10);
 
-        var_dump($model->subfamily->mappingjob->hire_jabatan_sap);die();
+        // $data = $model->subfamily->mappingjob->kodejabatan;
+        // var_dump($data);die;
+        // $data = $model->subfamily->mappingjob;
+        // $mapping = Mappingjob::find()->where(['subjobfamilyid'=>$data])->one();
+        // $kodejabatan = $mapping->kodejabatan;        
 
-
-
-
-
+        // var_dump($kodejabatan);die;
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

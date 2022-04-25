@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use app\models\Mastersubjobfamily;
+use app\models\Transrincian;
 use yii\helpers\ArrayHelper;
 
 
@@ -57,7 +58,9 @@ class MappingjobController extends Controller
     {
         $searchModel = new MappingjobSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $model = Mappingjob::find(23001742)->one();
 
+        var_dump($model->kodejabatan);die();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
