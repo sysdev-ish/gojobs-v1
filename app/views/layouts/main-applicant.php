@@ -1,32 +1,34 @@
 <?php
+
 use yii\helpers\Html;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-    app\assets\AppfrontAsset::register($this);
+app\assets\AppfrontAsset::register($this);
 
-    // dmstr\web\AdminLteAsset::register($this);
+// dmstr\web\AdminLteAsset::register($this);
 
-    $assetUrl = Yii::$app->request->baseUrl . '/assets';
-    $uploadUrl = Yii::$app->request->baseUrl . '/app/assets/upload';
-    ?>
-    <?php $this->beginPage() ?>
-    <!DOCTYPE html>
-    <html lang="<?= Yii::$app->language ?>">
-    <head>
-        <meta charset="<?= Yii::$app->charset ?>"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+$assetUrl = Yii::$app->request->baseUrl . '/assets';
+$uploadUrl = Yii::$app->request->baseUrl . '/app/assets/upload';
+?>
+<?php $this->beginPage() ?>
+<!DOCTYPE html>
+<html lang="<?= Yii::$app->language ?>">
 
-        <?= Html::csrfMetaTags() ?>
-        <title><?= Html::encode($this->title) ?></title>
-        <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic-ext,vietnamese" rel="stylesheet">
-        <?php $this->head() ?>
+<head>
+    <meta charset="<?= Yii::$app->charset ?>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="../images/icon.png" />
 
-    </head>
+    <?= Html::csrfMetaTags() ?>
+    <title><?= Html::encode($this->title) ?></title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic-ext,vietnamese" rel="stylesheet">
+    <?php $this->head() ?>
 
-    <body>
+</head>
+
+<body>
 
     <?php $this->beginBody() ?>
 
@@ -39,16 +41,18 @@ use yii\helpers\Html;
 
         echo $this->render(
             'content-applicant.php',
-            ['content' => $content,
-            'assetUrl' => $assetUrl,
-            'uploadUrl' => $uploadUrl,
-          ]
+            [
+                'content' => $content,
+                'assetUrl' => $assetUrl,
+                'uploadUrl' => $uploadUrl,
+            ]
         );
         ?>
 
     </div>
     <script src="<?php echo Yii::$app->request->baseUrl;  ?>/js/frontend/script/jquery.js"></script>
-    <!-- <script src="<?php //echo Yii::$app->request->baseUrl;  ?>/js/frontend/script/bootstrap.js"></script> -->
+    <!-- <script src="<?php //echo Yii::$app->request->baseUrl;  
+                        ?>/js/frontend/script/bootstrap.js"></script> -->
 
     <script src="<?php echo Yii::$app->request->baseUrl;  ?>/js/frontend/script/slick-slider.js"></script>
     <script src="<?php echo Yii::$app->request->baseUrl;  ?>/js/frontend/plugin-script/counter.js"></script>
@@ -59,7 +63,7 @@ use yii\helpers\Html;
     <script src="<?php echo Yii::$app->request->baseUrl;  ?>/js/frontend/plugin-script/functions.js"></script>
     <script src="<?php echo Yii::$app->request->baseUrl;  ?>/js/frontend/script/functions.js"></script>
     <?php $this->endBody() ?>
-    </body>
+</body>
 
-    </html>
-    <?php $this->endPage() ?>
+</html>
+<?php $this->endPage() ?>

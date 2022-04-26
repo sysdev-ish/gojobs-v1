@@ -19,6 +19,7 @@ use app\models\Userlogin;
 use app\models\Mappingjob;
 use app\models\Masterjobfamily;
 use app\models\Mastersubjobfamily;
+use app\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -296,6 +297,8 @@ class HiringController extends Controller
       $model = $this->findModel($id);
       $transrincian = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
       $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
+      $hiring = Hiring::find()->where(['userid' => $model])->one();
+
       $tglinput = date_create($model->tglinput);
       // var_dump($transrincian->abkrs_sap);die;
       $curl = new curl\Curl();
@@ -450,12 +453,34 @@ class HiringController extends Controller
       $retpos = ['status' => "NOK", 'message' => 'temp hold running', 'pernr' => null];
       print_r(json_encode($retpos));
     }
+
+    $hiring = Hiring::find()->where(['userid' => $model])->one();
+    $modelulogin = Userlogin::find()->where(['id' => $model->userid])->one();
+
+    $hiringstatus = Yii::$app->utils->aplhired($model);
+    if ($hiringstatus == true) {
+      // $to = 'khusnul.hisyam@ish.co.id';
+      // $to = $model->mail->email;
+      $to = $hiring->mail->email;
+
+      $subject = 'Pemberitahuan ' . $transrincian->jabatan . ' PT Infomedia Solusi Humanika';
+      $body = Yii::$app->params['mailFeedback'];
+      $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
+      $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
+      $body = str_replace('{area}', $transrincian->areasap->value2, $body);
+      // var_dump($body);die;
+      $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
+      // if ($verification) {
+      //   echo 'successfully';
+      // }
+    }
   }
   public function actionHiringprocess($id)
   {
     $model = $this->findModel($id);
     $transrincian = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
     $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
+
     $tglinput = date_create($model->tglinput);
 
     // $modelulogin = Userlogin::find()->where(['email' => $model])->one();
@@ -622,48 +647,55 @@ class HiringController extends Controller
       print_r(json_encode($retpos));
     }
 
-    $hiring = Yii::$app->utils->aplhired($model); 
-    if ($hiring == 4) {
+    $hiring = Hiring::find()->where(['userid' => $model])->one();
+    $modelulogin = Userlogin::find()->where(['id' => $model->userid])->one();
+
+    $hiringstatus = Yii::$app->utils->aplhired($model);
+    if ($hiringstatus == true) {
       // $to = 'khusnul.hisyam@ish.co.id';
-      $to = $model->mail->email;
+      // $to = $model->mail->email;
+      $to = $hiring->mail->email;
+
       $subject = 'Pemberitahuan ' . $transrincian->jabatan . ' PT Infomedia Solusi Humanika';
       $body = Yii::$app->params['mailFeedback'];
       $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
       $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
       $body = str_replace('{area}', $transrincian->areasap->value2, $body);
       // var_dump($body);die;
-      $verification = Yii::$app->utils->sendmail($to, $subject,$body, 'approve hiring');
-      if ($verification) {
-        echo 'successfully';
-      }
+      $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
+      // if ($verification) {
+      //   echo 'successfully';
+      // }
     }
   }
 
-  public function actionTest(){
-
-    $model = Hiring::findOne(22323); //test dummy userid hiring
+  public function actionTest($id)
+  {
+    $model = $this->findModel($id);
     $transrincian = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
-    $hiring = Yii::$app->utils->aplhired($model);
-    if ($hiring == true) {
-      $to = 'khusnul.hisyam@ish.co.id';
+    $hiring = Hiring::find()->where(['userid' => $model])->one();
+    // $to = $model->mail->email;
+
+    $hiringstatus = Yii::$app->utils->aplhired($model);
+    if ($hiringstatus == true) {
+      // $to = 'khusnul.hisyam@ish.co.id';
+      $to = $hiring->mail->email;
+      // var_dump($to);die;
       // $to = $model->mail->email;
 
       $subject = 'Pemberitahuan ' . $transrincian->jabatan . ' PT Infomedia Solusi Humanika';
-      
+
       $body = Yii::$app->params['mailFeedback'];
       $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
       $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
       $body = str_replace('{area}', $transrincian->areasap->value2, $body);
-      
-      $verification = Yii::$app->utils->sendmail($to, $subject, $body, 'test hiring');
+
+      $verification = Yii::$app->utils->sendmail($to, $subject, $body, 10);
       // var_dump($hiring);die;
       if ($verification) {
         echo 'successfully';
       }
     }
-
-    // $to = 'khusnul.hisyam@ish.co.id';
-    
   }
 
   public function actionHiringprocessmanual($id)
@@ -764,7 +796,6 @@ class HiringController extends Controller
         'cache-control: no-cache"=',
       ];
 
-
       $ch = curl_init();
 
       curl_setopt($ch, CURLOPT_URL, $url);
@@ -774,8 +805,6 @@ class HiringController extends Controller
       curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
       // var_dump('ok');die;
-
-
       $response = curl_exec($ch);
 
       curl_close($ch);
@@ -792,9 +821,6 @@ class HiringController extends Controller
         $model->save();
       }
       print_r(json_encode($ret));
-
-
-
       // return $this->redirect(['index']);
     } else {
       $retlock = ['status' => "NOK", 'message' => 'lock', 'pernr' => null];
@@ -1192,7 +1218,6 @@ class HiringController extends Controller
         'cache-control: no-cache"=',
       ];
 
-
       $ch = curl_init();
 
       curl_setopt($ch, CURLOPT_URL, $url);
@@ -1202,8 +1227,6 @@ class HiringController extends Controller
       curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
       // var_dump('ok');die;
-
-
       $response = curl_exec($ch);
 
       curl_close($ch);
@@ -1332,6 +1355,27 @@ class HiringController extends Controller
       print_r(json_encode($retlock));
     }
 
+    $hiring = Hiring::find()->where(['userid' => $model])->one();
+    $modelulogin = Userlogin::find()->where(['id' => $model->userid])->one();
+
+    $hiringstatus = Yii::$app->utils->aplhired($model);
+    if ($hiringstatus == true) {
+      // $to = 'khusnul.hisyam@ish.co.id';
+      // $to = $model->mail->email;
+      $to = $hiring->mail->email;
+
+      $subject = 'Pemberitahuan ' . $transrincian->jabatan . ' PT Infomedia Solusi Humanika';
+      $body = Yii::$app->params['mailFeedback'];
+      $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
+      $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
+      $body = str_replace('{area}', $transrincian->areasap->value2, $body);
+      // var_dump($body);die;
+      $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
+      // if ($verification) {
+      //   echo 'successfully';
+      // }
+    }
+
     // print_r($ret);
     //  ob_start();
     //  print_r($json);
@@ -1354,7 +1398,6 @@ class HiringController extends Controller
     $userfedus = Userformaleducation::find()->where(['userid' => $model->userid])->all();
     $usernfedus = Usernonformaleducation::find()->where(['userid' => $model->userid])->all();
     $userabout = Userabout::find()->where(['userid' => $model->userid])->one();
-
 
     $birthdate = date_create($userprofile->birthdate);
     $tglinput = date_create($model->tglinput);

@@ -1,24 +1,15 @@
 <?php
-
 use yii\widgets\ListView;
-use kartik\select2\Select2Asset;
 use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
 use app\models\MappingCity;
-use app\models\MappingJob;
-use app\models\Masterjobfamily;
-use app\models\Mastersubjobfamily;
-use app\models\Transrincian;
-use Codeception\Lib\Di;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-use yii\helpers\HtmlPurifier;
 /* @var $this yii\web\View */
 
 $this->title = 'Search Job';
 
 $baseUrl = Yii::$app->request->baseUrl;
-
 ?>
 <div class="careerfy-banner careerfy-typo-wrap">
     <span class="careerfy-banner-transparent"></span>
@@ -84,18 +75,49 @@ $baseUrl = Yii::$app->request->baseUrl;
 
                     <div class="categories-list">
                         <ul class="careerfy-row">
-
-                            <?php foreach ($jobcategory as $data) : ?>                                
-                                <li class="careerfy-column-4">
-                                    <i class="careerfy-icon careerfy-<?php echo $data['icon']; ?>"></i>
-                                    <a href="/rekrut/site/searchjob?Transrinciansearch%5Bstatus_rekrut%5D=1&Transrinciansearch%5Bjobfamily%5D=<?php echo $data['id']; ?>"> <?php echo $data['jobfamily']; ?> </a>
-                                    <span>(<?php echo $jo; ?> Open Vacancies)</span>
-                                </li>
-                            <?php endforeach; ?>
-
+                            <li class="careerfy-column-3">
+                                <i class="careerfy-icon careerfy-engineer"></i>
+                                <a href="#">construction / facilities</a>
+                                <span>(15 Open Vacancies)</span>
+                            </li>
+                            <li class="careerfy-column-3">
+                                <i class="careerfy-icon careerfy-car"></i>
+                                <a href="#">automotive jobs</a>
+                                <span>(12 Open Vacancies)</span>
+                            </li>
+                            <li class="careerfy-column-3">
+                                <i class="careerfy-icon careerfy-accounting"></i>
+                                <a href="#">Accounting / Finance</a>
+                                <span>(8 Open Vacancies)</span>
+                            </li>
+                            <li class="careerfy-column-3">
+                                <i class="careerfy-icon careerfy-hospital"></i>
+                                <a href="#">Health Care</a>
+                                <span>(5 Open Vacancies)</span>
+                            </li>
+                            <li class="careerfy-column-3">
+                                <i class="careerfy-icon careerfy-antenna"></i>
+                                <a href="#">Telecommunications</a>
+                                <span>(7 Open Vacancies)</span>
+                            </li>
+                            <li class="careerfy-column-3">
+                                <i class="careerfy-icon careerfy-books"></i>
+                                <a href="#">education training</a>
+                                <span>(22 Open Vacancies)</span>
+                            </li>
+                            <li class="careerfy-column-3">
+                                <i class="careerfy-icon careerfy-fast-food"></i>
+                                <a href="#">Restaurant / food services</a>
+                                <span>(30 Open Vacancies)</span>
+                            </li>
+                            <li class="careerfy-column-3">
+                                <i class="careerfy-icon careerfy-business"></i>
+                                <a href="#">Sales & Marketing</a>
+                                <span>(40 Open Vacancies)</span>
+                            </li>
                         </ul>
                     </div>
-                    <div class="careerfy-plain-btn"> <a href="/rekrut/site/searchjob"><?= Yii::t('app', "Browse All Categories") ?></a> </div>
+                    <div class="careerfy-plain-btn"> <a href="#"><?= Yii::t('app', "Browse All Categories") ?></a> </div>
                     <!-- Categories -->
                 </div>
 
@@ -116,17 +138,20 @@ $baseUrl = Yii::$app->request->baseUrl;
                         <!-- <a href="#" class="careerfy-static-btn careerfy-bgcolor"><span>Search Jobs</span></a> -->
                     </div>
                 </aside>
-                <aside class="col-md-6 careerfy-typo-wrap">
-                    <div class="careerfy-right"><img src="<?php echo $baseUrl; ?>/extra-images/search-illustration.png" alt=""></div>
-                </aside>
+                <aside class="col-md-6 careerfy-typo-wrap"> <div class="careerfy-right"><img src="<?php echo $baseUrl; ?>/extra-images/search-illustration.png" alt=""></div> </aside>
 
             </div>
         </div>
     </div>
     <!-- Main Section -->
+
+
+
 </div>
 <!-- Main Content -->
+
 <!-- Footer -->
+
 
 <!-- </div> -->
 <!-- Wrapper -->

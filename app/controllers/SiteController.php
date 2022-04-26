@@ -110,11 +110,11 @@ class SiteController extends Controller
     $joblocation  = Transrincian::find()->joinWith("jobfunc")->joinWith("transjo")->where('trans_jo.type_jo <= 2')->andWhere('trans_jo.type_replace = 2')->andWhere('trans_rincian_rekrut.status_rekrut <> 2')->groupBy(['lokasi'])->count();
     $jobfunction = Transrincian::find()->joinWith("jobfunc")->joinWith("transjo")->where('trans_jo.type_jo <= 2')->andWhere('trans_jo.type_replace = 2')->andWhere('trans_rincian_rekrut.status_rekrut <> 2')->groupBy(['job_function.name_job_function'])->orderby(['id' => SORT_DESC])->limit(8)->all();
     
-    $countcategory = Transrincian::find()->andWhere('trans_rincian_rekrut.status_rekrut <> 2')->count();
     $jobcategory = Masterjobfamily::find()->andWhere('status = 1')->orderby(['jobfamily' => SORT_ASC])->all();
+    $countcategory = Transrincian::find()->andWhere('trans_rincian_rekrut.status_rekrut <> 1')->groupBy('hire_jabatan_sap')->count();
 
-    $totaljocategory  = Transrincian::find()->andWhere('trans_rincian_rekrut.status_rekrut <> 1')->groupBy(['hire_jabatan_sap'])->count();
-    $jo  = Transrincian::find()->andWhere('trans_rincian_rekrut.status_rekrut <> 1')->one();
+    $jo = Transrincian::find()->andWhere('trans_rincian_rekrut.status_rekrut <> 1')->groupBy('hire_jabatan_sap')->count();
+    // var_dump($jo);die;
 
     $totalapplicant = Userprofile::find()->count();
     if(Yii::$app->user->isGuest){
@@ -127,7 +127,7 @@ class SiteController extends Controller
         'jobfunction' => $jobfunction,
         'jobcategory' => $jobcategory,
         'countcategory' => $countcategory,
-        'totaljocategory' => $totaljocategory,
+        'jo' => $jo,
       ]);
     }else{
       if(Yii::$app->user->identity->requestforchangepassword == 1){
@@ -151,7 +151,7 @@ class SiteController extends Controller
                 'jobfunction' => $jobfunction,
                 'jobcategory' => $jobcategory,
                 'countcategory' => $countcategory,
-                'totaljocategory' => $totaljocategory,
+                'jo' => $jo,
       
               ]);
             }
