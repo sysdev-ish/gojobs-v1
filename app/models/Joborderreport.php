@@ -64,10 +64,6 @@ class Joborderreport extends Transrincian
       $query->andWhere('trans_rincian_rekrut.skema = 1');
       $query->andWhere('trans_rincian_rekrut.typejo <> 3');
 
-      // $query->leftJoin('recruitment_dev.recruitmentcandidate','recruitmentcandidate.recruitreqid = trans_rincian_rekrut.id');
-      // $query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = recruitmentcandidate.jobfamily');
-      // $query->leftJoin('recruitment_dev.mastersubjobfamily', 'mastersubjobfamily.id = recruitmentcandidate.subjobfamily');
-
       $dataProvider = new ActiveDataProvider([
           'query' => $query,
           'sort' => ['defaultOrder' => ['nojo' => SORT_DESC]],
@@ -103,10 +99,19 @@ class Joborderreport extends Transrincian
         ];
 
         if ($this->jobfamily) {
-          $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily]);
+          $getJobId = $this->byjobfamily($this->jobfamily);
+          if ($getJobId) {
+            $getJobid = implode(',', $getJobId);
+            $query->andWhere('recruitreqid IN (' . $getJobid . ')');
+          }
         }
+
         if ($this->subjobfamily) {
-          $query->andWhere('mastersubjobfamily.id = :msjId', [':msjId' => $this->subjobfamily]);
+          $getSubjobId = $this->bysubjobfamily($this->subjobfamily);
+          if ($getSubjobId) {
+            $getSubjobid = implode(',', $getSubjobId);
+            $query->andWhere('recruitreqid IN (' . $getSubjobid . ')');
+          }
         }
 
         return $alldata;
@@ -152,9 +157,59 @@ class Joborderreport extends Transrincian
           $mySum += $checkhiring;
         }
       }
-
       return $mySum;
     }
+
+    protected function byjobfamily($jobfamily)
+    {
+      $ret = null;
+      if ($jobfamily) {
+        $getSub = Masterjobfamily::find()->andWhere('jobfamily like "%' . $jobfamily . '%"')->all();
+        if ($getSub) {
+          $jobfamilyid = array();
+          foreach ($getSub as $gj) {
+            $jobfamilyid[] = $gj->id;
+          }
+          if (count($jobfamilyid) > 0) {
+            $transRincian = Transrincian::find()->andWhere('hire_jabatan_sap IN ("' . implode('","', $jobfamilyid) . '")', [])->all();
+            if ($transRincian) {
+              $transRincianIds = array();
+              foreach ($transRincian as $tr) {
+                $transRincianIds[] = $tr->id;
+              }
+              $ret = $transRincianIds;
+            }
+          }
+        }
+      }
+      return $ret;
+    }
+
+    protected function bysubjobfamily($subjobfamily)
+    {
+      $ret = null;
+      if ($subjobfamily) {
+        $getSub = Mastersubjobfamily::find()->andWhere('subjobfamily like "%' . $subjobfamily . '%"')->all();
+        if ($getSub) {
+          $subjobfamilyid = array();
+          foreach ($getSub as $gj) {
+            $subjobfamilyid[] = $gj->id;
+          }
+          if (count($subjobfamilyid) > 0) {
+            $transRincian = Transrincian::find()->andWhere('hire_jabatan_sap IN ("' . implode('","', $subjobfamilyid) . '")', [])->all();
+            if ($transRincian) {
+              $transRincianIds = array();
+              foreach ($transRincian as $tr) {
+                $transRincianIds[] = $tr->id;
+              }
+              $ret = $transRincianIds;
+            }
+          }
+        }
+      }
+      return $ret;
+    }
+
     public function attributeLabels()
     {
         return [

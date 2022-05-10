@@ -74,7 +74,6 @@ class Recruitmentcandidatesearch extends Recruitmentcandidate
             'createtime' => $this->createtime,
             'updatetime' => $this->updatetime,
             'recruitreqid' => $this->recruitreqid,
-            // 'recruitreqid' => $this->nojo,
             'status' => $this->status,
             'typeinterview' => $this->typeinterview,
 

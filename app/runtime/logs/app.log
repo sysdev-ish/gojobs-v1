@@ -20132,3 +20132,931 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1652149911.956
     'REQUEST_TIME' => 1652149911
 ]
+2022-05-10 09:49:43 [::1][104728][cbt6fntkovafnhesffo137uob2][error][yii\db\IntegrityException] PDOException: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'typejo' in where clause is ambiguous in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php:1258
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1258): PDOStatement->execute()
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1148): yii\db\Command->internalExecute('SELECT `hiring`...')
+#2 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(399): yii\db\Command->queryInternal('fetchAll', NULL)
+#3 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Query.php(237): yii\db\Command->queryAll()
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(133): yii\db\Query->all(NULL)
+#5 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(229): yii\db\ActiveQuery->all()
+#6 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(183): app\models\Hiringreport->joGroupBypersa(Array, Object(yii\data\ActiveDataProvider))
+#7 C:\xampp\htdocs\rekrut\app\controllers\ReportController.php(127): app\models\Hiringreport->search(Array)
+#8 [internal function]: app\controllers\ReportController->actionReporthiring()
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#12 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#13 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#15 {main}
+
+Next yii\db\IntegrityException: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'typejo' in where clause is ambiguous
+The SQL being executed was: SELECT `hiring`.* FROM `hiring` LEFT JOIN `userprofile` ON `hiring`.`userid` = `userprofile`.`userid` LEFT JOIN `ish_catalog_baru`.`trans_rincian_rekrut` ON trans_rincian_rekrut.id = hiring.id WHERE (statushiring = 4 or statushiring = 7 or (typejo = 2 and statushiring = 8)) AND (`awalkontrak` BETWEEN '2022-01-09' AND '2022-01-14') AND (recruitreqid IN (0)) in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Schema.php:664
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1263): yii\db\Schema->convertException(Object(PDOException), 'SELECT `hiring`...')
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1148): yii\db\Command->internalExecute('SELECT `hiring`...')
+#2 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(399): yii\db\Command->queryInternal('fetchAll', NULL)
+#3 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Query.php(237): yii\db\Command->queryAll()
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(133): yii\db\Query->all(NULL)
+#5 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(229): yii\db\ActiveQuery->all()
+#6 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(183): app\models\Hiringreport->joGroupBypersa(Array, Object(yii\data\ActiveDataProvider))
+#7 C:\xampp\htdocs\rekrut\app\controllers\ReportController.php(127): app\models\Hiringreport->search(Array)
+#8 [internal function]: app\controllers\ReportController->actionReporthiring()
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#12 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#13 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#15 {main}
+Additional Information:
+Array
+(
+    [0] => 23000
+    [1] => 1052
+    [2] => Column 'typejo' in where clause is ambiguous
+)
+
+2022-05-10 09:49:43 [::1][104728][cbt6fntkovafnhesffo137uob2][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-09'
+        'endawalkontrak' => '2022-01-14'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => '12'
+        'subjobfamily' => ''
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'cbt6fntkovafnhesffo137uob2'
+    '_csrf' => 'adba41c99bc157eb007eb3e23bf6b54eba41d71ceb515074561594742f58b585a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"VMW8dvdzmJGnlIN8rPsiaDhw2aUwhkcC\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/recruitmentcandidate/index'
+    '__id' => 104728
+    '__expire' => 1652154583
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36 Edg/101.0.1210.32'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=cbt6fntkovafnhesffo137uob2; _csrf=adba41c99bc157eb007eb3e23bf6b54eba41d71ceb515074561594742f58b585a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22VMW8dvdzmJGnlIN8rPsiaDhw2aUwhkcC%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm;C:\\Python34\\Scripts;C:\\Python37\\Scripts'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '57110'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1652150983.3802
+    'REQUEST_TIME' => 1652150983
+]
+2022-05-10 09:50:03 [::1][104728][cbt6fntkovafnhesffo137uob2][error][yii\db\IntegrityException] PDOException: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'typejo' in where clause is ambiguous in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php:1258
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1258): PDOStatement->execute()
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1148): yii\db\Command->internalExecute('SELECT `hiring`...')
+#2 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(399): yii\db\Command->queryInternal('fetchAll', NULL)
+#3 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Query.php(237): yii\db\Command->queryAll()
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(133): yii\db\Query->all(NULL)
+#5 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(229): yii\db\ActiveQuery->all()
+#6 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(183): app\models\Hiringreport->joGroupBypersa(Array, Object(yii\data\ActiveDataProvider))
+#7 C:\xampp\htdocs\rekrut\app\controllers\ReportController.php(127): app\models\Hiringreport->search(Array)
+#8 [internal function]: app\controllers\ReportController->actionReporthiring()
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#12 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#13 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#15 {main}
+
+Next yii\db\IntegrityException: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'typejo' in where clause is ambiguous
+The SQL being executed was: SELECT `hiring`.* FROM `hiring` LEFT JOIN `userprofile` ON `hiring`.`userid` = `userprofile`.`userid` LEFT JOIN `ish_catalog_baru`.`trans_rincian_rekrut` ON trans_rincian_rekrut.id = hiring.id WHERE (statushiring = 4 or statushiring = 7 or (typejo = 2 and statushiring = 8)) AND (`awalkontrak` BETWEEN '2022-01-09' AND '2022-01-14') AND (recruitreqid IN (0)) in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Schema.php:664
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1263): yii\db\Schema->convertException(Object(PDOException), 'SELECT `hiring`...')
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1148): yii\db\Command->internalExecute('SELECT `hiring`...')
+#2 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(399): yii\db\Command->queryInternal('fetchAll', NULL)
+#3 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Query.php(237): yii\db\Command->queryAll()
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(133): yii\db\Query->all(NULL)
+#5 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(229): yii\db\ActiveQuery->all()
+#6 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(183): app\models\Hiringreport->joGroupBypersa(Array, Object(yii\data\ActiveDataProvider))
+#7 C:\xampp\htdocs\rekrut\app\controllers\ReportController.php(127): app\models\Hiringreport->search(Array)
+#8 [internal function]: app\controllers\ReportController->actionReporthiring()
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#12 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#13 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#15 {main}
+Additional Information:
+Array
+(
+    [0] => 23000
+    [1] => 1052
+    [2] => Column 'typejo' in where clause is ambiguous
+)
+
+2022-05-10 09:50:03 [::1][104728][cbt6fntkovafnhesffo137uob2][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-09'
+        'endawalkontrak' => '2022-01-14'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => '12'
+        'subjobfamily' => ''
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'cbt6fntkovafnhesffo137uob2'
+    '_csrf' => 'adba41c99bc157eb007eb3e23bf6b54eba41d71ceb515074561594742f58b585a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"VMW8dvdzmJGnlIN8rPsiaDhw2aUwhkcC\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/recruitmentcandidate/index'
+    '__id' => 104728
+    '__expire' => 1652154603
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36 Edg/101.0.1210.32'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=cbt6fntkovafnhesffo137uob2; _csrf=adba41c99bc157eb007eb3e23bf6b54eba41d71ceb515074561594742f58b585a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22VMW8dvdzmJGnlIN8rPsiaDhw2aUwhkcC%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm;C:\\Python34\\Scripts;C:\\Python37\\Scripts'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '57119'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1652151003.7308
+    'REQUEST_TIME' => 1652151003
+]
+2022-05-10 09:50:29 [::1][104728][cbt6fntkovafnhesffo137uob2][error][yii\db\IntegrityException] PDOException: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'recruitreqid' in where clause is ambiguous in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php:1258
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1258): PDOStatement->execute()
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1148): yii\db\Command->internalExecute('SELECT `hiring`...')
+#2 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(399): yii\db\Command->queryInternal('fetchAll', NULL)
+#3 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Query.php(237): yii\db\Command->queryAll()
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(133): yii\db\Query->all(NULL)
+#5 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(228): yii\db\ActiveQuery->all()
+#6 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(182): app\models\Hiringreport->joGroupBypersa(Array, Object(yii\data\ActiveDataProvider))
+#7 C:\xampp\htdocs\rekrut\app\controllers\ReportController.php(127): app\models\Hiringreport->search(Array)
+#8 [internal function]: app\controllers\ReportController->actionReporthiring()
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#12 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#13 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#15 {main}
+
+Next yii\db\IntegrityException: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'recruitreqid' in where clause is ambiguous
+The SQL being executed was: SELECT `hiring`.* FROM `hiring` LEFT JOIN `userprofile` ON `hiring`.`userid` = `userprofile`.`userid` LEFT JOIN `recruitment_dev`.`recruitmentcandidate` ON recruitmentcandidate.recruitreqid = trans_rincian_rekrut.id LEFT JOIN `recruitment_dev`.`masterjobfamily` ON masterjobfamily.id = recruitmentcandidate.jobfamily LEFT JOIN `recruitment_dev`.`mastersubjobfamily` ON mastersubjobfamily.id = recruitmentcandidate.subjobfamily WHERE (statushiring = 4 or statushiring = 7 or (typejo = 2 and statushiring = 8)) AND (`awalkontrak` BETWEEN '2022-01-09' AND '2022-01-14') AND (recruitreqid IN (0)) in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Schema.php:664
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1263): yii\db\Schema->convertException(Object(PDOException), 'SELECT `hiring`...')
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1148): yii\db\Command->internalExecute('SELECT `hiring`...')
+#2 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(399): yii\db\Command->queryInternal('fetchAll', NULL)
+#3 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Query.php(237): yii\db\Command->queryAll()
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(133): yii\db\Query->all(NULL)
+#5 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(228): yii\db\ActiveQuery->all()
+#6 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(182): app\models\Hiringreport->joGroupBypersa(Array, Object(yii\data\ActiveDataProvider))
+#7 C:\xampp\htdocs\rekrut\app\controllers\ReportController.php(127): app\models\Hiringreport->search(Array)
+#8 [internal function]: app\controllers\ReportController->actionReporthiring()
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#12 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#13 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#15 {main}
+Additional Information:
+Array
+(
+    [0] => 23000
+    [1] => 1052
+    [2] => Column 'recruitreqid' in where clause is ambiguous
+)
+
+2022-05-10 09:50:29 [::1][104728][cbt6fntkovafnhesffo137uob2][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-09'
+        'endawalkontrak' => '2022-01-14'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => '12'
+        'subjobfamily' => ''
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'cbt6fntkovafnhesffo137uob2'
+    '_csrf' => 'adba41c99bc157eb007eb3e23bf6b54eba41d71ceb515074561594742f58b585a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"VMW8dvdzmJGnlIN8rPsiaDhw2aUwhkcC\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/recruitmentcandidate/index'
+    '__id' => 104728
+    '__expire' => 1652154629
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36 Edg/101.0.1210.32'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=cbt6fntkovafnhesffo137uob2; _csrf=adba41c99bc157eb007eb3e23bf6b54eba41d71ceb515074561594742f58b585a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22VMW8dvdzmJGnlIN8rPsiaDhw2aUwhkcC%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm;C:\\Python34\\Scripts;C:\\Python37\\Scripts'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '57125'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1652151029.0644
+    'REQUEST_TIME' => 1652151029
+]
+2022-05-10 11:41:11 [::1][104728][cbt6fntkovafnhesffo137uob2][error][yii\base\UnknownMethodException] yii\base\UnknownMethodException: Calling unknown method: app\models\Hiringreport::jojobfamily() in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Component.php:300
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(159): yii\base\Component->__call('jojobfamily', Array)
+#1 C:\xampp\htdocs\rekrut\app\controllers\ReportController.php(127): app\models\Hiringreport->search(Array)
+#2 [internal function]: app\controllers\ReportController->actionReporthiring()
+#3 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#6 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#9 {main}
+2022-05-10 11:41:11 [::1][104728][cbt6fntkovafnhesffo137uob2][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-09'
+        'endawalkontrak' => '2022-01-14'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => '12'
+        'subjobfamily' => ''
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'cbt6fntkovafnhesffo137uob2'
+    '_csrf' => 'adba41c99bc157eb007eb3e23bf6b54eba41d71ceb515074561594742f58b585a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"VMW8dvdzmJGnlIN8rPsiaDhw2aUwhkcC\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/recruitmentcandidate/index'
+    '__id' => 104728
+    '__expire' => 1652161271
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36 Edg/101.0.1210.32'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=cbt6fntkovafnhesffo137uob2; _csrf=adba41c99bc157eb007eb3e23bf6b54eba41d71ceb515074561594742f58b585a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22VMW8dvdzmJGnlIN8rPsiaDhw2aUwhkcC%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm;C:\\Python34\\Scripts;C:\\Python37\\Scripts'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '58531'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1652157670.9986
+    'REQUEST_TIME' => 1652157670
+]
+2022-05-10 11:42:24 [::1][104728][cbt6fntkovafnhesffo137uob2][error][yii\base\UnknownPropertyException] yii\base\UnknownPropertyException: Getting unknown property: app\models\Mastersubjobfamily::value1 in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Component.php:154
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\BaseActiveRecord.php(296): yii\base\Component->__get('value1')
+#1 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(349): yii\db\BaseActiveRecord->__get('value1')
+#2 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(167): app\models\Hiringreport->bysubjobfamily('36')
+#3 C:\xampp\htdocs\rekrut\app\controllers\ReportController.php(127): app\models\Hiringreport->search(Array)
+#4 [internal function]: app\controllers\ReportController->actionReporthiring()
+#5 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#8 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#10 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#11 {main}
+2022-05-10 11:42:24 [::1][104728][cbt6fntkovafnhesffo137uob2][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-09'
+        'endawalkontrak' => '2022-01-14'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => '12'
+        'subjobfamily' => '36'
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'cbt6fntkovafnhesffo137uob2'
+    '_csrf' => 'adba41c99bc157eb007eb3e23bf6b54eba41d71ceb515074561594742f58b585a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"VMW8dvdzmJGnlIN8rPsiaDhw2aUwhkcC\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/recruitmentcandidate/index'
+    '__id' => 104728
+    '__expire' => 1652161344
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36 Edg/101.0.1210.32'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=cbt6fntkovafnhesffo137uob2; _csrf=adba41c99bc157eb007eb3e23bf6b54eba41d71ceb515074561594742f58b585a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22VMW8dvdzmJGnlIN8rPsiaDhw2aUwhkcC%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm;C:\\Python34\\Scripts;C:\\Python37\\Scripts'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '58689'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=36&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=36&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=36&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1652157744.538
+    'REQUEST_TIME' => 1652157744
+]
+2022-05-10 11:42:48 [::1][104728][cbt6fntkovafnhesffo137uob2][error][yii\base\UnknownPropertyException] yii\base\UnknownPropertyException: Getting unknown property: app\models\Masterjobfamily::value1 in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Component.php:154
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\BaseActiveRecord.php(296): yii\base\Component->__get('value1')
+#1 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(324): yii\db\BaseActiveRecord->__get('value1')
+#2 C:\xampp\htdocs\rekrut\app\models\Hiringreport.php(159): app\models\Hiringreport->byjobfamily('12')
+#3 C:\xampp\htdocs\rekrut\app\controllers\ReportController.php(127): app\models\Hiringreport->search(Array)
+#4 [internal function]: app\controllers\ReportController->actionReporthiring()
+#5 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#6 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#8 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#10 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#11 {main}
+2022-05-10 11:42:48 [::1][104728][cbt6fntkovafnhesffo137uob2][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-09'
+        'endawalkontrak' => '2022-01-14'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => '12'
+        'subjobfamily' => '36'
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'cbt6fntkovafnhesffo137uob2'
+    '_csrf' => 'adba41c99bc157eb007eb3e23bf6b54eba41d71ceb515074561594742f58b585a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"VMW8dvdzmJGnlIN8rPsiaDhw2aUwhkcC\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/recruitmentcandidate/index'
+    '__id' => 104728
+    '__expire' => 1652161368
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36 Edg/101.0.1210.32'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=cbt6fntkovafnhesffo137uob2; _csrf=adba41c99bc157eb007eb3e23bf6b54eba41d71ceb515074561594742f58b585a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22VMW8dvdzmJGnlIN8rPsiaDhw2aUwhkcC%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm;C:\\Python34\\Scripts;C:\\Python37\\Scripts'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '58698'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=36&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=36&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=12&Hiringreport%5Bsubjobfamily%5D=36&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1652157768.855
+    'REQUEST_TIME' => 1652157768
+]
+2022-05-10 14:08:41 [::1][104728][hiepn8c58teohmoak7sej1jjeg][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-10 14:08:41 [::1][104728][hiepn8c58teohmoak7sej1jjeg][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'hiepn8c58teohmoak7sej1jjeg'
+    '_csrf' => 'adf859405a5742d5ba788df65800c13168d3c4cdf505edfeb08d28fc2d4e115ba:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"cVHEB5itjBDFq9QCH87ft09Fzi40qnep\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-09&Hiringreport%5Bendawalkontrak%5D=2022-01-14&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=11&Hiringreport%5Bsubjobfamily%5D=36&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    '__id' => 104728
+    '__expire' => 1652170121
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36 Edg/101.0.1210.32'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=hiepn8c58teohmoak7sej1jjeg; _csrf=adf859405a5742d5ba788df65800c13168d3c4cdf505edfeb08d28fc2d4e115ba%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22cVHEB5itjBDFq9QCH87ft09Fzi40qnep%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm;C:\\Python34\\Scripts;C:\\Python37\\Scripts'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '65228'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1652166521.0218
+    'REQUEST_TIME' => 1652166521
+]
+2022-05-10 16:14:22 [::1][104728][gofe9njhlfgbofdahvb9fpbpdb][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-10 16:14:22 [::1][104728][gofe9njhlfgbofdahvb9fpbpdb][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'gofe9njhlfgbofdahvb9fpbpdb'
+    '_csrf' => 'e1e314400120b00e613ecf3436c77381370c04713974bdda0d8f26cd12d44f53a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"zFhnBLcOagkgBX5Td9NVJXo5_OAdrz6e\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1652177662
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36 Edg/101.0.1210.39'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=gofe9njhlfgbofdahvb9fpbpdb; _csrf=e1e314400120b00e613ecf3436c77381370c04713974bdda0d8f26cd12d44f53a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22zFhnBLcOagkgBX5Td9NVJXo5_OAdrz6e%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm;C:\\Python34\\Scripts;C:\\Python37\\Scripts'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '57890'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1652174062.703
+    'REQUEST_TIME' => 1652174062
+]

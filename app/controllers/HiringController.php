@@ -16,9 +16,6 @@ use app\models\Hiringsearch;
 use app\models\Chagerequestjo;
 use app\models\Recruitmentcandidatefhsearch;
 use app\models\Userlogin;
-use app\models\Mappingjob;
-use app\models\Masterjobfamily;
-use app\models\Mastersubjobfamily;
 use app\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -111,12 +108,10 @@ class HiringController extends Controller
   {
     $recruitreqid = $_POST['recruitreqid'];
     if ($recruitreqid) {
-      // var_dump($recruitreqid);die;
       $model = new Hiring();
       $modelcountjo = Hiring::find()->where('recruitreqid = ' . $recruitreqid . ' AND statushiring <> 5 AND statushiring <> 6 AND statushiring <> 7')->count();
       $transrincian = Transrincian::find()->where(['id' => $recruitreqid])->one();
       $userprofile = Userprofile::find()->where(['userid' => $userid])->one();
-      // var_dump(Yii::$app->checkhiring->datanotcompleted($userid));die;
       $chagerequestjo = Chagerequestjo::find()->where(['recruitreqid' => $recruitreqid])
         ->andWhere([
           'or',
@@ -136,16 +131,6 @@ class HiringController extends Controller
         } else if ($modelcountjo >= $countnewjumlah) {
           return 6;
         } else if (Yii::$app->checkhiring->datacompleted($userid)) {
-          // $transrincianid = Transrincian::find()->where(['id' => $transrincian->id])->one();
-          // $hirejabatan = Transrincian::find()->where(['hire_jabatan_sap' => $transrincianid->hire_jabatan_sap])->one();
-
-          // $kodejabatan = Mappingjob::find()->where(['kodejabatan' => $hirejabatan])->one();
-          // $subjobfamilyid = Mappingjob::find()->where(['subjobfamilyid' => $kodejabatan->subjobfamilyid])->one();
-          // $mappingid = Mappingjob::find()->where(['id' => $subjobfamilyid])->all();
-
-          // $jobfamily = Mastersubjobfamily::find()->where(['id' => $mappingid])->one();
-          // $jobfamilyid = Mastersubjobfamily::find()->where(['jobfamily_id' => $jobfamily->jobfamily_id])->one();
-
           $transjo = Transjo::find()->where(['nojo' => $transrincian->nojo])->one();
           // $typerekrut = Transrincian::find()->where(['type_rekrut'=>$transrincian->type_rekrut])->one();
 
@@ -153,9 +138,6 @@ class HiringController extends Controller
           $lama = substr($transjo->lama, 0, 2);
           $akhirkontrak = date('Y-m-d', strtotime('+' . $lama . ' month', strtotime($awalkontrak)));
 
-          // $subjobfamily_id = $subjobfamilyid->subjobfamilyid;
-          // $jobfamily_id = $jobfamilyid->jobfamily_id;
-          // $jobfamilyid = isset($model->jobfamilyid) ? $model->jobfamily->id : 'n/a';
           if (Yii::$app->request->isAjax) {
             $model->userid = $userid;
             $model->recruitreqid = $recruitreqid;
@@ -164,9 +146,6 @@ class HiringController extends Controller
             $model->tglinput = date('Y-m-d');
             $model->awalkontrak = $awalkontrak;
             $model->akhirkontrak = $akhirkontrak;
-            // $model->subjobfamily = $subjobfamily_id;
-            // $model->jobfamily = $jobfamily_id;
-            // $model->type_rekrut = $typerekrut;
             $model->statushiring = 1;
             $model->statusbiodata = 1;
             if ($transjo->flag_peralihan == 1) {
@@ -291,9 +270,11 @@ class HiringController extends Controller
       return 6;
     }
   }
+
+  //testfunction
   public function actionHiringprocessdev($id)
   {
-    if ($id <> 6188) {
+    if ($id <> 23468) {
       $model = $this->findModel($id);
       $transrincian = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
       $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
@@ -467,11 +448,13 @@ class HiringController extends Controller
       $body = str_replace('{area}', $transrincian->areasap->value2, $body);
       // var_dump($body);die;
       $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
-      // if ($verification) {
-      //   echo 'successfully';
-      // }
+      if ($verification) {
+        echo 'successfully';
+      }
     }
   }
+
+  //hiringprocess
   public function actionHiringprocess($id)
   {
     $model = $this->findModel($id);
@@ -664,6 +647,7 @@ class HiringController extends Controller
     }
   }
 
+  //testfunction
   public function actionTest($id)
   {
     $model = $this->findModel($id);
@@ -693,6 +677,7 @@ class HiringController extends Controller
     }
   }
 
+  //testfunctionmanual
   public function actionHiringprocessmanual($id)
   {
     $model = $this->findModel($id);
@@ -823,7 +808,7 @@ class HiringController extends Controller
     }
   }
 
-
+  //updateprocesshiringsap
   public function actionHiringupdateprocess($id)
   {
     $model = $this->findModel($id);
