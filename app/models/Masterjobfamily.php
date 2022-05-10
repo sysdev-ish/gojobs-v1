@@ -57,5 +57,8 @@ class Masterjobfamily extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Mastersubjobfamily::className(), ['jobfamily_id' => 'id']);
     }
-    
+    public function getJobmily()
+    {
+        return $this->hasOne(Recruitmentcandidate::className(), ['id' => 'jobfamily']);
+    }
 }

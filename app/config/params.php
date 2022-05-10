@@ -25,7 +25,8 @@ return [
     Salam,  
     <br>
     <b>
-    Tim Project Management ISH 
-    Talented and Qualified People| Solid-Speed-Smart
+    Tim Project Management ISH
+    <br>
+    Talented and Qualified People | Solid-Speed-Smart
     </b>',
 ];

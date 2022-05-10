@@ -105,7 +105,7 @@ if(Yii::$app->utils->permission($role,'m14')){
                     'model' => $searchModel,
                     'attribute' => 'jobfamily',
                     'data' => ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily'),
-                    'options' => ['placeholder' => 'Job Family'],
+                    'options' => ['placeholder' => ' -- '],
                     'pluginOptions' => [
                       'allowClear' => true,
                       // 'minimumInputLength' => 1,

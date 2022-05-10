@@ -1532,7 +1532,7 @@ the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/
 */
 .box {
   position: relative;
-  border-radius: 3px;
+  border-radius: 12px;
   background: #ffffff;
   border-top: 3px solid #d2d6de;
   margin-bottom: 20px;
@@ -1780,7 +1780,7 @@ the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/
   border-top-right-radius: 0;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
-  padding: 10px;
+  padding: 12px;
 }
 .no-header .box-body {
   border-top-right-radius: 3px;
@@ -2017,7 +2017,7 @@ the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/
   background: #fff;
   width: 100%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
+  border-radius: 12px;
   margin-bottom: 15px;
 }
 .info-box small {
@@ -2036,10 +2036,10 @@ the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/
   background: #fff;
 }
 .info-box-icon {
-  border-top-left-radius: 2px;
+  border-top-left-radius: 12px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  border-bottom-left-radius: 2px;
+  border-bottom-left-radius: 12px;
   display: block;
   float: left;
   height: 90px;

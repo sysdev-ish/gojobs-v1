@@ -453,12 +453,9 @@ class HiringController extends Controller
       $retpos = ['status' => "NOK", 'message' => 'temp hold running', 'pernr' => null];
       print_r(json_encode($retpos));
     }
-
     $hiring = Hiring::find()->where(['userid' => $model])->one();
-    $modelulogin = Userlogin::find()->where(['id' => $model->userid])->one();
-
     $hiringstatus = Yii::$app->utils->aplhired($model);
-    if ($hiringstatus == true) {
+    if ($hiringstatus) {
       // $to = 'khusnul.hisyam@ish.co.id';
       // $to = $model->mail->email;
       $to = $hiring->mail->email;
@@ -648,10 +645,8 @@ class HiringController extends Controller
     }
 
     $hiring = Hiring::find()->where(['userid' => $model])->one();
-    $modelulogin = Userlogin::find()->where(['id' => $model->userid])->one();
-
     $hiringstatus = Yii::$app->utils->aplhired($model);
-    if ($hiringstatus == true) {
+    if ($hiringstatus) {
       // $to = 'khusnul.hisyam@ish.co.id';
       // $to = $model->mail->email;
       $to = $hiring->mail->email;
@@ -677,7 +672,7 @@ class HiringController extends Controller
     // $to = $model->mail->email;
 
     $hiringstatus = Yii::$app->utils->aplhired($model);
-    if ($hiringstatus == true) {
+    if ($hiringstatus) {
       // $to = 'khusnul.hisyam@ish.co.id';
       $to = $hiring->mail->email;
       // var_dump($to);die;
@@ -690,8 +685,8 @@ class HiringController extends Controller
       $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
       $body = str_replace('{area}', $transrincian->areasap->value2, $body);
 
+      // var_dump($body);die;
       $verification = Yii::$app->utils->sendmail($to, $subject, $body, 10);
-      // var_dump($hiring);die;
       if ($verification) {
         echo 'successfully';
       }
@@ -1356,10 +1351,9 @@ class HiringController extends Controller
     }
 
     $hiring = Hiring::find()->where(['userid' => $model])->one();
-    $modelulogin = Userlogin::find()->where(['id' => $model->userid])->one();
 
     $hiringstatus = Yii::$app->utils->aplhired($model);
-    if ($hiringstatus == true) {
+    if ($hiringstatus) {
       // $to = 'khusnul.hisyam@ish.co.id';
       // $to = $model->mail->email;
       $to = $hiring->mail->email;

@@ -201,7 +201,7 @@ class Transrincian extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Transperner::className(), ['id' => 'idpktable']);
     }
-    public function getRecruitmentcandidate()
+    public function getReccan()
     {
         return $this->hasOne(Recruitmentcandidate::className(), ['recruitreqid' => 'id']);
     }
@@ -209,12 +209,13 @@ class Transrincian extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Mappingjob::className(), ['kodejabatan' => 'hire_jabatan_sap']);
     }
-    public function getMastersubjobfamily()
+    public function getJobfam()
     {
-        return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamilyid']);
+        return $this->hasOne(Masterjobfamily::className(), ['jobfamily' => 'id']);
+        // return $this->hasOne(Masterjobfamily::className(), ['jobfamily' => 'id']);
     }
-    public function getMasterjobfamily()
+    public function getSubjobfam()
     {
-        return $this->hasOne(Masterjobfamily::className(), ['id' => 'jobfamily_id']);
+        return $this->hasOne(Mastersubjobfamily::className(), ['subjobfamily' => 'id']);
     }
 }

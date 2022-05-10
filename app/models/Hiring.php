@@ -24,9 +24,6 @@ class Hiring extends \yii\db\ActiveRecord
   public $payrollarea;
   public $jabatan;
   public $level;
-//   public $jobfamily;
-//   public $subjobfamily;
-
     /**
      * {@inheritdoc}
      */
@@ -45,9 +42,9 @@ class Hiring extends \yii\db\ActiveRecord
             [['tglinput','awalkontrak','akhirkontrak','persa','area','skilllayanan','payrollarea','jabatan','level'], 'required', 'on'=>'approveish'],
             [['tglinput','awalkontrak','akhirkontrak'], 'required', 'on'=>'approvesso'],
             // ['recruitreqid' , 'jovalidation', 'on'=>'approve'],
-            [['userid', 'perner', 'statushiring', 'statusbiodata','flaginfotype022','createdby','updateby','approvedby','rejectedby','recruitreqid','jobfamily','subjobfamily'], 'integer'],
+            [['userid', 'perner', 'statushiring', 'statusbiodata','flaginfotype022','createdby','updateby','approvedby','rejectedby','recruitreqid'], 'integer'],
             [['message','keterangan'], 'string', 'max' => 445],
-            [['createtime', 'updatetime','tglinput','awalkontrak','akhirkontrak','jobfamily','subjobfamily'], 'safe'],
+            [['createtime', 'updatetime','tglinput','awalkontrak','akhirkontrak'], 'safe'],
         ];
     }
 
@@ -74,8 +71,6 @@ class Hiring extends \yii\db\ActiveRecord
             'updateby' => 'Updated by',
             'approvedby' => 'Approve by',
             'recruitreqid' => 'Job Order',
-            'jobfamily' => 'Job Family',
-            'subjobfamily' => 'Sub Job Family',
         ];
     }
     public function jovalidation($attribute, $params)
@@ -129,22 +124,6 @@ class Hiring extends \yii\db\ActiveRecord
     public function getChangereqdata()
     {
         return $this->hasOne(Chagerequestdata::className(), ['userid' => 'userid']);
-    }
-    public function getJobfamily()
-    {
-        return $this->hasOne(Masterjobfamily::className(), ['id' => 'jobfamily']);
-    }
-    public function getJobfamilyid()
-    {
-        return $this->hasOne(Mastersubjobfamily::className(), ['jobfamily_id' => 'jobfamily']);
-    }
-    public function getSubjobfamily()
-    {
-        return $this->hasOne(Mastersubjobfamily::className(), ['id' => 'subjobfamily']);
-    }
-    public function getMappingjob()
-    {
-        return $this->hasMany(Mappingjob::className(), ['id', 'subjobfamilyid']);
     }
     public function getKodeJabatanSap()
     {

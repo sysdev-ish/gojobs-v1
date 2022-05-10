@@ -54,7 +54,7 @@ class Mastersubjobfamily extends \yii\db\ActiveRecord
             'updatetime' => 'Updatetime',
         ];
     }
-    public function getMasterjobfamily()
+    public function getJobfam()
     {
         return $this->hasOne(Masterjobfamily::className(), ['id' => 'jobfamily_id']);
     }

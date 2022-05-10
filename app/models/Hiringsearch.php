@@ -53,8 +53,8 @@ class Hiringsearch extends Hiring
         // $query->joinWith("recrequest");
 
         // add conditions that should always apply here
-        $query->leftJoin('masterjobfamily', 'masterjobfamily.id = hiring.jobfamily');
-        $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.id = hiring.subjobfamily');
+        // $query->leftJoin('masterjobfamily', 'masterjobfamily.id = hiring.jobfamily');
+        // $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.id = hiring.subjobfamily');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

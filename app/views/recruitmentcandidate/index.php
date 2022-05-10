@@ -153,10 +153,8 @@ if(Yii::$app->utils->permission($role,'m3') && Yii::$app->utils->permission($rol
           // 'contentOptions'=>['style'=>'width: 150px;'],
           'format' => 'html',
           'value'=>function ($data) {
-
             return ($data->recrequest->hire_jabatan_sap)? ((is_numeric($data->recrequest->hire_jabatan_sap))?$data->recrequest->jabatansap->value2:'-'):'-';
         }
-
         ],
         // [
         //   'label' => 'Area (SAP)',

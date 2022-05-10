@@ -27,6 +27,7 @@ use app\models\Sapskilllayanan;
 use app\models\Transperner;
 use app\models\Transrincianori;
 use app\models\Hiring;
+use app\models\Mappingjob;
 use app\models\Uservaksin;
 use app\models\Masterjobfamily;
 use app\models\Mastersubjobfamily;
@@ -138,6 +139,7 @@ app\assets\ReportAsset::register($this);
                     ['class' => 'kartik\grid\SerialColumn'],
                     'userprofile.fullname',
                     'perner',
+
                     [
                       'label' => 'Jabatan (SAP)',
                       // 'show' => false,
@@ -145,11 +147,10 @@ app\assets\ReportAsset::register($this);
                       // 'contentOptions'=>['style'=>'width: 150px;'],
                       'format' => 'raw',
                       'value'=>function ($data) {
-
                         return ($data->recrequest->hire_jabatan_sap)? ((is_numeric($data->recrequest->hire_jabatan_sap))?$data->recrequest->jabatansap->value2:'-'):'-';
                     }
-
                     ],
+
                     'recrequest.id',
                     'recrequest.nojo',
                     [
@@ -256,26 +257,26 @@ app\assets\ReportAsset::register($this);
 
                         return ($data->recrequest->abkrs_sap)?$data->recrequest->abkrs_sap : "";
                     }
-
                     ],
-                    // 'jobfamily',
-                    // 'subjobfamily',
+
                     [
                       'label' => 'Job Family',
                       'format' => 'raw',
-                      'value' => function ($data) {
-                        $data = Masterjobfamily::find()->where(['id' => $data->jobfamily])->one();
-                        return ($data) ? $data->jobfamily : "";
-                      }
+                      'value' => 'recrequest.mappingjob.subjobfam.jobfam.jobfamily',
+                      // 'value' => function ($data) {
+                      //   return ($data->recrequest->mappingjob->subjobfam->jobfam->jobfamily) ? $data->recrequest->mappingjob->subjobfam->jobfam->jobfamily : "";
+                      // }
                     ],
+
                     [
                       'label' => 'Sub Job Family',
                       'format' => 'raw',
-                      'value' => function ($data) {
-                        $data = Mastersubjobfamily::find()->where(['id' => $data->subjobfamily])->one();
-                        return ($data) ? $data->subjobfamily : "";
-                      }
+                      'value' => 'recrequest.mappingjob.subjobfam.subjobfamily',
+                      // 'value' => function ($data) {
+                      //   return ($data->recrequest->mappingjob->subjobfam->subjobfamily ) ? $data->recrequest->mappingjob->subjobfam->subjobfamily : "";
+                      // }
                     ],
+                    
                     [
                       'label' => 'Tipe Rekrut',
                       'format' => 'raw',
@@ -1180,16 +1181,42 @@ app\assets\ReportAsset::register($this);
                   'value'=>function ($data) {
                     return $data->userprofile->fullname;
                 }
-
                 ],
+
+                [
+                  'label' => 'Jabatan (SAP)',
+                  'format' => 'raw',
+                  'value' => function ($data) {
+                    return ($data->recrequest->hire_jabatan_sap) ? $data->recrequest->jabatansap->value2 : '-';
+                  }
+                ],
+                
+                [
+                  'label' => 'Job Family',
+                  'format' => 'raw',
+                  'value' => 'recrequest.mappingjob.subjobfam.jobfam.jobfamily',
+                  // 'value' => function ($data) {
+                  //   return ($data->recrequest->mappingjob->subjobfam->jobfam) ? $data->recrequest->mappingjob->subjobfam->jobfam->jobfamily : '';
+                  // }
+                ],
+
+                [
+                  'label' => 'Sub Job Family',
+                  'format' => 'raw',
+                  'value' => 'recrequest.mappingjob.subjobfam.subjobfamily',
+                  // 'value' => function ($data) {
+                  //   return ($data->recrequest->mappingjob->subjobfam) ? $data->recrequest->mappingjob->subjobfam->subjobfamily : '';
+                  // }
+                ],
+
                 [
                   'attribute' => 'perner',
                   'format' => 'raw',
                   'value'=>function ($data) {
                   return ($data->perner)?$data->perner:"";
                 }
-
                 ],
+
                 [
                   'attribute' => 'statuspekerja',
                   'label' => 'Status',
@@ -1203,10 +1230,8 @@ app\assets\ReportAsset::register($this);
                     ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjabystatus');
                     $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
                     // var_dump($datapekerjabyperner[0]);die;
-
                   return ($datapekerjabyperner)?(($datapekerjabyperner[0]->MASSN == "Z8")?"Withdrawn":"Active"):'-';
                 }
-
                 ],
             ],
         ]); ?>

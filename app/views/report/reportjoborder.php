@@ -66,16 +66,16 @@ app\assets\ReportAsset::register($this);
             <!-- /.info-box-content -->
           </div>
           </div>
-          <!-- <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="col-md-4 col-sm-4 col-xs-12">
           <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
+            <span class="info-box-icon bg-yellow"><i class="fa fa-users"></i></span>
 
             <div class="info-box-content">
               <span class="info-box-text">Total Pemenuhan Pekerja (Hiring)</span>
               <span class="info-box-number"><?php //echo $dataProvider['totalpemenuhan']; ?></span>
             </div>
           </div>
-          </div> -->
+          </div>
 
         </div>
         <!-- /.col -->
@@ -267,26 +267,25 @@ app\assets\ReportAsset::register($this);
                           return ($data->transperner)? (($data->transperner->lup_skema AND $data->transperner->lup_skema <> '0000-00-00')?$data->transperner->lup_skema : ""):'';
 
                         }
-
                     }
                     ],
+
                     [
                       'label' => 'Job Family',
                       'format' => 'raw',
-                      'value' => function ($data) {
-                        $candidateid = Recruitmentcandidate::find()->where(['recruitreqid' => $data->id])->one(); //clearid
-                        $data = Masterjobfamily::find()->where(['id' => $candidateid->jobfamily])->one();
-                        return ($data) ? $data->jobfamily : "";
-                      }
+                      'value' => 'mappingjob.subjobfam.jobfam.jobfamily',
+                      // 'value' => function ($data) {
+                        // return ($data->mappingjob->subjobfam->jobfam) ? $data->mappingjob->subjobfam->jobfam->jobfamily : '';
+                      // }
                     ],
+
                     [
                       'label' => 'Sub Job Family',
                       'format' => 'raw',
-                      'value' => function ($data) {
-                        $candidateid = Recruitmentcandidate::find()->where(['recruitreqid' => $data->id])->one(); //clearid
-                        $data = Mastersubjobfamily::find()->where(['id' => $candidateid->subjobfamily])->one();
-                        return ($data) ? $data->subjobfamily : "";
-                      }
+                      'value' => 'mappingjob.subjobfam.subjobfamily',
+                      // 'value' => function ($data) {
+                        // return ($data->mappingjob->subjobfam) ? $data->mappingjob->subjobfam->subjobfamily : '';
+                      // }
                     ],
 
                     ['class' => 'kartik\grid\ActionColumn', 'urlCreator'=>function(){return '#';}]
@@ -296,7 +295,7 @@ app\assets\ReportAsset::register($this);
                     'columns' => $gridColumns,
                     // 'target'=> ExportMenu::TARGET_BLANK,
                     'batchSize' => 12,
-                    'selectedColumns' => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,19],
+                    'selectedColumns' => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
                     'columnSelectorOptions'=>[
                         'label' => 'Columns',
                     ],
@@ -306,9 +305,9 @@ app\assets\ReportAsset::register($this);
                         ExportMenu::FORMAT_PDF => false,
                     ]
                 ]);
-                 ?>
-              </div>
-        </div>
+              ?>
+            </div>
+          </div>
         <div class="box-body">
           <?php
           echo GridView::widget([
@@ -322,7 +321,7 @@ app\assets\ReportAsset::register($this);
                   [
                     'label' => 'Create JO',
                     'attribute' => 'tanggal',
-                    'format' => ['date', 'php:Y-m-d'],
+                    'format' => ['date', 'php:d-m-Y'],
                     'value'=>function ($data) {
 
                       return ($data->transjo)?$data->transjo->tanggal : "";
@@ -394,20 +393,25 @@ app\assets\ReportAsset::register($this);
                     return ($data->jumlah)?$data->jumlah:"";
                     }
                   ],
-                  // [
-                  //   'label' => 'Job Family',
-                  //   'format' => 'raw',
-                  //   'value' => function($data) {
-                  //     return ($data->recruitmentcandidate) ? $data->recruitmentcandidate->jobfamily : ""; //getid from relational
-                  //   }
-                  // ],
-                  // [
-                  //   'label' => 'Sub Job Family',
-                  //   'format' => 'raw',
-                  //   'value' => function($data) {
-                  //     return ($data->recruitmentcandidate) ? $data->recruitmentcandidate->subjobfamily : ""; //getid from relational
-                  //   }
-                  // ],
+                  
+                  [
+                    'label' => 'Job Family',
+                    'format' => 'raw',
+                    'value' => 'mappingjob.subjobfam.jobfam.jobfamily',
+                    // 'value' => function ($data) {
+                      //   return ($data->mappingjob->subjobfam->jobfam) ? $data->mappingjob->subjobfam->jobfam->jobfamily : '';
+                      // }
+                  ],
+                  
+                  [
+                    'label' => 'Sub Job Family',
+                    'format' => 'raw',
+                    'value' => 'mappingjob.subjobfam.subjobfamily',
+                    // 'value' => function ($data) {
+                    //   return ($data->mappingjob->subjobfam) ? $data->mappingjob->subjobfam->subjobfamily : '';
+                    // }
+                  ],
+
                   [
                     'label' => 'Hired',
                     'format' => 'raw',

@@ -65,11 +65,6 @@ class Hiringreport extends Hiring
     {
         $query = Hiring::find();
         $query->joinWith("userprofile");
-
-        $query->leftJoin('masterjobfamily', 'masterjobfamily.id = hiring.jobfamily');
-        $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.id = hiring.subjobfamily');
-
-
         // $query->joinWith("useredu");
         // $query->joinWith("recrequest");
 
@@ -152,16 +147,36 @@ class Hiringreport extends Hiring
           }else{
             $getPerner = 0;
           }
-          // var_dump($getPerner);die;
           $query->andWhere('perner IN (' . $getPerner . ')');
         }
-        // $query->andFilterWhere(['like', 'jobfamily', $this->jobfamily]);
+
+        // if ($this->jobfamily){
+        //   $query->andFilterWhere(['recrequest.mappingjob.subjobfam.jobfam.jobfamily' => $this->jobfamily]);
+        // }
+
+        // if ($this->subjobfamily){
+        //   $query->andFilterWhere(['recrequest.mappingjob.subjobfam.jobfam.subjobfamily' => $this->subjobfamily]);
+        // }
+        
         if ($this->jobfamily) {
-          $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily]);
+          // $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily]);
+          $getJobId = $this->byjobfamily();
+          if ($getJobId) {
+            $getJobId = implode(',', $getJobId);
+          } else {
+            $getJobId = 0;
+          }
+          $query->andWhere('recruitreqid IN (' . $getJobId . ')');
         }
-        // $query->andFilterWhere(['like', 'subjobfamily', $this->subjobfamily]);
         if ($this->subjobfamily) {
-          $query->andWhere('mastersubjobfamily.id = :msjId', [':msjId' => $this->subjobfamily]);
+          $getSubjobId = $this->bysubjobfamily();
+          if ($getSubjobId) {
+            $getSubjobId = implode(',', $getSubjobId);
+          } else {
+            $getSubjobId = 0;
+          }
+          $query->andWhere('recruitreqid IN (' . $getSubjobId . ')');
+          // $query->andWhere('mastersubjobfamily.id = :msjId', [':msjId' => $this->subjobfamily]);
         }
 
         $bypersonalarea = $this->joGroupBypersa($params,$dataProvider);
@@ -307,6 +322,44 @@ class Hiringreport extends Hiring
                     $transRincianIds[] = $tr->id;
                 }
                 $ret = $transRincianIds;
+            }
+      return $ret;
+    }
+
+    protected function byjobfamily(){
+        $ret = null;
+            $jobfamily = Masterjobfamily::find();
+            if($this->jobfamily){
+              $jobfamily->andWhere([
+                'jobfamily' => $this->jobfamily,
+              ]);
+            }
+            $jobfamilyquery = $jobfamily->all();
+            if($jobfamilyquery){
+                $jobfamilyIds = array();
+                foreach($jobfamilyquery as $tr){
+                    $jobfamilyIds[] = $tr->id;
+                }
+                $ret = $jobfamilyIds;
+            }
+      return $ret;
+    }
+
+    protected function bysubjobfamily(){
+        $ret = null;
+            $subjobfamily = Mastersubjobfamily::find();
+            if($this->subjobfamily){
+              $subjobfamily->andWhere([
+                'subjobfamily' => $this->subjobfamily,
+              ]);
+            }
+            $subjobfamilyquery = $subjobfamily->all();
+            if($subjobfamilyquery){
+                $subjobfamilyIds = array();
+                foreach($subjobfamilyquery as $tr){
+                    $subjobfamilyIds[] = $tr->id;
+                }
+                $ret = $subjobfamilyIds;
             }
       return $ret;
     }
