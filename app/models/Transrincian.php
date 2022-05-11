@@ -209,13 +209,13 @@ class Transrincian extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Mappingjob::className(), ['kodejabatan' => 'hire_jabatan_sap']);
     }
-    public function getJobfam()
-    {
-        return $this->hasOne(Masterjobfamily::className(), ['jobfamily' => 'id']);
-        // return $this->hasOne(Masterjobfamily::className(), ['jobfamily' => 'id']);
-    }
-    public function getSubjobfam()
-    {
-        return $this->hasOne(Mastersubjobfamily::className(), ['subjobfamily' => 'id']);
-    }
+    // public function getJobfam()
+    // {
+    //     return $this->hasOne(Masterjobfamily::className(), ['jobfamily' => 'id']);
+    //     // return $this->hasOne(Masterjobfamily::className(), ['jobfamily' => 'id']);
+    // }
+    // public function getSubjobfam()
+    // {
+    //     return $this->hasOne(Mastersubjobfamily::className(), ['subjobfamily' => 'id']);
+    // }
 }

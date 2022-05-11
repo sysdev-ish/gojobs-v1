@@ -98,11 +98,12 @@ class Joborderreport extends Transrincian
           // 'totalpemenuhan' => $totalpemenuhan,
         ];
 
-        if ($this->jobfamily) {
+        if ($this->jobfamily) { 
           $getJobId = $this->byjobfamily($this->jobfamily);
-          if ($getJobId) {
+          // var_dump($getJobId);die;
+          if ($getJobId) {   
             $getJobid = implode(',', $getJobId);
-            $query->andWhere('recruitreqid IN (' . $getJobid . ')');
+            $query->andWhere('trans_rincian_rekrut.id IN (' . $getJobid . ')');
           }
         }
 
@@ -110,7 +111,7 @@ class Joborderreport extends Transrincian
           $getSubjobId = $this->bysubjobfamily($this->subjobfamily);
           if ($getSubjobId) {
             $getSubjobid = implode(',', $getSubjobId);
-            $query->andWhere('recruitreqid IN (' . $getSubjobid . ')');
+            $query->andWhere('trans_rincian_rekrut.id IN (' . $getSubjobid . ')');
           }
         }
 
@@ -160,51 +161,45 @@ class Joborderreport extends Transrincian
       return $mySum;
     }
 
-    protected function byjobfamily($jobfamily)
+    protected function byjobfamily($jobfamily = null)
     {
       $ret = null;
       if ($jobfamily) {
-        $getSub = Masterjobfamily::find()->andWhere('jobfamily like "%' . $jobfamily . '%"')->all();
-        if ($getSub) {
-          $jobfamilyid = array();
-          foreach ($getSub as $gj) {
-            $jobfamilyid[] = $gj->id;
+
+        $query = Transrincian::find();
+        $query->leftJoin('recruitment_dev.mappingjob', 'mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
+        $query->leftJoin('recruitment_dev.mastersubjobfamily', 'mastersubjobfamily.id = mappingjob.subjobfamilyid');
+        $query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = mastersubjobfamily.jobfamily_id');
+        $query->where('masterjobfamily.id = :id', [':id' => $jobfamily]);
+        $getJob = $query->all(); //var_dump($getJob);die;
+        if ($getJob) {
+          $transRincianIds = [];
+          foreach ($getJob as $gs) {
+            $transRincianIds[] = $gs->id;
           }
-          if (count($jobfamilyid) > 0) {
-            $transRincian = Transrincian::find()->andWhere('hire_jabatan_sap IN ("' . implode('","', $jobfamilyid) . '")', [])->all();
-            if ($transRincian) {
-              $transRincianIds = array();
-              foreach ($transRincian as $tr) {
-                $transRincianIds[] = $tr->id;
-              }
-              $ret = $transRincianIds;
-            }
-          }
+          $ret = $transRincianIds;
         }
       }
       return $ret;
     }
 
-    protected function bysubjobfamily($subjobfamily)
+    protected function bysubjobfamily($subjobfamily = null)
     {
       $ret = null;
       if ($subjobfamily) {
-        $getSub = Mastersubjobfamily::find()->andWhere('subjobfamily like "%' . $subjobfamily . '%"')->all();
+
+        $query = Transrincian::find();
+        $query->leftJoin('recruitment_dev.mappingjob', 'mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
+        $query->leftJoin('recruitment_dev.mastersubjobfamily', 'mastersubjobfamily.id = mappingjob.subjobfamilyid');
+        //$query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = mastersubjobfamily.jobfamily_id'); 
+        $query->where('mastersubjobfamily.id = :id', [':id' => $subjobfamily]);
+        $getSub = $query->all(); //var_dump($getSub);die;
         if ($getSub) {
-          $subjobfamilyid = array();
-          foreach ($getSub as $gj) {
-            $subjobfamilyid[] = $gj->id;
+          $transRincianIds = [];
+          foreach ($getSub as $gs) {
+            $transRincianIds[] = $gs->id;
           }
-          if (count($subjobfamilyid) > 0) {
-            $transRincian = Transrincian::find()->andWhere('hire_jabatan_sap IN ("' . implode('","', $subjobfamilyid) . '")', [])->all();
-            if ($transRincian) {
-              $transRincianIds = array();
-              foreach ($transRincian as $tr) {
-                $transRincianIds[] = $tr->id;
-              }
-              $ret = $transRincianIds;
-            }
-          }
+          $ret = $transRincianIds;
         }
       }
       return $ret;
