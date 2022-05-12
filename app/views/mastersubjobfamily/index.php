@@ -3,7 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Modal;
-
+use app\models\Masterjobfamily;
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\MastersubjobfamilySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -74,16 +75,26 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                 ['class' => 'yii\grid\SerialColumn'],
 
                 // 'id',
-                // 'jobfamily_id',
-                'masterjobfamily.jobfamily',
-                // [
-                //     'label' => 'Job Family',
-                //     'attribute' => 'jobfamily_id',
-                //     'format' => 'html',
-                //     'value' => function ($data) {
-                //         return $data->masterjobfamily->jobfamily_id;
-                //     }
-                // ],
+                // 'jobfam.jobfamily',
+                [
+                    'attribute' => 'jobfamily_id',
+                    'format' => 'html',
+                    'contentOptions' => ['style' => 'min-width: 100px;'],
+                    'filter' => \kartik\select2\Select2::widget([
+                        'model' => $searchModel,
+                        'attribute' => 'jobfamily_id',
+                        'data' => ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily'),
+                        'options' => ['placeholder' => 'Job Family'],
+                        'pluginOptions' => [
+                            'allowClear' => true,
+                            // 'minimumInputLength' => 1,
+                            'min-width' => '100px',
+                        ],
+                    ]),
+                    'value' => function ($data) {
+                        return ($data->jobfam) ? $data->jobfam->jobfamily : '';
+                    }
+                ],
                 // 'createtime',
                 // 'updatetime'
                 'subjobfamily',

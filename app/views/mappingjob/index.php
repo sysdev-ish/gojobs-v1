@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Modal;
 use app\models\Mastersubjobfamily;
-    use yii\helpers\ArrayHelper;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\mappingjobsearch */
@@ -101,9 +101,8 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                         ],
                     ]),
                     'value' => function ($data) {
-                        return ($data->mastersubjobfamily) ? $data->mastersubjobfamily->subjobfamily : '';
+                        return ($data->subjobfam) ? $data->subjobfam->subjobfamily : '';
                     }
-
                 ],
                 'kodejabatan',
                 'jabatansap',

@@ -63,4 +63,5 @@ class Mastersubjobfamily extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Mappingjob::className(), ['subjobfamilyid' => 'id']);
     }
+
 }

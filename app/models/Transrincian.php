@@ -58,6 +58,7 @@ use Yii;
 class Transrincian extends \yii\db\ActiveRecord
 {
   public $projectrekrut;
+  public $cnt;
   /**
    * @return \yii\db\Connection the database connection used by this AR class.
    */
@@ -78,7 +79,6 @@ class Transrincian extends \yii\db\ActiveRecord
       // return '{{ish_catalog_baru}}.{{' . self::getDb()->getSchema()->getRawTableName(parent::tableName()) . '}}';
         return 'trans_rincian_rekrut';
     }
-
 
     /**
      * {@inheritdoc}
@@ -209,6 +209,19 @@ class Transrincian extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Mappingjob::className(), ['kodejabatan' => 'hire_jabatan_sap']);
     }
+
+    // public function getCategorycount()
+    // {
+    //     $query = Transrincian::find();
+    //     $query->leftJoin('recruitment_dev.mappingjob', 'mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
+    //     $query->leftJoin('recruitment_dev.mastersubjobfamily', 'mastersubjobfamily.id = mappingjob.subjobfamilyid');
+    //     $query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = mastersubjobfamily.jobfamily_id');
+
+    //     if ($this->jobfamily) {
+    //         $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily])->count();
+    //     }
+    // }
+
     // public function getJobfam()
     // {
     //     return $this->hasOne(Masterjobfamily::className(), ['jobfamily' => 'id']);

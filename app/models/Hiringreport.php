@@ -68,6 +68,12 @@ class Hiringreport extends Hiring
         // $query->joinWith("useredu");
         // $query->joinWith("recrequest");
 
+        //Add by pwd
+        $query->leftJoin('ish_catalog_baru.trans_rincian_rekrut', 'trans_rincian_rekrut.id = hiring.recruitreqid');
+        $query->leftJoin('mappingjob', 'mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
+        $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.id = mappingjob.subjobfamilyid');
+        $query->leftJoin('masterjobfamily', 'masterjobfamily.id = mastersubjobfamily.jobfamily_id');
+
         // add conditions that should always apply here
         
         $dataProvider = new ActiveDataProvider([
@@ -81,16 +87,15 @@ class Hiringreport extends Hiring
 
         if($this->sap <> 2){
           // var_dump($this->sap);die;
-
-          $query->where('statushiring = 4 or statushiring = 7 or (typejo = 2 and statushiring = 8)');
+          //$query->where('statushiring = 4 or statushiring = 7 or (typejo = 2 and statushiring = 8)');
+          //Add by pwd
+          $query->where('statushiring = 4 or statushiring = 7 or (hiring.typejo = 2 and statushiring = 8)');
         }else{
           // var_dump($this->sap);die;
           $query->where('statushiring <> 5 and statushiring <> 1');
         }
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-
             return $dataProvider;
         }
 
@@ -147,20 +152,11 @@ class Hiringreport extends Hiring
           $query->andWhere('perner IN (' . $getPerner . ')');
         }
         
-        if ($this->jobfamily) { //die($this->jobfamily);
-          $getJobId = $this->byjobfamily($this->jobfamily);
-          if ($getJobId) { //var_dump($getJobId);die;
-            $getJobid = implode(',', $getJobId);
-            $query->andWhere('recruitreqid IN (' . $getJobid . ')');
-          }
-        }
-        
+        //Add by pwd -> pakai relasi buat filternya karena jika implode parsing data bakal habisin memory & kurang optimal
         if ($this->subjobfamily) {
-          $getSubjobId = $this->bysubjobfamily($this->subjobfamily);
-          if ($getSubjobId) {
-            $getSubjobid = implode(',', $getSubjobId);
-            $query->andWhere('recruitreqid IN (' . $getSubjobid . ')');
-          }
+          $query->andWhere('mastersubjobfamily.id = :id', [':id' => $this->subjobfamily]);
+        } elseif ($this->jobfamily) {
+          $query->andWhere('masterjobfamily.id = :id', [':id' => $this->jobfamily]);
         }
 
         $bypersonalarea = $this->joGroupBypersa($params,$dataProvider);
@@ -305,49 +301,6 @@ class Hiringreport extends Hiring
             }
       return $ret;
     }
-
-    protected function byjobfamily($jobfamily = null){
-        $ret = null;
-        if ($jobfamily){
-
-          $query = Transrincian::find();
-          $query->leftJoin('recruitment_dev.mappingjob', 'mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
-          $query->leftJoin('recruitment_dev.mastersubjobfamily', 'mastersubjobfamily.id = mappingjob.subjobfamilyid');
-          $query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = mastersubjobfamily.jobfamily_id');
-          $query->where('masterjobfamily.id = :id', [':id' => $jobfamily]);
-          $getJob = $query->all(); //var_dump($getJob);die;
-          if ($getJob) {
-            $transRincianIds = [];
-            foreach($getJob as $gs){
-              $transRincianIds[] = $gs->id;
-            }
-            $ret = $transRincianIds;            
-          }
-        }
-      return $ret;
-    }
-
-    protected function bysubjobfamily($subjobfamily = null){
-        $ret = null;
-        if ($subjobfamily){
-
-          $query = Transrincian::find();
-          $query->leftJoin('recruitment_dev.mappingjob', 'mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
-          $query->leftJoin('recruitment_dev.mastersubjobfamily', 'mastersubjobfamily.id = mappingjob.subjobfamilyid');
-          //$query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = mastersubjobfamily.jobfamily_id'); 
-          $query->where('mastersubjobfamily.id = :id', [':id' => $subjobfamily]);
-          $getSub = $query->all(); //var_dump($getSub);die;
-          if ($getSub) {
-            $transRincianIds = [];
-            foreach($getSub as $gs){
-              $transRincianIds[] = $gs->id;
-            }
-            $ret = $transRincianIds;            
-          }
-        }
-      return $ret;
-    }
-
 
     public function attributeLabels()
     {

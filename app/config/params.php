@@ -4,15 +4,12 @@ return [
     'adminEmail' => 'admin@example.com',
     
     'mailFeedback' => '<table>
+
     <br>
-    Semangat Pagiii.
-    <br>
-    <br>
-    Hallo Sdr/i {fullname},
+    Hi Kakak, Selamat ya!
     <br>
     </table>
     <br>
-    PT Infomedia Solusi Humanika (ISH) mengucapkan selamat kepada anda yang telah lulus untuk posisi pekerjaan posisi {jabatan}, di {area}.
     Kakak telah menyelesaikan semua proses rekrutmen ISH dan dinyatakan diterima bekerja.  
     Mohon kesediaan Kakak untuk mengisi umpan balik terlampir dan waktu pengisian cukup +/- 3 menit.
     <br>
@@ -21,12 +18,14 @@ return [
     <br>
     Masukan Kakak sangat membantu kami untuk senantiasa memberikan pelayanan terbaik.
     <br>
+    <br>
     Terimakasih atas partisipasinya 
+    <br>
+    <br>
     Salam,  
+    <br>
     <br>
     <b>
     Tim Project Management ISH
-    <br>
-    Talented and Qualified People | Solid-Speed-Smart
     </b>',
 ];

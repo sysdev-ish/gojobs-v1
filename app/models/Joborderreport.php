@@ -64,6 +64,11 @@ class Joborderreport extends Transrincian
       $query->andWhere('trans_rincian_rekrut.skema = 1');
       $query->andWhere('trans_rincian_rekrut.typejo <> 3');
 
+      //Add by pwd
+      $query->leftJoin('recruitment_dev.mappingjob', 'recruitment_dev.mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
+      $query->leftJoin('recruitment_dev.mastersubjobfamily', 'recruitment_dev.mastersubjobfamily.id = mappingjob.subjobfamilyid');
+      $query->leftJoin('recruitment_dev.masterjobfamily', 'recruitment_dev.masterjobfamily.id = mastersubjobfamily.jobfamily_id');
+
       $dataProvider = new ActiveDataProvider([
           'query' => $query,
           'sort' => ['defaultOrder' => ['nojo' => SORT_DESC]],
@@ -98,21 +103,11 @@ class Joborderreport extends Transrincian
           // 'totalpemenuhan' => $totalpemenuhan,
         ];
 
-        if ($this->jobfamily) { 
-          $getJobId = $this->byjobfamily($this->jobfamily);
-          // var_dump($getJobId);die;
-          if ($getJobId) {   
-            $getJobid = implode(',', $getJobId);
-            $query->andWhere('trans_rincian_rekrut.id IN (' . $getJobid . ')');
-          }
-        }
-
+        //Add by pwd -> pakai relasi buat filternya karena jika implode parsing data bakal habisin memory & kurang optimal
         if ($this->subjobfamily) {
-          $getSubjobId = $this->bysubjobfamily($this->subjobfamily);
-          if ($getSubjobId) {
-            $getSubjobid = implode(',', $getSubjobId);
-            $query->andWhere('trans_rincian_rekrut.id IN (' . $getSubjobid . ')');
-          }
+          $query->andWhere('mastersubjobfamily.id = :id', [':id' => $this->subjobfamily]);
+        } elseif ($this->jobfamily) {
+          $query->andWhere('masterjobfamily.id = :id', [':id' => $this->jobfamily]);
         }
 
         return $alldata;
@@ -159,50 +154,6 @@ class Joborderreport extends Transrincian
         }
       }
       return $mySum;
-    }
-
-    protected function byjobfamily($jobfamily = null)
-    {
-      $ret = null;
-      if ($jobfamily) {
-
-        $query = Transrincian::find();
-        $query->leftJoin('recruitment_dev.mappingjob', 'mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
-        $query->leftJoin('recruitment_dev.mastersubjobfamily', 'mastersubjobfamily.id = mappingjob.subjobfamilyid');
-        $query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = mastersubjobfamily.jobfamily_id');
-        $query->where('masterjobfamily.id = :id', [':id' => $jobfamily]);
-        $getJob = $query->all(); //var_dump($getJob);die;
-        if ($getJob) {
-          $transRincianIds = [];
-          foreach ($getJob as $gs) {
-            $transRincianIds[] = $gs->id;
-          }
-          $ret = $transRincianIds;
-        }
-      }
-      return $ret;
-    }
-
-    protected function bysubjobfamily($subjobfamily = null)
-    {
-      $ret = null;
-      if ($subjobfamily) {
-
-        $query = Transrincian::find();
-        $query->leftJoin('recruitment_dev.mappingjob', 'mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
-        $query->leftJoin('recruitment_dev.mastersubjobfamily', 'mastersubjobfamily.id = mappingjob.subjobfamilyid');
-        //$query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = mastersubjobfamily.jobfamily_id'); 
-        $query->where('mastersubjobfamily.id = :id', [':id' => $subjobfamily]);
-        $getSub = $query->all(); //var_dump($getSub);die;
-        if ($getSub) {
-          $transRincianIds = [];
-          foreach ($getSub as $gs) {
-            $transRincianIds[] = $gs->id;
-          }
-          $ret = $transRincianIds;
-        }
-      }
-      return $ret;
     }
 
     public function attributeLabels()
