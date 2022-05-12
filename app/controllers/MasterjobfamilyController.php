@@ -6,8 +6,6 @@ use Yii;
 use app\models\Masterjobfamily;
 use app\models\MasterjobfamilySearch;
 use app\models\Mastersubjobfamily;
-use app\models\Mappingjob;
-use Codeception\Lib\Di;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -58,15 +56,7 @@ class MasterjobfamilyController extends Controller
     {
         $searchModel = new MasterjobfamilySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $model = $this->findModel(10);
 
-        // $data = $model->subfamily->mappingjob->kodejabatan;
-        // var_dump($data);die;
-        // $data = $model->subfamily->mappingjob;
-        // $mapping = Mappingjob::find()->where(['subjobfamilyid'=>$data])->one();
-        // $kodejabatan = $mapping->kodejabatan;        
-
-        // var_dump($kodejabatan);die;
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

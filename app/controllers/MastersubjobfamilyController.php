@@ -54,7 +54,7 @@ class MastersubjobfamilyController extends Controller
      */
     public function actionIndex()
     {
-        $jobfamily = Masterjobfamily::find()->all();
+        $jobfamily = Masterjobfamily::find()->all();        
         if ($jobfamily==null) {
             // return $this->redirect(array(‘rekrut/masterjobfamily/index));
             return $this->redirect(['masterjobfamily/index']);

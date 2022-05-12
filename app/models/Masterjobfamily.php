@@ -30,7 +30,7 @@ class Masterjobfamily extends \yii\db\ActiveRecord
         return [
             [['jobfamily', 'createtime', 'updatetime'], 'required'],
             [['createtime', 'updatetime'], 'safe'],
-            [['jobfamily','icon'], 'string', 'max' => 256],
+            [['jobfamily'], 'string', 'max' => 256],
             [['status'], 'integer'],
             [['jobfamily'], 'unique', 'targetAttribute'=>['jobfamily'],'message'=>'Data sudah ada'],
             // type_id needs to exist in the column "id" in the table defined in ProductType class
@@ -46,19 +46,9 @@ class Masterjobfamily extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'jobfamily' => 'Job Family',
-            'icon' => 'Icon',
             'createtime' => 'Createtime',
             'updatetime' => 'Updatetime',
             'status' => 'Status',
         ];
-    }
-
-    public function getSubfamily()
-    {
-        return $this->hasOne(Mastersubjobfamily::className(), ['jobfamily_id' => 'id']);
-    }
-    public function getJobmily()
-    {
-        return $this->hasOne(Recruitmentcandidate::className(), ['id' => 'jobfamily']);
     }
 }
