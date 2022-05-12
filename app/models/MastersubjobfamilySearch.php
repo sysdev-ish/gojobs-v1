@@ -5,22 +5,25 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Masterroom;
+use app\models\Mastersubjobfamily;
 
 /**
- * Masterroomsearch represents the model behind the search form of `app\models\Masterroom`.
+ * Mastersubjobfamilysearch represents the model behind the search form of `app\models\Mastersubjobfamily`.
  */
-class Masterroomsearch extends Masterroom
+class MastersubjobfamilySearch extends Mastersubjobfamily
 {
-  public $office;
+    /**
+     * @inheritdoc
+     */
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'masterofficeid'], 'integer'],
-            [['createtime', 'updatetime', 'room', 'floor','office'], 'safe'],
+            [['id', 'jobfamily_id'], 'integer'],
+            [['subjobfamily', 'status', 'createtime', 'updatetime'], 'safe'],
         ];
     }
 
@@ -42,8 +45,8 @@ class Masterroomsearch extends Masterroom
      */
     public function search($params)
     {
-        $query = Masterroom::find();
-        $query->joinWith('masteroffice');
+        $query = Mastersubjobfamily::find();
+        // $query->joinWith('masterjobfamily');
 
         // add conditions that should always apply here
 
@@ -63,14 +66,14 @@ class Masterroomsearch extends Masterroom
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'masterofficeid' => $this->masterofficeid,
+            'jobfamily_id' => $this->jobfamily_id,
             'createtime' => $this->createtime,
             'updatetime' => $this->updatetime,
         ]);
 
-        $query->andFilterWhere(['like', 'room', $this->room])
-            ->andFilterWhere(['like', 'floor', $this->floor])
-            ->andFilterWhere(['like', 'officename', $this->office]);
+        $query->andFilterWhere(['like', 'subjobfamily', $this->subjobfamily])
+        ->andFilterWhere(['like', 'status', $this->status])
+        ;
 
         return $dataProvider;
     }

@@ -198,7 +198,7 @@ a:focus {
   transition: margin-left 0.3s ease-in-out;
   margin-bottom: 0;
   margin-left: 230px;
-  border: none;
+  border-bottom: 1px solid #d2d6de;
   min-height: 50px;
   border-radius: 0;
 }
@@ -1454,7 +1454,7 @@ the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/
 * --------------------
 */
 .small-box {
-  border-radius: 12px;
+  border-radius: 10px;
   position: relative;
   display: block;
   margin-bottom: 20px;
@@ -1533,12 +1533,12 @@ the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/
 */
 .box {
   position: relative;
-  border-radius: 12px;
+  border-radius: 10px;
   background: #ffffff;
   border-top: 3px solid #d2d6de;
   margin-bottom: 20px;
   width: 100%;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 10%);
 }
 .box.box-primary {
   border-top-color: #3c8dbc;
@@ -1777,10 +1777,7 @@ the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/
   box-shadow: none;
 }
 .box-body {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-radius: 10px;
   padding: 12px;
 }
 .no-header .box-body {
@@ -2014,11 +2011,12 @@ the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/
 */
 .info-box {
   display: block;
-  min-height: 90px;
+  min-height: 94px;
   background: #fff;
   width: 100%;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
+  border-top: 3px solid #d2d6de;
+  box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 10%);
+  border-radius: 10px;
   margin-bottom: 15px;
 }
 .info-box small {
@@ -2037,10 +2035,10 @@ the class .animated-dropdown-menu to the .dropdown-menu ul (or ol)*/
   background: #fff;
 }
 .info-box-icon {
-  border-top-left-radius: 12px;
+  border-top-left-radius: 10px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  border-bottom-left-radius: 12px;
+  border-bottom-left-radius: 10px;
   display: block;
   float: left;
   height: 90px;

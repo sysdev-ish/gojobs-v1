@@ -3,27 +3,26 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Mappingjob;
-use app\models\MappingjobSearch;
+use app\models\Masterjobfamily;
+use app\models\MasterjobfamilySearch;
+use app\models\Mastersubjobfamily;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use app\models\Mastersubjobfamily;
 use yii\helpers\ArrayHelper;
-
+use yii\db\IntegrityException;
 
 /**
- * MappingjobController implements the CRUD actions for Mappingjob model.
+ * MasterjobfamilyController implements the CRUD actions for Masterjobfamily model.
  */
-class MappingjobController extends Controller
+class MasterjobfamilyController extends Controller
 {
     /**
      * @inheritdoc
      */
     public function behaviors()
     {
-
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -50,12 +49,12 @@ class MappingjobController extends Controller
     }
 
     /**
-     * Lists all Mappingjob models.
+     * Lists all Masterjobfamily models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new MappingjobSearch();
+        $searchModel = new MasterjobfamilySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -65,7 +64,7 @@ class MappingjobController extends Controller
     }
 
     /**
-     * Displays a single Mappingjob model.
+     * Displays a single Masterjobfamily model.
      * @param integer $id
      * @return mixed
      */
@@ -77,19 +76,18 @@ class MappingjobController extends Controller
     }
 
     /**
-     * Creates a new Mappingjob model.
+     * Creates a new Masterjobfamily model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Mappingjob();
-
-        $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
+        $model = new Masterjobfamily();
         if ($model->load(Yii::$app->request->post())) {
             $model->createtime = date('Y-m-d H-i-s');
             $model->updatetime = date('Y-m-d H-i-s');
-            if ($model->save()) {
+            $model->status = 1;
+            if ($model->save()){
                 Yii::$app->session->setFlash('success', "Data ditambahkan.");
             } else {
                 Yii::$app->session->setFlash('error', "Data sudah ada.");
@@ -98,13 +96,12 @@ class MappingjobController extends Controller
         } else {
             return $this->renderAjax('create', [
                 'model' => $model,
-                'subjobfamilyid' => $subjobfamilyid,
             ]);
         }
     }
 
     /**
-     * Updates an existing Mappingjob model.
+     * Updates an existing Masterjobfamily model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -112,12 +109,11 @@ class MappingjobController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        
-        $subjobfamilyid = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
+
         if ($model->load(Yii::$app->request->post())) {
             $model->updatetime = date('Y-m-d H-i-s');
             if ($model->save()) {
-                Yii::$app->session->setFlash('success', "Data ditambahkan.");
+                Yii::$app->session->setFlash('success', "Data diupdate.");
             } else {
                 Yii::$app->session->setFlash('error', "Data sudah ada.");
             }
@@ -125,34 +121,52 @@ class MappingjobController extends Controller
         } else {
             return $this->renderAjax('update', [
                 'model' => $model,
-                'subjobfamilyid' => $subjobfamilyid,
             ]);
         }
     }
 
     /**
-     * Deletes an existing Mappingjob model.
+     * Deletes an existing Masterjobfamily model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
+    // public function beforeDelete()
+    // {
+    //     if (parent::beforeDelete()) {
+    //         Masterjobfamily::deleteAll(['id' => $this->id]);
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $jobfamily = Masterjobfamily::find($id)->all();
+        foreach ($jobfamily as $jobfamily) {
+            try {
+                if ($jobfamily->delete()) {
+                Yii::$app->session->setFlash('success', "Data Dihapus.");
+                }
+            } catch (\Exception $e) {
+                Yii::$app->session->setFlash('error', "Data Digunakan Di Tabel Lain.");
+            }
+        }
         return $this->redirect(['index']);
+        
+
     }
 
     /**
-     * Finds the Mappingjob model based on its primary key value.
+     * Finds the Masterjobfamily model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Mappingjob the loaded model
+     * @return Masterjobfamily the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Mappingjob::findOne($id)) !== null) {
+        if (($model = Masterjobfamily::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

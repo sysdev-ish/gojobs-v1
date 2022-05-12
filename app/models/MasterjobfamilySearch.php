@@ -5,22 +5,21 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Masterroom;
+use app\models\Masterjobfamily;
 
 /**
- * Masterroomsearch represents the model behind the search form of `app\models\Masterroom`.
+ * Masterjobfamilysearch represents the model behind the search form of `app\models\Masterjobfamily`.
  */
-class Masterroomsearch extends Masterroom
+class MasterjobfamilySearch extends Masterjobfamily
 {
-  public $office;
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'masterofficeid'], 'integer'],
-            [['createtime', 'updatetime', 'room', 'floor','office'], 'safe'],
+            [['id'], 'integer'],
+            [['jobfamily', 'status', 'createtime', 'updatetime'], 'safe'],
         ];
     }
 
@@ -42,8 +41,7 @@ class Masterroomsearch extends Masterroom
      */
     public function search($params)
     {
-        $query = Masterroom::find();
-        $query->joinWith('masteroffice');
+        $query = Masterjobfamily::find();
 
         // add conditions that should always apply here
 
@@ -63,14 +61,13 @@ class Masterroomsearch extends Masterroom
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'masterofficeid' => $this->masterofficeid,
             'createtime' => $this->createtime,
             'updatetime' => $this->updatetime,
         ]);
 
-        $query->andFilterWhere(['like', 'room', $this->room])
-            ->andFilterWhere(['like', 'floor', $this->floor])
-            ->andFilterWhere(['like', 'officename', $this->office]);
+        $query->andFilterWhere(['like', 'jobfamily', $this->jobfamily])
+        ->andFilterWhere(['like', 'status', $this->status])
+        ;
 
         return $dataProvider;
     }

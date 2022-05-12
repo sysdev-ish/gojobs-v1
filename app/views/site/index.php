@@ -89,7 +89,7 @@ $baseUrl = Yii::$app->request->baseUrl;
                                 <li class="careerfy-column-4">
                                     <i class="careerfy-icon careerfy-<?php echo $data['icon']; ?>"></i>
                                     <a href="/rekrut/site/searchjob?Transrinciansearch%5Bstatus_rekrut%5D=1&Transrinciansearch%5Bjobfamily%5D=<?php echo $data['id']; ?>"> <?php echo $data['jobfamily']; ?> </a>
-                                    <span>(<?php echo $countcategory; ?> Open Vacancies)</span>
+                                    <span>(<?php echo $totaljocategory; ?> Open Vacancies)</span>
                                 </li>
                             <?php endforeach; ?>
 
