@@ -98,6 +98,15 @@ $config = [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
+                [
+                    'class' => 'yii\log\EmailTarget',
+                    'mailer' => 'mailer',
+                    'levels' => ['error', 'warning'],
+                    'message' => [
+                        'to' => ['hisyamkstd@gmail.com'],
+                        'subject' => 'Log message',
+                    ],
+                ],
             ],
         ],
         'db' => $db,

@@ -152,9 +152,11 @@ if(Yii::$app->utils->permission($role,'m3') && Yii::$app->utils->permission($rol
           'attribute' => 'jabatans',
           // 'contentOptions'=>['style'=>'width: 150px;'],
           'format' => 'html',
-          'value'=>function ($data) {
-            return ($data->recrequest->hire_jabatan_sap)? ((is_numeric($data->recrequest->hire_jabatan_sap))?$data->recrequest->jabatansap->value2:'-'):'-';
-        }
+          //change value relational by kaha
+          'value'=> 'recrequest.jabatansap.value2',
+          // 'value'=>function ($data) {
+          //   return ($data->recrequest->hire_jabatan_sap)? ((is_numeric($data->recrequest->hire_jabatan_sap))?$data->recrequest->jabatansap->value2:'-'):'-';
+          // }
         ],
         // [
         //   'label' => 'Area (SAP)',
@@ -172,9 +174,7 @@ if(Yii::$app->utils->permission($role,'m3') && Yii::$app->utils->permission($rol
           'attribute' => 'city',
           'contentOptions'=>['style'=>'width: 150px;'],
           'format' => 'html',
-          'value'=>function ($data) {
-            return ($data->recrequest->city)?$data->recrequest->city->city_name:'';
-          }
+          'value' => 'recrequest.city.city_name'
 
         ],
         // [

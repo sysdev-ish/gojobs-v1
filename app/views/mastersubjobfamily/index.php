@@ -84,16 +84,13 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                         'model' => $searchModel,
                         'attribute' => 'jobfamily_id',
                         'data' => ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily'),
-                        'options' => ['placeholder' => 'Job Family'],
+                        'options' => ['placeholder' => '--'],
                         'pluginOptions' => [
                             'allowClear' => true,
-                            // 'minimumInputLength' => 1,
                             'min-width' => '100px',
                         ],
                     ]),
-                    'value' => function ($data) {
-                        return ($data->jobfam) ? $data->jobfam->jobfamily : '';
-                    }
+                    'value' => 'jobfam.jobfamily',
                 ],
                 // 'createtime',
                 // 'updatetime'

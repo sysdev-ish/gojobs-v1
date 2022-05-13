@@ -259,22 +259,17 @@ app\assets\ReportAsset::register($this);
                     }
                     ],
 
+                    //add by kaha
                     [
                       'label' => 'Job Family',
                       'format' => 'raw',
                       'value' => 'recrequest.mappingjob.subjobfam.jobfam.jobfamily',
-                      // 'value' => function ($data) {
-                      //   return ($data->recrequest->mappingjob->subjobfam->jobfam->jobfamily) ? $data->recrequest->mappingjob->subjobfam->jobfam->jobfamily : "";
-                      // }
                     ],
 
                     [
                       'label' => 'Sub Job Family',
                       'format' => 'raw',
                       'value' => 'recrequest.mappingjob.subjobfam.subjobfamily',
-                      // 'value' => function ($data) {
-                      //   return ($data->recrequest->mappingjob->subjobfam->subjobfamily ) ? $data->recrequest->mappingjob->subjobfam->subjobfamily : "";
-                      // }
                     ],
                     
                     [
@@ -1195,18 +1190,12 @@ app\assets\ReportAsset::register($this);
                   'label' => 'Job Family',
                   'format' => 'raw',
                   'value' => 'recrequest.mappingjob.subjobfam.jobfam.jobfamily',
-                  // 'value' => function ($data) {
-                  //   return ($data->recrequest->mappingjob->subjobfam->jobfam) ? $data->recrequest->mappingjob->subjobfam->jobfam->jobfamily : '';
-                  // }
                 ],
 
                 [
                   'label' => 'Sub Job Family',
                   'format' => 'raw',
                   'value' => 'recrequest.mappingjob.subjobfam.subjobfamily',
-                  // 'value' => function ($data) {
-                  //   return ($data->recrequest->mappingjob->subjobfam) ? $data->recrequest->mappingjob->subjobfam->subjobfamily : '';
-                  // }
                 ],
 
                 [

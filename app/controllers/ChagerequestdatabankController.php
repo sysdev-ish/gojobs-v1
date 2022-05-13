@@ -864,7 +864,7 @@ class ChagerequestdatabankController extends Controller
 
     }
     elseif ($id > 0) {
-
+      // $curl =  curl\Curl();
       $getdatapekerjabyperner =  $curl->setPostParams([
         'perner' => $id,
         'token' => 'ish**2019',

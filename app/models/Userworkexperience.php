@@ -81,4 +81,8 @@ class Userworkexperience extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Userworkexperienceposition::className(), ['idworkexperience' => 'id']);
     }
+    public function getSubjobfam()
+    {
+        return $this->hasOne(Mastersubjobfamily::className(), ['subjobfamily' => 'lastposition']);
+    }
 }

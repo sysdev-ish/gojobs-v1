@@ -270,31 +270,26 @@ app\assets\ReportAsset::register($this);
                     }
                     ],
 
+                    //add by kaha
                     [
                       'label' => 'Job Family',
                       'format' => 'raw',
                       'value' => 'mappingjob.subjobfam.jobfam.jobfamily',
-                      // 'value' => function ($data) {
-                        // return ($data->mappingjob->subjobfam->jobfam) ? $data->mappingjob->subjobfam->jobfam->jobfamily : '';
-                      // }
                     ],
 
                     [
                       'label' => 'Sub Job Family',
                       'format' => 'raw',
                       'value' => 'mappingjob.subjobfam.subjobfamily',
-                      // 'value' => function ($data) {
-                        // return ($data->mappingjob->subjobfam) ? $data->mappingjob->subjobfam->subjobfamily : '';
-                      // }
                     ],
 
-                    ['class' => 'kartik\grid\ActionColumn', 'urlCreator'=>function(){return '#';}]
+                    // ['class' => 'kartik\grid\ActionColumn', 'urlCreator'=>function(){return '#';}]
                 ];
                 echo ExportMenu::widget([
                     'dataProvider' => $dataProvider['dataProvider'],
                     'columns' => $gridColumns,
                     // 'target'=> ExportMenu::TARGET_BLANK,
-                    'batchSize' => 12,
+                    'batchSize' => 10,
                     'selectedColumns' => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
                     'columnSelectorOptions'=>[
                         'label' => 'Columns',
@@ -394,22 +389,17 @@ app\assets\ReportAsset::register($this);
                     }
                   ],
                   
+                  // add by kaha
                   [
                     'label' => 'Job Family',
                     'format' => 'raw',
                     'value' => 'mappingjob.subjobfam.jobfam.jobfamily',
-                    // 'value' => function ($data) {
-                      //   return ($data->mappingjob->subjobfam->jobfam) ? $data->mappingjob->subjobfam->jobfam->jobfamily : '';
-                      // }
                   ],
                   
                   [
                     'label' => 'Sub Job Family',
                     'format' => 'raw',
                     'value' => 'mappingjob.subjobfam.subjobfamily',
-                    // 'value' => function ($data) {
-                    //   return ($data->mappingjob->subjobfam) ? $data->mappingjob->subjobfam->subjobfamily : '';
-                    // }
                   ],
 
                   [

@@ -93,16 +93,15 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
                         'model' => $searchModel,
                         'attribute' => 'subjobfamilyid',
                         'data' => ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily'),
-                        'options' => ['placeholder' => 'Sub Job Family'],
+                        'options' => ['placeholder' => '--'],
                         'pluginOptions' => [
                             'allowClear' => true,
                             // 'minimumInputLength' => 1,
                             'min-width' => '100px',
                         ],
                     ]),
-                    'value' => function ($data) {
-                        return ($data->subjobfam) ? $data->subjobfam->subjobfamily : '';
-                    }
+                    'value' => 'subjobfam.subjobfamily'
+
                 ],
                 'kodejabatan',
                 'jabatansap',
