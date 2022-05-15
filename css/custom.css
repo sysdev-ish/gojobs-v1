@@ -505,8 +505,9 @@ a:focus {
 }
 .sidebar-menu > li {
   position: relative;
-  margin: 0;
+  margin: 2px 0px;
   padding: 0;
+  border-radius: 6px;
 }
 .sidebar-menu > li > a {
   padding: 12px 5px 12px 15px;

@@ -624,6 +624,17 @@ class HiringController extends Controller
       print_r(json_encode($retpos));
     }
 
+    $hiring = Hiring::find()->where(['userid' => $model])->one();
+
+    $hiringstatus = Yii::$app->utils->aplhired($model);
+    if ($hiringstatus) {
+      $to = $hiring->mail->email;
+
+      $subject = 'Pemberitahuan PT Infomedia Solusi Humanika';
+      $body = Yii::$app->params['mailFeedback'];
+      $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
+    }
+
     // $hiring = Hiring::find()->where(['userid' => $model])->one();
     // $hiringstatus = Yii::$app->utils->aplhired($model);
     // if ($hiringstatus) {
@@ -1322,17 +1333,6 @@ class HiringController extends Controller
     } else {
       $retlock = ['status' => "NOK", 'message' => 'lock', 'pernr' => null];
       print_r(json_encode($retlock));
-    }
-
-    $hiring = Hiring::find()->where(['userid' => $model])->one();
-
-    $hiringstatus = Yii::$app->utils->aplhired($model);
-    if ($hiringstatus) {
-      $to = $hiring->mail->email;
-
-      $subject = 'Pemberitahuan PT Infomedia Solusi Humanika';
-      $body = Yii::$app->params['mailFeedback'];
-      $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
     }
 
     // print_r($ret);

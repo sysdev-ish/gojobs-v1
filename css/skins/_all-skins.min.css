@@ -89,13 +89,15 @@
 .skin-blue .sidebar-menu>li:hover>a,
 .skin-blue .sidebar-menu>li.active>a {
   color: #fff;
-  background: #1e282c;
-  border-left-color: #3c8dbc
+  background: #1a2226;
+  border-left-color: #3c8dbc;
+  border-radius: 6px;
 }
 
 .skin-blue .sidebar-menu>li>.treeview-menu {
   margin: 0 1px;
-  background: #2c3b41
+  background: #2c3b41;
+  border-radius: 4px;
 }
 
 .skin-blue .sidebar a {
