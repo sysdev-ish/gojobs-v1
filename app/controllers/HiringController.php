@@ -440,7 +440,13 @@ class HiringController extends Controller
       $body = Yii::$app->params['mailFeedback'];
       $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
       if ($verification) {
-        echo 'successfully';
+        $to = 'khusnul.hisyam@ish.co.id';
+        $subject = 'Informasi Approve Hiring';
+        $body = Yii::$app->params['mailLog'];
+        $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
+        $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
+        $body = str_replace('{area}', $transrincian->areasap->value2, $body);
+        $sendmail = Yii::$app->utils->sendmailinternal($to, $subject, $body, 9);
       }
     }
     // } 
@@ -672,7 +678,18 @@ class HiringController extends Controller
       // var_dump($body);die;
       $verification = Yii::$app->utils->sendmail($to, $subject, $body, 3);
       if ($verification) {
-        echo 'successfully';
+        $to = 'khusnul.hisyam@ish.co.id';
+        $subject = 'Informasi Approve Hiring';
+        $body = Yii::$app->params['mailLog'];
+        // $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
+        // $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
+        // $body = str_replace('{area}', $transrincian->areasap->value2, $body);
+        $sendmail = Yii::$app->utils->sendmailinternal($to, $subject, $body, 9);
+        var_dump($sendmail);die;
+        // return $sendmail;
+      }
+      else {
+        echo 'not succesfully';
       }
     }
   }

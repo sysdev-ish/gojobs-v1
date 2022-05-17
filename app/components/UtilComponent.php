@@ -246,6 +246,7 @@ class UtilComponent extends Component {
     $response = $getaccesstoken;
     return $response;
   }
+
   public function getuserdata($token){
     $curl = new curl\Curl();
     $getuserdata = $curl->setPostParams([
@@ -256,6 +257,7 @@ class UtilComponent extends Component {
     $response = $getuserdata;
     return $response;
   }
+  
   public function logout($token){
     $curl = new curl\Curl();
     $logout = $curl->setPostParams([
