@@ -14,7 +14,7 @@ use app\models\Hiring;
 use app\models\Transrincian;
 use app\models\Mailcounter;
 use app\models\Logactivity;
-
+use app\models\Maillog;
 use app\modules\dashboard\models\Whatsapp;
 use app\modules\dashboard\models\Sms;
 
@@ -191,9 +191,8 @@ class UtilComponent extends Component
     ])->post('http://192.168.88.27/mailgatewaygojobs/send');
     $response = $verification[8];
     $now = date('Y-m-d');
-    // $hiring = Hiring::find()->one();
     $updatetoday = Mailcounter::find()->where(['date'=>$now, 'klasifikasi'=>$identifier])->one();
-    // var_dump($hiring);die;
+    var_dump($response);die;
     if($updatetoday){
       $addcounter = $updatetoday->count + 1;
       $updatetoday->count = $addcounter;
@@ -203,6 +202,37 @@ class UtilComponent extends Component
       $newtoday->date = date('Y-m-d');
       $newtoday->count = 1;
       $newtoday->klasifikasi = $identifier;
+      $newtoday->save(false);
+    }
+    return $response;
+  }
+
+  public function sendmailExternal($to,$subject,$body,$identifier,$userid)
+  {
+    $curl = new curl\Curl();
+    $verification = $curl->setPostParams([
+      // 'from' => 'gojobs@ish.co.id',
+      'to[]' => $to,
+      'subject' => $subject,
+      'body' => $body,
+      'token' => 'ish@gojobs',
+    ])->post('http://192.168.88.27/mailgatewaygojobs/send');
+    $response = $verification[8];
+    // $now = date('Y-m-d');
+    $now = date('Y-m-d\TH:i:sP');
+    $updatetoday = Mailcounter::find()->where(['date'=>$now, 'klasifikasi'=>$identifier, 'userid'=>$userid])->one();
+    // $updatetoday = Mailcounter::find()->where(['date'=>$now, 'klasifikasi'=>$identifier])->one();
+    // var_dump($response);die;
+    if($updatetoday){
+      $addcounter = $updatetoday->count + 1;
+      $updatetoday->count = $addcounter;
+      $updatetoday->save(false);
+    }else{
+      $newtoday = new Mailcounter();
+      $newtoday->date = date('Y-m-d\TH:i:sP');
+      $newtoday->count = 1;
+      $newtoday->klasifikasi = $identifier;
+      $newtoday->userid = $userid;
       $newtoday->save(false);
     }
     return $response;

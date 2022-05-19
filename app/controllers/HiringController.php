@@ -17,6 +17,7 @@ use app\models\Chagerequestjo;
 use app\models\Recruitmentcandidatefhsearch;
 use app\models\Userlogin;
 use app\models\User;
+use app\models\Maillog;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -656,6 +657,7 @@ class HiringController extends Controller
     $model = $this->findModel($id);
     $transrincian = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
     $hiring = Hiring::find()->where(['userid' => $model])->one();
+    $userid = $hiring->userid; 
     // $to = $model->mail->email;
     
     $hiringstatus = Yii::$app->utils->aplhired($model);
@@ -676,21 +678,20 @@ class HiringController extends Controller
       // $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
       // $body = str_replace('{area}', $transrincian->areasap->value2, $body);
 
-      // var_dump($body);die;
-      $sendmail = Yii::$app->utils->sendmail($to, $subject, $body, 3);
+      // $sendmail = Yii::$app->utils->sendmail($to, $subject, $body, 3, $hiring);
+      // var_dump($hiring);die;
+      $sendmail = Yii::$app->utils->sendmailExternal($to, $subject, $body, 3, $userid);
       // $sendmail = Yii::$app->utils->sendmailinternal($to, $subject, $body, 9);
       if ($sendmail) {
-        // $to = ['khusnul.hisyam@ish.co.id','khsyaam62@gmail.com'];
-        $to = 'khsyaam62@gmail.com';
-        $subject = 'Informasi Approve Hiring';
-        $body = Yii::$app->params['mailLog'];
-        $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
-        $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
-        $body = str_replace('{area}', $transrincian->areasap->value2, $body);
-        $mail = Yii::$app->utils->sendmail($to, $subject, $body, 9);
-        // var_dump($body);die;
-        // return $sendmail;
-        // echo 'succesfully';
+        //for log feedback developer
+        // $to = 'khsyaam62@gmail.com';
+        // $subject = 'Informasi Approve Hiring';
+        // $body = Yii::$app->params['mailLog'];
+        // $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
+        // $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
+        // $body = str_replace('{area}', $transrincian->areasap->value2, $body);
+        // $mail = Yii::$app->utils->sendmail($to, $subject, $body, 9);
+        echo 'succesfully';
       }
       else {
         echo 'not succesfully';

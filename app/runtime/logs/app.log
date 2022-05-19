@@ -30797,3 +30797,332 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1652950022.1567
     'REQUEST_TIME' => 1652950022
 ]
+2022-05-20 01:00:32 [::1][104728][7c3rj074s0ej3gbgdpet7bb8u1][error][yii\db\Exception] yii\base\ErrorException: Object of class DateTime could not be converted to string in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php:316
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(4096, 'Object of class...', 'C:\\xampp\\htdocs...', 316, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(316): PDOStatement->bindValue(':qp0', Object(DateTime), 2)
+#2 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(260): yii\db\Command->bindPendingParams()
+#3 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1143): yii\db\Command->prepare(true)
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(413): yii\db\Command->queryInternal('fetch', NULL)
+#5 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Query.php(274): yii\db\Command->queryOne()
+#6 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(292): yii\db\Query->one(NULL)
+#7 C:\xampp\htdocs\rekrut\app\components\UtilComponent.php(223): yii\db\ActiveQuery->one()
+#8 C:\xampp\htdocs\rekrut\app\controllers\HiringController.php(682): app\components\UtilComponent->sendmailExternal('khusnul.hisyam@...', 'Pemberitahuan P...', '<table>\r\n\r\n    ...', 3, Object(app\models\Hiring))
+#9 [internal function]: app\controllers\HiringController->actionTest('22363')
+#10 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#11 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#12 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('test', Array)
+#13 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('hiring/test', Array)
+#14 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#15 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#16 {main}
+
+Next yii\db\Exception: Object of class DateTime could not be converted to string
+Failed to prepare SQL: SELECT * FROM `mailcounter` WHERE (`date`=:qp0) AND (`klasifikasi`=:qp1) AND (`userid` IN (:qp2, :qp3, :qp4, :qp5, :qp6, :qp7, :qp8, :qp9, :qp10, :qp11, :qp12, :qp13, :qp14, :qp15, :qp16, NULL, :qp17, :qp18, :qp19, NULL, :qp20, :qp21)) in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php:264
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1143): yii\db\Command->prepare(true)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(413): yii\db\Command->queryInternal('fetch', NULL)
+#2 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Query.php(274): yii\db\Command->queryOne()
+#3 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(292): yii\db\Query->one(NULL)
+#4 C:\xampp\htdocs\rekrut\app\components\UtilComponent.php(223): yii\db\ActiveQuery->one()
+#5 C:\xampp\htdocs\rekrut\app\controllers\HiringController.php(682): app\components\UtilComponent->sendmailExternal('khusnul.hisyam@...', 'Pemberitahuan P...', '<table>\r\n\r\n    ...', 3, Object(app\models\Hiring))
+#6 [internal function]: app\controllers\HiringController->actionTest('22363')
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('test', Array)
+#10 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('hiring/test', Array)
+#11 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#13 {main}
+Additional Information:
+
+2022-05-20 01:00:30 [::1][104728][7c3rj074s0ej3gbgdpet7bb8u1][info][application] $_GET = [
+    'hiring/test' => ''
+    'id' => '22363'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '7c3rj074s0ej3gbgdpet7bb8u1'
+    '_csrf' => '8bdaf4a72c7f007e25c84a4ecba12894f3adb81ef7c454564a73fff797e10a50a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"hwhxLJ84MeS1Co0aBVRo8mwXouVSXq3w\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/hiring'
+    '__id' => 104728
+    '__expire' => 1652986830
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36 Edg/101.0.1210.47'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=7c3rj074s0ej3gbgdpet7bb8u1; _csrf=8bdaf4a72c7f007e25c84a4ecba12894f3adb81ef7c454564a73fff797e10a50a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22hwhxLJ84MeS1Co0aBVRo8mwXouVSXq3w%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm;C:\\Python34\\Scripts;C:\\Python37\\Scripts'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '55877'
+    'REDIRECT_URL' => '/rekrut/hiring/test'
+    'REDIRECT_QUERY_STRING' => 'hiring/test&id=22363'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'hiring/test&id=22363'
+    'REQUEST_URI' => '/rekrut/hiring/test?id=22363'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1652983230.726
+    'REQUEST_TIME' => 1652983230
+]
+2022-05-20 01:02:07 [::1][104728][7c3rj074s0ej3gbgdpet7bb8u1][error][yii\base\ErrorException:8] yii\base\ErrorException: Object of class app\models\Hiring could not be converted to int in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ColumnSchema.php:159
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ColumnSchema.php(159): yii\base\ErrorHandler->handleError(8, 'Object of class...', 'C:\\xampp\\htdocs...', 159, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\mysql\ColumnSchema.php(49): yii\db\ColumnSchema->typecast(Object(app\models\Hiring))
+#2 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(375): yii\db\mysql\ColumnSchema->dbTypecast(Object(app\models\Hiring))
+#3 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\mysql\QueryBuilder.php(249): yii\db\QueryBuilder->prepareInsertValues('mailcounter', Array, Array)
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(345): yii\db\mysql\QueryBuilder->prepareInsertValues('mailcounter', Array, Array)
+#5 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(470): yii\db\QueryBuilder->insert('mailcounter', Array, Array)
+#6 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Schema.php(432): yii\db\Command->insert('mailcounter', Array)
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ActiveRecord.php(549): yii\db\Schema->insert('mailcounter', Array)
+#8 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ActiveRecord.php(515): yii\db\ActiveRecord->insertInternal(NULL)
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\BaseActiveRecord.php(670): yii\db\ActiveRecord->insert(false, NULL)
+#10 C:\xampp\htdocs\rekrut\app\components\UtilComponent.php(236): yii\db\BaseActiveRecord->save(false)
+#11 C:\xampp\htdocs\rekrut\app\controllers\HiringController.php(682): app\components\UtilComponent->sendmailExternal('khusnul.hisyam@...', 'Pemberitahuan P...', '<table>\r\n\r\n    ...', 3, Object(app\models\Hiring))
+#12 [internal function]: app\controllers\HiringController->actionTest('22363')
+#13 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#14 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#15 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('test', Array)
+#16 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('hiring/test', Array)
+#17 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#18 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#19 {main}
+2022-05-20 01:02:05 [::1][104728][7c3rj074s0ej3gbgdpet7bb8u1][info][application] $_GET = [
+    'hiring/test' => ''
+    'id' => '22363'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '7c3rj074s0ej3gbgdpet7bb8u1'
+    '_csrf' => '8bdaf4a72c7f007e25c84a4ecba12894f3adb81ef7c454564a73fff797e10a50a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"hwhxLJ84MeS1Co0aBVRo8mwXouVSXq3w\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/hiring'
+    '__id' => 104728
+    '__expire' => 1652986925
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36 Edg/101.0.1210.47'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=7c3rj074s0ej3gbgdpet7bb8u1; _csrf=8bdaf4a72c7f007e25c84a4ecba12894f3adb81ef7c454564a73fff797e10a50a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22hwhxLJ84MeS1Co0aBVRo8mwXouVSXq3w%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm;C:\\Python34\\Scripts;C:\\Python37\\Scripts'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '55917'
+    'REDIRECT_URL' => '/rekrut/hiring/test'
+    'REDIRECT_QUERY_STRING' => 'hiring/test&id=22363'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'hiring/test&id=22363'
+    'REQUEST_URI' => '/rekrut/hiring/test?id=22363'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1652983325.4138
+    'REQUEST_TIME' => 1652983325
+]
+2022-05-20 01:03:42 [::1][104728][7c3rj074s0ej3gbgdpet7bb8u1][error][yii\base\ErrorException:8] yii\base\ErrorException: Object of class app\models\Hiring could not be converted to int in C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ColumnSchema.php:159
+Stack trace:
+#0 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ColumnSchema.php(159): yii\base\ErrorHandler->handleError(8, 'Object of class...', 'C:\\xampp\\htdocs...', 159, Array)
+#1 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\mysql\ColumnSchema.php(49): yii\db\ColumnSchema->typecast(Object(app\models\Hiring))
+#2 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(375): yii\db\mysql\ColumnSchema->dbTypecast(Object(app\models\Hiring))
+#3 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\mysql\QueryBuilder.php(249): yii\db\QueryBuilder->prepareInsertValues('mailcounter', Array, Array)
+#4 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(345): yii\db\mysql\QueryBuilder->prepareInsertValues('mailcounter', Array, Array)
+#5 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Command.php(470): yii\db\QueryBuilder->insert('mailcounter', Array, Array)
+#6 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\Schema.php(432): yii\db\Command->insert('mailcounter', Array)
+#7 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ActiveRecord.php(549): yii\db\Schema->insert('mailcounter', Array)
+#8 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\ActiveRecord.php(515): yii\db\ActiveRecord->insertInternal(NULL)
+#9 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\db\BaseActiveRecord.php(670): yii\db\ActiveRecord->insert(false, NULL)
+#10 C:\xampp\htdocs\rekrut\app\components\UtilComponent.php(236): yii\db\BaseActiveRecord->save(false)
+#11 C:\xampp\htdocs\rekrut\app\controllers\HiringController.php(683): app\components\UtilComponent->sendmailExternal('khusnul.hisyam@...', 'Pemberitahuan P...', '<table>\r\n\r\n    ...', 3, Object(app\models\Hiring))
+#12 [internal function]: app\controllers\HiringController->actionTest('22363')
+#13 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#14 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#15 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('test', Array)
+#16 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('hiring/test', Array)
+#17 C:\xampp\htdocs\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#18 C:\xampp\htdocs\rekrut\index.php(19): yii\base\Application->run()
+#19 {main}
+2022-05-20 01:03:39 [::1][104728][7c3rj074s0ej3gbgdpet7bb8u1][info][application] $_GET = [
+    'hiring/test' => ''
+    'id' => '22363'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '7c3rj074s0ej3gbgdpet7bb8u1'
+    '_csrf' => '8bdaf4a72c7f007e25c84a4ecba12894f3adb81ef7c454564a73fff797e10a50a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"hwhxLJ84MeS1Co0aBVRo8mwXouVSXq3w\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/hiring'
+    '__id' => 104728
+    '__expire' => 1652987019
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36 Edg/101.0.1210.47'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=7c3rj074s0ej3gbgdpet7bb8u1; _csrf=8bdaf4a72c7f007e25c84a4ecba12894f3adb81ef7c454564a73fff797e10a50a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22hwhxLJ84MeS1Co0aBVRo8mwXouVSXq3w%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\;C:\\Users\\ISH\\AppData\\Local\\Programs\\Python\\Python310\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\PuTTY\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\ISH\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\ISH\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\ISH\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\ISH\\AppData\\Roaming\\npm;C:\\Python34\\Scripts;C:\\Python37\\Scripts'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) OpenSSL/1.1.1l PHP/7.3.31'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/rekrut/index.php'
+    'REMOTE_PORT' => '55936'
+    'REDIRECT_URL' => '/rekrut/hiring/test'
+    'REDIRECT_QUERY_STRING' => 'hiring/test&id=22363'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'hiring/test&id=22363'
+    'REQUEST_URI' => '/rekrut/hiring/test?id=22363'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1652983419.6699
+    'REQUEST_TIME' => 1652983419
+]
