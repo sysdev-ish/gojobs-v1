@@ -55,12 +55,48 @@ return [
     <br>
     <br>
     Terimakasih
+    <br>',
+
+    'mailChangerequest' => '<table>
+
+    Semangat Pagi,,
+    <br>
+    Anda mendapatkan permintaan Approval Perubahan Data Bank dari <span style="text-transform: uppercase;"><b>{fullname}</b></span> dengan rincian sebagai berikut :
+
     <br>
     <br>
-    Salam,  
+    <table>
+    <tr>
+    <td valign="top">Nama Pekerja</td>
+    <td valign="top">:</td>
+    <td valign="top">{fullname}</td>
+    </tr>
+    <tr>
+    <td valign="top">Perner</td>
+    <td valign="top">:</td>
+    <td valign="top">{perner}</td>
+    </tr>
+    <tr>
+    <td valign="top">Nama Project</td>
+    <td valign="top">:</td>
+    <td valign="top">{layanan}</td>
+    </tr>
+    <tr>
+    <td valign="top">Area</td>
+    <td valign="top">:</td>
+    <td valign="top">{area}</td>
+    </tr>
+    <tr>
+    <td valign="top">Jabatan</td>
+    <td valign="top">:</td>
+    <td valign="top">{jabatan}</td>
+    </tr>
+    <tr>
+    </table>
     <br>
     <br>
-    <b>
-    Tim Project Management ISH
-    </b>',
+    Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> untuk melakukan verifikasi lebih lanjut.
+    <br><br>
+    Have a great day !
+    ',
 ];

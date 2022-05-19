@@ -42,6 +42,36 @@ $this->title = 'Contact';
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <div class="careerfy-contact-form">
+                        <h2>We want to hear form you!</h2>
+                        <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+                        <ul>
+                            <li>
+                                <input value="Enter Your Name" onblur="if(this.value == '') { this.value ='Enter Your Name'; }" onfocus="if(this.value =='Enter Your Name') { this.value = ''; }" type="text">
+                                <i class="careerfy-icon careerfy-user"></i>
+                            </li>
+                            <li>
+                                <input value="Subject" onblur="if(this.value == '') { this.value ='Subject'; }" onfocus="if(this.value =='Subject') { this.value = ''; }" type="text">
+                                <i class="careerfy-icon careerfy-user"></i>
+                            </li>
+                            <li>
+                                <input value="Enter Your Email Address" onblur="if(this.value == '') { this.value ='Enter Your Email Address'; }" onfocus="if(this.value =='Enter Your Email Address') { this.value = ''; }" type="text">
+                                <i class="careerfy-icon careerfy-mail"></i>
+                            </li>
+                            <li>
+                                <input value="Enter Your Phone Number" onblur="if(this.value == '') { this.value ='Enter Your Phone Number'; }" onfocus="if(this.value =='Enter Your Phone Number') { this.value = ''; }" type="text">
+                                <i class="careerfy-icon careerfy-technology"></i>
+                            </li>
+                            <li class="careerfy-contact-form-full">
+                                <textarea>Track your results on the local or global market , depending on your needs. You can track everything in the most popular search engines - Google, Bing, Yahoo and Yandex. Improve your search performance and increase traffic with our turn-key. Positionly is the only solution on the market that provides a simple and transparent way to monitor.the effectiveness.</textarea>
+                            </li>
+                            <li><input type="submit" value="Submit"></li>
+                            <li><?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                                    'template' => '<div class="row"><div class="col-lg-4">{image}</div><div class="col-lg-8">{input}</div></div>',
+                                ])->label(false) ?></li>
+                        </ul>
+                        <?php ActiveForm::end(); ?>
+                    </div>
                     <div class="careerfy-contact-info-sec">
                         <h2>Contact Information</h2>
                         <p>PT Infomedia Solusi Humanika atau dikenal dengan ISH merupakan anak perusahaan PT Infomedia Nusantara yang bergerak dalam bidang Human Capital Services.</p>
@@ -57,36 +87,6 @@ $this->title = 'Contact';
                             <a href="#" class="careerfy-icon careerfy-linkedin-button"></a>
                             <a href="#" class="careerfy-icon careerfy-dribbble-logo"></a>
                         </div>
-                    </div>
-                    <div class="careerfy-contact-form">
-                        <h2>We want to hear form you!</h2>
-                        <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-                            <ul>
-                                <li>
-                                    <input value="Enter Your Name" onblur="if(this.value == '') { this.value ='Enter Your Name'; }" onfocus="if(this.value =='Enter Your Name') { this.value = ''; }" type="text">
-                                    <i class="careerfy-icon careerfy-user"></i>
-                                </li>
-                                <li>
-                                    <input value="Subject" onblur="if(this.value == '') { this.value ='Subject'; }" onfocus="if(this.value =='Subject') { this.value = ''; }" type="text">
-                                    <i class="careerfy-icon careerfy-user"></i>
-                                </li>
-                                <li>
-                                    <input value="Enter Your Email Address" onblur="if(this.value == '') { this.value ='Enter Your Email Address'; }" onfocus="if(this.value =='Enter Your Email Address') { this.value = ''; }" type="text">
-                                    <i class="careerfy-icon careerfy-mail"></i>
-                                </li>
-                                <li>
-                                    <input value="Enter Your Phone Number" onblur="if(this.value == '') { this.value ='Enter Your Phone Number'; }" onfocus="if(this.value =='Enter Your Phone Number') { this.value = ''; }" type="text">
-                                    <i class="careerfy-icon careerfy-technology"></i>
-                                </li>
-                                <li class="careerfy-contact-form-full">
-                                    <textarea>Track your results on the local or global market , depending on your needs. You can track everything in the most popular search engines - Google, Bing, Yahoo and Yandex. Improve your search performance and increase traffic with our turn-key. Positionly is the only solution on the market that provides a simple and transparent way to monitor.the effectiveness.</textarea>
-                                </li>
-                                <li><input type="submit" value="Submit"></li>
-                                <li><?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-9">{input}</div></div>',
-                                ])->label(false) ?></li>
-                            </ul>
-                        <?php ActiveForm::end(); ?>
                     </div>
                 </div>
 

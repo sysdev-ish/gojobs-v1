@@ -187,8 +187,7 @@ class HiringController extends Controller
                 $getlevels = $curl->setPostParams([
                   'level' => $transrincian->level_sap,
                   'token' => 'ish**2019',
-                ])
-                  ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
+                ])->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
                 $level  = json_decode($getlevels);
                 if ($level) {
                   $level = $level;
@@ -286,8 +285,7 @@ class HiringController extends Controller
     $cekpaycontroll =  $curl->setPostParams([
       'token' => 'ish@2019!',
       'ABKRS' => $transrincian->abkrs_sap,
-    ])
-      ->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
+    ])->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
     $payrollcontrollresult  = json_decode($cekpaycontroll);
     if ($payrollcontrollresult->status == 1) {
       $cekposition =  $curl->setPostParams([
@@ -298,7 +296,6 @@ class HiringController extends Controller
         'BTRTL' => $transrincian->area_sap,
         'ABKRS' => $transrincian->abkrs_sap,
       ])
-        ->setOption(CURLOPT_TIMEOUT, 600)
         ->post('http://192.168.88.5/service/index.php/Rfccekposisi');
       $cekpositionresult  = json_decode($cekposition);
       if ($cekpositionresult) {
@@ -479,7 +476,6 @@ class HiringController extends Controller
       'BTRTL' => $transrincian->area_sap,
       'ABKRS' => $transrincian->abkrs_sap,
     ])
-      ->setOption(CURLOPT_TIMEOUT, 600)
       ->post('http://192.168.88.5/service/index.php/Rfccekposisi');
     $cekpositionresult  = json_decode($cekposition);
 
@@ -489,8 +485,7 @@ class HiringController extends Controller
         $cekpaycontroll =  $curl->setPostParams([
           'token' => 'ish@2019!',
           'ABKRS' => $transrincian->abkrs_sap,
-        ])
-          ->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
+        ])->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
         $payrollcontrollresult  = json_decode($cekpaycontroll);
         if ($payrollcontrollresult->status == 1) {
           if ($userprofile->gender == 'male') {
@@ -662,13 +657,19 @@ class HiringController extends Controller
     $transrincian = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
     $hiring = Hiring::find()->where(['userid' => $model])->one();
     // $to = $model->mail->email;
-
+    
     $hiringstatus = Yii::$app->utils->aplhired($model);
     if ($hiringstatus) {
-      $to = 'khsyaam62@gmail.com';
+      $curl = new curl\Curl();
+      $getlevels = $curl->setPostParams([
+        'level' => $transrincian->level_sap,
+        'token' => 'ish**2019',
+      ])->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
+      // $to = 'khsyaam62@gmail.com';
+      $to = 'khusnul.hisyam@ish.co.id';
       // $to = $hiring->mail->email;
 
-      $subject = 'Pemberitahuan PT Infomedia Solusi Humanika';
+      $subject = 'Pemberitahuan PT Infomedia Solusi Humanika Test';
 
       $body = Yii::$app->params['mailFeedback'];
       // $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
@@ -676,17 +677,20 @@ class HiringController extends Controller
       // $body = str_replace('{area}', $transrincian->areasap->value2, $body);
 
       // var_dump($body);die;
-      $verification = Yii::$app->utils->sendmail($to, $subject, $body, 3);
-      if ($verification) {
-        $to = 'khusnul.hisyam@ish.co.id';
+      $sendmail = Yii::$app->utils->sendmail($to, $subject, $body, 3);
+      // $sendmail = Yii::$app->utils->sendmailinternal($to, $subject, $body, 9);
+      if ($sendmail) {
+        // $to = ['khusnul.hisyam@ish.co.id','khsyaam62@gmail.com'];
+        $to = 'khsyaam62@gmail.com';
         $subject = 'Informasi Approve Hiring';
         $body = Yii::$app->params['mailLog'];
-        // $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
-        // $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
-        // $body = str_replace('{area}', $transrincian->areasap->value2, $body);
-        $sendmail = Yii::$app->utils->sendmailinternal($to, $subject, $body, 9);
-        var_dump($sendmail);die;
+        $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
+        $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
+        $body = str_replace('{area}', $transrincian->areasap->value2, $body);
+        $mail = Yii::$app->utils->sendmail($to, $subject, $body, 9);
+        // var_dump($body);die;
         // return $sendmail;
+        // echo 'succesfully';
       }
       else {
         echo 'not succesfully';
@@ -706,8 +710,7 @@ class HiringController extends Controller
     $cekpaycontroll =  $curl->setPostParams([
       'token' => 'ish@2019!',
       'ABKRS' => $transrincian->abkrs_sap,
-    ])
-      ->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
+    ])->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
     $payrollcontrollresult  = json_decode($cekpaycontroll);
     // var_dump($cekpaycontroll);die;
     if ($payrollcontrollresult->status == 1) {
@@ -840,8 +843,7 @@ class HiringController extends Controller
     $cekpaycontroll =  $curl->setPostParams([
       'token' => 'ish@2019!',
       'ABKRS' => $transrincian->abkrs_sap,
-    ])
-      ->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
+    ])->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
     $payrollcontrollresult  = json_decode($cekpaycontroll);
     if ($payrollcontrollresult->status == 1) {
       $birthdate = date_create($userprofile->birthdate);
@@ -1274,8 +1276,7 @@ class HiringController extends Controller
           $getlevels = $curl->setPostParams([
             'level' => $transrincian->level_sap,
             'token' => 'ish**2019',
-          ])
-            ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
+          ])->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
           $level  = json_decode($getlevels);
           $leveljabatan = ($level) ? $level : "";
           if ($modelcountjohiring == $transrincian->jumlah) {
@@ -1844,8 +1845,7 @@ class HiringController extends Controller
     $getlevels = $curl->setPostParams([
       'level' => $transrincian->level_sap,
       'token' => 'ish**2019',
-    ])
-      ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
+    ])->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
     $level  = json_decode($getlevels);
     $leveljabatan = ($level) ? $level : "";
     if ($modelcountjohiring == $transrincian->jumlah) {
@@ -1856,7 +1856,8 @@ class HiringController extends Controller
 
       $listpernerconv = implode('<br>', $listperner);
       // var_dump($listpernerconv);die;
-      $to = 'seysi.lupi@ish.co.id';
+      // $to = 'seysi.lupi@ish.co.id';
+      $to = 'khusnul.hisyam@ish.co.id';
       $subject = 'Job Order Information - Done';
       $body = 'Selamat !!!
       <br>

@@ -150,7 +150,8 @@ figure {
 }
 img {
     height: auto;
-    max-width: 60%;
+    max-width: 100%;
+    /* max-width: 60%; */
 }
 /*img:hover, img:active img:focus {
     filter: grayscale(0%);
@@ -452,7 +453,8 @@ address                         { font-style: italic; }
     /* background: url(extra-images/wickedbackground.svg); */
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='700' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1289%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='url(%23SvgjsLinearGradient1290)'%3e%3c/rect%3e%3cpath d='M830.97 31.96 a177.94 177.94 0 1 0 355.88 0 a177.94 177.94 0 1 0 -355.88 0z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1177.24 131.59 a103.1 103.1 0 1 0 206.2 0 a103.1 103.1 0 1 0 -206.2 0z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M634.1613643662218 318.3570695201657L788.4352873428875 371.47784121155456 841.5560590342764 217.20391823488887 687.2821360576107 164.08314654350002z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M777.9535837416252 513.9044940691156L740.5473154292661 425.78084836880635 652.4236697289568 463.1871166811655 689.8299380413159 551.3107623814747z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M157.46%2c201.752C190.805%2c202.083%2c225.985%2c196.369%2c244.804%2c168.84C265.971%2c137.876%2c270.479%2c96.47%2c251.578%2c64.072C232.8%2c31.885%2c194.599%2c16.069%2c157.46%2c19.121C124.797%2c21.805%2c103.03%2c49.144%2c86.797%2c77.615C70.77%2c105.724%2c57.061%2c139.015%2c73.068%2c167.135C89.189%2c195.456%2c124.874%2c201.429%2c157.46%2c201.752' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M1286.826%2c668.408C1339.024%2c667.845%2c1385.075%2c636.704%2c1410.995%2c591.393C1436.727%2c546.412%2c1439.823%2c491.209%2c1413.843%2c446.371C1387.929%2c401.646%2c1338.473%2c374.985%2c1286.826%2c377.092C1238.418%2c379.067%2c1201.316%2c414.396%2c1176.576%2c456.051C1151.158%2c498.849%2c1134.991%2c549.946%2c1157.927%2c594.124C1182.418%2c641.296%2c1233.678%2c668.982%2c1286.826%2c668.408' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1289'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='50%25' y1='0%25' x2='50%25' y2='100%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient1290'%3e%3cstop stop-color='rgba(255%2c 255%2c 255%2c 1)' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(28%2c 76%2c 138%2c 1)' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
     position: relative;
-    padding: 150px 100px;
+    /* padding: 150px 100px; */
+    padding: 138px 0px 139px 0px;
     background-repeat: none;
 }
 .careerfy-banner-transparent {
@@ -1736,8 +1738,10 @@ li:hover .careerfy-read-more { background-color: transparent; }
     float: left;
     width: 66.66666667%;
     background-color: #fcfcfc;
-    padding: 28px 30px 8px 30px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10);}
+    padding: 20px 30px 8px 30px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10);
+    border-radius: 12px;
+}
 .careerfy-contact-form h2 {
     font-size: 22px;
     margin-bottom: 27px;
@@ -2256,7 +2260,7 @@ li:hover .careerfy-read-more { background-color: transparent; }
 .login-box-body,
 .register-box-body {
   background: #fff;
-  padding: 20px;
+  padding-top: 20px;
   border-top: 0;
   color: #666;
 }

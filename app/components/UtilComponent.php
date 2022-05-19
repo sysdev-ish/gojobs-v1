@@ -22,23 +22,20 @@ use DateTime;
 use DatePeriod;
 use DateInterval;
 
-
-class UtilComponent extends Component {
-
-  public function logger($type = 'info', $message = null){
+class UtilComponent extends Component
+{
+  public function logger($type = 'info', $message = null)
+  {
     $ret = null;
 
     if($message){
-
       switch ($type) {
         case 'error':
         $log_msg = date('Y-m-d H:i:s') . ' ERROR ' . $message;
         break;
-
         case 'warning':
         $log_msg = date('Y-m-d H:i:s') . ' WARNING ' . $message;
         break;
-
         default:
         $log_msg = date('Y-m-d H:i:s') . ' INFO ' . $message;
         break;
@@ -47,39 +44,41 @@ class UtilComponent extends Component {
       $log_filename = 'haier-app-' . date('Y-m-d') . '.log';
       $logFile = Yii::$app->getRuntimePath() . '/logs/' . $log_filename;
       file_put_contents($logFile, $log_msg . "\n", FILE_APPEND);
-
     }
-
     return $ret;
   }
-  public function todate($date){
 
+  public function todate($date)
+  {
     $time=strtotime($date);
-
     return $time;
   }
-  public function getlayout(){
 
-    if(Yii::$app->user->isGuest){
+  public function getlayout()
+  {
+    if(Yii::$app->user->isGuest)
+    {
       $role = 2;
-    }else{
+    }else
+    {
       // $userid = Yii::$app->user->identity->id;
       $role = Yii::$app->user->identity->role;
     }
-    if($role==2){
+    if($role==2)
+    {
       $layout = 'main-applicant';
-    }else{
+    }else
+    {
       $layout = 'main';
     }
 
     return $layout;
   }
-  public function getprofileuser($userid){
 
+  public function getprofileuser($userid)
+  {
     $ret = null;
     $userprofile = Userprofile::find()->where(['userid'=>$userid])->one();
-
-
     if($userprofile){
       $ret = $userprofile;
     }else{
@@ -88,8 +87,9 @@ class UtilComponent extends Component {
 
     return $ret;
   }
-  public function permission($roleid,$modulecode){
 
+  public function permission($roleid,$modulecode)
+  {
     $ret = false;
     if(!Yii::$app->user->isGuest){
       if($modulecode == "B01" && $roleid == 2){
@@ -121,7 +121,9 @@ class UtilComponent extends Component {
       }
     return $ret;
   }
-  protected function getroleid($grouprolepermissionid){
+
+  protected function getroleid($grouprolepermissionid)
+  {
     $ret = null;
     if($grouprolepermissionid){
       $getrole = Mappinggrouprolepermission::find()->where(['grouprolepermissionid'=>$grouprolepermissionid,'active'=>1])->all();
@@ -134,10 +136,11 @@ class UtilComponent extends Component {
       }
       $ret = $roleids;
     }
-
     return $ret;
   }
-  public function getusername($username){
+
+  public function getusername($username)
+  {
     $ret = null;
     if($username){
       // $ret = null;
@@ -152,9 +155,9 @@ class UtilComponent extends Component {
           $ret = $getnamebyothersid->name;
         }
       }
-      }
-      return $ret;
     }
+    return $ret;
+  }
 
 
   // public function getvstatus(){
@@ -176,7 +179,8 @@ class UtilComponent extends Component {
   //   return $layout;
   // }
 
-  public function sendmail($to,$subject,$body,$identifier){
+  public function sendmail($to,$subject,$body,$identifier)
+  {
     $curl = new curl\Curl();
     $verification = $curl->setPostParams([
       // 'from' => 'gojobs@ish.co.id',
@@ -184,11 +188,12 @@ class UtilComponent extends Component {
       'subject' => $subject,
       'body' => $body,
       'token' => 'ish@gojobs',
-    ])
-    ->post('http://192.168.88.27/mailgatewaygojobs/send');
+    ])->post('http://192.168.88.27/mailgatewaygojobs/send');
     $response = $verification[8];
     $now = date('Y-m-d');
+    // $hiring = Hiring::find()->one();
     $updatetoday = Mailcounter::find()->where(['date'=>$now, 'klasifikasi'=>$identifier])->one();
+    // var_dump($hiring);die;
     if($updatetoday){
       $addcounter = $updatetoday->count + 1;
       $updatetoday->count = $addcounter;
@@ -203,7 +208,8 @@ class UtilComponent extends Component {
     return $response;
   }
 
-  public function sendmailinternal($to,$subject,$body,$identifier){
+  public function sendmailinternal($to,$subject,$body,$identifier)
+  {
     $curl = new curl\Curl();
     $verification = $curl->setPostParams([
       // 'from' => 'gojobs@ish.co.id',
@@ -212,12 +218,13 @@ class UtilComponent extends Component {
       'body' => $body,
       'token' => 'ish@!notif',
       'appsenderid' => 1,
-    ])
-    ->post('http://192.168.88.70/notification/web/api/sendmail');
+    ])->post('http://192.168.88.70/notification/web/api/sendmail');
     $response = $verification;
     $now = date('Y-m-d');
     $updatetoday = Mailcounter::find()->where(['date'=>$now, 'klasifikasi'=>$identifier])->one();
-    if($updatetoday){
+    // var_dump($response);die;
+    if($updatetoday)
+    {
       $addcounter = $updatetoday->count + 1;
       $updatetoday->count = $addcounter;
       $updatetoday->save(false);
@@ -229,10 +236,11 @@ class UtilComponent extends Component {
       $newtoday->save(false);
     }
     return $response;
-  }
+    }
 
-  //start connect hris
-  public function getaccesstoken($code){
+    //start connect hris
+    public function getaccesstoken($code)
+    {
     $curl = new curl\Curl();
     $getaccesstoken = $curl->setPostParams([
       'grant_type' => 'authorization_code',
@@ -240,36 +248,37 @@ class UtilComponent extends Component {
       'redirect_uri' => 'https://gojobs.id/rekrut/site/oauthhris',
       'client_id' => 'goj0bsid',
       'client_secret' => 'e95h0gf8x8mwlek9bqgy',
-    ])
-    ->post('passport.ish.co.id/core/api/sso/token');
+    ])->post('passport.ish.co.id/core/api/sso/token');
     // var_dump($getaccesstoken);die;
     $response = $getaccesstoken;
     return $response;
   }
 
-  public function getuserdata($token){
+  public function getuserdata($token)
+  {
     $curl = new curl\Curl();
     $getuserdata = $curl->setPostParams([
       'access_token' => $token,
-    ])
-    ->post('passport.ish.co.id/core/api/sso/info');
+    ])->post('passport.ish.co.id/core/api/sso/info');
     // var_dump($getaccesstoken);die;
     $response = $getuserdata;
     return $response;
   }
-  
-  public function logout($token){
+
+  public function logout($token)
+  {
     $curl = new curl\Curl();
     $logout = $curl->setPostParams([
       'access_token' => $token,
-    ])
-    ->post('passport.ish.co.id/core/api/sso/logout');
+    ])->post('passport.ish.co.id/core/api/sso/logout');
     // var_dump($getaccesstoken);die;
     $response = $logout;
     return $response;
   }
   //end connect hris
-  public function terbilang($bilangan){
+
+  public function terbilang($bilangan)
+  {
     $angka = array('0','0','0','0','0','0','0','0','0','0',
     '0','0','0','0','0','0');
     $kata = array('','satu','dua','tiga','empat','lima',
@@ -293,7 +302,6 @@ class UtilComponent extends Component {
     $i = 1;
     $j = 0;
     $kalimat = "";
-
 
     /* mulai proses iterasi terhadap array angka */
     while ($i <= $panjang_bilangan) {
@@ -353,11 +361,10 @@ class UtilComponent extends Component {
     if (($angka[5] == "0") AND ($angka[6] == "0")) {
       $kalimat = str_replace("satu ribu","seribu",$kalimat);
     }
-
     return trim($kalimat);
+    }
 
-  }
-  public function indodate($date){
+    public function indodate($date){
     $days = date("D", strtotime($date));
     $dates = date("Y-m-d", strtotime($date));
     switch($days){
@@ -415,169 +422,166 @@ class UtilComponent extends Component {
     // variabel pecahkan 2 = tahun
 
     return $day.', '.$pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
-
-
   }
-  public function getpersonalarea($persaid){
 
+  public function getpersonalarea($persaid)
+  {
     $ret = null;
-    if($persaid){
+    if($persaid)
+    {
       $curl = new curl\Curl();
       $getpersonalarea = $curl->setPostParams([
         'persaid' => $persaid,
         'token' => 'ish**2019',
-      ])
-      ->post('http://192.168.88.5/service/index.php/sap_masterdata/getpersonalarea');
+      ])->post('http://192.168.88.5/service/index.php/sap_masterdata/getpersonalarea');
       $personalarea  = json_decode($getpersonalarea);
-
-      if($personalarea){
+      if($personalarea)
+      {
         $ret = $personalarea->value2;
       }else{
         $ret = null;
       }
     }
-
-
     return $ret;
   }
-  public function getarea($areaid){
 
+  public function getarea($areaid)
+  {
     $ret = null;
-    if($areaid){
+    if($areaid)
+    {
       $curl = new curl\Curl();
       $getarea = $curl->setPostParams([
         'areaid' => $areaid,
         'token' => 'ish**2019',
-      ])
-      ->post('http://192.168.88.5/service/index.php/sap_masterdata/getarea');
+      ])->post('http://192.168.88.5/service/index.php/sap_masterdata/getarea');
       $area  = json_decode($getarea);
-
-      if($area){
+      if($area)
+      {
         $ret = $area->value2;
       }else{
         $ret = null;
       }
     }
-
-
     return $ret;
   }
-  public function getskilllayanan($skilllayananid){
 
+  public function getskilllayanan($skilllayananid)
+  {
     $ret = null;
-    if($skilllayananid){
+    if($skilllayananid)
+    {
       $curl = new curl\Curl();
       $getskillayanan = $curl->setPostParams([
         'skilllayananid' => $skilllayananid,
         'token' => 'ish**2019',
-      ])
-      ->post('http://192.168.88.5/service/index.php/sap_masterdata/getskilllayanan');
+      ])->post('http://192.168.88.5/service/index.php/sap_masterdata/getskilllayanan');
       $skilllayanan  = json_decode($getskillayanan);
 
-      if($skilllayanan){
+      if($skilllayanan)
+      {
         $ret = $skilllayanan->value2;
       }else{
         $ret = null;
       }
     }
-
-
     return $ret;
   }
-  public function getpayrollarea($payrollareaid){
 
+  public function getpayrollarea($payrollareaid)
+  {
     $ret = null;
-    if($payrollareaid){
+    if($payrollareaid)
+    {
       $curl = new curl\Curl();
       $getpayrollarea = $curl->setPostParams([
         'payrollareaid' => $payrollareaid,
         'token' => 'ish**2019',
-      ])
-      ->post('http://192.168.88.5/service/index.php/sap_masterdata/getpayrollarea');
+      ])->post('http://192.168.88.5/service/index.php/sap_masterdata/getpayrollarea');
       $payrollarea  = json_decode($getpayrollarea);
 
-      if($payrollarea){
+      if($payrollarea)
+      {
         $ret = $payrollarea->value2;
       }else{
         $ret = null;
       }
     }
-
-
     return $ret;
   }
-  public function getjabatan($jabatanid){
 
+  public function getjabatan($jabatanid)
+  {
     $ret = null;
-    if($jabatanid){
+    if($jabatanid)
+    {
       $curl = new curl\Curl();
       $getjabatan = $curl->setPostParams([
         'jabatanid' => $jabatanid,
         'token' => 'ish**2019',
-      ])
-      ->post('http://192.168.88.5/service/index.php/sap_masterdata/getjabatan');
+      ])->post('http://192.168.88.5/service/index.php/sap_masterdata/getjabatan');
       $jabatan  = json_decode($getjabatan);
       // var_dump($jabatan);die;
-      if($jabatan){
+      if($jabatan)
+      {
         $ret = $jabatan->value2;
       }else{
         $ret = null;
       }
     }
-
-
     return $ret;
   }
-  public function getjabatanid($jabatan){
 
+  public function getjabatanid($jabatan)
+  {
     $ret = null;
-    if($jabatan){
+    if($jabatan)
+    {
       $curl = new curl\Curl();
       $getjabatan = $curl->setPostParams([
         'jabatan' => $jabatan,
         'token' => 'ish**2019',
-      ])
-      ->post('http://192.168.88.5/service/index.php/sap_masterdata/getjabatanid');
+      ])->post('http://192.168.88.5/service/index.php/sap_masterdata/getjabatanid');
       $jabatan  = json_decode($getjabatan);
       // var_dump($jabatan);die;
-      if($jabatan){
+      if($jabatan)
+      {
         $ret = $jabatan->value1;
       }else{
         $ret = null;
       }
     }
-
-
     return $ret;
   }
-  public function getnamebynik ($nik){
 
+  public function getnamebynik ($nik)
+  {
     $ret = null;
-    if($nik){
+    if($nik)
+    {
       $curl = new curl\Curl();
       $getname = $curl->setPostParams([
         'auth_token' => 'ish@cipete2018!',
         'perner' => $nik,
         // 'perner' => '8508100',
         // 'perner' => '80937',
-      ])
-      ->post('https://hris.ish.co.id/core/api/employee/detail');
+      ])->post('https://hris.ish.co.id/core/api/employee/detail');
       $name  = json_decode($getname);
       // var_dump($name);die;
 
-      if($name){
-        if($name->code){
+      if($name)
+      {
+        if($name->code)
+        {
           $ret = $name->data->name;
         }else{
           $ret = null;
         }
       }
-
     }
-
-
     return $ret;
   }
+
   public function ordinal ($num)
   {
     $last=substr($num,-1);
@@ -601,6 +605,7 @@ class UtilComponent extends Component {
     }
     return $num.$ext;
   }
+
   public function diffdate ($date1, $date2)
   {
     $begin = new DateTime( $date1 );
@@ -614,8 +619,7 @@ class UtilComponent extends Component {
     foreach($period as $dt) {
         $counter++;
     }
-
-    return $counter;
+  return $counter;
   }
 
   public function aplhired($userid)
@@ -631,101 +635,95 @@ class UtilComponent extends Component {
     return $ret;
   }
 
-  function generateRandomString($length = 5) {
-			$chars = "23456789ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz";
-			$charArray = str_split($chars);
-			$charCount = strlen($chars);
-			$result = "";
-			for($i=1;$i<=$length;$i++)
-			{
-				$randChar = rand(0,$charCount-1);
-				$result .= $charArray[$randChar];
-			}
-			return $result;
-		}
+  function generateRandomString($length = 5)
+  {
+    $chars = "23456789ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz";
+    $charArray = str_split($chars);
+    $charCount = strlen($chars);
+    $result = "";
+    for($i=1;$i<=$length;$i++)
+    {
+      $randChar = rand(0,$charCount-1);
+      $result .= $charArray[$randChar];
+    }
+    return $result;
+  }
+
+  public function insppjp($perner,$joindate)
+  {
+    $ret = null;
+    if($perner && $joindate)
+    {
+      $curl = new curl\Curl();
+      $insppjp = $curl->setPostParams([
+        'perner' => $perner,
+        'joindate' => $joindate,
+      ])->post('http://192.168.88.5/hrms/RFCIT9002.php');
+      $returninsppjp  = json_decode($insppjp);
+
+      if($returninsppjp)
+      {
+        $ret = $returninsppjp->CODE;
+      }else{
+        $ret = null;
+      }
+    }
+    return $ret;
+  }
+  
+  public function create_login_log()
+  {
+    $ret = null;
+    if(!Yii::$app->user->isGuest)
+    {
+      $checklog = Logactivity::find()->where('userid ='.Yii::$app->user->identity->id.' AND date = CURDATE()')->one();
+      if($checklog)
+      {
+        $logmodel = $checklog;
+        // var_dump($checklog);die;
 
 
-    public function insppjp($perner,$joindate){
+        $logmodel->lastlogin = date('Y-m-d H-i-s');
+        $logmodel->counter =  $checklog->counter + 1;
+        $logmodel->save();
 
-      $ret = null;
-      if($perner && $joindate){
+      }else{
+        $nik = Yii::$app->user->identity->username;
+        $newlogmodel = new Logactivity();
+
+        $divisionid = null;
+        $divisionname = 'division unregistered on hris';
         $curl = new curl\Curl();
-        $insppjp = $curl->setPostParams([
-          'perner' => $perner,
-          'joindate' => $joindate,
-        ])
-        ->post('http://192.168.88.5/hrms/RFCIT9002.php');
-        $returninsppjp  = json_decode($insppjp);
+        $getdata = $curl->setPostParams([
+          'auth_token' => 'ish@cipete2018!',
+          'perner' => $nik,
+        ])->post('https://hris.ish.co.id/core/api/employee/detail');
+        $dataresult  = json_decode($getdata);
 
-        if($returninsppjp){
-          $ret = $returninsppjp->CODE;
-        }else{
-          $ret = null;
-        }
-      }
-
-
-      return $ret;
-    }
-    public function create_login_log(){
-      $ret = null;
-      if(!Yii::$app->user->isGuest){
-        $checklog = Logactivity::find()->where('userid ='.Yii::$app->user->identity->id.' AND date = CURDATE()')->one();
-        if($checklog){
-          $logmodel = $checklog;
-          // var_dump($checklog);die;
-
-
-          $logmodel->lastlogin = date('Y-m-d H-i-s');
-          $logmodel->counter =  $checklog->counter + 1;
-          $logmodel->save();
-
-        }else{
-          $nik = Yii::$app->user->identity->username;
-          $newlogmodel = new Logactivity();
-
-          $divisionid = null;
-          $divisionname = 'division unregistered on hris';
-          $curl = new curl\Curl();
-          $getdata = $curl->setPostParams([
-            'auth_token' => 'ish@cipete2018!',
-            'perner' => $nik,
-          ])
-          ->post('https://hris.ish.co.id/core/api/employee/detail');
-          $dataresult  = json_decode($getdata);
-
-          if($dataresult){
-            if($dataresult->code == 1){
-              $divisionid = $dataresult->data->positions[0]->division_id;
-              $divisionname = $dataresult->data->positions[0]->division_name;
-            }
+        if($dataresult)
+        {
+          if($dataresult->code == 1)
+          {
+            $divisionid = $dataresult->data->positions[0]->division_id;
+            $divisionname = $dataresult->data->positions[0]->division_name;
           }
-
-          $newlogmodel->date = date('Y-m-d');
-          $newlogmodel->userid = Yii::$app->user->identity->id;
-          $newlogmodel->actiitytype = 1;
-          $newlogmodel->roleid = Yii::$app->user->identity->role;
-          $newlogmodel->divisionid = $divisionid;
-          $newlogmodel->division = $divisionname;
-          $newlogmodel->firstlogin = date('Y-m-d H-i-s');
-          $newlogmodel->lastlogin = date('Y-m-d H-i-s');
-          $newlogmodel->counter = 1;
-          $newlogmodel->save(false);
         }
 
-        // var_dump($name);die;
-
-
-
+        $newlogmodel->date = date('Y-m-d');
+        $newlogmodel->userid = Yii::$app->user->identity->id;
+        $newlogmodel->actiitytype = 1;
+        $newlogmodel->roleid = Yii::$app->user->identity->role;
+        $newlogmodel->divisionid = $divisionid;
+        $newlogmodel->division = $divisionname;
+        $newlogmodel->firstlogin = date('Y-m-d H-i-s');
+        $newlogmodel->lastlogin = date('Y-m-d H-i-s');
+        $newlogmodel->counter = 1;
+        $newlogmodel->save(false);
       }
-
-
-      return $ret;
-      // var_dump(Yii::$app->user->identity->id);die;
+      // var_dump($name);die;
     }
-
-
-
-
+    return $ret;
+    // var_dump(Yii::$app->user->identity->id);die;
+  }
 
 }
