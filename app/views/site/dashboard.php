@@ -24,13 +24,13 @@ canvas {
 <div class="site-dashboard">
 
   <div class="row" style="margin-bottom:50px;">
-    <div class="col-md-12">
+    <div class="col-12">
       <?php $form = ActiveForm::begin([
         'action' => ['dashboard'],
         'method' => 'post',
 
       ]); ?>
-      <div class="col-md-3">
+      <div class="col-lg-4">
 
         <div class="input-group">
           <?php

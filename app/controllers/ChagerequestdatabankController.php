@@ -281,8 +281,12 @@ class ChagerequestdatabankController extends Controller
 
       if($id){
         $model = $this->findModel($id);
+        // $model->approvedby = 104728;
+        // $model->approvedby2 = 104728;
         $model->approvedby = 53;
         $model->approvedby2 = 18608;
+        // $model->approvedbyname = User::findOne(104728)->name;
+        // $model->approvedby2name = User::findOne(104728)->name;
         $model->approvedbyname = User::findOne(53)->name;
         $model->approvedby2name = User::findOne(18608)->name;
         //  $name = ArrayHelper::map(Hiring::find()
@@ -304,7 +308,6 @@ class ChagerequestdatabankController extends Controller
           ['chagerequestdata.status'=>3],
           ['hiring.userid' => $model->userid],
         ])->all();
-
 
       }else{
         $getid = new Chagerequestdata();
@@ -381,8 +384,10 @@ class ChagerequestdatabankController extends Controller
               $area = $datapekerjabyperner[0]->BTRTX;
               $jabatan = $datapekerjabyperner[0]->PLATX;
             }
+
             $to = $user->email;
-            $subject = 'Notifikasi Approval Perubahan Data Bank';
+            // $to = 'khusnul.hisyam@ish.co.id';
+            $subject = 'Notifikasi Approval Perubahan Data Bank 1';
             $body = 'Semangat Pagi,,
             <br>
             Anda mendapatkan permintaan Approval Perubahan Data Bank dari <span style="text-transform: uppercase;"><b>'.$model->createduser->name.'</b></span> dengan rincian sebagai berikut :
@@ -424,7 +429,11 @@ class ChagerequestdatabankController extends Controller
             Have a great day !
             ';
             // var_dump($body);die;
-            $verification = Yii::$app->utils->sendmailinternal($to,$subject,$body,11);
+            // $verification = Yii::$app->utils->sendmail($to,$subject,$body,11);
+            $verification = Yii::$app->utils->sendmail($to,$subject,$body,11);
+            if ($verification) {
+              echo 'succesfully';
+            }
           }
           return $this->redirect(['index']);
       } else {
@@ -433,7 +442,56 @@ class ChagerequestdatabankController extends Controller
               'approvalname' => $approvalname,
           ]);
       }
+  }
 
+  public function actionCreatedummy($id) 
+  {
+    $model = $this->findModel($id);
+    // $model->approvedby = 104728;
+    // $model->approvedby2 = 104728;
+    $model->approvedby = 53;
+    $model->approvedby2 = 18608;
+    // $model->approvedbyname = User::findOne(104728)->name;
+    // $model->approvedby2name = User::findOne(104728)->name;
+    $model->approvedbyname = User::findOne(53)->name;
+    $model->approvedby2name = User::findOne(18608)->name;
+
+    // $to = $model->mail->email;
+    $curl = new curl\Curl();
+    $getdatapekerjabyperner =  $curl->setPostParams([
+      'perner' => $model->perner,
+      'token' => 'ish**2019',
+    ])->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
+    $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+    if ($model->status == 2) {
+      $user = User::find()->where(['id' => $model->approvedby])->one();
+    } else {
+      $user = User::find()->where(['id' => $model->approvedby2])->one();
+    }
+    $name = $datapekerjabyperner[0]->CNAME;
+    $perner = $model->perner;
+    $layanan = $datapekerjabyperner[0]->WKTXT;
+    $area = $datapekerjabyperner[0]->BTRTX;
+    $jabatan = $datapekerjabyperner[0]->PLATX;
+
+    // $to = 'khsyaam62@gmail.com';
+      $to = $user->email;
+      // $to = $hiring->mail->email;
+
+      $subject = 'Pemberitahuan PT Infomedia Solusi Humanika';
+
+      $body = Yii::$app->params['mailChangerequest'];
+      $body = str_replace('{fullname}', $name, $body);
+      $body = str_replace('{perner}', $perner, $body);
+      $body = str_replace('{layanan}', $layanan, $body);
+      $body = str_replace('{area}', $area, $body);
+      $body = str_replace('{jabatan}', $jabatan, $body);
+
+      // var_dump($body);die;
+      $verification = Yii::$app->utils->sendmail($to, $subject, $body, 3);
+      if ($verification) {
+        echo 'succesfully';
+        }
   }
 
   /**
@@ -504,7 +562,6 @@ class ChagerequestdatabankController extends Controller
         $model->approvedtime = date('Y-m-d H-i-s');
         $model->save();
 
-
         if($model->status == 2){
           $user = User::find()->where(['id'=>$model->approvedby2])->one();
 
@@ -539,8 +596,10 @@ class ChagerequestdatabankController extends Controller
           $area = $datapekerjabyperner[0]->BTRTX;
           $jabatan = $datapekerjabyperner[0]->PLATX;
         }
+
         $to = $user->email;
-        $subject = 'Notifikasi Approval Perubahan Data Bank';
+        // $to = 'khusnul.hisyam@ish.co.id';
+        $subject = 'Notifikasi Approval Perubahan Data Bank 2';
         $body = 'Semangat Pagi,,
         <br>
         Anda mendapatkan permintaan Approval Perubahan Data Bank dari <span style="text-transform: uppercase;"><b>'.$model->createduser->name.'</b></span> dengan rincian sebagai berikut :
@@ -582,7 +641,8 @@ class ChagerequestdatabankController extends Controller
         Have a great day !
         ';
         // var_dump($body);die;
-        $verification = Yii::$app->utils->sendmailinternal($to,$subject,$body,11);
+        // $verification = Yii::$app->utils->sendmail($to,$subject,$body,11);
+        $verification = Yii::$app->utils->sendmail($to,$subject,$body,11);
         }
 
 
@@ -850,7 +910,8 @@ class ChagerequestdatabankController extends Controller
 
   }
   elseif ($id > 0) {
-    // $curl =  curl\Curl();
+    //add by kaha temporary
+    $curl = new curl\Curl();
     $getdatapekerjabyperner =  $curl->setPostParams([
       'perner' => $id,
       'token' => 'ish**2019',

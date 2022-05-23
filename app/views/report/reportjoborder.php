@@ -30,8 +30,8 @@ if(Yii::$app->user->isGuest){
 app\assets\ReportAsset::register($this);
 ?>
 <div class="hiring-index box box-default">
-    <div class="box-body">
-        <?php echo $this->render('_searchjo', [
+  <div class="box-body">
+    <?php echo $this->render('_searchjo', [
             'model' => $searchModel,
             'area' => $area,
             'parea' => $parea,
@@ -40,51 +40,51 @@ app\assets\ReportAsset::register($this);
             'jobfamily' => $jobfamily,
             'subjobfamily' => $subjobfamily,
           ]); ?>
-    </div>
+  </div>
 </div>
 <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="col-md-4 col-sm-4 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="fa fa-tags"></i></span>
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-aqua"><i class="fa fa-tags"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Total Job Order</span>
-              <span class="info-box-number"><?php echo $dataProvider['dataProvider']->getTotalCount(); ?></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          </div>
-          <div class="col-md-4 col-sm-4 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Total Kebutuhan Pekerja</span>
-              <span class="info-box-number"><?php echo $dataProvider['totalkebutuhan']; ?></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          </div>
-          <div class="col-md-4 col-sm-4 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="fa fa-users"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Total Pemenuhan Pekerja (Hiring)</span>
-              <span class="info-box-number"><?php //echo $dataProvider['totalpemenuhan']; ?></span>
-            </div>
-          </div>
-          </div>
-
+        <div class="info-box-content">
+          <span class="info-box-text">Total Job Order</span>
+          <span class="info-box-number"><?php echo $dataProvider['dataProvider']->getTotalCount(); ?></span>
         </div>
-        <!-- /.col -->
-        <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="box">
-        <div class="box-header">
-              <h3 class="box-title">Job Order Data</h3>
-              <div class="box-tools pull-right">
-                <?php
+        <!-- /.info-box-content -->
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-red"><i class="fa fa-users"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Kebutuhan Pekerja</span>
+          <span class="info-box-number"><?php echo $dataProvider['totalkebutuhan']; ?></span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+    </div>
+    <!-- <div class="col-md-4 col-sm-4 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-yellow"><i class="fa fa-users"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Pemenuhan Pekerja (Hiring)</span>
+          <span class="info-box-number"><?php //echo $dataProvider['totalpemenuhan']; ?></span>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+  <!-- /.col -->
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Job Order Data</h3>
+        <div class="box-tools pull-right">
+          <?php
                 $gridColumns = [
                     ['class' => 'kartik\grid\SerialColumn'],
                     'id',
@@ -301,10 +301,10 @@ app\assets\ReportAsset::register($this);
                     ]
                 ]);
               ?>
-            </div>
-          </div>
-        <div class="box-body">
-          <?php
+        </div>
+      </div>
+      <div class="box-body">
+        <?php
           echo GridView::widget([
               'dataProvider' => $dataProvider['dataProvider'],
               // 'filterModel' => $searchModel,
@@ -422,7 +422,7 @@ app\assets\ReportAsset::register($this);
               ],
           ]);
           ?>
-        </div>
-        </div>
-        </div>
       </div>
+    </div>
+  </div>
+</div>

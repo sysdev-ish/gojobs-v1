@@ -257,7 +257,7 @@ class ChagerequestjoController extends Controller
               Have a great day !
               ';
               // var_dump($body);die;
-              $verification = Yii::$app->utils->sendmailinternal($to,$subject,$body,11);
+              $verification = Yii::$app->utils->sendmail($to,$subject,$body,11);
             }
             return $this->redirect(['transrincian/view', 'id' => $modelrecreq->id]);
         } else {

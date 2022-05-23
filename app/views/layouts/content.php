@@ -1,4 +1,5 @@
 <?php
+
 use yii\widgets\Breadcrumbs;
 use dmstr\widgets\Alert;
 
@@ -42,6 +43,5 @@ use dmstr\widgets\Alert;
     <div class="pull-right hidden-xs">
         <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2018 <a href="http://ish.co.id">Infomedia Solusi Humanika</a>.</strong> All rights
-    reserved.
+    <strong>Copyright &copy; 2018 - <script>document.write(new Date().getFullYear()) </script> <a href="http://ish.co.id">Infomedia Solusi Humanika</a>.</strong> All rights reserved.
 </footer>

@@ -3,9 +3,31 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\Computerskill;
+use app\models\Canceljoinreport;
+use app\models\Changejoreport;
+use app\models\Englishskill;
 use app\models\Hiring;
+use app\models\Hiringsearch;
+use app\models\Hiringreport;
+use app\models\Applicantreport;
+use app\models\Joborderreport;
+use app\models\Organizationactivity;
+use app\models\Mastereducation;
+use app\models\Masterstatuscandidate;
+use app\models\Masterareaish;
+use app\models\Masterregion;
+use app\models\Mappingregionarea;
+use app\models\Mastercity;
+use app\models\Masterjobfamily;
+use app\models\Mastersubjobfamily;
+use app\models\Saparea;
+use app\models\Sappersonalarea;
+use app\models\Sapjob;
 use app\models\Transrincian;
 use app\models\Transjo;
+use app\models\Userreference;
+use app\models\Userhealth;
 use app\models\Userprofile;
 use app\models\Useremergencycontact;
 use app\models\Userfamily;
@@ -13,29 +35,9 @@ use app\models\Userformaleducation;
 use app\models\Usernonformaleducation;
 use app\models\Userforeignlanguage;
 use app\models\Userabout;
-use app\models\Englishskill;
-use app\models\Computerskill;
 use app\models\Userworkexperience;
-use app\models\Organizationactivity;
-use app\models\Userreference;
-use app\models\Userhealth;
-use app\models\Hiringsearch;
-use app\models\Hiringreport;
-use app\models\Applicantreport;
-use app\models\Joborderreport;
-use app\models\Saparea;
-use app\models\Sappersonalarea;
-use app\models\Sapjob;
-use app\models\Mastereducation;
-use app\models\Masterstatuscandidate;
 use app\models\Uploadocument;
 use app\models\Recruitmentcandidatefhsearch;
-use app\models\Masterareaish;
-use app\models\Masterregion;
-use app\models\Mappingregionarea;
-use app\models\Mastercity;
-use app\models\Masterjobfamily;
-use app\models\Mastersubjobfamily;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -81,6 +83,24 @@ class ReportController extends Controller
                 ],
                 [
                     'actions' => ['reportjoborder'],
+                    'allow' => true,
+                    'roles' => ['@'],
+                    'matchCallback'=>function(){
+                         return (Yii::$app->utils->permission(Yii::$app->user->identity->role,'m66'));
+                     }
+
+                ],
+                [
+                    'actions' => ['reportcanceljoin'],
+                    'allow' => true,
+                    'roles' => ['@'],
+                    'matchCallback'=>function(){
+                         return (Yii::$app->utils->permission(Yii::$app->user->identity->role,'m66'));
+                     }
+
+                ],
+                [
+                    'actions' => ['reportchangejo'],
                     'allow' => true,
                     'roles' => ['@'],
                     'matchCallback'=>function(){
@@ -171,6 +191,52 @@ class ReportController extends Controller
     $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
     $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
     return $this->render('reportjoborder', [
+      'searchModel' => $searchModel,
+      'dataProvider' => $dataProvider,
+      'area' => $area,
+      'parea' => $parea,
+      'areaish' => $areaish,
+      'region' => $region,
+      'jobfamily' => $jobfamily,
+      'subjobfamily' => $subjobfamily,
+
+    ]);
+  }
+  public function actionReportcanceljoin()
+  {
+    $searchModel = new Canceljoinreport();
+    $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    $area = ArrayHelper::map(Saparea::find()->asArray()->all(), 'value1', 'value2');
+    $parea = ArrayHelper::map(Sappersonalarea::find()->asArray()->all(), 'value1', 'value2');
+    $jabatan = ArrayHelper::map(Sapjob::find()->asArray()->all(), 'value1', 'value2');
+    $areaish = ArrayHelper::map(Masterareaish::find()->asArray()->all(), 'id', 'area');
+    $region = ArrayHelper::map(Masterregion::find()->asArray()->all(), 'id', 'regionname');
+    $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
+    $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
+    return $this->render('reportcanceljoin', [
+      'searchModel' => $searchModel,
+      'dataProvider' => $dataProvider,
+      'area' => $area,
+      'parea' => $parea,
+      'jabatan' => $jabatan,
+      'areaish' => $areaish,
+      'region' => $region,
+      'jobfamily' => $jobfamily,
+      'subjobfamily' => $subjobfamily,
+    ]);
+  }
+  public function actionReportchangejo()
+  {
+    // $this->scenario
+    $searchModel = new Changejoreport();
+    $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    $area = ArrayHelper::map(Saparea::find()->asArray()->all(), 'value1', 'value2');
+    $parea = ArrayHelper::map(Sappersonalarea::find()->asArray()->all(), 'value1', 'value2');
+    $areaish = ArrayHelper::map(Masterareaish::find()->asArray()->all(), 'id', 'area');
+    $region = ArrayHelper::map(Masterregion::find()->asArray()->all(), 'id', 'regionname');
+    $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
+    $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
+    return $this->render('reportchangejo', [
       'searchModel' => $searchModel,
       'dataProvider' => $dataProvider,
       'area' => $area,

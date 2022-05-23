@@ -215,6 +215,7 @@ class UtilComponent extends Component {
     ])
     ->post('http://192.168.88.70/notification/web/api/sendmail');
     $response = $verification;
+    // var_dump($response);die;
     $now = date('Y-m-d');
     $updatetoday = Mailcounter::find()->where(['date'=>$now, 'klasifikasi'=>$identifier])->one();
     if($updatetoday){

@@ -709,7 +709,7 @@
     border: 1px solid #eeeeee;
     margin-bottom: 0px;
 }
-.careerfy-joblisting-classic > ul > li                                                 { margin-bottom: 20px; }
+.careerfy-joblisting-classic > ul > li                                                 { margin: 12px 0px; }
 .careerfy-joblisting-classic figure ~ .careerfy-joblisting-text                       { margin-left: 59px; }
 .careerfy-job-userlist .careerfy-job-like                                             { border-color: #8bb300; }
 .careerfy-list-option ul li i                                                          { margin-right: 6px; color: #999; }
@@ -758,10 +758,11 @@
 }
 .careerfy-joblisting-classic-wrap {
     background-color: #ffffff;
-    border: 1px solid #ececec;
+    border: 1px solid #fff;
     /* padding: 20px 19px 13px 14px; */
     padding: 20px 24px;
     border-radius: 14px;
+    box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 5%);
 }
 /* JobDetail SubHeader */
 .careerfy-job-subheader {
@@ -845,7 +846,7 @@
 .careerfy-jobdetail-options li:first-child i                               { color: #999999; }
 .careerfy-jobdetail-btn i                                                  { margin-right: 3px; }
 .careerfy-jobdetail-media li a[data-original-title="facebook"]             { color: #3b5998; }
-.careerfy-jobdetail-media li a[data-original-title="twitter"]              { color: #3ac1f1; }
+.careerfy-jobdetail-media li a[data-original-title="twitter"]              { color: #2196f3; }
 .careerfy-jobdetail-media li a[data-original-title="linkedin"]             { color: #007ab9; }
 .careerfy-jobdetail-media li a                                             { font-size: 22px; }
 .careerfy-jobdetail-options li i {
@@ -1549,6 +1550,7 @@ ul li:hover .careerfy-employer-grid-btn {
     box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.08);
     padding: 30px 0px 0px 0px;
     margin-bottom: 50px;
+    border-radius: 24px;
 }
 .careerfy-employer-dashboard-nav figure {
     text-align: center;
@@ -1656,6 +1658,7 @@ ul li:hover .careerfy-employer-grid-btn {
     box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.08);
     padding: 30px 30px 18px 30px;
     margin-bottom: 30px;
+    border-radius: 24px;
 }
 #form-changepassword.careerfy-employer-box-section {
     /* float: left; */

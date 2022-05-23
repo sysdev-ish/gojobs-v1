@@ -57,8 +57,16 @@
                 'visible' => (Yii::$app->utils->permission($role, 'm66')),
                 'active' => Yii::$app->controller->action->id == 'reportjoborder'
               ],
-
-
+              [
+                'label' => 'Cancel Join', 'icon' => 'circle-o', 'url' => ['/report/reportcanceljoin'],
+                'visible' => (Yii::$app->utils->permission($role, 'm66')),
+                'active' => Yii::$app->controller->action->id == 'reportcanceljoin'
+              ],
+              [
+                'label' => 'Change Job Order', 'icon' => 'circle-o', 'url' => ['/report/reportchangejo'],
+                'visible' => (Yii::$app->utils->permission($role, 'm66')),
+                'active' => Yii::$app->controller->action->id == 'reportchangejo'
+              ],
             ],
           ],
           [
@@ -83,12 +91,15 @@
                 'active' => Yii::$app->controller->id == 'chagerequestjo'
               ],
               [
+                'label' => 'Cancel Join', 'icon' => 'circle-o', 'url' => ['/changecanceljoin'],
+                'visible' => (Yii::$app->utils->permission($role, 'm67')),
+                'active' => Yii::$app->controller->id == 'changecanceljoin'
+              ],
+              [
                 'label' => 'Resign', 'icon' => 'circle-o', 'url' => ['/chagerequestresign'],
                 'visible' => (Yii::$app->utils->permission($role, 'm67')),
                 'active' => Yii::$app->controller->id == 'chagerequestresign'
               ],
-
-
             ],
           ],
           [
