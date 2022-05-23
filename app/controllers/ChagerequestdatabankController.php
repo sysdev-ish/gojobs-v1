@@ -881,6 +881,7 @@ class ChagerequestdatabankController extends Controller
 
       return $this->redirect(['index']);
   }
+  
   public function actionGetdatakaryawan($q = null, $id = null) {
   \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
   // var_dump($id);die;
@@ -906,23 +907,21 @@ class ChagerequestdatabankController extends Controller
       }else{
         $outs['results'] = null;
       }
+    }
+    elseif ($id > 0) {
+      //add by kaha temporary
+      $curl = new curl\Curl();
+      $getdatapekerjabyperner =  $curl->setPostParams([
+        'perner' => $id,
+        'token' => 'ish**2019',
+      ])->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
+      $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+        $outs['results'] = ['id' => $id, 'text' => $datapekerjabyperner];
+    }else{
 
-
-  }
-  elseif ($id > 0) {
-    //add by kaha temporary
-    $curl = new curl\Curl();
-    $getdatapekerjabyperner =  $curl->setPostParams([
-      'perner' => $id,
-      'token' => 'ish**2019',
-    ])->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-    $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-      $outs['results'] = ['id' => $id, 'text' => $datapekerjabyperner];
-  }else{
-
-    $outs['results'] = ['id' => ' ', 'text' => ' '];
-  }
-  return $outs;
+      $outs['results'] = ['id' => ' ', 'text' => ' '];
+    }
+    return $outs;
   }
 
   /**
@@ -934,10 +933,10 @@ class ChagerequestdatabankController extends Controller
    */
   protected function findModel($id)
   {
-      if (($model = Chagerequestdata::findOne($id)) !== null) {
-          return $model;
-      } else {
-          throw new NotFoundHttpException('The requested page does not exist.');
-      }
+    if (($model = Chagerequestdata::findOne($id)) !== null) {
+        return $model;
+    } else {
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
   }
 }

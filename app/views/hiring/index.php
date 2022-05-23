@@ -148,9 +148,9 @@ if(Yii::$app->utils->permission($role,'m37')){
                       'data' => [1 => "New Project", 2 => "replacement"],
                       'options' => ['placeholder' => '--'],
                       'pluginOptions' => [
-                         'allowClear' => true,
-                         'width' => '100px',
-                         ],
+                        'allowClear' => true,
+                        'width' => '100px',
+                        ],
                     ]),
                   'value'=>function ($data) {
                     return ($data->recrequest)?(($data->recrequest->typejo==1)?"New Project":"Replacement"):"-";
@@ -190,9 +190,9 @@ if(Yii::$app->utils->permission($role,'m37')){
                       'data' => [1 => "ISH", 2 => "Peralihan"],
                       'options' => ['placeholder' => '--'],
                       'pluginOptions' => [
-                         'allowClear' => true,
-                         'width' => '100px',
-                         ],
+                        'allowClear' => true,
+                        'width' => '100px',
+                        ],
                     ]),
                   'value'=>function ($data) {
                     return ($data->typejo==1)?"ISH":"Peralihan";
@@ -210,9 +210,9 @@ if(Yii::$app->utils->permission($role,'m37')){
                       'data' => $masterstatushiring,
                       'options' => ['placeholder' => '--'],
                       'pluginOptions' => [
-                         'allowClear' => true,
-                         'width' => '300px',
-                         ],
+                        'allowClear' => true,
+                        'width' => '300px',
+                        ],
                     ]),
                   'value'=>function ($data) {
                     return "Status Hiring : ".(($data->statushiring0)?$data->statushiring0->statusname:'-')."<br>".
