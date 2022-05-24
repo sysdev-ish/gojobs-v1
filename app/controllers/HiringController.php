@@ -657,33 +657,36 @@ class HiringController extends Controller
     $model = $this->findModel($id);
     $transrincian = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
     $hiring = Hiring::find()->where(['userid' => $model])->one();
-    $userid = $hiring->userid; 
+    $userid = $hiring->userid;
+    $fullname = $hiring->userprofile->fullname;
     // $to = $model->mail->email;
     
     $hiringstatus = Yii::$app->utils->aplhired($model);
     if ($hiringstatus) {
-      // $to = 'khsyaam62@gmail.com';
-      $to = 'khusnul.hisyam@ish.co.id';
+      $to = 'khsyaam62@gmail.com';
+      // $to = 'khusnul.hisyam@ish.co.id';
       // $to = $hiring->mail->email;
 
       $subject = 'Pemberitahuan PT Infomedia Solusi Humanika Test';
 
       $body = Yii::$app->params['mailFeedback'];
-      // $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
-      // $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
-      // $body = str_replace('{area}', $transrincian->areasap->value2, $body);
+      $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
+      $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
+      $body = str_replace('{area}', $transrincian->areasap->value2, $body);
 
       // var_dump($body);die;
       // $verification = Yii::$app->utils->sendmail($to, $subject, $body, 3);
-      $sendmail = Yii::$app->utils->sendmail($to, $subject, $body, 9);
+      //if want to add in mail counter (log) -> userid
+      // 11 -> cek table klasifikasiemail
+      $sendmail = Yii::$app->utils->sendmailexternal($to, $subject, $body, 11, $userid, $fullname);
       if ($sendmail) {
-        // $to = 'khusnul.hisyam@ish.co.id';
-        // $subject = 'Informasi Approve Hiring';
-        // $body = Yii::$app->params['mailLog'];
-        // $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
-        // $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
-        // $body = str_replace('{area}', $transrincian->areasap->value2, $body);
-        // $sendmail = Yii::$app->utils->sendmail($to, $subject, $body, 9);
+        $to = 'khusnul.hisyam@ish.co.id';
+        $subject = 'Informasi Approve Hiring';
+        $body = Yii::$app->params['mailLog'];
+        $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
+        $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
+        $body = str_replace('{area}', $transrincian->areasap->value2, $body);
+        $sendmail = Yii::$app->utils->sendmail($to, $subject, $body, 13);
         // var_dump($sendmail);die;
         echo 'succesfully';
         // return $sendmail;

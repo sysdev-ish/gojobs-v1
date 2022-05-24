@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property int $userid
  * @property int $count
+ * @property string $createtime
  */
 class Maillog extends \yii\db\ActiveRecord
 {
@@ -27,8 +28,10 @@ class Maillog extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['userid', 'count'], 'required'],
-            [['userid', 'count'], 'integer'],
+            [['id', 'count', 'klasifikasi'], 'integer'],
+            [['fullname'], 'string'],
+            [['date'], 'safe'],
+            [['id'], 'unique'],
         ];
     }
 
@@ -39,8 +42,10 @@ class Maillog extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'userid' => 'Userid',
+            'date' => 'Date',
             'count' => 'Count',
+            'fullname' => 'Fullname',
+            'klasifikasi' => 'Klasifikasi',
         ];
     }
 }

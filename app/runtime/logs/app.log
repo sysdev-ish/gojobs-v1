@@ -5888,3 +5888,930 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1652983419.6699
     'REQUEST_TIME' => 1652983419
 ]
+2022-05-24 01:03:11 [::1][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: PHP Notice 'yii\base\ErrorException' with message 'unserialize(): Error at offset 0 of 32648 bytes' 
+
+in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php:98
+
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(8, 'unserialize(): ...', 'C:\\wamp64\\www\\r...', 98, Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php(98): unserialize('<<<<<<< HEAD\r\na...')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php(73): yii\debug\LogTarget->updateIndexFile('C:\\wamp64\\www\\r...', Array)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php(128): yii\debug\LogTarget->export()
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\log\Dispatcher.php(189): yii\debug\LogTarget->collect(Array, true)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\log\Logger.php(177): yii\log\Dispatcher->dispatch(Array, true)
+#6 [internal function]: yii\log\Logger->flush(true)
+#7 {main}
+2022-05-24 01:03:08 [::1][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '60812'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rekrut/'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653328987.195
+    'REQUEST_TIME' => 1653328987
+]
+2022-05-24 01:03:19 [::1][-][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: PHP Notice 'yii\base\ErrorException' with message 'unserialize(): Error at offset 0 of 32648 bytes' 
+
+in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php:98
+
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(8, 'unserialize(): ...', 'C:\\wamp64\\www\\r...', 98, Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php(98): unserialize('<<<<<<< HEAD\r\na...')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php(73): yii\debug\LogTarget->updateIndexFile('C:\\wamp64\\www\\r...', Array)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php(128): yii\debug\LogTarget->export()
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\log\Dispatcher.php(189): yii\debug\LogTarget->collect(Array, true)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\log\Logger.php(177): yii\log\Dispatcher->dispatch(Array, true)
+#6 [internal function]: yii\log\Logger->flush(true)
+#7 {main}
+2022-05-24 01:03:19 [::1][-][-][info][application] $_GET = [
+    'site/login' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'p2ve0auhc402054jrq3b9g09qb'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost/rekrut/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=p2ve0auhc402054jrq3b9g09qb'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '60821'
+    'REDIRECT_URL' => '/rekrut/site/login'
+    'REDIRECT_QUERY_STRING' => 'site/login'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'site/login'
+    'REQUEST_URI' => '/rekrut/site/login'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653328999.454
+    'REQUEST_TIME' => 1653328999
+]
+2022-05-24 01:03:29 [::1][104728][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: PHP Notice 'yii\base\ErrorException' with message 'unserialize(): Error at offset 0 of 32648 bytes' 
+
+in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php:98
+
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(8, 'unserialize(): ...', 'C:\\wamp64\\www\\r...', 98, Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php(98): unserialize('<<<<<<< HEAD\r\na...')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php(73): yii\debug\LogTarget->updateIndexFile('C:\\wamp64\\www\\r...', Array)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php(128): yii\debug\LogTarget->export()
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\log\Dispatcher.php(189): yii\debug\LogTarget->collect(Array, true)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\log\Logger.php(177): yii\log\Dispatcher->dispatch(Array, true)
+#6 [internal function]: yii\log\Logger->flush(true)
+#7 {main}
+2022-05-24 01:03:28 [::1][104728][-][info][application] $_GET = [
+    'site/oauthhris' => ''
+    'code' => 'iggt07c4es'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'p2ve0auhc402054jrq3b9g09qb'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1653332608
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'cross-site'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=p2ve0auhc402054jrq3b9g09qb'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '60830'
+    'REDIRECT_URL' => '/rekrut/site/oauthhris'
+    'REDIRECT_QUERY_STRING' => 'site/oauthhris&code=iggt07c4es'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'site/oauthhris&code=iggt07c4es'
+    'REQUEST_URI' => '/rekrut/site/oauthhris?code=iggt07c4es'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653329008.354
+    'REQUEST_TIME' => 1653329008
+]
+2022-05-24 01:03:30 [::1][104728][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: PHP Notice 'yii\base\ErrorException' with message 'unserialize(): Error at offset 0 of 32648 bytes' 
+
+in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php:98
+
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(8, 'unserialize(): ...', 'C:\\wamp64\\www\\r...', 98, Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php(98): unserialize('<<<<<<< HEAD\r\na...')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php(73): yii\debug\LogTarget->updateIndexFile('C:\\wamp64\\www\\r...', Array)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php(128): yii\debug\LogTarget->export()
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\log\Dispatcher.php(189): yii\debug\LogTarget->collect(Array, true)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\log\Logger.php(177): yii\log\Dispatcher->dispatch(Array, true)
+#6 [internal function]: yii\log\Logger->flush(true)
+#7 {main}
+2022-05-24 01:03:29 [::1][104728][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'r0116kbefne21hva607n0fhcfi'
+    '_csrf' => 'da5e8c4c6d9eedcb3504559c9df50918cfe3414d6677553b42439131b49498d8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"g3DSbpyMWeAhn5vB9-JnjzcnSUoAW1VR\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1653332609
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'cross-site'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=r0116kbefne21hva607n0fhcfi; _csrf=da5e8c4c6d9eedcb3504559c9df50918cfe3414d6677553b42439131b49498d8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22g3DSbpyMWeAhn5vB9-JnjzcnSUoAW1VR%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '60830'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/rekrut/'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653329009.083
+    'REQUEST_TIME' => 1653329009
+]
+2022-05-24 01:03:32 [::1][104728][-][warning][yii\log\Dispatcher::dispatch] Unable to send log via yii\debug\LogTarget: PHP Notice 'yii\base\ErrorException' with message 'unserialize(): Error at offset 0 of 32648 bytes' 
+
+in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php:98
+
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(8, 'unserialize(): ...', 'C:\\wamp64\\www\\r...', 98, Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php(98): unserialize('<<<<<<< HEAD\r\na...')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php(73): yii\debug\LogTarget->updateIndexFile('C:\\wamp64\\www\\r...', Array)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2-debug\src\LogTarget.php(128): yii\debug\LogTarget->export()
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\log\Dispatcher.php(189): yii\debug\LogTarget->collect(Array, true)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\log\Logger.php(177): yii\log\Dispatcher->dispatch(Array, true)
+#6 [internal function]: yii\log\Logger->flush(true)
+#7 {main}
+2022-05-24 01:03:30 [::1][104728][-][info][application] $_GET = [
+    'site/dashboard' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'r0116kbefne21hva607n0fhcfi'
+    '_csrf' => 'da5e8c4c6d9eedcb3504559c9df50918cfe3414d6677553b42439131b49498d8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"g3DSbpyMWeAhn5vB9-JnjzcnSUoAW1VR\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1653332610
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'cross-site'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=r0116kbefne21hva607n0fhcfi; _csrf=da5e8c4c6d9eedcb3504559c9df50918cfe3414d6677553b42439131b49498d8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22g3DSbpyMWeAhn5vB9-JnjzcnSUoAW1VR%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '60830'
+    'REDIRECT_URL' => '/rekrut/site/dashboard'
+    'REDIRECT_QUERY_STRING' => 'site/dashboard'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'site/dashboard'
+    'REQUEST_URI' => '/rekrut/site/dashboard'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653329010.323
+    'REQUEST_TIME' => 1653329010
+]
+2022-05-24 01:03:57 [::1][104728][r0116kbefne21hva607n0fhcfi][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-24 01:03:57 [::1][104728][r0116kbefne21hva607n0fhcfi][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'r0116kbefne21hva607n0fhcfi'
+    '_csrf' => 'da5e8c4c6d9eedcb3504559c9df50918cfe3414d6677553b42439131b49498d8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"g3DSbpyMWeAhn5vB9-JnjzcnSUoAW1VR\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1653332637
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=r0116kbefne21hva607n0fhcfi; _csrf=da5e8c4c6d9eedcb3504559c9df50918cfe3414d6677553b42439131b49498d8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22g3DSbpyMWeAhn5vB9-JnjzcnSUoAW1VR%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '60849'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653329037.644
+    'REQUEST_TIME' => 1653329037
+]
+2022-05-24 01:05:19 [::1][104728][r0116kbefne21hva607n0fhcfi][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-24 01:05:19 [::1][104728][r0116kbefne21hva607n0fhcfi][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'r0116kbefne21hva607n0fhcfi'
+    '_csrf' => 'da5e8c4c6d9eedcb3504559c9df50918cfe3414d6677553b42439131b49498d8a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"g3DSbpyMWeAhn5vB9-JnjzcnSUoAW1VR\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1653332719
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=r0116kbefne21hva607n0fhcfi; _csrf=da5e8c4c6d9eedcb3504559c9df50918cfe3414d6677553b42439131b49498d8a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22g3DSbpyMWeAhn5vB9-JnjzcnSUoAW1VR%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '60893'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653329119.343
+    'REQUEST_TIME' => 1653329119
+]
+2022-05-24 08:41:07 [::1][104728][pv9n0e0jelbij2oqhtgnlbajou][error][yii\db\Exception] PDOException: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '2022-05-24T08:41:07+07:00' for column 'date' at row 1 in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php:1258
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1258): PDOStatement->execute()
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1075): yii\db\Command->internalExecute('INSERT INTO `ma...')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Schema.php(433): yii\db\Command->execute()
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveRecord.php(549): yii\db\Schema->insert('mailcounter', Array)
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveRecord.php(515): yii\db\ActiveRecord->insertInternal(NULL)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\BaseActiveRecord.php(670): yii\db\ActiveRecord->insert(false, NULL)
+#6 C:\wamp64\www\rekrut\app\components\UtilComponent.php(236): yii\db\BaseActiveRecord->save(false)
+#7 C:\wamp64\www\rekrut\app\controllers\HiringController.php(679): app\components\UtilComponent->sendmailexternal('khsyaam62@gmail...', 'Pemberitahuan P...', '<table>\r\n\r\n    ...', 9, 29363)
+#8 [internal function]: app\controllers\HiringController->actionTest('22363')
+#9 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#11 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('test', Array)
+#12 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('hiring/test', Array)
+#13 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#15 {main}
+
+Next yii\db\Exception: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '2022-05-24T08:41:07+07:00' for column 'date' at row 1
+The SQL being executed was: INSERT INTO `mailcounter` (`date`, `count`, `klasifikasi`, `userid`) VALUES ('2022-05-24T08:41:07+07:00', 1, 9, 29363) in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Schema.php:664
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1263): yii\db\Schema->convertException(Object(PDOException), 'INSERT INTO `ma...')
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1075): yii\db\Command->internalExecute('INSERT INTO `ma...')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Schema.php(433): yii\db\Command->execute()
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveRecord.php(549): yii\db\Schema->insert('mailcounter', Array)
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveRecord.php(515): yii\db\ActiveRecord->insertInternal(NULL)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\BaseActiveRecord.php(670): yii\db\ActiveRecord->insert(false, NULL)
+#6 C:\wamp64\www\rekrut\app\components\UtilComponent.php(236): yii\db\BaseActiveRecord->save(false)
+#7 C:\wamp64\www\rekrut\app\controllers\HiringController.php(679): app\components\UtilComponent->sendmailexternal('khsyaam62@gmail...', 'Pemberitahuan P...', '<table>\r\n\r\n    ...', 9, 29363)
+#8 [internal function]: app\controllers\HiringController->actionTest('22363')
+#9 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#11 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('test', Array)
+#12 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('hiring/test', Array)
+#13 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#15 {main}
+Additional Information:
+Array
+(
+    [0] => 22007
+    [1] => 1292
+    [2] => Incorrect date value: '2022-05-24T08:41:07+07:00' for column 'date' at row 1
+)
+
+2022-05-24 08:41:05 [::1][104728][pv9n0e0jelbij2oqhtgnlbajou][info][application] $_GET = [
+    'hiring/test' => ''
+    'id' => '22363'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'pv9n0e0jelbij2oqhtgnlbajou'
+    '_csrf' => 'df5f3bca4133b21798cc93f4dcd4764239363cc3e3feab1bf1ebdef65d9777b2a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"puoRVCf9FCzs1XXjiEjo5v9LZ8tH-6W7\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/site/dashboard'
+    '__id' => 104728
+    '__expire' => 1653360065
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=pv9n0e0jelbij2oqhtgnlbajou; _csrf=df5f3bca4133b21798cc93f4dcd4764239363cc3e3feab1bf1ebdef65d9777b2a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22puoRVCf9FCzs1XXjiEjo5v9LZ8tH-6W7%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '59179'
+    'REDIRECT_URL' => '/rekrut/hiring/test'
+    'REDIRECT_QUERY_STRING' => 'hiring/test&id=22363'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'hiring/test&id=22363'
+    'REQUEST_URI' => '/rekrut/hiring/test?id=22363'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653356465.785
+    'REQUEST_TIME' => 1653356465
+]
+2022-05-24 09:00:01 [::1][104728][pv9n0e0jelbij2oqhtgnlbajou][error][yii\db\Exception] PDOException: SQLSTATE[HY000]: General error: 1364 Field 'userid' doesn't have a default value in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php:1258
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1258): PDOStatement->execute()
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1075): yii\db\Command->internalExecute('INSERT INTO `ma...')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Schema.php(433): yii\db\Command->execute()
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveRecord.php(549): yii\db\Schema->insert('mailcounter', Array)
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveRecord.php(515): yii\db\ActiveRecord->insertInternal(NULL)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\BaseActiveRecord.php(670): yii\db\ActiveRecord->insert(false, NULL)
+#6 C:\wamp64\www\rekrut\app\components\UtilComponent.php(205): yii\db\BaseActiveRecord->save(false)
+#7 C:\wamp64\www\rekrut\app\controllers\HiringController.php(688): app\components\UtilComponent->sendmail('khusnul.hisyam@...', 'Informasi Appro...', '<table>\r\n\r\n    ...', 13)
+#8 [internal function]: app\controllers\HiringController->actionTest('22363')
+#9 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#11 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('test', Array)
+#12 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('hiring/test', Array)
+#13 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#15 {main}
+
+Next yii\db\Exception: SQLSTATE[HY000]: General error: 1364 Field 'userid' doesn't have a default value
+The SQL being executed was: INSERT INTO `mailcounter` (`date`, `count`, `klasifikasi`) VALUES ('2022-05-24', 1, 13) in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Schema.php:664
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1263): yii\db\Schema->convertException(Object(PDOException), 'INSERT INTO `ma...')
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1075): yii\db\Command->internalExecute('INSERT INTO `ma...')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Schema.php(433): yii\db\Command->execute()
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveRecord.php(549): yii\db\Schema->insert('mailcounter', Array)
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveRecord.php(515): yii\db\ActiveRecord->insertInternal(NULL)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\BaseActiveRecord.php(670): yii\db\ActiveRecord->insert(false, NULL)
+#6 C:\wamp64\www\rekrut\app\components\UtilComponent.php(205): yii\db\BaseActiveRecord->save(false)
+#7 C:\wamp64\www\rekrut\app\controllers\HiringController.php(688): app\components\UtilComponent->sendmail('khusnul.hisyam@...', 'Informasi Appro...', '<table>\r\n\r\n    ...', 13)
+#8 [internal function]: app\controllers\HiringController->actionTest('22363')
+#9 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#11 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('test', Array)
+#12 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('hiring/test', Array)
+#13 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#15 {main}
+Additional Information:
+Array
+(
+    [0] => HY000
+    [1] => 1364
+    [2] => Field 'userid' doesn't have a default value
+)
+
+2022-05-24 08:59:58 [::1][104728][pv9n0e0jelbij2oqhtgnlbajou][info][application] $_GET = [
+    'hiring/test' => ''
+    'id' => '22363'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'pv9n0e0jelbij2oqhtgnlbajou'
+    '_csrf' => 'df5f3bca4133b21798cc93f4dcd4764239363cc3e3feab1bf1ebdef65d9777b2a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"puoRVCf9FCzs1XXjiEjo5v9LZ8tH-6W7\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/site/dashboard'
+    '__id' => 104728
+    '__expire' => 1653361198
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=pv9n0e0jelbij2oqhtgnlbajou; _csrf=df5f3bca4133b21798cc93f4dcd4764239363cc3e3feab1bf1ebdef65d9777b2a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22puoRVCf9FCzs1XXjiEjo5v9LZ8tH-6W7%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '55816'
+    'REDIRECT_URL' => '/rekrut/hiring/test'
+    'REDIRECT_QUERY_STRING' => 'hiring/test&id=22363'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'hiring/test&id=22363'
+    'REQUEST_URI' => '/rekrut/hiring/test?id=22363'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653357598.148
+    'REQUEST_TIME' => 1653357598
+]
+2022-05-24 09:07:05 [::1][104728][pv9n0e0jelbij2oqhtgnlbajou][error][yii\base\ErrorException:8] yii\base\ErrorException: Trying to get property of non-object in C:\wamp64\www\rekrut\app\components\UtilComponent.php:236
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\components\UtilComponent.php(236): yii\base\ErrorHandler->handleError(8, 'Trying to get p...', 'C:\\wamp64\\www\\r...', 236, Array)
+#1 C:\wamp64\www\rekrut\app\controllers\HiringController.php(680): app\components\UtilComponent->sendmailexternal('khsyaam62@gmail...', 'Pemberitahuan P...', '<table>\r\n\r\n    ...', 11, 29363)
+#2 [internal function]: app\controllers\HiringController->actionTest('22363')
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('test', Array)
+#6 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('hiring/test', Array)
+#7 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#8 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#9 {main}
+2022-05-24 09:07:03 [::1][104728][pv9n0e0jelbij2oqhtgnlbajou][info][application] $_GET = [
+    'hiring/test' => ''
+    'id' => '22363'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'pv9n0e0jelbij2oqhtgnlbajou'
+    '_csrf' => 'df5f3bca4133b21798cc93f4dcd4764239363cc3e3feab1bf1ebdef65d9777b2a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"puoRVCf9FCzs1XXjiEjo5v9LZ8tH-6W7\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/site/dashboard'
+    '__id' => 104728
+    '__expire' => 1653361623
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=pv9n0e0jelbij2oqhtgnlbajou; _csrf=df5f3bca4133b21798cc93f4dcd4764239363cc3e3feab1bf1ebdef65d9777b2a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22puoRVCf9FCzs1XXjiEjo5v9LZ8tH-6W7%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '55923'
+    'REDIRECT_URL' => '/rekrut/hiring/test'
+    'REDIRECT_QUERY_STRING' => 'hiring/test&id=22363'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'hiring/test&id=22363'
+    'REQUEST_URI' => '/rekrut/hiring/test?id=22363'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653358023.404
+    'REQUEST_TIME' => 1653358023
+]
+2022-05-24 09:10:01 [::1][104728][pv9n0e0jelbij2oqhtgnlbajou][error][yii\base\ErrorException:8] yii\base\ErrorException: Trying to get property of non-object in C:\wamp64\www\rekrut\app\controllers\HiringController.php:661
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\controllers\HiringController.php(661): yii\base\ErrorHandler->handleError(8, 'Trying to get p...', 'C:\\wamp64\\www\\r...', 661, Array)
+#1 [internal function]: app\controllers\HiringController->actionTest('22363')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('test', Array)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('hiring/test', Array)
+#6 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#8 {main}
+2022-05-24 09:10:01 [::1][104728][pv9n0e0jelbij2oqhtgnlbajou][info][application] $_GET = [
+    'hiring/test' => ''
+    'id' => '22363'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'pv9n0e0jelbij2oqhtgnlbajou'
+    '_csrf' => 'df5f3bca4133b21798cc93f4dcd4764239363cc3e3feab1bf1ebdef65d9777b2a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"puoRVCf9FCzs1XXjiEjo5v9LZ8tH-6W7\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/site/dashboard'
+    '__id' => 104728
+    '__expire' => 1653361801
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=pv9n0e0jelbij2oqhtgnlbajou; _csrf=df5f3bca4133b21798cc93f4dcd4764239363cc3e3feab1bf1ebdef65d9777b2a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22puoRVCf9FCzs1XXjiEjo5v9LZ8tH-6W7%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '55955'
+    'REDIRECT_URL' => '/rekrut/hiring/test'
+    'REDIRECT_QUERY_STRING' => 'hiring/test&id=22363'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'hiring/test&id=22363'
+    'REQUEST_URI' => '/rekrut/hiring/test?id=22363'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653358201.247
+    'REQUEST_TIME' => 1653358201
+]
