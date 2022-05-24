@@ -39,7 +39,7 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
           'pluginOptions' => [
               'allowClear' => true,
               'initialize' => true,
-              'minimumInputLength' => 3,
+              'minimumInputLength' => 6,
               'language' => [
                   'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
               ],

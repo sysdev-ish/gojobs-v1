@@ -7,12 +7,7 @@ use linslin\yii2\curl;
 use app\models\User;
 use app\models\Userlogin;
 
-
-
-
 class OauthComponent extends Component {
-
-
   //start connect hris
   public function getaccesstoken($code){
     $curl = new curl\Curl();

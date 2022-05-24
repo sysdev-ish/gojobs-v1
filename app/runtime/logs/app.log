@@ -6815,3 +6815,1570 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1653358201.247
     'REQUEST_TIME' => 1653358201
 ]
+2022-05-24 09:36:49 [::1][104728][pv9n0e0jelbij2oqhtgnlbajou][error][yii\base\ErrorException:1] yii\base\ErrorException: Maximum execution time of 120 seconds exceeded in C:\wamp64\www\rekrut\app\vendor\linslin\yii2-curl\Curl.php:624
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-05-24 09:34:49 [::1][104728][pv9n0e0jelbij2oqhtgnlbajou][info][application] $_GET = [
+    'chagerequestdatabank/view' => ''
+    'id' => '7832'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'pv9n0e0jelbij2oqhtgnlbajou'
+    '_csrf' => 'df5f3bca4133b21798cc93f4dcd4764239363cc3e3feab1bf1ebdef65d9777b2a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"puoRVCf9FCzs1XXjiEjo5v9LZ8tH-6W7\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/site/dashboard'
+    '__id' => 104728
+    '__expire' => 1653363289
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost/rekrut/chagerequestdatabank'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=pv9n0e0jelbij2oqhtgnlbajou; _csrf=df5f3bca4133b21798cc93f4dcd4764239363cc3e3feab1bf1ebdef65d9777b2a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22puoRVCf9FCzs1XXjiEjo5v9LZ8tH-6W7%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '62290'
+    'REDIRECT_URL' => '/rekrut/chagerequestdatabank/view'
+    'REDIRECT_QUERY_STRING' => 'chagerequestdatabank/view&id=7832'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'chagerequestdatabank/view&id=7832'
+    'REQUEST_URI' => '/rekrut/chagerequestdatabank/view?id=7832'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653359689.658
+    'REQUEST_TIME' => 1653359689
+]
+2022-05-24 09:46:41 [::1][104728][pv9n0e0jelbij2oqhtgnlbajou][error][yii\base\ErrorException:8] yii\base\ErrorException: Trying to get property of non-object in C:\wamp64\www\rekrut\app\controllers\ChagerequestdatabankController.php:95
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\controllers\ChagerequestdatabankController.php(95): yii\base\ErrorHandler->handleError(8, 'Trying to get p...', 'C:\\wamp64\\www\\r...', 95, Array)
+#1 [internal function]: app\controllers\ChagerequestdatabankController->actionView('7847')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('view', Array)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('chagerequestdat...', Array)
+#6 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#8 {main}
+2022-05-24 09:46:11 [::1][104728][pv9n0e0jelbij2oqhtgnlbajou][info][application] $_GET = [
+    'chagerequestdatabank/view' => ''
+    'id' => '7847'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'pv9n0e0jelbij2oqhtgnlbajou'
+    '_csrf' => 'df5f3bca4133b21798cc93f4dcd4764239363cc3e3feab1bf1ebdef65d9777b2a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"puoRVCf9FCzs1XXjiEjo5v9LZ8tH-6W7\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/site/dashboard'
+    '__id' => 104728
+    '__expire' => 1653363971
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost/rekrut/chagerequestdatabank'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=pv9n0e0jelbij2oqhtgnlbajou; _csrf=df5f3bca4133b21798cc93f4dcd4764239363cc3e3feab1bf1ebdef65d9777b2a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22puoRVCf9FCzs1XXjiEjo5v9LZ8tH-6W7%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '50498'
+    'REDIRECT_URL' => '/rekrut/chagerequestdatabank/view'
+    'REDIRECT_QUERY_STRING' => 'chagerequestdatabank/view&id=7847'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'chagerequestdatabank/view&id=7847'
+    'REQUEST_URI' => '/rekrut/chagerequestdatabank/view?id=7847'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653360371.57
+    'REQUEST_TIME' => 1653360371
+]
+2022-05-24 09:57:18 [::1][104728][pv9n0e0jelbij2oqhtgnlbajou][error][yii\base\ErrorException:8] yii\base\ErrorException: Trying to get property of non-object in C:\wamp64\www\rekrut\app\controllers\ChagerequestdatabankController.php:95
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\controllers\ChagerequestdatabankController.php(95): yii\base\ErrorHandler->handleError(8, 'Trying to get p...', 'C:\\wamp64\\www\\r...', 95, Array)
+#1 [internal function]: app\controllers\ChagerequestdatabankController->actionView('7847')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('view', Array)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('chagerequestdat...', Array)
+#6 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#8 {main}
+2022-05-24 09:56:48 [::1][104728][pv9n0e0jelbij2oqhtgnlbajou][info][application] $_GET = [
+    'chagerequestdatabank/view' => ''
+    'id' => '7847'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'pv9n0e0jelbij2oqhtgnlbajou'
+    '_csrf' => 'df5f3bca4133b21798cc93f4dcd4764239363cc3e3feab1bf1ebdef65d9777b2a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"puoRVCf9FCzs1XXjiEjo5v9LZ8tH-6W7\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/site/dashboard'
+    '__id' => 104728
+    '__expire' => 1653364608
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost/rekrut/chagerequestdatabank'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=pv9n0e0jelbij2oqhtgnlbajou; _csrf=df5f3bca4133b21798cc93f4dcd4764239363cc3e3feab1bf1ebdef65d9777b2a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22puoRVCf9FCzs1XXjiEjo5v9LZ8tH-6W7%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '59864'
+    'REDIRECT_URL' => '/rekrut/chagerequestdatabank/view'
+    'REDIRECT_QUERY_STRING' => 'chagerequestdatabank/view&id=7847'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'chagerequestdatabank/view&id=7847'
+    'REQUEST_URI' => '/rekrut/chagerequestdatabank/view?id=7847'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653361008.08
+    'REQUEST_TIME' => 1653361008
+]
+2022-05-24 10:24:28 [::1][104728][aunu884sd8jooumcqugd5284lv][error][yii\base\ErrorException:8] yii\base\ErrorException: Trying to get property of non-object in C:\wamp64\www\rekrut\app\controllers\ChagerequestdatabankController.php:96
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\controllers\ChagerequestdatabankController.php(96): yii\base\ErrorHandler->handleError(8, 'Trying to get p...', 'C:\\wamp64\\www\\r...', 96, Array)
+#1 [internal function]: app\controllers\ChagerequestdatabankController->actionView('7847')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('view', Array)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('chagerequestdat...', Array)
+#6 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#8 {main}
+2022-05-24 10:23:58 [::1][104728][aunu884sd8jooumcqugd5284lv][info][application] $_GET = [
+    'chagerequestdatabank/view' => ''
+    'id' => '7847'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'aunu884sd8jooumcqugd5284lv'
+    '_csrf' => 'd159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/chagerequestdatabank'
+    '__id' => 104728
+    '__expire' => 1653366238
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost/rekrut/chagerequestdatabank'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=aunu884sd8jooumcqugd5284lv; _csrf=d159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57529'
+    'REDIRECT_URL' => '/rekrut/chagerequestdatabank/view'
+    'REDIRECT_QUERY_STRING' => 'chagerequestdatabank/view&id=7847'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'chagerequestdatabank/view&id=7847'
+    'REQUEST_URI' => '/rekrut/chagerequestdatabank/view?id=7847'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653362638.471
+    'REQUEST_TIME' => 1653362638
+]
+2022-05-24 10:28:20 [::1][104728][aunu884sd8jooumcqugd5284lv][error][yii\base\ErrorException:1] yii\base\ErrorException: Maximum execution time of 120 seconds exceeded in C:\wamp64\www\rekrut\app\vendor\linslin\yii2-curl\Curl.php:624
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-05-24 10:26:20 [::1][104728][aunu884sd8jooumcqugd5284lv][info][application] $_GET = [
+    'chagerequestdatabank/view' => ''
+    'id' => '7840'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'aunu884sd8jooumcqugd5284lv'
+    '_csrf' => 'd159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/chagerequestdatabank'
+    '__id' => 104728
+    '__expire' => 1653366380
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost/rekrut/chagerequestdatabank'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=aunu884sd8jooumcqugd5284lv; _csrf=d159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57548'
+    'REDIRECT_URL' => '/rekrut/chagerequestdatabank/view'
+    'REDIRECT_QUERY_STRING' => 'chagerequestdatabank/view&id=7840'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'chagerequestdatabank/view&id=7840'
+    'REQUEST_URI' => '/rekrut/chagerequestdatabank/view?id=7840'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653362780.464
+    'REQUEST_TIME' => 1653362780
+]
+2022-05-24 10:49:48 [::1][104728][aunu884sd8jooumcqugd5284lv][error][yii\base\ErrorException:8] yii\base\ErrorException: Trying to get property of non-object in C:\wamp64\www\rekrut\app\controllers\ChagerequestdatabankController.php:96
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\controllers\ChagerequestdatabankController.php(96): yii\base\ErrorHandler->handleError(8, 'Trying to get p...', 'C:\\wamp64\\www\\r...', 96, Array)
+#1 [internal function]: app\controllers\ChagerequestdatabankController->actionView('7847')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('view', Array)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('chagerequestdat...', Array)
+#6 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#8 {main}
+2022-05-24 10:49:18 [::1][104728][aunu884sd8jooumcqugd5284lv][info][application] $_GET = [
+    'chagerequestdatabank/view' => ''
+    'id' => '7847'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'aunu884sd8jooumcqugd5284lv'
+    '_csrf' => 'd159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/chagerequestdatabank'
+    '__id' => 104728
+    '__expire' => 1653367758
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost/rekrut/chagerequestdatabank'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=aunu884sd8jooumcqugd5284lv; _csrf=d159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '55215'
+    'REDIRECT_URL' => '/rekrut/chagerequestdatabank/view'
+    'REDIRECT_QUERY_STRING' => 'chagerequestdatabank/view&id=7847'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'chagerequestdatabank/view&id=7847'
+    'REQUEST_URI' => '/rekrut/chagerequestdatabank/view?id=7847'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653364158.325
+    'REQUEST_TIME' => 1653364158
+]
+2022-05-24 10:51:58 [::1][104728][aunu884sd8jooumcqugd5284lv][error][yii\base\ErrorException:8] yii\base\ErrorException: Trying to get property of non-object in C:\wamp64\www\rekrut\app\controllers\ChagerequestdatabankController.php:96
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\controllers\ChagerequestdatabankController.php(96): yii\base\ErrorHandler->handleError(8, 'Trying to get p...', 'C:\\wamp64\\www\\r...', 96, Array)
+#1 [internal function]: app\controllers\ChagerequestdatabankController->actionView('7844')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('view', Array)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('chagerequestdat...', Array)
+#6 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#8 {main}
+2022-05-24 10:51:28 [::1][104728][aunu884sd8jooumcqugd5284lv][info][application] $_GET = [
+    'chagerequestdatabank/view' => ''
+    'id' => '7844'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'aunu884sd8jooumcqugd5284lv'
+    '_csrf' => 'd159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/chagerequestdatabank'
+    '__id' => 104728
+    '__expire' => 1653367888
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost/rekrut/chagerequestdatabank'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=aunu884sd8jooumcqugd5284lv; _csrf=d159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '55241'
+    'REDIRECT_URL' => '/rekrut/chagerequestdatabank/view'
+    'REDIRECT_QUERY_STRING' => 'chagerequestdatabank/view&id=7844'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'chagerequestdatabank/view&id=7844'
+    'REQUEST_URI' => '/rekrut/chagerequestdatabank/view?id=7844'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653364288.83
+    'REQUEST_TIME' => 1653364288
+]
+2022-05-24 10:52:43 [::1][104728][aunu884sd8jooumcqugd5284lv][error][yii\base\ErrorException:8] yii\base\ErrorException: Trying to get property of non-object in C:\wamp64\www\rekrut\app\controllers\ChagerequestdatabankController.php:95
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\controllers\ChagerequestdatabankController.php(95): yii\base\ErrorHandler->handleError(8, 'Trying to get p...', 'C:\\wamp64\\www\\r...', 95, Array)
+#1 [internal function]: app\controllers\ChagerequestdatabankController->actionView('7847')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('view', Array)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('chagerequestdat...', Array)
+#6 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#8 {main}
+2022-05-24 10:52:13 [::1][104728][aunu884sd8jooumcqugd5284lv][info][application] $_GET = [
+    'chagerequestdatabank/view' => ''
+    'id' => '7847'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'aunu884sd8jooumcqugd5284lv'
+    '_csrf' => 'd159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/chagerequestdatabank'
+    '__id' => 104728
+    '__expire' => 1653367933
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_REFERER' => 'http://localhost/rekrut/chagerequestdatabank'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=aunu884sd8jooumcqugd5284lv; _csrf=d159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '55242'
+    'REDIRECT_URL' => '/rekrut/chagerequestdatabank/view'
+    'REDIRECT_QUERY_STRING' => 'chagerequestdatabank/view&id=7847'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'chagerequestdatabank/view&id=7847'
+    'REQUEST_URI' => '/rekrut/chagerequestdatabank/view?id=7847'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653364333.211
+    'REQUEST_TIME' => 1653364333
+]
+2022-05-24 11:49:55 [::1][104728][aunu884sd8jooumcqugd5284lv][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "chagerequestdataban". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('chagerequestdat...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-24 11:49:54 [::1][104728][aunu884sd8jooumcqugd5284lv][info][application] $_GET = [
+    'chagerequestdataban' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'aunu884sd8jooumcqugd5284lv'
+    '_csrf' => 'd159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/chagerequestdatabank'
+    '__id' => 104728
+    '__expire' => 1653371395
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=aunu884sd8jooumcqugd5284lv; _csrf=d159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '49302'
+    'REDIRECT_URL' => '/rekrut/chagerequestdataban'
+    'REDIRECT_QUERY_STRING' => 'chagerequestdataban'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'chagerequestdataban'
+    'REQUEST_URI' => '/rekrut/chagerequestdataban'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653367794.98
+    'REQUEST_TIME' => 1653367794
+]
+2022-05-24 12:50:26 [::1][104728][aunu884sd8jooumcqugd5284lv][error][yii\base\ErrorException:1] yii\base\ErrorException: Maximum execution time of 120 seconds exceeded in C:\wamp64\www\rekrut\app\vendor\linslin\yii2-curl\Curl.php:624
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-05-24 12:48:22 [::1][104728][aunu884sd8jooumcqugd5284lv][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-01'
+        'endawalkontrak' => '2022-03-01'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => ''
+        'subjobfamily' => ''
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'aunu884sd8jooumcqugd5284lv'
+    '_csrf' => 'd159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/chagerequestdatabank'
+    '__id' => 104728
+    '__expire' => 1653374902
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=aunu884sd8jooumcqugd5284lv; _csrf=d159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '61429'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-03-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-03-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-03-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653371302.347
+    'REQUEST_TIME' => 1653371302
+]
+2022-05-24 12:51:30 [::1][104728][aunu884sd8jooumcqugd5284lv][error][yii\base\ErrorException:1] yii\base\ErrorException: Maximum execution time of 120 seconds exceeded in C:\wamp64\www\rekrut\app\vendor\linslin\yii2-curl\Curl.php:624
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-05-24 12:49:06 [::1][104728][aunu884sd8jooumcqugd5284lv][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-01'
+        'endawalkontrak' => '2022-01-31'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => ''
+        'subjobfamily' => ''
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'aunu884sd8jooumcqugd5284lv'
+    '_csrf' => 'd159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/chagerequestdatabank'
+    '__id' => 104728
+    '__expire' => 1653375027
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=aunu884sd8jooumcqugd5284lv; _csrf=d159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '61451'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-01-31&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-01-31&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-01-31&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653371346.527
+    'REQUEST_TIME' => 1653371346
+]
+2022-05-24 12:51:32 [::1][104728][-][error][yii\base\ErrorException:2] yii\base\ErrorException: session_regenerate_id(): Session object destruction failed.  ID: files (path: c:/wamp64/tmp) in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Session.php:300
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(2, 'session_regener...', 'C:\\wamp64\\www\\r...', 300, Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Session.php(300): session_regenerate_id(true)
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\User.php(651): yii\web\Session->regenerateID(true)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\User.php(252): yii\web\User->switchIdentity(Object(app\models\User), 0)
+#4 C:\wamp64\www\rekrut\app\components\OauthComponent.php(43): yii\web\User->login(Object(app\models\User))
+#5 C:\wamp64\www\rekrut\app\controllers\SiteController.php(424): app\components\OauthComponent->getuserdata('zi8559l862cgijr...')
+#6 [internal function]: app\controllers\SiteController->actionOauthhris()
+#7 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#9 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('oauthhris', Array)
+#10 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('site/oauthhris', Array)
+#11 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#13 {main}
+2022-05-24 12:51:10 [::1][104728][-][info][application] $_GET = [
+    'site/oauthhris' => ''
+    'code' => 'w5j9zjwsrs'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'aunu884sd8jooumcqugd5284lv'
+    '_csrf' => 'd159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/chagerequestdatabank'
+    '__id' => 104728
+    '__expire' => 1653375092
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'cross-site'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_REFERER' => 'http://192.168.88.170/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=aunu884sd8jooumcqugd5284lv; _csrf=d159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '61474'
+    'REDIRECT_URL' => '/rekrut/site/oauthhris'
+    'REDIRECT_QUERY_STRING' => 'site/oauthhris&code=w5j9zjwsrs'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'site/oauthhris&code=w5j9zjwsrs'
+    'REQUEST_URI' => '/rekrut/site/oauthhris?code=w5j9zjwsrs'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653371470.05
+    'REQUEST_TIME' => 1653371470
+]
+2022-05-24 12:54:22 [::1][104728][aunu884sd8jooumcqugd5284lv][error][yii\base\ErrorException:1] yii\base\ErrorException: Maximum execution time of 120 seconds exceeded in C:\wamp64\www\rekrut\app\vendor\linslin\yii2-curl\Curl.php:624
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-05-24 12:52:00 [::1][104728][aunu884sd8jooumcqugd5284lv][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-01'
+        'endawalkontrak' => '2022-01-31'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => ''
+        'subjobfamily' => ''
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'aunu884sd8jooumcqugd5284lv'
+    '_csrf' => 'd159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/chagerequestdatabank'
+    '__id' => 104728
+    '__expire' => 1653375120
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=aunu884sd8jooumcqugd5284lv; _csrf=d159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '61547'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-01-31&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-01-31&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-01-31&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653371520.377
+    'REQUEST_TIME' => 1653371520
+]
+2022-05-24 12:54:26 [::1][104728][-][error][yii\base\ErrorException:2] yii\base\ErrorException: session_regenerate_id(): Session object destruction failed.  ID: files (path: c:/wamp64/tmp) in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Session.php:300
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleError(2, 'session_regener...', 'C:\\wamp64\\www\\r...', 300, Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Session.php(300): session_regenerate_id(true)
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\User.php(651): yii\web\Session->regenerateID(true)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\User.php(252): yii\web\User->switchIdentity(Object(app\models\User), 0)
+#4 C:\wamp64\www\rekrut\app\components\OauthComponent.php(43): yii\web\User->login(Object(app\models\User))
+#5 C:\wamp64\www\rekrut\app\controllers\SiteController.php(424): app\components\OauthComponent->getuserdata('lp0p9seuda6pius...')
+#6 [internal function]: app\controllers\SiteController->actionOauthhris()
+#7 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#9 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('oauthhris', Array)
+#10 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('site/oauthhris', Array)
+#11 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#13 {main}
+2022-05-24 12:53:36 [::1][104728][-][info][application] $_GET = [
+    'site/oauthhris' => ''
+    'code' => 'w5j9zjwsrs'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'aunu884sd8jooumcqugd5284lv'
+    '_csrf' => 'd159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/chagerequestdatabank'
+    '__id' => 104728
+    '__expire' => 1653375266
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'cross-site'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_REFERER' => 'http://192.168.88.170/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=aunu884sd8jooumcqugd5284lv; _csrf=d159b9445119083d8ab32ce933c7bc7542cb0fd36400004e02a585672cf2b71ea%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22myEK2AyrWYeQcAK2GKSnFhQ6fYNzuGTM%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '61639'
+    'REDIRECT_URL' => '/rekrut/site/oauthhris'
+    'REDIRECT_QUERY_STRING' => 'site/oauthhris&code=w5j9zjwsrs'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'site/oauthhris&code=w5j9zjwsrs'
+    'REQUEST_URI' => '/rekrut/site/oauthhris?code=w5j9zjwsrs'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653371616.542
+    'REQUEST_TIME' => 1653371616
+]
+2022-05-24 13:01:00 [::1][104728][6pq1irins7acs6k035ja5dlqsd][error][yii\base\ErrorException:1] yii\base\ErrorException: Maximum execution time of 120 seconds exceeded in C:\wamp64\www\rekrut\app\vendor\linslin\yii2-curl\Curl.php:624
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-05-24 12:58:42 [::1][104728][6pq1irins7acs6k035ja5dlqsd][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-02-01'
+        'endawalkontrak' => '2022-02-01'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => ''
+        'subjobfamily' => ''
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '6pq1irins7acs6k035ja5dlqsd'
+    '_csrf' => '95932082c479d451b38867fb24fb23307dd8e234182f28ab93b51071c6aed028a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"rCso9UddzfzbcPh0zWYWtrCMf7eDJFWW\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/chagerequestdatabank'
+    '__id' => 104728
+    '__expire' => 1653375522
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=6pq1irins7acs6k035ja5dlqsd; _csrf=95932082c479d451b38867fb24fb23307dd8e234182f28ab93b51071c6aed028a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22rCso9UddzfzbcPh0zWYWtrCMf7eDJFWW%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '61716'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-02-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-02-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-02-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653371922.897
+    'REQUEST_TIME' => 1653371922
+]
+2022-05-24 13:07:48 [::1][104728][0vt79r2pk9inoh885eaoar4s6k][error][yii\base\ErrorException:1] yii\base\ErrorException: Maximum execution time of 120 seconds exceeded in C:\wamp64\www\rekrut\app\vendor\linslin\yii2-curl\Curl.php:624
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-05-24 13:05:32 [::1][104728][0vt79r2pk9inoh885eaoar4s6k][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-01'
+        'endawalkontrak' => '2022-03-01'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => ''
+        'subjobfamily' => ''
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '0vt79r2pk9inoh885eaoar4s6k'
+    '_csrf' => '49d62fec3655aa2bc528f1ce31a347fd43b0049f113a2c69c4db893e036fd2b0a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"bLskDIK1izfNWwcFIHoHXz9ODL9uEEKH\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1653375932
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-05-01&Hiringreport%5Bendawalkontrak%5D=2022-05-24&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=0vt79r2pk9inoh885eaoar4s6k; _csrf=49d62fec3655aa2bc528f1ce31a347fd43b0049f113a2c69c4db893e036fd2b0a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22bLskDIK1izfNWwcFIHoHXz9ODL9uEEKH%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '51781'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-03-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-03-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-03-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653372332.359
+    'REQUEST_TIME' => 1653372332
+]
+2022-05-24 13:14:47 [::1][104728][6pq1irins7acs6k035ja5dlqsd][error][yii\base\ErrorException:1] yii\base\ErrorException: Maximum execution time of 120 seconds exceeded in C:\wamp64\www\rekrut\app\vendor\linslin\yii2-curl\Curl.php:624
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-05-24 13:12:31 [::1][104728][6pq1irins7acs6k035ja5dlqsd][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-01'
+        'endawalkontrak' => '2022-01-01'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => '13'
+        'subjobfamily' => ''
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '6pq1irins7acs6k035ja5dlqsd'
+    '_csrf' => '95932082c479d451b38867fb24fb23307dd8e234182f28ab93b51071c6aed028a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"rCso9UddzfzbcPh0zWYWtrCMf7eDJFWW\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/chagerequestdatabank'
+    '__id' => 104728
+    '__expire' => 1653376351
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=&Hiringreport%5Bendawalkontrak%5D=&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=20000004&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=6pq1irins7acs6k035ja5dlqsd; _csrf=95932082c479d451b38867fb24fb23307dd8e234182f28ab93b51071c6aed028a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22rCso9UddzfzbcPh0zWYWtrCMf7eDJFWW%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '52077'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-01-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-01-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-01-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653372751.019
+    'REQUEST_TIME' => 1653372751
+]
+2022-05-24 13:16:59 [::1][104728][6pq1irins7acs6k035ja5dlqsd][error][yii\base\ErrorException:1] yii\base\ErrorException: Maximum execution time of 120 seconds exceeded in C:\wamp64\www\rekrut\app\vendor\linslin\yii2-curl\Curl.php:624
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2022-05-24 13:14:58 [::1][104728][6pq1irins7acs6k035ja5dlqsd][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-01'
+        'endawalkontrak' => '2022-01-01'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => '13'
+        'subjobfamily' => ''
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '6pq1irins7acs6k035ja5dlqsd'
+    '_csrf' => '95932082c479d451b38867fb24fb23307dd8e234182f28ab93b51071c6aed028a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"rCso9UddzfzbcPh0zWYWtrCMf7eDJFWW\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/chagerequestdatabank'
+    '__id' => 104728
+    '__expire' => 1653376498
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=&Hiringreport%5Bendawalkontrak%5D=&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=20000004&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=6pq1irins7acs6k035ja5dlqsd; _csrf=95932082c479d451b38867fb24fb23307dd8e234182f28ab93b51071c6aed028a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22rCso9UddzfzbcPh0zWYWtrCMf7eDJFWW%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '52108'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-01-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-01-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-01-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653372898.697
+    'REQUEST_TIME' => 1653372898
+]
+2022-05-24 15:00:51 [::1][104728][9lls2o59giihcdp6jpd5brokqq][error][yii\base\ErrorException:2] yii\base\ErrorException: Invalid argument supplied for foreach() in C:\wamp64\www\rekrut\app\controllers\ChagerequestdatabankController.php:848
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\controllers\ChagerequestdatabankController.php(848): yii\base\ErrorHandler->handleError(2, 'Invalid argumen...', 'C:\\wamp64\\www\\r...', 848, Array)
+#1 [internal function]: app\controllers\ChagerequestdatabankController->actionGetdatakaryawan('kris', NULL)
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('getdatakaryawan', Array)
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('chagerequestdat...', Array)
+#6 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#8 {main}
+2022-05-24 15:00:51 [::1][104728][9lls2o59giihcdp6jpd5brokqq][info][application] $_GET = [
+    'chagerequestdatabank/getdatakaryawan' => ''
+    'q' => 'kris'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '9lls2o59giihcdp6jpd5brokqq'
+    '_csrf' => '1e2dabf7139eac1953c81d3d713c5e56326ec899ffa3f21bea54db0137bebff7a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"q0K6yU3wzKOVrfMGDtkKGta28Q1QkQvR\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/rekrut/site/dashboard'
+    '__id' => 104728
+    '__expire' => 1653382851
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'none'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=9lls2o59giihcdp6jpd5brokqq; _csrf=1e2dabf7139eac1953c81d3d713c5e56326ec899ffa3f21bea54db0137bebff7a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22q0K6yU3wzKOVrfMGDtkKGta28Q1QkQvR%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '62085'
+    'REDIRECT_URL' => '/rekrut/chagerequestdatabank/getdatakaryawan'
+    'REDIRECT_QUERY_STRING' => 'chagerequestdatabank/getdatakaryawan&q=kris'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'chagerequestdatabank/getdatakaryawan&q=kris'
+    'REQUEST_URI' => '/rekrut/chagerequestdatabank/getdatakaryawan?q=kris'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653379251.47
+    'REQUEST_TIME' => 1653379251
+]
