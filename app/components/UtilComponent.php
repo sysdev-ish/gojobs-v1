@@ -190,9 +190,9 @@ class UtilComponent extends Component
       'token' => 'ish@gojobs',
     ])->post('http://192.168.88.27/mailgatewaygojobs/send');
     $response = $verification[8];
+    // var_dump($response);die;
     $now = date('Y-m-d');
     $updatetoday = Mailcounter::find()->where(['date'=>$now, 'klasifikasi'=>$identifier])->one();
-    // var_dump($response);die;
     if($updatetoday){
       $addcounter = $updatetoday->count + 1;
       $updatetoday->count = $addcounter;
@@ -251,7 +251,6 @@ class UtilComponent extends Component
       'appsenderid' => 1,
     ])->post('http://192.168.88.70/notification/web/api/sendmail');
     $response = $verification;
-    // var_dump($response);die;
     $now = date('Y-m-d');
     $updatetoday = Mailcounter::find()->where(['date'=>$now, 'klasifikasi'=>$identifier])->one();
     // var_dump($response);die;

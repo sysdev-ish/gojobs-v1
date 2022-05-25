@@ -193,14 +193,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     }else{
                       $status = ($data->statusresign == 1)?"Active":"Resign";
                     }
-
-
-
-
                     return $status;
                 }
-
                 ],
+                
                 [
                   'label' => 'Resign Reason',
                   'format' => 'html',
@@ -217,13 +213,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     }else{
                       $resignreason = $data->resignreason;
                     }
-
-
-
                     return $resignreason;
                 }
-
                 ],
+
                 [
                   'label' => 'Resign Date',
                   'format' => 'html',
@@ -252,13 +245,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     }else{
                       $resigndate = $data->resigndate;
                     }
-
-
-
                     return $resigndate;
-                }
-
+                  }
                 ],
+
                 'createtime',
                 'updatetime',
                 'approvedtime',
@@ -267,28 +257,23 @@ $this->params['breadcrumbs'][] = $this->title;
                   'label' => 'Created By',
                   'format' => 'html',
                   'value'=>function ($data) {
-
                     return ($data->createduser)?$data->createduser->name:"";
-                }
-
+                  }
                 ],
                 [
                   'label' => 'Updated By',
                   'format' => 'html',
                   'value'=>function ($data) {
-
                     return ($data->updateduser)?$data->updateduser->name:"";
-                }
-
+                  }
                 ],
+
                 [
                   'label' => 'Approved By',
                   'format' => 'html',
                   'value'=>function ($data) {
-
                     return ($data->approveduser)?$data->approveduser->name:"";
-                }
-
+                  }
                 ],
                 // 'kategorydata',
             ],

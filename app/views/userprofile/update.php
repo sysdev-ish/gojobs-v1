@@ -33,8 +33,6 @@ $this->params['breadcrumbs'][] = 'Update';
             'userid'=>$userid,
             'modelvaksin' => $modelvaksin,
             'alasanvaksin'=>$alasanvaksin,
-            // 'jobfamily'=>$jobfamily,
-            // 'subjobfamily'=>$subjobfamily,
             ]) ?>
 
           </div>
@@ -99,8 +97,6 @@ $this->params['breadcrumbs'][] = 'Update';
                         'userid'=>$model->userid,
                         'modelvaksin' => $modelvaksin,
                         'alasanvaksin'=>$alasanvaksin,
-                        // 'jobfamily' => $jobfamily,
-                        // 'subjobfamily' => $subjobfamily,
                         ]) ?>
                       </div>
 

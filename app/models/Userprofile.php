@@ -50,9 +50,7 @@ class Userprofile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['userid', 'createtime', 'updatetime', 'fullname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'postalcodektp','phone', 'addressktp', 'nationality','maritalstatus', 'religion', 'bloodtype','cityid','provinceid','cityidktp','provinceidktp','identitynumber','tinggibadan','beratbadan', 'lokasikerja','jenispekerjaan'
-            // , 'jobfamilyid', 'subjobfamilyid'
-            ], 'required'],
+            [['userid', 'createtime', 'updatetime', 'fullname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'postalcodektp','phone', 'addressktp', 'nationality','maritalstatus', 'religion', 'bloodtype','cityid','provinceid','cityidktp','provinceidktp','identitynumber','tinggibadan','beratbadan', 'lokasikerja','jenispekerjaan'], 'required'],
             [['userid','havejamsostek','havenpwp','havebpjs', 'npwpnumber','bpjsnumber','postalcode','postalcodektp','identitynumber','kknumber'], 'integer'],
             [['postalcode','postalcodektp'], 'string', 'min'=> 5, 'max'=> 5 ],
             [['identitynumber','kknumber'], 'string', 'min'=> 16, 'max'=> 16 ],
@@ -88,7 +86,13 @@ class Userprofile extends \yii\db\ActiveRecord
                     return $('#userprofile-havenpwp').is(':checked');
                 }
             ")],
-
+            ['kknumber', 'required', 'when' => function ($model) {
+                return $model->kknumber;
+            }, 'whenClient' => new \yii\web\JsExpression("
+                function (attribute, value) {
+                    return $('#hiring-havekknumber').is(':true);
+            ")
+            ]
         ];
     }
 

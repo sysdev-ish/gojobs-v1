@@ -275,7 +275,6 @@ class ChagerequestdatabankController extends Controller
     } else {
       $dataprofile = '';
     }
-    var_dump($dataprofile);die;
     return Json::encode($dataprofile);
   }
 
@@ -514,8 +513,9 @@ class ChagerequestdatabankController extends Controller
     if ($model->load(Yii::$app->request->post())) {
       $model->approvedtime = date('Y-m-d H-i-s');
       $model->save();
-
-      if ($model->status == 2) {
+      
+      $model->status = 3;
+      if ($model->status == 3) {
         $user = User::find()->where(['id' => $model->approvedby2])->one();
 
         if ($model->userid) {
@@ -551,7 +551,7 @@ class ChagerequestdatabankController extends Controller
         }
         // $to = $user->email;
         $to = 'khusnul.hisyam@ish.co.id';
-        $subject = 'Notifikasi Approval Perubahan Data Bank';
+        $subject = 'Notifikasi Approval II Perubahan Data Bank';
         $body = 'Semangat Pagi,,
           <br>
           Anda mendapatkan permintaan Approval Perubahan Data Bank dari <span style="text-transform: uppercase;"><b>' . $model->createduser->name . '</b></span> dengan rincian sebagai berikut :
@@ -593,7 +593,7 @@ class ChagerequestdatabankController extends Controller
           Have a great day !
           ';
         // var_dump($body);die;
-        $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
+        $verification = Yii::$app->utils->sendmail($to, $subject, $body, 12);
       }
       // $model->save();
       return $this->redirect(['index']);
