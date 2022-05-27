@@ -12992,3 +12992,1855 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1653616560.8808
     'REQUEST_TIME' => 1653616560
 ]
+2022-05-27 09:52:28 [::1][-][54s4qjrgee6jnihrom43nn7rlt][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-27 09:52:28 [::1][-][54s4qjrgee6jnihrom43nn7rlt][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '54s4qjrgee6jnihrom43nn7rlt'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=54s4qjrgee6jnihrom43nn7rlt'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '61498'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653619948.208
+    'REQUEST_TIME' => 1653619948
+]
+2022-05-27 09:56:02 [::1][-][54s4qjrgee6jnihrom43nn7rlt][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-27 09:56:02 [::1][-][54s4qjrgee6jnihrom43nn7rlt][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '54s4qjrgee6jnihrom43nn7rlt'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=54s4qjrgee6jnihrom43nn7rlt'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '61602'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653620162.598
+    'REQUEST_TIME' => 1653620162
+]
+2022-05-27 10:08:41 [::1][-][54s4qjrgee6jnihrom43nn7rlt][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-27 10:08:41 [::1][-][54s4qjrgee6jnihrom43nn7rlt][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '54s4qjrgee6jnihrom43nn7rlt'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=54s4qjrgee6jnihrom43nn7rlt'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '62014'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653620921.875
+    'REQUEST_TIME' => 1653620921
+]
+2022-05-27 10:09:22 [::1][-][54s4qjrgee6jnihrom43nn7rlt][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-27 10:09:22 [::1][-][54s4qjrgee6jnihrom43nn7rlt][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '54s4qjrgee6jnihrom43nn7rlt'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=54s4qjrgee6jnihrom43nn7rlt'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '62041'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653620962.877
+    'REQUEST_TIME' => 1653620962
+]
+2022-05-27 10:53:18 [::1][104728][up9qr4jig0lolt3k25hlf7hvfi][error][yii\base\InvalidArgumentException] yii\base\InvalidArgumentException: Operator '' requires two operands. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\conditions\SimpleCondition.php:79
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(1553): yii\db\conditions\SimpleCondition::fromArrayDefinition('', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(1523): yii\db\QueryBuilder->createConditionFromArray(Array)
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\conditions\ConjunctionConditionBuilder.php(60): yii\db\QueryBuilder->buildCondition(Array, '<span class="st...')
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\conditions\ConjunctionConditionBuilder.php(35): yii\db\conditions\ConjunctionConditionBuilder->buildExpressionsFrom(Array, '<span class="st...')
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(283): yii\db\conditions\ConjunctionConditionBuilder->build(Object(yii\db\conditions\OrCondition), '<span class="st...')
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(1527): yii\db\QueryBuilder->buildExpression(Object(yii\db\conditions\OrCondition), '<span class="st...')
+#6 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(1336): yii\db\QueryBuilder->buildCondition(Object(yii\db\conditions\OrCondition), '<span class="st...')
+#7 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(235): yii\db\QueryBuilder->buildWhere(Array, '<span class="st...')
+#8 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(316): yii\db\QueryBuilder->build(Object(yii\db\Query))
+#9 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Query.php(237): yii\db\ActiveQuery->createCommand(Object(yii\db\Connection))
+#10 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(133): yii\db\Query->all(NULL)
+#11 C:\wamp64\www\rekrut\app\models\Hiringreport.php(208): yii\db\ActiveQuery->all()
+#12 C:\wamp64\www\rekrut\app\models\Hiringreport.php(162): app\models\Hiringreport->joGroupBypersa(Array, Object(yii\data\ActiveDataProvider))
+#13 C:\wamp64\www\rekrut\app\controllers\ReportController.php(147): app\models\Hiringreport->search(Array)
+#14 [internal function]: app\controllers\ReportController->actionReporthiring()
+#15 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#16 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#17 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#18 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#19 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#20 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#21 {main}
+2022-05-27 10:53:18 [::1][104728][up9qr4jig0lolt3k25hlf7hvfi][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-01'
+        'endawalkontrak' => '2022-02-01'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => '13'
+        'subjobfamily' => '2'
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'up9qr4jig0lolt3k25hlf7hvfi'
+    '_csrf' => '68502c613d8f14f46176297df92ab2152af2441415d413ef2a70b286941dc901a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"TxoOL-WOK0CYTu5vrUOW7L0HZ2500vLb\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1653627198
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"102\", \"Google Chrome\";v=\"102\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=up9qr4jig0lolt3k25hlf7hvfi; _csrf=68502c613d8f14f46176297df92ab2152af2441415d413ef2a70b286941dc901a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22TxoOL-WOK0CYTu5vrUOW7L0HZ2500vLb%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57051'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653623598.084
+    'REQUEST_TIME' => 1653623598
+]
+2022-05-27 10:53:42 [::1][104728][up9qr4jig0lolt3k25hlf7hvfi][error][yii\base\InvalidArgumentException] yii\base\InvalidArgumentException: Operator '' requires two operands. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\conditions\SimpleCondition.php:79
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(1553): yii\db\conditions\SimpleCondition::fromArrayDefinition('', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(1523): yii\db\QueryBuilder->createConditionFromArray(Array)
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\conditions\ConjunctionConditionBuilder.php(60): yii\db\QueryBuilder->buildCondition(Array, '<span class="st...')
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\conditions\ConjunctionConditionBuilder.php(35): yii\db\conditions\ConjunctionConditionBuilder->buildExpressionsFrom(Array, '<span class="st...')
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(283): yii\db\conditions\ConjunctionConditionBuilder->build(Object(yii\db\conditions\OrCondition), '<span class="st...')
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(1527): yii\db\QueryBuilder->buildExpression(Object(yii\db\conditions\OrCondition), '<span class="st...')
+#6 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(1336): yii\db\QueryBuilder->buildCondition(Object(yii\db\conditions\OrCondition), '<span class="st...')
+#7 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(235): yii\db\QueryBuilder->buildWhere(Array, '<span class="st...')
+#8 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(316): yii\db\QueryBuilder->build(Object(yii\db\Query))
+#9 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Query.php(237): yii\db\ActiveQuery->createCommand(Object(yii\db\Connection))
+#10 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(133): yii\db\Query->all(NULL)
+#11 C:\wamp64\www\rekrut\app\models\Hiringreport.php(208): yii\db\ActiveQuery->all()
+#12 C:\wamp64\www\rekrut\app\models\Hiringreport.php(162): app\models\Hiringreport->joGroupBypersa(Array, Object(yii\data\ActiveDataProvider))
+#13 C:\wamp64\www\rekrut\app\controllers\ReportController.php(147): app\models\Hiringreport->search(Array)
+#14 [internal function]: app\controllers\ReportController->actionReporthiring()
+#15 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#16 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#17 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#18 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#19 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#20 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#21 {main}
+2022-05-27 10:53:42 [::1][104728][up9qr4jig0lolt3k25hlf7hvfi][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-01'
+        'endawalkontrak' => '2022-02-01'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => '13'
+        'subjobfamily' => '2'
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'up9qr4jig0lolt3k25hlf7hvfi'
+    '_csrf' => '68502c613d8f14f46176297df92ab2152af2441415d413ef2a70b286941dc901a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"TxoOL-WOK0CYTu5vrUOW7L0HZ2500vLb\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1653627222
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"102\", \"Google Chrome\";v=\"102\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=up9qr4jig0lolt3k25hlf7hvfi; _csrf=68502c613d8f14f46176297df92ab2152af2441415d413ef2a70b286941dc901a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22TxoOL-WOK0CYTu5vrUOW7L0HZ2500vLb%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57056'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653623622.009
+    'REQUEST_TIME' => 1653623622
+]
+2022-05-27 10:53:59 [::1][104728][up9qr4jig0lolt3k25hlf7hvfi][error][yii\base\InvalidArgumentException] yii\base\InvalidArgumentException: Operator '' requires two operands. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\conditions\SimpleCondition.php:79
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(1553): yii\db\conditions\SimpleCondition::fromArrayDefinition('', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(1523): yii\db\QueryBuilder->createConditionFromArray(Array)
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\conditions\ConjunctionConditionBuilder.php(60): yii\db\QueryBuilder->buildCondition(Array, '<span class="st...')
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\conditions\ConjunctionConditionBuilder.php(35): yii\db\conditions\ConjunctionConditionBuilder->buildExpressionsFrom(Array, '<span class="st...')
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(283): yii\db\conditions\ConjunctionConditionBuilder->build(Object(yii\db\conditions\OrCondition), '<span class="st...')
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(1527): yii\db\QueryBuilder->buildExpression(Object(yii\db\conditions\OrCondition), '<span class="st...')
+#6 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\conditions\ConjunctionConditionBuilder.php(60): yii\db\QueryBuilder->buildCondition(Object(yii\db\conditions\OrCondition), '<span class="st...')
+#7 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\conditions\ConjunctionConditionBuilder.php(35): yii\db\conditions\ConjunctionConditionBuilder->buildExpressionsFrom(Array, '<span class="st...')
+#8 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(283): yii\db\conditions\ConjunctionConditionBuilder->build(Object(yii\db\conditions\AndCondition), '<span class="st...')
+#9 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(1527): yii\db\QueryBuilder->buildExpression(Object(yii\db\conditions\AndCondition), '<span class="st...')
+#10 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(1336): yii\db\QueryBuilder->buildCondition(Object(yii\db\conditions\AndCondition), '<span class="st...')
+#11 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(235): yii\db\QueryBuilder->buildWhere(Array, '<span class="st...')
+#12 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(316): yii\db\QueryBuilder->build(Object(yii\db\Query))
+#13 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Query.php(237): yii\db\ActiveQuery->createCommand(Object(yii\db\Connection))
+#14 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(133): yii\db\Query->all(NULL)
+#15 C:\wamp64\www\rekrut\app\models\Hiringreport.php(213): yii\db\ActiveQuery->all()
+#16 C:\wamp64\www\rekrut\app\models\Hiringreport.php(167): app\models\Hiringreport->joGroupBypersa(Array, Object(yii\data\ActiveDataProvider))
+#17 C:\wamp64\www\rekrut\app\controllers\ReportController.php(147): app\models\Hiringreport->search(Array)
+#18 [internal function]: app\controllers\ReportController->actionReporthiring()
+#19 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#20 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#21 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#22 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#23 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#24 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#25 {main}
+2022-05-27 10:53:58 [::1][104728][up9qr4jig0lolt3k25hlf7hvfi][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-01'
+        'endawalkontrak' => '2022-02-01'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => '13'
+        'subjobfamily' => '2'
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'up9qr4jig0lolt3k25hlf7hvfi'
+    '_csrf' => '68502c613d8f14f46176297df92ab2152af2441415d413ef2a70b286941dc901a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"TxoOL-WOK0CYTu5vrUOW7L0HZ2500vLb\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1653627239
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"102\", \"Google Chrome\";v=\"102\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=up9qr4jig0lolt3k25hlf7hvfi; _csrf=68502c613d8f14f46176297df92ab2152af2441415d413ef2a70b286941dc901a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22TxoOL-WOK0CYTu5vrUOW7L0HZ2500vLb%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57068'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653623638.974
+    'REQUEST_TIME' => 1653623638
+]
+2022-05-27 11:00:05 [::1][104728][up9qr4jig0lolt3k25hlf7hvfi][error][TypeError] TypeError: Argument 2 passed to yii\db\conditions\ConjunctionConditionBuilder::build() must be of the type array, string given, called in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php on line 283 and defined in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\conditions\ConjunctionConditionBuilder.php:33
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(283): yii\db\conditions\ConjunctionConditionBuilder->build(Object(yii\db\conditions\AndCondition), '<span class="st...')
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(1527): yii\db\QueryBuilder->buildExpression(Object(yii\db\conditions\AndCondition), '<span class="st...')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(1336): yii\db\QueryBuilder->buildCondition(Object(yii\db\conditions\AndCondition), '<span class="st...')
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\QueryBuilder.php(235): yii\db\QueryBuilder->buildWhere(Array, '<span class="st...')
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(316): yii\db\QueryBuilder->build(Object(yii\db\Query))
+#5 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Query.php(237): yii\db\ActiveQuery->createCommand(Object(yii\db\Connection))
+#6 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(133): yii\db\Query->all(NULL)
+#7 C:\wamp64\www\rekrut\app\models\Hiringreport.php(211): yii\db\ActiveQuery->all()
+#8 C:\wamp64\www\rekrut\app\models\Hiringreport.php(165): app\models\Hiringreport->joGroupBypersa(Array, Object(yii\data\ActiveDataProvider))
+#9 C:\wamp64\www\rekrut\app\controllers\ReportController.php(147): app\models\Hiringreport->search(Array)
+#10 [internal function]: app\controllers\ReportController->actionReporthiring()
+#11 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#12 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#13 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#14 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#15 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#16 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#17 {main}
+2022-05-27 11:00:05 [::1][104728][up9qr4jig0lolt3k25hlf7hvfi][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-01'
+        'endawalkontrak' => '2022-02-01'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => '4'
+        'subjobfamily' => '2'
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'up9qr4jig0lolt3k25hlf7hvfi'
+    '_csrf' => '68502c613d8f14f46176297df92ab2152af2441415d413ef2a70b286941dc901a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"TxoOL-WOK0CYTu5vrUOW7L0HZ2500vLb\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1653627605
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"102\", \"Google Chrome\";v=\"102\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=up9qr4jig0lolt3k25hlf7hvfi; _csrf=68502c613d8f14f46176297df92ab2152af2441415d413ef2a70b286941dc901a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22TxoOL-WOK0CYTu5vrUOW7L0HZ2500vLb%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57298'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=4&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=4&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=4&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653624005.355
+    'REQUEST_TIME' => 1653624005
+]
+2022-05-27 11:00:32 [::1][104728][up9qr4jig0lolt3k25hlf7hvfi][error][yii\base\ErrorException:8] yii\base\ErrorException: Undefined offset: 0 in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php:364
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php(364): yii\base\ErrorHandler->handleError(8, 'Undefined offse...', 'C:\\wamp64\\www\\r...', 364, Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Connection.php(728): yii\db\Command->bindValues(Array)
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(322): yii\db\Connection->createCommand('SELECT `hiring`...', Array)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Query.php(237): yii\db\ActiveQuery->createCommand(Object(yii\db\Connection))
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(133): yii\db\Query->all(NULL)
+#5 C:\wamp64\www\rekrut\app\models\Hiringreport.php(211): yii\db\ActiveQuery->all()
+#6 C:\wamp64\www\rekrut\app\models\Hiringreport.php(165): app\models\Hiringreport->joGroupBypersa(Array, Object(yii\data\ActiveDataProvider))
+#7 C:\wamp64\www\rekrut\app\controllers\ReportController.php(147): app\models\Hiringreport->search(Array)
+#8 [internal function]: app\controllers\ReportController->actionReporthiring()
+#9 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#11 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#12 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#13 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#15 {main}
+2022-05-27 11:00:32 [::1][104728][up9qr4jig0lolt3k25hlf7hvfi][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-01'
+        'endawalkontrak' => '2022-02-01'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => '4'
+        'subjobfamily' => '2'
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'up9qr4jig0lolt3k25hlf7hvfi'
+    '_csrf' => '68502c613d8f14f46176297df92ab2152af2441415d413ef2a70b286941dc901a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"TxoOL-WOK0CYTu5vrUOW7L0HZ2500vLb\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1653627632
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"102\", \"Google Chrome\";v=\"102\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=up9qr4jig0lolt3k25hlf7hvfi; _csrf=68502c613d8f14f46176297df92ab2152af2441415d413ef2a70b286941dc901a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22TxoOL-WOK0CYTu5vrUOW7L0HZ2500vLb%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57305'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=4&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=4&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=4&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653624032.136
+    'REQUEST_TIME' => 1653624032
+]
+2022-05-27 11:01:30 [::1][104728][up9qr4jig0lolt3k25hlf7hvfi][error][yii\base\ErrorException:8] yii\base\ErrorException: Undefined offset: 0 in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php:364
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php(364): yii\base\ErrorHandler->handleError(8, 'Undefined offse...', 'C:\\wamp64\\www\\r...', 364, Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Connection.php(728): yii\db\Command->bindValues(Array)
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(322): yii\db\Connection->createCommand('SELECT `hiring`...', Array)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Query.php(237): yii\db\ActiveQuery->createCommand(Object(yii\db\Connection))
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(133): yii\db\Query->all(NULL)
+#5 C:\wamp64\www\rekrut\app\models\Hiringreport.php(211): yii\db\ActiveQuery->all()
+#6 C:\wamp64\www\rekrut\app\models\Hiringreport.php(165): app\models\Hiringreport->joGroupBypersa(Array, Object(yii\data\ActiveDataProvider))
+#7 C:\wamp64\www\rekrut\app\controllers\ReportController.php(147): app\models\Hiringreport->search(Array)
+#8 [internal function]: app\controllers\ReportController->actionReporthiring()
+#9 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#11 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#12 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#13 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#15 {main}
+2022-05-27 11:01:30 [::1][104728][up9qr4jig0lolt3k25hlf7hvfi][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-01'
+        'endawalkontrak' => '2022-02-01'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => '4'
+        'subjobfamily' => '2'
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'up9qr4jig0lolt3k25hlf7hvfi'
+    '_csrf' => '68502c613d8f14f46176297df92ab2152af2441415d413ef2a70b286941dc901a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"TxoOL-WOK0CYTu5vrUOW7L0HZ2500vLb\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1653627690
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"102\", \"Google Chrome\";v=\"102\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=up9qr4jig0lolt3k25hlf7hvfi; _csrf=68502c613d8f14f46176297df92ab2152af2441415d413ef2a70b286941dc901a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22TxoOL-WOK0CYTu5vrUOW7L0HZ2500vLb%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57320'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=4&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=4&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=4&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653624090.549
+    'REQUEST_TIME' => 1653624090
+]
+2022-05-27 11:02:37 [::1][104728][up9qr4jig0lolt3k25hlf7hvfi][error][yii\db\Exception] PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'masterjobfamily `masterjobfamily`.`id =` `mastersubjobfamily`.`jobfamily_id` WHE' at line 1 in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php:1258
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1258): PDOStatement->execute()
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1148): yii\db\Command->internalExecute('SELECT `hiring`...')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php(399): yii\db\Command->queryInternal('fetchAll', NULL)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Query.php(237): yii\db\Command->queryAll()
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(133): yii\db\Query->all(NULL)
+#5 C:\wamp64\www\rekrut\app\models\Hiringreport.php(208): yii\db\ActiveQuery->all()
+#6 C:\wamp64\www\rekrut\app\models\Hiringreport.php(162): app\models\Hiringreport->joGroupBypersa(Array, Object(yii\data\ActiveDataProvider))
+#7 C:\wamp64\www\rekrut\app\controllers\ReportController.php(147): app\models\Hiringreport->search(Array)
+#8 [internal function]: app\controllers\ReportController->actionReporthiring()
+#9 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#11 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#12 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#13 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#15 {main}
+
+Next yii\db\Exception: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'masterjobfamily `masterjobfamily`.`id =` `mastersubjobfamily`.`jobfamily_id` WHE' at line 1
+The SQL being executed was: SELECT `hiring`.* FROM `hiring` LEFT JOIN `userprofile` ON `hiring`.`userid` = `userprofile`.`userid` LEFT JOIN `ish_catalog_baru`.`trans_rincian_rekrut` ON trans_rincian_rekrut.id = hiring.recruitreqid LEFT JOIN `mappingjob` ON mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap LEFT JOIN `mastersubjobfamily` ON mastersubjobfamily.id = mappingjob.subjobfamilyid masterjobfamily `masterjobfamily`.`id =` `mastersubjobfamily`.`jobfamily_id` WHERE (statushiring = 4 or statushiring = 7 or (hiring.typejo = 2 and statushiring = 8)) AND (`awalkontrak` BETWEEN '2022-01-01' AND '2022-02-01') AND (mastersubjobfamily.id = '35') in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Schema.php:664
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1263): yii\db\Schema->convertException(Object(PDOException), 'SELECT `hiring`...')
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php(1148): yii\db\Command->internalExecute('SELECT `hiring`...')
+#2 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Command.php(399): yii\db\Command->queryInternal('fetchAll', NULL)
+#3 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\Query.php(237): yii\db\Command->queryAll()
+#4 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\db\ActiveQuery.php(133): yii\db\Query->all(NULL)
+#5 C:\wamp64\www\rekrut\app\models\Hiringreport.php(208): yii\db\ActiveQuery->all()
+#6 C:\wamp64\www\rekrut\app\models\Hiringreport.php(162): app\models\Hiringreport->joGroupBypersa(Array, Object(yii\data\ActiveDataProvider))
+#7 C:\wamp64\www\rekrut\app\controllers\ReportController.php(147): app\models\Hiringreport->search(Array)
+#8 [internal function]: app\controllers\ReportController->actionReporthiring()
+#9 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#10 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#11 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('reporthiring', Array)
+#12 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('report/reporthi...', Array)
+#13 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#14 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#15 {main}
+Additional Information:
+Array
+(
+    [0] => 42000
+    [1] => 1064
+    [2] => You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'masterjobfamily `masterjobfamily`.`id =` `mastersubjobfamily`.`jobfamily_id` WHE' at line 1
+)
+
+2022-05-27 11:02:37 [::1][104728][up9qr4jig0lolt3k25hlf7hvfi][info][application] $_GET = [
+    'report/reporthiring' => ''
+    'Hiringreport' => [
+        'startawalkontrak' => '2022-01-01'
+        'endawalkontrak' => '2022-02-01'
+        'startresign' => ''
+        'endresign' => ''
+        'area' => ''
+        'jabatan' => ''
+        'jobfamily' => '13'
+        'subjobfamily' => '35'
+        'personalarea' => ''
+        'sap' => ''
+        'areaish' => ''
+    ]
+    'model_id2' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'up9qr4jig0lolt3k25hlf7hvfi'
+    '_csrf' => '68502c613d8f14f46176297df92ab2152af2441415d413ef2a70b286941dc901a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"TxoOL-WOK0CYTu5vrUOW7L0HZ2500vLb\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104728
+    '__expire' => 1653627757
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_CH_UA' => '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"102\", \"Google Chrome\";v=\"102\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=4&Hiringreport%5Bsubjobfamily%5D=2&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=up9qr4jig0lolt3k25hlf7hvfi; _csrf=68502c613d8f14f46176297df92ab2152af2441415d413ef2a70b286941dc901a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22TxoOL-WOK0CYTu5vrUOW7L0HZ2500vLb%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57344'
+    'REDIRECT_URL' => '/rekrut/report/reporthiring'
+    'REDIRECT_QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=35&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'report/reporthiring&Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=35&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'REQUEST_URI' => '/rekrut/report/reporthiring?Hiringreport%5Bstartawalkontrak%5D=2022-01-01&Hiringreport%5Bendawalkontrak%5D=2022-02-01&Hiringreport%5Bstartresign%5D=&Hiringreport%5Bendresign%5D=&Hiringreport%5Barea%5D=&Hiringreport%5Bjabatan%5D=&Hiringreport%5Bjobfamily%5D=13&Hiringreport%5Bsubjobfamily%5D=35&Hiringreport%5Bpersonalarea%5D=&Hiringreport%5Bsap%5D=&Hiringreport%5Bareaish%5D=&model_id2='
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653624157.11
+    'REQUEST_TIME' => 1653624157
+]
+2022-05-27 11:08:34 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-27 11:08:34 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'l5fiiga54ub7eqk4jk5n32um7u'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=l5fiiga54ub7eqk4jk5n32um7u'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57521'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653624514.373
+    'REQUEST_TIME' => 1653624514
+]
+2022-05-27 11:15:28 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-27 11:15:28 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'l5fiiga54ub7eqk4jk5n32um7u'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=l5fiiga54ub7eqk4jk5n32um7u'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57741'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653624928.282
+    'REQUEST_TIME' => 1653624928
+]
+2022-05-27 11:15:43 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-27 11:15:43 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'l5fiiga54ub7eqk4jk5n32um7u'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=l5fiiga54ub7eqk4jk5n32um7u'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57753'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653624943.075
+    'REQUEST_TIME' => 1653624943
+]
+2022-05-27 11:18:30 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-27 11:18:30 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'l5fiiga54ub7eqk4jk5n32um7u'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=l5fiiga54ub7eqk4jk5n32um7u'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57834'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653625110.108
+    'REQUEST_TIME' => 1653625110
+]
+2022-05-27 11:20:11 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-27 11:20:11 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'l5fiiga54ub7eqk4jk5n32um7u'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=l5fiiga54ub7eqk4jk5n32um7u'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57897'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653625211.356
+    'REQUEST_TIME' => 1653625211
+]
+2022-05-27 11:20:50 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-27 11:20:50 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'l5fiiga54ub7eqk4jk5n32um7u'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=l5fiiga54ub7eqk4jk5n32um7u'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57930'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653625250.827
+    'REQUEST_TIME' => 1653625250
+]
+2022-05-27 11:21:20 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-27 11:21:20 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'l5fiiga54ub7eqk4jk5n32um7u'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=l5fiiga54ub7eqk4jk5n32um7u'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57953'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653625280.466
+    'REQUEST_TIME' => 1653625280
+]
+2022-05-27 11:22:19 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-27 11:22:19 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'l5fiiga54ub7eqk4jk5n32um7u'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=l5fiiga54ub7eqk4jk5n32um7u'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '57990'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653625339.503
+    'REQUEST_TIME' => 1653625339
+]
+2022-05-27 11:23:12 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-27 11:23:12 [::1][-][l5fiiga54ub7eqk4jk5n32um7u][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => 'l5fiiga54ub7eqk4jk5n32um7u'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=l5fiiga54ub7eqk4jk5n32um7u'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '58025'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653625392.107
+    'REQUEST_TIME' => 1653625392
+]
+2022-05-27 16:06:27 [::1][104731][4crqkdrisjjsn1lkcb698e91kl][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-27 16:06:27 [::1][104731][4crqkdrisjjsn1lkcb698e91kl][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '4crqkdrisjjsn1lkcb698e91kl'
+    '_csrf' => '7799710828e648dfd2d3d79d1777a9f07519c1da23a6775739fbd56f4f4c9516a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"EEAhS_txT5ijKatxCAE4iEYbGuBfoOEm\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104731
+    '__expire' => 1653645987
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=4crqkdrisjjsn1lkcb698e91kl; _csrf=7799710828e648dfd2d3d79d1777a9f07519c1da23a6775739fbd56f4f4c9516a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22EEAhS_txT5ijKatxCAE4iEYbGuBfoOEm%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '54033'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653642387.342
+    'REQUEST_TIME' => 1653642387
+]
+2022-05-27 16:06:27 [::1][104731][4crqkdrisjjsn1lkcb698e91kl][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/frontend/bootstrap.css.map". in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('css/frontend/bo...', Array)
+#1 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Halaman tidak ditemukan. in C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 C:\wamp64\www\rekrut\app\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\wamp64\www\rekrut\index.php(19): yii\base\Application->run()
+#2 {main}
+2022-05-27 16:06:27 [::1][104731][4crqkdrisjjsn1lkcb698e91kl][info][application] $_GET = [
+    'css/frontend/bootstrap_css_map' => ''
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'PHPSESSID' => '4crqkdrisjjsn1lkcb698e91kl'
+    '_csrf' => '7799710828e648dfd2d3d79d1777a9f07519c1da23a6775739fbd56f4f4c9516a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"EEAhS_txT5ijKatxCAE4iEYbGuBfoOEm\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 104731
+    '__expire' => 1653645987
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_PRAGMA' => 'no-cache'
+    'HTTP_CACHE_CONTROL' => 'no-cache'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'empty'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.62 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'PHPSESSID=4crqkdrisjjsn1lkcb698e91kl; _csrf=7799710828e648dfd2d3d79d1777a9f07519c1da23a6775739fbd56f4f4c9516a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22EEAhS_txT5ijKatxCAE4iEYbGuBfoOEm%22%3B%7D'
+    'PATH' => 'C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\wamp64\\bin\\php\\php7.4.26;C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.51 (Win64) PHP/7.1.33 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.51 (Win64) PHP/7.1.33'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/wamp64/www'
+    'SERVER_ADMIN' => 'wampserver@wampserver.invalid'
+    'SCRIPT_FILENAME' => 'C:/wamp64/www/rekrut/index.php'
+    'REMOTE_PORT' => '54046'
+    'REDIRECT_URL' => '/rekrut/css/frontend/bootstrap.css.map'
+    'REDIRECT_QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'css/frontend/bootstrap.css.map'
+    'REQUEST_URI' => '/rekrut/css/frontend/bootstrap.css.map'
+    'SCRIPT_NAME' => '/rekrut/index.php'
+    'PHP_SELF' => '/rekrut/index.php'
+    'REQUEST_TIME_FLOAT' => 1653642387.858
+    'REQUEST_TIME' => 1653642387
+]

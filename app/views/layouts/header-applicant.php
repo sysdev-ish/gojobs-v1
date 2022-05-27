@@ -50,47 +50,45 @@ Modal::end();
 <header id="careerfy-header" class="careerfy-header-one">
   <div class="container">
     <div class="row">
-      <aside class="col-md-2"> <a href="#" class="careerfy-logo"><img style="max-width: 100%;"
-            src="<?php echo $baseUrl; ?>/images/logo-gojobs-colour.png" alt=""></a> </aside>
+      <aside class="col-md-2"> <a href="#" class="careerfy-logo"><img style="max-width: 100%;" src="<?php echo $baseUrl; ?>/images/logo-gojobs-colour.png" alt=""></a> </aside>
       <!--<aside class="col-md-6">-->
       <aside class="col-md-9 col-md-push-3">
         <nav class="careerfy-navigation">
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-              data-target="#careerfy-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#careerfy-navbar-collapse-1" aria-expanded="false">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
           </div>
           <?php if (Yii::$app->controller->action->id <> 'changepassword') : ?>
-          <div class="collapse navbar-collapse" id="careerfy-navbar-collapse-1">
-            <ul class="navbar-nav">
-              <?php if ($vstatus == 1 or Yii::$app->user->isGuest) : ?>
-              <li class="<?php echo (Yii::$app->controller->action->id == 'index') ? 'active ' : ' '; ?> ">
-                <?= Html::a(Yii::t('app', 'Home'), ['/site/index']) ?></li>
-              <li class="<?php echo (Yii::$app->controller->action->id == 'searchjob') ? 'active ' : ' '; ?>">
-                <?= Html::a(Yii::t('app', 'Search Job'), ['/site/searchjob']) ?></li>
-              <?php if (Yii::$app->check->datacompleted($userid) == 1) : ?>
-              <li class="<?php echo (Yii::$app->controller->id == 'userprofile') ? 'active ' : ' '; ?>">
-                <?= Html::a('Profile', ['/userprofile/views', 'userid' => $userid]) ?></li>
-              <?php endif; ?>
-              <li class="<?php echo (Yii::$app->controller->action->id == 'contact') ? 'active ' : ' '; ?>">
-                <?= Html::a(Yii::t('app', 'Contact'), ['/site/contact']) ?></li>
-              <?php if (Yii::$app->check->datacompleted($userid) == 1) : ?>
-              <?php $link = 'https://rencanamu.id/gojobs';
+            <div class="collapse navbar-collapse" id="careerfy-navbar-collapse-1">
+              <ul class="navbar-nav">
+                <?php if ($vstatus == 1 or Yii::$app->user->isGuest) : ?>
+                  <li class="<?php echo (Yii::$app->controller->action->id == 'index') ? 'active ' : ' '; ?> ">
+                    <?= Html::a(Yii::t('app', 'Home'), ['/site/index']) ?></li>
+                  <li class="<?php echo (Yii::$app->controller->action->id == 'searchjob') ? 'active ' : ' '; ?>">
+                    <?= Html::a(Yii::t('app', 'Search Job'), ['/site/searchjob']) ?></li>
+                  <?php if (Yii::$app->check->datacompleted($userid) == 1) : ?>
+                    <li class="<?php echo (Yii::$app->controller->id == 'userprofile') ? 'active ' : ' '; ?>">
+                      <?= Html::a('Profile', ['/userprofile/views', 'userid' => $userid]) ?></li>
+                  <?php endif; ?>
+                  <li class="<?php echo (Yii::$app->controller->action->id == 'contact') ? 'active ' : ' '; ?>">
+                    <?= Html::a(Yii::t('app', 'Contact'), ['/site/contact']) ?></li>
+                  <?php if (Yii::$app->check->datacompleted($userid) == 1) : ?>
+                    <?php $link = 'https://rencanamu.id/gojobs';
                     $target = "_blank";
                     ?>
-              <?php else : ?>
-              <?php $link = ['/site/login'];
+                  <?php else : ?>
+                    <?php $link = ['/site/login'];
                     $target = "_self";
                     ?>
-              <?php endif; ?>
-              <li><?= Html::a(Yii::t('app', 'Assessment'), $link, ["target" => $target]) ?></li>
-              <?php endif; ?>
-              <li>
-                <ul class="careerfy-user-section">
-                  <?php
+                  <?php endif; ?>
+                  <li><?= Html::a(Yii::t('app', 'Assessment'), $link, ["target" => $target]) ?></li>
+                <?php endif; ?>
+                <li>
+                  <ul class="careerfy-user-section">
+                    <?php
                     $language = isset($_SESSION['language']) ? $_SESSION['language'] : null;
                     $setLang = 'btn btn-sm btn-primary-flip language';
                     if ($language == 'en') {
@@ -101,15 +99,13 @@ Modal::end();
                       $setLangen = 'btn btn-sm btn-primary language';
                     }
                     ?>
-                  <li><a
-                      href="<?php echo Yii::$app->request->baseUrl; ?>/site/setlang?lang=id"><?= Html::button('ID', ['id' => 'id', 'class' => $setLangid]) ?></a>
-                  </li>
-                  <li><a
-                      href="<?php echo Yii::$app->request->baseUrl; ?>/site/setlang?lang=en"><?= Html::button('EN', ['id' => 'en', 'class' => $setLangen]) ?></a>
-                  </li>
-                </ul>
-              </li>
-              <!--<li role="presentation" class="dropdown"> 
+                    <li><a href="<?php echo Yii::$app->request->baseUrl; ?>/site/setlang?lang=id"><?= Html::button('ID', ['id' => 'id', 'class' => $setLangid]) ?></a>
+                    </li>
+                    <li><a href="<?php echo Yii::$app->request->baseUrl; ?>/site/setlang?lang=en"><?= Html::button('EN', ['id' => 'en', 'class' => $setLangen]) ?></a>
+                    </li>
+                  </ul>
+                </li>
+                <!--<li role="presentation" class="dropdown"> 
               <?php
               // $language = isset($_SESSION['language']) ? $_SESSION['language'] : null;
               // $setLang = 'Language EN';
@@ -126,29 +122,29 @@ Modal::end();
                               ?>/site/setlang?lang=id">Indonesia</a></li>
               </ul> 
             </li>-->
-            </ul>
-            <div class="careerfy-left">
-              <ul class="careerfy-user-section visible-lg--block">
-                <?php (Yii::$app->check->datacompleted($userid) == 1)?>
-                <?php if (Yii::$app->user->isGuest) : ?>
-                <li>
-                  <?= Html::button('Login', ['id' => 'loginButton', 'value' => \yii\helpers\Url::to(['site/login']), 'class' => 'btn btn-sm btn-primary']) ?>
-                </li>
-                <li>
-                  <?= Html::button('Register', ['id' => 'signupButton', 'value' => \yii\helpers\Url::to(['site/signup']), 'class' => 'btn btn-sm btn-primary-flip']) ?>
-                </li>
-
-                <?php else : ?>
-                <li><?= Html::a(
+              </ul>
+              <div class="careerfy-left">
+                <!-- <ul class="careerfy-user-section visible-lg-block"> -->
+                <ul class="careerfy-user-section">
+                  <?php (Yii::$app->check->datacompleted($userid) == 1) ?>
+                  <?php if (Yii::$app->user->isGuest) : ?>
+                    <li>
+                      <?= Html::button('Login', ['id' => 'loginButton', 'value' => \yii\helpers\Url::to(['site/login']), 'class' => 'btn btn-sm btn-primary']) ?>
+                    </li>
+                    <li>
+                      <?= Html::button('Register', ['id' => 'signupButton', 'value' => \yii\helpers\Url::to(['site/signup']), 'class' => 'btn btn-sm btn-primary-flip']) ?>
+                    </li>
+                  <?php else : ?>
+                    <li><?= Html::a(
                           // '<i class="careerfy-icon careerfy-logout"></i> Logout (' . (Yii::$app->user->isGuest ? 'Guest' : Yii::$app->user->identity->username) . ')',
                           '<i class="careerfy-icon careerfy-logout"></i> Logout',
                           ['/site/logout'],
                           ['data-method' => 'post', 'class' => 'btn btn-sm btn-primary']
                         ) ?></li>
-                <?php endif; ?>
-              </ul>
+                  <?php endif; ?>
+                </ul>
+              </div>
             </div>
-          </div>
           <?php endif; ?>
         </nav>
 
@@ -174,32 +170,6 @@ Modal::end();
             </div>
           </nav>-->
         <!--</div>-->
-
-
-      </aside>
-      <!--<aside class="col-md-4">-->
-      <aside class="col-md-3 col-md-pull-9 visible-xs-block">
-        <div class="careerfy-right">
-          <ul class="careerfy-user-section">
-            <?php (Yii::$app->check->datacompleted($userid) == 1)?>
-            <?php if (Yii::$app->user->isGuest) : ?>
-            <li>
-              <?= Html::button('Login', ['id' => 'loginButton', 'value' => \yii\helpers\Url::to(['site/login']), 'class' => 'btn btn-sm btn-primary']) ?>
-            </li>
-            <li>
-              <?= Html::button('Register', ['id' => 'signupButton', 'value' => \yii\helpers\Url::to(['site/signup']), 'class' => 'btn btn-sm btn-primary-flip']) ?>
-            </li>
-
-            <?php else : ?>
-            <li><?= Html::a(
-                    '<i class="careerfy-icon careerfy-logout"></i> Logout (' . (Yii::$app->user->isGuest ? 'Guest' : Yii::$app->user->identity->username) . ')',
-                    ['/site/logout'],
-                    ['data-method' => 'post', 'class' => 'btn btn-sm btn-primary']
-                  ) ?></li>
-            <?php endif; ?>
-          </ul>
-          <!-- <a href="#" class="careerfy-simple-btn careerfy-bgcolor"><span> <i class="careerfy-icon careerfy-arrows-2"></i> Post Job</span></a> -->
-        </div>
       </aside>
     </div>
   </div>
@@ -243,15 +213,12 @@ Modal::end();
           <ul>
             <li>
               <label>Email Address:</label>
-              <input value="Enter Your Email Address"
-                onblur="if(this.value == '') { this.value ='Enter Your Email Address'; }"
-                onfocus="if(this.value =='Enter Your Email Address') { this.value = ''; }" type="text">
+              <input value="Enter Your Email Address" onblur="if(this.value == '') { this.value ='Enter Your Email Address'; }" onfocus="if(this.value =='Enter Your Email Address') { this.value = ''; }" type="text">
               <i class="careerfy-icon careerfy-mail"></i>
             </li>
             <li>
               <label>Password:</label>
-              <input value="Enter Password" onblur="if(this.value == '') { this.value ='Enter Password'; }"
-                onfocus="if(this.value =='Enter Password') { this.value = ''; }" type="text">
+              <input value="Enter Password" onblur="if(this.value == '') { this.value ='Enter Password'; }" onfocus="if(this.value =='Enter Password') { this.value = ''; }" type="text">
               <i class="careerfy-icon careerfy-multimedia"></i>
             </li>
             <li>

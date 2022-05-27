@@ -28,7 +28,7 @@ $uploadUrl = Yii::$app->request->baseUrl . '/app/assets/upload';
 
 </head>
 
-<body>
+<body style="overflow-x: hidden;">
 
     <?php $this->beginBody() ?>
 

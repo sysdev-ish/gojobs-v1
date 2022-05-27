@@ -261,8 +261,8 @@ use yii\helpers\Url;
               <div class="col-md-5">
                 <?= $form->field($model, 'identitynumber')->textInput(['maxlength' => true]) ?>
               </div>
-              <div class="col-md-5 required">
-                <?= $form->field($model, 'kknumber')->textInput(['maxlength' => true, 'required' => true]) ?>
+              <div class="col-md-5">
+                <?= $form->field($model, 'kknumber')->textInput(['maxlength' => true]) ?>
               </div>
 
             </div>

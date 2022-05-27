@@ -14,16 +14,16 @@ $this->params['breadcrumbs'][] = ['label' => 'User profiles', 'url' => ['index']
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php if(Yii::$app->utils->getlayout() == 'main'): ?>
-  <div class="row">
-    <div class="col-md-3">
-      <?= $this->render(
+<div class="row">
+  <div class="col-md-3">
+    <?= $this->render(
         '/layouts/leftprofile.php',
         [
           'userid' => $userid,
         ]
         ) ?>
-        <?php if (Yii::$app->controller->action->id == 'viewshortwd') : ?>
-          <?php
+    <?php if (Yii::$app->controller->action->id == 'viewshortwd') : ?>
+    <?php
           $usesrinterview = Userinterview::find()->where(['recruitmentcandidateid'=>$recid])->one();
           if($usesrinterview){
             if($usesrinterview->documentinterview){
@@ -45,15 +45,15 @@ $this->params['breadcrumbs'][] = $this->title;
             echo Html::a('<i class="fa fa-download"></i> Psychogram' , ['/app/assets/upload/documentpsikotest/'.$psikotest->documentpsikotest],['target'=>'_blank', 'class' => 'btn btn-sm btn-default text-muted  btn-block','disabled' => $disabled]);
           }
           ?>
-        <?php endif;?>
-      </div>
-      <div class="col-md-9">
-        <div class="userprofile-view box box-solid">
-          <div class="box-header with-border">
-            <h3 class="box-title">User Profile</h3>
-            <span class="pull-right">
-              <!-- validation rule -->
-                <?php if(Yii::$app->user->isGuest){
+    <?php endif;?>
+  </div>
+  <div class="col-md-9">
+    <div class="userprofile-view box box-solid">
+      <div class="box-header with-border">
+        <h3 class="box-title">User Profile</h3>
+        <span class="pull-right">
+          <!-- validation rule -->
+          <?php if(Yii::$app->user->isGuest){
                   $role = null;
                 }else{
                   $role = Yii::$app->user->identity->role;
@@ -75,11 +75,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                   }
                 ?>
-              <!-- end validation rule -->
-            </span>
-          </div>
-          <div class="box-body table-responsive no-padding">
-            <?php
+          <!-- end validation rule -->
+        </span>
+      </div>
+      <div class="box-body table-responsive no-padding">
+        <?php
             if($model){
               echo DetailView::widget([
                 'model' => $model,
@@ -262,55 +262,55 @@ $this->params['breadcrumbs'][] = $this->title;
             }else{
               echo "No data..";
             } ?>
-          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<?php else: ?>
+
+<div class="careerfy-subheader careerfy-subheader-with-bg">
+  <span class="careerfy-banner-transparent"></span>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="careerfy-page-title">
+          <h1>Profile</h1>
+          <!-- <p>Thousands of prestigious employers for you, search for a recruiter right now.</p> -->
         </div>
       </div>
     </div>
-  <?php else: ?>
+  </div>
+  <div class="clearfix"></div>
+  <div class="careerfy-breadcrumb">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Pages</a></li>
+      <li>Candidates</li>
+    </ul>
+  </div>
+</div>
+<div class="careerfy-main-content">
 
-    <div class="careerfy-subheader careerfy-subheader-with-bg">
-      <span class="careerfy-banner-transparent"></span>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="careerfy-page-title">
-              <h1>Profile</h1>
-              <!-- <p>Thousands of prestigious employers for you, search for a recruiter right now.</p> -->
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <div class="careerfy-breadcrumb">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Pages</a></li>
-          <li>Candidates</li>
-        </ul>
-      </div>
-    </div>
-    <div class="careerfy-main-content">
+  <!-- Main Section -->
+  <div class="careerfy-main-section careerfy-dashboard-fulltwo">
+    <div class="container">
+      <div class="row">
 
-      <!-- Main Section -->
-      <div class="careerfy-main-section careerfy-dashboard-fulltwo">
-        <div class="container">
-          <div class="row">
-
-            <aside class="careerfy-column-4">
-              <?= $this->render(
+        <aside class="careerfy-column-4">
+          <?= $this->render(
                 '/layouts/leftprofile-applicant.php',
                 [
                   'userid' => $userid,
                 ]
                 ) ?>
 
-              </aside>
-              <div class="careerfy-column-8">
-                <div class="careerfy-employer-box-section">
-                  <div class="careerfy-profile-title">
-                    <h2><?= Yii::t('app', 'My Profile') ?></h2>
-                    <!-- validation rule -->
-                      <?php if($model){
+        </aside>
+        <div class="careerfy-column-8">
+          <div class="careerfy-employer-box-section">
+            <div class="careerfy-profile-title">
+              <h2><?= Yii::t('app', 'My Profile') ?></h2>
+              <!-- validation rule -->
+              <?php if($model){
                         if(!Yii::$app->utils->aplhired($model->userid)){
                           echo  Html::a('<i class="fa fa-pencil-square-o"></i>', ['update', 'id' => $model->id], ['class' => 'pull-right btn btn-sm btn-default text-muted',
                           'data-toggle'=>'tooltip',
@@ -320,10 +320,10 @@ $this->params['breadcrumbs'][] = $this->title;
                       }
                     }
                       ?>
-                    <!-- end validation rule -->
-                  </div>
-                  <div class="careerfy-description">
-                    <?php
+              <!-- end validation rule -->
+            </div>
+            <div class="careerfy-description">
+              <?php
                     if($model){
                       echo DetailView::widget([
                         'model' => $model,
@@ -378,17 +378,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     }else{
                       echo "No data..";
                     } ?>
-                  </div>
-
-                </div>
-
-
-              </div>
-
             </div>
+
           </div>
+
+
         </div>
-        <!-- Main Section -->
 
       </div>
-    <?php endif; ?>
+    </div>
+  </div>
+  <!-- Main Section -->
+
+</div>
+<?php endif; ?>
