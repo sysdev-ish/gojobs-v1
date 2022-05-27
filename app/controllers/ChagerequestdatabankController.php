@@ -391,8 +391,10 @@ class ChagerequestdatabankController extends Controller
           $area = $datapekerjabyperner[0]->BTRTX;
           $jabatan = $datapekerjabyperner[0]->PLATX;
         }
+        //add by kaha
         // $to = $user->email;
-        $to = 'khusnul.hisyam@ish.co.id';
+        // $to = 'khusnul.hisyam@ish.co.id';
+        $to = 'seysi.lupi@ish.co.id';
         $subject = 'Notifikasi Approval Perubahan Data Bank';
         $body = 'Semangat Pagi,,
               <br>
@@ -434,7 +436,7 @@ class ChagerequestdatabankController extends Controller
               Have a great day !
               ';
         // var_dump($body);die;
-        $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
+        $verification = Yii::$app->utils->sendmail($to, $subject, $body, 12);
       }
       return $this->redirect(['index']);
     } else {
@@ -514,6 +516,7 @@ class ChagerequestdatabankController extends Controller
       $model->approvedtime = date('Y-m-d H-i-s');
       $model->save();
       
+      //add by kaha
       $model->status = 3;
       if ($model->status == 3) {
         $user = User::find()->where(['id' => $model->approvedby2])->one();
@@ -549,9 +552,11 @@ class ChagerequestdatabankController extends Controller
           $area = $datapekerjabyperner[0]->BTRTX;
           $jabatan = $datapekerjabyperner[0]->PLATX;
         }
+        //add by kaha
         // $to = $user->email;
-        $to = 'khusnul.hisyam@ish.co.id';
-        $subject = 'Notifikasi Approval II Perubahan Data Bank';
+        // $to = 'khusnul.hisyam@ish.co.id';
+        $to = 'seysi.lupi@ish.co.id';
+        $subject = 'Notifikasi Approval Perubahan Data Bank';
         $body = 'Semangat Pagi,,
           <br>
           Anda mendapatkan permintaan Approval Perubahan Data Bank dari <span style="text-transform: uppercase;"><b>' . $model->createduser->name . '</b></span> dengan rincian sebagai berikut :
@@ -859,7 +864,7 @@ class ChagerequestdatabankController extends Controller
         $outs['results'] = null;
       }
     } elseif ($id > 0) {
-      $curl =  new curl\Curl();
+      // $curl =  new curl\Curl();
       $getdatapekerjabyperner =  $curl->setPostParams([
         'perner' => $id,
         'token' => 'ish**2019',

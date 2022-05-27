@@ -196,7 +196,10 @@ class HiringController extends Controller
                   $level = '';
                 }
                 //notifikasi feedback email ke proman untuk approval hiring gojobs
-                $to = 'proman@ish.co.id';
+                // $to = 'proman@ish.co.id';
+                //170
+                // $to = 'seysi.lupi@ish.co.id';
+                $to = 'khusnul.hisyam@ish.co.id';
                 $subject = 'Notifikasi Approval Hiring Gojobs';
                 $body = 'Semangat Pagi,,
                 <br>
@@ -626,29 +629,26 @@ class HiringController extends Controller
       print_r(json_encode($retpos));
     }
 
+    //add by kaha
     $hiring = Hiring::find()->where(['userid' => $model])->one();
+    $userid = $hiring->userid;
+    $fullname = $hiring->userprofile->fullname;
 
     $hiringstatus = Yii::$app->utils->aplhired($model);
     if ($hiringstatus) {
-      $to = $hiring->mail->email;
+      // $to = $hiring->mail->email;
+      //170
+      // $to = 'seysi.lupi@ish.co.id';
+      $to = 'khusnul.hisyam@ish.co.id';
 
       $subject = 'Pemberitahuan PT Infomedia Solusi Humanika';
       $body = Yii::$app->params['mailFeedback'];
-      $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
-    }
-
-    // $hiring = Hiring::find()->where(['userid' => $model])->one();
-    // $hiringstatus = Yii::$app->utils->aplhired($model);
-    // if ($hiringstatus) {
-    //   $to = $hiring->mail->email;
-
-    //   $subject = 'Pemberitahuan PT Infomedia Solusi Humanika';
-    //   $body = Yii::$app->params['mailFeedback'];
-    //   $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
+      // $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
+      $sendmail = Yii::$app->utils->sendmailexternal($to, $subject, $body, 11, $userid, $fullname);
       // if ($verification) {
       //   echo 'successfully';
       // }
-    // }
+    }
   }
 
   //testfunction
@@ -660,7 +660,7 @@ class HiringController extends Controller
     $userid = $hiring->userid;
     $fullname = $hiring->userprofile->fullname;
     // $to = $model->mail->email;
-    
+
     $hiringstatus = Yii::$app->utils->aplhired($model);
     if ($hiringstatus) {
       $to = 'khsyaam62@gmail.com';
@@ -690,8 +690,7 @@ class HiringController extends Controller
         // var_dump($sendmail);die;
         echo 'succesfully';
         // return $sendmail;
-      }
-      else {
+      } else {
         echo 'not succesfully';
       }
     }
