@@ -44,6 +44,22 @@ $this->title = 'Contact';
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <div class="careerfy-contact-info-sec">
+                        <h2>Kontak Informasi</h2>
+                        <p>PT Infomedia Solusi Humanika atau dikenal dengan ISH merupakan anak perusahaan PT Infomedia Nusantara yang bergerak dalam bidang Human Capital Services.</p>
+                        <ul class="careerfy-contact-info-list">
+                            <li><i class="careerfy-icon careerfy-placeholder"></i> Gedung Graha Mandiri, Jl. RS Fatmawati No.75, RT.6/RW.5, North Cipete, Kebayoran Baru, South Jakarta City, Jakarta 12150</li>
+                            <li><i class="careerfy-icon careerfy-mail"></i> <a href="#">Email: recruitment@ish.co.id</a></li>
+                            <li><i class="careerfy-icon careerfy-technology"></i> Call: 021 - 7237928</li>
+                            <!-- <li><i class="careerfy-icon careerfy-fax"></i> Fax: (800) 123 4567 89</li> -->
+                        </ul>
+                        <div class="careerfy-contact-media">
+                            <a href="https://www.facebook.com/infomedia.recuitment" class="careerfy-icon careerfy-facebook-logo" target="_blank"></a>
+                            <a href="#" class="careerfy-icon careerfy-twitter-logo"></a>
+                            <a href="#" class="careerfy-icon careerfy-linkedin-button"></a>
+                            <a href="#" class="careerfy-icon careerfy-dribbble-logo"></a>
+                        </div>
+                    </div>
                     <div class="careerfy-contact-form">
                         <!-- <h2>We want to hear form you!</h2> -->
                         <h2>Kami Ingin Mendengar Masukkan Anda!</h2>
@@ -75,24 +91,7 @@ $this->title = 'Contact';
                         </ul>
                         <?php ActiveForm::end(); ?>
                     </div>
-                    <div class="careerfy-contact-info-sec">
-                        <h2>Contact Information</h2>
-                        <p>PT Infomedia Solusi Humanika atau dikenal dengan ISH merupakan anak perusahaan PT Infomedia Nusantara yang bergerak dalam bidang Human Capital Services.</p>
-                        <ul class="careerfy-contact-info-list">
-                            <li><i class="careerfy-icon careerfy-placeholder"></i> Gedung Graha Mandiri, Jl. RS Fatmawati No.75, RT.6/RW.5, North Cipete, Kebayoran Baru, South Jakarta City, Jakarta 12150</li>
-                            <li><i class="careerfy-icon careerfy-mail"></i> <a href="#">Email: recruitment@ish.co.id</a></li>
-                            <li><i class="careerfy-icon careerfy-technology"></i> Call: 021 - 7237928</li>
-                            <!-- <li><i class="careerfy-icon careerfy-fax"></i> Fax: (800) 123 4567 89</li> -->
-                        </ul>
-                        <div class="careerfy-contact-media">
-                            <a href="https://www.facebook.com/infomedia.recuitment" class="careerfy-icon careerfy-facebook-logo" target="_blank"></a>
-                            <a href="#" class="careerfy-icon careerfy-twitter-logo"></a>
-                            <a href="#" class="careerfy-icon careerfy-linkedin-button"></a>
-                            <a href="#" class="careerfy-icon careerfy-dribbble-logo"></a>
-                        </div>
-                    </div>
                 </div>
-
             </div>
         </div>
     </div>

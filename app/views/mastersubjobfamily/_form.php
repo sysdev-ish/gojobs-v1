@@ -17,13 +17,8 @@ if (!$model->isNewRecord) {
 <div class="mastersubjobfamily-form box box-primary">
     <?php $form = ActiveForm::begin(); ?>
     <div class="box-body table-responsive">
-        <?php echo $form->field($model, 'status')->widget(Select2::classname(), [
-            'data' => [1 => 'Publish', 0 => 'Unpublish'],
-            'options' => ['placeholder' => '- Select Status -'],
-        ])
-        ?>
         <?php
-        echo   $form->field($model, 'jobfamilyid')->widget(Select2::classname(), [
+        echo   $form->field($model, 'jobfamily_id')->widget(Select2::classname(), [
             'data' => $jobfamily,
             'options' => ['placeholder' => '- select -'],
             'pluginOptions' => [

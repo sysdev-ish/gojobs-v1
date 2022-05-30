@@ -20,19 +20,27 @@ ul li:hover .careerfy-employer.careerfy-fileUpload:hover span,.careerfy-resumes-
 .careerfy-employer-jobnav ul li.active ~ li:nth-child(2):after,.careerfy-employer-jobnav ul li.active:nth-child(2):after,.careerfy-employer-jobnav ul li.active:nth-child(3):after,.careerfy-employer-confitmation a:hover,
 .careerfy-candidate-default-btn:hover,.careerfy-candidate-download-btn:hover,.careerfy-classic-services ul li:hover i,
 .careerfy-service-slider .slick-arrow:hover,.careerfy-classic-priceplane-btn,.careerfy-classic-priceplane.active,.active .careerfy-simple-priceplane-basic a,.careerfy-packages-priceplane-btn,
-.careerfy-additional-priceplane.active h2,.careerfy-additional-priceplane.active .careerfy-additional-priceplane-btn,.careerfy-contact-info-sec,.contact-service a,
+.careerfy-additional-priceplane.active h2,.careerfy-additional-priceplane.active .careerfy-additional-priceplane-btn,.contact-service a,
 .careerfy-modren-counter ul li:after,.careerfy-services-classic li:hover span i,.careerfy-pagination-blog ul li span.current,.careerfy-cvupload-file:hover span,
 .careerfy-resume-addbtn,.careerfy-candidate-timeline small:after,.careerfy-employerdetail-btn:hover,.careerfy-company-photo .careerfy-fileUpload span {
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     background-color: #2196f3;
 }
-.careerfy-bordercolor,.careerfy-bordercolorhover:hover,.careerfy-jobdetail-btn,.careerfy-employer-list-btn,.careerfy-fileUpload span,.careerfy-employer-confitmation a,.careerfy-candidate-default-btn,
-.careerfy-candidate-download-btn,.careerfy-cvupload-file span,.active .careerfy-simple-priceplane-basic a,.careerfy-additional-priceplane-btn,.careerfy-classic-services i,.careerfy-jobdetail-btn.active,
+.careerfy-contact-info-sec {
+    border-radius: 12px;
+    background-color: #2196f3;
+}
+.careerfy-bordercolor,.careerfy-bordercolorhover:hover,.careerfy-employer-list-btn,.careerfy-fileUpload span,.careerfy-employer-confitmation a,.careerfy-candidate-default-btn,
+.careerfy-candidate-download-btn,.careerfy-cvupload-file span,.active .careerfy-simple-priceplane-basic a,.careerfy-additional-priceplane-btn,.careerfy-classic-services i,
 .careerfy-typo-wrap .careerfy-employer-profile-submit,.careerfy-typo-wrap .careerfy-findmap-btn,.careerfy-employerdetail-btn,.careerfy-company-photo .careerfy-fileUpload span {
     border-color: #2196f3;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
+}
+.careerfy-jobdetail-btn,.careerfy-jobdetail-btn.active {
+    border-color: #2196f3;
+    border-radius: 10px;
 }
 .careerfy-read-more {
     box-shadow: 0px 0px 0px 2px #2196f3 inset;

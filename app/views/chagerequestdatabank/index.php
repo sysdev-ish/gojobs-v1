@@ -59,13 +59,13 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
 ?>
 <div class="chagerequestdata-index box box-default">
   <?php if(Yii::$app->utils->permission($role,'m58')): ?>
-    <div class="box-header with-border">
-        <?= Html::a('Create', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
-    </div>
+  <div class="box-header with-border">
+    <?= Html::a('Create', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
+  </div>
   <?php endif; ?>
-    <div class="box-body table-responsive">
-        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-        <?= GridView::widget([
+  <div class="box-body table-responsive">
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
             'layout' => "{items}\n{summary}\n{pager}",
@@ -78,7 +78,7 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
                   'attribute' => 'fullname',
                   'format' => 'html',
                   'value'=>function ($data) {
-                     return $data->fullname;
+                    return $data->fullname;
                     // return ($data->userprofile)?$data->userprofile->fullname:"<i class='text-red'>not set</i>";
                 }
 
@@ -92,7 +92,6 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
                   'attribute' => 'createduser',
                   'format' => 'html',
                   'value'=>function ($data) {
-
                     return ($data->createduser)?$data->createduser->name:"";
                 }
 
@@ -104,21 +103,19 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
                   // 'attribute' => 'approveduser',
                   'format' => 'html',
                   'value'=>function ($data) {
-
                     return ($data->approveduser)?$data->approveduser->name:"";
-                }
-
+                  }
                 ],
+
                 [
                   'label' => 'Approver II',
                   // 'attribute' => 'approveduser',
                   'format' => 'html',
                   'value'=>function ($data) {
-
                     return ($data->approveduser2)?$data->approveduser2->name:"";
-                }
-
+                  }
                 ],
+
                 [
                   'attribute' => 'status',
                   'contentOptions'=>['style'=>'width: 100px;'],
@@ -129,19 +126,19 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
                     'data' => ArrayHelper::map(Masterstatuscr::find()->asArray()->all(), 'id', 'statusname'),
                     'options' => ['placeholder' => '--'],
                     'pluginOptions' => [
-                       'allowClear' => true,
-                       'width' => '120px',
-                       ],
+                      'allowClear' => true,
+                      'width' => '120px',
+                      ],
                   ]),
                   'value'=>function ($data) {
                     // return $data->status;
                     if($data->status == 1){$label='label-danger';}elseif($data->status == 2 OR $data->status == 3){$label='label-warning';}elseif($data->status == 4){$label='label-success';}else{$label='label-danger';}
                     return '<span class="label '.$label.'">'.$data->statusprocess->statusname.'</span>';
-                }
-
+                  }
                 ],
 
                 'remarks',
+
                 ['class' => 'yii\grid\ActionColumn',
                 'contentOptions'=>['style'=>'min-width: 170px;'],
                 'template'=>'<div class="btn-group pull-right">'.$action.'</div>',
@@ -196,25 +193,22 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
                     ($model->status < 2 )?$disabled = false : $disabled = true;
                     if($model->status < 2 ){
                       return Html::a('<i class="fa fa-trash" style="font-size:12pt;"></i>', ['delete', 'id' => $model->id], [
-                                  'class' => 'btn btn-sm btn-danger','data-toggle' => 'tooltip', 'title'=> 'delete', 'disabled' => $disabled,
-                                  'data' => [
-                                      'confirm' => 'Are you sure you want to delete this item?',
-                                      'method' => 'post',
-                                  ],
-                              ]);
+                        'class' => 'btn btn-sm btn-danger','data-toggle' => 'tooltip', 'title'=> 'delete', 'disabled' => $disabled,
+                        'data' => [
+                            'confirm' => 'Are you sure you want to delete this item?',
+                            'method' => 'post',
+                        ],
+                      ]);
                     }else{
-                      return Html::a('<i class="fa fa-trash" style="font-size:12pt;"></i>', ['#', 'id' => $model->id], [
-                                  'class' => 'btn btn-sm btn-danger','data-toggle' => 'tooltip', 'title'=> 'delete', 'disabled' => $disabled,
-
-                              ]);
+                      return Html::a('<i class="fa fa-trash" style="font-size:12pt;"></i>', ['#', 'id' => $model->id],
+                      [
+                        'class' => 'btn btn-sm btn-danger','data-toggle' => 'tooltip', 'title'=> 'delete', 'disabled' => $disabled,
+                      ]);
                     }
-
                   }
-
-
                 ]
               ],
             ],
         ]); ?>
-    </div>
+  </div>
 </div>

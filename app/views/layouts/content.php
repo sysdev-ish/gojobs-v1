@@ -8,10 +8,10 @@ use dmstr\widgets\Alert;
 
     <section class="content-header">
         <?php if (isset($this->blocks['content-header'])) { ?>
-            <h1><?= $this->blocks['content-header'] ?></h1>
+        <h1><?= $this->blocks['content-header'] ?></h1>
         <?php } else { ?>
-            <h1>
-                <?php
+        <h1>
+            <?php
                 if ($this->title !== null) {
                     echo \yii\helpers\Html::encode($this->title);
                 } else {
@@ -20,7 +20,7 @@ use dmstr\widgets\Alert;
                     );
                     echo ($this->context->module->id !== \Yii::$app->id) ? '<small>Module</small>' : '';
                 } ?>
-            </h1>
+        </h1>
         <?php } ?>
 
         <?=
@@ -43,5 +43,7 @@ use dmstr\widgets\Alert;
     <div class="pull-right hidden-xs">
         <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2018 - <script>document.write(new Date().getFullYear()) </script> <a href="http://ish.co.id">Infomedia Solusi Humanika</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2018 - <script>
+            document.write(new Date().getFullYear())
+        </script> <a href="http://ish.co.id">Infomedia Solusi Humanika</a>.</strong> All rights reserved.
 </footer>
