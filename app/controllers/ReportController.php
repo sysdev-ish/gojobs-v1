@@ -406,8 +406,8 @@ class ReportController extends Controller
           $params = $_POST['depdrop_params'];
           $id1 = $params[0]; // get the value of model_id1
           foreach ($model as $key => $value) {
-            $out[] = ['id'=>$value['jobfamily_id'],'name'=> '' .$value['subjobfamily']];
-            $oc[] = $value['jobfamily_id'];
+            $out[] = ['id'=>$value['id'],'name'=> '' .$value['subjobfamily']];
+            $oc[] = $value['id'];
             if($key == 0){
               $out[] = ['id'=>'0','name'=>'all'];
               $aux = '0';
