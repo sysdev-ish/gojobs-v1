@@ -46,22 +46,22 @@ if(Yii::$app->user->isGuest){
 app\assets\ReportAsset::register($this);
 ?>
 <div class="hiring-index box box-default">
-    <div class="box-body">
-        <?php echo $this->render('_searchapplicant', ['model' => $searchModel,'education' => $education,'statuscandidate' => $statuscandidate, 'mastercity'=>$mastercity]); ?>
-    </div>
+  <div class="box-body">
+    <?php echo $this->render('_searchapplicant', ['model' => $searchModel,'education' => $education,'statuscandidate' => $statuscandidate, 'mastercity'=>$mastercity]); ?>
+  </div>
 </div>
 <div class="row">
-        <div class="col-md-3 col-sm-4 col-xs-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="fa fa-users"></i></span>
+  <div class="col-md-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-aqua"><i class="fa fa-users"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Total Applicant</span>
-              <span class="info-box-number"><?php echo $dataProvider['dataProvider']->getTotalCount(); ?></span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- <div class="info-box">
+      <div class="info-box-content">
+        <span class="info-box-text">Total Applicant</span>
+        <span class="info-box-number"><?php echo $dataProvider['dataProvider']->getTotalCount(); ?></span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- <div class="info-box">
             <span class="info-box-icon bg-red"><i class="fa fa-institution (alias)"></i></span>
 
             <div class="info-box-content">
@@ -69,19 +69,14 @@ app\assets\ReportAsset::register($this);
               <span class="info-box-number"><?php //echo $dataProvider['bypersonalarea']->getTotalCount(); ?></span>
             </div>
           </div> -->
-
-
-
-
-
-        </div>
-        <!-- /.col -->
-        <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="box">
-        <div class="box-header">
-              <h3 class="box-title">Applicant Data</h3>
-              <div class="box-tools pull-right">
-                <?php
+  </div>
+  <!-- /.col -->
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Applicant Data</h3>
+        <div class="box-tools pull-right">
+          <?php
                 $gridColumns = [
                     ['class' => 'kartik\grid\SerialColumn'],
                     'fullname',
@@ -96,9 +91,9 @@ app\assets\ReportAsset::register($this);
                         // }
                         // $identitynumber = preg_replace('/\[.*\]/U', '', $data->identitynumber);
                         return ($data->identitynumber and (is_numeric($data->identitynumber)))? number_format($data->identitynumber,0,","," ") : "";
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'No NPWP',
                       'format'=>'text',
@@ -107,9 +102,9 @@ app\assets\ReportAsset::register($this);
 
                         return (($data->havenpwp == 1 OR $data->npwpnumber <> 0) and (is_numeric($data->npwpnumber)))?number_format($data->npwpnumber,0,","," ") : "";
                         // return $data->npwpnumber;
-                    }
-
+                      }
                     ],
+                    
 
                     [
                       'label' => 'Pendidikan terakhir',
@@ -124,11 +119,9 @@ app\assets\ReportAsset::register($this);
                         }else{
                           return "";
                         }
-
-
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'Nama Sekolah / Universitas terakhir',
                       'format' => 'raw',
@@ -138,9 +131,9 @@ app\assets\ReportAsset::register($this);
                                       ])->one();
 
                         return ($lasteducation)?$lasteducation->institutions : "";
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'Jurusan',
                       'format' => 'raw',
@@ -149,9 +142,9 @@ app\assets\ReportAsset::register($this);
                                       'educationallevel' => SORT_DESC //specify sort order ASC for ascending DESC for descending
                                       ])->one();
                         return ($lasteducation)?$lasteducation->majoring : "";
-                    }
-
+                      }
                     ],
+                    
 
                     [
                       'label' => 'Surat Lamaran',
@@ -160,9 +153,9 @@ app\assets\ReportAsset::register($this);
                       'value'=>function ($data) {
                         $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
                         return ($doc)?(($doc->suratlamarankerja)?"V":"X") : "X";
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'Curiculum Vitae',
                       'format' => 'html',
@@ -170,9 +163,9 @@ app\assets\ReportAsset::register($this);
                       'value'=>function ($data) {
                         $doc = Userprofile::find()->where(['userid' => $data->userid])->one();
                         return ($doc)?"V":"X";
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'Copy Ijazah',
                       'format' => 'html',
@@ -180,9 +173,9 @@ app\assets\ReportAsset::register($this);
                       'value'=>function ($data) {
                         $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
                         return ($doc)?(($doc->ijazah)?"V":"X") : "X";
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'Transkip Nilai',
                       'format' => 'html',
@@ -190,9 +183,9 @@ app\assets\ReportAsset::register($this);
                       'value'=>function ($data) {
                         $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
                         return ($doc)?(($doc->transkipnilai)?"V":"X") : "X";
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'KTP',
                       'format' => 'html',
@@ -200,9 +193,9 @@ app\assets\ReportAsset::register($this);
                       'value'=>function ($data) {
                         $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
                         return ($doc)?(($doc->ktp)?"V":"X") : "X";
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'NPWP',
                       'format' => 'html',
@@ -210,9 +203,9 @@ app\assets\ReportAsset::register($this);
                       'value'=>function ($data) {
                         $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
                         return ($doc)?(($doc->npwp)?"V":"X") : "X";
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'Jamsostek',
                       'format' => 'html',
@@ -220,9 +213,9 @@ app\assets\ReportAsset::register($this);
                       'value'=>function ($data) {
                         $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
                         return ($doc)?(($doc->jamsostek)?"V":"X") : "X";
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'BPJS Kesehatan',
                       'format' => 'html',
@@ -230,9 +223,9 @@ app\assets\ReportAsset::register($this);
                       'value'=>function ($data) {
                         $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
                         return ($doc)?(($doc->bpjskesehatan)?"V":"X") : "X";
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'Surat Keterangan Sehat',
                       'format' => 'html',
@@ -240,9 +233,9 @@ app\assets\ReportAsset::register($this);
                       'value'=>function ($data) {
                         $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
                         return ($doc)?(($doc->suratketerangansehat)?"V":"X") : "X";
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'Status Vaksin',
                       'format' => 'html',
@@ -273,9 +266,9 @@ app\assets\ReportAsset::register($this);
                         }
 
                         return $value;
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label'=>'Alasan',
                       'format' => 'html',
@@ -294,9 +287,9 @@ app\assets\ReportAsset::register($this);
                         $vaksin = Uservaksin::find()->where(['userid' => $data->userid])->one();
 
                         return ($vaksin)?$vaksin->tanggalvaksin1 : "";
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'Lokasi Vaksin 1',
                       'format' => 'html',
@@ -304,9 +297,9 @@ app\assets\ReportAsset::register($this);
                         $vaksin = Uservaksin::find()->where(['userid' => $data->userid])->one();
 
                         return ($vaksin)?$vaksin->lokasivaksin1 : "";
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'Sertifikat Vaksin 1',
                       'format' => 'html',
@@ -315,9 +308,9 @@ app\assets\ReportAsset::register($this);
                         $vaksin = Uservaksin::find()->where(['userid' => $data->userid])->one();
 
                         return ($vaksin)?(($vaksin->sertvaksin1)?"V":"X") : "X";
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'Tanggal Vaksin 2',
                       'format' => ['date', 'php:Y-m-d'],
@@ -325,9 +318,9 @@ app\assets\ReportAsset::register($this);
                         $vaksin = Uservaksin::find()->where(['userid' => $data->userid])->one();
 
                         return ($vaksin)?$vaksin->tanggalvaksin2 : "";
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'Lokasi Vaksin 2',
                       'format' => 'html',
@@ -335,9 +328,9 @@ app\assets\ReportAsset::register($this);
                         $vaksin = Uservaksin::find()->where(['userid' => $data->userid])->one();
 
                         return ($vaksin)?$vaksin->lokasivaksin2 : "";
-                    }
-
+                      }
                     ],
+                    
                     [
                       'label' => 'Sertifikat Vaksin 2',
                       'format' => 'html',
@@ -346,9 +339,9 @@ app\assets\ReportAsset::register($this);
                         $vaksin = Uservaksin::find()->where(['userid' => $data->userid])->one();
 
                         return ($vaksin)?(($vaksin->sertvaksin2)?"V":"X") : "X";
-                    }
-
+                      }
                     ],
+                    
 
                     // [
                     //   'label' => 'Tahun Lulus Sekolah/ Universitas',
@@ -361,10 +354,6 @@ app\assets\ReportAsset::register($this);
                     // }
                     //
                     // ],
-
-
-
-
 
                     ['class' => 'kartik\grid\ActionColumn', 'urlCreator'=>function(){return '#';}]
                 ];
@@ -382,10 +371,10 @@ app\assets\ReportAsset::register($this);
                     ]
                 ]);
 
-                 ?>
-              </div>
+                ?>
         </div>
-        <div class="box-body table-responsive">
+      </div>
+      <div class="box-body table-responsive">
         <?php echo GridView::widget([
             'dataProvider' => $dataProvider['dataProvider'],
             // 'filterModel' => $searchModel,
@@ -402,6 +391,7 @@ app\assets\ReportAsset::register($this);
                 }
 
                 ],
+                
                 [
                   'label' => 'last education',
                   'format' => 'raw',
@@ -420,6 +410,7 @@ app\assets\ReportAsset::register($this);
                 }
 
                 ],
+                
                 [
                   'label' => 'Majoring',
                   'format' => 'raw',
@@ -431,6 +422,7 @@ app\assets\ReportAsset::register($this);
                 }
 
                 ],
+                
                 [
                   'label' => 'Domicile City',
                   'format' => 'raw',
@@ -451,6 +443,7 @@ app\assets\ReportAsset::register($this);
               }
 
               ],
+
               [
                 'label' => 'Curiculum Vitae',
                 'format' => 'html',
@@ -461,6 +454,7 @@ app\assets\ReportAsset::register($this);
               }
 
               ],
+
               [
                 'label' => 'Copy Ijazah',
                 'format' => 'html',
@@ -471,6 +465,7 @@ app\assets\ReportAsset::register($this);
               }
 
               ],
+
               [
                 'label' => 'Transkip Nilai',
                 'format' => 'html',
@@ -478,9 +473,9 @@ app\assets\ReportAsset::register($this);
                 'value'=>function ($data) {
                   $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
                   return ($doc)?(($doc->transkipnilai)?"<span class='text-green'><i class='fa fa-check'></i></span>":"<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
-              }
-
+                }
               ],
+
               [
                 'label' => 'KTP',
                 'format' => 'html',
@@ -488,9 +483,9 @@ app\assets\ReportAsset::register($this);
                 'value'=>function ($data) {
                   $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
                   return ($doc)?(($doc->ktp)?"<span class='text-green'><i class='fa fa-check'></i></span>":"<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
-              }
-
+                }
               ],
+
               [
                 'label' => 'NPWP',
                 'format' => 'html',
@@ -498,9 +493,9 @@ app\assets\ReportAsset::register($this);
                 'value'=>function ($data) {
                   $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
                   return ($doc)?(($doc->npwp)?"<span class='text-green'><i class='fa fa-check'></i></span>":"<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
-              }
-
+                }
               ],
+
               [
                 'label' => 'Jamsostek',
                 'format' => 'html',
@@ -508,9 +503,9 @@ app\assets\ReportAsset::register($this);
                 'value'=>function ($data) {
                   $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
                   return ($doc)?(($doc->jamsostek)?"<span class='text-green'><i class='fa fa-check'></i></span>":"<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
-              }
-
+                }
               ],
+
               [
                 'label' => 'BPJS Kesehatan',
                 'format' => 'html',
@@ -518,9 +513,9 @@ app\assets\ReportAsset::register($this);
                 'value'=>function ($data) {
                   $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
                   return ($doc)?(($doc->bpjskesehatan)?"<span class='text-green'><i class='fa fa-check'></i></span>":"<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
-              }
-
+                }
               ],
+
               [
                 'label' => 'Surat Keterangan Sehat',
                 'format' => 'html',
@@ -528,9 +523,9 @@ app\assets\ReportAsset::register($this);
                 'value'=>function ($data) {
                   $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
                   return ($doc)?(($doc->suratketerangansehat)?"<span class='text-green'><i class='fa fa-check'></i></span>":"<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
-              }
-
+                }
               ],
+
               ['class' => 'yii\grid\ActionColumn',
               'contentOptions'=>['style'=>'min-width: 50px;'],
               'template'=>'<div class="btn-group pull-right">{download}</div>',
@@ -549,16 +544,12 @@ app\assets\ReportAsset::register($this);
 
             ],
         ]); ?>
-        </div>
-        </div>
-        </div>
-
-
-
-
       </div>
+    </div>
+  </div>
+</div>
 <script>
-      //-------------
+  //-------------
   //- PIE CHART -
   //-------------
   // Get context with jQuery - using jQuery's .get() method.
@@ -633,8 +624,7 @@ app\assets\ReportAsset::register($this);
   // //Create pie or douhnut chart
   // // You can switch between pie and douhnut using the method below.
   // window.onload = function(){
-	// 			var ctx = document.getElementById("pieChart").getContext("2d");
-	// 			window.myPie = new Chart(ctx).Pie(PieData, pieOptions);
-	// 		};
-
+  // 			var ctx = document.getElementById("pieChart").getContext("2d");
+  // 			window.myPie = new Chart(ctx).Pie(PieData, pieOptions);
+  // 		};
 </script>

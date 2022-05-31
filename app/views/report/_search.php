@@ -93,7 +93,7 @@ use yii\helpers\Url;
       </div>
       <div class="col-md-4">
         <?php
-        echo   $form->field($model, 'jobfamily')->widget(Select2::classname(), [
+        echo   $form->field($model, 'jobfamily')->widget(Select2::className(), [
           'data' => $jobfamily,
           'options' => ['placeholder' => '- select -', 'id' => 'jobfamily'],
           'pluginOptions' => [
@@ -103,12 +103,19 @@ use yii\helpers\Url;
         ?>
       </div>
       <div class="col-md-4">
-        <?php
-        echo   $form->field($model, 'subjobfamily')->widget(Select2::classname(), [
+        <?php echo Html::hiddenInput('model_id2', $model->subjobfamily, ['id' => 'model_id2']);
+        echo $form->field($model, 'subjobfamily')->widget(DepDrop::classname(), [
           'data' => $subjobfamily,
-          'options' => ['placeholder' => '- select -', 'id' => 'subjobfamily'],
+          'type' => DepDrop::TYPE_SELECT2,
+          'options' => ['id' => 'subjobfamily'],
+          'select2Options' => ['pluginOptions' => ['allowClear' => true]],
           'pluginOptions' => [
-            'allowClear' => true
+            'depends' => ['jobfamily'],
+            'placeholder' => '- select -',
+            'url' => Url::to(['/report/gethiring']),
+            'loadingText' => 'Loading ...',
+            'params' => ['model_id2'],
+            'initialize' => true,
           ],
         ]);
         ?>

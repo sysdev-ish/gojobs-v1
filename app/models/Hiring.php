@@ -81,6 +81,14 @@ class Hiring extends \yii\db\ActiveRecord
             return false;
         }
     }
+
+    public static function getSubjob($id)
+    {
+        // $data = Mastersubjobfamily::find()->where(['id' => $id])->select(['id', 'subjobfamily AS name'])->asArray()->groupBy('jobfamily_id')->all();
+        $data = Mastersubjobfamily::find()->where(['id' => $id])->select(['id', 'subjobfamily AS name'])->asArray()->all();
+        return $data;
+    }
+
     public function getUserprofile()
     {
         return $this->hasOne(Userprofile::className(), ['userid' => 'userid']);

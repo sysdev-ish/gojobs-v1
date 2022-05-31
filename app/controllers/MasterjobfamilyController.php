@@ -131,27 +131,21 @@ class MasterjobfamilyController extends Controller
      * @param integer $id
      * @return mixed
      */
-    // public function beforeDelete()
-    // {
-    //     if (parent::beforeDelete()) {
-    //         Masterjobfamily::deleteAll(['id' => $this->id]);
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
+
     public function actionDelete($id)
     {
-        $jobfamily = Masterjobfamily::find($id)->all();
-        foreach ($jobfamily as $jobfamily) {
+        // $jobfamily = Masterjobfamily::find($id)->all();
+        $model = $this->findModel($id);
             try {
-                if ($jobfamily->delete()) {
+                if ($model->delete()) {
                 Yii::$app->session->setFlash('success', "Data Dihapus.");
                 }
+                // else {
+                //     Yii::$app->session->setFlash('error', "Data Digunakan Di Tabel Lain.");
+                // }
             } catch (\Exception $e) {
                 Yii::$app->session->setFlash('error', "Data Digunakan Di Tabel Lain.");
             }
-        }
         return $this->redirect(['index']);
         
 

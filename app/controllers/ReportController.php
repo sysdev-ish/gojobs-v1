@@ -164,6 +164,7 @@ class ReportController extends Controller
       'subjobfamily' => $subjobfamily,
     ]);
   }
+
   public function actionReportapplicant()
   {
     $searchModel = new Applicantreport();
@@ -386,6 +387,43 @@ class ReportController extends Controller
   * @return Hiring the loaded model
   * @throws NotFoundHttpException if the model cannot be found
   */
+  
+
+  //add by kaha dependent input with depdrop
+  public function actionGethiring() {
+    $out = [];
+    if (isset($_POST['depdrop_parents'])) {
+      $parents = $_POST['depdrop_parents'];
+      $subjobfamily = empty($parents[0]) ? null : $parents[0];
+
+      $model = Mastersubjobfamily::find()->asArray()->where(['jobfamily_id'=>$subjobfamily])->groupby(['jobfamily_id'])->all();
+      // var_dump($model);die;
+      $selected  = null;
+      if ($parents != null && count($model) > 0 ) {
+        $selected = '';
+        $id1 = '';
+        if (!empty($_POST['depdrop_params'])) {
+          $params = $_POST['depdrop_params'];
+          $id1 = $params[0]; // get the value of model_id1
+          foreach ($model as $key => $value) {
+            $out[] = ['id'=>$value['id'],'name'=> '' .$value['subjobfamily']];
+            $oc[] = $value['id'];
+            if($key == 0){
+              $out[] = ['id'=>'0','name'=>'all'];
+              $aux = '0';
+            }
+            }
+            ((in_array($id1, $oc))) ? $selected = $id1 : $selected = $aux;
+        }
+        // $outs = array_push($out, ['id'=>"0",'name'=>'all']);
+        // var_dump($outs);die;
+        sort($out);
+        echo Json::encode(['output'=>$out, 'selected'=>$selected]);
+        return;
+      }
+    }
+    echo Json::encode(['output'=>'', 'selected'=>'']);
+  }
 
   public function actionGetregion() {
     $out = [];

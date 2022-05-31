@@ -12,6 +12,7 @@ use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\filters\AccessControl;
+use yii\db\IntegrityException;
 
 /**
  * MastersubjobfamilyController implements the CRUD actions for Mastersubjobfamily model.
@@ -146,10 +147,15 @@ class MastersubjobfamilyController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        if ($model->delete()) {
-            Yii::$app->session->setFlash('success', "Data dihapus.");
-        } else {
-            Yii::$app->session->setFlash('error', "Data tidak dihapus.");
+        try {
+            if ($model->delete()) {
+                Yii::$app->session->setFlash('success', "Data Dihapus.");
+            }
+            // else {
+            //     Yii::$app->session->setFlash('error', "Data Digunakan Di Tabel Lain.");
+            // }
+        } catch (\Exception $e) {
+            Yii::$app->session->setFlash('error', "Data Digunakan Di Tabel Lain.");
         }
         return $this->redirect(['index']);
     }
@@ -168,34 +174,5 @@ class MastersubjobfamilyController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-    public function actionGetsubjobfamily()
-    {
-        $out = [];
-        if (isset($_POST['depdrop_parents'])) {
-            $parents = $_POST['depdrop_parents'];
-            $jobfamily_id = empty($parents[0]) ? null : $parents[0];
-            $model = Mastersubjobfamily::find()->asArray()->where(['jobfamily_id' => $jobfamily_id])->all();
-            $selected  = null;
-            if ($parents != null && count($model) > 0) {
-                $selected = '';
-                $id1 = '';
-                if (!empty($_POST['depdrop_params'])) {
-                    $params = $_POST['depdrop_params'];
-                    $id1 = $params[0]; // get the value of model_id1
-                    foreach ($model as $key => $value) {
-                        $out[] = ['id' => $value['id'], 'jobfamily' => $value['subjobfamily']];
-                        $oc[] = $value['id'];
-                        if ($key == 0) {
-                            $aux = $value['id'];
-                        }
-                    }
-                    ((in_array($id1, $oc))) ? $selected = $id1 : $selected = $aux;
-                }
-                echo Json::encode(['output' => $out, 'selected' => $selected]);
-                return;
-            }
-        }
-        echo Json::encode(['output' => '', 'selected' => '']);
     }
 }
