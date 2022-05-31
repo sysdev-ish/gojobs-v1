@@ -61,4 +61,13 @@ class Masterjobfamily extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Recruitmentcandidate::className(), ['id' => 'jobfamily']);
     }
+
+    /**
+    * @return \common\models\query\Masterjobfamily
+    */
+
+    public function published()
+    {
+        return $this->andWhere(['status'=>1]);
+    }
 }

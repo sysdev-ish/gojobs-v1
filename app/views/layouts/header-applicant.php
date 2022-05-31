@@ -88,7 +88,7 @@ Modal::end();
               <?php endif; ?>
               <li><?= Html::a(Yii::t('app', 'Assessment'), $link, ["target" => $target]) ?></li>
               <?php endif; ?>
-              <li>
+              <!-- <li> -->
                 <ul class="careerfy-user-section">
                   <?php
                     $language = isset($_SESSION['language']) ? $_SESSION['language'] : null;
@@ -127,7 +127,7 @@ Modal::end();
                           ) ?></li>
                   <?php endif; ?>
                 </ul>
-              </li>
+              <!-- </li> -->
               <!--<li role="presentation" class="dropdown"> 
               <?php
               // $language = isset($_SESSION['language']) ? $_SESSION['language'] : null;

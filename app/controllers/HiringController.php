@@ -196,10 +196,10 @@ class HiringController extends Controller
                   $level = '';
                 }
                 //notifikasi feedback email ke proman untuk approval hiring gojobs
-                // $to = 'proman@ish.co.id';
+                $to = 'proman@ish.co.id';
                 //170
                 // $to = 'seysi.lupi@ish.co.id';
-                $to = 'khusnul.hisyam@ish.co.id';
+                // $to = 'khusnul.hisyam@ish.co.id';
                 $subject = 'Notifikasi Approval Hiring Gojobs';
                 $body = 'Semangat Pagi,,
                 <br>
@@ -636,15 +636,15 @@ class HiringController extends Controller
 
     $hiringstatus = Yii::$app->utils->aplhired($model);
     if ($hiringstatus) {
-      // $to = $hiring->mail->email;
+      $to = $hiring->mail->email;
       //170
       // $to = 'seysi.lupi@ish.co.id';
-      $to = 'khusnul.hisyam@ish.co.id';
+      // $to = 'khusnul.hisyam@ish.co.id';
 
       $subject = 'Pemberitahuan PT Infomedia Solusi Humanika';
       $body = Yii::$app->params['mailFeedback'];
-      // $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
-      $sendmail = Yii::$app->utils->sendmailexternal($to, $subject, $body, 11, $userid, $fullname);
+      $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
+      // $sendmail = Yii::$app->utils->sendmailexternal($to, $subject, $body, 11, $userid, $fullname);
       // if ($verification) {
       //   echo 'successfully';
       // }

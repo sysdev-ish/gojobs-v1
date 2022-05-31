@@ -7,8 +7,6 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Hiring;
 use app\models\Mappingregionarea;
-use app\models\Masterjobfamily;
-use app\models\Mastersubjobfamily;
 
 /**
  * Hiringsearch represents the model behind the search form of `app\models\Hiring`.
@@ -106,7 +104,8 @@ class Joborderreport extends Transrincian
         //Add by pwd -> pakai relasi buat filternya karena jika implode parsing data bakal habisin memory & kurang optimal
         if ($this->subjobfamily) {
           $query->andWhere('mastersubjobfamily.id = :id', [':id' => $this->subjobfamily]);
-        } elseif ($this->jobfamily) {
+        }
+        elseif ($this->jobfamily) {
           $query->andWhere('masterjobfamily.id = :id', [':id' => $this->jobfamily]);
         }
 

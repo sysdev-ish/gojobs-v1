@@ -34,9 +34,17 @@
 .careerfy-typo-wrap .careerfy-column-1, .careerfy-typo-wrap .careerfy-column-2, .careerfy-typo-wrap .careerfy-column-3, .careerfy-typo-wrap .careerfy-column-4, .careerfy-typo-wrap .careerfy-column-5,
 .careerfy-typo-wrap .careerfy-column-6, .careerfy-typo-wrap .careerfy-column-7, .careerfy-typo-wrap .careerfy-column-8,.careerfy-typo-wrap .careerfy-column-9, .careerfy-typo-wrap .careerfy-column-10,
 .careerfy-typo-wrap .careerfy-column-11, .careerfy-typo-wrap .careerfy-column-12 {
-  float: left;
-  padding: 0px 15px;
+    float: left;
+    padding: 14px;
 }
+
+.careerfy-typo-wrap .careerfy-column-4:hover {
+    /* margin: 8px; */
+    /* background-color: #ededed; */
+    box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 10%);
+    border-radius: 12px;
+}
+
 .careerfy-column-12 {
     width: 100%;
 }
@@ -156,7 +164,7 @@
 .categories-list ul li {
     list-style: none;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 .categories-list ul li i {
     font-size: 50px;
@@ -722,12 +730,12 @@
 }
 .careerfy-list-option h2 span {
     display: inline-block;
-    padding: 3px 10px 3px 10px;
+    padding: 4px 10px 4px 10px;
     color: #ffffff;
-    background-color: #67cc66;
+    background-color: #2196f3;
     font-size: 10px;
     font-weight: 300;
-    border-radius: 60px;
+    border-radius: 6px;
     vertical-align: top;
 }
 .careerfy-list-option ul {

@@ -90,8 +90,8 @@ class ChangecanceljoinController extends Controller
    */
   public function actionCreate($id = null)
   {
-      // $approvalname = ArrayHelper::map(User::find()->where('role = 20 OR role = 17')->asArray()->all(), 'id', 'name');
-      $approvalname = ArrayHelper::map(User::find()->where('role')->asArray()->all(), 'id', 'name');
+      $approvalname = ArrayHelper::map(User::find()->where('role = 20 OR role = 17')->asArray()->all(), 'id', 'name');
+      // $approvalname = ArrayHelper::map(User::find()->where('role')->asArray()->all(), 'id', 'name');
       $reason = ArrayHelper::map(Masterresignreason::find()->asArray()->all(), 'id', 'reason');
       if($id){
         $model = $this->findModel($id);

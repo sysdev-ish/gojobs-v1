@@ -74,9 +74,8 @@ if(Yii::$app->utils->permission($role,'m17') && Yii::$app->utils->permission($ro
                       'data' => [1 => "Waiting for change password", 2 => "active", 3 =>'not active'],
                       'options' => ['placeholder' => '--'],
                       'pluginOptions' => [
-                         'allowClear' => true,
-                         'width' => '100px',
-                         ],
+                        'allowClear' => true,
+                        ],
                     ]),
                   'format' => 'html',
                   'value'=>function ($data) {

@@ -394,18 +394,18 @@ address                         { font-style: italic; }
 /* User Section */
 .careerfy-user-section {
     float: left;
-    padding: 25px 0px;
+    padding: 22px 0px 12px 0px;
 }
 .careerfy-user-section li {
     float: left;
     list-style: none;
-    padding: 6px 13px 6px 13px;
+    padding: 8px 22px 10px 0px;
     position: relative;
 }
 .careerfy-user-section li:before {
     content: '';
     position: absolute;
-    left: 0px;
+    left: -11px;
     top: 10px;
     width: 1px;
     height: 20px;

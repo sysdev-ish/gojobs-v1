@@ -45,8 +45,8 @@ $this->title = 'Contact';
             <div class="row">
                 <div class="col-md-12">
                     <div class="careerfy-contact-info-sec">
-                        <h2>Kontak Informasi</h2>
-                        <p>PT Infomedia Solusi Humanika atau dikenal dengan ISH merupakan anak perusahaan PT Infomedia Nusantara yang bergerak dalam bidang Human Capital Services.</p>
+                        <h2><?= Yii::t('app', 'Contact Information') ?>.</h2>
+                        <p><?= Yii::t('app', 'PT Infomedia Solusi Humanika or known as ISH is a subsidiary of PT Infomedia Nusantara which is engaged in Human Capital Services') ?>.</p>
                         <ul class="careerfy-contact-info-list">
                             <li><i class="careerfy-icon careerfy-placeholder"></i> Gedung Graha Mandiri, Jl. RS Fatmawati No.75, RT.6/RW.5, North Cipete, Kebayoran Baru, South Jakarta City, Jakarta 12150</li>
                             <li><i class="careerfy-icon careerfy-mail"></i> <a href="#">Email: recruitment@ish.co.id</a></li>
