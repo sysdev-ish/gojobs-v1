@@ -148,10 +148,10 @@ class ChangecanceljoinController extends Controller
             }
             $to = $user->email;
             // $to = "indra.gunawan@ish.co.id";
-            $subject = 'Notifikasi Approval Resign Pekerja';
+            $subject = 'Notifikasi Approval Cancel Pekerja';
             $body = 'Semangat Pagi,,
             <br>
-            Anda mendapatkan permintaan Approval "Resign Pekerja" dari <span style="text-transform: uppercase;"><b>'.$model->createduser->name.'</b></span> dengan rincian sebagai berikut :
+            Anda mendapatkan permintaan Approval "Cancel Pekerja" dari <span style="text-transform: uppercase;"><b>'.$model->createduser->name.'</b></span> dengan rincian sebagai berikut :
 
             <br>
             <br>
@@ -211,7 +211,7 @@ class ChangecanceljoinController extends Controller
     if ($model->load(Yii::$app->request->post())) {
       $model->approvedtime = date('Y-m-d H-i-s');
       if($model->status == 8){
-          $model->remarks = "Waiting for Resign Execution process";
+          $model->remarks = "Waiting for Cancel Execution process";
           $model->save();
       }else{
         $model->save();
@@ -227,171 +227,137 @@ class ChangecanceljoinController extends Controller
     }
   }
 
-  public function actionRfcresign($id)
+  public function actionRfccancel($id)
   {
-          $model = $this->findModel($id);
-          // var_dump($model);die;
-          $curl = new curl\Curl();
-          $getdatapekerja = $curl->setPostParams([
-            'perner' => $model->perner,
-            'token' => 'ish**2019',
-          ])
-          ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
-          $dataprofile  = json_decode($getdatapekerja);
-          if($dataprofile){
-            $begda = date_create($model->resigndate);
-            $cekpaycontroll =  $curl->setPostParams([
-              'token' => 'ish@2019!',
-              'ABKRS' => $dataprofile[0]->ABKRS,
-            ])
-            ->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
-            $payrollcontrollresult  = json_decode($cekpaycontroll);
-            if($payrollcontrollresult->status == 1){
-              // $cek = [
-              //   'token' => 'ish@2019!',
-              //   'PERNR' => $model->perner,
-              //   'BEGDA' => date_format($begda,'Ymd'),
-              //   'MASSG' => $model->resignreason->sapid,
-              //   'WERKS' => $dataprofile[0]->WERKS,
-              //   'PERSK' => $dataprofile[0]->PERSK,
-              //   'BTRTL' => $dataprofile[0]->BTRTL,
-              //   'ABKRS' => $dataprofile[0]->ABKRS,
-              //   'ANSVH' => $dataprofile[0]->ANSVH,
-              //   'PLANS' => $dataprofile[0]->PLANS,
-              // ];
-              // var_dump($cek);die;
-              $putrfcresign =  $curl->setPostParams([
-                'token' => 'ish@2019!',
-                'PERNR' => $model->perner,
-                'BEGDA' => date_format($begda,'Ymd'),
-                'MASSG' => $model->resignreason->sapid,
-                'WERKS' => $dataprofile[0]->WERKS,
-                'PERSK' => $dataprofile[0]->PERSK,
-                'BTRTL' => $dataprofile[0]->BTRTL,
-                'ABKRS' => $dataprofile[0]->ABKRS,
-                'ANSVH' => $dataprofile[0]->ANSVH,
-                'PLANS' => $dataprofile[0]->PLANS,
-              ])
-              ->post('http://192.168.88.5/service/index.php/Rfcresign');
+    $model = $this->findModel($id);
+    // var_dump($model);die;
+    $curl = new curl\Curl();
+    $getdatapekerja = $curl->setPostParams([
+      'perner' => $model->perner,
+      'token' => 'ish**2019',
+    ])
+    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+    $dataprofile  = json_decode($getdatapekerja);
+    if($dataprofile){
+      $begda = date_create($model->canceldate);
+      $cekpaycontroll =  $curl->setPostParams([
+        'token' => 'ish@2019!',
+        'ABKRS' => $dataprofile[0]->ABKRS,
+      ])
+      ->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
+      $payrollcontrollresult  = json_decode($cekpaycontroll);
+      if($payrollcontrollresult->status == 1){
+        // $cek = [
+        //   'token' => 'ish@2019!',
+        //   'PERNR' => $model->perner,
+        //   'BEGDA' => date_format($begda,'Ymd'),
+        //   'MASSG' => $model->cancelreason->sapid,
+        //   'WERKS' => $dataprofile[0]->WERKS,
+        //   'PERSK' => $dataprofile[0]->PERSK,
+        //   'BTRTL' => $dataprofile[0]->BTRTL,
+        //   'ABKRS' => $dataprofile[0]->ABKRS,
+        //   'ANSVH' => $dataprofile[0]->ANSVH,
+        //   'PLANS' => $dataprofile[0]->PLANS,
+        // ];
+        // var_dump($cek);die;
+        $putrfccancel =  $curl->setPostParams([
+          'token' => 'ish@2019!',
+          'PERNR' => $model->perner,
+          'BEGDA' => date_format($begda,'Ymd'),
+          'MASSG' => $model->cancelreason->sapid,
+          'WERKS' => $dataprofile[0]->WERKS,
+          'PERSK' => $dataprofile[0]->PERSK,
+          'BTRTL' => $dataprofile[0]->BTRTL,
+          'ABKRS' => $dataprofile[0]->ABKRS,
+          'ANSVH' => $dataprofile[0]->ANSVH,
+          'PLANS' => $dataprofile[0]->PLANS,
+        ])
+        ->post('http://192.168.88.5/service/index.php/Rfccancel');
 
-              $rfcresign  = json_decode($putrfcresign);
-              $message = 'successful';
-              if($rfcresign->CODE == 'S'){
-                $url = "http://192.168.88.60:8080/ish-rest/ZINFHRF_00025";
-                $infotype = ['0041','0035'];
-                $request_data = [
-                  [
-                    'pernr'=> "$model->perner",
-                    'inftypList'=>$infotype,
-                    'p00041List' => [
-                      [
-                        'endda'=>'',
-                        'begda'=> '',
-                        'operation'=>'INS',
-                        'pernr'=> "$model->perner",
-                        'infty'=>'0041',
-                        'dar01'=> '01',
-                        'dat01'=> '',
-                        'dar02'=> '',
-                        'dat02'=> ''
-                      ]
-                    ],
+        $rfccancel  = json_decode($putrfccancel);
+        $message = 'successful';
+        if($rfccancel->CODE == 'S'){
+          $url = "http://192.168.88.60:8080/ish-rest/ZINFHRF_00025";
+          $infotype = ['0041','0035'];
+          $request_data = [
+            [
+              'pernr'=> "$model->perner",
+              'inftypList'=>$infotype,
+              'p00041List' => [
+                [
+                  'endda'=>'',
+                  'begda'=> '',
+                  'operation'=>'INS',
+                  'pernr'=> "$model->perner",
+                  'infty'=>'0041',
+                  'dar01'=> '01',
+                  'dat01'=> '',
+                  'dar02'=> '',
+                  'dat02'=> ''
+                ]
+              ],
 
-                    'p00035List'=>[
-                      [
-                        'endda'=>'31.12.9999',
-                        'begda'=> date_format($begda,'d.m.Y'),
-                        'operation'=>'INS',
-                        'pernr'=> "$model->perner",
-                        'infty'=>'0035',
-                        'subty'=>'Z8',
-                        'itxex'=>'X',
-                        'dat35'=> date_format($begda,'d.m.Y'),
-                      ]
-                    ],
-                  ]
-                ];
+              'p00035List'=>[
+                [
+                  'endda'=>'31.12.9999',
+                  'begda'=> date_format($begda,'d.m.Y'),
+                  'operation'=>'INS',
+                  'pernr'=> "$model->perner",
+                  'infty'=>'0035',
+                  'subty'=>'Z8',
+                  'itxex'=>'X',
+                  'dat35'=> date_format($begda,'d.m.Y'),
+                ]
+              ],
+            ]
+          ];
 
-                //var_dump($request_data);
+          //var_dump($request_data);
 
-                $json = json_encode($request_data);
-
-
-
-                $headers  = [
-                  'Content-Type: application/json',
-                  'cache-control: no-cache"=',
-                ];
+          $json = json_encode($request_data);
 
 
-                $ch = curl_init();
 
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-                // var_dump('ok');die;
+          $headers  = [
+            'Content-Type: application/json',
+            'cache-control: no-cache"=',
+          ];
 
 
-                $response = curl_exec($ch);
+          $ch = curl_init();
 
-                curl_close($ch);
-                $ret = json_decode($response);
-                $log = array();
-                foreach ($ret as $key => $value) {
-                  if ($value->success != 1){
-                    $log  = $value->message;
-                  }
-                }
-                if($log){
-                  $message = $log;
-                  $model->remarks = $message;
-                  $model->status = 7;
-                  $model->save(false);
-                  $retpos = ['status'=>"OK",'message'=>$message];
-                  print_r(json_encode($retpos));
-                }else{
-                  $message = "successful";
-                  $model->remarks = $message;
-                  $model->status = 4;
-                  $model->save(false);
-                  $retpos = ['status'=>"OK",'message'=>$message];
-                  $hiring = Hiring::find()->where(['perner'=>$model->perner,'statushiring'=>4])->one();
-                  if($hiring){
-                    $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid'=>$model->userid,'recruitreqid'=>$hiring->recruitreqid])->one();
-                    $hiring->statushiring = 7;
-                    $recruitmentcandidate->status = 26;
-                    $hiring->save(false);
-                    $recruitmentcandidate->save(false);
-                  }
-                  print_r(json_encode($retpos));
-                }
+          curl_setopt($ch, CURLOPT_URL, $url);
+          curl_setopt($ch, CURLOPT_POST, 1);
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+          curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+          curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+          // var_dump('ok');die;
 
 
-              }else{
-                $message = $rfcresign->MESSAGE;
-                $model->remarks = $message;
-                $model->status = 7;
-                $model->save(false);
-                $retpos = ['status'=>"OK",'message'=>$message];
-                print_r(json_encode($retpos));
-              }
-            }else{
-              // $message = $rfcresign->MESSAGE;
-              $model->remarks = 'You have already locked payroll controll';
-              $model->status = 7;
-              $model->save(false);
-              $retpos = ['status'=>"NOK",'message'=>'lock'];
-              print_r(json_encode($retpos));
+          $response = curl_exec($ch);
+
+          curl_close($ch);
+          $ret = json_decode($response);
+          $log = array();
+          foreach ($ret as $key => $value) {
+            if ($value->success != 1){
+              $log  = $value->message;
             }
-
+          }
+          if($log){
+            $message = $log;
+            $model->remarks = $message;
+            $model->status = 7;
+            $model->save(false);
+            $retpos = ['status'=>"OK",'message'=>$message];
+            print_r(json_encode($retpos));
           }else{
-            // $message = $rfcresign->MESSAGE;
-            $model->remarks = 'data pekerja sudah tidak ada di sap profile 1 atau sudah di resign kan';
+            $message = "successful";
+            $model->remarks = $message;
             $model->status = 4;
             $model->save(false);
+            $retpos = ['status'=>"OK",'message'=>$message];
             $hiring = Hiring::find()->where(['perner'=>$model->perner,'statushiring'=>4])->one();
             if($hiring){
               $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid'=>$model->userid,'recruitreqid'=>$hiring->recruitreqid])->one();
@@ -400,11 +366,43 @@ class ChangecanceljoinController extends Controller
               $hiring->save(false);
               $recruitmentcandidate->save(false);
             }
-            $retpos = ['status'=>"NOK",'message'=>'data pekerja sudah tidak ada di sap profile 1 atau sudah di resign kan'];
             print_r(json_encode($retpos));
           }
 
 
+        }else{
+          $message = $rfccancel->MESSAGE;
+          $model->remarks = $message;
+          $model->status = 7;
+          $model->save(false);
+          $retpos = ['status'=>"OK",'message'=>$message];
+          print_r(json_encode($retpos));
+        }
+      }else{
+        // $message = $rfccancel->MESSAGE;
+        $model->remarks = 'You have already locked payroll controll';
+        $model->status = 7;
+        $model->save(false);
+        $retpos = ['status'=>"NOK",'message'=>'lock'];
+        print_r(json_encode($retpos));
+      }
+
+    }else{
+      // $message = $rfccancel->MESSAGE;
+      $model->remarks = 'data pekerja sudah tidak ada di sap profile 1 atau sudah di cancel kan';
+      $model->status = 4;
+      $model->save(false);
+      $hiring = Hiring::find()->where(['perner'=>$model->perner,'statushiring'=>4])->one();
+      if($hiring){
+        $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid'=>$model->userid,'recruitreqid'=>$hiring->recruitreqid])->one();
+        $hiring->statushiring = 7;
+        $recruitmentcandidate->status = 26;
+        $hiring->save(false);
+        $recruitmentcandidate->save(false);
+      }
+      $retpos = ['status'=>"NOK",'message'=>'data pekerja sudah tidak ada di sap profile 1 atau sudah di cancel kan'];
+      print_r(json_encode($retpos));
+    }
   }
 
   /**
@@ -423,7 +421,7 @@ class ChangecanceljoinController extends Controller
       // var_dump($wherecontent);die;
       $curl = new curl\Curl();
       $getdatapekerja = $curl->setPostParams([
-        'q' => $q,
+        'q' => $wherecontent,
         'token' => 'ish**2019',
       ])
       ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
@@ -440,12 +438,10 @@ class ChangecanceljoinController extends Controller
         }else{
           $outs['results'] = null;
         }
-
-
     }
     elseif ($id > 0) {
     //addbykaha
-    $curl = new curl\Curl();
+    // $curl = new curl\Curl();
       $getdatapekerjabyperner =  $curl->setPostParams([
         'perner' => $id,
         'token' => 'ish**2019',
@@ -543,14 +539,14 @@ class ChangecanceljoinController extends Controller
   public function actionAutosave() {
     $id = $_POST['id'];
     $approvedby = $_POST['approvedby'];
-    $resigndate = $_POST['resigndate'];
+    $canceldate = $_POST['canceldate'];
     $reason = $_POST['reason'];
     $userremarks = $_POST['userremarks'];
-    // var_dump($resigndate);die;
+    // var_dump($canceldate);die;
     if($id){
       $model = $this->findModel($id);
       $model->approvedby = $approvedby;
-      $model->resigndate = $resigndate;
+      $model->canceldate = $canceldate;
       $model->reason = $reason;
       $model->remarks = "draft";
       $model->userremarks = $userremarks;

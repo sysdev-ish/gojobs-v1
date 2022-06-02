@@ -3,14 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Chagerequestresign */
+/* @var $model app\models\Changecanceljoin */
 
-$this->title = 'Update Chagerequestresign: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Chagerequestresigns', 'url' => ['index']];
+$this->title = 'Update Changecanceljoin: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Changecanceljoin', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="chagerequestresign-update">
+<div class="changecanceljoin-update">
 
     <?= $this->render('_form', [
         'model' => $model,

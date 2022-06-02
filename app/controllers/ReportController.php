@@ -396,7 +396,7 @@ class ReportController extends Controller
       $parents = $_POST['depdrop_parents'];
       $subjobfamily = empty($parents[0]) ? null : $parents[0];
 
-      $model = Mastersubjobfamily::find()->asArray()->where(['jobfamily_id'=>$subjobfamily])->groupby(['id'])->all();
+      $model = Mastersubjobfamily::find()->asArray()->where(['jobfamily_id'=>$subjobfamily])->all();
       // var_dump($model);die;
       $selected  = null;
       if ($parents != null && count($model) > 0 ) {

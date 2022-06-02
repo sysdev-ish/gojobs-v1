@@ -90,7 +90,6 @@ class ChagerequestresignController extends Controller
     public function actionCreate($id = null)
     {
         $approvalname = ArrayHelper::map(User::find()->where('role = 20 OR role = 17')->asArray()->all(), 'id', 'name');
-        // $approvalname = ArrayHelper::map(User::find()->asArray()->all(), 'id', 'name');
         $reason = ArrayHelper::map(Masterresignreason::find()->asArray()->all(), 'id', 'reason');
         if($id){
           $model = $this->findModel($id);
@@ -189,7 +188,7 @@ class ChagerequestresignController extends Controller
               Have a great day !
               ';
               // var_dump($body);die;
-              $verification = Yii::$app->utils->sendmail($to,$subject,$body,12);
+              $verification = Yii::$app->utils->sendmailinternal($to,$subject,$body,12);
             }
             return $this->redirect(['index']);
         } else {
@@ -443,6 +442,7 @@ class ChagerequestresignController extends Controller
 
      }
      elseif ($id > 0) {
+
        $getdatapekerjabyperner =  $curl->setPostParams([
          'perner' => $id,
          'token' => 'ish**2019',

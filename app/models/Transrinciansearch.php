@@ -61,14 +61,17 @@ class Transrinciansearch extends Transrincian
         $query->andWhere('trans_rincian_rekrut.skema = 1');
         $query->andWhere('trans_rincian_rekrut.typejo <> 3');
 
-        $query->leftJoin('recruitment_dev.mappingjob', 'mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
-        $query->leftJoin('recruitment_dev.mastersubjobfamily', 'mastersubjobfamily.id = mappingjob.subjobfamilyid');
-        $query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = mastersubjobfamily.jobfamily_id');
-
-        // $query->leftJoin('recruitment_dev.recruitmentcandidate', 'recruitmentcandidate.recruitreqid = trans_rincian_rekrut.id');
-        // $query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = recruitmentcandidate.jobfamily');
-
+        //join server yg sama
         // $query->leftJoin('recruitment_dev.mappingjob', 'mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
+        // $query->leftJoin('recruitment_dev.mastersubjobfamily', 'mastersubjobfamily.id = mappingjob.subjobfamilyid');
+        // $query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = mastersubjobfamily.jobfamily_id');
+
+        //query join beda server
+        //Add by pwd 2022-05-31
+        $subQuery = 'SELECT kodejabatan 
+        FROM recruitment_dev.mappingjob
+        LEFT JOIN recruitment_dev.mastersubjobfamily ON mastersubjobfamily.id = mappingjob.subjobfamilyid
+        LEFT JOIN recruitment_dev.masterjobfamily ON masterjobfamily.id = mastersubjobfamily.jobfamily_id';
 
         //type jo
         // 1 = new rekrut, 2 = replace
@@ -160,8 +163,23 @@ class Transrinciansearch extends Transrincian
             // ->andFilterWhere(['like', 'trans_jo.jumlah', $this->statusrekrut])
             ->andFilterWhere(['or', ['like', 'trans_jo.n_project', $this->project], ['like', 'trans_jo.project', $this->project]]);
 
+        //query jika servernya sama
+        // if ($this->jobfamily) {
+        //     $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily]);
+        // }
+            
+        //query jika servernya beda
+        //Add by kaha 2022-06-11
         if ($this->jobfamily) {
-            $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily]);
+            $subQuery .= ' WHERE masterjobfamily.id = :id';
+            $subQuery = Yii::$app->db->createCommand($subQuery)->bindValue(':id', $this->jobfamily)->queryAll();
+            if ($subQuery) {
+                $arrValue = [];
+                foreach ($subQuery as $sq) {
+                    $arrValue[] = $sq['kodejabatan'];
+                }
+                if (count($arrValue) > 0) $query->andWhere('trans_rincian_rekrut.hire_jabatan_sap IN (' . implode(',', $arrValue) . ')', []);
+            }
         }
 
         return $dataProvider;

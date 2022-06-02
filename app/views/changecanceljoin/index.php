@@ -15,20 +15,20 @@ $this->title = 'Cancel Join';
 $this->params['breadcrumbs'][] = $this->title;
 Modal::begin([
     'header'=>'<h4 class="modal-title">View Change Cancel Join</h4>',
-    'id'=>'viewcresign-modal',
+    'id'=>'viewccanceljoin-modal',
     'size'=>'modal-lg'
 ]);
 
-echo "<div id='viewcresign-view'></div>";
+echo "<div id='viewccanceljoin-view'></div>";
 
 Modal::end();
 Modal::begin([
     'header'=>'<h4 class="modal-title">Approve Change Cancel Join</h4>',
-    'id'=>'approvecrresign-modal',
+    'id'=>'approvecrcanceljoin-modal',
     'size'=>'modal-lg'
 ]);
 
-echo "<div id='approvecrresign-view'></div>";
+echo "<div id='approvecrcanceljoin-view'></div>";
 Modal::end();
 if(Yii::$app->user->isGuest){
   $role = null;
@@ -76,9 +76,9 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
               'format' => 'html',
               'value'=>function ($data) {
                 return $data->fullname;
-            }
-
+              }
             ],
+
             [
               'label' => 'Cancel Date',
               'attribute' => 'canceldate',
@@ -86,9 +86,9 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
               'format' => 'html',
               'value'=>function ($data) {
                 return $data->canceldate;
-            }
-
+              }
             ],
+
             [
               'label' => 'Created By',
               'attribute' => 'createduser',
@@ -96,9 +96,9 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
               'value'=>function ($data) {
 
                 return ($data->createduser)?$data->createduser->name:"";
-            }
-
+              }
             ],
+
             [
 
               'label' => 'Approver',
@@ -107,12 +107,12 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
               'value'=>function ($data) {
 
                 return ($data->approveduser)?$data->approveduser->name:"";
-            }
-
+              }
             ],
+
             [
               'attribute' => 'status',
-              'contentOptions'=>['style'=>'width: 100px;'],
+              'contentOptions'=>['style'=>'min-width: 200px;'],
               'format' => 'html',
               'filter' => \kartik\select2\Select2::widget([
                 'model' => $searchModel,
@@ -121,38 +121,36 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
                 'options' => ['placeholder' => '--'],
                 'pluginOptions' => [
                     'allowClear' => true,
-                    'width' => '120px',
+                    // 'width' => '150px',
                     ],
               ]),
               'value'=>function ($data) {
                 // return $data->status;
                 if($data->status == 1){$label='label-danger';}elseif($data->status == 2 OR $data->status == 3){$label='label-warning';}elseif($data->status == 4){$label='label-success';}elseif($data->status == 8){$label='label-info';}else{$label='label-danger';}
                 return '<span class="label '.$label.'">'.$data->statusprocess->statusname.'</span>';
-            }
-
+              }
             ],
-            [
 
+            [
               'label' => 'Remarks',
               'attribute' => 'remarks',
               'format' => 'html',
               'value'=>function ($data) {
-
                 return "<b><i>".$data->remarks."</i></b><br>".$data->userremarks;
-            }
-
+              }
             ],
+
             ['class' => 'yii\grid\ActionColumn',
             'contentOptions'=>['style'=>'min-width: 180px;'],
             'template'=>'<div class="btn-group pull-right">'.$action.'</div>',
             'buttons'=>[
               'view' => function($url,$model,$key){
                   $btn = Html::button('<i class="fa fa-eye" style="font-size:12pt;"></i>',[
-                      'value'=>Yii::$app->urlManager->createUrl('changecanceljoin/view?id='.$model->id),
-                      'class'=>'btn btn-sm btn-default viewcresign-modal-click',
-                      'data-toggle'=>'tooltip',
-                      'data-placement'=>'bottom',
-                      'title'=>'Views Detail'
+                    'value'=>Yii::$app->urlManager->createUrl('changecanceljoin/view?id='.$model->id),
+                    'class'=>'btn btn-sm btn-default viewccanceljoin-modal-click',
+                    'data-toggle'=>'tooltip',
+                    'data-placement'=>'bottom',
+                    'title'=>'Views Detail'
                   ]);
                   return $btn;
               },
@@ -164,7 +162,7 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
                 }
                   $btn = Html::button('<i class="fa fa-gavel" style="font-size:12pt;"></i>',[
                       'value'=>Yii::$app->urlManager->createUrl('changecanceljoin/approve?id='.$model->id.'&userid='.$model->userid), //<---- here is where you define the action that handles the ajax request
-                      'class'=>'btn btn-sm btn-info approvecrresign-modal-click',
+                      'class'=>'btn btn-sm btn-info approvecrcanceljoin-modal-click',
                       'disabled' => $disabled,
                       'data-toggle'=>'tooltip',
                       'data-placement'=>'bottom',
@@ -196,8 +194,7 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
                           ]);
                 }else{
                   return Html::a('<i class="fa fa-trash" style="font-size:12pt;"></i>', ['#', 'id' => $model->id], [
-                              'class' => 'btn btn-sm btn-danger','data-toggle' => 'tooltip', 'title'=> 'delete', 'disabled' => $disabled,
-
+                    'class' => 'btn btn-sm btn-danger','data-toggle' => 'tooltip', 'title'=> 'delete', 'disabled' => $disabled,
                           ]);
                 }
               }

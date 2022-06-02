@@ -66,9 +66,14 @@ class Joborderreport extends Transrincian
 
     //Add by pwd
     //Add by pwd 2022-05-31
-    /*$query->leftJoin('recruitment_dev.mappingjob', 'recruitment_dev.mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
-      $query->leftJoin('recruitment_dev.mastersubjobfamily', 'recruitment_dev.mastersubjobfamily.id = mappingjob.subjobfamilyid');
-      $query->leftJoin('recruitment_dev.masterjobfamily', 'recruitment_dev.masterjobfamily.id = mastersubjobfamily.jobfamily_id');*/
+    // $query->leftJoin('recruitment_dev.mappingjob', 'recruitment_dev.mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
+    // $query->leftJoin('recruitment_dev.mastersubjobfamily', 'recruitment_dev.mastersubjobfamily.id = mappingjob.subjobfamilyid');
+    // $query->leftJoin('recruitment_dev.masterjobfamily', 'recruitment_dev.masterjobfamily.id = mastersubjobfamily.jobfamily_id');
+
+    //Add by pwd 2022-05-31
+    $subQuery = 'SELECT kodejabatan FROM recruitment_dev.mappingjob
+    LEFT JOIN recruitment_dev.mastersubjobfamily ON mastersubjobfamily.id = mappingjob.subjobfamilyid
+    LEFT JOIN recruitment_dev.masterjobfamily ON masterjobfamily.id = mastersubjobfamily.jobfamily_id';
 
     $dataProvider = new ActiveDataProvider([
       'query' => $query,
@@ -106,18 +111,12 @@ class Joborderreport extends Transrincian
 
     //Add by pwd -> pakai relasi buat filternya karena jika implode parsing data bakal habisin memory & kurang optimal
 
-    //Add by pwd 2022-05-31
-    $subQuery = 'SELECT kodejabatan 
-        FROM recruitment_dev.mappingjob
-        LEFT JOIN recruitment_dev.mastersubjobfamily ON mastersubjobfamily.id = mappingjob.subjobfamilyid
-        LEFT JOIN recruitment_dev.masterjobfamily ON masterjobfamily.id = mastersubjobfamily.jobfamily_id';
-
     if ($this->subjobfamily) {
       //$query->andWhere('mastersubjobfamily.id = :id', [':id' => $this->subjobfamily]);
 
       //Add by pwd 2022-05-31
       $subQuery .= ' WHERE mastersubjobfamily.id = :id';
-      $subQuery = Yii::$app->db->createCommand($subQuery)->bindParam(':id', $this->subjobfamily)->queryAll();
+      $subQuery = Yii::$app->db->createCommand($subQuery)->bindValue(':id', $this->subjobfamily)->queryAll();
       if ($subQuery) {
         $arrValue = [];
         foreach ($subQuery as $sq) {
@@ -130,7 +129,7 @@ class Joborderreport extends Transrincian
 
       //Add by pwd 2022-05-31
       $subQuery .= ' WHERE masterjobfamily.id = :id';
-      $subQuery = Yii::$app->db->createCommand($subQuery)->bindParam(':id', $this->jobfamily)->queryAll();
+      $subQuery = Yii::$app->db->createCommand($subQuery)->bindValue(':id', $this->jobfamily)->queryAll();
       if ($subQuery) {
         $arrValue = [];
         foreach ($subQuery as $sq) {

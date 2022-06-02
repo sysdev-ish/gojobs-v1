@@ -1022,6 +1022,24 @@ $(function () {
           .append(html);
       });
   });
+  $('.viewccanceljoin-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#viewccanceljoin-modal')
+          .modal('show')
+          .find('#viewccanceljoin-view')
+          .empty()
+          .append(html);
+      });
+  });
   $('.viewcrjo-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
@@ -1090,6 +1108,24 @@ $(function () {
         $('#approvecrresign-modal')
           .modal('show')
           .find('#approvecrresign-view')
+          .empty()
+          .append(html);
+      });
+  });
+  $('.approvecrcanceljoin-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#approvecrcanceljoin-modal')
+          .modal('show')
+          .find('#approvecrcanceljoin-view')
           .empty()
           .append(html);
       });

@@ -71,13 +71,18 @@ class Hiringreport extends Hiring
 
     //Add by pwd
     //Add by pwd 2022-05-31
-    /*$query->leftJoin('ish_catalog_baru.trans_rincian_rekrut', 'trans_rincian_rekrut.id = hiring.recruitreqid');
-        $query->leftJoin('mappingjob', 'mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
-        $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.id = mappingjob.subjobfamilyid');
-        $query->leftJoin('masterjobfamily', 'masterjobfamily.id = mastersubjobfamily.jobfamily_id');*/
+    // $query->leftJoin('ish_catalog_baru.trans_rincian_rekrut', 'trans_rincian_rekrut.id = hiring.recruitreqid');
+    // $query->leftJoin('mappingjob', 'mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
+    // $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.id = mappingjob.subjobfamilyid');
+    // $query->leftJoin('masterjobfamily', 'masterjobfamily.id = mastersubjobfamily.jobfamily_id');
+
+    //Add by pwd 2022-05-31
+    $subQuery = 'SELECT kodejabatan 
+        FROM recruitment_dev.mappingjob
+        LEFT JOIN recruitment_dev.mastersubjobfamily ON mastersubjobfamily.id = mappingjob.subjobfamilyid
+        LEFT JOIN recruitment_dev.masterjobfamily ON masterjobfamily.id = mastersubjobfamily.jobfamily_id';
 
     // add conditions that should always apply here
-
     $dataProvider = new ActiveDataProvider([
       'query' => $query,
       'sort' => ['defaultOrder' => ['id' => SORT_DESC]]
@@ -153,12 +158,6 @@ class Hiringreport extends Hiring
       }
       $query->andWhere('perner IN (' . $getPerner . ')');
     }
-
-    //Add by pwd 2022-05-31
-    $subQuery = 'SELECT kodejabatan 
-        FROM recruitment_dev.mappingjob
-        LEFT JOIN recruitment_dev.mastersubjobfamily ON mastersubjobfamily.id = mappingjob.subjobfamilyid
-        LEFT JOIN recruitment_dev.masterjobfamily ON masterjobfamily.id = mastersubjobfamily.jobfamily_id';
 
     //Add by pwd -> pakai relasi buat filternya karena jika implode parsing data bakal habisin memory & kurang optimal
     if ($this->subjobfamily) {
@@ -350,6 +349,56 @@ class Hiringreport extends Hiring
       $transRincian->andWhere([
         'persa_sap' => $this->personalarea,
       ]);
+    }
+    $transRincianquery = $transRincian->all();
+    if ($transRincianquery) {
+      $transRincianIds = array();
+      foreach ($transRincianquery as $tr) {
+        $transRincianIds[] = $tr->id;
+      }
+      $ret = $transRincianIds;
+    }
+    return $ret;
+  }
+
+  protected function byregionarea()
+  {
+    $ret = null;
+    $mappingregionarea = Mappingregionarea::find();
+
+    if ($this->region <> "0") {
+      // var_dump($this->region);die;
+
+      $mappingregionarea->andWhere([
+        'areaishid' => $this->areaish,
+        'regionid' => $this->region,
+      ]);
+    } else {
+
+      $mappingregionarea->andWhere([
+        'areaishid' => $this->areaish,
+      ]);
+    }
+    $mappingregionareaquery = $mappingregionarea->all();
+    $resultareaid = null;
+
+    if ($mappingregionareaquery) {
+      $areaid = array();
+      foreach ($mappingregionareaquery as $value) {
+        $areaid[] = $value->areaid;
+      }
+
+      $resultareaid = $areaid;
+    }
+    $transRincian = Transrincian::find();
+    if ($resultareaid) {
+      $getareasbyregionarea = '"' . implode('","', $resultareaid) . '"';
+      // var_dump($getareasbyregionarea);die;
+
+      $transRincian = Transrincian::find();
+      $transRincian->andWhere('trans_rincian_rekrut.area_sap IN (' . $getareasbyregionarea . ')');
+    } else {
+      $getareasbyregionarea = 0;
     }
     $transRincianquery = $transRincian->all();
     if ($transRincianquery) {

@@ -9,7 +9,7 @@ use kartik\date\DatePicker;
 /* @var $model app\models\Changecanceljoin */
 /* @var $form yii\widgets\ActiveForm */
 $datakaryawan = empty($model->perner) ? '' : $model->perner;
-$model->resigndate = ($model->resigndate == "0000-00-00")? null : $model->resigndate;
+$model->canceldate = ($model->canceldate == "0000-00-00")? null : $model->canceldate;
 ?>
 <?php $form = ActiveForm::begin(); ?>
 <div class="row">
@@ -63,10 +63,10 @@ $model->resigndate = ($model->resigndate == "0000-00-00")? null : $model->resign
           ],
         ])->label('Approve By');
         ?>
-        <?= $form->field($model, 'resigndate')->widget(
+        <?= $form->field($model, 'canceldate')->widget(
           DatePicker::className(), [
             'type' => DatePicker::TYPE_COMPONENT_APPEND,
-            'options' => ['placeholder' => 'Date', 'id'=>'resigndate', 'onChange'=>"autosave();"],
+            'options' => ['placeholder' => 'Date', 'id'=>'canceldate', 'onChange'=>"autosave();"],
             'pluginOptions' => [
               'autoclose' => true,
               'format' => 'yyyy-mm-dd',
@@ -134,7 +134,7 @@ $model->resigndate = ($model->resigndate == "0000-00-00")? null : $model->resign
                     <td width="30%" id="jabatan">-</td>
                   </tr>
                   <tr>
-                    <td width="12%" style="text-align:right;"><b>level</b></td>
+                    <td width="12%" style="text-align:right;"><b>Level</b></td>
                     <td width="30%" id="level">-</td>
                   </tr>
                   <tr>
@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 function autosave() {
   var approvedbyid = $('#approvedby').val();
-  var resigndateid = $('#resigndate').val();
+  var canceldateid = $('#canceldate').val();
   var reasonid = $('#reason').val();
   var userremarksval = $('#userremarks').val();
 
@@ -177,7 +177,7 @@ function autosave() {
     cache: false,
     data : {
       approvedby : approvedbyid,
-      resigndate : resigndateid,
+      canceldate : canceldateid,
       reason : reasonid,
       userremarks : userremarksval,
       id : <?php echo $model->id; ?>,

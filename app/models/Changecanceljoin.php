@@ -39,9 +39,11 @@ class Changecanceljoin extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['userid', 'createdby', 'updatedby', 'perner', 'reason', 'approvedby', 'status'], 'integer'],
-            [['createtime', 'updatetime', 'canceldate', 'approvedtime'], 'safe'],
-            [['reason', 'canceldate'], 'required'],
+            [['userid', 'createdby', 'updatedby', 'perner', 'reason', 'approvedby', 'status', 'checkperner'], 'integer'],
+            [['status'], 'required', 'on' => "approve"],
+            [['createtime', 'updatetime', 'approvedtime',  'canceldate'], 'safe'],
+            [['reason', 'canceldate', 'approvedby', 'perner'], 'required', 'on' => 'createupdate'],
+            [['checkperner'], 'required', 'message' => 'this perner has been on processed resign', 'on' => 'createupdate'],
             [['fullname', 'remarks', 'userremarks'], 'string', 'max' => 445],
         ];
     }
