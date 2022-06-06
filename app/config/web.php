@@ -16,16 +16,16 @@ $config = [
     'language' => 'id',
 
     'on beforeRequest' => function($event) {
-		Yii::$app->language = Yii::$app->session->get('language', 'id');	
-		if (!Yii::$app->user->isGuest){
-			$session = Yii::$app->session;
-			if ($session->isActive){
-			  $checktoken = Userdata::find()->where(['id'=>Yii::$app->user->identity->id, 'access_token'=>null])->andWhere('role <> 2')->one();
-			  if($checktoken){
-				$session->destroy();
-			  }
-			}
-		}
+        Yii::$app->language = Yii::$app->session->get('language', 'id');	
+        if (!Yii::$app->user->isGuest){
+            $session = Yii::$app->session;
+            if ($session->isActive){
+                $checktoken = Userdata::find()->where(['id'=>Yii::$app->user->identity->id, 'access_token'=>null])->andWhere('role <> 2')->one();
+                if($checktoken){
+                $session->destroy();
+                }
+            }
+        }
     },
 
     'aliases' => [
@@ -33,7 +33,7 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
-      'user' => [
+        'user' => [
 
             'identityClass' => 'app\models\User',
             // 'enableAutoLogin' => false,
@@ -45,7 +45,7 @@ $config = [
             'class' => 'yii\web\Session',
             'timeout' => 3600,
         ],
-      'pdf' => [
+        'pdf' => [
             'class' => Pdf::classname(),
             'format' => Pdf::FORMAT_A4,
             'orientation' => Pdf::ORIENT_PORTRAIT,
@@ -112,14 +112,14 @@ $config = [
         'db' => $db,
         'dbjo' => $dbjo,
         'urlManager' => [
-          'enablePrettyUrl' => true,
-          'showScriptName' => false,
-          'rules' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
             '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
             '<controller:\w+>/<action:\w+>/<id:[0-9]+>'=>'<controller>/<action>',
             '<controller:\w+>/<action:\w+>/<slug:[a-zA-Z0-9_\-]+>'=>'<controller>/<action>',
             'class' => 'app\components\SearchUrlRule',
-          ],
+            ],
         ],
 
         'i18n' => [
@@ -131,7 +131,7 @@ $config = [
                     //'sourceLanguage' => 'en-US',
                     'fileMap' => [
                         'app' => 'app.php',
-						'skill' => 'skill.php',
+                        'skill' => 'skill.php',
                         'app/error' => 'error.php',
                     ],
                 ],
@@ -148,9 +148,9 @@ $config = [
         // 'downloadAction' => 'gridview/export/download',
         // 'i18n' => []
         ],
-];
+    ];
 
-if (YII_ENV_DEV) {
+    if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [

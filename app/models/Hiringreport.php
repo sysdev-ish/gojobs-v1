@@ -8,7 +8,6 @@ use yii\data\ActiveDataProvider;
 use app\models\Hiring;
 use linslin\yii2\curl;
 
-
 /**
  * Hiringsearch represents the model behind the search form of `app\models\Hiring`.
  */
@@ -62,6 +61,7 @@ class Hiringreport extends Hiring
    *
    * @return ActiveDataProvider
    */
+  
   public function search($params)
   {
     $query = Hiring::find();
@@ -77,8 +77,7 @@ class Hiringreport extends Hiring
     // $query->leftJoin('masterjobfamily', 'masterjobfamily.id = mastersubjobfamily.jobfamily_id');
 
     //Add by pwd 2022-05-31
-    $subQuery = 'SELECT kodejabatan 
-        FROM recruitment_dev.mappingjob
+    $subQuery = 'SELECT kodejabatan FROM recruitment_dev.mappingjob
         LEFT JOIN recruitment_dev.mastersubjobfamily ON mastersubjobfamily.id = mappingjob.subjobfamilyid
         LEFT JOIN recruitment_dev.masterjobfamily ON masterjobfamily.id = mastersubjobfamily.jobfamily_id';
 
@@ -87,7 +86,6 @@ class Hiringreport extends Hiring
       'query' => $query,
       'sort' => ['defaultOrder' => ['id' => SORT_DESC]]
     ]);
-
 
     $this->load($params);
     // $query->where('statushiring = 7');
@@ -161,18 +159,48 @@ class Hiringreport extends Hiring
 
     //Add by pwd -> pakai relasi buat filternya karena jika implode parsing data bakal habisin memory & kurang optimal
     if ($this->subjobfamily) {
-      //$query->andWhere('mastersubjobfamily.id = :id', [':id' => $this->subjobfamily]);
+      //server sama
+      // $query->andWhere('mastersubjobfamily.id = :id', [':id' => $this->subjobfamily]);
 
+      //server beda
       //Add by pwd 2022-05-31
       $subQuery .= ' WHERE mastersubjobfamily.id = :id';
       $subQuery = Yii::$app->db->createCommand($subQuery)->bindValue(':id', $this->subjobfamily)->queryAll();
       if ($subQuery) {
-
         $arrValue = [];
         foreach ($subQuery as $sq) {
           $arrValue[] = $sq['kodejabatan'];
         }
+        // var_dump($arrValue);die;
+        if (count($arrValue) > 0) {
+          $sQueryJo = 'SELECT id FROM trans_rincian_rekrut WHERE hire_jabatan_sap IN (' . implode(',', $arrValue) . ')';
+          $getTrr = Yii::$app->dbjo->createCommand($sQueryJo)->queryAll();
+          if ($getTrr) {
+            $arrValueJo = [];
+            foreach ($getTrr as $gttr) {
+              $arrValueJo[] = $gttr['id'];
+            }
+            if (count($arrValueJo) > 0) $query->andWhere('hiring.recruitreqid IN (' . implode(',', $arrValueJo) . ')', []);
+          }
+        } 
+      }
+      else {
+        $query->andWhere('hiring.recruitreqid IN (null)');
+      }
+    } elseif ($this->jobfamily) {
+      //server sama
+      // $query->andWhere('masterjobfamily.id = :id', [':id' => $this->jobfamily]);
 
+      //server beda
+      // Add by pwd 2022-05-31
+      $subQuery .= ' WHERE masterjobfamily.id = :id';
+      $subQuery = Yii::$app->db->createCommand($subQuery)->bindValue(':id', $this->jobfamily)->queryAll();
+      if ($subQuery) {
+        $arrValue = [];
+        foreach ($subQuery as $sq) {
+          $arrValue[] = $sq['kodejabatan'];
+        }
+        //kalo arrValue null gabisa return kosong -> return data semuanya
         if (count($arrValue) > 0) {
           $sQueryJo = 'SELECT id FROM trans_rincian_rekrut WHERE hire_jabatan_sap IN (' . implode(',', $arrValue) . ')';
           $getTrr = Yii::$app->dbjo->createCommand($sQueryJo)->queryAll();
@@ -185,30 +213,8 @@ class Hiringreport extends Hiring
           }
         }
       }
-    } elseif ($this->jobfamily) {
-      //$query->andWhere('masterjobfamily.id = :id', [':id' => $this->jobfamily]);
-
-      //Add by pwd 2022-05-31
-      $subQuery .= ' WHERE masterjobfamily.id = :id';
-      $subQuery = Yii::$app->db->createCommand($subQuery)->bindValue(':id', $this->jobfamily)->queryAll();
-      if ($subQuery) {
-
-        $arrValue = [];
-        foreach ($subQuery as $sq) {
-          $arrValue[] = $sq['kodejabatan'];
-        }
-
-        if (count($arrValue) > 0) {
-          $sQueryJo = 'SELECT id FROM trans_rincian_rekrut WHERE hire_jabatan_sap IN (' . implode(',', $arrValue) . ')';
-          $getTrr = Yii::$app->dbjo->createCommand($sQueryJo)->queryAll();
-          if ($getTrr) {
-            $arrValueJo = [];
-            foreach ($getTrr as $gttr) {
-              $arrValueJo[] = $gttr['id'];
-            }
-            if (count($arrValueJo) > 0) $query->andWhere('hiring.recruitreqid IN (' . implode(',', $arrValueJo) . ')', []);
-          }
-        }
+      else {
+        $query->andWhere('hiring.recruitreqid IN (null)');
       }
     }
 

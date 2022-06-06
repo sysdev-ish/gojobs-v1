@@ -7,8 +7,6 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Hiring;
 use app\models\Mappingregionarea;
-use app\models\Masterjobfamily;
-use app\models\Mastersubjobfamily;
 
 /**
  * Hiringsearch represents the model behind the search form of `app\models\Hiring`.
@@ -71,9 +69,10 @@ class Joborderreport extends Transrincian
     // $query->leftJoin('recruitment_dev.masterjobfamily', 'recruitment_dev.masterjobfamily.id = mastersubjobfamily.jobfamily_id');
 
     //Add by pwd 2022-05-31
-    $subQuery = 'SELECT kodejabatan FROM recruitment_dev.mappingjob
-    LEFT JOIN recruitment_dev.mastersubjobfamily ON mastersubjobfamily.id = mappingjob.subjobfamilyid
-    LEFT JOIN recruitment_dev.masterjobfamily ON masterjobfamily.id = mastersubjobfamily.jobfamily_id';
+    $subQuery = 'SELECT kodejabatan 
+        FROM recruitment_dev.mappingjob
+        LEFT JOIN recruitment_dev.mastersubjobfamily ON mastersubjobfamily.id = mappingjob.subjobfamilyid
+        LEFT JOIN recruitment_dev.masterjobfamily ON masterjobfamily.id = mastersubjobfamily.jobfamily_id';
 
     $dataProvider = new ActiveDataProvider([
       'query' => $query,
@@ -112,21 +111,32 @@ class Joborderreport extends Transrincian
     //Add by pwd -> pakai relasi buat filternya karena jika implode parsing data bakal habisin memory & kurang optimal
 
     if ($this->subjobfamily) {
-      //$query->andWhere('mastersubjobfamily.id = :id', [':id' => $this->subjobfamily]);
+      //server sama
+      // $query->andWhere('mastersubjobfamily.id = :id', [':id' => $this->subjobfamily]);
 
+      //server beda
       //Add by pwd 2022-05-31
       $subQuery .= ' WHERE mastersubjobfamily.id = :id';
       $subQuery = Yii::$app->db->createCommand($subQuery)->bindValue(':id', $this->subjobfamily)->queryAll();
+      // var_dump($subQuery);die;
       if ($subQuery) {
         $arrValue = [];
+        //kalo arrValue null gabisa return kosong -> return data semuanya
         foreach ($subQuery as $sq) {
           $arrValue[] = $sq['kodejabatan'];
         }
-        if (count($arrValue) > 0) $query->andWhere('trans_rincian_rekrut.hire_jabatan_sap IN (' . implode(',', $arrValue) . ')', []);
+        if (count($arrValue) > 0) {
+          $query->andWhere('trans_rincian_rekrut.hire_jabatan_sap IN (' . implode(',', $arrValue) . ')', []);
+        }
+      }
+      else {
+        $query->andWhere('trans_rincian_rekrut.hire_jabatan_sap IN (null)');
       }
     } elseif ($this->jobfamily) {
-      //$query->andWhere('masterjobfamily.id = :id', [':id' => $this->jobfamily]);
-
+      //server sama
+      // $query->andWhere('masterjobfamily.id = :id', [':id' => $this->jobfamily]);
+      
+      //server beda
       //Add by pwd 2022-05-31
       $subQuery .= ' WHERE masterjobfamily.id = :id';
       $subQuery = Yii::$app->db->createCommand($subQuery)->bindValue(':id', $this->jobfamily)->queryAll();
@@ -136,6 +146,8 @@ class Joborderreport extends Transrincian
           $arrValue[] = $sq['kodejabatan'];
         }
         if (count($arrValue) > 0) $query->andWhere('trans_rincian_rekrut.hire_jabatan_sap IN (' . implode(',', $arrValue) . ')', []);
+      } else {
+        $query->andWhere('trans_rincian_rekrut.hire_jabatan_sap IN (null)');
       }
     }
 

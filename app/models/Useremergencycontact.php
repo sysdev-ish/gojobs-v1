@@ -61,7 +61,7 @@ class Useremergencycontact extends \yii\db\ActiveRecord
             'relationship' => 'Relationship',
             'cityid' => 'City',
             'provinceid' => 'Province',
-            'postalcode' => 'Postalcode',
+            'postalcode' => 'Postal Code',
         ];
     }
 

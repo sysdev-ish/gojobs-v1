@@ -57,18 +57,18 @@ use Yii;
  */
 class Transrincian extends \yii\db\ActiveRecord
 {
-  public $projectrekrut;
-  /**
-   * @return \yii\db\Connection the database connection used by this AR class.
-   */
-  public static function getDb()
-  {
-      return Yii::$app->get('dbjo');
-  }
-  public static function getDb2()
-  {
-      return Yii::$app->get('db');
-  }
+    public $projectrekrut;
+    /**
+     * @return \yii\db\Connection the database connection used by this AR class.
+     */
+    public static function getDb()
+    {
+        return Yii::$app->get('dbjo');
+    }
+    public static function getDb2()
+    {
+        return Yii::$app->get('db');
+    }
 
     /**
      * {@inheritdoc}
