@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
       <div class="col-md-12">
         <div class="col-md-12">
           <?= $form->field($model, 'role')->textInput(['maxlength' => true]) ?>
-          <?= $form->field($model, 'countcheck')->hiddenInput(['maxlength' => true,'id'=>'countcheck'])->label(false) ?>
+          <?= $form->field($model, 'countcheck')->hiddenInput(['maxlength' => true, 'id' => 'countcheck'])->label(false) ?>
         </div>
       </div>
 
@@ -76,7 +76,7 @@ use yii\widgets\ActiveForm;
             <!-- /.comment-text -->
 
           </div>
-          <div class="col-md-4 no-padding">
+          <div class="col-md-4">
             <div class="box-footer box-comments" style="margin-bottom:5px;">
 
               <span class="username">
@@ -106,7 +106,7 @@ use yii\widgets\ActiveForm;
               <?= $form->field($model, 'm9')->checkbox(); ?>
             </div>
           </div>
-          <div class="col-md-4 no-padding">
+          <div class="col-md-4">
             <div class="box-footer box-comments" style="margin-bottom:5px;">
 
               <span class="username">
@@ -121,7 +121,7 @@ use yii\widgets\ActiveForm;
               <?= $form->field($model, 'm12')->checkbox(); ?>
             </div>
           </div>
-          <div class="col-md-3 no-padding">
+          <div class="col-md-3">
             <div class="box-footer box-comments" style="margin-bottom:5px;">
 
               <span class="username">
@@ -149,7 +149,7 @@ use yii\widgets\ActiveForm;
               <?= $form->field($model, 'm41')->checkbox(); ?>
             </div>
           </div>
-          <div class="col-md-3 no-padding">
+          <div class="col-md-3">
             <div class="box-footer box-comments" style="margin-bottom:5px;">
 
               <span class="username">
@@ -187,7 +187,7 @@ use yii\widgets\ActiveForm;
             <!-- /.comment-text -->
 
           </div>
-          <div class="col-md-2 no-padding">
+          <div class="col-md-2">
             <div class="box-footer box-comments" style="margin-bottom:5px;">
 
               <span class="username">
@@ -250,7 +250,7 @@ use yii\widgets\ActiveForm;
               <?= $form->field($model, 'm26')->checkbox(); ?>
             </div>
           </div>
-          <div class="col-md-2 no-padding">
+          <div class="col-md-2">
             <div class="box-footer box-comments" style="margin-bottom:5px;">
 
               <span class="username">
@@ -268,12 +268,10 @@ use yii\widgets\ActiveForm;
           </div>
           <div class="col-md-2">
             <div class="box-footer box-comments" style="margin-bottom:5px;">
-
               <span class="username">
                 Master PIC
               </span><!-- /.username -->
               <!-- /.comment-text -->
-
             </div>
             <div class="col-md-12">
               <?= $form->field($model, 'm31')->checkbox(); ?>
@@ -284,15 +282,7 @@ use yii\widgets\ActiveForm;
           </div>
         </div>
         <div class="col-md-12">
-          <div class="box-footer box-comments" style="margin-bottom:5px; margin-top:20px; background-color:#89a0c6;">
-
-            <span class="username">
-              Master Data
-            </span><!-- /.username -->
-            <!-- /.comment-text -->
-
-          </div>
-          <div class="col-md-2 no-padding">
+          <div class="col-md-2">
             <div class="box-footer box-comments" style="margin-bottom:5px;">
 
               <span class="username">
@@ -305,7 +295,66 @@ use yii\widgets\ActiveForm;
               <?= $form->field($model, 'm51')->checkbox(); ?>
             </div>
           </div>
+          <div class="col-md-2">
+            <div class="box-footer box-comments" style="margin-bottom:5px;">
+              <span class="username">
+                Master Industry
+              </span><!-- /.username -->
+              <!-- /.comment-text -->
+            </div>
 
+            <div class="col-md-12">
+              <?= $form->field($model, 'm72')->checkbox(); ?>
+              <?= $form->field($model, 'm73')->checkbox(); ?>
+              <?= $form->field($model, 'm74')->checkbox(); ?>
+              <?= $form->field($model, 'm75')->checkbox(); ?>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="box-footer box-comments" style="margin-bottom:5px;">
+              <span class="username">
+                Master Job Family
+              </span><!-- /.username -->
+              <!-- /.comment-text -->
+            </div>
+
+            <div class="col-md-12">
+              <?= $form->field($model, 'm76')->checkbox(); ?>
+              <?= $form->field($model, 'm77')->checkbox(); ?>
+              <?= $form->field($model, 'm78')->checkbox(); ?>
+              <?= $form->field($model, 'm79')->checkbox(); ?>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="box-footer box-comments" style="margin-bottom:5px;">
+              <span class="username">
+                Master Sub Job Family
+              </span><!-- /.username -->
+              <!-- /.comment-text -->
+            </div>
+
+            <div class="col-md-12">
+              <?= $form->field($model, 'm80')->checkbox(); ?>
+              <?= $form->field($model, 'm81')->checkbox(); ?>
+              <?= $form->field($model, 'm82')->checkbox(); ?>
+              <?= $form->field($model, 'm83')->checkbox(); ?>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="box-footer box-comments" style="margin-bottom:5px;">
+              <span class="username">
+                Mapping Job Position
+              </span><!-- /.username -->
+              <!-- /.comment-text -->
+            </div>
+
+            <div class="col-md-12">
+              <?= $form->field($model, 'm84')->checkbox(); ?>
+              <?= $form->field($model, 'm85')->checkbox(); ?>
+              <?= $form->field($model, 'm86')->checkbox(); ?>
+              <?= $form->field($model, 'm87')->checkbox(); ?>
+            </div>
+          </div>
         </div>
         <div class="col-md-12">
           <div class="box-footer box-comments" style="margin-bottom:5px; margin-top:20px; background-color:#89a0c6;">

@@ -1928,8 +1928,11 @@ pre code {
   }
 }
 @media (min-width: 992px) {
-  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-11, .col-md-12 {
     float: left;
+  }
+  .col-md-10 {
+    float: right;
   }
   .col-md-12 {
     width: 100%;
@@ -3015,7 +3018,7 @@ select[multiple].input-lg {
           user-select: none;
   background-image: none;
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 .btn:focus,
 .btn:active:focus,
@@ -4349,7 +4352,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 @media (min-width: 768px) {
   .navbar-nav {
-    float: left;
+    /* float: left; */
+    float: right;
     margin: 0;
   }
   .navbar-nav > li {

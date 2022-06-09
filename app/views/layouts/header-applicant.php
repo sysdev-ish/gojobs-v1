@@ -51,9 +51,10 @@ Modal::end();
   <div class="container">
     <div class="row">
       <aside class="col-md-2"> <a href="#" class="careerfy-logo"><img style="max-width: 100%;"
-            src="<?php echo $baseUrl; ?>/images/logo-gojobs-colour.png" alt=""></a> </aside>
+            src="<?php echo $baseUrl; ?>/images/logo-gojobs-colour.png" alt=""></a>
+      </aside>
       <!--<aside class="col-md-6">-->
-      <aside class="col-md-9 col-md-push-3">
+      <aside class="col-md-10">
         <nav class="careerfy-navigation">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -120,8 +121,8 @@ Modal::end();
                   </li>
                   <?php else : ?>
                   <li><?= Html::a(
-                            // '<i class="careerfy-icon careerfy-logout"></i> Logout (' . (Yii::$app->user->isGuest ? 'Guest' : Yii::$app->user->identity->username) . ')',
-                            '<i class="careerfy-icon careerfy-logout"></i> Logout',
+                            '<i class="careerfy-icon careerfy-logout"></i> Logout (' . (Yii::$app->user->isGuest ? 'Guest' : Yii::$app->user->identity->username) . ')',
+                            // '<i class="careerfy-icon careerfy-logout"></i> Logout',
                             ['/site/logout'],
                             ['data-method' => 'post', 'class' => 'btn btn-sm btn-primary']
                           ) ?></li>

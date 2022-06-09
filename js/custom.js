@@ -101,6 +101,24 @@ $(function () {
     });
 
   });
+  $('.viewuserrole-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+      defaultApply: true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#viewuserrole-modal')
+        .modal('show')
+        .find('#userroleview')
+        .empty()
+        .append(html);
+    });
+  });
   $('.viewuserlogin-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',

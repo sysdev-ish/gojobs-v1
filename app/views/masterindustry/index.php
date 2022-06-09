@@ -46,11 +46,11 @@ if (Yii::$app->user->isGuest) {
     // $userid = Yii::$app->user->identity->id;
     $role = Yii::$app->user->identity->role;
 }
-if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($role, 'm26')) {
+if (Yii::$app->utils->permission($role, 'm74') && Yii::$app->utils->permission($role, 'm75')) {
     $action = '{view}{update}{delete}';
-} elseif (Yii::$app->utils->permission($role, 'm25')) {
+} elseif (Yii::$app->utils->permission($role, 'm74')) {
     $action = '{view}{update}';
-} elseif (Yii::$app->utils->permission($role, 'm26')) {
+} elseif (Yii::$app->utils->permission($role, 'm75')) {
     $action = '{view}{delete}';
 } else {
     $action = '{view}';
@@ -58,15 +58,17 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
 
 ?>
 <div class="masterindustry-index box box-default">
-    <div class="box-header with-border">
-        <?php echo Html::button('Create', [
-            'value' => Yii::$app->urlManager->createUrl('masterindustry/create'), //<---- here is where you define the action that handles the ajax request
-            'class' => 'btn btn-md btn-success createmasterindustry-modal-click',
-            'data-toggle' => 'tooltip',
-            'data-placement' => 'bottom',
-            'title' => 'Create New Industry'
-        ]); ?>
-    </div>
+    <?php if (Yii::$app->utils->permission($role, 'm73')) : ?>
+        <div class="box-header with-border">
+            <?php echo Html::button('Create', [
+                'value' => Yii::$app->urlManager->createUrl('masterindustry/create'), //<---- here is where you define the action that handles the ajax request
+                'class' => 'btn btn-md btn-success createmasterindustry-modal-click',
+                'data-toggle' => 'tooltip',
+                'data-placement' => 'bottom',
+                'title' => 'Create New Industry'
+            ]); ?>
+        </div>
+    <?php endif; ?>
     <div class="box-body table-responsive">
         <?php // echo $this->render('_search', ['model' => $searchModel]); 
         ?>

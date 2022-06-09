@@ -52,8 +52,8 @@ if(Yii::$app->utils->permission($role,'m21') && Yii::$app->utils->permission($ro
                 'buttons'=>[
                   'view' => function($url,$model,$key){
                       $btn = Html::button('<i class="fa fa-eye" style="font-size:12pt;"></i>',[
-                          'value'=>Yii::$app->urlManager->createUrl('userlogin/view?id='.$model->id), //<---- here is where you define the action that handles the ajax request
-                          'class'=>'btn btn-sm btn-info viewuserlogin-modal-click',
+                          'value'=>Yii::$app->urlManager->createUrl('userrole/view?id='.$model->id), //<---- here is where you define the action that handles the ajax request
+                          'class'=>'btn btn-sm btn-info viewuserrole-modal-click',
                           'data-toggle'=>'tooltip',
                           'data-placement'=>'bottom',
                           'title'=>'Views Detail'
@@ -63,8 +63,19 @@ if(Yii::$app->utils->permission($role,'m21') && Yii::$app->utils->permission($ro
                   'update' => function ($url, $model) {
                     return Html::a('<i class="fa fa-pencil" style="font-size:12pt;"></i>', ['update', 'id'=>$model->id], ['class' => 'btn btn-sm btn-default','data-toggle' => 'tooltip', 'title'=> 'Update' ]);
                   },
+                  // 'delete' => function ($url, $model) {
+                  //   return Html::a('<i class="fa fa-trash" style="font-size:12pt;"></i>', ['#', 'id'=>$model->id], ['class' => 'btn btn-sm btn-danger','data-toggle' => 'tooltip', 'title'=> 'delete' ]);
+                  // }
                   'delete' => function ($url, $model) {
-                    return Html::a('<i class="fa fa-trash" style="font-size:12pt;"></i>', ['#', 'id'=>$model->id], ['class' => 'btn btn-sm btn-danger','data-toggle' => 'tooltip', 'title'=> 'delete' ]);
+                    return Html::a('<i class="fa fa-trash" style="font-size:12pt;"></i>', ['delete', 'id' => $model->id], [
+                      'class' => 'btn btn-sm btn-danger',
+                      'data' => [
+                        'confirm' => 'Are you sure you want to delete this item?',
+                        'method' => 'post',
+                      ],
+                      'data-toggle' => 'tooltip',
+                      'title' => 'delete'
+                    ]);
                   }
 
 

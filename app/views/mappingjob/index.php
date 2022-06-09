@@ -62,15 +62,17 @@ if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($
 }
 ?>
 <div class="mappingjob-index box box-default">
-    <div class="box-header with-border">
-        <?php echo Html::button('Create', [
-            'value' => Yii::$app->urlManager->createUrl('mappingjob/create'), //<---- here is where you define the action that handles the ajax request
-            'class' => 'btn btn-md btn-success createmappingjob-modal-click',
-            'data-toggle' => 'tooltip',
-            'data-placement' => 'bottom',
-            'title' => 'Create New Job Position'
-        ]); ?>
-    </div>
+    <?php if (Yii::$app->utils->permission($role, 'm85')) : ?>
+        <div class="box-header with-border">
+            <?php echo Html::button('Create', [
+                'value' => Yii::$app->urlManager->createUrl('mappingjob/create'), //<---- here is where you define the action that handles the ajax request
+                'class' => 'btn btn-md btn-success createmappingjob-modal-click',
+                'data-toggle' => 'tooltip',
+                'data-placement' => 'bottom',
+                'title' => 'Create New Job Position'
+            ]); ?>
+        </div>
+    <?php endif; ?>
     <div class="box-body table-responsive">
         <?php // echo $this->render('_search', ['model' => $searchModel]); 
         ?>

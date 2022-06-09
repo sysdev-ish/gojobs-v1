@@ -30,7 +30,7 @@ class MasterindustryController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function () {
-                            return (Yii::$app->utils->permission(Yii::$app->user->identity->role, 'm51'));
+                            return (Yii::$app->utils->permission(Yii::$app->user->identity->role, 'm72'));
                         }
 
                     ],

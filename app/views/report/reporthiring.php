@@ -78,10 +78,15 @@ app\assets\ReportAsset::register($this);
           </div>
           <div class="info-box">
             <span class="info-box-icon bg-red"><i class="fa fa-institution (alias)"></i></span>
-
+            
             <div class="info-box-content">
               <span class="info-box-text">Hired By Personal Area</span>
-              <span class="info-box-number"><?php echo $dataProvider['bypersonalarea']->getTotalCount(); ?></span>
+              <?php if ($dataProvider == null ) : ?>
+                <span class="info-box-number"><?php echo $dataProvider['bypersonalarea']->getTotalCount(); ?></span>
+                <?php else : ?>
+                  <!-- <span class="info-box-number">0</span> -->
+                    <span class="info-box-number"><?php echo $dataProvider['bypersonalarea']->getTotalCount(); ?></span>
+              <?php endif; ?>
             </div>
             <!-- /.info-box-content -->
           </div>

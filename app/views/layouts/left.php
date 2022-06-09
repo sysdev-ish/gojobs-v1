@@ -192,15 +192,15 @@
                 'active' => Yii::$app->controller->id == 'masterpic'
               ],
               [
-                'label' => 'Master Industry Type', 'icon' => 'circle-o', 'url' => ['/masterindustry/index'], 'visible' => (Yii::$app->utils->permission($role, 'm51')),
+                'label' => 'Master Industry Type', 'icon' => 'circle-o', 'url' => ['/masterindustry/index'], 'visible' => (Yii::$app->utils->permission($role, 'm72')),
                 'active' => Yii::$app->controller->id == 'masterindustry'
               ],
               [
-                'label' => 'Master Job Family', 'icon' => 'circle-o', 'url' => ['/masterjobfamily/index'], 'visible' => (Yii::$app->utils->permission($role, 'm51')),
+                'label' => 'Master Job Family', 'icon' => 'circle-o', 'url' => ['/masterjobfamily/index'], 'visible' => (Yii::$app->utils->permission($role, 'm76')),
                 'active' => Yii::$app->controller->id == 'masterjobfamily'
               ],
               [
-                'label' => 'Master Sub Job Family', 'icon' => 'circle-o', 'url' => ['/mastersubjobfamily/index'], 'visible' => (Yii::$app->utils->permission($role, 'm51')),
+                'label' => 'Master Sub Job Family', 'icon' => 'circle-o', 'url' => ['/mastersubjobfamily/index'], 'visible' => (Yii::$app->utils->permission($role, 'm80')),
                 'active' => Yii::$app->controller->id == 'mastersubjobfamily'
               ],
               [
@@ -208,7 +208,7 @@
                 'active' => Yii::$app->controller->id == 'mappingregionarea'
               ],
               [
-                'label' => 'Mapping Job Position', 'icon' => 'circle-o', 'url' => ['/mappingjob/index'], 'visible' => (Yii::$app->utils->permission($role, 'm51')),
+                'label' => 'Mapping Job Position', 'icon' => 'circle-o', 'url' => ['/mappingjob/index'], 'visible' => (Yii::$app->utils->permission($role, 'm84')),
                 'active' => Yii::$app->controller->id == 'mappingjob'
               ],
               [
