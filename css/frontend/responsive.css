@@ -286,7 +286,7 @@
 	.navbar-toggle {
 		display: block;
 		background-color: #eee;
-		margin: 14px 0px;
+		margin-top: 28px;
 	}
 
 	.navbar-collapse {

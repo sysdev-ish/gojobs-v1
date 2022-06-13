@@ -57,27 +57,27 @@ if(Yii::$app->utils->permission($role,'m14')){
                 // 'gender',
                 [
                   'attribute' => 'gender',
+                  'contentOptions' => ['style' => 'width: 60px;'],
                   'filter' => \kartik\select2\Select2::widget([
                     'model' => $searchModel,
                     'attribute' => 'gender',
                     'data' => ['male'=>'male','female'=>'female'],
                     'options' => ['placeholder' => '--'],
                     'pluginOptions' => [
-                       'allowClear' => true,
-                       'width' => '80px',
-                       ],
+                      'allowClear' => true,
+                      'width' => '60px',
+                    ],
                   ]),
                   'contentOptions'=>['style'=>'width: 80px;']
 
                 ],
-
                 'birthdate',
                 // 'birthplace',
                 'address:ntext',
                 [
                   'attribute' => 'cityname',
                   'value' => 'city.kota',
-                  'contentOptions'=>['style'=>'width: 150px;']
+                  'contentOptions'=>['style'=>'width: 120px;']
 
                 ],
                 // 'postalcode',
@@ -96,7 +96,18 @@ if(Yii::$app->utils->permission($role,'m14')){
                 // ],
                 [
                   'attribute' => 'lastposition',
-                  'contentOptions' => ['style' => 'min-width: 150px;'],
+                  'contentOptions' => ['style' => 'width: 150px;'],
+                  'format' => 'raw',
+                  'filter' => \kartik\select2\Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'lastposition',
+                    'data' => ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily'),
+                    'options' => ['placeholder' => ' -- '],
+                    'pluginOptions' => [
+                      'allowClear' => true,
+                      'width' => '150px',
+                    ],
+                  ]),
                   'value' => 'userworkexperience.lastposition'
                 ],
                 [
@@ -110,7 +121,7 @@ if(Yii::$app->utils->permission($role,'m14')){
                       'options' => ['placeholder' => ' -- '],
                       'pluginOptions' => [
                         'allowClear' => true,
-                        'min-width' => '100px',
+                        'width' => '120px',
                       ],
                     ]),
                   'value' => 'userworkexperience.subjobfam.jobfam.jobfamily',
@@ -131,7 +142,7 @@ if(Yii::$app->utils->permission($role,'m14')){
 
 
                 ['class' => 'yii\grid\ActionColumn',
-                'contentOptions'=>['style'=>'min-width: 100px;'],
+                'contentOptions'=>['style'=>'width: 100px;'],
                 'template'=>'<div class="btn-group pull-right">'.$action.'</div>',
                 'buttons'=>[
 

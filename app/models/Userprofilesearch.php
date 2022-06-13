@@ -47,12 +47,13 @@ class Userprofilesearch extends Userprofile
     public function search($params)
     {
         $query = Userprofile::find();
-        // $query->join('LEFT JOIN', 'MappingCity','MappingCity.city_id = Userprofile.cityid');
         $query->joinWith("city");
         $query->joinWith("userworkexperience");
         $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.subjobfamily = userworkexperience.lastposition');
         // add conditions that should always apply here
 
+        //addbykaha
+        $subQuery = 'SELECT lastposition FROM userworkexperience LEFT JOIN mastersubjobfamily ON mastersubjobfamily.subjobfamily = userworkexperience.lastposition';
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -62,10 +63,25 @@ class Userprofilesearch extends Userprofile
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
+
+        // var_dump($subQuery);die;
+        //adbykaha
+        // if($this->lastposition) {
+        //     $subQuery .= ' WHERE mastersubjobfamily.id';
+        //     $subQuery = Yii::$app->db->createCommand($subQuery)->bindValue(':id', $this->lastposition);
+        //     if($subQuery) {
+        //         $arrValue = [];
+        //         foreach ($subQuery as $sub) {
+        //             $arrValue = $sub['lastposition'];
+        //         }
+        //         if(count($arrValue) > 0) $query->andWhere('masterjobfamily.id IN (' . implode(',', $array). ')', []);
+        //     }
+        //     else {
+        //         $query->andWhere('masterjobfamily.id IN (null)');
+        //     }
+        // }
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -98,9 +114,10 @@ class Userprofilesearch extends Userprofile
             ->andFilterWhere(['like', 'drivinglicencemotorcyclenumber', $this->drivinglicencemotorcyclenumber])
             ->andFilterWhere(['like', 'kota', $this->cityname])
             ->andFilterWhere(['like', 'userworkexperience.industry', $this->industry])
-            ->andFilterWhere(['like', 'userworkexperience.lastposition', $this->lastposition])
-            ->andFilterWhere(['like', 'mastersubjobfamily.jobfamily_id', $this->jobfamily])
-            ;
+            // ->andFilterWhere(['like', 'userworkexperience.lastposition', $this->lastposition])
+            ->andFilterWhere(['like', 'mastersubjobfamily.id', $this->lastposition])
+            ->andFilterWhere(['like', 'mastersubjobfamily.jobfamily_id', $this->jobfamily]);
+
         return $dataProvider;
     }
 }

@@ -393,7 +393,7 @@ app\assets\ReportAsset::register($this);
                 ],
                 
                 [
-                  'label' => 'last education',
+                  'label' => 'Last Education',
                   'format' => 'raw',
                   'value'=>function ($data) {
                     $lasteducation = Userformaleducation::find()->where(['userid' => $data->userid])->orderBy([

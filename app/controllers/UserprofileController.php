@@ -22,12 +22,14 @@ use app\models\Recruitmentcandidate;
 use app\models\Userprofilesearch;
 use app\models\Uservaksin;
 use app\models\Masteralasanvaksin;
+use app\models\Mastersubjobfamily;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
 use yii\filters\AccessControl;
+use yii\helpers\Json;
 
 /**
  * UserprofileController implements the CRUD actions for Userprofile model.
@@ -706,6 +708,42 @@ class UserprofileController extends Controller
         'userabout' => $userabout,
       ]);
     }
+
+  public function actionGethiring()
+  {
+    $out = [];
+    if (isset($_POST['depdrop_parents'])) {
+      $parents = $_POST['depdrop_parents'];
+      $subjobfamily = empty($parents[0]) ? null : $parents[0];
+
+      $model = Mastersubjobfamily::find()->asArray()->where(['jobfamily_id' => $subjobfamily])->all();
+      // var_dump($model);die;
+      $selected  = null;
+      if ($parents != null && count($model) > 0) {
+        $selected = '';
+        $id1 = '';
+        if (!empty($_POST['depdrop_params'])) {
+          $params = $_POST['depdrop_params'];
+          $id1 = $params[0]; // get the value of model_id1
+          foreach ($model as $key => $value) {
+            $out[] = ['id' => $value['id'], 'name' => '' . $value['subjobfamily']];
+            $oc[] = $value['id'];
+            if ($key == 0) {
+              $out[] = ['id' => '0', 'name' => 'all'];
+              $aux = '0';
+            }
+          }
+          ((in_array($id1, $oc))) ? $selected = $id1 : $selected = $aux;
+        }
+        // $outs = array_push($out, ['id'=>"0",'name'=>'all']);
+        // var_dump($outs);die;
+        sort($out);
+        echo Json::encode(['output' => $out, 'selected' => $selected]);
+        return;
+      }
+    }
+    echo Json::encode(['output' => '', 'selected' => '']);
+  }
 
     /**
      * Finds the Userprofile model based on its primary key value.
