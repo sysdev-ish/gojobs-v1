@@ -141,7 +141,6 @@ class UserloginController extends Controller
         if ($model->load(Yii::$app->request->post())) {
           $model->updated_at = date('Y-m-d H-i-s');
           $model->updatedby = Yii::$app->user->identity->id;
-          
           $model->save(false);
             return $this->redirect(['index']);
         } else {

@@ -104,6 +104,7 @@ switch ($param) {
               'allowedExtensions' => ['jpg','png','jpeg', 'pdf'],
             ]
             ])->label('File') ?>
+          <span>file allowed is jpg, png, jpeg, pdf</span>
           <?php else : ?>
             <?= $form->field($model, 'newdoc')->widget(FileInput::classname(), [
               'options' => ['accept' => ''],

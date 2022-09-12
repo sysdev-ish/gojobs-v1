@@ -78,7 +78,8 @@ app\assets\ReportAsset::register($this);
         <div class="box-tools pull-right">
           <?php
                 $gridColumns = [
-                    ['class' => 'kartik\grid\SerialColumn'],
+                  // ['class' => 'kartik\grid\SerialColumn'],
+                  ['class' => 'yii\grid\SerialColumn'],
                     'fullname',
 
                     [
@@ -355,7 +356,7 @@ app\assets\ReportAsset::register($this);
                     //
                     // ],
 
-                    ['class' => 'kartik\grid\ActionColumn', 'urlCreator'=>function(){return '#';}]
+                    ['class' => 'yii\grid\ActionColumn', 'urlCreator'=>function(){return '#';}]
                 ];
                 echo ExportMenu::widget([
                     'dataProvider' => $dataProvider['dataProvider'],

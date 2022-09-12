@@ -81,6 +81,26 @@ $(function () {
     });
 
   });
+  $('.canceljoin-modal-click').click(function () {
+
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+      defaultApply: true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function (html) {
+      loading.out()
+      $('#canceljoin-modal')
+        .modal('show')
+        .find('#canceljoinview')
+        .empty()
+        .append(html);
+    });
+
+  });
   $('.stopjo-modal-click').click(function () {
 
     var loading = new Loading({
@@ -1144,6 +1164,24 @@ $(function () {
         $('#approvecrcanceljoin-modal')
           .modal('show')
           .find('#approvecrcanceljoin-view')
+          .empty()
+          .append(html);
+      });
+  });
+  $('.confirmcrcanceljoin-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#confirmcrcanceljoin-modal')
+          .modal('show')
+          .find('#confirmcrcanceljoin-view')
           .empty()
           .append(html);
       });

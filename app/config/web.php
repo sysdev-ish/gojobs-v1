@@ -31,6 +31,7 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        // '@upload' => Yii::getAlias('@app') . '/upload'
     ],
     'components' => [
         'user' => [

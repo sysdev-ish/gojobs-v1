@@ -18,25 +18,18 @@ Modal::begin([
     'id'=>'viewccanceljoin-modal',
     'size'=>'modal-lg'
 ]);
-echo "<div id='viewccanceljoin-view'></div>";
-Modal::end();
 
+echo "<div id='viewccanceljoin-view'></div>";
+
+Modal::end();
 Modal::begin([
     'header'=>'<h4 class="modal-title">Approve Change Cancel Join</h4>',
     'id'=>'approvecrcanceljoin-modal',
     'size'=>'modal-lg'
 ]);
+
 echo "<div id='approvecrcanceljoin-view'></div>";
 Modal::end();
-
-Modal::begin([
-    'header'=>'<h4 class="modal-title">Confirmation Cancel Join</h4>',
-    'id'=>'confirmcrcanceljoin-modal',
-    'size'=>'modal-lg'
-]);
-echo "<div id='confirmcrcanceljoin-view'></div>";
-Modal::end();
-
 if(Yii::$app->user->isGuest){
   $role = null;
 }else{
@@ -47,7 +40,6 @@ $actionview = '';
 $actionupdate = '';
 $actiondelete = '';
 $actionapprove = '';
-$actionconfirmation = '';
 if(Yii::$app->utils->permission($role,'m67')){
   $actionview = '{view}';
 }
@@ -60,10 +52,7 @@ if(Yii::$app->utils->permission($role,'m70')){
 if(Yii::$app->utils->permission($role,'m71')){
   $actionapprove = '{approve}';
 }
-if (Yii::$app->user->identity->username == '9802618' || Yii::$app->user->identity->username == '9103005') {
-  $actionconfirmation = '{confirmation}';
-}
-$action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirmation;
+$action = $actionview.$actionupdate.$actiondelete.$actionapprove;
 ?>
 <div class="changecanceljoin-index box box-default">
   <?php if(Yii::$app->utils->permission($role,'m68')): ?>
@@ -152,7 +141,7 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
             ],
 
             ['class' => 'yii\grid\ActionColumn',
-            'contentOptions'=>['style'=>'min-width: 210px;'],
+            'contentOptions'=>['style'=>'min-width: 180px;'],
             'template'=>'<div class="btn-group pull-right">'.$action.'</div>',
             'buttons'=>[
               'view' => function($url,$model,$key){
@@ -166,34 +155,18 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
                   return $btn;
               },
               'approve' => function($url,$model,$key){
-                if($model->status == 2){
+                if($model->status ==  2){
                   $disabled = false;
                 }else{
                   $disabled = true;
                 }
                   $btn = Html::button('<i class="fa fa-gavel" style="font-size:12pt;"></i>',[
-                      'value'=>Yii::$app->urlManager->createUrl('changecanceljoin/approve?id='.$model->id), //<---- here is where you define the action that handles the ajax request
+                      'value'=>Yii::$app->urlManager->createUrl('changecanceljoin/approve?id='.$model->id.'&userid='.$model->userid), //<---- here is where you define the action that handles the ajax request
                       'class'=>'btn btn-sm btn-info approvecrcanceljoin-modal-click',
                       'disabled' => $disabled,
                       'data-toggle'=>'tooltip',
                       'data-placement'=>'bottom',
                       'title'=>'Approve'
-                  ]);
-                  return $btn;
-              },
-              'confirmation' => function($url,$model,$key){
-                if($model->status == 8){
-                  $disabled = false;
-                }else{
-                  $disabled = true;
-                }
-                  $btn = Html::button('<i class="fa fa-check-square-o" style="font-size:12pt;"></i>',[
-                      'value'=>Yii::$app->urlManager->createUrl('changecanceljoin/confirmcancel?id='.$model->id), //<---- here is where you define the action that handles the ajax request
-                      'class'=> 'btn btn-sm btn-success confirmcrcanceljoin-modal-click',
-                      'disabled' => $disabled,
-                      'data-toggle'=>'tooltip',
-                      'data-placement'=>'bottom',
-                      'title'=>'Confirm'
                   ]);
                   return $btn;
               },

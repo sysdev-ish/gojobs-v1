@@ -5,14 +5,13 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "chagecanceljoin".
+ * This is the model class for table "changecanceljoin".
  *
  * @property int $id
  * @property int $userid
  * @property string $createtime
  * @property string $updatetime
  * @property int $createdby
- * @property int $updatedby
  * @property int $perner
  * @property string $fullname
  * @property int $reason
@@ -20,11 +19,12 @@ use Yii;
  * @property int $approvedby
  * @property string $approvedtime
  * @property int $status
+ * @property string $documentevidence
  * @property string $remarks
- * @property string $userremarks
  */
 class Changecanceljoin extends \yii\db\ActiveRecord
 {
+    public $checkperner;
     /**
      * {@inheritdoc}
      */
@@ -39,12 +39,14 @@ class Changecanceljoin extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['userid', 'createdby', 'updatedby', 'perner', 'reason', 'approvedby', 'status', 'checkperner'], 'integer'],
+            [['userid', 'createdby', 'perner', 'reason', 'approvedby', 'status'], 'integer'],
+            [['documentevidence', 'reason'], 'required', 'on' => "create"],
             [['status'], 'required', 'on' => "approve"],
-            [['createtime', 'updatetime', 'approvedtime',  'canceldate'], 'safe'],
-            [['reason', 'canceldate', 'approvedby', 'perner'], 'required', 'on' => 'createupdate'],
-            [['checkperner'], 'required', 'message' => 'this perner has been on processed resign', 'on' => 'createupdate'],
-            [['fullname', 'remarks', 'userremarks'], 'string', 'max' => 445],
+            [['createtime', 'updatetime', 'canceldate', 'approvedtime'], 'safe'],
+            [['reason', 'canceldate'], 'required'],
+            [['fullname'], 'string', 'max' => 445],
+            [['checkperner'], 'required', 'message' => 'this perner has been on processed Cancel Join', 'on' => 'createupdate'],
+            [['documentevidence'], 'string', 'max' => 225],
         ];
     }
 
@@ -56,32 +58,31 @@ class Changecanceljoin extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'userid' => 'Userid',
-            'createtime' => 'Create Time',
-            'updatetime' => 'Update Time',
-            'createdby' => 'Created By',
-            'updatedby' => 'Updated By',
+            'createtime' => 'Createtime',
+            'updatetime' => 'Updatetime',
+            'createdby' => 'Createdby',
             'perner' => 'Perner',
             'fullname' => 'Fullname',
             'reason' => 'Reason',
-            'canceldate' => 'Cancel Date',
-            'approvedby' => 'Approved By',
-            'approvedtime' => 'Approved Time',
+            'canceldate' => 'Canceldate',
+            'approvedby' => 'Approvedby',
+            'approvedtime' => 'Approvedtime',
             'status' => 'Status',
-            'remarks' => 'Remarks',
-            'userremarks' => 'User Remarks',
+            'documentevidence' => 'Documentevidence',
         ];
     }
+
     public function getUserprofile()
     {
         return $this->hasOne(Userprofile::className(), ['userid' => 'userid']);
     }
+    public function getRecruitreqid()
+    {
+        return $this->hasOne(Hiring::className(), ['userid' => 'recruitreqid']);
+    }
     public function getCreateduser()
     {
         return $this->hasOne(User::className(), ['id' => 'createdby']);
-    }
-    public function getUpdateduser()
-    {
-        return $this->hasOne(User::className(), ['id' => 'updatedby']);
     }
     public function getApproveduser()
     {
@@ -91,8 +92,8 @@ class Changecanceljoin extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Masterstatuscr::className(), ['id' => 'status']);
     }
-    public function getResignreason()
+    public function getCanceljoinreason()
     {
-        return $this->hasOne(Masterresignreason::className(), ['id' => 'reason']);
+        return $this->hasOne(Masterreasoncanceljoin::className(), ['id' => 'reason']);
     }
 }

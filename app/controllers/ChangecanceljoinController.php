@@ -14,12 +14,14 @@ use app\models\Userprofile;
 use app\models\Transrincian;
 use app\models\Userabout;
 use app\models\User;
-use app\models\Masterresignreason;
+use app\models\Masterreasoncanceljoin;
 use app\models\Recruitmentcandidate;
 use yii\helpers\ArrayHelper;
 use linslin\yii2\curl;
-use linslin\yii2\curl\Curl as CurlCurl;
 use yii\helpers\Json;
+use app\models\Masterstatuscr;
+use yii\data\Pagination;
+use yii\web\UploadedFile;
 
 /**
  * ChangecanceljoinController implements the CRUD actions for Changecanceljoin model.
@@ -32,27 +34,27 @@ class ChangecanceljoinController extends Controller
   public function behaviors()
   {
     return [
-        'access' => [
-            'class' => AccessControl::className(),
-            'only' => ['index','update','create','view','delete'],
-            'rules' => [
-              [
-                  'actions' => ['index','update','create','view','delete'],
-                  'allow' => true,
-                  'roles' => ['@'],
-                  'matchCallback'=>function(){
-                      return (Yii::$app->utils->permission(Yii::$app->user->identity->role,'m67'));
-                  }
+      'access' => [
+        'class' => AccessControl::className(),
+        'only' => ['index', 'update', 'create', 'view', 'delete', 'confirmation'],
+        'rules' => [
+          [
+            'actions' => ['index', 'update', 'create', 'view', 'delete', 'confirmation'],
+            'allow' => true,
+            'roles' => ['@'],
+            'matchCallback' => function () {
+              return (Yii::$app->utils->permission(Yii::$app->user->identity->role, 'm67'));
+            }
 
-              ],
-            ],
+          ],
         ],
-        'verbs' => [
-            'class' => VerbFilter::className(),
-            'actions' => [
-                'delete' => ['POST'],
-            ],
+      ],
+      'verbs' => [
+        'class' => VerbFilter::className(),
+        'actions' => [
+          'delete' => ['POST'],
         ],
+      ],
     ];
   }
 
@@ -62,13 +64,13 @@ class ChangecanceljoinController extends Controller
    */
   public function actionIndex()
   {
-      $searchModel = new Changecanceljoinsearch();
-      $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    $searchModel = new Changecanceljoinsearch();
+    $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-      return $this->render('index', [
-          'searchModel' => $searchModel,
-          'dataProvider' => $dataProvider,
-      ]);
+    return $this->render('index', [
+      'searchModel' => $searchModel,
+      'dataProvider' => $dataProvider,
+    ]);
   }
 
   /**
@@ -78,9 +80,9 @@ class ChangecanceljoinController extends Controller
    */
   public function actionView($id)
   {
-      return $this->renderAjax('view', [
-          'model' => $this->findModel($id),
-      ]);
+    return $this->renderAjax('view', [
+      'model' => $this->findModel($id),
+    ]);
   }
 
   /**
@@ -90,318 +92,126 @@ class ChangecanceljoinController extends Controller
    */
   public function actionCreate($id = null)
   {
-      $approvalname = ArrayHelper::map(User::find()->where('role = 20 OR role = 17')->asArray()->all(), 'id', 'name');
-      // $approvalname = ArrayHelper::map(User::find()->where('role')->asArray()->all(), 'id', 'name');
-      $reason = ArrayHelper::map(Masterresignreason::find()->asArray()->all(), 'id', 'reason');
-      if($id){
-        $model = $this->findModel($id);
-      }else{
-        $getid = new Changecanceljoin();
-        $getid->createtime = date('Y-m-d H-i-s');
-        $getid->updatetime = date('Y-m-d H-i-s');
-        $getid->createdby = Yii::$app->user->identity->id;
-        $getid->updatedby = Yii::$app->user->identity->id;
-        $getid->save(false);
-        return $this->redirect(['create', 'id' => $getid->id]);
-      }
-      $model->scenario = 'createupdate';
-      if ($model->load(Yii::$app->request->post())) {
-          $model->status = 2;
-          if($model->save()){
-              $user = User::find()->where(['id'=>$model->approvedby])->one();
-            if($model->userid){
-              $getjo = Hiring::find()->where(['userid'=>$model->userid, 'statushiring'=>4])->one();
-
-              $modelrecreq = Transrincian::find()->where(['id'=>$getjo->recruitreqid])->one();
-              $userprofile = Userprofile::find()->where(['userid'=>$model->userid])->one();
-
-              $name = $userprofile->fullname;
-              $perner = $getjo->perner;
-              if ($modelrecreq->transjo->n_project == "" || $modelrecreq->transjo->n_project == "Pilih"){
-                $layanan = $modelrecreq->transjo->project;
-              }else{
-                $layanan = $modelrecreq->transjo->n_project;
-              }
-              if(Yii::$app->utils->getarea($modelrecreq->area_sap)){
-                $area = Yii::$app->utils->getarea($modelrecreq->area_sap);
-              }else{
-                $area = '-';
-              }
-              if(Yii::$app->utils->getjabatan($modelrecreq->hire_jabatan_sap)){
-                $jabatan = Yii::$app->utils->getjabatan($modelrecreq->hire_jabatan_sap);
-              }else{
-                $jabatan = '-';
-              }
-            }else{
-              $curl = new curl\Curl();
-              $getdatapekerjabyperner =  $curl->setPostParams([
-                'perner' => $model->perner,
-                'token' => 'ish**2019',
-              ])
-              ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
-              $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-              $name = $datapekerjabyperner[0]->CNAME;
-              $perner = $model->perner;
-              $layanan = $datapekerjabyperner[0]->WKTXT;
-              $area = $datapekerjabyperner[0]->BTRTX;
-              $jabatan = $datapekerjabyperner[0]->PLATX;
-            }
-            $to = $user->email;
-            // $to = "indra.gunawan@ish.co.id";
-            $subject = 'Notifikasi Approval Cancel Pekerja';
-            $body = 'Semangat Pagi,,
-            <br>
-            Anda mendapatkan permintaan Approval "Cancel Pekerja" dari <span style="text-transform: uppercase;"><b>'.$model->createduser->name.'</b></span> dengan rincian sebagai berikut :
-
-            <br>
-            <br>
-            <table>
-            <tr>
-            <td valign="top">Nama Pekerja</td>
-            <td valign="top">:</td>
-            <td valign="top">'.$name.'</td>
-            </tr>
-            <tr>
-            <td valign="top">Perner</td>
-            <td valign="top">:</td>
-            <td valign="top">'.$perner.'</td>
-            </tr>
-            <tr>
-            <td valign="top">Nama Project</td>
-            <td valign="top">:</td>
-            <td valign="top">'.$layanan.'</td>
-            </tr>
-            <tr>
-            <td valign="top">Area</td>
-            <td valign="top">:</td>
-            <td valign="top">'.$area.'</td>
-            </tr>
-            <tr>
-            <td valign="top">Jabatan</td>
-            <td valign="top">:</td>
-            <td valign="top">'.$jabatan.'</td>
-            </tr>
-            <tr>
-            </table>
-            <br>
-            <br>
-            Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> untuk melakukan verifikasi lebih lanjut.
-            <br><br>
-            Have a great day !
-            ';
-            // var_dump($body);die;
-            $verification = Yii::$app->utils->sendmail($to,$subject,$body,12);
-          }
-          return $this->redirect(['index']);
-      } else {
-          return $this->render('create', [
-              'model' => $model,
-              'approvalname' => $approvalname,
-              'reason' => $reason,
-          ]);
-      }
-  }
-
-  public function actionApprove($id, $userid)
-  {
-    $model = $this->findModel($id);
-    $userid = $model->userid;
-    $userprofile = Userprofile::find()->where(['userid'=>$userid])->one();
-    $model->scenario = 'approve';
-    if ($model->load(Yii::$app->request->post())) {
-      $model->approvedtime = date('Y-m-d H-i-s');
-      if($model->status == 8){
-          $model->remarks = "Waiting for Cancel Execution process";
-          $model->save();
-      }else{
-        $model->save();
-      }
-
-      // $model->save();
-      return $this->redirect(['index']);
-    }else{
-      return $this->renderAjax('_formapprove', [
-          'model' => $model,
-          'userprofile'=>$userprofile,
-      ]);
+    $approvalname = ArrayHelper::map(User::find()->where('role = 20 OR role = 17')->asArray()->all(), 'id', 'name');
+    $reason = ArrayHelper::map(Masterreasoncanceljoin::find()->asArray()->all(), 'id', 'reason');
+    if ($id) {
+      $model = $this->findModel($id);
+    } else {
+      $getid = new Changecanceljoin();
+      $getid->createtime = date('Y-m-d H-i-s');
+      $getid->updatetime = date('Y-m-d H-i-s');
+      $getid->createdby = Yii::$app->user->identity->id;
+      $getid->save(false);
+      return $this->redirect(['create', 'id' => $getid->id]);
     }
-  }
 
-  public function actionRfccancel($id)
-  {
-    $model = $this->findModel($id);
-    // var_dump($model);die;
-    $curl = new curl\Curl();
-    $getdatapekerja = $curl->setPostParams([
-      'perner' => $model->perner,
-      'token' => 'ish**2019',
-    ])
-    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
-    $dataprofile  = json_decode($getdatapekerja);
-    if($dataprofile){
-      $begda = date_create($model->canceldate);
-      $cekpaycontroll =  $curl->setPostParams([
-        'token' => 'ish@2019!',
-        'ABKRS' => $dataprofile[0]->ABKRS,
-      ])
-      ->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
-      $payrollcontrollresult  = json_decode($cekpaycontroll);
-      if($payrollcontrollresult->status == 1){
-        // $cek = [
-        //   'token' => 'ish@2019!',
-        //   'PERNR' => $model->perner,
-        //   'BEGDA' => date_format($begda,'Ymd'),
-        //   'MASSG' => $model->cancelreason->sapid,
-        //   'WERKS' => $dataprofile[0]->WERKS,
-        //   'PERSK' => $dataprofile[0]->PERSK,
-        //   'BTRTL' => $dataprofile[0]->BTRTL,
-        //   'ABKRS' => $dataprofile[0]->ABKRS,
-        //   'ANSVH' => $dataprofile[0]->ANSVH,
-        //   'PLANS' => $dataprofile[0]->PLANS,
-        // ];
-        // var_dump($cek);die;
-        $putrfccancel =  $curl->setPostParams([
-          'token' => 'ish@2019!',
-          'PERNR' => $model->perner,
-          'BEGDA' => date_format($begda,'Ymd'),
-          'MASSG' => $model->cancelreason->sapid,
-          'WERKS' => $dataprofile[0]->WERKS,
-          'PERSK' => $dataprofile[0]->PERSK,
-          'BTRTL' => $dataprofile[0]->BTRTL,
-          'ABKRS' => $dataprofile[0]->ABKRS,
-          'ANSVH' => $dataprofile[0]->ANSVH,
-          'PLANS' => $dataprofile[0]->PLANS,
-        ])
-        ->post('http://192.168.88.5/service/index.php/Rfccancel');
-
-        $rfccancel  = json_decode($putrfccancel);
-        $message = 'successful';
-        if($rfccancel->CODE == 'S'){
-          $url = "http://192.168.88.60:8080/ish-rest/ZINFHRF_00025";
-          $infotype = ['0041','0035'];
-          $request_data = [
-            [
-              'pernr'=> "$model->perner",
-              'inftypList'=>$infotype,
-              'p00041List' => [
-                [
-                  'endda'=>'',
-                  'begda'=> '',
-                  'operation'=>'INS',
-                  'pernr'=> "$model->perner",
-                  'infty'=>'0041',
-                  'dar01'=> '01',
-                  'dat01'=> '',
-                  'dar02'=> '',
-                  'dat02'=> ''
-                ]
-              ],
-
-              'p00035List'=>[
-                [
-                  'endda'=>'31.12.9999',
-                  'begda'=> date_format($begda,'d.m.Y'),
-                  'operation'=>'INS',
-                  'pernr'=> "$model->perner",
-                  'infty'=>'0035',
-                  'subty'=>'Z8',
-                  'itxex'=>'X',
-                  'dat35'=> date_format($begda,'d.m.Y'),
-                ]
-              ],
-            ]
-          ];
-
-          //var_dump($request_data);
-
-          $json = json_encode($request_data);
-
-
-
-          $headers  = [
-            'Content-Type: application/json',
-            'cache-control: no-cache"=',
-          ];
-
-
-          $ch = curl_init();
-
-          curl_setopt($ch, CURLOPT_URL, $url);
-          curl_setopt($ch, CURLOPT_POST, 1);
-          curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-          curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-          curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-          // var_dump('ok');die;
-
-
-          $response = curl_exec($ch);
-
-          curl_close($ch);
-          $ret = json_decode($response);
-          $log = array();
-          foreach ($ret as $key => $value) {
-            if ($value->success != 1){
-              $log  = $value->message;
-            }
-          }
-          if($log){
-            $message = $log;
-            $model->remarks = $message;
-            $model->status = 7;
-            $model->save(false);
-            $retpos = ['status'=>"OK",'message'=>$message];
-            print_r(json_encode($retpos));
-          }else{
-            $message = "successful";
-            $model->remarks = $message;
-            $model->status = 4;
-            $model->save(false);
-            $retpos = ['status'=>"OK",'message'=>$message];
-            $hiring = Hiring::find()->where(['perner'=>$model->perner,'statushiring'=>4])->one();
-            if($hiring){
-              $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid'=>$model->userid,'recruitreqid'=>$hiring->recruitreqid])->one();
-              $hiring->statushiring = 7;
-              $recruitmentcandidate->status = 26;
-              $hiring->save(false);
-              $recruitmentcandidate->save(false);
-            }
-            print_r(json_encode($retpos));
-          }
-
-
-        }else{
-          $message = $rfccancel->MESSAGE;
-          $model->remarks = $message;
-          $model->status = 7;
-          $model->save(false);
-          $retpos = ['status'=>"OK",'message'=>$message];
-          print_r(json_encode($retpos));
+    $model->scenario = 'createupdate';
+    if ($model->load(Yii::$app->request->post())) {
+      $model->status = 2;
+      $hiring = Hiring::find()->where(['userid' => $model->userid, 'statushiring' => 4])->one();
+      $model->documentevidence = UploadedFile::getInstance($model, 'documentevidence');
+      if ($model->documentevidence) {
+        $assetUrl = Yii::getAlias('@app') . '/assets';
+        $fileextp = $model->documentevidence->extension;
+        $filep = $model->id . '-documentevidence.' . $fileextp;
+        if ($model->documentevidence->saveAs($assetUrl . '/upload/documentevidence/' . $filep)) {
+          $model->documentevidence = $filep;
         }
-      }else{
-        // $message = $rfccancel->MESSAGE;
-        $model->remarks = 'You have already locked payroll controll';
-        $model->status = 7;
-        $model->save(false);
-        $retpos = ['status'=>"NOK",'message'=>'lock'];
-        print_r(json_encode($retpos));
       }
+      // var_dump($model->documentevidence);die();
+      if ($model->save()) {
+        $user = User::find()->where(['id' => $model->approvedby])->one();
+        if ($model->userid) {
+          $getjo = Hiring::find()->where(['userid' => $model->userid, 'statushiring' => 4])->one();
+          $modelrecreq = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
+          $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
 
-    }else{
-      // $message = $rfccancel->MESSAGE;
-      $model->remarks = 'data pekerja sudah tidak ada di sap profile 1 atau sudah di cancel kan';
-      $model->status = 4;
-      $model->save(false);
-      $hiring = Hiring::find()->where(['perner'=>$model->perner,'statushiring'=>4])->one();
-      if($hiring){
-        $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid'=>$model->userid,'recruitreqid'=>$hiring->recruitreqid])->one();
-        $hiring->statushiring = 7;
-        $recruitmentcandidate->status = 26;
-        $hiring->save(false);
-        $recruitmentcandidate->save(false);
+          $name = $userprofile->fullname;
+          $perner = $getjo->perner;
+          if ($modelrecreq->transjo->n_project == "" || $modelrecreq->transjo->n_project == "Pilih") {
+            $layanan = $modelrecreq->transjo->project;
+          } else {
+            $layanan = $modelrecreq->transjo->n_project;
+          }
+          if (Yii::$app->utils->getarea($modelrecreq->area_sap)) {
+            $area = Yii::$app->utils->getarea($modelrecreq->area_sap);
+          } else {
+            $area = '-';
+          }
+          if (Yii::$app->utils->getjabatan($modelrecreq->hire_jabatan_sap)) {
+            $jabatan = Yii::$app->utils->getjabatan($modelrecreq->hire_jabatan_sap);
+          } else {
+            $jabatan = '-';
+          }
+        } else {
+          $curl = new curl\Curl();
+          $getdatapekerjabyperner =  $curl->setPostParams([
+            'perner' => $model->perner,
+            'token' => 'ish**2019',
+          ])
+            ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+          $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+          $name = $datapekerjabyperner[0]->CNAME;
+          $perner = $model->perner;
+          $layanan = $datapekerjabyperner[0]->WKTXT;
+          $area = $datapekerjabyperner[0]->BTRTX;
+          $jabatan = $datapekerjabyperner[0]->PLATX;
+        }
+        // $to = $user->email;
+        // $to =  "khusnul.hisyam@ish.co.id";
+        // $subject = 'Notifikasi Approval Cancel Join Pekerja';
+        // $body = 'Test';
+        // $body = 'Semangat Pagi,,
+        //     <br>
+        //     Anda mendapatkan permintaan Approval "Resign Pekerja" dari <span style="text-transform: uppercase;"><b>' . $model->createduser->name . '</b></span> dengan rincian sebagai berikut :
+
+        //     <br>
+        //     <br>
+        //     <table>
+        //     <tr>
+        //     <td valign="top">Nama Pekerja</td>
+        //     <td valign="top">:</td>
+        //     <td valign="top">' . $name . '</td>
+        //     </tr>
+        //     <tr>
+        //     <td valign="top">Perner</td>
+        //     <td valign="top">:</td>
+        //     <td valign="top">' . $perner . '</td>
+        //     </tr>
+        //     <tr>
+        //     <td valign="top">Nama Project</td>
+        //     <td valign="top">:</td>
+        //     <td valign="top">' . $layanan . '</td>
+        //     </tr>
+        //     <tr>
+        //     <td valign="top">Area</td>
+        //     <td valign="top">:</td>
+        //     <td valign="top">' . $area . '</td>
+        //     </tr>
+        //     <tr>
+        //     <td valign="top">Jabatan</td>
+        //     <td valign="top">:</td>
+        //     <td valign="top">' . $jabatan . '</td>
+        //     </tr>
+        //     <tr>
+        //     </table>
+        //     <br>
+        //     <br>
+        //     Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> untuk melakukan verifikasi lebih lanjut.
+        //     <br><br>
+        //     Have a great day !
+        //     ';
+        // var_dump($body);die;
+        // $verification = Yii::$app->utils->sendmail($to, $subject, $body, 15);
+        //15, klasifikasi untuk changecancel join cek table mailcounter/maillog
       }
-      $retpos = ['status'=>"NOK",'message'=>'data pekerja sudah tidak ada di sap profile 1 atau sudah di cancel kan'];
-      print_r(json_encode($retpos));
+      return $this->redirect(['index']);
+    } else {
+      return $this->render('create', [
+        'model' => $model,
+        'approvalname' => $approvalname,
+        'reason' => $reason,
+      ]);
     }
   }
 
@@ -411,8 +221,162 @@ class ChangecanceljoinController extends Controller
    * @param integer $id
    * @return mixed
    */
+  public function actionUpdate($id)
+  {
+    return $this->redirect(['create', 'id' => $id]);
+  }
 
-    public function actionGetdatakaryawan($q = null, $id = null) {
+  public function actionApprove($id)
+  {
+    $model = $this->findModel($id);
+    $userid = $model->userid;
+    $userprofile = Userprofile::find()->where(['userid' => $userid])->one();
+    $model->scenario = 'approve';
+    if ($model->load(Yii::$app->request->post())) {
+      $model->approvedtime = date('Y-m-d H-i-s');
+      if ($model->status == 8) {
+        $model->remarks = "Waiting for Resign Execution process";
+        if ($model->save()) {
+          if ($model->userid) { //get data jika userid id true
+            $getjo = Hiring::find()->where(['userid' => $model->userid, 'statushiring' => 4])->one();
+            $modelrecreq = Transrincian::find()->where(['id' => $getjo->recruitreqid])->one();
+            $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
+            $name = $userprofile->fullname;
+            $perner = $getjo->perner;
+            if ($modelrecreq->transjo->n_project == "" || $modelrecreq->transjo->n_project == "Pilih") {
+              $layanan = $modelrecreq->transjo->project;
+            } else {
+              $layanan = $modelrecreq->transjo->n_project;
+            }
+            if (Yii::$app->utils->getarea($modelrecreq->area_sap)) {
+              $area = Yii::$app->utils->getarea($modelrecreq->area_sap);
+            } else {
+              $area = '-';
+            }
+            if (Yii::$app->utils->getjabatan($modelrecreq->hire_jabatan_sap)) {
+              $jabatan = Yii::$app->utils->getjabatan($modelrecreq->hire_jabatan_sap);
+            } else {
+              $jabatan = '-';
+            }
+          } else { //jika tidak ada get data dari service 88.5
+            $curl = new curl\Curl();
+            $getdatapekerjabyperner =  $curl->setPostParams([
+              'perner' => $model->perner,
+              'token' => 'ish**2019',
+            ])
+              ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+            $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+            $name = $datapekerjabyperner[0]->CNAME;
+            $perner = $model->perner;
+            $layanan = $datapekerjabyperner[0]->WKTXT;
+            $area = $datapekerjabyperner[0]->BTRTX;
+            $jabatan = $datapekerjabyperner[0]->PLATX;
+          }
+          //sendmail notification for sap admin -> service canceljoin (belum ada)
+          $to = "khusnul.hisyam@ish.co.id";
+          $subject = 'Notifikasi Cancel Join SAP Admin';
+          $body = 'Semangat Pagi,
+            <br>
+            Anda mendapatkan permintaan "Cancel Join Pekerja" dari <span style="text-transform: uppercase;"><b>' . $model->createduser->name . '</b></span> dengan rincian sebagai berikut :
+
+            <br>
+            <br>
+            <table>
+            <tr>
+            <td valign="top">Nama Pekerja</td>
+            <td valign="top">:</td>
+            <td valign="top">' . $name . '</td>
+            </tr>
+            <tr>
+            <td valign="top">Perner</td>
+            <td valign="top">:</td>
+            <td valign="top">' . $perner . '</td>
+            </tr>
+            <tr>
+            <td valign="top">Nama Project</td>
+            <td valign="top">:</td>
+            <td valign="top">' . $layanan . '</td>
+            </tr>
+            <tr>
+            <td valign="top">Area</td>
+            <td valign="top">:</td>
+            <td valign="top">' . $area . '</td>
+            </tr>
+            <tr>
+            <td valign="top">Jabatan</td>
+            <td valign="top">:</td>
+            <td valign="top">' . $jabatan . '</td>
+            </tr>
+            <tr>
+            <td valign="top">Reason</td>
+            <td valign="top">:</td>
+            <td valign="top">' . $model->canceljoinreason->reason . '</td>
+            </tr>
+            <tr>
+            </table>
+            <br>
+            <br>
+            Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> sub menu cancel join (confirmation) untuk melakukan verifikasi lebih lanjut.
+            <br><br>
+            Have a great day !
+            ';
+          // var_dump($body);die();
+          $verification = Yii::$app->utils->sendmail($to, $subject, $body, 20);
+          //klasifisikasi 20 -> notif to admin SAP cek mailcounter
+        }
+      } else {
+        $model->save();
+      }
+      return $this->redirect(['index']);
+    } else {
+      return $this->renderAjax('_formapprove', [
+        'model' => $model,
+        'userprofile' => $userprofile,
+      ]);
+    }
+  }
+
+  public function actionConfirmcancel($id)
+  {
+    $model = $this->findModel($id);
+    if ($model->load(Yii::$app->request->post())) {
+      if ($model->status = 4) {
+        // var_dump($model->userid);die();
+        $model->remarks = 'Successfull';
+        $hiring = Hiring::find()->where(['statushiring' => 4])->one();
+        // $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
+        $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $model->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
+        if ($recruitmentcandidate == null) {
+          $hiring->statushiring = 6;
+          $model->save();
+        } 
+        elseif ($hiring) {
+          $hiring->statushiring = 6;
+          $recruitmentcandidate->status = 24;
+          $hiring->save(false);
+          $recruitmentcandidate->save(false);
+          $model->save();
+        }
+        return $this->redirect(['index']);
+      } else {
+        $model->save();
+      } return $this->redirect(['index']);
+    }
+    else {
+      return $this->renderAjax('_formconfirmation', [
+        'model' => $model
+      ]);
+    }
+  }
+  /**
+   * Updates an existing Changecanceljoin model.
+   * If update is successful, the browser will be redirected to the 'view' page.
+   * @param integer $id
+   * @return mixed
+   */
+
+  public function actionGetdatakaryawan($q = null, $id = null)
+  {
     \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
     // var_dump($id);die;
     $outs = ['results' => ['id' => '', 'text' => '']];
@@ -421,74 +385,80 @@ class ChangecanceljoinController extends Controller
       // var_dump($wherecontent);die;
       $curl = new curl\Curl();
       $getdatapekerja = $curl->setPostParams([
-        'q' => $wherecontent,
+        'q' => $q,
         'token' => 'ish**2019',
       ])
-      ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+        ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
       $datapekerja  = json_decode($getdatapekerja);
       // var_dump($datapekerja);die;
-        $out = null;
-        foreach ($datapekerja as $key => $value) {
-          $out[] = $value;
+      $out = null;
+      foreach ($datapekerja as $key => $value) {
+        $out[] = $value;
 
-          // $out['results'] = $value['jobfunc']['name_job_function'];
-        }
-        if($out){
-          $outs['results'] = $out;
-        }else{
-          $outs['results'] = null;
-        }
-    }
-    elseif ($id > 0) {
-    //addbykaha
-    // $curl = new curl\Curl();
+        // $out['results'] = $value['jobfunc']['name_job_function'];
+      }
+      if ($out) {
+        $outs['results'] = $out;
+      } else {
+        $outs['results'] = null;
+      }
+    } elseif ($id > 0) {
+
+      $curl = new curl\Curl();
       $getdatapekerjabyperner =  $curl->setPostParams([
         'perner' => $id,
         'token' => 'ish**2019',
       ])
-      ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+        ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
       $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-        $outs['results'] = ['id' => $id, 'text' => $datapekerjabyperner];
-    }else{
+      $outs['results'] = ['id' => $id, 'text' => $datapekerjabyperner];
+      $ABKRS = $datapekerjabyperner[0]->ABKRS;
+      $cekpaycontroll =  $curl->setPostParams([
+        'token' => 'ish@2019!',
+        'ABKRS' => $ABKRS,
+      ])
+        ->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
+      $payrollcontrollresult  = json_decode($cekpaycontroll);
+      var_dump($payrollcontrollresult);
+      die();
+    } else {
 
       $outs['results'] = ['id' => ' ', 'text' => ' '];
     }
     return $outs;
-}
-  public function actionUpdate($id)
-  {
-      return $this->redirect(['create', 'id' => $id]);
   }
-  public function actionGetuserabout() {
+
+  public function actionGetuserabout()
+  {
 
     $perner = $_POST['perner'];
     $id = $_POST['id'];
     $updatecr = $this->findModel($id);
-    if($perner){
-      $cekhiring = Hiring::find()->where(['perner'=>$perner,'statushiring'=>4])->one();
-      if($cekhiring){
+    if ($perner) {
+      $cekhiring = Hiring::find()->where(['perner' => $perner, 'statushiring' => 4])->one();
+      if ($cekhiring) {
 
-        $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
-        $model = Userabout::find()->where(['userid'=>$cekhiring->userid])->one();
+        $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+        $model = Userabout::find()->where(['userid' => $cekhiring->userid])->one();
         $updatecr->userid = $cekhiring->userid;
         $name = $cekhiring->userprofile->fullname;
-        $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap))?Yii::$app->utils->getpersonalarea($getjo->persa_sap): "";
-        $area = (Yii::$app->utils->getarea($getjo->area_sap))?Yii::$app->utils->getarea($getjo->area_sap): "";
-        $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap))?Yii::$app->utils->getskilllayanan($getjo->skill_sap): "";
-        $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap))?Yii::$app->utils->getpayrollarea($getjo->abkrs_sap): "";
-        $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap))?Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap): "";
+        $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap)) ? Yii::$app->utils->getpersonalarea($getjo->persa_sap) : "";
+        $area = (Yii::$app->utils->getarea($getjo->area_sap)) ? Yii::$app->utils->getarea($getjo->area_sap) : "";
+        $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap)) ? Yii::$app->utils->getskilllayanan($getjo->skill_sap) : "";
+        $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap)) ? Yii::$app->utils->getpayrollarea($getjo->abkrs_sap) : "";
+        $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap)) ? Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap) : "";
         $curl = new curl\Curl();
         $getlevels = $curl->setPostParams([
           'level' => $getjo->level_sap,
           'token' => 'ish**2019',
         ])
-        ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
+          ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
         $level  = json_decode($getlevels);
-        $level = ($level)?$level : "";
+        $level = ($level) ? $level : "";
         $hire = "Gojobs";
         $updatecr->fullname = $name;
         $updatecr->perner = $cekhiring->perner;
-      }else{
+      } else {
         $updatecr->userid = null;
         $updatecr->perner = $perner;
 
@@ -497,7 +467,7 @@ class ChangecanceljoinController extends Controller
           'perner' => $perner,
           'token' => 'ish**2019',
         ])
-        ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+          ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
         $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
         $name = $datapekerjabyperner[0]->CNAME;
         $persa = $datapekerjabyperner[0]->WKTXT;
@@ -509,42 +479,44 @@ class ChangecanceljoinController extends Controller
         $hire = 'Non Gojobs';
         $updatecr->fullname = $name;
       }
-      $checkperner = Changecanceljoin::find()->where('perner = '.$perner.' and status > 1 and status <> 5 and status <> 6')->one();
+      $checkperner = Changecanceljoin::find()->where('perner = ' . $perner . ' and status > 1 and status <> 5 and status <> 6')->one();
 
-      if($checkperner){
+      if ($checkperner) {
         $checkperner = '';
-      }else{
+      } else {
         $checkperner = 1;
         $updatecr->save(false);
       }
 
-        $dataprofile = [
-          'perner' => $perner,
-          'name' => $name,
-          'persa' => $persa,
-          'area' => $area,
-          'skilllayanan' => $skilllayanan,
-          'payrollarea' => $payrollarea,
-          'jabatan' => $jabatan,
-          'level' => $level,
-          'hire' => $hire,
-          'checkperner' => $checkperner,
-        ];
-
-    }else{
+      $dataprofile = [
+        'perner' => $perner,
+        'name' => $name,
+        'persa' => $persa,
+        'area' => $area,
+        'skilllayanan' => $skilllayanan,
+        'payrollarea' => $payrollarea,
+        'jabatan' => $jabatan,
+        'level' => $level,
+        'hire' => $hire,
+        'checkperner' => $checkperner,
+      ];
+    } else {
       $dataprofile = '';
     }
     return Json::encode($dataprofile);
   }
-  public function actionAutosave() {
+
+  public function actionAutosave()
+  {
     $id = $_POST['id'];
+    $perner = $_POST['perner'];
     $approvedby = $_POST['approvedby'];
     $canceldate = $_POST['canceldate'];
     $reason = $_POST['reason'];
     $userremarks = $_POST['userremarks'];
-    // var_dump($canceldate);die;
-    if($id){
+    if ($id) {
       $model = $this->findModel($id);
+      $model->perner = $perner;
       $model->approvedby = $approvedby;
       $model->canceldate = $canceldate;
       $model->reason = $reason;
@@ -562,9 +534,14 @@ class ChangecanceljoinController extends Controller
    */
   public function actionDelete($id)
   {
-      $this->findModel($id)->delete();
-
+    $model = $this->findModel($id)->delete();
+    if ($model) {
+      Yii::$app->session->setFlash('success', "Data Dihapus.");
       return $this->redirect(['index']);
+    } else {
+      Yii::$app->session->setFlash('error', "Data Tidak Bisa Dihapus.");
+      return $this->redirect(['index']);
+    }
   }
 
   /**
@@ -576,10 +553,10 @@ class ChangecanceljoinController extends Controller
    */
   protected function findModel($id)
   {
-      if (($model = Changecanceljoin::findOne($id)) !== null) {
-          return $model;
-      } else {
-          throw new NotFoundHttpException('The requested page does not exist.');
-      }
+    if (($model = Changecanceljoin::findOne($id)) !== null) {
+      return $model;
+    } else {
+      throw new NotFoundHttpException('The requested page does not exist.');
+    }
   }
 }

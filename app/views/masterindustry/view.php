@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute' => 'status',
                     'format' => 'html',
                     'value' => function($data) {
-                        return ($data->typeinterview == 1) ? 'Published' : 'Unpublished';
+                        return ($data->status == 1) ? 'Published' : 'Unpublished';
                     }
                 ],
                 'createtime',

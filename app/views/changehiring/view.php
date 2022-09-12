@@ -8,13 +8,13 @@ use app\models\Transrincian;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Chagerequestresign */
+/* @var $model app\models\changecanceljoin */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Chagerequestresigns', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'changecanceljoins', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="chagerequestresign-view box box-solid">
+<div class="changecanceljoin-view box box-solid">
 
     <div class="box-body table-responsive no-padding">
         <?= DetailView::widget([
@@ -23,7 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'id',
                 'perner',
                 'fullname',
-                'userid',
                 [
                   'label' => 'Personal Area',
                   'format' => 'html',
@@ -168,11 +167,11 @@ $this->params['breadcrumbs'][] = $this->title;
                   'attribute' => 'reason',
                   'format' => 'html',
                   'value'=>function ($data) {
-                    return ($data->reason)?$data->resignreason->reason:"<i class='text-red'>not set</i>";
+                    return ($data->reason)?$data->canceljoinreason->reason:"<i class='text-red'>not set</i>";
                 }
 
                 ],
-                'resigndate',
+                'canceldate',
 
                 [
 

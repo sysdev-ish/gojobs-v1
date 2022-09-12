@@ -19,7 +19,7 @@ class Changecanceljoinsearch extends Changecanceljoin
     public function rules()
     {
         return [
-            [['id', 'userid', 'createdby', 'updatedby', 'perner', 'reason', 'approvedby', 'status'], 'integer'],
+            [['id', 'userid', 'createdby', 'perner', 'reason', 'approvedby', 'status'], 'integer'],
             [['createtime', 'updatetime', 'approvedtime',  'fullname', 'remarks','approveduser'], 'safe'],
         ];
     }
@@ -83,7 +83,6 @@ class Changecanceljoinsearch extends Changecanceljoin
             'changecanceljoin.updatetime' => $this->updatetime,
             'changecanceljoin.approvedtime' => $this->approvedtime,
             'changecanceljoin.createdby' => $this->createdby,
-            'changecanceljoin.updatedby' => $this->updatedby,
             'changecanceljoin.perner' => $this->perner,
             'changecanceljoin.reason' => $this->reason,
             // 'canceldate' => $this->canceldate,

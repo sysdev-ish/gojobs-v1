@@ -14,94 +14,106 @@ use Yii;
  */
 class Userrole extends \yii\db\ActiveRecord
 {
-  public $countcheck;
-  public $m1;
-  public $m2;
-  public $m3;
-  public $m4;
-  public $m5;
-  public $m6;
-  public $m7;
-  public $m8;
-  public $m9;
-  public $m10;
-  public $m11;
-  public $m12;
-  public $m13;
-  public $m14;
-  public $m15;
-  public $m16;
-  public $m17;
-  public $m18;
-  public $m19;
-  public $m20;
-  public $m21;
-  public $m22;
-  public $m23;
-  public $m24;
-  public $m25;
-  public $m26;
-  public $m27;
-  public $m28;
-  public $m29;
-  public $m30;
-  public $m31;
-  public $m32;
-  public $m33;
-  public $m34;
-  public $m35;
-  public $m36;
-  public $m37;
-  public $m38;
-  public $m39;
-  public $m40;
-  public $m41;
-  public $m42;
-  public $m43;
-  public $m44;
-  public $m45;
-  public $m46;
-  public $m47;
-  public $m48;
-  public $m49;
-  public $m50;
-  public $m51;
-  public $m52;
-  public $m53;
-  public $m54;
-  public $m55;
-  public $m56;
-  public $m57;
-  public $m58;
-  public $m59;
-  public $m60;
-  public $m61;
-  public $m62;
-  public $m63;
-  public $m64;
-  public $m65;
-  public $m66;
-  public $m67;
-  public $m68;
-  public $m69;
-  public $m70;
-  public $m71;
-  public $m72;
-  public $m73;
-  public $m74;
-  public $m75;
-  public $m76;
-  public $m77;
-  public $m78;
-  public $m79;
-  public $m80;
-  public $m81;
-  public $m82;
-  public $m83;
-  public $m84;
-  public $m85;
-  public $m86;
-  public $m87;
+    public $countcheck;
+    public $m1;
+    public $m2;
+    public $m3;
+    public $m4;
+    public $m5;
+    public $m6;
+    public $m7;
+    public $m8;
+    public $m9;
+    public $m10;
+    public $m11;
+    public $m12;
+    public $m13;
+    public $m14;
+    public $m15;
+    public $m16;
+    public $m17;
+    public $m18;
+    public $m19;
+    public $m20;
+    public $m21;
+    public $m22;
+    public $m23;
+    public $m24;
+    public $m25;
+    public $m26;
+    public $m27;
+    public $m28;
+    public $m29;
+    public $m30;
+    public $m31;
+    public $m32;
+    public $m33;
+    public $m34;
+    public $m35;
+    public $m36;
+    public $m37;
+    public $m38;
+    public $m39;
+    public $m40;
+    public $m41;
+    public $m42;
+    public $m43;
+    public $m44;
+    public $m45;
+    public $m46;
+    public $m47;
+    public $m48;
+    public $m49;
+    public $m50;
+    public $m51;
+    public $m52;
+    public $m53;
+    public $m54;
+    public $m55;
+    public $m56;
+    public $m57;
+    public $m58;
+    public $m59;
+    public $m60;
+    public $m61;
+    public $m62;
+    public $m63;
+    public $m64;
+    public $m65;
+    public $m66;
+    public $m67;
+    public $m68;
+    public $m69;
+    public $m70;
+    public $m71;
+    public $m72;
+    public $m73;
+    public $m74;
+    public $m75;
+    public $m76;
+    public $m77;
+    public $m78;
+    public $m79;
+    public $m80;
+    public $m81;
+    public $m82;
+    public $m83;
+    public $m84;
+    public $m85;
+    public $m86;
+    public $m87;
+    public $m88;
+    public $m89;
+    public $m90;
+    public $m91;
+    public $m92;
+    public $m93;
+    public $m94;
+    public $m95;
+    public $m96;
+    public $m97;
+    public $m98;
+
     /**
      * {@inheritdoc}
      */
@@ -118,7 +130,7 @@ class Userrole extends \yii\db\ActiveRecord
         return [
             [['createtime', 'updatetime', 'role'], 'required'],
             [['createtime', 'updatetime'], 'safe'],
-            [['m1', 'm2','m3','m4','m5','m6','m7','m8','m9','m10','m11','m12','m13','m14','m15','m16','m17','m18','m19','m20','m21', 'm22','m23','m24','m25','m26','m27','m28','m29','m30','m31','m32','m33','m34', 'm35', 'm36','m37','m38','m39','m40','m41','m42','m43','m44','m45','m46','m47','m48', 'm49','m50','m51','m52','m53','m54','m55','m56','m57','m58','m59','m60','m61','m62','m63','m64','m65','m66','m67','m68','m69','m70','m71','m72','m73','m74','m75','m76','m77','m78','m79','m80','m81','m82','m83','m84','m85','m86','m87','countcheck'], 'integer'],
+            [['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8', 'm9', 'm10', 'm11', 'm12', 'm13', 'm14', 'm15', 'm16', 'm17', 'm18', 'm19', 'm20', 'm21', 'm22', 'm23', 'm24', 'm25', 'm26', 'm27', 'm28', 'm29', 'm30', 'm31', 'm32', 'm33', 'm34', 'm35', 'm36', 'm37', 'm38', 'm39', 'm40', 'm41', 'm42', 'm43', 'm44', 'm45', 'm46', 'm47', 'm48', 'm49', 'm50', 'm51', 'm52', 'm53', 'm54', 'm55', 'm56', 'm57', 'm58', 'm59', 'm60', 'm61', 'm62', 'm63', 'm64', 'm65', 'm66', 'm67', 'm68', 'm69', 'm70', 'm71', 'm72', 'm73', 'm74', 'm75', 'm76', 'm77', 'm78', 'm79', 'm80', 'm81', 'm82', 'm83', 'm84', 'm85', 'm86', 'm87', 'm88', 'm89', 'm90', 'm91', 'm92', 'm93', 'm94', 'm95', 'm96', 'm97', 'm98', 'countcheck'], 'integer'],
             [['role'], 'string', 'max' => 45],
         ];
     }
@@ -220,6 +232,16 @@ class Userrole extends \yii\db\ActiveRecord
             'm85' => 'Create',
             'm86' => 'Update',
             'm87' => 'Delete',
+            'm88' => 'View Cancel Join',
+            'm89' => 'Create Cancel Join',
+            'm90' => 'Update Cancel Join',
+            'm91' => 'Delete Cancel Join',
+            'm92' => 'Approve Cancel Join',
+            'm93' => 'View Change Hiring',
+            'm94' => 'Create Change Hiring',
+            'm95' => 'Update Change Hiring',
+            'm96' => 'Delete Change Hiring',
+            'm97' => 'Approve Change Hiring',
         ];
     }
 }

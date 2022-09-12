@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'model' => $model,
             'attributes' => [
                 'id',
-                'mastersubjobfamily.subjobfamily',
+                'subjobfam.subjobfamily',
                 'kodejabatan',
                 'jabatansap',
                 [

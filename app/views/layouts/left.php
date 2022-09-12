@@ -53,9 +53,9 @@
                 'active' => Yii::$app->controller->action->id == 'reportcanceljoin'
               ],
               [
-                'label' => 'Change Job Order', 'icon' => 'circle-o', 'url' => ['/report/reportchangejo'],
+                'label' => 'Change Job Order', 'icon' => 'circle-o', 'url' => ['/report/reportchangehiring'],
                 'visible' => (Yii::$app->utils->permission($role, 'm66')),
-                'active' => Yii::$app->controller->action->id == 'reportchangejo'
+                'active' => Yii::$app->controller->action->id == 'reportchangehiring'
               ],
               [
                 'label' => 'Hiring', 'icon' => 'circle-o', 'url' => ['/report/reporthiring'],
@@ -63,9 +63,9 @@
                 'active' => Yii::$app->controller->action->id == 'reporthiring'
               ],
               [
-                'label' => 'Job Order', 'icon' => 'circle-o', 'url' => ['/report/reportjoborder'],
+                'label' => 'Change Hiring', 'icon' => 'circle-o', 'url' => ['/report/reportchangehiring'],
                 'visible' => (Yii::$app->utils->permission($role, 'm66')),
-                'active' => Yii::$app->controller->action->id == 'reportjoborder'
+                'active' => Yii::$app->controller->action->id == 'reportchangehiring'
               ],
             ],
           ],
@@ -76,32 +76,32 @@
             'visible' => (Yii::$app->utils->permission($role, 'B01')),
             'items' => [
               [
-                'label' => 'Personal Data', 'icon' => 'circle-o', 'url' => ['/chagerequestdata'],
+                'label' => 'Personal Data', 'icon' => 'circle-o', 'url' => ['/chagerequestdata/index'],
                 'visible' => (Yii::$app->utils->permission($role, 'm52')),
                 'active' => Yii::$app->controller->id == 'chagerequestdata'
               ],
               [
-                'label' => 'Bank Account', 'icon' => 'circle-o', 'url' => ['/chagerequestdatabank'],
+                'label' => 'Bank Account', 'icon' => 'circle-o', 'url' => ['/chagerequestdatabank/index'],
                 'visible' => (Yii::$app->utils->permission($role, 'm57')),
                 'active' => Yii::$app->controller->id == 'chagerequestdatabank'
               ],
               [
-                'label' => 'Cancel Join', 'icon' => 'circle-o', 'url' => ['/changecanceljoin'],
-                'visible' => (Yii::$app->utils->permission($role, 'm67')),
+                'label' => 'Cancel Join', 'icon' => 'circle-o', 'url' => ['/changecanceljoin/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm88')),
                 'active' => Yii::$app->controller->id == 'changecanceljoin'
               ],
               [
-                'label' => 'Change Job Order', 'icon' => 'circle-o', 'url' => ['/changejo'],
-                'visible' => (Yii::$app->utils->permission($role, 'm64')),
-                'active' => Yii::$app->controller->id == 'changejo'
+                'label' => 'Change Hiring', 'icon' => 'circle-o', 'url' => ['/changehiring/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm93')),
+                'active' => Yii::$app->controller->id == 'changehiring'
               ],
               [
-                'label' => 'Stop Job Order', 'icon' => 'circle-o', 'url' => ['/chagerequestjo'],
+                'label' => 'Stop Job Order', 'icon' => 'circle-o', 'url' => ['/chagerequestjo/index'],
                 'visible' => (Yii::$app->utils->permission($role, 'm64')),
                 'active' => Yii::$app->controller->id == 'chagerequestjo'
               ],
               [
-                'label' => 'Resign', 'icon' => 'circle-o', 'url' => ['/chagerequestresign'],
+                'label' => 'Resign', 'icon' => 'circle-o', 'url' => ['/chagerequestresign/index'],
                 'visible' => (Yii::$app->utils->permission($role, 'm67')),
                 'active' => Yii::$app->controller->id == 'chagerequestresign'
               ],

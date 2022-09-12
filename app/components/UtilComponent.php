@@ -190,7 +190,7 @@ class UtilComponent extends Component
       'token' => 'ish@gojobs',
     ])->post('http://192.168.88.27/mailgatewaygojobs/send');
     $response = $verification[8];
-    // var_dump($response);die;
+    // var_dump($verification);die;
     $now = date('Y-m-d');
     $updatetoday = Mailcounter::find()->where(['date'=>$now, 'klasifikasi'=>$identifier])->one();
     if($updatetoday){

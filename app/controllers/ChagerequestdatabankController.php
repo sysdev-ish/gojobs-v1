@@ -172,7 +172,6 @@ class ChagerequestdatabankController extends Controller
     $crdtransbankacc = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 4])->one();
     if ($perner) {
       $cekhiring = Hiring::find()->where(['perner' => $perner, 'statushiring' => 4])->one();
-
       if ($cekhiring) {
 
         $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
@@ -393,8 +392,8 @@ class ChagerequestdatabankController extends Controller
         }
         //add by kaha
         // $to = $user->email;
-        // $to = 'khusnul.hisyam@ish.co.id';
-        $to = 'seysi.lupi@ish.co.id';
+        $to = 'khusnul.hisyam@ish.co.id';
+        // $to = 'seysi.lupi@ish.co.id';
         $subject = 'Notifikasi Approval Perubahan Data Bank';
         $body = 'Semangat Pagi,,
               <br>

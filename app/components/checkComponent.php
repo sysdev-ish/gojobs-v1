@@ -284,7 +284,7 @@ class checkComponent extends Component {
         }
         if($tr->typejo == 1){
           if($transjo->flag_peralihan == 1){
-            if($trori->type_rekrut == 1 OR $trori->type_rekrut == 3){
+            if($tr->type_rekrut == 1 OR $tr->type_rekrut == 3){
               $ret = $tr->jumlah;
             }
           }else{
@@ -314,6 +314,7 @@ class checkComponent extends Component {
         $ret = null;
         $tr = Transrincian::find()->where(['id'=> $id])->one();
         $trori = Transrincianori::find()->where(['id'=> $tr->idpktable])->one();
+        // var_dump($tr->type_rekrut);die();
         $tp = Transperner::find()->where(['id'=> $tr->idpktable])->one();
         $transjo = Transjo::find()->where(['nojo'=> $tr->nojo])->one();
         $candidate = Recruitmentcandidate::find()
@@ -327,7 +328,7 @@ class checkComponent extends Component {
         }
         if($tr->typejo == 1){
           if($transjo->flag_peralihan == 1){
-            if($trori->type_rekrut == 1 OR $trori->type_rekrut == 3){
+            if($tr->type_rekrut == 1 OR $tr->type_rekrut == 3){
               $ret = $tr->jumlah;
             }
           }else{
@@ -347,13 +348,9 @@ class checkComponent extends Component {
             }
           }
         }
-
-
-
-
         return $ret;
       }
-    public function checkJohired($id,$condition){
+      public function checkJohired($id,$condition){
         $ret = null;
         $tr = Transrincian::find()->where(['id'=> $id])->one();
         $trori = Transrincianori::find()->where(['id'=> $tr->idpktable])->one();
@@ -364,21 +361,19 @@ class checkComponent extends Component {
           $candidate = Hiring::find()
             ->where(['recruitreqid'=>$id])
             ->andWhere(['or',
-             ['statushiring'=> 4],
-             ['statushiring'=> 7],
-             ['statushiring'=> 8]
-           ])
-            ->all();
+              ['statushiring'=> 4],
+              ['statushiring'=> 7],
+              ['statushiring'=> 8]
+          ])->all();
         }else{
           $candidate = Hiring::find()
             ->where(['recruitreqid'=>$id])
             ->andWhere(['or',
-             ['statushiring'=> 4],
-             ['statushiring'=> 7],
-             ['statushiring'=> 8],
-             ['statushiring'=> 1]
-           ])
-            ->all();
+              ['statushiring'=> 4],
+              ['statushiring'=> 7],
+              ['statushiring'=> 8],
+              ['statushiring'=> 1]
+          ])->all();
         }
 
         if($candidate){
@@ -389,7 +384,7 @@ class checkComponent extends Component {
 
         if($tr->typejo == 1){
           if($transjo->flag_peralihan == 1){
-            if($trori->type_rekrut == 1 OR $trori->type_rekrut == 3){
+            if($tr->type_rekrut == 1 OR $tr->type_rekrut == 3){
               $ret = $tr->jumlah;
 
             }

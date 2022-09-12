@@ -72,96 +72,96 @@ class CrdtransactionController extends Controller
      */
     public function actionCreate($crdid, $param)
     {
-      $check = Crdtransaction::find()->where(['crdid'=>$crdid, 'dataid'=>$param,'status'=>1])->one();
+    $check = Crdtransaction::find()->where(['crdid'=>$crdid, 'dataid'=>$param,'status'=>1])->one();
 
-      $modelcrd = Chagerequestdata::find()->where(['id'=>$crdid])->one();
-      $modeldata = Userprofile::find()->where(['userid'=>$modelcrd->userid])->one();
-      $modelaboutdata = Userabout::find()->where(['userid'=>$modelcrd->userid])->one();
-      $document = Uploadocument::find()->where(['userid'=>$modelcrd->userid])->one();
-      $bank = ArrayHelper::map(Masterbank::find()->asArray()->all(), 'id', 'bank');
-      $bankreason = ArrayHelper::map(Masterbankreason::find()->asArray()->all(), 'id', 'reason');
-      $perner = $modelcrd->perner;
-      switch ($param) {
-          case 1:
-              $oldvalue = $modeldata->npwpnumber;
-              $olddoc = $document->npwp;
-              $path = 'npwp';
-              $scenarioname = 'npwp';
-              break;
-          case 2:
-              $oldvalue = $modeldata->bpjsnumber;
-              $olddoc = $document->bpjskesehatan;
-              $path = 'bpjskesehatan';
-              $scenarioname = 'bpjs';
-              break;
-          case 3:
-              $oldvalue = $modeldata->jamsosteknumber;
-              $olddoc = $document->jamsostek;
-              $path = 'jamsostek';
-              $scenarioname = 'jamsostek';
-              break;
-          case 4:
-           if($modeldata){
-             $oldvalue = $modelaboutdata->bankid;
-             $oldvalue2 = $modelaboutdata->bankaccountnumber;
-             $olddoc = ($document)?$document->bankaccount:'';
+    $modelcrd = Chagerequestdata::find()->where(['id'=>$crdid])->one();
+    $modeldata = Userprofile::find()->where(['userid'=>$modelcrd->userid])->one();
+    $modelaboutdata = Userabout::find()->where(['userid'=>$modelcrd->userid])->one();
+    $document = Uploadocument::find()->where(['userid'=>$modelcrd->userid])->one();
+    $bank = ArrayHelper::map(Masterbank::find()->asArray()->all(), 'id', 'bank');
+    $bankreason = ArrayHelper::map(Masterbankreason::find()->asArray()->all(), 'id', 'reason');
+    $perner = $modelcrd->perner;
+    switch ($param) {
+        case 1:
+            $oldvalue = $modeldata->npwpnumber;
+            $olddoc = $document->npwp;
+            $path = 'npwp';
+            $scenarioname = 'npwp';
+            break;
+        case 2:
+            $oldvalue = $modeldata->bpjsnumber;
+            $olddoc = $document->bpjskesehatan;
+            $path = 'bpjskesehatan';
+            $scenarioname = 'bpjs';
+            break;
+        case 3:
+            $oldvalue = $modeldata->jamsosteknumber;
+            $olddoc = $document->jamsostek;
+            $path = 'jamsostek';
+            $scenarioname = 'jamsostek';
+            break;
+        case 4:
+        if($modeldata){
+            $oldvalue = $modelaboutdata->bankid;
+            $oldvalue2 = $modelaboutdata->bankaccountnumber;
+            $olddoc = ($document)?$document->bankaccount:'';
 
-           }else{
-             $curl = new curl\Curl();
-             $getdatapekerjabyperner =  $curl->setPostParams([
-               'perner' => $perner,
-               'token' => 'ish**2019',
-             ])
-             ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-             $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-             $masterbank = Masterbank::find()->where(['sapid'=>$datapekerjabyperner[0]->BANKL])->one();
-             $oldvalue = ($masterbank)?$masterbank->id:null;
-             $oldvalue2 = $datapekerjabyperner[0]->BANKN;
-             $olddoc = ($document)?$document->bankaccount:null;
-           }
-           $path = 'bankaccount';
-           $scenarioname = 'bankaccount';
-              break;
-          default:
-              $oldvalue = null;
-              $olddoc = null;
-              $path = '';
-              $scenarioname = '';
-      }
+        }else{
+            $curl = new curl\Curl();
+            $getdatapekerjabyperner =  $curl->setPostParams([
+            'perner' => $perner,
+            'token' => 'ish**2019',
+            ])
+            ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
+            $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+            $masterbank = Masterbank::find()->where(['sapid'=>$datapekerjabyperner[0]->BANKL])->one();
+            $oldvalue = ($masterbank)?$masterbank->id:null;
+            $oldvalue2 = $datapekerjabyperner[0]->BANKN;
+            $olddoc = ($document)?$document->bankaccount:null;
+        }
+        $path = 'bankaccount';
+        $scenarioname = 'bankaccount';
+            break;
+        default:
+            $oldvalue = null;
+            $olddoc = null;
+            $path = '';
+            $scenarioname = '';
+    }
 
-      if($check){
+    if($check){
 
         $model = $check;
         $olddoc = $model->newdoc;
         if($olddoc){
-          $model->scenario = $scenarioname.'_1';
+        $model->scenario = $scenarioname.'_1';
         }else{
-          $model->scenario = $scenarioname.'_2';
+        $model->scenario = $scenarioname.'_2';
         }
         if ($model->load(Yii::$app->request->post())) {
-          $model->newdoc = UploadedFile::getInstance($model,'newdoc');
-          if($model->newdoc){
+        $model->newdoc = UploadedFile::getInstance($model,'newdoc');
+        if($model->newdoc && $model->validate()){
             $assetUrl = Yii::getAlias('@app'). '/assets';
             $fileextp = $model->newdoc->extension;
             $oldfilename = (($modeldata)?$modeldata->userid:$perner).'-'.$path;
             if($olddoc){
-              $getoldfilename = explode(".",$olddoc);
-              $oldfilename = $getoldfilename[0];
+            $getoldfilename = explode(".",$olddoc);
+            $oldfilename = $getoldfilename[0];
             }
             $filep = $oldfilename.'-cr'.$crdid.'.'.$fileextp;
             if ($model->newdoc->saveAs($assetUrl.'/upload/'.$path.'/'.$filep)){
-              $model->newdoc = $filep;
+            $model->newdoc = $filep;
             }
-          }else{
+        }else{
             $model->newdoc = $olddoc;
-          }
+        }
 
-          $model->save();
-          if($param == 4){
-              return $this->redirect(['/chagerequestdatabank/create', 'id' => $crdid]);
-          }else{
-              return $this->redirect(['/chagerequestdata/create', 'id' => $crdid]);
-          }
+        $model->save();
+        if($param == 4){
+            return $this->redirect(['/chagerequestdatabank/create', 'id' => $crdid]);
+        }else{
+            return $this->redirect(['/chagerequestdata/create', 'id' => $crdid]);
+        }
         } else {
             return $this->renderAjax('update', [
                 'model' => $model,
@@ -170,7 +170,7 @@ class CrdtransactionController extends Controller
                 'bankreason' => $bankreason,
             ]);
         }
-      }else{
+    }else{
         $model = new Crdtransaction();
         // $model->scenario = 'npwp_2';
         switch ($param) {
@@ -193,26 +193,26 @@ class CrdtransactionController extends Controller
             $model->crdid = $crdid;
             $model->oldvalue = $oldvalue;
             if($param == 4){
-              $model->oldvalue2 = $oldvalue2;
+            $model->oldvalue2 = $oldvalue2;
             }
             $model->oldvalue = $oldvalue;
             $model->olddoc = $olddoc;
             $model->dataid = $param;
             $model->newdoc = UploadedFile::getInstance($model,'newdoc');
             if($model->newdoc){
-              $assetUrl = Yii::getAlias('@app'). '/assets';
-              $fileextp = $model->newdoc->extension;
-              $oldfilename = (($modeldata)?$modeldata->userid:$perner).'-'.$path;
+            $assetUrl = Yii::getAlias('@app'). '/assets';
+            $fileextp = $model->newdoc->extension;
+            $oldfilename = (($modeldata)?$modeldata->userid:$perner).'-'.$path;
 
-              // if($olddoc){
-              //   $getoldfilename = explode(".",$olddoc);
-              //   $oldfilename = $getoldfilename[0];
-              // }
-              // var_dump($oldfilename);die;
-              $filep = $oldfilename.'-cr'.$crdid.'.'.$fileextp;
-              if ($model->newdoc->saveAs($assetUrl.'/upload/'.$path.'/'.$filep)){
+            // if($olddoc){
+            //   $getoldfilename = explode(".",$olddoc);
+            //   $oldfilename = $getoldfilename[0];
+            // }
+            // var_dump($oldfilename);die;
+            $filep = $oldfilename.'-cr'.$crdid.'.'.$fileextp;
+            if ($model->newdoc->saveAs($assetUrl.'/upload/'.$path.'/'.$filep)){
                 $model->newdoc = $filep;
-              }
+            }
             }
             $model->save(false);
             if($param == 4){
@@ -228,7 +228,7 @@ class CrdtransactionController extends Controller
                 'bankreason' => $bankreason,
             ]);
         }
-      }
+    }
 
     }
 

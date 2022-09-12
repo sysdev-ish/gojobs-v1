@@ -36,7 +36,7 @@ use yii\helpers\Url;
             'pluginOptions' => [
               'autoclose' => true,
               'startDate' => '2019-01-01',
-              'endDate' => '-0y',
+              'endDate' => '+5y', //where you define enddate more than today
               // 'timePickerIncrement'=>60,
               'format' => 'yyyy-mm-dd',
               'todayHighlight' => true
