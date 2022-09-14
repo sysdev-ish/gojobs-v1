@@ -198,18 +198,35 @@ $this->params['breadcrumbs'][] = $this->title;
                 'canceldate',
 
                 [
-
                   'label' => 'Approver',
                   'attribute' => 'approveduser',
                   'format' => 'html',
                   'value'=>function ($data) {
-
-                    return ($data->approveduser)?$data->approveduser->name:"";
-                }
-
+                    // return ($data->approveduser)?$data->approveduser->name:"";
+                    return "PM";
+                  }
                 ],
+                
                 'approvedtime',
-                'status',
+                [
+                  'label' => 'Status',
+                  'attribute' => 'status',
+                  'format' => 'html',
+                  'value'=>function ($data) {
+                      if ($data->status == 1) {
+                        $label = 'label-danger';
+                      } elseif ($data->status == 2 or $data->status == 3 or $data->status == 6) {
+                        $label = 'label-warning';
+                      } elseif ($data->status == 4 or $data->status == 9) {
+                        $label = 'label-success';
+                      } elseif ($data->status == 8) {
+                        $label = 'label-info';
+                      } else {
+                        $label = 'label-danger';
+                      }
+                      return '<span class="label ' . $label . '">' . $data->statusprocess->statusname . '</span>';
+                  }
+                ],
                 'remarks',
                 [
                   'attribute' => 'createdby',

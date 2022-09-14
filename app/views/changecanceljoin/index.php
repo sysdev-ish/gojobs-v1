@@ -48,19 +48,19 @@ $actionupdate = '';
 $actiondelete = '';
 $actionapprove = '';
 $actionconfirmation = '';
-if(Yii::$app->utils->permission($role,'m67')){
+if(Yii::$app->utils->permission($role,'m88')){
   $actionview = '{view}';
 }
-if(Yii::$app->utils->permission($role,'m69')){
+if(Yii::$app->utils->permission($role,'m90')){
   $actionupdate = '{update}';
 }
-if(Yii::$app->utils->permission($role,'m70')){
+if(Yii::$app->utils->permission($role,'m91')){
   $actiondelete = '{delete}';
 }
-if(Yii::$app->utils->permission($role,'m71')){
+if(Yii::$app->utils->permission($role,'m92')){
   $actionapprove = '{approve}';
 }
-if (Yii::$app->user->identity->username == '9802618' || Yii::$app->user->identity->username == '9103005') {
+if (Yii::$app->user->identity->username == '9802618' || Yii::$app->user->identity->username == '9103005' || Yii::$app->user->identity->username == "seysi.lupi1@ish.co.id") {
   $actionconfirmation = '{confirmation}';
 }
 $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirmation;
@@ -111,13 +111,11 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
             ],
 
             [
-
               'label' => 'Approver',
               'attribute' => 'approveduser',
               'format' => 'html',
               'value'=>function ($data) {
-
-                return ($data->approveduser)?$data->approveduser->name:"";
+                return ($data->approveduser)?$data->approveduser->name:"". ("PM");
               }
             ],
 
@@ -128,7 +126,7 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
               'filter' => \kartik\select2\Select2::widget([
                 'model' => $searchModel,
                 'attribute' => 'status',
-                'data' => ArrayHelper::map(Masterstatuscr::find()->asArray()->all(), 'id', 'statusname'),
+                'data' => ArrayHelper::map(Masterstatuscr::find()->where('id in (1, 2, 4, 5, 7, 8, 9)')->asArray()->all(), 'id', 'statusname'),
                 'options' => ['placeholder' => '--'],
                 'pluginOptions' => [
                     'allowClear' => true,
@@ -137,7 +135,7 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
               ]),
               'value'=>function ($data) {
                 // return $data->status;
-                if($data->status == 1){$label='label-danger';}elseif($data->status == 2 OR $data->status == 3){$label='label-warning';}elseif($data->status == 4){$label='label-success';}elseif($data->status == 8){$label='label-info';}else{$label='label-danger';}
+                if($data->status == 1){$label='label-danger';}elseif($data->status == 2 OR $data->status == 3 OR $data->status == 6){$label='label-warning';}elseif($data->status == 4 OR $data->status == 9){$label='label-success';}elseif($data->status == 8){$label='label-info';}else{$label='label-danger';}
                 return '<span class="label '.$label.'">'.$data->statusprocess->statusname.'</span>';
               }
             ],

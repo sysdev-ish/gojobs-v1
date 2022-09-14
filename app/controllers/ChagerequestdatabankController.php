@@ -829,9 +829,14 @@ class ChagerequestdatabankController extends Controller
    */
   public function actionDelete($id)
   {
-    $this->findModel($id)->delete();
-
-    return $this->redirect(['index']);
+    $model = $this->findModel($id)->delete();
+    if ($model) {
+      Yii::$app->session->setFlash('success', "Data Dihapus.");
+      return $this->redirect(['index']);
+    } else {
+      Yii::$app->session->setFlash('error', "Data Tidak Bisa Dihapus.");
+      return $this->redirect(['index']);
+    }
   }
   public function actionGetdatakaryawan($q = null, $id = null)
   {

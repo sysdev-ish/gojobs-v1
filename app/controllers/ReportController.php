@@ -226,7 +226,7 @@ class ReportController extends Controller
       'subjobfamily' => $subjobfamily,
     ]);
   }
-  public function actionReportchangejo()
+  public function actionReportchangehiring()
   {
     // $this->scenario
     $searchModel = new Changejoreport();

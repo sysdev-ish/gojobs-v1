@@ -8,13 +8,11 @@ use kartik\date\DatePicker;
 use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Changecanceljoin */
+/* @var $model app\models\Changehiring */
 /* @var $form yii\widgets\ActiveForm */
 
 $datakaryawan = empty($model->perner) ? '' : $model->perner;
-$model->canceldate = ($model->canceldate == "0000-00-00") ? null : $model->canceldate;
-$url = \yii\helpers\Url::to(['transrincian/recreqlist']);
-$recruitreqs = empty($model->recruitreqid) ? '' : Transrincian::findOne($model->recruitreqid)->nojo;
+$model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->cancelhiring;
 ?>
 <?php $form = ActiveForm::begin(); ?>
 <div class="row">
@@ -37,7 +35,7 @@ $recruitreqs = empty($model->recruitreqid) ? '' : Transrincian::findOne($model->
               'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
             ],
             'ajax' => [
-              'url' => \yii\helpers\Url::to(['changecanceljoin/getdatakaryawan']),
+              'url' => \yii\helpers\Url::to(['changehiring/getdatakaryawan']),
               'dataType' => 'json',
               'data' => new \yii\web\JsExpression('function(params) { return {q:params.term}; }'),
 
@@ -54,46 +52,7 @@ $recruitreqs = empty($model->recruitreqid) ? '' : Transrincian::findOne($model->
           ],
         ])->label('Perner / Name');
         ?>
-        <?php
-        echo   $form->field($model, 'recruitreqid')->widget(Select2::classname(), [
-          // 'data' => $recruitreq,
-          'model' => $model,
-          'attribute' => 'perner',
-          'initValueText' => $recruitreqs, // set the initial display text
-          'options' => ['placeholder' => '- select -', 'id' => 'recruitreqid'],
-          'pluginOptions' => [
-            // 'dropdownParent' => new yii\web\JsExpression('$("#addcandidate-modal")'),
-            'allowClear' => true,
-            'minimumInputLength' => 3,
-            'language' => [
-              'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
-            ],
-            'ajax' => [
-              'url' => $url,
-              'dataType' => 'json',
-              'data' => new \yii\web\JsExpression('function(params) { return {q:params.term}; }'),
-              // 'processResults'=> new \yii\web\JsExpression(' function (data) {
-              //     return data.nojo+" <br> "+ data.name_job_function + " - " + data.city_name;
-              //   }'),
 
-            ],
-            'escapeMarkup' => new \yii\web\JsExpression('function (markup) { return markup; }'),
-            'templateResult' => new \yii\web\JsExpression('function(a) {
-                if(a.sappersa){var projects = a.sappersa}else{var projects = "n/a"}
-                if(a.sapjabatan){var jabatans = a.sapjabatan}else{var jabatans = "n/a"}
-                if(a.sapskill){var skill = a.sapskill}else{var skill = "n/a"}
-                if(a.nojo == null){return "No Data";}else{return a.nojo+" <br> "+ jabatans  + " - " + a.saparea + " - " + projects+ " - " + skill;};
-              }'),
-            // 'templateSelection' => new \yii\web\JsExpression('function (a) { return a.nojo + " | " + a.name_job_function + " | " + a.city_name; }'),
-            'templateSelection' => new \yii\web\JsExpression('function (a) {
-
-                if(a.sappersa){var projects = a.sappersa;}else{var projects = "n/a"}
-                if(a.sapjabatan){var jabatans = a.sapjabatan;}else{var jabatans = "n/a"}
-                if(a.nojo == null){return "No Data";}else{return a.nojo};
-              }'),
-          ],
-        ]);
-        ?>
         <?= $form->field($model, 'checkperner')->hiddenInput(['id' => 'checkperner'])->label(false) ?>
         <?= $form->field($model, 'approvedby')->widget(Select2::classname(), [
           'data' => $approvalname,
@@ -107,11 +66,11 @@ $recruitreqs = empty($model->recruitreqid) ? '' : Transrincian::findOne($model->
           ],
         ])->label('Approve By');
         ?>
-        <?= $form->field($model, 'canceldate')->widget(
+        <?= $form->field($model, 'cancelhiring')->widget(
           DatePicker::className(),
           [
             'type' => DatePicker::TYPE_COMPONENT_APPEND,
-            'options' => ['placeholder' => 'Date', 'id' => 'canceldate', 'onChange' => "autosave();"],
+            'options' => ['placeholder' => 'Date', 'id' => 'cancelhiring', 'onChange' => "autosave();"],
             'pluginOptions' => [
               'autoclose' => true,
               'format' => 'yyyy-mm-dd',
@@ -177,7 +136,7 @@ $recruitreqs = empty($model->recruitreqid) ? '' : Transrincian::findOne($model->
     </div>
   </div>
   <div class="col-md-8">
-    <div class="box box-solid">
+    <div class="box box-default">
       <div class="box-header with-border">
         <i class="fa fa-file-text"></i>
         <h3 class="box-title">Personal Information</h3>
@@ -186,39 +145,39 @@ $recruitreqs = empty($model->recruitreqid) ? '' : Transrincian::findOne($model->
         <table class="table no-border">
           <tbody>
             <tr>
-              <td width="12%" style="text-align:right;"><b>Perner</b></td>
+              <td width="12%"><b>Perner</b></td>
               <td width="30%" id="pernerdisp">-</td>
             </tr>
             <tr>
-              <td width="12%" style="text-align:right;"><b>Name</b></td>
+              <td width="12%"><b>Name</b></td>
               <td width="30%" id="name">-</td>
             </tr>
             <tr>
-              <td width="12%" style="text-align:right;"><b>Personal Area</b></td>
+              <td width="12%"><b>Personal Area</b></td>
               <td width="30%" id="persa">-</td>
             </tr>
             <tr>
-              <td width="12%" style="text-align:right;"><b>Area</b></td>
+              <td width="12%"><b>Area</b></td>
               <td width="30%" id="area">-</td>
             </tr>
             <tr>
-              <td width="12%" style="text-align:right;"><b>Skill Layanan</b></td>
+              <td width="12%"><b>Skill Layanan</b></td>
               <td width="30%" id="skilllayanan">-</td>
             </tr>
             <tr>
-              <td width="12%" style="text-align:right;"><b>Payroll Area</b></td>
+              <td width="12%"><b>Payroll Area</b></td>
               <td width="30%" id="payrollarea">-</td>
             </tr>
             <tr>
-              <td width="12%" style="text-align:right;"><b>Jabatan</b></td>
+              <td width="12%"><b>Jabatan</b></td>
               <td width="30%" id="jabatan">-</td>
             </tr>
             <tr>
-              <td width="12%" style="text-align:right;"><b>Level</b></td>
+              <td width="12%"><b>Level</b></td>
               <td width="30%" id="level">-</td>
             </tr>
             <tr>
-              <td width="12%" style="text-align:right;"><b>Hiring From</b></td>
+              <td width="12%"><b>Hiring From</b></td>
               <td width="30%" id="hire">-</td>
             </tr>
 
@@ -240,8 +199,9 @@ $recruitreqs = empty($model->recruitreqid) ? '' : Transrincian::findOne($model->
   });
 
   function autosave() {
+    var perner = $('#perner').val();
     var approvedbyid = $('#approvedby').val();
-    var canceldateid = $('#canceldate').val();
+    var cancelhiringid = $('#cancelhiring').val();
     var reasonid = $('#reason').val();
     var userremarksval = $('#userremarks').val();
 
@@ -249,13 +209,14 @@ $recruitreqs = empty($model->recruitreqid) ? '' : Transrincian::findOne($model->
       type: 'POST',
       cache: false,
       data: {
+        perner: perner,
         approvedby: approvedbyid,
-        canceldate: canceldateid,
+        cancelhiring: cancelhiringid,
         reason: reasonid,
         userremarks: userremarksval,
         id: <?php echo $model->id; ?>,
       },
-      url: '<?php echo Yii::$app->urlManager->createUrl(['changecanceljoin/autosave']) ?>',
+      url: '<?php echo Yii::$app->urlManager->createUrl(['changehiring/autosave']) ?>',
       success: function(data, textStatus, jqXHR) {}
     });
   }
@@ -269,7 +230,7 @@ $recruitreqs = empty($model->recruitreqid) ? '' : Transrincian::findOne($model->
         perner: perner,
         id: <?php echo $model->id; ?>,
       },
-      url: '<?php echo Yii::$app->urlManager->createUrl(['changecanceljoin/getuserabout']) ?>',
+      url: '<?php echo Yii::$app->urlManager->createUrl(['changehiring/getuserabout']) ?>',
       success: function(data, textStatus, jqXHR) {
         var obj = JSON.parse(data);
         var pernerres = '';
@@ -315,7 +276,6 @@ $recruitreqs = empty($model->recruitreqid) ? '' : Transrincian::findOne($model->
           var checkperner = obj.checkperner;
         }
 
-
         document.getElementById('pernerdisp').innerHTML = pernerres;
         document.getElementById('name').innerHTML = name;
         document.getElementById('persa').innerHTML = persa;
@@ -326,8 +286,6 @@ $recruitreqs = empty($model->recruitreqid) ? '' : Transrincian::findOne($model->
         document.getElementById('level').innerHTML = level;
         document.getElementById('hire').innerHTML = hire;
         $("#checkperner").val(checkperner);
-
-
 
       },
     });

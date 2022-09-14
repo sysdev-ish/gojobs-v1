@@ -12,6 +12,8 @@ use Yii;
  * @property int $perner
  * @property int $recruitreqid
  * @property int $newrecruitreqid
+ * @property string $fullname
+ * @property string $cancelhiring
  * @property string $createtime
  * @property string $updatetime
  * @property string $approvedtime
@@ -28,6 +30,7 @@ use Yii;
  */
 class Changehiring extends \yii\db\ActiveRecord
 {
+    public $checkperner;
     /**
      * {@inheritdoc}
      */
@@ -43,10 +46,11 @@ class Changehiring extends \yii\db\ActiveRecord
     {
         return [
             [['userid', 'perner', 'recruitreqid', 'newrecruitreqid', 'createdby', 'updatedby', 'approvedby', 'approvedby2', 'status', 'reason'], 'integer'],
-            [['createtime', 'updatetime', 'approvedtime', 'approvedtime2'], 'safe'],
+            [['createtime', 'updatetime', 'approvedtime', 'approvedtime2','cancelhiring'], 'safe'],
             [['documentevidence'], 'string', 'max' => 345],
+            [['reason', 'cancelhiring', 'documentevidence'], 'required'],
             [['remarks'], 'string', 'max' => 225],
-            [['userremarks'], 'string', 'max' => 255],
+            [['userremarks','fullname'], 'string', 'max' => 255],
         ];
     }
 
@@ -61,6 +65,8 @@ class Changehiring extends \yii\db\ActiveRecord
             'perner' => 'Perner',
             'recruitreqid' => 'Recruitreqid',
             'newrecruitreqid' => 'Newrecruitreqid',
+            'fullname' => 'Fullname',
+            'cancelhiring' => 'Cancel Hiring',
             'createtime' => 'Createtime',
             'updatetime' => 'Updatetime',
             'approvedtime' => 'Approvedtime',
@@ -75,5 +81,33 @@ class Changehiring extends \yii\db\ActiveRecord
             'remarks' => 'Remarks',
             'userremarks' => 'Userremarks',
         ];
+    }
+    public function getUserprofile()
+    {
+        return $this->hasOne(Userprofile::className(), ['userid' => 'userid']);
+    }
+    public function getRecruitreqid()
+    {
+        return $this->hasOne(Hiring::className(), ['userid' => 'recruitreqid']);
+    }
+    public function getCreateduser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'createdby']);
+    }
+    public function getApproveduser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'approvedby']);
+    }
+    public function getApproveduser2()
+    {
+        return $this->hasOne(User::className(), ['id' => 'approvedby2']);
+    }
+    public function getStatusprocess()
+    {
+        return $this->hasOne(Masterstatuscr::className(), ['id' => 'status']);
+    }
+    public function getCanceljoinreason()
+    {
+        return $this->hasOne(Masterreasoncanceljoin::className(), ['id' => 'reason']);
     }
 }

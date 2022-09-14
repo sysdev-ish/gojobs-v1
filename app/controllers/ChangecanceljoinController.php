@@ -92,7 +92,7 @@ class ChangecanceljoinController extends Controller
    */
   public function actionCreate($id = null)
   {
-    $approvalname = ArrayHelper::map(User::find()->where('role = 20 OR role = 17')->asArray()->all(), 'id', 'name');
+    // $approvalname = ArrayHelper::map(User::find()->where('role = 20 OR role = 17')->asArray()->all(), 'id', 'name');
     $reason = ArrayHelper::map(Masterreasoncanceljoin::find()->asArray()->all(), 'id', 'reason');
     if ($id) {
       $model = $this->findModel($id);
@@ -120,7 +120,7 @@ class ChangecanceljoinController extends Controller
       }
       // var_dump($model->documentevidence);die();
       if ($model->save()) {
-        $user = User::find()->where(['id' => $model->approvedby])->one();
+        // $user = User::find()->where(['id' => $model->approvedby])->one();
         if ($model->userid) {
           $getjo = Hiring::find()->where(['userid' => $model->userid, 'statushiring' => 4])->one();
           $modelrecreq = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
@@ -159,57 +159,63 @@ class ChangecanceljoinController extends Controller
         }
         // $to = $user->email;
         // $to =  "khusnul.hisyam@ish.co.id";
-        // $subject = 'Notifikasi Approval Cancel Join Pekerja';
-        // $body = 'Test';
-        // $body = 'Semangat Pagi,,
-        //     <br>
-        //     Anda mendapatkan permintaan Approval "Resign Pekerja" dari <span style="text-transform: uppercase;"><b>' . $model->createduser->name . '</b></span> dengan rincian sebagai berikut :
+        $to =  "proman@ish.co.id";
+        $subject = 'Notifikasi Approval Cancel Join Pekerja';
+        $body = 'Test';
+        $body = 'Semangat Pagi,
+            <br>
+            Anda mendapatkan permintaan Approval "Cancel Join Pekerja" dari <span style="text-transform: uppercase;"><b>' . $model->createduser->name . '</b></span> dengan rincian sebagai berikut :
 
-        //     <br>
-        //     <br>
-        //     <table>
-        //     <tr>
-        //     <td valign="top">Nama Pekerja</td>
-        //     <td valign="top">:</td>
-        //     <td valign="top">' . $name . '</td>
-        //     </tr>
-        //     <tr>
-        //     <td valign="top">Perner</td>
-        //     <td valign="top">:</td>
-        //     <td valign="top">' . $perner . '</td>
-        //     </tr>
-        //     <tr>
-        //     <td valign="top">Nama Project</td>
-        //     <td valign="top">:</td>
-        //     <td valign="top">' . $layanan . '</td>
-        //     </tr>
-        //     <tr>
-        //     <td valign="top">Area</td>
-        //     <td valign="top">:</td>
-        //     <td valign="top">' . $area . '</td>
-        //     </tr>
-        //     <tr>
-        //     <td valign="top">Jabatan</td>
-        //     <td valign="top">:</td>
-        //     <td valign="top">' . $jabatan . '</td>
-        //     </tr>
-        //     <tr>
-        //     </table>
-        //     <br>
-        //     <br>
-        //     Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> untuk melakukan verifikasi lebih lanjut.
-        //     <br><br>
-        //     Have a great day !
-        //     ';
+            <br>
+            <br>
+            <table>
+            <tr>
+            <td valign="top">Nama Pekerja</td>
+            <td valign="top">:</td>
+            <td valign="top">' . $name . '</td>
+            </tr>
+            <tr>
+            <td valign="top">Perner</td>
+            <td valign="top">:</td>
+            <td valign="top">' . $perner . '</td>
+            </tr>
+            <tr>
+            <td valign="top">Nama Project</td>
+            <td valign="top">:</td>
+            <td valign="top">' . $layanan . '</td>
+            </tr>
+            <tr>
+            <td valign="top">Area</td>
+            <td valign="top">:</td>
+            <td valign="top">' . $area . '</td>
+            </tr>
+            <tr>
+            <td valign="top">Jabatan</td>
+            <td valign="top">:</td>
+            <td valign="top">' . $jabatan . '</td>
+            </tr>
+            <tr>
+            <td valign="top">Reason</td>
+            <td valign="top">:</td>
+            <td valign="top">' . $model->canceljoinreason->reason . '</td>
+            </tr>
+            <tr>
+            </table>
+            <br>
+            <br>
+            Mohon untuk melakukan hapus perner agar bisa dilanjutkan proses yang lain.
+            <br><br>
+            Terima kasih!
+            ';
         // var_dump($body);die;
-        // $verification = Yii::$app->utils->sendmail($to, $subject, $body, 15);
+        $verification = Yii::$app->utils->sendmail($to, $subject, $body, 15);
         //15, klasifikasi untuk changecancel join cek table mailcounter/maillog
       }
       return $this->redirect(['index']);
     } else {
       return $this->render('create', [
         'model' => $model,
-        'approvalname' => $approvalname,
+        // 'approvalname' => $approvalname,
         'reason' => $reason,
       ]);
     }
@@ -232,10 +238,12 @@ class ChangecanceljoinController extends Controller
     $userid = $model->userid;
     $userprofile = Userprofile::find()->where(['userid' => $userid])->one();
     $model->scenario = 'approve';
+    // var_dump($userid);die();
     if ($model->load(Yii::$app->request->post())) {
       $model->approvedtime = date('Y-m-d H-i-s');
       if ($model->status == 8) {
         $model->remarks = "Waiting for Resign Execution process";
+        $model->approvedby = Yii::$app->user->identity->id;
         if ($model->save()) {
           if ($model->userid) { //get data jika userid id true
             $getjo = Hiring::find()->where(['userid' => $model->userid, 'statushiring' => 4])->one();
@@ -273,11 +281,12 @@ class ChangecanceljoinController extends Controller
             $jabatan = $datapekerjabyperner[0]->PLATX;
           }
           //sendmail notification for sap admin -> service canceljoin (belum ada)
-          $to = "khusnul.hisyam@ish.co.id";
+          // $to = "khusnul.hisyam@ish.co.id";
+          $to = "joko.sasongko@ish.co.id"; //SAP ADMIN
           $subject = 'Notifikasi Cancel Join SAP Admin';
           $body = 'Semangat Pagi,
             <br>
-            Anda mendapatkan permintaan "Cancel Join Pekerja" dari <span style="text-transform: uppercase;"><b>' . $model->createduser->name . '</b></span> dengan rincian sebagai berikut :
+            Anda mendapatkan permintaan "Cancel Join Pekerja" dari <span style="text-transform: uppercase;"><b>' . $model->approveduser->name . '</b></span> dengan rincian sebagai berikut :
 
             <br>
             <br>
@@ -339,26 +348,52 @@ class ChangecanceljoinController extends Controller
   public function actionConfirmcancel($id)
   {
     $model = $this->findModel($id);
+    // $model->scenario = 'confirmation';
     if ($model->load(Yii::$app->request->post())) {
+      $model->approvedtime = date('Y-m-d H-i-s');
       if ($model->status = 4) {
-        // var_dump($model->userid);die();
+        $model->status = 9;
         $model->remarks = 'Successfull';
-        $hiring = Hiring::find()->where(['statushiring' => 4])->one();
-        // $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
-        $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $model->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
-        if ($recruitmentcandidate == null) {
-          $hiring->statushiring = 6;
-          $model->save();
-        } 
-        elseif ($hiring) {
-          $hiring->statushiring = 6;
-          $recruitmentcandidate->status = 24;
-          $hiring->save(false);
-          $recruitmentcandidate->save(false);
-          $model->save();
+        // $hiring = Hiring::find()->where(['statushiring' => 4])->one();
+        $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
+        $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $hiring->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
+        $modelrecreq = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
+        // var_dump($recruitmentcandidate);die();
+        if ($model->save()) {
+          if ($recruitmentcandidate == null) {
+            $hiring->statushiring = 6;
+            $hiring->save(false);
+            if ($modelrecreq->status_rekrut = 2) {
+              $modelrecreq->status_rekrut = 1;
+              $modelrecreq->save(false);
+            }
+            if ($modelrecreq->status_rekrut = 4) {
+              $modelrecreq->status_rekrut = 3;
+              $modelrecreq->save(false);
+            }
+            if ($modelrecreq->status_rekrut = 1 or $modelrecreq->status_rekrut = 1) {
+              $modelrecreq->save(false);
+            }
+          } 
+          if ($hiring) {
+            $hiring->statushiring = 6;
+            $recruitmentcandidate->status = 24;
+            $hiring->save(false);
+            $recruitmentcandidate->save(false);
+            if ($modelrecreq->status_rekrut = 2) {
+              $modelrecreq->status_rekrut = 1;
+              $modelrecreq->save(false);
+            }
+            if ($modelrecreq->status_rekrut = 4) {
+              $modelrecreq->status_rekrut = 3;
+              $modelrecreq->save(false);
+            }
+            if ($modelrecreq->status_rekrut = 1 or $modelrecreq->status_rekrut = 1) {
+              $modelrecreq->save(false);
+            }
+          }
         }
-        return $this->redirect(['index']);
-      } else {
+      } else  {
         $model->save();
       } return $this->redirect(['index']);
     }
@@ -368,6 +403,7 @@ class ChangecanceljoinController extends Controller
       ]);
     }
   }
+
   /**
    * Updates an existing Changecanceljoin model.
    * If update is successful, the browser will be redirected to the 'view' page.
@@ -510,14 +546,14 @@ class ChangecanceljoinController extends Controller
   {
     $id = $_POST['id'];
     $perner = $_POST['perner'];
-    $approvedby = $_POST['approvedby'];
+    // $approvedby = $_POST['approvedby'];
     $canceldate = $_POST['canceldate'];
     $reason = $_POST['reason'];
     $userremarks = $_POST['userremarks'];
     if ($id) {
       $model = $this->findModel($id);
       $model->perner = $perner;
-      $model->approvedby = $approvedby;
+      // $model->approvedby = $approvedby;
       $model->canceldate = $canceldate;
       $model->reason = $reason;
       $model->remarks = "draft";

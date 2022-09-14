@@ -15,22 +15,15 @@ use linslin\yii2\curl;
 class Canceljoinreport extends Hiring
 {
   public $fullname;
-  public $nojo;
-  public $typejo;
-  public $startawalkontrak;
-  public $endawalkontrak;
-  public $area;
-  public $personalarea;
-  public $jabatan;
-  public $sap;
+  public $perner;
+  public $userid;
+  public $createtime;
+  public $updatetime;
+  public $createdby;
+  public $reason;
+  public $canceldate;
+  public $approvedby;
   public $status;
-  public $areaish;
-  public $region;
-  public $statuspekerja;
-  public $startresign;
-  public $endresign;
-  public $jobfamily;
-  public $subjobfamily;
   
     /**
      * @inheritdoc
@@ -38,9 +31,8 @@ class Canceljoinreport extends Hiring
     public function rules()
     {
         return [
-            // [['startawalkontrak','endawalkontrak'], 'required'],
-            [['id', 'userid', 'perner', 'statushiring', 'statusbiodata','typejo','nojo','sap','statuspekerja'], 'integer'],
-            [['createtime', 'updatetime', 'fullname','startawalkontrak','endawalkontrak','area','personalarea','jabatan','areaish','region','startresign','endresign','jobfamily','subjobfamily'
+            [['userid', 'perner', 'status','reason'], 'integer'],
+            [['createtime', 'updatetime', 'fullname','canceldate','createdby','approvedby'
             ], 'safe'],
         ];
     }

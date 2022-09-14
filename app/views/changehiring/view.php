@@ -11,7 +11,7 @@ use app\models\Transrincian;
 /* @var $model app\models\changecanceljoin */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'changecanceljoins', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Change Cancel Join', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="changecanceljoin-view box box-solid">
@@ -23,15 +23,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 'id',
                 'perner',
                 'fullname',
+                'userid',
                 [
                   'label' => 'Personal Area',
                   'format' => 'html',
                   'value'=>function ($data) {
                     if($data->userid){
                       $cekhiring = Hiring::find()->where('userid ='.$data->userid.' and (statushiring = 4 OR statushiring = 7)')->orderBy(["id"=>SORT_DESC])->one();
-
-                      $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
-                      $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap))?Yii::$app->utils->getpersonalarea($getjo->persa_sap): "";
+                      if ($cekhiring) {
+                        $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
+                        $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap))?Yii::$app->utils->getpersonalarea($getjo->persa_sap): "";
+                      } else {
+                        $persa = "-";
+                      }
                     }else{
                       $curl = new curl\Curl();
                       $getdatapekerjabyperner =  $curl->setPostParams([
@@ -52,8 +56,12 @@ $this->params['breadcrumbs'][] = $this->title;
                   'value'=>function ($data) {
                     if($data->userid){
                       $cekhiring = Hiring::find()->where('userid ='.$data->userid.' and (statushiring = 4 OR statushiring = 7)')->orderBy(["id"=>SORT_DESC])->one();
-                      $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
-                      $area = (Yii::$app->utils->getarea($getjo->area_sap))?Yii::$app->utils->getarea($getjo->area_sap): "";
+                      if ($cekhiring) {
+                        $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
+                        $area = (Yii::$app->utils->getarea($getjo->area_sap))?Yii::$app->utils->getarea($getjo->area_sap): "";
+                      } else {
+                        $area = "-";
+                      }
                     }else{
                       $curl = new curl\Curl();
                       $getdatapekerjabyperner =  $curl->setPostParams([
@@ -74,8 +82,12 @@ $this->params['breadcrumbs'][] = $this->title;
                   'value'=>function ($data) {
                     if($data->userid){
                       $cekhiring = Hiring::find()->where('userid ='.$data->userid.' and (statushiring = 4 OR statushiring = 7)')->orderBy(["id"=>SORT_DESC])->one();
-                      $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
-                      $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap))?Yii::$app->utils->getskilllayanan($getjo->skill_sap): "";
+                      if ($cekhiring) {
+                        $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
+                        $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap))?Yii::$app->utils->getskilllayanan($getjo->skill_sap): "";
+                      } else {
+                        $skilllayanan = "-";
+                      }
                     }else{
                       $curl = new curl\Curl();
                       $getdatapekerjabyperner =  $curl->setPostParams([
@@ -96,8 +108,12 @@ $this->params['breadcrumbs'][] = $this->title;
                   'value'=>function ($data) {
                     if($data->userid){
                       $cekhiring = Hiring::find()->where('userid ='.$data->userid.' and (statushiring = 4 OR statushiring = 7)')->orderBy(["id"=>SORT_DESC])->one();
-                      $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
-                      $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap))?Yii::$app->utils->getpayrollarea($getjo->abkrs_sap): "";
+                      if ($cekhiring) {
+                        $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
+                        $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap))?Yii::$app->utils->getpayrollarea($getjo->abkrs_sap): "";
+                      } else {
+                        $payrollarea = "-";
+                      }
                     }else{
                       $curl = new curl\Curl();
                       $getdatapekerjabyperner =  $curl->setPostParams([
@@ -109,17 +125,21 @@ $this->params['breadcrumbs'][] = $this->title;
                       $payrollarea = $datapekerjabyperner[0]->ABTXT;
                     }
                     return $payrollarea;
-                }
-
+                  }
                 ],
+
                 [
                   'label' => 'Jabatan',
                   'format' => 'html',
                   'value'=>function ($data) {
                     if($data->userid){
                       $cekhiring = Hiring::find()->where('userid ='.$data->userid.' and (statushiring = 4 OR statushiring = 7)')->orderBy(["id"=>SORT_DESC])->one();
-                      $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
-                      $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap))?Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap): "";
+                      if ($cekhiring) {
+                        $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
+                        $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap))?Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap): "";
+                      } else {
+                        $jabatan = "-";
+                      }
                     }else{
                       $curl = new curl\Curl();
                       $getdatapekerjabyperner =  $curl->setPostParams([
@@ -140,15 +160,19 @@ $this->params['breadcrumbs'][] = $this->title;
                   'value'=>function ($data) {
                     if($data->userid){
                       $cekhiring = Hiring::find()->where('userid ='.$data->userid.' and (statushiring = 4 OR statushiring = 7)')->orderBy(["id"=>SORT_DESC])->one();
-                      $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
-                      $curl = new curl\Curl();
-                      $getlevels = $curl->setPostParams([
-                        'level' => $getjo->level_sap,
-                        'token' => 'ish**2019',
-                      ])
-                      ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
-                      $level  = json_decode($getlevels);
-                      $level = ($level)?$level : "";
+                      if ($cekhiring) {
+                        $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
+                        $curl = new curl\Curl();
+                        $getlevels = $curl->setPostParams([
+                          'level' => $getjo->level_sap,
+                          'token' => 'ish**2019',
+                        ])
+                        ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
+                        $level  = json_decode($getlevels);
+                        $level = ($level)?$level : "";
+                      } else {
+                        $level = "-";
+                      }
                     }else{
                       $curl = new curl\Curl();
                       $getdatapekerjabyperner =  $curl->setPostParams([
@@ -174,18 +198,35 @@ $this->params['breadcrumbs'][] = $this->title;
                 'canceldate',
 
                 [
-
                   'label' => 'Approver',
                   'attribute' => 'approveduser',
                   'format' => 'html',
                   'value'=>function ($data) {
-
+                    // return ($data->approveduser)?$data->approveduser->name:"";
                     return ($data->approveduser)?$data->approveduser->name:"";
-                }
-
+                  }
                 ],
+                
                 'approvedtime',
-                'status',
+                [
+                  'label' => 'Status',
+                  'attribute' => 'status',
+                  'format' => 'html',
+                  'value'=>function ($data) {
+                      if ($data->status == 1) {
+                        $label = 'label-danger';
+                      } elseif ($data->status == 2 or $data->status == 3 or $data->status == 6) {
+                        $label = 'label-warning';
+                      } elseif ($data->status == 4) {
+                        $label = 'label-success';
+                      } elseif ($data->status == 8) {
+                        $label = 'label-info';
+                      } else {
+                        $label = 'label-danger';
+                      }
+                      return '<span class="label ' . $label . '">' . $data->statusprocess->statusname . '</span>';
+                  }
+                ],
                 'remarks',
                 [
                   'attribute' => 'createdby',
@@ -197,16 +238,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 ],
                 'createtime',
+                'updatetime',
                 [
-                  'attribute' => 'updatedby',
-                  'format' => 'html',
-                  'value'=>function ($data) {
-
-                    return ($data->updateduser)?$data->updateduser->name:"";
-                }
+                  'label' => 'Document',
+                  'format' => 'raw',
+                  'value' => function ($data) {
+                    return ($data->documentevidence) ? Html::a('<i class="fa fa-download"></i> Download', ['/app/assets/upload/documentevidence/' . $data->documentevidence], ['target' => '_blank', 'class' => 'btn btn-sm btn-default text-muted']) : '-';
+                  }
 
                 ],
-                'updatetime',
             ],
         ]) ?>
     </div>

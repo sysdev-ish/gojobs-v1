@@ -43,7 +43,7 @@ class Changecanceljoin extends \yii\db\ActiveRecord
             [['documentevidence', 'reason'], 'required', 'on' => "create"],
             [['status'], 'required', 'on' => "approve"],
             [['createtime', 'updatetime', 'canceldate', 'approvedtime'], 'safe'],
-            [['reason', 'canceldate'], 'required'],
+            [['reason', 'canceldate','documentevidence'], 'required'],
             [['fullname'], 'string', 'max' => 445],
             [['checkperner'], 'required', 'message' => 'this perner has been on processed Cancel Join', 'on' => 'createupdate'],
             [['documentevidence'], 'string', 'max' => 225],

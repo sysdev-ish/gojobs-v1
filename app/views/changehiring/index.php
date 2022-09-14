@@ -11,25 +11,32 @@ use yii\bootstrap\Modal;
 /* @var $searchModel app\models\Changecanceljoinsearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Cancel Join';
+$this->title = 'Change Hiring';
 $this->params['breadcrumbs'][] = $this->title;
 Modal::begin([
-    'header'=>'<h4 class="modal-title">View Change Cancel Join</h4>',
+    'header'=>'<h4 class="modal-title">View Change Hiring</h4>',
     'id'=>'viewccanceljoin-modal',
     'size'=>'modal-lg'
 ]);
-
 echo "<div id='viewccanceljoin-view'></div>";
-
 Modal::end();
+
 Modal::begin([
-    'header'=>'<h4 class="modal-title">Approve Change Cancel Join</h4>',
+    'header'=>'<h4 class="modal-title">Approve Change Hiring</h4>',
     'id'=>'approvecrcanceljoin-modal',
     'size'=>'modal-lg'
 ]);
-
 echo "<div id='approvecrcanceljoin-view'></div>";
 Modal::end();
+
+Modal::begin([
+    'header'=>'<h4 class="modal-title">Confirmation Change Hiring</h4>',
+    'id'=>'confirmcrcanceljoin-modal',
+    'size'=>'modal-lg'
+]);
+echo "<div id='confirmcrcanceljoin-view'></div>";
+Modal::end();
+
 if(Yii::$app->user->isGuest){
   $role = null;
 }else{
@@ -40,19 +47,23 @@ $actionview = '';
 $actionupdate = '';
 $actiondelete = '';
 $actionapprove = '';
-if(Yii::$app->utils->permission($role,'m67')){
+$actionconfirmation = '';
+if(Yii::$app->utils->permission($role,'m93')){
   $actionview = '{view}';
 }
-if(Yii::$app->utils->permission($role,'m69')){
+if(Yii::$app->utils->permission($role,'m95')){
   $actionupdate = '{update}';
 }
-if(Yii::$app->utils->permission($role,'m70')){
+if(Yii::$app->utils->permission($role,'m96')){
   $actiondelete = '{delete}';
 }
-if(Yii::$app->utils->permission($role,'m71')){
+if(Yii::$app->utils->permission($role,'m92')){
   $actionapprove = '{approve}';
 }
-$action = $actionview.$actionupdate.$actiondelete.$actionapprove;
+if (Yii::$app->user->identity->username == '9802618' || Yii::$app->user->identity->username == '9103005' || Yii::$app->user->identity->username == "seysi.lupi1@ish.co.id") {
+  $actionconfirmation = '{confirmation}';
+}
+$action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirmation;
 ?>
 <div class="changecanceljoin-index box box-default">
   <?php if(Yii::$app->utils->permission($role,'m68')): ?>
@@ -80,12 +91,12 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
             ],
 
             [
-              'label' => 'Cancel Date',
-              'attribute' => 'canceldate',
+              'label' => 'Change Hiring Date',
+              'attribute' => 'cancelhiring',
               'contentOptions'=>['style'=>'min-width: 100px;'],
               'format' => 'html',
               'value'=>function ($data) {
-                return $data->canceldate;
+                return $data->cancelhiring;
               }
             ],
 
@@ -105,7 +116,6 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
               'attribute' => 'approveduser',
               'format' => 'html',
               'value'=>function ($data) {
-
                 return ($data->approveduser)?$data->approveduser->name:"";
               }
             ],
@@ -126,7 +136,7 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
               ]),
               'value'=>function ($data) {
                 // return $data->status;
-                if($data->status == 1){$label='label-danger';}elseif($data->status == 2 OR $data->status == 3){$label='label-warning';}elseif($data->status == 4){$label='label-success';}elseif($data->status == 8){$label='label-info';}else{$label='label-danger';}
+                if($data->status == 1){$label='label-danger';}elseif($data->status == 2 OR $data->status == 3 OR $data->status == 6){$label='label-warning';}elseif($data->status == 4){$label='label-success';}elseif($data->status == 8){$label='label-info';}else{$label='label-danger';}
                 return '<span class="label '.$label.'">'.$data->statusprocess->statusname.'</span>';
               }
             ],
@@ -141,7 +151,7 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
             ],
 
             ['class' => 'yii\grid\ActionColumn',
-            'contentOptions'=>['style'=>'min-width: 180px;'],
+            'contentOptions'=>['style'=>'min-width: 210px;'],
             'template'=>'<div class="btn-group pull-right">'.$action.'</div>',
             'buttons'=>[
               'view' => function($url,$model,$key){
@@ -155,18 +165,34 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
                   return $btn;
               },
               'approve' => function($url,$model,$key){
-                if($model->status ==  2){
+                if($model->status == 2){
                   $disabled = false;
                 }else{
                   $disabled = true;
                 }
                   $btn = Html::button('<i class="fa fa-gavel" style="font-size:12pt;"></i>',[
-                      'value'=>Yii::$app->urlManager->createUrl('changecanceljoin/approve?id='.$model->id.'&userid='.$model->userid), //<---- here is where you define the action that handles the ajax request
+                      'value'=>Yii::$app->urlManager->createUrl('changecanceljoin/approve?id='.$model->id), //<---- here is where you define the action that handles the ajax request
                       'class'=>'btn btn-sm btn-info approvecrcanceljoin-modal-click',
                       'disabled' => $disabled,
                       'data-toggle'=>'tooltip',
                       'data-placement'=>'bottom',
                       'title'=>'Approve'
+                  ]);
+                  return $btn;
+              },
+              'confirmation' => function($url,$model,$key){
+                if($model->status == 8){
+                  $disabled = false;
+                }else{
+                  $disabled = true;
+                }
+                  $btn = Html::button('<i class="fa fa-check-square-o" style="font-size:12pt;"></i>',[
+                      'value'=>Yii::$app->urlManager->createUrl('changecanceljoin/confirmcancel?id='.$model->id), //<---- here is where you define the action that handles the ajax request
+                      'class'=> 'btn btn-sm btn-success confirmcrcanceljoin-modal-click',
+                      'disabled' => $disabled,
+                      'data-toggle'=>'tooltip',
+                      'data-placement'=>'bottom',
+                      'title'=>'Confirm'
                   ]);
                   return $btn;
               },

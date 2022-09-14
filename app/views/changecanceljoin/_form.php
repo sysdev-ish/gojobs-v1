@@ -54,18 +54,6 @@ $model->canceldate = ($model->canceldate == "0000-00-00") ? null : $model->cance
         ?>
 
         <?= $form->field($model, 'checkperner')->hiddenInput(['id' => 'checkperner'])->label(false) ?>
-        <?= $form->field($model, 'approvedby')->widget(Select2::classname(), [
-          'data' => $approvalname,
-          'options' => [
-            'placeholder' => '- select -', 'id' => 'approvedby',
-            'onChange' => "autosave();",
-          ],
-          'pluginOptions' => [
-            'allowClear' => false,
-            'initialize' => true,
-          ],
-        ])->label('Approve By');
-        ?>
         <?= $form->field($model, 'canceldate')->widget(
           DatePicker::className(),
           [
@@ -200,7 +188,7 @@ $model->canceldate = ($model->canceldate == "0000-00-00") ? null : $model->cance
 
   function autosave() {
     var perner = $('#perner').val();
-    var approvedbyid = $('#approvedby').val();
+    // var approvedbyid = $('#approvedby').val();
     var canceldateid = $('#canceldate').val();
     var reasonid = $('#reason').val();
     var userremarksval = $('#userremarks').val();
@@ -210,7 +198,7 @@ $model->canceldate = ($model->canceldate == "0000-00-00") ? null : $model->cance
       cache: false,
       data: {
         perner: perner,
-        approvedby: approvedbyid,
+        // approvedby: approvedbyid,
         canceldate: canceldateid,
         reason: reasonid,
         userremarks: userremarksval,

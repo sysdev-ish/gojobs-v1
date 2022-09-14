@@ -13,7 +13,7 @@ use linslin\yii2\curl;
 <div class="row">
   <div class="col-sm-12">
     <blockquote>
-      <p>Approval Change Cancel Join for  <b><?php echo $model->fullname; ?></b>.</p>
+      <p>Confirmation Change Hiring for  <b><?php echo $model->fullname; ?></b>.</p>
     </blockquote>
   </div>
 <div class="col-md-12">
@@ -25,9 +25,8 @@ use linslin\yii2\curl;
         ]
       ]); ?>
       <div class="box-body table-responsive">
-
           <?php
-          $data = [8 => 'Approve', 5 => 'Reject', 6=>'Revise'];
+          $data = [4 => 'Confirm Change Hiring', 5 => 'Reject Change Hiring', 6 => 'Revise Change Hiring'];
           echo   $form->field($model, 'status')->widget(Select2::classname(), [
             'data' => $data,
             'options' => ['placeholder' => '- select -'],
@@ -35,11 +34,9 @@ use linslin\yii2\curl;
                 'allowClear' => false,
                 'initialize' => true,
             ],
-          ])->label('');
+          ])->label('Select Confirmation');
           ?>
-          <?= $form->field($model, 'remarks')->textArea(['maxlength' => true]) ?>
       </div>
-      <br>
       <div class="box-footer">
           <?= Html::submitButton('Submit', ['class' => 'btn btn-success btn-flat pull-right']) ?>
       </div>

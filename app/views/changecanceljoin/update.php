@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
-        'approvalname' => $approvalname,
+        // 'approvalname' => $approvalname,
         'reason' => $reason
     ]) ?>
 

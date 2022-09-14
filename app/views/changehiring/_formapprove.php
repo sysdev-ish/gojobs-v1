@@ -13,7 +13,7 @@ use linslin\yii2\curl;
 <div class="row">
   <div class="col-sm-12">
     <blockquote>
-      <p>Approval Cancel Join for  <b><?php echo $model->fullname; ?></b>.</p>
+      <p>Approval Change Hiring for  <b><?php echo $model->fullname; ?></b>.</p>
     </blockquote>
   </div>
 <div class="col-md-12">

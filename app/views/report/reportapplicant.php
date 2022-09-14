@@ -342,7 +342,16 @@ app\assets\ReportAsset::register($this);
                         return ($vaksin)?(($vaksin->sertvaksin2)?"V":"X") : "X";
                       }
                     ],
-                    
+
+                    [
+                      'label' => 'Info Recruitment',
+                      'format' => 'html',
+                      'contentOptions' => ['style' => 'width: 100px;'],
+                      'value' => function ($data) {
+                        $inforec = Userabout::find()->where(['userid' => $data->userid])->one();
+                        return ($inforec) ? $inforec->masterinforec->infoofrecruitment : "";
+                      }
+                    ],
 
                     // [
                     //   'label' => 'Tahun Lulus Sekolah/ Universitas',
@@ -527,17 +536,21 @@ app\assets\ReportAsset::register($this);
                 }
               ],
 
+              [
+                'label' => 'Info Recruitment',
+                'format' => 'html',
+                'contentOptions'=>['style'=>'width: 100px;'],
+                'value'=>function ($data) {
+                $inforec = Userabout::find()->where(['userid' => $data->userid])->one();
+                return ($inforec) ? $inforec->masterinforec->infoofrecruitment : "";
+                }
+              ],
+
               ['class' => 'yii\grid\ActionColumn',
               'contentOptions'=>['style'=>'min-width: 50px;'],
               'template'=>'<div class="btn-group pull-right">{download}</div>',
               'buttons'=>[
                 'download' => function ($url, $model) {
-
-                  // if($model->documentpsikotest){
-                  //   $disabled = false;
-                  // }else{
-                  //   $disabled = true;
-                  // }
                   return Html::a('<i class="fa fa-download" style="font-size:12pt;"></i>', ['download', 'userid'=>$model->userid], ['class' => 'btn btn-sm btn-primary','data-toggle' => 'tooltip', 'title'=> 'Download','target'=>'_blank' ]);
                 },
               ]

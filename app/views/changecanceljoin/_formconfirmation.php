@@ -13,7 +13,7 @@ use linslin\yii2\curl;
 <div class="row">
   <div class="col-sm-12">
     <blockquote>
-      <p>Confirmation Cancel Join for  <b><?php echo $model->fullname; ?></b>.</p>
+      <p>Confirmation Change Cancel Join for  <b><?php echo $model->fullname; ?></b>.</p>
     </blockquote>
   </div>
 <div class="col-md-12">
@@ -26,7 +26,7 @@ use linslin\yii2\curl;
       ]); ?>
       <div class="box-body table-responsive">
           <?php
-          $data = [4 => 'Confirm Cancel Join', 5 => 'Reject Cancel Join'];
+          $data = [4 => 'Confirm Change Cancel Join', 5 => 'Reject Change Cancel Join', 6 => 'Revise Change Cancel Join'];
           echo   $form->field($model, 'status')->widget(Select2::classname(), [
             'data' => $data,
             'options' => ['placeholder' => '- select -'],

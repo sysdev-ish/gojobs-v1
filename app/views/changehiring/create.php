@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Changecanceljoin */
+/* @var $model app\models\Changehiring */
 
-$this->title = 'Create Cancel Join';
-$this->params['breadcrumbs'][] = ['label' => 'Cancel Joins', 'url' => ['index']];
+$this->title = 'Create Change Hiring';
+$this->params['breadcrumbs'][] = ['label' => 'Change Hirings', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="changecanceljoin-create">
+<div class="changehiring-create">
 
     <?= $this->render('_form', [
     'model' => $model,
