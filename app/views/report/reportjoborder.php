@@ -179,9 +179,22 @@ app\assets\ReportAsset::register($this);
                       // 'contentOptions'=>['style'=>'width: 150px;'],
                       'format' => 'raw',
                       'value'=>function ($data) {
+                        if ($data->hire_jabatan_sap) {
+                          if (is_numeric($data->hire_jabatan_sap)) {
+                            if ($data->jabatansap) {
+                              return $data->jabatansap->value2;
+                            } else {
+                              return "-";
+                            }
+                          } else {
+                            return "-";
+                          }
+                        } else {
+                          return "-";
+                        }
+                        // return ($data->hire_jabatan_sap) ? ((is_numeric($data->hire_jabatan_sap)) ? $data->jabatansap->value2 : '-') : '-';
+                      }
 
-                        return ($data->hire_jabatan_sap)? ((is_numeric($data->hire_jabatan_sap))?$data->jabatansap->value2:'-'):'-';
-                    }
 
                     ],
                     'gender',

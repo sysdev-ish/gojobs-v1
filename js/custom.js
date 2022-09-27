@@ -1078,6 +1078,24 @@ $(function () {
           .append(html);
       });
   });
+  $('.viewchiring-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#viewchiring-modal')
+          .modal('show')
+          .find('#viewchiring-view')
+          .empty()
+          .append(html);
+      });
+  });
   $('.viewcrjo-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',
@@ -1182,6 +1200,42 @@ $(function () {
         $('#confirmcrcanceljoin-modal')
           .modal('show')
           .find('#confirmcrcanceljoin-view')
+          .empty()
+          .append(html);
+      });
+  });
+  $('.approvecrhiring-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#approvecrhiring-modal')
+          .modal('show')
+          .find('#approvecrhiring-view')
+          .empty()
+          .append(html);
+      });
+  });
+  $('.confirmcrhiring-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#confirmcrhiring-modal')
+          .modal('show')
+          .find('#confirmcrhiring-view')
           .empty()
           .append(html);
       });

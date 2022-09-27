@@ -2,39 +2,38 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use kartik\select2\Select2;
 use app\models\Masterstatuscr;
 use yii\helpers\ArrayHelper;
 use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\Changecanceljoinsearch */
+/* @var $searchModel app\models\Changehiringsearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Change Hiring';
 $this->params['breadcrumbs'][] = $this->title;
 Modal::begin([
-    'header'=>'<h4 class="modal-title">View Change Hiring</h4>',
-    'id'=>'viewccanceljoin-modal',
+    'header'=>'<h4 class="modal-title">View Change Change Hiring</h4>',
+    'id'=>'viewchiring-modal',
     'size'=>'modal-lg'
 ]);
-echo "<div id='viewccanceljoin-view'></div>";
+echo "<div id='viewchiring-view'></div>";
 Modal::end();
 
 Modal::begin([
-    'header'=>'<h4 class="modal-title">Approve Change Hiring</h4>',
-    'id'=>'approvecrcanceljoin-modal',
+    'header'=>'<h4 class="modal-title">Approve Change Change Hiring</h4>',
+    'id'=>'approvecrhiring-modal',
     'size'=>'modal-lg'
 ]);
-echo "<div id='approvecrcanceljoin-view'></div>";
+echo "<div id='approvecrhiring-view'></div>";
 Modal::end();
 
 Modal::begin([
     'header'=>'<h4 class="modal-title">Confirmation Change Hiring</h4>',
-    'id'=>'confirmcrcanceljoin-modal',
+    'id'=>'confirmcrhiring-modal',
     'size'=>'modal-lg'
 ]);
-echo "<div id='confirmcrcanceljoin-view'></div>";
+echo "<div id='confirmcrhiring-view'></div>";
 Modal::end();
 
 if(Yii::$app->user->isGuest){
@@ -48,13 +47,13 @@ $actionupdate = '';
 $actiondelete = '';
 $actionapprove = '';
 $actionconfirmation = '';
-if(Yii::$app->utils->permission($role,'m93')){
+if(Yii::$app->utils->permission($role,'m88')){
   $actionview = '{view}';
 }
-if(Yii::$app->utils->permission($role,'m95')){
+if(Yii::$app->utils->permission($role,'m90')){
   $actionupdate = '{update}';
 }
-if(Yii::$app->utils->permission($role,'m96')){
+if(Yii::$app->utils->permission($role,'m91')){
   $actiondelete = '{delete}';
 }
 if(Yii::$app->utils->permission($role,'m92')){
@@ -65,7 +64,7 @@ if (Yii::$app->user->identity->username == '9802618' || Yii::$app->user->identit
 }
 $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirmation;
 ?>
-<div class="changecanceljoin-index box box-default">
+<div class="changehiring-index box box-default">
   <?php if(Yii::$app->utils->permission($role,'m68')): ?>
   <div class="box-header with-border">
     <?= Html::a('Create', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
@@ -80,7 +79,15 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            // 'id',
+            [
+              'label' => 'No Job Order',
+              'format' => 'html',
+              'value' => function ($data) {
+                return "Existing: " . ($data->recruitreqid) . "<br>" .
+                "Replacement: " . ($data->newrecruitreqid);
+              }
+            ],
+
             [
               'label' => 'Name',
               'attribute' => 'fullname',
@@ -91,7 +98,7 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
             ],
 
             [
-              'label' => 'Change Hiring Date',
+              'label' => 'Cancel Hiring',
               'attribute' => 'cancelhiring',
               'contentOptions'=>['style'=>'min-width: 100px;'],
               'format' => 'html',
@@ -111,12 +118,28 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
             ],
 
             [
-
-              'label' => 'Approver',
+              'label' => 'Approver I',
               'attribute' => 'approveduser',
               'format' => 'html',
               'value'=>function ($data) {
-                return ($data->approveduser)?$data->approveduser->name:"";
+                return ($data->approveduser)?$data->approveduser->name: "PM";
+              }
+            ],
+
+            [
+              'label' => 'Approver II',
+              'attribute' => 'approveduser2',
+              'format' => 'html',
+              'value' => function ($data) {
+                return ($data->approveduser2) ? $data->approveduser2->name : "PM";
+              }
+            ],
+
+            [
+              'label' => 'Approved Time',
+              'format' => 'html',
+              'value' => function ($data) {
+                return ($data->approvedtime2) ? $data->approvedtime2 : $data->approvedtime;
               }
             ],
 
@@ -127,7 +150,7 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
               'filter' => \kartik\select2\Select2::widget([
                 'model' => $searchModel,
                 'attribute' => 'status',
-                'data' => ArrayHelper::map(Masterstatuscr::find()->asArray()->all(), 'id', 'statusname'),
+                'data' => ArrayHelper::map(Masterstatuscr::find()->where('id in (1, 2, 4, 5, 7, 8, 9)')->asArray()->all(), 'id', 'statusname'),
                 'options' => ['placeholder' => '--'],
                 'pluginOptions' => [
                     'allowClear' => true,
@@ -135,8 +158,7 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
                     ],
               ]),
               'value'=>function ($data) {
-                // return $data->status;
-                if($data->status == 1){$label='label-danger';}elseif($data->status == 2 OR $data->status == 3 OR $data->status == 6){$label='label-warning';}elseif($data->status == 4){$label='label-success';}elseif($data->status == 8){$label='label-info';}else{$label='label-danger';}
+                if($data->status == 1){$label='label-danger';}elseif($data->status == 2 OR $data->status == 3 OR $data->status == 6){$label='label-warning';}elseif($data->status == 4 OR $data->status == 9){$label='label-success';}elseif($data->status == 8){$label='label-info';}else{$label='label-danger';}
                 return '<span class="label '.$label.'">'.$data->statusprocess->statusname.'</span>';
               }
             ],
@@ -146,7 +168,15 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
               'attribute' => 'remarks',
               'format' => 'html',
               'value'=>function ($data) {
-                return "<b><i>".$data->remarks."</i></b><br>".$data->userremarks;
+                if ($data->status == 9) {
+                  if ($data->perner == null) {
+                    return "<b><i>".$data->remarks."</i></b><br>".$data->userremarks. "<br>Proses Selesai";
+                  } else {
+                    return "<b><i>".$data->remarks."</i></b><br>".$data->userremarks. "<br>Proses Selesai, Perner belum Dihapus";
+                  }
+                } else {
+                  return "<b><i>".$data->remarks."</i></b><br>".$data->userremarks. "<br>";
+                }
               }
             ],
 
@@ -156,8 +186,8 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
             'buttons'=>[
               'view' => function($url,$model,$key){
                   $btn = Html::button('<i class="fa fa-eye" style="font-size:12pt;"></i>',[
-                    'value'=>Yii::$app->urlManager->createUrl('changecanceljoin/view?id='.$model->id),
-                    'class'=>'btn btn-sm btn-default viewccanceljoin-modal-click',
+                    'value'=>Yii::$app->urlManager->createUrl('changehiring/view?id='.$model->id),
+                    'class'=>'btn btn-sm btn-default viewchiring-modal-click',
                     'data-toggle'=>'tooltip',
                     'data-placement'=>'bottom',
                     'title'=>'Views Detail'
@@ -171,8 +201,8 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
                   $disabled = true;
                 }
                   $btn = Html::button('<i class="fa fa-gavel" style="font-size:12pt;"></i>',[
-                      'value'=>Yii::$app->urlManager->createUrl('changecanceljoin/approve?id='.$model->id), //<---- here is where you define the action that handles the ajax request
-                      'class'=>'btn btn-sm btn-info approvecrcanceljoin-modal-click',
+                      'value'=>Yii::$app->urlManager->createUrl('changehiring/approve?id='.$model->id), //<---- here is where you define the action that handles the ajax request
+                      'class'=>'btn btn-sm btn-info approvecrhiring-modal-click',
                       'disabled' => $disabled,
                       'data-toggle'=>'tooltip',
                       'data-placement'=>'bottom',
@@ -187,8 +217,8 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
                   $disabled = true;
                 }
                   $btn = Html::button('<i class="fa fa-check-square-o" style="font-size:12pt;"></i>',[
-                      'value'=>Yii::$app->urlManager->createUrl('changecanceljoin/confirmcancel?id='.$model->id), //<---- here is where you define the action that handles the ajax request
-                      'class'=> 'btn btn-sm btn-success confirmcrcanceljoin-modal-click',
+                      'value'=>Yii::$app->urlManager->createUrl('changehiring/confirmcancel?id='.$model->id), //<---- here is where you define the action that handles the ajax request
+                      'class'=> 'btn btn-sm btn-success confirmcrhiring-modal-click',
                       'disabled' => $disabled,
                       'data-toggle'=>'tooltip',
                       'data-placement'=>'bottom',

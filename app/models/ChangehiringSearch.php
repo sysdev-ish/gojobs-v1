@@ -10,7 +10,7 @@ use app\models\Changehiring;
 /**
  * ChangehiringSearch represents the model behind the search form of `app\models\Changehiring`.
  */
-class ChangehiringSearch extends Changehiring
+class Changehiringsearch extends Changehiring
 {
     /**
      * @inheritdoc

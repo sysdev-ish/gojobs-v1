@@ -96,38 +96,6 @@ class ChangecanceljoinController extends Controller
     $reason = ArrayHelper::map(Masterreasoncanceljoin::find()->asArray()->all(), 'id', 'reason');
     if ($id) {
       $model = $this->findModel($id);
-      $namaquery = Hiring::find()
-        ->joinWith(['userprofile'])
-        ->joinWith(['changecanceljoin'])
-        ->andWhere(['statushiring' => 4])
-        ->andWhere([
-          'or',
-          ['changecanceljoin.userid' => null],
-          ['changecanceljoin.status' => 4],
-          ['hiring.userid' => $model->userid],
-        ])
-        ->all();
-      $name = array();
-      foreach ($namaquery as $key => $value) {
-        if ($value->changecanceljoin) {
-          $checkdraft =  Changecanceljoin::find()
-            ->andWhere(['userid' => $value->userid])
-            ->andWhere([
-              'or',
-              ['status' => 1],
-              ['status' => 6],
-            ])
-            ->count();
-          if ($value->userid == $model->userid) {
-            $name[$value->userid] = $value->userprofile->fullname . ' / ' . $value->perner;
-          }
-          if ($value->changecanceljoin->status == 4 && $checkdraft == 0) {
-            $name[$value->userid] = $value->userprofile->fullname . ' / ' . $value->perner;
-          }
-        } else {
-          $name[$value->userid] = $value->userprofile->fullname . ' / ' . $value->perner;
-        }
-      }
     } else {
       $getid = new Changecanceljoin();
       $getid->createtime = date('Y-m-d H-i-s');
@@ -175,7 +143,7 @@ class ChangecanceljoinController extends Controller
           } else {
             $jabatan = '-';
           }
-        } else { // jika userid tidak ada maka ambil data dari 88.5 -> service getdatapekerja
+        } else {
           $curl = new curl\Curl();
           $getdatapekerjabyperner =  $curl->setPostParams([
             'perner' => $model->perner,
@@ -189,8 +157,9 @@ class ChangecanceljoinController extends Controller
           $area = $datapekerjabyperner[0]->BTRTX;
           $jabatan = $datapekerjabyperner[0]->PLATX;
         }
-        // $to = $user->email; //jika approvernya milih
-        $to =  "proman@ish.co.id, ";
+        // $to = $user->email;
+        // $to =  "khusnul.hisyam@ish.co.id";
+        $to =  "proman@ish.co.id";
         $subject = 'Notifikasi Approval Cancel Join Pekerja';
         $body = 'Test';
         $body = 'Semangat Pagi,
@@ -238,7 +207,7 @@ class ChangecanceljoinController extends Controller
             <br><br>
             Terima kasih!
             ';
-        // cek utils -> util component -> sendmailgojobs
+        // var_dump($body);die;
         $verification = Yii::$app->utils->sendmail($to, $subject, $body, 15);
         //15, klasifikasi untuk changecancel join cek table mailcounter/maillog
       }
@@ -246,7 +215,7 @@ class ChangecanceljoinController extends Controller
     } else {
       return $this->render('create', [
         'model' => $model,
-        'name' => $name,
+        // 'approvalname' => $approvalname,
         'reason' => $reason,
       ]);
     }
@@ -273,14 +242,13 @@ class ChangecanceljoinController extends Controller
     if ($model->load(Yii::$app->request->post())) {
       $model->approvedtime = date('Y-m-d H-i-s');
       if ($model->status == 8) {
-        $model->remarks = "Waiting for Cancel Join Execution process";
+        $model->remarks = "Waiting for Resign Execution process";
         $model->approvedby = Yii::$app->user->identity->id;
         if ($model->save()) {
           if ($model->userid) { //get data jika userid id true
             $getjo = Hiring::find()->where(['userid' => $model->userid, 'statushiring' => 4])->one();
             $modelrecreq = Transrincian::find()->where(['id' => $getjo->recruitreqid])->one();
             $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
-
             $name = $userprofile->fullname;
             $perner = $getjo->perner;
             if ($modelrecreq->transjo->n_project == "" || $modelrecreq->transjo->n_project == "Pilih") {
@@ -314,11 +282,11 @@ class ChangecanceljoinController extends Controller
           }
           //sendmail notification for sap admin -> service canceljoin (belum ada)
           // $to = "khusnul.hisyam@ish.co.id";
-          $to =  "indri.yulita@ish.co.id, setiawan@ish.co.id";
+          $to = "joko.sasongko@ish.co.id"; //SAP ADMIN
           $subject = 'Notifikasi Cancel Join SAP Admin';
           $body = 'Semangat Pagi,
             <br>
-            Anda mendapatkan permintaan "Cancel Join Pekerja" dan Hapus Perner dari <span style="text-transform: uppercase;"><b>' . $model->approveduser->name . '</b></span> dengan rincian sebagai berikut :
+            Anda mendapatkan permintaan "Cancel Join Pekerja" dari <span style="text-transform: uppercase;"><b>' . $model->approveduser->name . '</b></span> dengan rincian sebagai berikut :
 
             <br>
             <br>
@@ -357,12 +325,12 @@ class ChangecanceljoinController extends Controller
             </table>
             <br>
             <br>
-            Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> sub menu cancel join (confirmation) untuk melakukan verifikasi lebih lanjut dan menghapus perner di SAP.
+            Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> sub menu cancel join (confirmation) untuk melakukan verifikasi lebih lanjut.
             <br><br>
             Have a great day !
             ';
           // var_dump($body);die();
-          $verification = Yii::$app->utils->sendmailgojobs($to, $subject, $body, 20);
+          $verification = Yii::$app->utils->sendmail($to, $subject, $body, 20);
           //klasifisikasi 20 -> notif to admin SAP cek mailcounter
         }
       } else {
@@ -443,18 +411,70 @@ class ChangecanceljoinController extends Controller
    * @return mixed
    */
 
+  public function actionGetdatakaryawan($q = null, $id = null)
+  {
+    \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    // var_dump($id);die;
+    $outs = ['results' => ['id' => '', 'text' => '']];
+    if (!is_null($q)) {
+      $wherecontent = $q;
+      // var_dump($wherecontent);die;
+      $curl = new curl\Curl();
+      $getdatapekerja = $curl->setPostParams([
+        'q' => $q,
+        'token' => 'ish**2019',
+      ])
+        ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+      $datapekerja  = json_decode($getdatapekerja);
+      // var_dump($datapekerja);die;
+      $out = null;
+      foreach ($datapekerja as $key => $value) {
+        $out[] = $value;
+
+        // $out['results'] = $value['jobfunc']['name_job_function'];
+      }
+      if ($out) {
+        $outs['results'] = $out;
+      } else {
+        $outs['results'] = null;
+      }
+    } elseif ($id > 0) {
+
+      $curl = new curl\Curl();
+      $getdatapekerjabyperner =  $curl->setPostParams([
+        'perner' => $id,
+        'token' => 'ish**2019',
+      ])
+        ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+      $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+      $outs['results'] = ['id' => $id, 'text' => $datapekerjabyperner];
+      $ABKRS = $datapekerjabyperner[0]->ABKRS;
+      $cekpaycontroll =  $curl->setPostParams([
+        'token' => 'ish@2019!',
+        'ABKRS' => $ABKRS,
+      ])
+        ->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
+      $payrollcontrollresult  = json_decode($cekpaycontroll);
+      var_dump($payrollcontrollresult);
+      die();
+    } else {
+      $outs['results'] = ['id' => ' ', 'text' => ' '];
+    }
+    return $outs;
+  }
 
   public function actionGetuserabout()
   {
 
-    $userid = $_POST['userid'];
+    $perner = $_POST['perner'];
     $id = $_POST['id'];
     $updatecr = $this->findModel($id);
-    if ($userid) {
-      $cekhiring = Hiring::find()->where(['userid' => $userid, 'statushiring' => 4])->one();
-      $perner = $cekhiring->perner;
+    if ($perner) {
+      $cekhiring = Hiring::find()->where(['perner' => $perner, 'statushiring' => 4])->one();
       if ($cekhiring) {
+
         $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+        $model = Userabout::find()->where(['userid' => $cekhiring->userid])->one();
         $updatecr->userid = $cekhiring->userid;
         $name = $cekhiring->userprofile->fullname;
         $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap)) ? Yii::$app->utils->getpersonalarea($getjo->persa_sap) : "";
@@ -524,14 +544,14 @@ class ChangecanceljoinController extends Controller
   public function actionAutosave()
   {
     $id = $_POST['id'];
-    $userid = $_POST['userid'];
+    $perner = $_POST['perner'];
     // $approvedby = $_POST['approvedby'];
     $canceldate = $_POST['canceldate'];
     $reason = $_POST['reason'];
     $userremarks = $_POST['userremarks'];
     if ($id) {
       $model = $this->findModel($id);
-      $model->userid = $userid;
+      $model->perner = $perner;
       // $model->approvedby = $approvedby;
       $model->canceldate = $canceldate;
       $model->reason = $reason;
@@ -539,7 +559,6 @@ class ChangecanceljoinController extends Controller
       $model->userremarks = $userremarks;
       $model->save(false);
     }
-    // var_dump($model->remarks);die;
   }
 
   /**

@@ -136,15 +136,24 @@ if(Yii::$app->utils->permission($role,'m8') && Yii::$app->utils->permission($rol
               // ],
               [
                 'label' => 'Jabatan (SAP)',
-                // 'attribute' => 'jabatansap',
-                // 'contentOptions'=>['style'=>'width: 150px;'],
                 'format' => 'html',
                 'value'=>function ($data) {
-
-                  return ($data->reccandidate->recrequest->hire_jabatan_sap)? ((is_numeric($data->reccandidate->recrequest->hire_jabatan_sap))?$data->reccandidate->recrequest->jabatansap->value2:'-'):'-';
-              }
-
+                  if ($data->reccandidate->recrequest->hire_jabatan_sap) {
+                    if (is_numeric($data->reccandidate->recrequest->hire_jabatan_sap)) {
+                      if ($data->reccandidate->recrequest->jabatansap) {
+                        return $data->reccandidate->recrequest->jabatansap->value2;
+                      } else {
+                        return "-";
+                      }
+                    } else {
+                      return "-";
+                    }
+                  } else {
+                    return "-";
+                  }
+                }
               ],
+
               [
                 'label' => 'City',
                 // 'attribute' => 'city',

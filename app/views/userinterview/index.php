@@ -130,29 +130,29 @@ if(Yii::$app->utils->permission($role,'m11') && Yii::$app->utils->permission($ro
               [
                 'label' => 'Jabatan (SAP)',
                 // 'attribute' => 'jabatansap',
-                // 'contentOptions'=>['style'=>'width: 150px;'],
                 'format' => 'html',
                 'value'=>function ($data) {
-
-                  //return ($data->reccandidate->recrequest->hire_jabatan_sap)? ((is_numeric($data->reccandidate->recrequest->hire_jabatan_sap))?$data->reccandidate->recrequest->jabatansap->value2:'-'):'-';
-
-                  $ret = null;
-
-                  if(isset($data->reccandidate->recrequest->hire_jabatan_sap))
-                    $ret = ($data->reccandidate->recrequest->hire_jabatan_sap)? ((is_numeric($data->reccandidate->recrequest->hire_jabatan_sap))?$data->reccandidate->recrequest->jabatansap->value2:'-'):'-';
-
-                  return $ret;
+                if ($data->reccandidate->recrequest->hire_jabatan_sap) {
+                  if (is_numeric($data->reccandidate->recrequest->hire_jabatan_sap)) {
+                    if ($data->reccandidate->recrequest->jabatansap) {
+                      return $data->reccandidate->recrequest->jabatansap->value2;
+                    } else {
+                      return "-";
+                    }
+                  } else {
+                    return "-";
+                  }
+                } else {
+                  return "-";
+                }
               }
 
               ],
               [
                 'label' => 'City',
-                // 'attribute' => 'city',
                 'contentOptions'=>['style'=>'width: 100px;'],
                 'format' => 'html',
                 'value'=>function ($data) {
-
-                  //return ($data->reccandidate->recrequest->city)?$data->reccandidate->recrequest->city->city_name:"";
 
                   $ret = null;
 
@@ -165,7 +165,6 @@ if(Yii::$app->utils->permission($role,'m11') && Yii::$app->utils->permission($ro
               ],
               [
                 'attribute' => 'scheduledate',
-                // 'contentOptions'=>['style'=>'width: 150px;'],
                 'format' => 'html',
                 'value'=>function ($data) {
 
@@ -175,7 +174,6 @@ if(Yii::$app->utils->permission($role,'m11') && Yii::$app->utils->permission($ro
               ],
               [
                 'attribute' => 'date',
-                // 'contentOptions'=>['style'=>'width: 150px;'],
                 'format' => 'html',
                 'value'=>function ($data) {
 

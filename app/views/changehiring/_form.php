@@ -11,7 +11,7 @@ use kartik\file\FileInput;
 /* @var $model app\models\Changehiring */
 /* @var $form yii\widgets\ActiveForm */
 
-$datakaryawan = empty($model->perner) ? '' : $model->perner;
+// $datakaryawan = empty($model->perner) ? '' : $model->perner;
 $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->cancelhiring;
 ?>
 <?php $form = ActiveForm::begin(); ?>
@@ -20,52 +20,50 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
     <div class="chagerequestdata-form box box-default">
 
       <div class="box-body table-responsive">
-        <?= $form->field($model, 'perner')->widget(Select2::classname(), [
+        <?= $form->field($model, 'userid')->widget(Select2::classname(), [
           // 'data' => $datakaryawan,
-          'initValueText' => $datakaryawan, // set the initial display text
+          //   'initValueText' => $datakaryawan, // set the initial display text
+          //   'options' => [
+          //     'placeholder' => '- select -', 'id' => 'userid',
+          //     'onChange' => "getdataforchangereq();",
+          //   ],
+          //   'pluginOptions' => [
+          //     'allowClear' => true,
+          //     'initialize' => true,
+          //     'minimumInputLength' => 3,
+          //     'language' => [
+          //       'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
+          //     ],
+          //     'ajax' => [
+          //       'url' => \yii\helpers\Url::to(['changehiring/getdatakaryawan']),
+          //       'dataType' => 'json',
+          //       'data' => new \yii\web\JsExpression('function(params) { return {q:params.term}; }'),
+
+
+          //     ],
+          //     'escapeMarkup' => new \yii\web\JsExpression('function (markup) { return markup; }'),
+          //     'templateResult' => new \yii\web\JsExpression('function(a) {
+          //         if(a.id == "" || a.id == null){return "No Data";}else{return a.id+" - "+  a.CNAME};
+          //       }'),
+          //     'templateSelection' => new \yii\web\JsExpression('function (a) {
+          //         // alert(a);
+          //         if(a.id == "" || a.id == null){return "No Data";}else{return a.id};
+          //       }'),
+          //   ],
+
+          'data' => $name,
           'options' => [
-            'placeholder' => '- select -', 'id' => 'perner',
+            'placeholder' => '- select -', 'id' => 'userid',
             'onChange' => "getdataforchangereq();",
-          ],
-          'pluginOptions' => [
-            'allowClear' => true,
-            'initialize' => true,
-            'minimumInputLength' => 3,
-            'language' => [
-              'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
-            ],
-            'ajax' => [
-              'url' => \yii\helpers\Url::to(['changehiring/getdatakaryawan']),
-              'dataType' => 'json',
-              'data' => new \yii\web\JsExpression('function(params) { return {q:params.term}; }'),
-
-
-            ],
-            'escapeMarkup' => new \yii\web\JsExpression('function (markup) { return markup; }'),
-            'templateResult' => new \yii\web\JsExpression('function(a) {
-                if(a.id == "" || a.id == null){return "No Data";}else{return a.id+" - "+  a.CNAME};
-              }'),
-            'templateSelection' => new \yii\web\JsExpression('function (a) {
-                // alert(a);
-                if(a.id == "" || a.id == null){return "No Data";}else{return a.id};
-              }'),
-          ],
-        ])->label('Perner / Name');
-        ?>
-
-        <?= $form->field($model, 'checkperner')->hiddenInput(['id' => 'checkperner'])->label(false) ?>
-        <?= $form->field($model, 'approvedby')->widget(Select2::classname(), [
-          'data' => $approvalname,
-          'options' => [
-            'placeholder' => '- select -', 'id' => 'approvedby',
-            'onChange' => "autosave();",
           ],
           'pluginOptions' => [
             'allowClear' => false,
             'initialize' => true,
           ],
-        ])->label('Approve By');
+        ])->label('Name / Perner');
         ?>
+
+        <?= $form->field($model, 'checkperner')->hiddenInput(['id' => 'checkperner'])->label(false) ?>
         <?= $form->field($model, 'cancelhiring')->widget(
           DatePicker::className(),
           [
@@ -199,8 +197,8 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
   });
 
   function autosave() {
-    var perner = $('#perner').val();
-    var approvedbyid = $('#approvedby').val();
+    var userid = $('#userid').val();
+    // var approvedbyid = $('#approvedby').val();
     var cancelhiringid = $('#cancelhiring').val();
     var reasonid = $('#reason').val();
     var userremarksval = $('#userremarks').val();
@@ -209,8 +207,8 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
       type: 'POST',
       cache: false,
       data: {
-        perner: perner,
-        approvedby: approvedbyid,
+        userid: userid,
+        // approvedby: approvedbyid,
         cancelhiring: cancelhiringid,
         reason: reasonid,
         userremarks: userremarksval,
@@ -222,16 +220,17 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
   }
 
   function getdataforchangereq() {
-    var perner = $('#perner').val();
+    var useridselect = $('#userid').val();
     $.ajax({
       type: 'POST',
       cache: false,
       data: {
-        perner: perner,
+        userid: useridselect,
         id: <?php echo $model->id; ?>,
       },
       url: '<?php echo Yii::$app->urlManager->createUrl(['changehiring/getuserabout']) ?>',
       success: function(data, textStatus, jqXHR) {
+        // togleAction(useridselect);
         var obj = JSON.parse(data);
         var pernerres = '';
         var name = '';

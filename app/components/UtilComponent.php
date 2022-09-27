@@ -179,6 +179,34 @@ class UtilComponent extends Component
   //   return $layout;
   // }
 
+
+  public function sendmailgojobs($to,$subject,$body,$identifier)
+  {
+    $curl = new curl\Curl();
+    $verification = $curl->setPostParams([
+      'from' => 'no-replay@ish.co.id',
+      'to[]' => $to,
+      'subject' => $subject,
+      'body' => $body,
+      'token' => 'ish@gojobs',
+    ])->post('http://192.168.88.27/mailgateway/send');
+    $response = $verification[8];
+    $now = date('Y-m-d');
+    $updatetoday = Mailcounter::find()->where(['date'=>$now, 'klasifikasi'=>$identifier])->one();
+    if($updatetoday){
+      $addcounter = $updatetoday->count + 1;
+      $updatetoday->count = $addcounter;
+      $updatetoday->save(false);
+    }else{
+      $newtoday = new Mailcounter();
+      $newtoday->date = date('Y-m-d');
+      $newtoday->count = 1;
+      $newtoday->klasifikasi = $identifier;
+      $newtoday->save(false);
+    }
+    return $response;
+  }
+
   public function sendmail($to,$subject,$body,$identifier)
   {
     $curl = new curl\Curl();
@@ -552,7 +580,7 @@ class UtilComponent extends Component
         'token' => 'ish**2019',
       ])->post('http://192.168.88.5/service/index.php/sap_masterdata/getjabatan');
       $jabatan  = json_decode($getjabatan);
-      // var_dump($jabatan);die;
+      var_dump($jabatan);die;
       if($jabatan)
       {
         $ret = $jabatan->value2;

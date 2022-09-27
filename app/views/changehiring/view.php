@@ -8,13 +8,13 @@ use app\models\Transrincian;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\changecanceljoin */
+/* @var $model app\models\changehiring */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Change Cancel Join', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'changehirings', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="changecanceljoin-view box box-solid">
+<div class="changehiring-view box box-solid">
 
     <div class="box-body table-responsive no-padding">
         <?= DetailView::widget([
@@ -24,6 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'perner',
                 'fullname',
                 'userid',
+                'recruitreqid',
+                'newrecruitreqid',
                 [
                   'label' => 'Personal Area',
                   'format' => 'html',
@@ -191,23 +193,32 @@ $this->params['breadcrumbs'][] = $this->title;
                   'attribute' => 'reason',
                   'format' => 'html',
                   'value'=>function ($data) {
-                    return ($data->reason)?$data->canceljoinreason->reason:"<i class='text-red'>not set</i>";
+                    return ($data->reason)?$data->hiringreason->reason:"<i class='text-red'>not set</i>";
                 }
 
                 ],
-                'canceldate',
+                'cancelhiring',
 
                 [
                   'label' => 'Approver',
                   'attribute' => 'approveduser',
                   'format' => 'html',
                   'value'=>function ($data) {
-                    // return ($data->approveduser)?$data->approveduser->name:"";
-                    return ($data->approveduser)?$data->approveduser->name:"";
+                    return ($data->approveduser) ? $data->approveduser->name : "PM";
+                  }
+                ],
+
+                [
+                  'label' => 'Approver 2',
+                  'attribute' => 'approveduser2',
+                  'format' => 'html',
+                  'value'=>function ($data) {
+                    return ($data->approveduser2) ? $data->approveduser2->name : "PM";
                   }
                 ],
                 
                 'approvedtime',
+                'approvedtime2',
                 [
                   'label' => 'Status',
                   'attribute' => 'status',
@@ -217,7 +228,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         $label = 'label-danger';
                       } elseif ($data->status == 2 or $data->status == 3 or $data->status == 6) {
                         $label = 'label-warning';
-                      } elseif ($data->status == 4) {
+                      } elseif ($data->status == 4 or $data->status == 9) {
                         $label = 'label-success';
                       } elseif ($data->status == 8) {
                         $label = 'label-info';
@@ -228,6 +239,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   }
                 ],
                 'remarks',
+                'userremarks',
                 [
                   'attribute' => 'createdby',
                   'format' => 'html',

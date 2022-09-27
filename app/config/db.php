@@ -8,7 +8,7 @@ return [
   'password' => '',
   'charset' => 'utf8',
 
-    // 'dsn' => 'mysql:host=192.168.88.70;dbname=recruitment',
+  // 'dsn' => 'mysql:host=192.168.88.70;dbname=recruitment',
   // 'username' => 'gojobs_usr',
   // 'password' => '1tA4IzFjdQQYygew',
   // 'charset' => 'utf8',

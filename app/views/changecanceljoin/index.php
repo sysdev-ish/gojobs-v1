@@ -6,6 +6,7 @@ use kartik\select2\Select2;
 use app\models\Masterstatuscr;
 use yii\helpers\ArrayHelper;
 use yii\bootstrap\Modal;
+use linslin\yii2\curl;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\Changecanceljoinsearch */
@@ -60,7 +61,7 @@ if(Yii::$app->utils->permission($role,'m91')){
 if(Yii::$app->utils->permission($role,'m92')){
   $actionapprove = '{approve}';
 }
-if (Yii::$app->user->identity->username == '9802618' || Yii::$app->user->identity->username == '9103005' || Yii::$app->user->identity->username == "seysi.lupi1@ish.co.id") {
+if (Yii::$app->user->identity->username == '9802618' || Yii::$app->user->identity->username == '9103005' || Yii::$app->user->identity->username == "seysi") {
   $actionconfirmation = '{confirmation}';
 }
 $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirmation;
@@ -115,7 +116,7 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
               'attribute' => 'approveduser',
               'format' => 'html',
               'value'=>function ($data) {
-                return ($data->approveduser)?$data->approveduser->name:"". ("PM");
+                return ($data->approveduser)?$data->approveduser->name: "PM";
               }
             ],
 
@@ -130,7 +131,6 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
                 'options' => ['placeholder' => '--'],
                 'pluginOptions' => [
                     'allowClear' => true,
-                    // 'width' => '150px',
                     ],
               ]),
               'value'=>function ($data) {
@@ -145,7 +145,23 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
               'attribute' => 'remarks',
               'format' => 'html',
               'value'=>function ($data) {
-                return "<b><i>".$data->remarks."</i></b><br>".$data->userremarks;
+                if ($data->status == 9) {
+                  $curl = new curl\Curl();
+                  $getdatapekerjabyperner =  $curl->setPostParams([
+                    'perner' => $data->perner,
+                    'token' => 'ish**2019',
+                  ])
+                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+                    $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+                    // var_dump($datapekerjabyperner);die;
+                    if ($datapekerjabyperner == null) {
+                      return "<b><i>" . $data->remarks . "</i></b><br>" . $data->userremarks . "<br>Proses Selesai";
+                    } else {
+                      return "<b><i>" . $data->remarks . "</i></b><br>" . $data->userremarks . "<br>Proses Selesai, Perner belum Dihapus";
+                    }
+                  } else {
+                    return "<b><i>" . $data->remarks . "</i></b><br>" . $data->userremarks . "<br>";
+                  }
               }
             ],
 

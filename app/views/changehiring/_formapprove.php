@@ -7,7 +7,7 @@ use kartik\select2\Select2;
 use linslin\yii2\curl;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Chagerequestjo */
+/* @var $model app\models\Changehiring */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 <div class="row">
@@ -17,7 +17,7 @@ use linslin\yii2\curl;
     </blockquote>
   </div>
 <div class="col-md-12">
-  <div class="chagerequestjo-form">
+  <div class="changehiring-form">
       <?php $form = ActiveForm::begin([
         'options'=>[
           'enctype'=>'multipart/form-data',
@@ -37,7 +37,7 @@ use linslin\yii2\curl;
             ],
           ])->label('');
           ?>
-          <?= $form->field($model, 'remarks')->textArea(['maxlength' => true]) ?>
+          <?= $form->field($model, 'userremarks')->textArea(['maxlength' => true]) ?>
       </div>
       <br>
       <div class="box-footer">

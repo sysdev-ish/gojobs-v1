@@ -27,7 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                   'label' => 'Job Function',
                   'attribute' => 'jobfunc',
-                  // 'contentOptions'=>['style'=>'width: 150px;'],
                   'format' => 'html',
                   'value'=>function ($data) {
 
@@ -37,29 +36,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                   'label' => 'Type Project',
-                  // 'contentOptions'=>['style'=>'width: 150px;'],
                   'format' => 'html',
                   'value'=>function ($data) {
-
-                    // return ($data->transjo->n_project == '' || $data->transjo->n_project == 'Pilih')?$data->transjo->project : $data->transjo->n_project;
                     return ($data->typejo == 3)?'Temporary Request':(($data->typejo == 1)?"New Project":"Replacement");
                 }
 
                 ],
                 [
                   'label' => 'Project',
-                  // 'contentOptions'=>['style'=>'width: 150px;'],
                   'format' => 'html',
                   'value'=>function ($data) {
-
-                    // return ($data->transjo->n_project == '' || $data->transjo->n_project == 'Pilih')?$data->transjo->project : $data->transjo->n_project;
                     return $data->n_project;
                 }
 
                 ],
                 [
                   'label' => 'Lama Project',
-                  // 'contentOptions'=>['style'=>'width: 150px;'],
                   'format' => 'html',
                   'value'=>function ($data) {
 
@@ -69,7 +61,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                   'label' => 'Perner replaced',
-                  // 'contentOptions'=>['style'=>'width: 150px;'],
                   'format' => 'html',
                   'value'=>function ($data) {
 
@@ -83,25 +74,33 @@ $this->params['breadcrumbs'][] = $this->title;
                   'format' => 'html',
                   'value'=>function ($data) {
                     $datenow = date("Y-m-d");
-                    if($data->typejo == 1){
-                      return ($data->transjo)? (($data->transjo->bekerja < $datenow && $data->status_rekrut == 1)?'<span class="text-red">'.$data->transjo->bekerja."</span>":$data->transjo->bekerja):'-';
-
-                    }else{
-                      return ($data->transperner)? (($data->transperner->tgl_resign < $datenow && $data->status_rekrut == 1)?'<span class="text-red">'.$data->transperner->tglbekerja."</span>":$data->transperner->tglbekerja):'-';
-
+                    if ($data->typejo == 1) {
+                      $datenew = $data->transrincian->lup_skema;
+                      $datenewplus = date('Y-m-d', strtotime($datenew . ' + 14 days'));
+                      $now = new DateTime($datenow);
+                      $date2 = new DateTime($datenew);
+                      $duedate = $now->diff($date2);
+                      return ($data->transrincian) ? 
+                      (($duedate->d >= 1 && $data->status_rekrut == 1) ? '<span class="text-red">' . $datenewplus . "</span>" : $datenewplus)
+                      : '-';
+                    } else {
+                      $daterep = $data->transperner->lup_skema;
+                      $datereplace = date('Y-m-d', strtotime($daterep . ' + 6 days'));
+                      $now = new DateTime($datenow);
+                      $date2 = new DateTime($daterep);
+                      $duedate = $now->diff($date2);
+                      return ($data->transperner) ? (($duedate->d >= 1 && $data->status_rekrut == 1) ? '<span class="text-red">' . $datereplace . "</span>" : $datereplace) : '-';
                     }
                   }
-
                 ],
+
                 [
                   'label' => 'Approved JO',
-                  // 'contentOptions'=>['style'=>'width: 150px;'],
                   'format' => 'html',
                   'value'=>function ($data) {
 
                     if($data->typejo == 1){
                       return ($data->transrincian)? (($data->transrincian->lup_skema AND $data->transrincian->lup_skema <> '0000-00-00')?$data->transrincian->lup_skema : ""):'';
-
                     }else{
                       return ($data->transperner)? (($data->transperner->lup_skema AND $data->transperner->lup_skema <> '0000-00-00')?$data->transperner->lup_skema : ""):'';
 
@@ -116,15 +115,12 @@ $this->params['breadcrumbs'][] = $this->title;
                   'value'=>function ($data) {
 
                     if($data->typejo == 1){
-                      $datejo =  ($data->transjo)? $data->transjo->bekerja:null;
-
+                      $datejo =  ($data->transrincian)? $data->transrincian->lup_skema:null;
                     }else{
-                      $datejo =  ($data->transperner)? $data->transperner->tgl_resign : null;
-
+                      $datejo =  ($data->transperner)? $data->transperner->lup_skema : null;
                     }
                     $datenow = date("Y-m-d");
                     $duedate = '';
-                    // var_dump($datejo);die;
                     if($datejo){
                       $now = new DateTime($datenow);
                       $date2 = new DateTime($datejo);
@@ -136,9 +132,7 @@ $this->params['breadcrumbs'][] = $this->title;
                       }
                     }else{
                       return '-';
-
                     }
-
                   }
 
                 ],
@@ -156,7 +150,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 // 'status_rekrut',
                 [
                   'label' => 'Status',
-                  // 'contentOptions'=>['style'=>'width: 150px;'],
                   'format' => 'html',
                   'value'=>function ($data) {
 
@@ -225,7 +218,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   'label' => 'Jabatan (SAP)',
                   'format' => 'html',
                   'value'=>function ($data) {
-
+                    // return (Yii::$app->utils->getjabatan($data->abkrs_sap)) ? Yii::$app->utils->getjabatan($data->abkrs_sap) . '-' . $data->abkrs_sap : "";
                     return ($data->jabatansap)?$data->jabatansap->value2.'-'.$data->hire_jabatan_sap : "";
                 }
 

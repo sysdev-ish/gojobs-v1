@@ -11,7 +11,7 @@ use kartik\file\FileInput;
 /* @var $model app\models\Changecanceljoin */
 /* @var $form yii\widgets\ActiveForm */
 
-$datakaryawan = empty($model->perner) ? '' : $model->perner;
+// $datakaryawan = empty($model->perner) ? '' : $model->perner;
 $model->canceldate = ($model->canceldate == "0000-00-00") ? null : $model->canceldate;
 ?>
 <?php $form = ActiveForm::begin(); ?>
@@ -20,37 +20,21 @@ $model->canceldate = ($model->canceldate == "0000-00-00") ? null : $model->cance
     <div class="chagerequestdata-form box box-default">
 
       <div class="box-body table-responsive">
-        <?= $form->field($model, 'perner')->widget(Select2::classname(), [
-          // 'data' => $datakaryawan,
-          'initValueText' => $datakaryawan, // set the initial display text
+        <?= $form->field($model, 'userid')->widget(Select2::classname(), [
+          'data' => $name,
           'options' => [
-            'placeholder' => '- select -', 'id' => 'perner',
+            'placeholder' => '- select -', 'id' => 'userid',
             'onChange' => "getdataforchangereq();",
           ],
           'pluginOptions' => [
-            'allowClear' => true,
+            'allowClear' => false,
             'initialize' => true,
             'minimumInputLength' => 3,
-            'language' => [
-              'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
-            ],
-            'ajax' => [
-              'url' => \yii\helpers\Url::to(['changecanceljoin/getdatakaryawan']),
-              'dataType' => 'json',
-              'data' => new \yii\web\JsExpression('function(params) { return {q:params.term}; }'),
-
-
-            ],
-            'escapeMarkup' => new \yii\web\JsExpression('function (markup) { return markup; }'),
-            'templateResult' => new \yii\web\JsExpression('function(a) {
-                if(a.id == "" || a.id == null){return "No Data";}else{return a.id+" - "+  a.CNAME};
-              }'),
-            'templateSelection' => new \yii\web\JsExpression('function (a) {
-                // alert(a);
-                if(a.id == "" || a.id == null){return "No Data";}else{return a.id};
-              }'),
+              'language' => [
+                'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
+              ],
           ],
-        ])->label('Perner / Name');
+        ])->label('Name / Perner');
         ?>
 
         <?= $form->field($model, 'checkperner')->hiddenInput(['id' => 'checkperner'])->label(false) ?>
@@ -187,7 +171,7 @@ $model->canceldate = ($model->canceldate == "0000-00-00") ? null : $model->cance
   });
 
   function autosave() {
-    var perner = $('#perner').val();
+    var userid = $('#userid').val();
     // var approvedbyid = $('#approvedby').val();
     var canceldateid = $('#canceldate').val();
     var reasonid = $('#reason').val();
@@ -197,7 +181,7 @@ $model->canceldate = ($model->canceldate == "0000-00-00") ? null : $model->cance
       type: 'POST',
       cache: false,
       data: {
-        perner: perner,
+        userid: userid,
         // approvedby: approvedbyid,
         canceldate: canceldateid,
         reason: reasonid,
@@ -210,16 +194,17 @@ $model->canceldate = ($model->canceldate == "0000-00-00") ? null : $model->cance
   }
 
   function getdataforchangereq() {
-    var perner = $('#perner').val();
+    var useridselect = $('#userid').val();
     $.ajax({
       type: 'POST',
       cache: false,
       data: {
-        perner: perner,
+        userid: useridselect,
         id: <?php echo $model->id; ?>,
       },
       url: '<?php echo Yii::$app->urlManager->createUrl(['changecanceljoin/getuserabout']) ?>',
       success: function(data, textStatus, jqXHR) {
+        // togleAction(useridselect);
         var obj = JSON.parse(data);
         var pernerres = '';
         var name = '';
@@ -264,7 +249,6 @@ $model->canceldate = ($model->canceldate == "0000-00-00") ? null : $model->cance
           var checkperner = obj.checkperner;
         }
 
-
         document.getElementById('pernerdisp').innerHTML = pernerres;
         document.getElementById('name').innerHTML = name;
         document.getElementById('persa').innerHTML = persa;
@@ -275,8 +259,6 @@ $model->canceldate = ($model->canceldate == "0000-00-00") ? null : $model->cance
         document.getElementById('level').innerHTML = level;
         document.getElementById('hire').innerHTML = hire;
         $("#checkperner").val(checkperner);
-
-
 
       },
     });

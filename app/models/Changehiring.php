@@ -12,8 +12,6 @@ use Yii;
  * @property int $perner
  * @property int $recruitreqid
  * @property int $newrecruitreqid
- * @property string $fullname
- * @property string $cancelhiring
  * @property string $createtime
  * @property string $updatetime
  * @property string $approvedtime
@@ -27,6 +25,8 @@ use Yii;
  * @property int $reason
  * @property string $remarks
  * @property string $userremarks
+ * @property string $fullname
+ * @property string $cancelhiring
  */
 class Changehiring extends \yii\db\ActiveRecord
 {
@@ -46,11 +46,11 @@ class Changehiring extends \yii\db\ActiveRecord
     {
         return [
             [['userid', 'perner', 'recruitreqid', 'newrecruitreqid', 'createdby', 'updatedby', 'approvedby', 'approvedby2', 'status', 'reason'], 'integer'],
-            [['createtime', 'updatetime', 'approvedtime', 'approvedtime2','cancelhiring'], 'safe'],
+            [['createtime', 'updatetime', 'approvedtime', 'approvedtime2', 'cancelhiring'], 'safe'],
             [['documentevidence'], 'string', 'max' => 345],
-            [['reason', 'cancelhiring', 'documentevidence'], 'required'],
             [['remarks'], 'string', 'max' => 225],
-            [['userremarks','fullname'], 'string', 'max' => 255],
+            [['checkperner'], 'required', 'message' => 'this perner has been on processed Change Hiring', 'on' => 'createupdate'],
+            [['userremarks', 'fullname'], 'string', 'max' => 255],
         ];
     }
 
@@ -64,24 +64,25 @@ class Changehiring extends \yii\db\ActiveRecord
             'userid' => 'Userid',
             'perner' => 'Perner',
             'recruitreqid' => 'Recruitreqid',
-            'newrecruitreqid' => 'Newrecruitreqid',
-            'fullname' => 'Fullname',
-            'cancelhiring' => 'Cancel Hiring',
+            'newrecruitreqid' => 'New Recruitreqid',
             'createtime' => 'Createtime',
             'updatetime' => 'Updatetime',
-            'approvedtime' => 'Approvedtime',
-            'approvedtime2' => 'Approvedtime2',
+            'approvedtime' => 'Time Approved',
+            'approvedtime2' => 'Time Approved 2',
             'createdby' => 'Createdby',
             'updatedby' => 'Updatedby',
-            'approvedby' => 'Approvedby',
-            'approvedby2' => 'Approvedby2',
+            'approvedby' => 'Approved I',
+            'approvedby2' => 'Approved II',
             'status' => 'Status',
-            'documentevidence' => 'Documentevidence',
+            'documentevidence' => 'Document Evidence',
             'reason' => 'Reason',
             'remarks' => 'Remarks',
-            'userremarks' => 'Userremarks',
+            'userremarks' => 'User Remarks',
+            'fullname' => 'Fullname',
+            'cancelhiring' => 'Cancel Hiring Date',
         ];
     }
+
     public function getUserprofile()
     {
         return $this->hasOne(Userprofile::className(), ['userid' => 'userid']);
@@ -106,8 +107,8 @@ class Changehiring extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Masterstatuscr::className(), ['id' => 'status']);
     }
-    public function getCanceljoinreason()
+    public function getHiringreason()
     {
-        return $this->hasOne(Masterreasoncanceljoin::className(), ['id' => 'reason']);
+        return $this->hasOne(Masterreasonchangehiring::className(), ['id' => 'reason']);
     }
 }

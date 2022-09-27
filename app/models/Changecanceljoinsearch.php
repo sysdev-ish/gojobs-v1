@@ -19,8 +19,8 @@ class Changecanceljoinsearch extends Changecanceljoin
     public function rules()
     {
         return [
-            [['id', 'userid', 'createdby', 'perner', 'reason', 'status'], 'integer'],
-            [['createtime', 'updatetime', 'approvedtime',  'fullname', 'remarks'], 'safe'],
+            [['id', 'userid', 'createdby', 'perner', 'reason', 'approvedby', 'status'], 'integer'],
+            [['createtime', 'updatetime', 'approvedtime',  'fullname', 'remarks','approveduser'], 'safe'],
         ];
     }
 
@@ -43,6 +43,7 @@ class Changecanceljoinsearch extends Changecanceljoin
     public function search($params)
     {
         $query = Changecanceljoin::find();
+        $query->joinWith("approveduser");
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -65,8 +66,13 @@ class Changecanceljoinsearch extends Changecanceljoin
           $userid = Yii::$app->user->identity->id;
           $role = Yii::$app->user->identity->role;
         }
-        if($role <> 1){
-          $query->andWhere(['changecanceljoin.createdby'=>$userid]);
+        if($role == 20 or $role == 17){
+          $query->andWhere(['changecanceljoin.approvedby'=>$userid]);
+          $query->andWhere('changecanceljoin.status >= 2');
+        }else{
+          if($role <> 1){
+            $query->andWhere(['changecanceljoin.createdby'=>$userid]);
+          }
         }
 
         // grid filtering conditions
@@ -79,6 +85,8 @@ class Changecanceljoinsearch extends Changecanceljoin
             'changecanceljoin.createdby' => $this->createdby,
             'changecanceljoin.perner' => $this->perner,
             'changecanceljoin.reason' => $this->reason,
+            // 'canceldate' => $this->canceldate,
+            'changecanceljoin.approvedby' => $this->approvedby,
             'changecanceljoin.status' => $this->status,
         ]);
 

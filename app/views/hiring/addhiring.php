@@ -84,10 +84,21 @@ $url = \yii\helpers\Url::to(['transrincian/recreqlist']);
               [
                 'label' => 'Jabatan (SAP)',
                 // 'attribute' => 'jabatansap',
-                // 'contentOptions'=>['style'=>'width: 150px;'],
                 'format' => 'html',
                 'value'=>function ($data) {
-                  return ($data->recrequest)?(($data->recrequest->hire_jabatan_sap)? ((is_numeric($data->recrequest->hire_jabatan_sap))?$data->recrequest->jabatansap->value2:'-'):'-'):"-";
+                  if ($data->recrequest) {
+                    if ($data->recrequest->hire_jabatan_sap) {
+                      if ($data->recrequest->jabatansap) {
+                        return $data->recrequest->jabatansap->value2;
+                      } else {
+                        return "-";
+                      }
+                    } else {
+                      return "-";
+                    }
+                  } else {
+                    return "-";
+                  }
                 }
               ],
 
@@ -104,7 +115,6 @@ $url = \yii\helpers\Url::to(['transrincian/recreqlist']);
               [
                 'label' => 'Project',
                 'attribute' => 'project',
-                // 'contentOptions'=>['style'=>'width: 150px;'],
                 'format' => 'html',
                 'value'=>function ($data) {
                   return ($data->recrequest)?(($data->recrequest->n_project)?$data->recrequest->n_project:(($data->recrequest->transjo->n_project == '' || $data->recrequest->transjo->n_project == 'Pilih')?$data->recrequest->transjo->project : $data->recrequest->transjo->n_project)):"-";
@@ -114,7 +124,6 @@ $url = \yii\helpers\Url::to(['transrincian/recreqlist']);
               [
                 'label' => 'SAP',
                 // 'attribute' => 'project',
-                // 'contentOptions'=>['style'=>'width: 150px;'],
                 'format' => 'html',
                 'value'=>function ($data) {
                   return ($data->recrequest)?(($data->recrequest->transjo->flag_peralihan==1)?"Peralihan":"ISH"):"-";
@@ -123,7 +132,6 @@ $url = \yii\helpers\Url::to(['transrincian/recreqlist']);
 
               [
                 'label' => 'Basic Salary',
-                // 'contentOptions'=>['style'=>'width: 150px;'],
                 'format' => 'html',
                 'value'=>function ($data) {
                   if($data->recrequest){

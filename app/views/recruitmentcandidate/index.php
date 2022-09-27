@@ -150,13 +150,24 @@ if(Yii::$app->utils->permission($role,'m3') && Yii::$app->utils->permission($rol
         [
           'label' => 'Jabatan (SAP)',
           'attribute' => 'jabatans',
-          // 'contentOptions'=>['style'=>'width: 150px;'],
           'format' => 'html',
           //change value relational by kaha
-          'value'=> 'recrequest.jabatansap.value2',
-          // 'value'=>function ($data) {
-          //   return ($data->recrequest->hire_jabatan_sap)? ((is_numeric($data->recrequest->hire_jabatan_sap))?$data->recrequest->jabatansap->value2:'-'):'-';
-          // }
+          'value'=>function ($data) {
+            // return ($data->recrequest->hire_jabatan_sap)? ((is_numeric($data->recrequest->hire_jabatan_sap))?$data->recrequest->jabatansap->value2:'-'):'-';
+            if ($data->recrequest->hire_jabatan_sap) {
+              if (is_numeric($data->recrequest->hire_jabatan_sap)) {
+                if ($data->recrequest->jabatansap) {
+                  return $data->recrequest->jabatansap->value2;
+                } else {
+                  return "-";
+                }
+              } else {
+                return "-";
+              }
+            } else {
+              return "-";
+            }
+          }
         ],
         // [
         //   'label' => 'Area (SAP)',

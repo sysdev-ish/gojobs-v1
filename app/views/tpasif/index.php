@@ -114,7 +114,6 @@ if(Yii::$app->utils->permission($role,'m43')){
                 [
                   'label' => 'Jabatan (SAP)',
                   // 'attribute' => 'jabatansap',
-                  // 'contentOptions'=>['style'=>'width: 150px;'],
                   'format' => 'html',
                   'value'=>function ($data) {
                     return ( $data->reccandidate->recrequest->jabatan_sap_nm)? $data->reccandidate->recrequest->jabatan_sap_nm : Yii::$app->utils->getjabatan($data->reccandidate->recrequest->hire_jabatan_sap) ;
@@ -137,7 +136,6 @@ if(Yii::$app->utils->permission($role,'m43')){
                 [
                   'label' => 'Date',
                   'attribute' => 'scheduledate',
-                  // 'contentOptions'=>['style'=>'width: 150px;'],
                   'format' => 'html',
                   'value'=>function ($data) {
 

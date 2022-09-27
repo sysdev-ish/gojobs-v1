@@ -18,7 +18,7 @@ use kartik\select2\Select2;
     ]); ?>
 
     <div class="col-md-12">
-      <div class="col-md-12">
+      <div class="col-md-6">
       <?= $form->field($model, 'registerstart')->widget(
         DatePicker::className(), [
           'type' => DatePicker::TYPE_RANGE,
@@ -36,7 +36,7 @@ use kartik\select2\Select2;
         ]);
         ?>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-3">
         <?php
         echo   $form->field($model, 'education')->widget(Select2::classname(), [
           'data' => $education,
@@ -47,14 +47,14 @@ use kartik\select2\Select2;
         ]);
         ?>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-3">
         <?php
         echo  $form->field($model, 'jurusan');
         ?>
       </div>
     </div>
     <div class="col-md-12">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <?php
         echo   $form->field($model, 'havenpwp')->widget(Select2::classname(), [
           'data' => [1=>'Yes',2=>'No'],
@@ -65,7 +65,7 @@ use kartik\select2\Select2;
         ]);
         ?>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
         <?php
         echo   $form->field($model, 'applicantstatus')->widget(Select2::classname(), [
           // 'data' => $statuscandidate,
@@ -78,7 +78,7 @@ use kartik\select2\Select2;
         ]);
         ?>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-4">
         <?php
         echo   $form->field($model, 'cityid')->widget(Select2::classname(), [
           'data' => $mastercity,

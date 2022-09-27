@@ -175,7 +175,20 @@ if(Yii::$app->utils->permission($role,'m37')){
                   'format' => 'html',
 
                   'value'=>function ($data) {
-                    return ($data->recrequest)?((($data->recrequest->hire_jabatan_sap))?(($data->recrequest->jabatansap)?$data->recrequest->jabatansap->value2 : ""):""):"-";
+                  if ($data->recrequest) {
+                    if ($data->recrequest->hire_jabatan_sap) {
+                      // return $data->recrequest->hire_jabatan_sap;
+                      if ($data->recrequest->jabatansap) {
+                        return $data->recrequest->jabatansap->value2;
+                      } else {
+                        return "-";
+                      }
+                    } else {
+                      return "-";
+                    }
+                  } else {
+                    return "-";
+                  }
                 }
 
                 ],

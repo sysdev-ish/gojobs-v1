@@ -148,6 +148,7 @@ $this->params['breadcrumbs'][] = $this->title;
                       ])
                       ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
                       $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+                      // var_dump($datapekerjabyperner);die;
                       $jabatan = $datapekerjabyperner[0]->PLATX;
                     }
                     return $jabatan;
@@ -202,8 +203,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   'attribute' => 'approveduser',
                   'format' => 'html',
                   'value'=>function ($data) {
-                    // return ($data->approveduser)?$data->approveduser->name:"";
-                    return "PM";
+                    return ($data->approveduser) ? $data->approveduser->name : "PM";
                   }
                 ],
                 
@@ -228,6 +228,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   }
                 ],
                 'remarks',
+                'userremarks',
                 [
                   'attribute' => 'createdby',
                   'format' => 'html',

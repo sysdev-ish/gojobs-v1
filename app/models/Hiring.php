@@ -93,6 +93,10 @@ class Hiring extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Userprofile::className(), ['userid' => 'userid']);
     }
+    public function getReccan()
+    {
+        return $this->hasOne(Recruitmentcandidate::className(), ['userid' => 'userid']);
+    }
     public function getUseredu()
     {
         return $this->hasOne(Userformaleducation::className(), ['userid' => 'userid']);
@@ -132,6 +136,14 @@ class Hiring extends \yii\db\ActiveRecord
     public function getChangereqdata()
     {
         return $this->hasOne(Chagerequestdata::className(), ['userid' => 'userid']);
+    }
+    public function getChangecanceljoin()
+    {
+        return $this->hasOne(Changecanceljoin::className(), ['userid' => 'userid']);
+    }
+    public function getChangehiring()
+    {
+        return $this->hasOne(Changehiring::className(), ['userid' => 'userid']);
     }
     public function getKodeJabatanSap()
     {

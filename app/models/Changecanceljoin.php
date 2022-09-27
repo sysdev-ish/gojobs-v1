@@ -57,7 +57,7 @@ class Changecanceljoin extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'userid' => 'Userid',
+            'userid' => 'User ID',
             'createtime' => 'Createtime',
             'updatetime' => 'Updatetime',
             'createdby' => 'Createdby',
@@ -65,10 +65,10 @@ class Changecanceljoin extends \yii\db\ActiveRecord
             'fullname' => 'Fullname',
             'reason' => 'Reason',
             'canceldate' => 'Canceldate',
-            'approvedby' => 'Approvedby',
-            'approvedtime' => 'Approvedtime',
+            'approvedby' => 'Approved by',
+            'approvedtime' => 'Time Approved',
             'status' => 'Status',
-            'documentevidence' => 'Documentevidence',
+            'documentevidence' => 'Document Evidence',
         ];
     }
 
