@@ -181,7 +181,6 @@ use linslin\yii2\curl;
           ],
         ])->label('');
         ?>
-        <?= $form->field($model, 'userremarks')->textArea(['maxlength' => true]) ?>
       </div>
       <br>
       <div class="box-footer">

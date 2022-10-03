@@ -96,21 +96,29 @@ $action = $actionstop . $actionview . $actionaddcandidate;
           'value' => function ($data) {
             $datenow = date("Y-m-d");
             if ($data->typejo == 1) {
-              $datenew = $data->transrincian->lup_skema;
-              $datenewplus = date('Y-m-d', strtotime($datenew . ' + 14 days'));
-              $now = new DateTime($datenow);
-              $date2 = new DateTime($datenew);
-              $duedate = $now->diff($date2);
-              return ($data->transrincian) ?
-                (($duedate->d >= 1 && $data->status_rekrut == 1) ? '<span class="text-red">' . $datenewplus . "</span>" : $datenewplus)
-                : '-';
+              if ($data->transrincian) {
+                $datenew = $data->transrincian->lup_skema;
+                $datenewplus = date('Y-m-d', strtotime($datenew . ' + 14 days'));
+                $now = new DateTime($datenow);
+                $date2 = new DateTime($datenew);
+                $duedate = $now->diff($date2);
+                return ($data->transrincian) ?
+                  (($duedate->d >= 1 && $data->status_rekrut == 1) ? '<span class="text-red">' . $datenewplus . "</span>" : $datenewplus)
+                  : '-';
+              } else {
+                return "-";
+              }
             } else {
-              $daterep = $data->transperner->lup_skema;
-              $datereplace = date('Y-m-d', strtotime($daterep . ' + 6 days'));
-              $now = new DateTime($datenow);
-              $date2 = new DateTime($daterep);
-              $duedate = $now->diff($date2);
-              return ($data->transperner) ? (($duedate->d >= 1 && $data->status_rekrut == 1) ? '<span class="text-red">' . $datereplace . "</span>" : $datereplace) : '-';
+              if ($data->transperner) {
+                $daterep = $data->transperner->lup_skema;
+                $datereplace = date('Y-m-d', strtotime($daterep . ' + 6 days'));
+                $now = new DateTime($datenow);
+                $date2 = new DateTime($daterep);
+                $duedate = $now->diff($date2);
+                return ($data->transperner) ? (($duedate->d >= 1 && $data->status_rekrut == 1) ? '<span class="text-red">' . $datereplace . "</span>" : $datereplace) : '-';
+              } else {
+                return "-";
+              }
             }
           }
         ],

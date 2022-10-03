@@ -36,14 +36,14 @@ class ChangecanceljoinController extends Controller
     return [
       'access' => [
         'class' => AccessControl::className(),
-        'only' => ['index', 'update', 'create', 'view', 'delete', 'confirmation'],
+        'only' => ['index', 'update', 'create', 'view', 'delete'],
         'rules' => [
           [
-            'actions' => ['index', 'update', 'create', 'view', 'delete', 'confirmation'],
+            'actions' => ['index', 'update', 'create', 'view', 'delete'],
             'allow' => true,
             'roles' => ['@'],
             'matchCallback' => function () {
-              return (Yii::$app->utils->permission(Yii::$app->user->identity->role, 'm67'));
+              return (Yii::$app->utils->permission(Yii::$app->user->identity->role, 'm88'));
             }
 
           ],
@@ -140,6 +140,7 @@ class ChangecanceljoinController extends Controller
     $model->scenario = 'createupdate';
     if ($model->load(Yii::$app->request->post())) {
       $model->status = 2;
+      $model->remarks = "Process";
       $hiring = Hiring::find()->where(['userid' => $model->userid, 'statushiring' => 4])->one();
       $model->documentevidence = UploadedFile::getInstance($model, 'documentevidence');
       if ($model->documentevidence) {
@@ -190,7 +191,8 @@ class ChangecanceljoinController extends Controller
           $jabatan = $datapekerjabyperner[0]->PLATX;
         }
         // $to = $user->email; //jika approvernya milih
-        $to =  "proman@ish.co.id, ";
+        // $to =  "proman@ish.co.id";
+        $to =  "khusnul.hisyam@ish.co.id";
         $subject = 'Notifikasi Approval Cancel Join Pekerja';
         $body = 'Test';
         $body = 'Semangat Pagi,
@@ -234,7 +236,7 @@ class ChangecanceljoinController extends Controller
             </table>
             <br>
             <br>
-            Mohon untuk melakukan hapus perner agar bisa dilanjutkan proses yang lain.
+            Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> untuk melakukan verifikasi lebih lanjut.
             <br><br>
             Terima kasih!
             ';
@@ -313,8 +315,8 @@ class ChangecanceljoinController extends Controller
             $jabatan = $datapekerjabyperner[0]->PLATX;
           }
           //sendmail notification for sap admin -> service canceljoin (belum ada)
-          // $to = "khusnul.hisyam@ish.co.id";
-          $to =  "indri.yulita@ish.co.id, setiawan@ish.co.id";
+          $to = "hisyamulio9@gmail.com, hisyamkstd@gmail.com";
+          // $to =  "indri.yulita@ish.co.id, setiawan@ish.co.id";
           $subject = 'Notifikasi Cancel Join SAP Admin';
           $body = 'Semangat Pagi,
             <br>
@@ -357,13 +359,13 @@ class ChangecanceljoinController extends Controller
             </table>
             <br>
             <br>
-            Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> sub menu cancel join (confirmation) untuk melakukan verifikasi lebih lanjut dan menghapus perner di SAP.
+            Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> Sub Menu Cancel Join untuk melakukan (confirmation) dan menghapus perner di SAP.
             <br><br>
             Have a great day !
             ';
-          // var_dump($body);die();
-          $verification = Yii::$app->utils->sendmailgojobs($to, $subject, $body, 20);
-          //klasifisikasi 20 -> notif to admin SAP cek mailcounter
+            $verification = Yii::$app->utils->sendmailgojobs($to, $subject, $body, 20);
+            // var_dump($body);die();
+          //klasifisikasi 20 -> notif to admin SAP cek mailcounter //jika tidak arrary pakai sendmail saja
         }
       } else {
         $model->save();
@@ -535,7 +537,7 @@ class ChangecanceljoinController extends Controller
       // $model->approvedby = $approvedby;
       $model->canceldate = $canceldate;
       $model->reason = $reason;
-      $model->remarks = "draft";
+      $model->remarks = "Draft";
       $model->userremarks = $userremarks;
       $model->save(false);
     }

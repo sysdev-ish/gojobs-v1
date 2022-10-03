@@ -170,7 +170,7 @@ use linslin\yii2\curl;
       ]); ?>
       <div class="box-body table-responsive">
         <?php
-        $data = [4 => 'Confirm Change Cancel Join', 5 => 'Reject Change Cancel Join', 6 => 'Revise Change Cancel Join'];
+        $data = [4 => 'Confirm Change Cancel Join', 5 => 'Reject Change Cancel Join'];
         echo   $form->field($model, 'status')->widget(Select2::classname(), [
           'data' => $data,
           'options' => ['placeholder' => '- select -'],
@@ -180,7 +180,6 @@ use linslin\yii2\curl;
           ],
         ])->label('Select Confirmation');
         ?>
-        <?= $form->field($model, 'userremarks')->textArea(['maxlength' => true]) ?>
       </div>
       <div class="box-footer">
         <?= Html::submitButton('Submit', ['class' => 'btn btn-success btn-flat pull-right']) ?>

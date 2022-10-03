@@ -501,21 +501,20 @@ app\assets\ReportAsset::register($this);
 
                     ],
                     [
-                      // 'class' => 'kartik\grid\EditableColumn',
                       'label' => 'No KTP',
                       'format'=>'text',
                       'value'=>function ($data) {
-                        // var_dump($data->userprofile->identitynumber);die;
-                        return ($data->userprofile->identitynumber)? number_format($data->userprofile->identitynumber,0,","," ") : "";
-                    }
-
+                        // var_dump(number_format(intval($data->userprofile->identitynumber), 0 , "." , " "));die();
+                        return (is_string($data->userprofile->identitynumber)) ? number_format(intval($data->userprofile->identitynumber), 0 , "." , " ") : "";
+                      }
                     ],
+
                     [
                       'label' => 'No BPJS TK',
                       'format'=>'text',
                       'value'=>function ($data) {
 
-                        return (is_string($data->userprofile->jamsosteknumber))?$data->userprofile->jamsosteknumber:(($data->userprofile->jamsosteknumber)?number_format($data->userprofile->jamsosteknumber,0,","," ") : "");
+                        return (is_string($data->userprofile->jamsosteknumber)) ? number_format(intval($data->userprofile->jamsosteknumber), 0 , "." , " ") : "";
                     }
 
                     ],
@@ -532,29 +531,26 @@ app\assets\ReportAsset::register($this);
                       'label' => 'No NPWP',
                       'format'=>'text',
                       'value'=>function ($data) {
-
-                        return ($data->userprofile->npwpnumber)?number_format($data->userprofile->npwpnumber,0,","," ") : "";
-                    }
-
+                        return (is_string($data->userprofile->npwpnumber)) ? number_format(intval($data->userprofile->npwpnumber), 0 , "." , " ") : "";
+                      }
                     ],
+
                     [
                       'label' => 'No SIM A',
                       'format'=>'text',
                       'value'=>function ($data) {
-
-                        return ($data->userprofile->drivinglicencecarnumber)?$data->userprofile->drivinglicencecarnumber : "";
-                    }
-
+                        return (is_string($data->userprofile->drivinglicencecarnumber)) ? number_format(intval($data->userprofile->drivinglicencecarnumber), 0 , "." , " ") : "";
+                      }
                     ],
+
                     [
                       'label' => 'No SIM C',
                       'format'=>'text',
                       'value'=>function ($data) {
-
-                        return ($data->userprofile->drivinglicencemotorcyclenumber)?$data->userprofile->drivinglicencemotorcyclenumber : "";
-                    }
-
+                        return (is_string($data->userprofile->drivinglicencemotorcyclenumber)) ? number_format(intval($data->userprofile->drivinglicencemotorcyclenumber), 0 , "." , " ") : "";
+                      }
                     ],
+
                     [
                       'label' => 'Pendidikan terakhir',
                       'format' => 'raw',

@@ -12,7 +12,7 @@ use app\models\Changecanceljoin;
  */
 class Changecanceljoinsearch extends Changecanceljoin
 {
-    public $approveduser;
+    // public $approveduser;
     /**
      * @inheritdoc
      */
@@ -43,8 +43,6 @@ class Changecanceljoinsearch extends Changecanceljoin
     public function search($params)
     {
         $query = Changecanceljoin::find();
-        $query->joinWith("approveduser");
-        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -54,8 +52,6 @@ class Changecanceljoinsearch extends Changecanceljoin
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 
@@ -66,13 +62,13 @@ class Changecanceljoinsearch extends Changecanceljoin
           $userid = Yii::$app->user->identity->id;
           $role = Yii::$app->user->identity->role;
         }
-        if($role == 20 or $role == 17){
-          $query->andWhere(['changecanceljoin.approvedby'=>$userid]);
-          $query->andWhere('changecanceljoin.status >= 2');
+        if($role == 20 or $role == 3 or $role == 10){
+            $query->andWhere(['changecanceljoin.approvedby'=>$userid]);
+        //   $query->andWhere('changecanceljoin.status >= 2');
         }else{
-          if($role <> 1){
-            $query->andWhere(['changecanceljoin.createdby'=>$userid]);
-          }
+            if($role <> 1){
+                $query->andWhere(['changecanceljoin.createdby'=>$userid]);
+            }
         }
 
         // grid filtering conditions
@@ -85,14 +81,14 @@ class Changecanceljoinsearch extends Changecanceljoin
             'changecanceljoin.createdby' => $this->createdby,
             'changecanceljoin.perner' => $this->perner,
             'changecanceljoin.reason' => $this->reason,
-            // 'canceldate' => $this->canceldate,
             'changecanceljoin.approvedby' => $this->approvedby,
             'changecanceljoin.status' => $this->status,
         ]);
 
         $query->andFilterWhere(['like', 'changecanceljoin.fullname', $this->fullname])
             ->andFilterWhere(['like', 'changecanceljoin.remarks', $this->remarks])
-            ->andFilterWhere(['like', 'user.name', $this->approveduser]);
+            // ->andFilterWhere(['like', 'user.name', $this->approveduser])
+            ;
 
         return $dataProvider;
     }

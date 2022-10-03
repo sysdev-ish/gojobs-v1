@@ -516,7 +516,7 @@ class TransrincianrekrutController extends Controller
           ])
           ->post('http://192.168.88.5/service/index.php/sap_profile/getdataperner');
           $sapprofile  = json_decode($getsapprofile);
-          // var_dump($sapprofile->platx);die;
+          var_dump($sapprofile);die();
           $model = new Transrincianrekruttemp();
           $model->nojo = $value->nojo;
           $model->detail_komp = '';
