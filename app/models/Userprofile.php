@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Mpdf\Tag\P;
 use Yii;
 
 /**
@@ -225,5 +226,9 @@ class Userprofile extends \yii\db\ActiveRecord
     public function getMasterjobfamily()
     {
         return $this->hasOne(Masterjobfamily::className(), ['jobfamily' => 'jobfamily']);
+    }
+    public function getUpload()
+    {
+        return $this->hasOne(Uploadocument::className(), ['userid' => 'userid']);
     }
 }

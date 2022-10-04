@@ -73,16 +73,14 @@ $this->params['breadcrumbs'][] = $this->title;
                   'contentOptions'=>['style'=>'min-width: 100px;'],
                   'format' => 'html',
                   'value' => function ($data) {
-                    $datenow = date("Y-m-d");
+                    $datenow = date('Y-m-d');
                     if ($data->typejo == 1) {
                       if ($data->transrincian) {
                         $datenew = $data->transrincian->lup_skema;
                         $datenewplus = date('Y-m-d', strtotime($datenew . ' + 14 days'));
-                        $now = new DateTime($datenow);
-                        $date2 = new DateTime($datenew);
-                        $duedate = $now->diff($date2);
+                        $datediff = (strtotime($datenewplus) - strtotime($datenow)) / (60 * 60 * 24);
                         return ($data->transrincian) ?
-                        (($duedate->d >= 1 && $data->status_rekrut == 1) ? '<span class="text-red">' . $datenewplus . "</span>" : $datenewplus)
+                        (($datediff < 0 && $data->status_rekrut == 1) ? '<span class="text-red">' . $datenewplus . "</span>" : $datenewplus)
                         : '-';
                       } else {
                         return "-";
@@ -91,10 +89,8 @@ $this->params['breadcrumbs'][] = $this->title;
                       if ($data->transperner) {
                         $daterep = $data->transperner->lup_skema;
                         $datereplace = date('Y-m-d', strtotime($daterep . ' + 6 days'));
-                        $now = new DateTime($datenow);
-                        $date2 = new DateTime($daterep);
-                        $duedate = $now->diff($date2);
-                        return ($data->transperner) ? (($duedate->d >= 1 && $data->status_rekrut == 1) ? '<span class="text-red">' . $datereplace . "</span>" : $datereplace) : '-';
+                        $datediff = (strtotime($datereplace) - strtotime($datenow)) / (60 * 60 * 24);
+                        return ($data->transperner) ? (($datediff < 0 && $data->status_rekrut == 1) ? '<span class="text-red">' . $datereplace . "</span>" : $datereplace) : '-';
                       } else {
                         return "-";
                       }
@@ -123,9 +119,9 @@ $this->params['breadcrumbs'][] = $this->title;
                   'value'=>function ($data) {
 
                     if($data->typejo == 1){
-                      $datejo =  ($data->transrincian)? $data->transrincian->lup_skema:null;
+                      $datejo =  ($data->transrincian) ? date('Y-m-d', strtotime($data->transrincian->lup_skema . ' + 14 days')) : null;
                     }else{
-                      $datejo =  ($data->transperner)? $data->transperner->lup_skema : null;
+                      $datejo =  ($data->transperner)? date('Y-m-d', strtotime($data->transperner->lup_skema . ' + 6 days')) : null;
                     }
                     $datenow = date("Y-m-d");
                     $duedate = '';

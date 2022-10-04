@@ -51,7 +51,6 @@ $this->title = 'Contact';
                             <li><i class="careerfy-icon careerfy-placeholder"></i> Gedung Graha Mandiri, Jl. RS Fatmawati No.75, RT.6/RW.5, North Cipete, Kebayoran Baru, South Jakarta City, Jakarta 12150</li>
                             <li><i class="careerfy-icon careerfy-mail"></i> <a href="#">Email: recruitment@ish.co.id</a></li>
                             <li><i class="careerfy-icon careerfy-technology"></i> Call: 021 - 7237928</li>
-                            <!-- <li><i class="careerfy-icon careerfy-fax"></i> Fax: (800) 123 4567 89</li> -->
                         </ul>
                         <div class="careerfy-contact-media">
                             <a href="https://www.facebook.com/infomedia.recuitment" class="careerfy-icon careerfy-facebook-logo" target="_blank"></a>

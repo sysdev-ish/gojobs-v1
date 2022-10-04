@@ -73,8 +73,7 @@ app\assets\ReportAsset::register($this);
               'label' => 'Tanggal Lahir',
               'format' => 'html',
               'value' => function ($data) {
-                $doc = Userprofile::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? $doc->birthdate : "";
+                return ($data) ? $data->birthdate : "";
               }
             ],
 
@@ -82,8 +81,7 @@ app\assets\ReportAsset::register($this);
               'label' => 'Jenis Kelamin',
               'format' => 'html',
               'value' => function ($data) {
-                $doc = Userprofile::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? $doc->gender : "";
+                return ($data) ? $data->gender : "";
               }
             ],
 
@@ -91,8 +89,7 @@ app\assets\ReportAsset::register($this);
               'label' => 'Status Pernikahan',
               'format' => 'html',
               'value' => function ($data) {
-                $doc = Userprofile::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? $doc->maritalstatus : "";
+                return ($data) ? $data->maritalstatus : "";
               }
             ],
 
@@ -113,8 +110,7 @@ app\assets\ReportAsset::register($this);
               'label' => 'Pengalaman Kerja',
               'format' => 'html',
               'value' => function ($data) {
-                $doc = Userprofile::find()->where(['userid' => $data->userid])->one();
-                return ($doc->userworkexperience) ? $doc->userworkexperience->lastposition : "";
+                return ($data->userworkexperience) ? $data->userworkexperience->lastposition : "";
               }
             ],
 
@@ -180,8 +176,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? (($doc->suratlamarankerja) ? "V" : "X") : "X";
+                return ($data->upload) ? (($data->upload->suratlamarankerja) ? "V" : "X") : "X";
               }
             ],
 
@@ -190,8 +185,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Userprofile::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? "V" : "X";
+                return ($data->upload) ? "V" : "X";
               }
             ],
 
@@ -200,8 +194,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? (($doc->ijazah) ? "V" : "X") : "X";
+                return ($data->upload) ? (($data->upload->ijazah) ? "V" : "X") : "X";
               }
             ],
 
@@ -210,8 +203,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? (($doc->transkipnilai) ? "V" : "X") : "X";
+                return ($data->upload) ? (($data->upload->transkipnilai) ? "V" : "X") : "X";
               }
             ],
 
@@ -220,8 +212,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? (($doc->ktp) ? "V" : "X") : "X";
+                return ($data->upload) ? (($data->upload->ktp) ? "V" : "X") : "X";
               }
             ],
 
@@ -230,8 +221,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? (($doc->npwp) ? "V" : "X") : "X";
+                return ($data->upload) ? (($data->upload->npwp) ? "V" : "X") : "X";
               }
             ],
 
@@ -240,8 +230,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? (($doc->jamsostek) ? "V" : "X") : "X";
+                return ($data->upload) ? (($data->upload->jamsostek) ? "V" : "X") : "X";
               }
             ],
 
@@ -250,8 +239,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? (($doc->bpjskesehatan) ? "V" : "X") : "X";
+                return ($data->upload) ? (($data->upload->bpjskesehatan) ? "V" : "X") : "X";
               }
             ],
 
@@ -260,8 +248,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? (($doc->suratketerangansehat) ? "V" : "X") : "X";
+                return ($data->upload) ? (($data->upload->suratketerangansehat) ? "V" : "X") : "X";
               }
             ],
 
@@ -461,8 +448,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? (($doc->suratlamarankerja) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
+                return ($data->upload) ? (($data->upload->suratlamarankerja) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
               }
 
             ],
@@ -472,8 +458,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Userprofile::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
+                return ($data->upload) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
               }
 
             ],
@@ -483,8 +468,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? (($doc->ijazah) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
+                return ($data->upload) ? (($data->upload->ijazah) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
               }
 
             ],
@@ -494,8 +478,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? (($doc->transkipnilai) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
+                return ($data->upload) ? (($data->upload->transkipnilai) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
               }
             ],
 
@@ -504,8 +487,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? (($doc->ktp) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
+                return ($data->upload) ? (($data->upload->ktp) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
               }
             ],
 
@@ -514,8 +496,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? (($doc->npwp) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
+                return ($data->upload) ? (($data->upload->npwp) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
               }
             ],
 
@@ -524,8 +505,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? (($doc->jamsostek) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
+                return ($data->upload) ? (($data->upload->jamsostek) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
               }
             ],
 
@@ -534,8 +514,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? (($doc->bpjskesehatan) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
+                return ($data->upload) ? (($data->upload->bpjskesehatan) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
               }
             ],
 
@@ -544,8 +523,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $doc = Uploadocument::find()->where(['userid' => $data->userid])->one();
-                return ($doc) ? (($doc->suratketerangansehat) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
+                return ($data->upload) ? (($data->upload->suratketerangansehat) ? "<span class='text-green'><i class='fa fa-check'></i></span>" : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>") : "<span class='text-red'><i class='fa fa-close (alias)'></i></span>";
               }
             ],
 

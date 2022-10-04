@@ -94,16 +94,14 @@ $action = $actionstop . $actionview . $actionaddcandidate;
           'contentOptions' => ['style' => 'min-width: 100px;'],
           'format' => 'html',
           'value' => function ($data) {
-            $datenow = date("Y-m-d");
+            $datenow = date('Y-m-d');
             if ($data->typejo == 1) {
               if ($data->transrincian) {
                 $datenew = $data->transrincian->lup_skema;
                 $datenewplus = date('Y-m-d', strtotime($datenew . ' + 14 days'));
-                $now = new DateTime($datenow);
-                $date2 = new DateTime($datenew);
-                $duedate = $now->diff($date2);
+                $datediff = (strtotime($datenewplus) - strtotime($datenow)) / (60 * 60 * 24);
                 return ($data->transrincian) ?
-                  (($duedate->d >= 1 && $data->status_rekrut == 1) ? '<span class="text-red">' . $datenewplus . "</span>" : $datenewplus)
+                  (($datediff < 0 && $data->status_rekrut == 1) ? '<span class="text-red">' . $datenewplus . "</span>" : $datenewplus)
                   : '-';
               } else {
                 return "-";
@@ -112,10 +110,8 @@ $action = $actionstop . $actionview . $actionaddcandidate;
               if ($data->transperner) {
                 $daterep = $data->transperner->lup_skema;
                 $datereplace = date('Y-m-d', strtotime($daterep . ' + 6 days'));
-                $now = new DateTime($datenow);
-                $date2 = new DateTime($daterep);
-                $duedate = $now->diff($date2);
-                return ($data->transperner) ? (($duedate->d >= 1 && $data->status_rekrut == 1) ? '<span class="text-red">' . $datereplace . "</span>" : $datereplace) : '-';
+                $datediff = (strtotime($datereplace) - strtotime($datenow)) / (60 * 60 * 24);
+                return ($data->transperner) ? (($datediff < 0 && $data->status_rekrut == 1) ? '<span class="text-red">' . $datereplace . "</span>" : $datereplace) : '-';
               } else {
                 return "-";
               }
