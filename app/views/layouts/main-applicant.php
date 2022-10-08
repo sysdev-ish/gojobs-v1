@@ -9,6 +9,7 @@ app\assets\AppfrontAsset::register($this);
 
 // dmstr\web\AdminLteAsset::register($this);
 
+$baseUrl = Yii::$app->request->baseUrl;
 $assetUrl = Yii::$app->request->baseUrl . '/assets';
 $uploadUrl = Yii::$app->request->baseUrl . '/app/assets/upload';
 ?>
@@ -19,11 +20,11 @@ $uploadUrl = Yii::$app->request->baseUrl . '/app/assets/upload';
 <head>
     <meta charset="<?= Yii::$app->charset ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="../images/icon.png" />
+    <link rel="icon" type="image/x-icon" href="<?php echo $baseUrl; ?>/images/icon.ico" />
 
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic-ext,vietnamese" rel="stylesheet">
+    <link rel="preload" as="font">
     <?php $this->head() ?>
 
 </head>
@@ -43,6 +44,7 @@ $uploadUrl = Yii::$app->request->baseUrl . '/app/assets/upload';
             'content-applicant.php',
             [
                 'content' => $content,
+                'baseUrl' => $baseUrl,
                 'assetUrl' => $assetUrl,
                 'uploadUrl' => $uploadUrl,
             ]
@@ -50,7 +52,8 @@ $uploadUrl = Yii::$app->request->baseUrl . '/app/assets/upload';
         ?>
 
     </div>
-    <script src="<?php echo Yii::$app->request->baseUrl;  ?>/js/frontend/script/jquery.js"></script>
+    <!-- <script src="<?php //echo Yii::$app->request->baseUrl;  
+                        ?>/js/frontend/script/jquery.js"></script> -->
     <!-- <script src="<?php //echo Yii::$app->request->baseUrl;  
                         ?>/js/frontend/script/bootstrap.js"></script> -->
 
@@ -59,7 +62,8 @@ $uploadUrl = Yii::$app->request->baseUrl . '/app/assets/upload';
     <script src="<?php echo Yii::$app->request->baseUrl;  ?>/js/frontend/plugin-script/fancybox.pack.js"></script>
     <script src="<?php echo Yii::$app->request->baseUrl;  ?>/js/frontend/plugin-script/isotope.min.js"></script>
     <script src="<?php echo Yii::$app->request->baseUrl;  ?>/js/frontend/plugin-script/progressbar.js"></script>
-    <script src="<?php echo Yii::$app->request->baseUrl;  ?>/js/frontend/build/mediaelement-and-player.js"></script>
+    <!-- <script src="<?php //echo Yii::$app->request->baseUrl;  
+                        ?>/js/frontend/build/mediaelement-and-player.js"></script> -->
     <script src="<?php echo Yii::$app->request->baseUrl;  ?>/js/frontend/plugin-script/functions.js"></script>
     <script src="<?php echo Yii::$app->request->baseUrl;  ?>/js/frontend/script/functions.js"></script>
     <?php $this->endBody() ?>

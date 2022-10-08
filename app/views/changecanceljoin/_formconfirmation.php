@@ -170,7 +170,7 @@ use linslin\yii2\curl;
       ]); ?>
       <div class="box-body table-responsive">
         <?php
-        $data = [4 => 'Confirm Change Cancel Join', 5 => 'Reject Change Cancel Join'];
+        $data = [4 => 'Confirm', 5 => 'Reject'];
         echo   $form->field($model, 'status')->widget(Select2::classname(), [
           'data' => $data,
           'options' => ['placeholder' => '- select -'],

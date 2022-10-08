@@ -24,6 +24,7 @@ if (Yii::$app->controller->action->id === 'login' or Yii::$app->controller->acti
   // dmstr\web\AdminLteAsset::register($this);
 
   $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
+  $baseUrl = Yii::$app->request->baseUrl;
   $assetUrl = Yii::$app->request->baseUrl . '/assets';
   $uploadUrl = Yii::$app->request->baseUrl . '/app/assets/upload';
 ?>
@@ -37,7 +38,7 @@ if (Yii::$app->controller->action->id === 'login' or Yii::$app->controller->acti
 
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <link rel="icon" type="image/x-icon" href="../images/icon.png" />
+    <link rel="icon" type="image/x-icon" href="<?php echo $baseUrl; ?>/images/icon.ico" />
     <?php $this->head() ?>
   </head>
 
@@ -51,6 +52,7 @@ if (Yii::$app->controller->action->id === 'login' or Yii::$app->controller->acti
         'header.php',
         [
           'directoryAsset' => $directoryAsset,
+          'baseUrl' => $baseUrl,
           'assetUrl' => $assetUrl,
           'uploadUrl' => $uploadUrl,
         ]
@@ -61,6 +63,7 @@ if (Yii::$app->controller->action->id === 'login' or Yii::$app->controller->acti
         'left.php',
         [
           'directoryAsset' => $directoryAsset,
+          'baseUrl' => $baseUrl,
           'assetUrl' => $assetUrl,
           'uploadUrl' => $uploadUrl,
         ]
@@ -73,6 +76,7 @@ if (Yii::$app->controller->action->id === 'login' or Yii::$app->controller->acti
         [
           'content' => $content,
           'directoryAsset' => $directoryAsset,
+          'baseUrl' => $baseUrl,
           'assetUrl' => $assetUrl,
           'uploadUrl' => $uploadUrl,
         ]

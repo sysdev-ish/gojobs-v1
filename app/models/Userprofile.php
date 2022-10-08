@@ -231,4 +231,12 @@ class Userprofile extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Uploadocument::className(), ['userid' => 'userid']);
     }
+    public function getReccan()
+    {
+        return $this->hasOne(Recruitmentcandidate::className(), ['userid' => 'userid']);
+    }
+    public function getEducation()
+    {
+        return $this->hasOne(Userformaleducation::className(), ['userid' => 'userid']);
+    }
 }

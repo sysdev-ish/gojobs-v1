@@ -75,7 +75,7 @@ $baseUrl = Yii::$app->request->baseUrl;
           <div class="careerfy-box-title careerfy-box-title-sub"><span> Or Sign in With </span></div>
           </div>
           <div class="col-xs-12">
-            <?php echo Html::a('Sign in with HRIS', 'https://passport.ish.co.id/core/sso/default/login?response_type=code&client_id=GojobsDev&redirect_uri=http://localhost/rekrut/site/oauthhris&scope=user&action=login', ['class' =>  'btn btn-danger btn-block']) ?>
+            <?php echo Html::a('Sign in with HRIS', 'https://passport.ish.co.id/core/sso/default/login?response_type=code&client_id=goj0bsid&redirect_uri=http://localhost/rekrut/site/oauthhris&scope=user&action=login', ['class' =>  'btn btn-danger btn-block']) ?>
           </div>
         </div>
 

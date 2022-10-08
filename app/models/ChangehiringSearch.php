@@ -10,7 +10,7 @@ use app\models\Changehiring;
 /**
  * ChangehiringSearch represents the model behind the search form of `app\models\Changehiring`.
  */
-class Changehiringsearch extends Changehiring
+class ChangehiringSearch extends Changehiring
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class Changehiringsearch extends Changehiring
     public function rules()
     {
         return [
-            [['id', 'userid', 'perner', 'recruitreqid', 'newrecruitreqid', 'createdby', 'updatedby', 'approvedby', 'approvedby2', 'status', 'reason'], 'integer'],
-            [['createtime', 'updatetime', 'approvedtime', 'approvedtime2', 'documentevidence', 'remarks', 'userremarks','fullname','cancelhiring'], 'safe'],
+            [['id', 'userid', 'perner', 'recruitreqid', 'newrecruitreqid', 'createdby', 'approvedby', 'status', 'reason'], 'integer'],
+            [['createtime', 'updatetime', 'approvedtime', 'documentevidence', 'remarks', 'userremarks', 'fullname', 'cancelhiring', 'hiringdate', 'newhiringdate', 'contractperiode', 'newcontractperiode'], 'safe'],
         ];
     }
 
@@ -65,22 +65,24 @@ class Changehiringsearch extends Changehiring
             'perner' => $this->perner,
             'recruitreqid' => $this->recruitreqid,
             'newrecruitreqid' => $this->newrecruitreqid,
-            'fullname' => $this->fullname,
             'createtime' => $this->createtime,
             'updatetime' => $this->updatetime,
             'approvedtime' => $this->approvedtime,
-            'approvedtime2' => $this->approvedtime2,
             'createdby' => $this->createdby,
-            'updatedby' => $this->updatedby,
             'approvedby' => $this->approvedby,
-            'approvedby2' => $this->approvedby2,
             'status' => $this->status,
             'reason' => $this->reason,
+            'cancelhiring' => $this->cancelhiring,
+            'hiringdate' => $this->hiringdate,
+            'newhiringdate' => $this->newhiringdate,
+            'contractperiode' => $this->contractperiode,
+            'newcontractperiode' => $this->newcontractperiode,
         ]);
 
         $query->andFilterWhere(['like', 'documentevidence', $this->documentevidence])
             ->andFilterWhere(['like', 'remarks', $this->remarks])
-            ->andFilterWhere(['like', 'userremarks', $this->userremarks]);
+            ->andFilterWhere(['like', 'userremarks', $this->userremarks])
+            ->andFilterWhere(['like', 'fullname', $this->fullname]);
 
         return $dataProvider;
     }

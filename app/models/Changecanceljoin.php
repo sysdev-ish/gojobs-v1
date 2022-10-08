@@ -60,7 +60,7 @@ class Changecanceljoin extends \yii\db\ActiveRecord
             'userid' => 'User ID',
             'createtime' => 'Createtime',
             'updatetime' => 'Updatetime',
-            'createdby' => 'Createdby',
+            'createdby' => 'Created by',
             'perner' => 'Perner',
             'fullname' => 'Fullname',
             'reason' => 'Reason',
@@ -76,9 +76,9 @@ class Changecanceljoin extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Userprofile::className(), ['userid' => 'userid']);
     }
-    public function getRecruitreqid()
+    public function getUserid()
     {
-        return $this->hasOne(Hiring::className(), ['userid' => 'recruitreqid']);
+        return $this->hasOne(Hiring::className(), ['userid' => 'userid']);
     }
     public function getCreateduser()
     {

@@ -118,7 +118,7 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
             ],
 
             [
-              'label' => 'Approver I',
+              'label' => 'Approver',
               'attribute' => 'approveduser',
               'format' => 'html',
               'value'=>function ($data) {
@@ -127,19 +127,10 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
             ],
 
             [
-              'label' => 'Approver II',
-              'attribute' => 'approveduser2',
-              'format' => 'html',
-              'value' => function ($data) {
-                return ($data->approveduser2) ? $data->approveduser2->name : "PM";
-              }
-            ],
-
-            [
               'label' => 'Approved Time',
               'format' => 'html',
               'value' => function ($data) {
-                return ($data->approvedtime2) ? $data->approvedtime2 : $data->approvedtime;
+                return ($data) ? $data->approvedtime : '-';
               }
             ],
 

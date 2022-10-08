@@ -49,12 +49,12 @@
               ],
               [
                 'label' => 'Cancel Join', 'icon' => 'circle-o', 'url' => ['/report/reportcanceljoin'],
-                'visible' => (Yii::$app->utils->permission($role, 'm66')),
+                'visible' => (Yii::$app->utils->permission($role, 'm98')),
                 'active' => Yii::$app->controller->action->id == 'reportcanceljoin'
               ],
               [
-                'label' => 'Change Job Order', 'icon' => 'circle-o', 'url' => ['/report/reportchangehiring'],
-                'visible' => (Yii::$app->utils->permission($role, 'm66')),
+                'label' => 'Change Hiring', 'icon' => 'circle-o', 'url' => ['/report/reportchangehiring'],
+                'visible' => (Yii::$app->utils->permission($role, 'm99')),
                 'active' => Yii::$app->controller->action->id == 'reportchangehiring'
               ],
               [
@@ -63,9 +63,9 @@
                 'active' => Yii::$app->controller->action->id == 'reporthiring'
               ],
               [
-                'label' => 'Change Hiring', 'icon' => 'circle-o', 'url' => ['/report/reportchangehiring'],
+                'label' => 'Job Order', 'icon' => 'circle-o', 'url' => ['/report/reportjoborder'],
                 'visible' => (Yii::$app->utils->permission($role, 'm66')),
-                'active' => Yii::$app->controller->action->id == 'reportchangehiring'
+                'active' => Yii::$app->controller->action->id == 'reportjoborder'
               ],
             ],
           ],

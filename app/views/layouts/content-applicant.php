@@ -1,4 +1,5 @@
 <?php
+
 use yii\widgets\Breadcrumbs;
 use dmstr\widgets\Alert;
 use yii\helpers\Html;
@@ -14,8 +15,7 @@ $baseUrl = Yii::$app->request->baseUrl;
       <div class="row">
         <aside class="widget col-md-4 widget_contact_info">
           <div class="widget_contact_wrap">
-            <a class="careerfy-footer-logo" href="index.html"><img
-                src="<?php echo $baseUrl; ?>/images/logo-gojobs-white.png" alt=""></a>
+            <a class="careerfy-footer-logo" href="<?php echo $baseUrl; ?>"><img src="<?php echo $baseUrl; ?>/images/logo-gojobs.webp" alt="" width= "250" height="100"></a>
             <p>Mencari dan menyalurkan kandidat yang spesifik sesuai dengan kebutuhan perusahaan.
           </div>
         </aside>
@@ -51,8 +51,7 @@ $baseUrl = Yii::$app->request->baseUrl;
   <!-- CopyRight -->
   <div class="careerfy-copyright">
     <div class="container">
-      <p>Copyrights © <?php echo date('Y'); ?> All Rights Reserved by <a href="https://ish.co.id/"
-          class="careerfy-color" target="_blank">Infomedia Solusi Humanika</a></p>
+      <p>Copyrights © <?php echo date('Y'); ?> All Rights Reserved by <a href="https://ish.co.id/" class="careerfy-color" target="_blank">Infomedia Solusi Humanika</a></p>
       <ul class="careerfy-social-network">
         <li><a href="#" class="careerfy-bgcolorhover fa fa-facebook"></a></li>
         <li><a href="#" class="careerfy-bgcolorhover fa fa-twitter"></a></li>

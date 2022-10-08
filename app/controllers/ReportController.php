@@ -20,6 +20,7 @@ use app\models\Masterregion;
 use app\models\Mappingregionarea;
 use app\models\Mastercity;
 use app\models\Masterjobfamily;
+use app\models\Masterstatuscr;
 use app\models\Mastersubjobfamily;
 use app\models\Saparea;
 use app\models\Sappersonalarea;
@@ -128,19 +129,7 @@ class ReportController extends Controller
   * Lists all Hiring models.
   * @return mixed
   */
-  // public function actionIndex()
-  // {
-  //
-  //
-  //   $searchModel = new Hiringsearch();
-  //   $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-  //
-  //   return $this->render('index', [
-  //     'searchModel' => $searchModel,
-  //     'dataProvider' => $dataProvider,
-  //   ]);
-  // }
-
+  
   public function actionReporthiring()
   {
     $searchModel = new Hiringreport();
@@ -207,23 +196,17 @@ class ReportController extends Controller
   {
     $searchModel = new Canceljoinreport();
     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-    $area = ArrayHelper::map(Saparea::find()->asArray()->all(), 'value1', 'value2');
-    $parea = ArrayHelper::map(Sappersonalarea::find()->asArray()->all(), 'value1', 'value2');
-    $jabatan = ArrayHelper::map(Sapjob::find()->asArray()->all(), 'value1', 'value2');
-    $areaish = ArrayHelper::map(Masterareaish::find()->asArray()->all(), 'id', 'area');
-    $region = ArrayHelper::map(Masterregion::find()->asArray()->all(), 'id', 'regionname');
-    $jobfamily = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
-    $subjobfamily = ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily');
+    $status = ArrayHelper::map(Masterstatuscr::find()->where('id in (4, 5, 7, 8, 9)')->asArray()->all(), 'id', 'statusname');
+    $segmen = [
+      'enterprise' => 'Enterprise',
+      'telkom' => 'Telkom',
+      'telkomgroup' => 'Telkom Group'
+    ];
     return $this->render('reportcanceljoin', [
       'searchModel' => $searchModel,
       'dataProvider' => $dataProvider,
-      'area' => $area,
-      'parea' => $parea,
-      'jabatan' => $jabatan,
-      'areaish' => $areaish,
-      'region' => $region,
-      'jobfamily' => $jobfamily,
-      'subjobfamily' => $subjobfamily,
+      'status' => $status,
+      'segmen' => $segmen,
     ]);
   }
   public function actionReportchangehiring()

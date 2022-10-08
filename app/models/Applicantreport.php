@@ -52,32 +52,27 @@ class Applicantreport extends Hiring
     public function search($params)
     {
         $query = Userprofile::find();
-        // $query->joinWith("useredu");
+        // $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.subjobfamily = userworkexperience.lastposition');
 
         // add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['id' => SORT_DESC]]
+            'sort' => ['defaultOrder' => ['fullname' => SORT_DESC]]
         ]);
 
 
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-
             return $dataProvider;
         }
 
-
-
-        // $query->andFilterWhere(['like', 'fullname', $this->fullname]);
         $datenow = date('Y-m-d');
 
-        $query->andFilterWhere(['between', 'createtime', $this->registerstart, $this->registerend]);
         if($this->registerstart and $this->registerend){
           $query->andFilterWhere(['between', 'createtime', $this->registerstart, $this->registerend]);
-        }else{
+        }
+        else{
           $this->registerstart = $datenow;
           $this->registerend = $datenow;
           $query->andFilterWhere(['between', 'createtime', $datenow, $datenow]);
@@ -95,8 +90,6 @@ class Applicantreport extends Hiring
           }
           $query->andWhere('userid IN (' . $getUserid . ')');
         }
-
-        // var_dump($this->havenpwp);die;
 
         if($this->havenpwp){
           if($this->havenpwp == 1){

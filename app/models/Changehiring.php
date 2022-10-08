@@ -15,11 +15,8 @@ use Yii;
  * @property string $createtime
  * @property string $updatetime
  * @property string $approvedtime
- * @property string $approvedtime2
  * @property int $createdby
- * @property int $updatedby
  * @property int $approvedby
- * @property int $approvedby2
  * @property int $status
  * @property string $documentevidence
  * @property int $reason
@@ -27,6 +24,10 @@ use Yii;
  * @property string $userremarks
  * @property string $fullname
  * @property string $cancelhiring
+ * @property string $hiringdate
+ * @property string $newhiringdate
+ * @property string $contractperiode
+ * @property string $newcontractperiode
  */
 class Changehiring extends \yii\db\ActiveRecord
 {
@@ -45,8 +46,9 @@ class Changehiring extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['userid', 'perner', 'recruitreqid', 'newrecruitreqid', 'createdby', 'updatedby', 'approvedby', 'approvedby2', 'status', 'reason'], 'integer'],
-            [['createtime', 'updatetime', 'approvedtime', 'approvedtime2', 'cancelhiring'], 'safe'],
+            [['userid', 'perner', 'recruitreqid', 'newrecruitreqid', 'createdby', 'approvedby', 'status', 'reason'], 'integer'],
+            [['newrecruitreqid', 'newhiringdate', 'newcontractperiode'], 'required'],
+            [['createtime', 'updatetime', 'approvedtime', 'cancelhiring', 'hiringdate', 'newhiringdate', 'contractperiode', 'newcontractperiode'], 'safe'],
             [['documentevidence'], 'string', 'max' => 345],
             [['remarks'], 'string', 'max' => 225],
             [['checkperner'], 'required', 'message' => 'this perner has been on processed Change Hiring', 'on' => 'createupdate'],
@@ -61,25 +63,26 @@ class Changehiring extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'userid' => 'Userid',
+            'userid' => 'User id',
             'perner' => 'Perner',
             'recruitreqid' => 'Recruitreqid',
             'newrecruitreqid' => 'New Recruitreqid',
-            'createtime' => 'Createtime',
-            'updatetime' => 'Updatetime',
-            'approvedtime' => 'Time Approved',
-            'approvedtime2' => 'Time Approved 2',
-            'createdby' => 'Createdby',
-            'updatedby' => 'Updatedby',
-            'approvedby' => 'Approved I',
-            'approvedby2' => 'Approved II',
+            'createtime' => 'Create Time',
+            'updatetime' => 'Update Time',
+            'approvedtime' => 'Approved Time',
+            'createdby' => 'Created by',
+            'approvedby' => 'Approved by',
             'status' => 'Status',
-            'documentevidence' => 'Document Evidence',
+            'documentevidence' => 'Document evidence',
             'reason' => 'Reason',
             'remarks' => 'Remarks',
-            'userremarks' => 'User Remarks',
+            'userremarks' => 'User remarks',
             'fullname' => 'Fullname',
-            'cancelhiring' => 'Cancel Hiring Date',
+            'cancelhiring' => 'Cancel hiring',
+            'hiringdate' => 'Hiring date',
+            'newhiringdate' => 'New Hiring date',
+            'contractperiode' => 'Contract periode',
+            'newcontractperiode' => 'New contract periode',
         ];
     }
 
@@ -87,9 +90,9 @@ class Changehiring extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Userprofile::className(), ['userid' => 'userid']);
     }
-    public function getRecruitreqid()
+    public function getUserid()
     {
-        return $this->hasOne(Hiring::className(), ['userid' => 'recruitreqid']);
+        return $this->hasOne(Hiring::className(), ['userid' => 'userid']);
     }
     public function getCreateduser()
     {
@@ -99,16 +102,12 @@ class Changehiring extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'approvedby']);
     }
-    public function getApproveduser2()
-    {
-        return $this->hasOne(User::className(), ['id' => 'approvedby2']);
-    }
     public function getStatusprocess()
     {
         return $this->hasOne(Masterstatuscr::className(), ['id' => 'status']);
     }
-    public function getHiringreason()
+    public function getCanceljoinreason()
     {
-        return $this->hasOne(Masterreasonchangehiring::className(), ['id' => 'reason']);
+        return $this->hasOne(Masterreasoncanceljoin::className(), ['id' => 'reason']);
     }
 }

@@ -89,7 +89,7 @@ $baseUrl = Yii::$app->request->baseUrl;
                                 <li class="careerfy-column-4">
                                     <i class="careerfy-icon careerfy-<?php echo $data['icon']; ?>"></i>
                                     <a href="/rekrut/site/searchjob?Transrinciansearch%5Bstatus_rekrut%5D=1&Transrinciansearch%5Bjobfamily%5D=<?php echo $data['id']; ?>"> <?php echo $data['jobfamily']; ?> </a>
-                                    <span>(<?php echo $totaljocategory; ?> Open Vacancies)</span>
+                                    <span>Open Vacancies</span>
                                 </li>
                             <?php endforeach; ?>
 
@@ -117,7 +117,7 @@ $baseUrl = Yii::$app->request->baseUrl;
                     </div>
                 </aside>
                 <aside class="col-md-6 careerfy-typo-wrap">
-                    <div class="careerfy-right"><img src="<?php echo $baseUrl; ?>/extra-images/search-illustration.png" alt=""></div>
+                    <div class="careerfy-right"><img width="600" height="400" src="<?php echo $baseUrl; ?>/images/search-illustration.webp" alt=""></div>
                 </aside>
 
             </div>

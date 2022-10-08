@@ -24,6 +24,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 'perner',
                 'fullname',
                 'userid',
+
+                [
+                  'label' => 'No JO',
+                  'format' => 'html',
+                  'value'=>function ($data) {
+                    if($data->userid){
+                      $cekhiring = Hiring::find()->where('userid ='.$data->userid.' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id"=>SORT_DESC])->one();
+                      if ($cekhiring) {
+                        $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
+                      }
+                      return ($getjo) ? $getjo->nojo : '-';
+                    }
+                  }
+                ],
+                
                 [
                   'label' => 'Personal Area',
                   'format' => 'html',
@@ -36,20 +51,11 @@ $this->params['breadcrumbs'][] = $this->title;
                       } else {
                         $persa = "-";
                       }
-                    }else{
-                      $curl = new curl\Curl();
-                      $getdatapekerjabyperner =  $curl->setPostParams([
-                        'perner' => $data->perner,
-                        'token' => 'ish**2019',
-                      ])
-                      ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
-                      $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                      $persa = $datapekerjabyperner[0]->WKTXT;
                     }
                     return $persa;
-                }
-
+                  }
                 ],
+
                 [
                   'label' => 'Area',
                   'format' => 'html',
@@ -62,20 +68,11 @@ $this->params['breadcrumbs'][] = $this->title;
                       } else {
                         $area = "-";
                       }
-                    }else{
-                      $curl = new curl\Curl();
-                      $getdatapekerjabyperner =  $curl->setPostParams([
-                        'perner' => $data->perner,
-                        'token' => 'ish**2019',
-                      ])
-                      ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
-                      $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                      $area = $datapekerjabyperner[0]->BTRTX;
                     }
                     return $area;
-                }
-
+                  }
                 ],
+
                 [
                   'label' => 'Skill Layanan',
                   'format' => 'html',
@@ -88,20 +85,11 @@ $this->params['breadcrumbs'][] = $this->title;
                       } else {
                         $skilllayanan = "-";
                       }
-                    }else{
-                      $curl = new curl\Curl();
-                      $getdatapekerjabyperner =  $curl->setPostParams([
-                        'perner' => $data->perner,
-                        'token' => 'ish**2019',
-                      ])
-                      ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
-                      $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                      $skilllayanan = $datapekerjabyperner[0]->PEKTX;
                     }
                     return $skilllayanan;
-                }
-
+                  }
                 ],
+
                 [
                   'label' => 'Payroll Area',
                   'format' => 'html',
@@ -114,15 +102,6 @@ $this->params['breadcrumbs'][] = $this->title;
                       } else {
                         $payrollarea = "-";
                       }
-                    }else{
-                      $curl = new curl\Curl();
-                      $getdatapekerjabyperner =  $curl->setPostParams([
-                        'perner' => $data->perner,
-                        'token' => 'ish**2019',
-                      ])
-                      ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
-                      $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                      $payrollarea = $datapekerjabyperner[0]->ABTXT;
                     }
                     return $payrollarea;
                   }
@@ -140,21 +119,11 @@ $this->params['breadcrumbs'][] = $this->title;
                       } else {
                         $jabatan = "-";
                       }
-                    }else{
-                      $curl = new curl\Curl();
-                      $getdatapekerjabyperner =  $curl->setPostParams([
-                        'perner' => $data->perner,
-                        'token' => 'ish**2019',
-                      ])
-                      ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
-                      $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                      // var_dump($datapekerjabyperner);die;
-                      $jabatan = $datapekerjabyperner[0]->PLATX;
                     }
                     return $jabatan;
-                }
-
+                  }
                 ],
+
                 [
                   'label' => 'Level',
                   'format' => 'html',
@@ -174,28 +143,19 @@ $this->params['breadcrumbs'][] = $this->title;
                       } else {
                         $level = "-";
                       }
-                    }else{
-                      $curl = new curl\Curl();
-                      $getdatapekerjabyperner =  $curl->setPostParams([
-                        'perner' => $data->perner,
-                        'token' => 'ish**2019',
-                      ])
-                      ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
-                      $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                      $level = $datapekerjabyperner[0]->TRFAR_TXT;
                     }
                     return $level;
-                }
-
+                  }
                 ],
+
                 [
                   'attribute' => 'reason',
                   'format' => 'html',
                   'value'=>function ($data) {
                     return ($data->reason)?$data->canceljoinreason->reason:"<i class='text-red'>not set</i>";
-                }
-
+                  }
                 ],
+
                 'canceldate',
 
                 [
@@ -235,9 +195,9 @@ $this->params['breadcrumbs'][] = $this->title;
                   'value'=>function ($data) {
 
                     return ($data->createduser)?$data->createduser->name:"";
-                }
-
+                  }
                 ],
+
                 'createtime',
                 'updatetime',
                 [
@@ -245,9 +205,9 @@ $this->params['breadcrumbs'][] = $this->title;
                   'format' => 'raw',
                   'value' => function ($data) {
                     return ($data->documentevidence) ? Html::a('<i class="fa fa-download"></i> Download', ['/app/assets/upload/documentevidence/' . $data->documentevidence], ['target' => '_blank', 'class' => 'btn btn-sm btn-default text-muted']) : '-';
-                  }
-
+                    }
                 ],
+
             ],
         ]) ?>
     </div>

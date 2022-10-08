@@ -42,6 +42,7 @@ use Yii;
  * @property string $no_bak
  * @property int $tgl_gajian
  * @property int $new_rekrut
+ * @property int $divisiid
  */
 class Transjo extends \yii\db\ActiveRecord
 {
@@ -70,7 +71,7 @@ class Transjo extends \yii\db\ActiveRecord
             [['nojo'], 'required'],
             [['tanggal', 'latihan', 'lup'], 'safe'],
             [['syarat', 'deskripsi', 'komponen', 'ket_atasan', 'ket_admin', 'ket_pm', 'ket_cancel', 'ket_done', 'no_bak'], 'string'],
-            [['approval', 'approval_admin', 'skema', 'flag_cancel', 'flag_cancel_sap', 'flag_edit', 'type_replace', 'type_new', 'tgl_gajian', 'new_rekrut'], 'integer'],
+            [['approval', 'approval_admin', 'skema', 'flag_cancel', 'flag_cancel_sap', 'flag_edit', 'type_replace', 'type_new', 'tgl_gajian', 'new_rekrut', 'divisiid'], 'integer'],
             [['nojo', 'lama', 'bekerja', 'jenis_project', 'upd'], 'string', 'max' => 50],
             [['project'], 'string', 'max' => 150],
             [['n_project', 'komponen_bak', 'komponen_other', 'upd_cancel_rekrut'], 'string', 'max' => 200],
@@ -122,6 +123,12 @@ class Transjo extends \yii\db\ActiveRecord
             'no_bak' => 'No Bak',
             'tgl_gajian' => 'Tgl Gajian',
             'new_rekrut' => 'New Rekrut',
+            'divisiid' => 'Divisi ID',
         ];
+    }
+
+    public function getSegmen()
+    {
+        return $this->hasOne(Mappingsegmen::classname(), ['id' => 'divisiid']);
     }
 }

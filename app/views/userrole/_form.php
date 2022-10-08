@@ -285,6 +285,22 @@ use yii\widgets\ActiveForm;
                   <?= $form->field($model, 'm66')->checkbox(['class' => 'my-0']); ?>
                 </div>
               </div>
+              <div class="col-md-3 form-group row ">
+                <div class="col-5 col-form-label">
+                  Cancel Join
+                </div>
+                <div class="col-7 col-form-label">
+                  <?= $form->field($model, 'm98')->checkbox(['class' => 'my-0']); ?>
+                </div>
+              </div>
+              <div class="col-md-3 form-group row ">
+                <div class="col-5 col-form-label">
+                  Change Hiring
+                </div>
+                <div class="col-7 col-form-label">
+                  <?= $form->field($model, 'm99')->checkbox(['class' => 'my-0']); ?>
+                </div>
+              </div>
             </div>
             <div class="col-md-12">
               <div class="col-form-label" style="padding: 5px; margin-bottom:5px; margin-top:10px; border-radius: 4px;  background-color:#89a0c6;">

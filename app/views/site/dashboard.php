@@ -256,7 +256,7 @@ app\assets\DashboardAsset::register($this);
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-6 col-xs-6">
+    <div class="col-lg-6 col-xs-12">
       <div class="box">
         <div class="box-header">
           <h3 class="box-title">Recruitment Process</h3>
@@ -349,10 +349,8 @@ app\assets\DashboardAsset::register($this);
       </div>
     </div>
     <div class="col-lg-6 col-xs-12">
-      <div class="box box-body">
-          <div id="canvas-holder" style="width:100%;">
-            <canvas id="chart-area" height="250"></canvas>
-          </div>
+      <div id="canvas-holder" style="width:100%;">
+        <canvas id="chart-area" height="250"></canvas>
       </div>
     </div>
   </div>

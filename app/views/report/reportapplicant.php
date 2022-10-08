@@ -42,11 +42,9 @@ app\assets\ReportAsset::register($this);
     </div>
     <!-- <div class="info-box">
             <span class="info-box-icon bg-red"><i class="fa fa-institution (alias)"></i></span>
-
             <div class="info-box-content">
               <span class="info-box-text">Hired By Personal Area</span>
-              <span class="info-box-number"><?php //echo $dataProvider['bypersonalarea']->getTotalCount(); 
-                                            ?></span>
+              <span class="info-box-number"><?php //echo $dataProvider['bypersonalarea']->getTotalCount(); ?></span>
             </div>
           </div> -->
   </div>
@@ -135,15 +133,7 @@ app\assets\ReportAsset::register($this);
               'label' => 'Pendidikan terakhir',
               'format' => 'raw',
               'value' => function ($data) {
-                $lasteducation = Userformaleducation::find()->where(['userid' => $data->userid])->orderBy([
-                  'educationallevel' => SORT_DESC //specify sort order ASC for ascending DESC for descending
-                ])->one();
-                if ($lasteducation) {
-                  $eduname = Mastereducation::find()->where(['idmastereducation' => $lasteducation->educationallevel])->one();
-                  return ($eduname) ? $eduname->education : "";
-                } else {
-                  return "";
-                }
+                  return ($data->education) ? $data->education->educatioanallevel0->education : "";
               }
             ],
 
@@ -151,11 +141,7 @@ app\assets\ReportAsset::register($this);
               'label' => 'Nama Sekolah / Universitas terakhir',
               'format' => 'raw',
               'value' => function ($data) {
-                $lasteducation = Userformaleducation::find()->where(['userid' => $data->userid])->orderBy([
-                  'educationallevel' => SORT_DESC //specify sort order ASC for ascending DESC for descending
-                ])->one();
-
-                return ($lasteducation) ? $lasteducation->institutions : "";
+                return ($data->education) ? $data->education->institutions : "";
               }
             ],
 
@@ -163,10 +149,7 @@ app\assets\ReportAsset::register($this);
               'label' => 'Jurusan',
               'format' => 'raw',
               'value' => function ($data) {
-                $lasteducation = Userformaleducation::find()->where(['userid' => $data->userid])->orderBy([
-                  'educationallevel' => SORT_DESC //specify sort order ASC for ascending DESC for descending
-                ])->one();
-                return ($lasteducation) ? $lasteducation->majoring : "";
+                return ($data->education) ? $data->education->majoring : "";
               }
             ],
 
@@ -289,9 +272,8 @@ app\assets\ReportAsset::register($this);
               'label' => 'Alasan',
               'format' => 'html',
               'value' => function ($data) {
-                $vaksin = Uservaksin::find()->where(['userid' => $data->userid])->one();
 
-                return ($vaksin) ? (($vaksin->alasan) ? (($vaksin->alasanvaksin) ? $vaksin->alasanvaksin->alasan : '') : '') : '';
+                return ($data->datavaksin) ? (($data->datavaksin->alasan) ? (($data->datavaksin->alasanvaksin) ? $data->datavaksin->alasanvaksin->alasan : '') : '') : '';
               }
 
             ],
@@ -299,9 +281,8 @@ app\assets\ReportAsset::register($this);
               'label' => 'Tanggal Vaksin 1',
               'format' => ['date', 'php:Y-m-d'],
               'value' => function ($data) {
-                $vaksin = Uservaksin::find()->where(['userid' => $data->userid])->one();
 
-                return ($vaksin) ? $vaksin->tanggalvaksin1 : "";
+                return ($data->datavaksin) ? $data->datavaksin->tanggalvaksin1 : "";
               }
             ],
 
@@ -309,9 +290,8 @@ app\assets\ReportAsset::register($this);
               'label' => 'Lokasi Vaksin 1',
               'format' => 'html',
               'value' => function ($data) {
-                $vaksin = Uservaksin::find()->where(['userid' => $data->userid])->one();
 
-                return ($vaksin) ? $vaksin->lokasivaksin1 : "";
+                return ($data->datavaksin) ? $data->datavaksin->lokasivaksin1 : "";
               }
             ],
 
@@ -320,9 +300,8 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $vaksin = Uservaksin::find()->where(['userid' => $data->userid])->one();
 
-                return ($vaksin) ? (($vaksin->sertvaksin1) ? "V" : "X") : "X";
+                return ($data->datavaksin) ? (($data->datavaksin->sertvaksin1) ? "V" : "X") : "X";
               }
             ],
 
@@ -330,9 +309,8 @@ app\assets\ReportAsset::register($this);
               'label' => 'Tanggal Vaksin 2',
               'format' => ['date', 'php:Y-m-d'],
               'value' => function ($data) {
-                $vaksin = Uservaksin::find()->where(['userid' => $data->userid])->one();
 
-                return ($vaksin) ? $vaksin->tanggalvaksin2 : "";
+                return ($data->datavaksin) ? $data->datavaksin->tanggalvaksin2 : "";
               }
             ],
 
@@ -340,9 +318,8 @@ app\assets\ReportAsset::register($this);
               'label' => 'Lokasi Vaksin 2',
               'format' => 'html',
               'value' => function ($data) {
-                $vaksin = Uservaksin::find()->where(['userid' => $data->userid])->one();
 
-                return ($vaksin) ? $vaksin->lokasivaksin2 : "";
+                return ($data->datavaksin) ? $data->datavaksin->lokasivaksin2 : "";
               }
             ],
 
@@ -351,9 +328,8 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $vaksin = Uservaksin::find()->where(['userid' => $data->userid])->one();
 
-                return ($vaksin) ? (($vaksin->sertvaksin2) ? "V" : "X") : "X";
+                return ($data->datavaksin) ? (($data->datavaksin->sertvaksin2) ? "V" : "X") : "X";
               }
             ],
 
@@ -362,8 +338,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $inforec = Userabout::find()->where(['userid' => $data->userid])->one();
-                return ($inforec) ? $inforec->masterinforec->infoofrecruitment : "";
+                return ($data->uabout) ? $data->uabout->masterinforec->infoofrecruitment : "";
               }
             ],
 
@@ -408,29 +383,16 @@ app\assets\ReportAsset::register($this);
               'label' => 'Last Education',
               'format' => 'raw',
               'value' => function ($data) {
-                $lasteducation = Userformaleducation::find()->where(['userid' => $data->userid])->orderBy([
-                  'educationallevel' => SORT_DESC //specify sort order ASC for ascending DESC for descending
-                ])->one();
-                if ($lasteducation) {
-                  $eduname = Mastereducation::find()->where(['idmastereducation' => $lasteducation->educationallevel])->one();
-                  return ($eduname) ? $eduname->education : "";
-                } else {
-                  return "";
-                }
+                return ($data->education) ? $data->education->educatioanallevel0->education : "";
               }
-
             ],
 
             [
               'label' => 'Majoring',
               'format' => 'raw',
               'value' => function ($data) {
-                $lasteducation = Userformaleducation::find()->where(['userid' => $data->userid])->orderBy([
-                  'educationallevel' => SORT_DESC //specify sort order ASC for ascending DESC for descending
-                ])->one();
-                return ($lasteducation) ? $lasteducation->majoring : "";
+                return ($data->education) ? $data->education->majoring : "";
               }
-
             ],
 
             [
@@ -532,8 +494,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
               'value' => function ($data) {
-                $inforec = Userabout::find()->where(['userid' => $data->userid])->one();
-                return ($inforec) ? $inforec->masterinforec->infoofrecruitment : "";
+                return ($data->uabout) ? $data->uabout->masterinforec->infoofrecruitment : "";
               }
             ],
 

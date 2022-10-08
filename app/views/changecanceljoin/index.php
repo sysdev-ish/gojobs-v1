@@ -1,9 +1,11 @@
 <?php
 
+use app\models\Hiring;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use kartik\select2\Select2;
 use app\models\Masterstatuscr;
+use app\models\Transrincian;
 use yii\helpers\ArrayHelper;
 use yii\bootstrap\Modal;
 use linslin\yii2\curl;
@@ -61,7 +63,7 @@ if(Yii::$app->utils->permission($role,'m91')){
 if(Yii::$app->utils->permission($role,'m92')){
   $actionapprove = '{approve}';
 }
-if (Yii::$app->user->identity->username == '9802618' || Yii::$app->user->identity->username == '9103005' || Yii::$app->user->identity->username == "seysi") {
+if (Yii::$app->user->identity->username == '9802618' || Yii::$app->user->identity->username == '9103005' || Yii::$app->user->identity->username == "seysi" || Yii::$app->user->identity->username == '9610439' || Yii::$app->user->identity->username == '8412075') {
   $actionconfirmation = '{confirmation}';
 }
 $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirmation;
@@ -92,6 +94,20 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
             ],
 
             [
+              'label' => 'No JO',
+              'format' => 'html',
+              'value' => function ($data) {
+                if ($data->userid) {
+                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+                  if ($cekhiring) {
+                    $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+                  }
+                  return ($getjo) ? $getjo->nojo : '-';
+                }
+              }
+            ],
+
+            [
               'label' => 'Cancel Date',
               'attribute' => 'canceldate',
               'contentOptions'=>['style'=>'min-width: 100px;'],
@@ -116,7 +132,8 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
               'attribute' => 'approveduser',
               'format' => 'html',
               'value'=>function ($data) {
-                return ($data->approveduser)?$data->approveduser->name: "PM";
+                // return ($data->approveduser)?$data->approveduser->name: "-";
+                return "PM";
               }
             ],
 

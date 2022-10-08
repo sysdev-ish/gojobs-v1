@@ -517,26 +517,26 @@ class SiteController extends Controller
       $user->verify_code = $randomstring;
       $user->updated_at = date('Y-m-d H-i-s');
 
-      if ($user->save(false)) {
+     if ($user->save(false)) {
 
-        $to = $user->email;
-        $subject = 'Verify email';
-        $body = 'Dear '.$user->name.' ,
-        <br>
-        We need to make sure that this is you and not misused by unauthorized parties.
-        <br>
-        <br>
-        This is your Verification Code :
-        <br>
-        '.$randomstring.'<br>
-        --You are receiving this email from Global Support because you registered on gojobs ISH with this email address--';
-        $verification = Yii::$app->utils->sendmail($to,$subject,$body,2);
+       $to = $user->email;
+       $subject = 'Verify email';
+       $body = 'Dear '.$user->name.' ,
+       <br>
+       We need to make sure that this is you and not misused by unauthorized parties.
+       <br>
+       <br>
+       This is your Verification Code :
+       <br>
+       '.$randomstring.'<br>
+       --You are receiving this email from Global Support because you registered on gojobs ISH with this email address--';
+       $verification = Yii::$app->utils->sendmail($to,$subject,$body,2);
 
-      }
-      return $this->redirect('verifycode');
-    }else{
-      return $this->goHome();
-    }
+     }
+     return $this->redirect('verifycode');
+   }else{
+     return $this->goHome();
+   }
   }
   public function actionSignup()
   {
@@ -560,6 +560,7 @@ class SiteController extends Controller
         'model' => $model,
       ]);
     }
+
   }
 
 
