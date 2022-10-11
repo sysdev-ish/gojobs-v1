@@ -1,8 +1,10 @@
 <?php
 
+use app\models\Hiring;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use app\models\Masterstatuscr;
+use app\models\Transrincian;
 use yii\helpers\ArrayHelper;
 use yii\bootstrap\Modal;
 
@@ -80,21 +82,36 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
             ['class' => 'yii\grid\SerialColumn'],
 
             [
-              'label' => 'No Job Order',
-              'format' => 'html',
-              'value' => function ($data) {
-                return "Existing: " . ($data->recruitreqid) . "<br>" .
-                "Replacement: " . ($data->newrecruitreqid);
-              }
-            ],
-
-            [
               'label' => 'Name',
               'attribute' => 'fullname',
               'format' => 'html',
               'value'=>function ($data) {
                 return $data->fullname;
               }
+            ],
+
+            [
+              'label' => 'No Jo',
+              'format' => 'html',
+              'value' => function ($data) {
+                if ($data->userid) {
+                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+                  if ($cekhiring) {
+                    $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+                  }
+                  return ($getjo) ? $getjo->nojo : '-';
+                }
+              }
+            ],
+
+            [
+              'label' => 'Replacement',
+              'format' => 'html',
+              'value' => function ($data) {
+                return "Date Hiring: " . ($data->newhiringdate) . "<br>" .
+                "Contract Periode: " . ($data->newcontractperiode) . "<br>" .
+                "No JO: " . ($data->newrecruitreqid) ;
+              } 
             ],
 
             [
@@ -127,14 +144,6 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
             ],
 
             [
-              'label' => 'Approved Time',
-              'format' => 'html',
-              'value' => function ($data) {
-                return ($data) ? $data->approvedtime : '-';
-              }
-            ],
-
-            [
               'attribute' => 'status',
               'contentOptions'=>['style'=>'min-width: 200px;'],
               'format' => 'html',
@@ -161,12 +170,12 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
               'value'=>function ($data) {
                 if ($data->status == 9) {
                   if ($data->perner == null) {
-                    return "<b><i>".$data->remarks."</i></b><br>".$data->userremarks. "<br>Proses Selesai";
+                    return "<b><i>".$data->remarks."</i></b><br>";
                   } else {
-                    return "<b><i>".$data->remarks."</i></b><br>".$data->userremarks. "<br>Proses Selesai, Perner belum Dihapus";
+                    return "<b><i>".$data->remarks."</i></b><br>";
                   }
                 } else {
-                  return "<b><i>".$data->remarks."</i></b><br>".$data->userremarks. "<br>";
+                  return "<b><i>".$data->remarks."</i></b><br>";
                 }
               }
             ],

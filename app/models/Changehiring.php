@@ -18,16 +18,16 @@ use Yii;
  * @property int $createdby
  * @property int $approvedby
  * @property int $status
- * @property string $documentevidence
  * @property int $reason
+ * @property int $typechangehiring
  * @property string $remarks
- * @property string $userremarks
  * @property string $fullname
  * @property string $cancelhiring
  * @property string $hiringdate
  * @property string $newhiringdate
  * @property string $contractperiode
  * @property string $newcontractperiode
+ * 
  */
 class Changehiring extends \yii\db\ActiveRecord
 {
@@ -46,13 +46,11 @@ class Changehiring extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['userid', 'perner', 'recruitreqid', 'newrecruitreqid', 'createdby', 'approvedby', 'status', 'reason'], 'integer'],
+            [['userid', 'perner', 'recruitreqid', 'newrecruitreqid', 'createdby', 'approvedby', 'status', 'reason', 'typechangehiring'], 'integer'],
             [['newrecruitreqid', 'newhiringdate', 'newcontractperiode'], 'required'],
-            [['createtime', 'updatetime', 'approvedtime', 'cancelhiring', 'hiringdate', 'newhiringdate', 'contractperiode', 'newcontractperiode'], 'safe'],
-            [['documentevidence'], 'string', 'max' => 345],
-            [['remarks'], 'string', 'max' => 225],
+            [['createtime', 'updatetime', 'approvedtime', 'remarks', 'cancelhiring', 'hiringdate', 'newhiringdate', 'contractperiode', 'newcontractperiode'], 'safe'],
             [['checkperner'], 'required', 'message' => 'this perner has been on processed Change Hiring', 'on' => 'createupdate'],
-            [['userremarks', 'fullname'], 'string', 'max' => 255],
+            [['fullname'], 'string', 'max' => 255],
         ];
     }
 
@@ -64,6 +62,7 @@ class Changehiring extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'userid' => 'User id',
+            'newuserid' => 'User id Replacement',
             'perner' => 'Perner',
             'recruitreqid' => 'Recruitreqid',
             'newrecruitreqid' => 'New Recruitreqid',
@@ -73,10 +72,9 @@ class Changehiring extends \yii\db\ActiveRecord
             'createdby' => 'Created by',
             'approvedby' => 'Approved by',
             'status' => 'Status',
-            'documentevidence' => 'Document evidence',
-            'reason' => 'Reason',
             'remarks' => 'Remarks',
-            'userremarks' => 'User remarks',
+            'reason' => 'Reason',
+            'typechangehiring' => 'Type Change Hiring',
             'fullname' => 'Fullname',
             'cancelhiring' => 'Cancel hiring',
             'hiringdate' => 'Hiring date',

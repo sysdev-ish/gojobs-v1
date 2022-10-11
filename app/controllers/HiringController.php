@@ -563,9 +563,9 @@ class HiringController extends Controller
 
           $json = json_encode($request_data);
 
-          print_r($json);
-          die;
-          echo '<br>';
+          // print_r($json);
+          // die;
+          // echo '<br>';
 
           $headers  = [
             'Content-Type: application/json',

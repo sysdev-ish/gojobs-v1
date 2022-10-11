@@ -16,199 +16,198 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="changecanceljoin-view box box-solid">
 
-    <div class="box-body table-responsive no-padding">
-        <?= DetailView::widget([
-            'model' => $model,
-            'attributes' => [
-                'id',
-                'perner',
-                'fullname',
-                'userid',
+  <div class="box-body table-responsive no-padding">
+    <?= DetailView::widget([
+      'model' => $model,
+      'attributes' => [
+        'id',
+        'perner',
+        'fullname',
+        'userid',
 
-                [
-                  'label' => 'No JO',
-                  'format' => 'html',
-                  'value'=>function ($data) {
-                    if($data->userid){
-                      $cekhiring = Hiring::find()->where('userid ='.$data->userid.' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id"=>SORT_DESC])->one();
-                      if ($cekhiring) {
-                        $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
-                      }
-                      return ($getjo) ? $getjo->nojo : '-';
-                    }
-                  }
-                ],
-                
-                [
-                  'label' => 'Personal Area',
-                  'format' => 'html',
-                  'value'=>function ($data) {
-                    if($data->userid){
-                      $cekhiring = Hiring::find()->where('userid ='.$data->userid.' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id"=>SORT_DESC])->one();
-                      if ($cekhiring) {
-                        $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
-                        $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap))?Yii::$app->utils->getpersonalarea($getjo->persa_sap): "";
-                      } else {
-                        $persa = "-";
-                      }
-                    }
-                    return $persa;
-                  }
-                ],
+        [
+          'label' => 'No JO',
+          'format' => 'html',
+          'value' => function ($data) {
+            if ($data->userid) {
+              $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+              if ($cekhiring) {
+                $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+              }
+              return ($getjo) ? $getjo->nojo : '-';
+            }
+          }
+        ],
 
-                [
-                  'label' => 'Area',
-                  'format' => 'html',
-                  'value'=>function ($data) {
-                    if($data->userid){
-                      $cekhiring = Hiring::find()->where('userid ='.$data->userid.' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id"=>SORT_DESC])->one();
-                      if ($cekhiring) {
-                        $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
-                        $area = (Yii::$app->utils->getarea($getjo->area_sap))?Yii::$app->utils->getarea($getjo->area_sap): "";
-                      } else {
-                        $area = "-";
-                      }
-                    }
-                    return $area;
-                  }
-                ],
+        [
+          'label' => 'Personal Area',
+          'format' => 'html',
+          'value' => function ($data) {
+            if ($data->userid) {
+              $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+              if ($cekhiring) {
+                $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+                $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap)) ? Yii::$app->utils->getpersonalarea($getjo->persa_sap) : "";
+              } else {
+                $persa = "-";
+              }
+            }
+            return $persa;
+          }
+        ],
 
-                [
-                  'label' => 'Skill Layanan',
-                  'format' => 'html',
-                  'value'=>function ($data) {
-                    if($data->userid){
-                      $cekhiring = Hiring::find()->where('userid ='.$data->userid.' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id"=>SORT_DESC])->one();
-                      if ($cekhiring) {
-                        $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
-                        $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap))?Yii::$app->utils->getskilllayanan($getjo->skill_sap): "";
-                      } else {
-                        $skilllayanan = "-";
-                      }
-                    }
-                    return $skilllayanan;
-                  }
-                ],
+        [
+          'label' => 'Area',
+          'format' => 'html',
+          'value' => function ($data) {
+            if ($data->userid) {
+              $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+              if ($cekhiring) {
+                $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+                $area = (Yii::$app->utils->getarea($getjo->area_sap)) ? Yii::$app->utils->getarea($getjo->area_sap) : "";
+              } else {
+                $area = "-";
+              }
+            }
+            return $area;
+          }
+        ],
 
-                [
-                  'label' => 'Payroll Area',
-                  'format' => 'html',
-                  'value'=>function ($data) {
-                    if($data->userid){
-                      $cekhiring = Hiring::find()->where('userid ='.$data->userid.' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id"=>SORT_DESC])->one();
-                      if ($cekhiring) {
-                        $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
-                        $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap))?Yii::$app->utils->getpayrollarea($getjo->abkrs_sap): "";
-                      } else {
-                        $payrollarea = "-";
-                      }
-                    }
-                    return $payrollarea;
-                  }
-                ],
+        [
+          'label' => 'Skill Layanan',
+          'format' => 'html',
+          'value' => function ($data) {
+            if ($data->userid) {
+              $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+              if ($cekhiring) {
+                $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+                $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap)) ? Yii::$app->utils->getskilllayanan($getjo->skill_sap) : "";
+              } else {
+                $skilllayanan = "-";
+              }
+            }
+            return $skilllayanan;
+          }
+        ],
 
-                [
-                  'label' => 'Jabatan',
-                  'format' => 'html',
-                  'value'=>function ($data) {
-                    if($data->userid){
-                      $cekhiring = Hiring::find()->where('userid ='.$data->userid.' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id"=>SORT_DESC])->one();
-                      if ($cekhiring) {
-                        $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
-                        $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap))?Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap): "";
-                      } else {
-                        $jabatan = "-";
-                      }
-                    }
-                    return $jabatan;
-                  }
-                ],
+        [
+          'label' => 'Payroll Area',
+          'format' => 'html',
+          'value' => function ($data) {
+            if ($data->userid) {
+              $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+              if ($cekhiring) {
+                $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+                $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap)) ? Yii::$app->utils->getpayrollarea($getjo->abkrs_sap) : "";
+              } else {
+                $payrollarea = "-";
+              }
+            }
+            return $payrollarea;
+          }
+        ],
 
-                [
-                  'label' => 'Level',
-                  'format' => 'html',
-                  'value'=>function ($data) {
-                    if($data->userid){
-                      $cekhiring = Hiring::find()->where('userid ='.$data->userid.' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id"=>SORT_DESC])->one();
-                      if ($cekhiring) {
-                        $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
-                        $curl = new curl\Curl();
-                        $getlevels = $curl->setPostParams([
-                          'level' => $getjo->level_sap,
-                          'token' => 'ish**2019',
-                        ])
-                        ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
-                        $level  = json_decode($getlevels);
-                        $level = ($level)?$level : "";
-                      } else {
-                        $level = "-";
-                      }
-                    }
-                    return $level;
-                  }
-                ],
+        [
+          'label' => 'Jabatan',
+          'format' => 'html',
+          'value' => function ($data) {
+            if ($data->userid) {
+              $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+              if ($cekhiring) {
+                $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+                $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap)) ? Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap) : "";
+              } else {
+                $jabatan = "-";
+              }
+            }
+            return $jabatan;
+          }
+        ],
 
-                [
-                  'attribute' => 'reason',
-                  'format' => 'html',
-                  'value'=>function ($data) {
-                    return ($data->reason)?$data->canceljoinreason->reason:"<i class='text-red'>not set</i>";
-                  }
-                ],
+        [
+          'label' => 'Level',
+          'format' => 'html',
+          'value' => function ($data) {
+            if ($data->userid) {
+              $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+              if ($cekhiring) {
+                $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+                $curl = new curl\Curl();
+                $getlevels = $curl->setPostParams([
+                  'level' => $getjo->level_sap,
+                  'token' => 'ish**2019',
+                ])
+                  ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
+                $level  = json_decode($getlevels);
+                $level = ($level) ? $level : "";
+              } else {
+                $level = "-";
+              }
+            }
+            return $level;
+          }
+        ],
 
-                'canceldate',
+        [
+          'attribute' => 'reason',
+          'format' => 'html',
+          'value' => function ($data) {
+            return ($data->reason) ? $data->canceljoinreason->reason : "<i class='text-red'>not set</i>";
+          }
+        ],
 
-                [
-                  'label' => 'Approver',
-                  'attribute' => 'approveduser',
-                  'format' => 'html',
-                  'value'=>function ($data) {
-                    return ($data->approveduser) ? $data->approveduser->name : "PM";
-                  }
-                ],
-                
-                'approvedtime',
-                [
-                  'label' => 'Status',
-                  'attribute' => 'status',
-                  'format' => 'html',
-                  'value'=>function ($data) {
-                      if ($data->status == 1) {
-                        $label = 'label-danger';
-                      } elseif ($data->status == 2 or $data->status == 3 or $data->status == 6) {
-                        $label = 'label-warning';
-                      } elseif ($data->status == 4 or $data->status == 9) {
-                        $label = 'label-success';
-                      } elseif ($data->status == 8) {
-                        $label = 'label-info';
-                      } else {
-                        $label = 'label-danger';
-                      }
-                      return '<span class="label ' . $label . '">' . $data->statusprocess->statusname . '</span>';
-                  }
-                ],
-                'remarks',
-                'userremarks',
-                [
-                  'attribute' => 'createdby',
-                  'format' => 'html',
-                  'value'=>function ($data) {
+        'canceldate',
 
-                    return ($data->createduser)?$data->createduser->name:"";
-                  }
-                ],
+        [
+          'label' => 'Approver',
+          'attribute' => 'approveduser',
+          'format' => 'html',
+          'value' => function ($data) {
+            return ($data->approveduser) ? $data->approveduser->name : "PM";
+          }
+        ],
+        [
+          'label' => 'Status',
+          'attribute' => 'status',
+          'format' => 'html',
+          'value' => function ($data) {
+            if ($data->status == 1) {
+              $label = 'label-danger';
+            } elseif ($data->status == 2 or $data->status == 3 or $data->status == 6) {
+              $label = 'label-warning';
+            } elseif ($data->status == 4 or $data->status == 9) {
+              $label = 'label-success';
+            } elseif ($data->status == 8) {
+              $label = 'label-info';
+            } else {
+              $label = 'label-danger';
+            }
+            return '<span class="label ' . $label . '">' . $data->statusprocess->statusname . '</span>';
+          }
+        ],
+        'remarks',
+        'userremarks',
+        [
+          'attribute' => 'createdby',
+          'format' => 'html',
+          'value' => function ($data) {
 
-                'createtime',
-                'updatetime',
-                [
-                  'label' => 'Document',
-                  'format' => 'raw',
-                  'value' => function ($data) {
-                    return ($data->documentevidence) ? Html::a('<i class="fa fa-download"></i> Download', ['/app/assets/upload/documentevidence/' . $data->documentevidence], ['target' => '_blank', 'class' => 'btn btn-sm btn-default text-muted']) : '-';
-                    }
-                ],
+            return ($data->createduser) ? $data->createduser->name : "";
+          }
+        ],
 
-            ],
-        ]) ?>
-    </div>
+        'createtime',
+        'updatetime',
+        'approvedtime',
+        [
+          'label' => 'Document',
+          'format' => 'raw',
+          'value' => function ($data) {
+            return ($data->documentevidence) ? Html::a('<i class="fa fa-download"></i> Download', ['/app/assets/upload/documentevidence/' . $data->documentevidence], ['target' => '_blank', 'class' => 'btn btn-sm btn-default text-muted']) : '-';
+          }
+        ],
+
+      ],
+    ]) ?>
+  </div>
 </div>

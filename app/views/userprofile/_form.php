@@ -408,32 +408,27 @@ use yii\helpers\Url;
                     'onChange' => "
                           if ($(this).val() == 1) {
                             $('#alasanvaksinrow').show();
-
                             $('#tanggallokasisert1').hide();
                             $('#tanggalvaksin1').val('');
                             $('#lokasivaksin1').val('');
                             $('.fileinput-remove-button').click();
-
                             $('#tanggallokasisert2').hide();
                             $('#tanggalvaksin2').val('');
                             $('#lokasivaksin2').val('');
+
                           }else if($(this).val() == 2){
                             $('#alasanvaksinrow').hide();
                             $('#alasanvaksin').val('').trigger('change') ;
-
                             $('#tanggallokasisert1').show();
                             $('#tanggallokasisert2').hide();
                             $('#tanggalvaksin2').val('');
                             $('#lokasivaksin2').val('');
                             $('.fileinput-remove-button').click();
 
-
                           }else if ($(this).val() == 3) {
                             $('#alasanvaksinrow').hide();
                             $('#alasanvaksin').val('').trigger('change') ;
-
                             $('#tanggallokasisert1').show();
-
                             $('#tanggallokasisert2').show();
                           }
                           ;

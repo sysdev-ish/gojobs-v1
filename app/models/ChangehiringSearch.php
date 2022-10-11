@@ -10,7 +10,7 @@ use app\models\Changehiring;
 /**
  * ChangehiringSearch represents the model behind the search form of `app\models\Changehiring`.
  */
-class ChangehiringSearch extends Changehiring
+class Changehiringsearch extends Changehiring
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class ChangehiringSearch extends Changehiring
     public function rules()
     {
         return [
-            [['id', 'userid', 'perner', 'recruitreqid', 'newrecruitreqid', 'createdby', 'approvedby', 'status', 'reason'], 'integer'],
-            [['createtime', 'updatetime', 'approvedtime', 'documentevidence', 'remarks', 'userremarks', 'fullname', 'cancelhiring', 'hiringdate', 'newhiringdate', 'contractperiode', 'newcontractperiode'], 'safe'],
+            [['id', 'userid', 'newuserid', 'perner', 'recruitreqid', 'newrecruitreqid', 'createdby', 'approvedby', 'status', 'reason', 'typechangehiring'], 'integer'],
+            [['createtime', 'updatetime', 'approvedtime', 'fullname', 'cancelhiring', 'hiringdate', 'newhiringdate', 'contractperiode', 'newcontractperiode'], 'safe'],
         ];
     }
 
@@ -77,12 +77,10 @@ class ChangehiringSearch extends Changehiring
             'newhiringdate' => $this->newhiringdate,
             'contractperiode' => $this->contractperiode,
             'newcontractperiode' => $this->newcontractperiode,
+            'typechangehiring' => $this->typechangehiring,
         ]);
 
-        $query->andFilterWhere(['like', 'documentevidence', $this->documentevidence])
-            ->andFilterWhere(['like', 'remarks', $this->remarks])
-            ->andFilterWhere(['like', 'userremarks', $this->userremarks])
-            ->andFilterWhere(['like', 'fullname', $this->fullname]);
+        $query->andFilterWhere(['like', 'fullname', $this->fullname]);
 
         return $dataProvider;
     }

@@ -11,50 +11,25 @@ use kartik\file\FileInput;
 /* @var $model app\models\Changehiring */
 /* @var $form yii\widgets\ActiveForm */
 
-// $datakaryawan = empty($model->perner) ? '' : $model->perner;
+$url = \yii\helpers\Url::to(['transrincian/recreqlist']);
+$recruitreqs = empty($model->recruitreqid) ? '' : Transrincian::findOne($model->recruitreqid)->nojo;
 $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->cancelhiring;
 ?>
 <?php $form = ActiveForm::begin(); ?>
 <div class="row">
   <div class="col-md-4">
     <div class="chagerequestdata-form box box-default">
-
       <div class="box-body table-responsive">
         <?= $form->field($model, 'userid')->widget(Select2::classname(), [
-          // 'data' => $datakaryawan,
-          //   'initValueText' => $datakaryawan, // set the initial display text
-          //   'options' => [
-          //     'placeholder' => '- select -', 'id' => 'userid',
-          //     'onChange' => "getdataforchangereq();",
-          //   ],
-          //   'pluginOptions' => [
-          //     'allowClear' => true,
-          //     'initialize' => true,
-          //     'minimumInputLength' => 3,
-          //     'language' => [
-          //       'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
-          //     ],
-          //     'ajax' => [
-          //       'url' => \yii\helpers\Url::to(['changehiring/getdatakaryawan']),
-          //       'dataType' => 'json',
-          //       'data' => new \yii\web\JsExpression('function(params) { return {q:params.term}; }'),
-
-
-          //     ],
-          //     'escapeMarkup' => new \yii\web\JsExpression('function (markup) { return markup; }'),
-          //     'templateResult' => new \yii\web\JsExpression('function(a) {
-          //         if(a.id == "" || a.id == null){return "No Data";}else{return a.id+" - "+  a.CNAME};
-          //       }'),
-          //     'templateSelection' => new \yii\web\JsExpression('function (a) {
-          //         // alert(a);
-          //         if(a.id == "" || a.id == null){return "No Data";}else{return a.id};
-          //       }'),
-          //   ],
-
           'data' => $name,
           'options' => [
             'placeholder' => '- select -', 'id' => 'userid',
             'onChange' => "getdataforchangereq();",
+            'allowClear' => true,
+            'minimumInputLength' => 3,
+            'language' => [
+              'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
+            ],
           ],
           'pluginOptions' => [
             'allowClear' => false,
@@ -62,6 +37,154 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
           ],
         ])->label('Name / Perner');
         ?>
+
+        <?php echo $form->field($model, 'typechangehiring')->widget(Select2::classname(), [
+          'data' => ['1' => 'Perubahan Nomor JO', '2' => 'Tukar JO', '3' => 'Perubahan Tanggal Hiring', '4' => 'Perubahan Periode Kontrak'],
+          'options' => [
+            'placeholder' => '- select -', 'id' => 'typechangehiring',
+            'onChange' => "
+              if ($(this).val() == 1) {
+                $('#formreason').show(); 
+                $('#formchangenojo').show();
+              }
+              else if($(this).val() == 2){
+                $('#formreason').hide();
+                $('#formchangenojo').hide();
+                $('#formchangejo').show();
+              }
+              else if ($(this).val() == 3) {
+                $('#formreason').hide();
+                $('#formchangenojo').hide();
+                $('#formdatehiring').show();
+              }
+              else if ($(this).val() == 4) {
+                $('#formreason').hide();
+                $('#formchangenojo').hide();
+                $('#formcontractperiode').show();
+              }
+              ;
+              ",
+          ],
+          'pluginOptions' => [
+            'allowClear' => true
+          ],
+        ]);
+        ?>
+        <?php
+        switch ($model->typechangehiring) {
+          case '1':
+            $displayreason = "";
+            $displayformchangenojo = "";
+            $displayformchangejo = "display:none;";
+            $displayformdatehiring = "display:none;";
+            $displayformcontractperiode = "display:none;";
+            break;
+          case '2':
+            $displayreason = "display:none;";
+            $displayformchangenojo = "display:none;";
+            $displayformchangejo = "";
+            $displayformdatehiring = "display:none;";
+            $displayformcontractperiode = "display:none;";
+            break;
+          case '3':
+            $displayreason = "display:none;";
+            $displayformchangenojo = "display:none;";
+            $displayformchangejo = "display:none;";
+            $displayformdatehiring = "";
+            $displayformcontractperiode = "display:none;";
+            break;
+          case '4':
+            $displayreason = "display:none;";
+            $displayformchangenojo = "display:none;";
+            $displayformchangejo = "display:none;";
+            $displayformdatehiring = "display:none;";
+            $displayformcontractperiode = "";
+            break;
+
+          default:
+            $displayreason = "display:none;";
+            $displayformchangenojo = "display:none;";
+            $displayformchangejo = "display:none;";
+            $displayformdatehiring = "display:none;";
+            $displayformcontractperiode = "display:none;";
+            break;
+        }
+        ?>
+        <div id="formreason" style="<?php echo $displayreason; ?>">
+          <?php echo $form->field($model, 'reason')->widget(Select2::classname(), [
+            'data' => $reason,
+            'options' => ['placeholder' => '- select -', 'id' => 'reason'],
+            'pluginOptions' => [
+              'allowClear' => true
+            ],
+          ])->label('Reason');
+          ?>
+        </div>
+        <!-- condition one -->
+        <div id="formchangenojo" style="<?php echo $displayformchangenojo; ?>">
+            <?php echo $form->field($model, 'newrecruitreqid')->widget(Select2::classname(), [
+              'model' => $model,
+              'attribute' => 'perner',
+              'initValueText' => $recruitreqs, // set the initial display text
+              'options' => ['placeholder' => '- select -', 'id' => 'newrecruitreqid'],
+              'pluginOptions' => [
+                'dropdownParent' => new yii\web\JsExpression('$("#addcandidate-modal")'),
+                'allowClear' => true,
+                'minimumInputLength' => 3,
+                'language' => [
+                  'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
+                ],
+                'ajax' => [
+                  'url' => $url,
+                  'dataType' => 'json',
+                  'data' => new \yii\web\JsExpression('function(params) { return {q:params.term}; }'),
+
+                ],
+                'escapeMarkup' => new \yii\web\JsExpression('function (markup) { return markup; }'),
+                'templateResult' => new \yii\web\JsExpression('function(a) {
+                      if(a.sappersa){var projects = a.sappersa}else{var projects = "n/a"}
+                      if(a.sapjabatan){var jabatans = a.sapjabatan}else{var jabatans = "n/a"}
+                      if(a.sapskill){var skill = a.sapskill}else{var skill = "n/a"}
+                      if(a.nojo == null){return "No Data";}else{return a.nojo+" <br> "+ jabatans  + " - " + a.saparea + " - " + projects+ " - " + skill;};
+                    }'),
+                'templateSelection' => new \yii\web\JsExpression('function (a) {
+                      if(a.sappersa){var projects = a.sappersa;}else{var projects = "n/a"}
+                      if(a.sapjabatan){var jabatans = a.sapjabatan;}else{var jabatans = "n/a"}
+                      if(a.nojo == null){return "No Data";}else{return a.nojo};
+                    }'),
+              ],
+            ])->label('New Recruitreqid');
+            ?>
+        </div>
+        <!-- condition two -->
+        <div id="formchangejo" style="<?php echo $displayformchangejo; ?>">
+            <?= $form->field($model, 'newuserid')->widget(Select2::classname(), [
+              'data' => $name,
+              'options' => [
+                'placeholder' => '- select -', 'id' => 'newuserid',
+                'onChange' => "getdataforchangereq();",
+                'allowClear' => true,
+                'minimumInputLength' => 3,
+                'language' => [
+                  'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
+                ],
+              ],
+              'pluginOptions' => [
+                'allowClear' => false,
+                'initialize' => true,
+              ],
+            ])->label('Name / Perner');
+            ?>
+        </div>
+        <!-- condition three -->
+        <div id="formdatehiring" style="<?php echo $displayformdatehiring; ?>">
+
+        </div>
+        <!-- condition four -->
+        <div id="formcontractperiode" style="<?php echo $displayformcontractperiode; ?>">
+
+        </div>
+        <!-- end condition -->
 
         <?= $form->field($model, 'checkperner')->hiddenInput(['id' => 'checkperner'])->label(false) ?>
         <?= $form->field($model, 'cancelhiring')->widget(
@@ -77,62 +200,10 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
           ]
         );
         ?>
-        <?= $form->field($model, 'reason')->widget(Select2::classname(), [
-          'data' => $reason,
-          'options' => [
-            'placeholder' => '- select -', 'id' => 'reason',
-            'onChange' => "autosave();",
-          ],
-          'pluginOptions' => [
-            'allowClear' => false,
-            'initialize' => true,
-          ],
-        ])->label('Reason');
-        ?>
-        <?php if (!$model->isNewRecord) : ?>
-          <?php
-
-          $type = '';
-          $file = '';
-          $asdata = false;
-          $assetUrl = Yii::$app->request->baseUrl;
-          ?>
-
-          <?= $form->field($model, 'documentevidence')->widget(FileInput::className(), [
-            'options' => ['accept' => ''],
-            'pluginOptions' => [
-              'showRemove' => false,
-              'showUpload' => false,
-              'showCancel' => false,
-              'showPreview' => true,
-              'overwriteInitial' => true,
-              'previewFileType' => 'any',
-              'initialPreviewAsData' => $asdata,
-              'initialPreview' => $file,
-              'initialPreviewConfig' => [
-                ['type' => $type, 'deleteUrl' => false],
-              ],
-              'uploadAsync' => true,
-              // 'maxFileSize' => 10*1024*1024,
-              'allowedExtensions' => ['jpg', 'png', 'jpeg', 'pdf'],
-            ]
-          ]) ?>
-        <?php else : ?>
-          <?= $form->field($model, 'documentevidence')->widget(FileInput::classname(), [
-            'options' => ['accept' => ''],
-            'pluginOptions' => [
-              'showUpload' => false,
-              'showCaption' => true,
-              'showRemove' => true,
-            ]
-          ]); ?>
-        <?php endif; ?>
-        <?= $form->field($model, 'userremarks')->textArea(['id' => 'userremarks', 'onChange' => "autosave();"])->label('Remarks');
-        ?>
-
       </div>
     </div>
   </div>
+
   <div class="col-md-8">
     <div class="box box-default">
       <div class="box-header with-border">
@@ -198,20 +269,17 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
 
   function autosave() {
     var userid = $('#userid').val();
-    // var approvedbyid = $('#approvedby').val();
     var cancelhiringid = $('#cancelhiring').val();
     var reasonid = $('#reason').val();
-    var userremarksval = $('#userremarks').val();
+    var remarksval = $('#remarks').val();
 
     $.ajax({
       type: 'POST',
       cache: false,
       data: {
         userid: userid,
-        // approvedby: approvedbyid,
         cancelhiring: cancelhiringid,
         reason: reasonid,
-        userremarks: userremarksval,
         id: <?php echo $model->id; ?>,
       },
       url: '<?php echo Yii::$app->urlManager->createUrl(['changehiring/autosave']) ?>',

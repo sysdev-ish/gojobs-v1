@@ -100,15 +100,12 @@ class ChangehiringController extends Controller
             $namaquery = Hiring::find()
                 ->joinWith(['userprofile']) //define join in models/ relation
                 ->joinWith(['changehiring'])
-                // ->joinWith(['reccan'])
                 ->andWhere(['statushiring' => 4])
-                // ->andWhere(['or',['reccan.status' => 26]])
                 ->andWhere([
                     'or',
                     ['changehiring.userid' => null],
                     ['changehiring.status' => 4],
                     ['hiring.userid' => $model->userid],
-                    // ['reccan.status' => 26],
                 ])->all();
             $name = array();
             foreach ($namaquery as $key => $value) {
@@ -439,7 +436,6 @@ class ChangehiringController extends Controller
         // $approvedby = $_POST['approvedby'];
         $canceldate = $_POST['canceldate'];
         $reason = $_POST['reason'];
-        $userremarks = $_POST['userremarks'];
         if ($id) {
             $model = $this->findModel($id);
             $model->userid = $userid;
@@ -447,7 +443,6 @@ class ChangehiringController extends Controller
             $model->canceldate = $canceldate;
             $model->reason = $reason;
             $model->remarks = "draft";
-            $model->userremarks = $userremarks;
             $model->save(false);
         }
         // var_dump($model->remarks);die;

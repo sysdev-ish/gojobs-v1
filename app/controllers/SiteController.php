@@ -153,10 +153,9 @@ class SiteController extends Controller
           }
         }
       }
-
     }
-
   }
+
   public function actionChangepassword($id)
   {
     $this->layout = 'main-applicant';
