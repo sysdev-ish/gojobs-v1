@@ -85,7 +85,7 @@ if(Yii::$app->utils->permission($role,'m8') && Yii::$app->utils->permission($rol
           'columns' => [
               ['class' => 'yii\grid\SerialColumn'],
 
-              // 'id',
+              'id',
               [
                 'label' => 'Invitation Number',
                 'contentOptions'=>['style'=>'width: 100px;'],

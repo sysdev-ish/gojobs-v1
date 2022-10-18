@@ -390,26 +390,11 @@ class ChangecanceljoinController extends Controller
         $model->remarks = 'Successfull';
         // $hiring = Hiring::find()->where(['statushiring' => 4])->one();
         $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
-        $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $hiring->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
-        $modelrecreq = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
-        // var_dump($recruitmentcandidate);die();
-        if ($model->save()) {
-          if ($recruitmentcandidate == null) {
-            $hiring->statushiring = 6;
-            $hiring->save(false);
-            if ($modelrecreq->status_rekrut = 2) {
-              $modelrecreq->status_rekrut = 1;
-              $modelrecreq->save(false);
-            }
-            if ($modelrecreq->status_rekrut = 4) {
-              $modelrecreq->status_rekrut = 3;
-              $modelrecreq->save(false);
-            }
-            if ($modelrecreq->status_rekrut = 1 or $modelrecreq->status_rekrut = 1) {
-              $modelrecreq->save(false);
-            }
-          } 
-          if ($hiring) {
+        if ($hiring) {
+          $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $hiring->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
+          // var_dump($recruitmentcandidate);die();
+          $modelrecreq = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
+          if ($model->save()) {
             $hiring->statushiring = 6;
             $recruitmentcandidate->status = 24;
             $hiring->save(false);
@@ -426,6 +411,10 @@ class ChangecanceljoinController extends Controller
               $modelrecreq->save(false);
             }
           }
+        }
+        else {
+          Yii::$app->session->setFlash('error', "Tidak bisa di Approve/ Confirm Cancel Join karena sudah di proses, silakan cek data kembali.");
+          return $this->redirect(['index']);
         }
       } else  {
         $model->save();

@@ -104,8 +104,8 @@ class Changehiring extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Masterstatuscr::className(), ['id' => 'status']);
     }
-    public function getCanceljoinreason()
+    public function getChangehiringreason()
     {
-        return $this->hasOne(Masterreasoncanceljoin::className(), ['id' => 'reason']);
+        return $this->hasOne(Masterreasonchangehiring::className(), ['id' => 'reason']);
     }
 }

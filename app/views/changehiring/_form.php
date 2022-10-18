@@ -38,6 +38,21 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
         ])->label('Name / Perner');
         ?>
 
+        <?= $form->field($model, 'checkperner')->hiddenInput(['id' => 'checkperner'])->label(false) ?>
+        <?= $form->field($model, 'cancelhiring')->widget(
+          DatePicker::className(),
+          [
+            'type' => DatePicker::TYPE_COMPONENT_APPEND,
+            'options' => ['placeholder' => 'Date', 'id' => 'cancelhiring', 'onChange' => "autosave();"],
+            'pluginOptions' => [
+              'autoclose' => true,
+              'format' => 'yyyy-mm-dd',
+              'todayHighlight' => true
+            ]
+          ]
+        );
+        ?>
+
         <?php echo $form->field($model, 'typechangehiring')->widget(Select2::classname(), [
           'data' => ['1' => 'Perubahan Nomor JO', '2' => 'Tukar JO', '3' => 'Perubahan Tanggal Hiring', '4' => 'Perubahan Periode Kontrak'],
           'options' => [
@@ -122,59 +137,59 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
         </div>
         <!-- condition one -->
         <div id="formchangenojo" style="<?php echo $displayformchangenojo; ?>">
-            <?php echo $form->field($model, 'newrecruitreqid')->widget(Select2::classname(), [
-              'model' => $model,
-              'attribute' => 'perner',
-              'initValueText' => $recruitreqs, // set the initial display text
-              'options' => ['placeholder' => '- select -', 'id' => 'newrecruitreqid'],
-              'pluginOptions' => [
-                'dropdownParent' => new yii\web\JsExpression('$("#addcandidate-modal")'),
-                'allowClear' => true,
-                'minimumInputLength' => 3,
-                'language' => [
-                  'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
-                ],
-                'ajax' => [
-                  'url' => $url,
-                  'dataType' => 'json',
-                  'data' => new \yii\web\JsExpression('function(params) { return {q:params.term}; }'),
+          <?php echo $form->field($model, 'newrecruitreqid')->widget(Select2::classname(), [
+            'model' => $model,
+            'attribute' => 'perner',
+            'initValueText' => $recruitreqs, // set the initial display text
+            'options' => ['placeholder' => '- select -', 'id' => 'newrecruitreqid'],
+            'pluginOptions' => [
+              'dropdownParent' => new yii\web\JsExpression('$("#addcandidate-modal")'),
+              'allowClear' => true,
+              'minimumInputLength' => 3,
+              'language' => [
+                'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
+              ],
+              'ajax' => [
+                'url' => $url,
+                'dataType' => 'json',
+                'data' => new \yii\web\JsExpression('function(params) { return {q:params.term}; }'),
 
-                ],
-                'escapeMarkup' => new \yii\web\JsExpression('function (markup) { return markup; }'),
-                'templateResult' => new \yii\web\JsExpression('function(a) {
+              ],
+              'escapeMarkup' => new \yii\web\JsExpression('function (markup) { return markup; }'),
+              'templateResult' => new \yii\web\JsExpression('function(a) {
                       if(a.sappersa){var projects = a.sappersa}else{var projects = "n/a"}
                       if(a.sapjabatan){var jabatans = a.sapjabatan}else{var jabatans = "n/a"}
                       if(a.sapskill){var skill = a.sapskill}else{var skill = "n/a"}
                       if(a.nojo == null){return "No Data";}else{return a.nojo+" <br> "+ jabatans  + " - " + a.saparea + " - " + projects+ " - " + skill;};
                     }'),
-                'templateSelection' => new \yii\web\JsExpression('function (a) {
+              'templateSelection' => new \yii\web\JsExpression('function (a) {
                       if(a.sappersa){var projects = a.sappersa;}else{var projects = "n/a"}
                       if(a.sapjabatan){var jabatans = a.sapjabatan;}else{var jabatans = "n/a"}
                       if(a.nojo == null){return "No Data";}else{return a.nojo};
                     }'),
-              ],
-            ])->label('New Recruitreqid');
-            ?>
+            ],
+          ])->label('New Recruitreqid');
+          ?>
         </div>
         <!-- condition two -->
         <div id="formchangejo" style="<?php echo $displayformchangejo; ?>">
-            <?= $form->field($model, 'newuserid')->widget(Select2::classname(), [
-              'data' => $name,
-              'options' => [
-                'placeholder' => '- select -', 'id' => 'newuserid',
-                'onChange' => "getdataforchangereq();",
-                'allowClear' => true,
-                'minimumInputLength' => 3,
-                'language' => [
-                  'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
-                ],
+          <?= $form->field($model, 'newuserid')->widget(Select2::classname(), [
+            'data' => $name,
+            'options' => [
+              'placeholder' => '- select -', 'id' => 'newuserid',
+              'onChange' => "getdataforchangereq();",
+              'allowClear' => true,
+              'minimumInputLength' => 3,
+              'language' => [
+                'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
               ],
-              'pluginOptions' => [
-                'allowClear' => false,
-                'initialize' => true,
-              ],
-            ])->label('Name / Perner');
-            ?>
+            ],
+            'pluginOptions' => [
+              'allowClear' => false,
+              'initialize' => true,
+            ],
+          ])->label('Name / Perner');
+          ?>
         </div>
         <!-- condition three -->
         <div id="formdatehiring" style="<?php echo $displayformdatehiring; ?>">
@@ -185,21 +200,6 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
 
         </div>
         <!-- end condition -->
-
-        <?= $form->field($model, 'checkperner')->hiddenInput(['id' => 'checkperner'])->label(false) ?>
-        <?= $form->field($model, 'cancelhiring')->widget(
-          DatePicker::className(),
-          [
-            'type' => DatePicker::TYPE_COMPONENT_APPEND,
-            'options' => ['placeholder' => 'Date', 'id' => 'cancelhiring', 'onChange' => "autosave();"],
-            'pluginOptions' => [
-              'autoclose' => true,
-              'format' => 'yyyy-mm-dd',
-              'todayHighlight' => true
-            ]
-          ]
-        );
-        ?>
       </div>
     </div>
   </div>

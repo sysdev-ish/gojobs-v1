@@ -15,7 +15,7 @@ use yii\bootstrap\Modal;
 $this->title = 'Change Hiring';
 $this->params['breadcrumbs'][] = $this->title;
 Modal::begin([
-    'header'=>'<h4 class="modal-title">View Change Change Hiring</h4>',
+    'header'=>'<h4 class="modal-title">View Change Hiring</h4>',
     'id'=>'viewchiring-modal',
     'size'=>'modal-lg'
 ]);
@@ -23,7 +23,7 @@ echo "<div id='viewchiring-view'></div>";
 Modal::end();
 
 Modal::begin([
-    'header'=>'<h4 class="modal-title">Approve Change Change Hiring</h4>',
+    'header'=>'<h4 class="modal-title">Approve Change Hiring</h4>',
     'id'=>'approvecrhiring-modal',
     'size'=>'modal-lg'
 ]);
@@ -163,22 +163,22 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
               }
             ],
 
-            [
-              'label' => 'Remarks',
-              'attribute' => 'remarks',
-              'format' => 'html',
-              'value'=>function ($data) {
-                if ($data->status == 9) {
-                  if ($data->perner == null) {
-                    return "<b><i>".$data->remarks."</i></b><br>";
-                  } else {
-                    return "<b><i>".$data->remarks."</i></b><br>";
-                  }
-                } else {
-                  return "<b><i>".$data->remarks."</i></b><br>";
-                }
-              }
-            ],
+            // [
+            //   'label' => 'Remarks',
+            //   'attribute' => 'remarks',
+            //   'format' => 'html',
+            //   'value'=>function ($data) {
+            //     if ($data->status == 9) {
+            //       if ($data->perner == null) {
+            //         return "<b><i>".$data->remarks."</i></b><br>";
+            //       } else {
+            //         return "<b><i>".$data->remarks."</i></b><br>";
+            //       }
+            //     } else {
+            //       return "<b><i>".$data->remarks."</i></b><br>";
+            //     }
+            //   }
+            // ],
 
             ['class' => 'yii\grid\ActionColumn',
             'contentOptions'=>['style'=>'min-width: 210px;'],

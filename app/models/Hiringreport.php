@@ -91,8 +91,6 @@ class Hiringreport extends Hiring
     // $query->where('statushiring = 7');
 
     if ($this->sap <> 2) {
-      // var_dump($this->sap);die;
-      //$query->where('statushiring = 4 or statushiring = 7 or (typejo = 2 and statushiring = 8)');
       //Add by pwd
       $query->where('statushiring = 4 or statushiring = 7 or (hiring.typejo = 2 and statushiring = 8)');
     } else {

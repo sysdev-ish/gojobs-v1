@@ -20,7 +20,7 @@ class Changecanceljoinsearch extends Changecanceljoin
     {
         return [
             [['id', 'userid', 'createdby', 'perner', 'reason', 'approvedby', 'status'], 'integer'],
-            [['createtime', 'updatetime', 'approvedtime',  'fullname', 'remarks','approveduser'], 'safe'],
+            [['createtime', 'updatetime', 'approvedtime',  'fullname', 'remarks'], 'safe'],
         ];
     }
 
@@ -62,9 +62,10 @@ class Changecanceljoinsearch extends Changecanceljoin
           $userid = Yii::$app->user->identity->id;
           $role = Yii::$app->user->identity->role;
         }
-        if($role == 20 or $role == 3 or $role == 10){
-            $query->andWhere(['changecanceljoin.approvedby'=>$userid]);
-        //   $query->andWhere('changecanceljoin.status >= 2');
+        $isapproved = [3, 17, 10, 31, 25];
+        if (in_array($role, $isapproved)) {
+            // $query->andWhere(['changecanceljoin.approvedby'=>$userid]);
+            $query->andWhere('changecanceljoin.status >= 2');
         }else{
             if($role <> 1){
                 $query->andWhere(['changecanceljoin.createdby'=>$userid]);

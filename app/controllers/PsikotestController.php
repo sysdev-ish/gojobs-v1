@@ -27,29 +27,29 @@ class PsikotestController extends Controller
      */
     public function behaviors()
     {
-      return [
-          'access' => [
-              'class' => AccessControl::className(),
-              'only' => ['index','update','create','view','delete','psiproc'],
-              'rules' => [
-                [
-                    'actions' => ['index','update','create','view','delete','psiproc'],
-                    'allow' => true,
-                    'roles' => ['@'],
-                    'matchCallback'=>function(){
-                         return (Yii::$app->utils->permission(Yii::$app->user->identity->role,'m7'));
-                     }
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'update', 'create', 'view', 'delete', 'psiproc'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'update', 'create', 'view', 'delete', 'psiproc'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function () {
+                            return (Yii::$app->utils->permission(Yii::$app->user->identity->role, 'm7'));
+                        }
 
+                    ],
                 ],
-              ],
-          ],
-          'verbs' => [
-              'class' => VerbFilter::className(),
-              'actions' => [
-                  'delete' => ['POST'],
-              ],
-          ],
-      ];
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -104,119 +104,119 @@ class PsikotestController extends Controller
      * @return mixed
      */
 
-      public function actionUpdate($id)
-      {
-          $model = $this->findModel($id);
-          $userid = $model->userid;
-          $reccanid = $model->recruitmentcandidateid;
-          $modeluprofile = Userprofile::find()->where(['userid'=>$userid])->one();
-          $modelreccan = Recruitmentcandidate::find()->where(['id'=>$reccanid])->one();
-          $modelrecreq = Transrincian::find()->where(['id'=>$modelreccan->recruitreqid])->one();
-          $model->fullname = $modeluprofile->fullname;
-          $model->userid = $modeluprofile->userid;
-          $model->recruitmentcandidateid = $reccanid;
-          $office = ArrayHelper::map(Masteroffice::find()->asArray()->all(), 'id', 'officename');
-          $pic = ArrayHelper::map(Userlogin::find()->asArray()->where('role = 3 or role = 22')->all(), 'id', 'name');
-          $model->setScenario('updatepsi');
-          if ($model->load(Yii::$app->request->post())) {
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+        $userid = $model->userid;
+        $reccanid = $model->recruitmentcandidateid;
+        $modeluprofile = Userprofile::find()->where(['userid' => $userid])->one();
+        $modelreccan = Recruitmentcandidate::find()->where(['id' => $reccanid])->one();
+        $modelrecreq = Transrincian::find()->where(['id' => $modelreccan->recruitreqid])->one();
+        $model->fullname = $modeluprofile->fullname;
+        $model->userid = $modeluprofile->userid;
+        $model->recruitmentcandidateid = $reccanid;
+        $office = ArrayHelper::map(Masteroffice::find()->asArray()->all(), 'id', 'officename');
+        $pic = ArrayHelper::map(Userlogin::find()->asArray()->where('role = 3 or role = 22')->all(), 'id', 'name');
+        $model->setScenario('updatepsi');
+        if ($model->load(Yii::$app->request->post())) {
 
             $model->updatetime = date('Y-m-d H-i-s');
             $model->date = date('Y-m-d H-i-s');
             $model->status = 1;
-              $model->save();
-              return $this->redirect(['psikotest/index']);
-          } else {
-              return $this->renderAjax('update', [
-                  'model' => $model,
-                  'modelreccan' => $modelreccan,
-                  'modelrecreq' => $modelrecreq,
-                  'office' => $office,
-                  'pic' => $pic,
-              ]);
-          }
-      }
-      public function actionPsiproc($id)
-      {
-          $model = $this->findModel($id);
-          $userid = $model->userid;
-          $reccanid = $model->recruitmentcandidateid;
-          $modeluprofile = Userprofile::find()->where(['userid'=>$userid])->one();
-          $modelreccan = Recruitmentcandidate::find()->where(['id'=>$reccanid])->one();
-          $modelrecreq = Transrincian::find()->where(['id'=>$modelreccan->recruitreqid])->one();
-          $model->fullname = $modeluprofile->fullname;
-          $model->userid = $modeluprofile->userid;
-          $model->recruitmentcandidateid = $reccanid;
-          $office = ArrayHelper::map(Masteroffice::find()->asArray()->all(), 'id', 'officename');
-          $pic = ArrayHelper::map(Userlogin::find()->asArray()->where(['role'=> 1])->all(), 'id', 'name');
-          $model->setScenario('psiproc');
-          if ($model->load(Yii::$app->request->post())) {
+            $model->save();
+            return $this->redirect(['psikotest/index']);
+        } else {
+            return $this->renderAjax('update', [
+                'model' => $model,
+                'modelreccan' => $modelreccan,
+                'modelrecreq' => $modelrecreq,
+                'office' => $office,
+                'pic' => $pic,
+            ]);
+        }
+    }
+    public function actionPsiproc($id)
+    {
+        $model = $this->findModel($id);
+        $userid = $model->userid;
+        $reccanid = $model->recruitmentcandidateid;
+        $modeluprofile = Userprofile::find()->where(['userid' => $userid])->one();
+        $modelreccan = Recruitmentcandidate::find()->where(['id' => $reccanid])->one();
+        $modelrecreq = Transrincian::find()->where(['id' => $modelreccan->recruitreqid])->one();
+        $model->fullname = $modeluprofile->fullname;
+        $model->userid = $modeluprofile->userid;
+        $model->recruitmentcandidateid = $reccanid;
+        $office = ArrayHelper::map(Masteroffice::find()->asArray()->all(), 'id', 'officename');
+        $pic = ArrayHelper::map(Userlogin::find()->asArray()->where(['role' => 1])->all(), 'id', 'name');
+        $model->setScenario('psiproc');
+        if ($model->load(Yii::$app->request->post())) {
             $model->updatetime = date('Y-m-d H-i-s');
-            if ($model->status == 3){
-              $modelreccan->status = 9;
-            }else{
-              $modelreccan->status = 6;
+            if ($model->status == 3) {
+                $modelreccan->status = 9;
+            } else {
+                $modelreccan->status = 6;
             }
-            $model->documentpsikotest = UploadedFile::getInstance($model,'documentpsikotest');
-            if($model->documentpsikotest){
-              $assetUrl = Yii::getAlias('@app'). '/assets';
-              $fileextp = $model->documentpsikotest->extension;
-              $filep = $userid.'-documentpsikotest.'.$fileextp;
-              if ($model->documentpsikotest->saveAs($assetUrl.'/upload/documentpsikotest/'.$filep)){
-                $model->documentpsikotest = $filep;
-              }
+            $model->documentpsikotest = UploadedFile::getInstance($model, 'documentpsikotest');
+            if ($model->documentpsikotest) {
+                $assetUrl = Yii::getAlias('@app') . '/assets';
+                $fileextp = $model->documentpsikotest->extension;
+                $filep = $userid . '-documentpsikotest.' . $fileextp;
+                if ($model->documentpsikotest->saveAs($assetUrl . '/upload/documentpsikotest/' . $filep)) {
+                    $model->documentpsikotest = $filep;
+                }
             }
             // var_dump($modelreccan->recruitreqid);die;
-              $model->save();
-              $modelreccan->save();
-              return $this->redirect(['psikotest/index']);
-          } else {
-              return $this->renderAjax('psiproc', [
-                  'model' => $model,
-                  'modelreccan' => $modelreccan,
-                  'modelrecreq' => $modelrecreq,
-                  'office' => $office,
-                  'pic' => $pic,
-              ]);
-          }
-      }
-      public function actionPsiupload($id)
-      {
-          $model = $this->findModel($id);
-          $userid = $model->userid;
-          $reccanid = $model->recruitmentcandidateid;
-          $modeluprofile = Userprofile::find()->where(['userid'=>$userid])->one();
-          $modelreccan = Recruitmentcandidate::find()->where(['id'=>$reccanid])->one();
-          $modelrecreq = Transrincian::find()->where(['id'=>$modelreccan->recruitreqid])->one();
-          $model->fullname = $modeluprofile->fullname;
-          $model->userid = $modeluprofile->userid;
-          $model->recruitmentcandidateid = $reccanid;
-          $office = ArrayHelper::map(Masteroffice::find()->asArray()->all(), 'id', 'officename');
-          $pic = ArrayHelper::map(Userlogin::find()->asArray()->where(['role'=> 1])->all(), 'id', 'name');
-          $model->setScenario('psiupload');
-          if ($model->load(Yii::$app->request->post())) {
+            $model->save();
+            $modelreccan->save();
+            return $this->redirect(['psikotest/index']);
+        } else {
+            return $this->renderAjax('psiproc', [
+                'model' => $model,
+                'modelreccan' => $modelreccan,
+                'modelrecreq' => $modelrecreq,
+                'office' => $office,
+                'pic' => $pic,
+            ]);
+        }
+    }
+    public function actionPsiupload($id)
+    {
+        $model = $this->findModel($id);
+        $userid = $model->userid;
+        $reccanid = $model->recruitmentcandidateid;
+        $modeluprofile = Userprofile::find()->where(['userid' => $userid])->one();
+        $modelreccan = Recruitmentcandidate::find()->where(['id' => $reccanid])->one();
+        $modelrecreq = Transrincian::find()->where(['id' => $modelreccan->recruitreqid])->one();
+        $model->fullname = $modeluprofile->fullname;
+        $model->userid = $modeluprofile->userid;
+        $model->recruitmentcandidateid = $reccanid;
+        $office = ArrayHelper::map(Masteroffice::find()->asArray()->all(), 'id', 'officename');
+        $pic = ArrayHelper::map(Userlogin::find()->asArray()->where(['role' => 1])->all(), 'id', 'name');
+        $model->setScenario('psiupload');
+        if ($model->load(Yii::$app->request->post())) {
             $model->updatetime = date('Y-m-d H-i-s');
-            $model->documentpsikotest = UploadedFile::getInstance($model,'documentpsikotest');
-            if($model->documentpsikotest){
-              $assetUrl = Yii::getAlias('@app'). '/assets';
-              $fileextp = $model->documentpsikotest->extension;
-              $filep = $userid.'-documentpsikotest.'.$fileextp;
-              if ($model->documentpsikotest->saveAs($assetUrl.'/upload/documentpsikotest/'.$filep)){
-                $model->documentpsikotest = $filep;
-              }
+            $model->documentpsikotest = UploadedFile::getInstance($model, 'documentpsikotest');
+            if ($model->documentpsikotest) {
+                $assetUrl = Yii::getAlias('@app') . '/assets';
+                $fileextp = $model->documentpsikotest->extension;
+                $filep = $userid . '-documentpsikotest.' . $fileextp;
+                if ($model->documentpsikotest->saveAs($assetUrl . '/upload/documentpsikotest/' . $filep)) {
+                    $model->documentpsikotest = $filep;
+                }
             }
             // var_dump($modelreccan->recruitreqid);die;
-              $model->save();
-              return $this->redirect(['psikotest/index']);
-          } else {
-              return $this->renderAjax('psiupload', [
-                  'model' => $model,
-                  'modelreccan' => $modelreccan,
-                  'modelrecreq' => $modelrecreq,
-                  'office' => $office,
-                  'pic' => $pic,
-              ]);
-          }
-      }
+            $model->save();
+            return $this->redirect(['psikotest/index']);
+        } else {
+            return $this->renderAjax('psiupload', [
+                'model' => $model,
+                'modelreccan' => $modelreccan,
+                'modelrecreq' => $modelrecreq,
+                'office' => $office,
+                'pic' => $pic,
+            ]);
+        }
+    }
 
 
     /**
