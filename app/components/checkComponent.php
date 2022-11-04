@@ -1,4 +1,5 @@
 <?php
+
 namespace app\components;
 
 use Yii;
@@ -25,426 +26,427 @@ use app\models\Hiring;
 use app\models\Transjo;
 
 
-class checkComponent extends Component {
+class checkComponent extends Component
+{
 
 
-    public function datacompleted($userid){
-        $ret = null;
-        $userprofile = $this->cuserprofile($userid);
-        // $userfamily = $this->cuserfamily($userid);
-        // $userfedu = $this->cuserfeducation($userid);
-        // $usernfedu = $this->cusernfeducation($userid);
-        // $usernflang = $this->cuserflang($userid);
-        // $userwexp = $this->cuserwexperience($userid);
-        // $userorgac = $this->cuserorgac($userid);
-        // $userecontact = $this->cuserecontact($userid);
-        // $userreff = $this->cuserreff($userid);
-        // $userhealth = $this->cuserhealth($userid);
+  public function datacompleted($userid) {
+    $ret = null;
+    $userprofile = $this->cuserprofile($userid);
+    // $userfamily = $this->cuserfamily($userid);
+    // $userfedu = $this->cuserfeducation($userid);
+    // $usernfedu = $this->cusernfeducation($userid);
+    // $usernflang = $this->cuserflang($userid);
+    // $userwexp = $this->cuserwexperience($userid);
+    // $userorgac = $this->cuserorgac($userid);
+    // $userecontact = $this->cuserecontact($userid);
+    // $userreff = $this->cuserreff($userid);
+    // $userhealth = $this->cuserhealth($userid);
 
 
-        // if($userprofile && $userfamily && $userfedu  && $usernflang && $userecontact  && $userhealth){
-        if($userprofile){
-          $ret = 1;
-        }else{
-          $ret = 0;
-        }
-
-        return $ret;
+    // if($userprofile && $userfamily && $userfedu  && $usernflang && $userecontact  && $userhealth){
+    if ($userprofile) {
+      $ret = 1;
+    } else {
+      $ret = 0;
     }
-    public function datacompletedhiring($userid){
-        $ret = null;
-        $userprofile = $this->cuserprofile($userid);
-        $userfamily = $this->cuserfamily($userid);
-        $userfedu = $this->cuserfeducation($userid);
-        $usernfedu = $this->cusernfeducation($userid);
-        $usernflang = $this->cuserflang($userid);
-        $userwexp = $this->cuserwexperience($userid);
-        $userorgac = $this->cuserorgac($userid);
-        $userecontact = $this->cuserecontact($userid);
-        $userreff = $this->cuserreff($userid);
-        $userhealth = $this->cuserhealth($userid);
+
+    return $ret;
+  }
+  public function datacompletedhiring($userid) {
+    $ret = null;
+    $userprofile = $this->cuserprofile($userid);
+    $userfamily = $this->cuserfamily($userid);
+    $userfedu = $this->cuserfeducation($userid);
+    $usernfedu = $this->cusernfeducation($userid);
+    $usernflang = $this->cuserflang($userid);
+    $userwexp = $this->cuserwexperience($userid);
+    $userorgac = $this->cuserorgac($userid);
+    $userecontact = $this->cuserecontact($userid);
+    $userreff = $this->cuserreff($userid);
+    $userhealth = $this->cuserhealth($userid);
 
 
-        if($userprofile && $userfamily && $userfedu  && $usernflang && $userecontact  && $userhealth){
-          $ret = 1;
-        }else{
-          $ret = 0;
-        }
-
-        return $ret;
+    if ($userprofile && $userfamily && $userfedu  && $usernflang && $userecontact  && $userhealth) {
+      $ret = 1;
+    } else {
+      $ret = 0;
     }
-    public function datanotcompleted($userid){
-        $ret = null;
-        $userprofile = $this->cuserprofile($userid);
-        $userfamily = $this->cuserfamily($userid);
-        $userfedu = $this->cuserfeducation($userid);
-        $usernfedu = $this->cusernfeducation($userid);
-        $usernflang = $this->cuserflang($userid);
-        $userwexp = $this->cuserwexperience($userid);
-        $userorgac = $this->cuserorgac($userid);
-        $userecontact = $this->cuserecontact($userid);
-        $userreff = $this->cuserreff($userid);
-        $userhealth = $this->cuserhealth($userid);
 
-        $data = ['use rprofile'=>$userprofile,
-                  'user family'=>$userfamily,
-                  'user formal education'=>$userfedu,
-                  'user nonformal education'=>$usernfedu,
-                  'user foreign language'=>$usernflang,
-                  'user work experience'=>$userwexp,
-                  'user organization'=>$userorgac,
-                  'user emergencycontact'=>$userecontact,
-                  'user reference'=>$userreff,
-                  'user skill'=>$userhealth
-                ];
-        $dataarray = null;
-        foreach ($data as $key => $value) {
-          if($value == 0 ){
-            $dataarray [] = $key;
-          }
+    return $ret;
+  }
+  public function datanotcompleted($userid) {
+    $ret = null;
+    $userprofile = $this->cuserprofile($userid);
+    $userfamily = $this->cuserfamily($userid);
+    $userfedu = $this->cuserfeducation($userid);
+    $usernfedu = $this->cusernfeducation($userid);
+    $usernflang = $this->cuserflang($userid);
+    $userwexp = $this->cuserwexperience($userid);
+    $userorgac = $this->cuserorgac($userid);
+    $userecontact = $this->cuserecontact($userid);
+    $userreff = $this->cuserreff($userid);
+    $userhealth = $this->cuserhealth($userid);
 
-        }
-
-        $ret = $dataarray;
-
-        return $ret;
-    }
-    public function cuserprofile($userid){
-        $ret = null;
-        $userprofile = Userprofile::find()->where(['userid'=>$userid])->one();
-
-
-        if($userprofile){
-          $ret = 1;
-        }else{
-          $ret = 0;
-        }
-
-        return $ret;
-    }
-    public function cuserfamily($userid){
-        $ret = null;
-        $userfamily = Userfamily::find()->where(['userid'=>$userid])->one();
-
-
-        if($userfamily){
-          $ret = 1;
-        }else{
-          $ret = 0;
-        }
-
-        return $ret;
-    }
-    public function cuserfeducation($userid){
-        $ret = null;
-        $userfedu = Userformaleducation::find()->where(['userid'=>$userid])->one();
-
-
-        if($userfedu){
-          $ret = 1;
-        }else{
-          $ret = 0;
-        }
-
-        return $ret;
-    }
-    public function cusernfeducation($userid){
-        $ret = null;
-        $usernfedu = Usernonformaleducation::find()->where(['userid'=>$userid])->one();
-
-
-        if($usernfedu){
-          $ret = 1;
-        }else{
-          $ret = 0;
-        }
-
-        return $ret;
-    }
-    public function cuserflang($userid){
-        $ret = null;
-        $usernflang = Userforeignlanguage::find()->where(['userid'=>$userid])->one();
-
-
-        if($usernflang){
-          $ret = 1;
-        }else{
-          $ret = 0;
-        }
-
-        return $ret;
-    }
-    public function cuserwexperience($userid){
-        $ret = null;
-        $userwexp = Userworkexperience::find()->where(['userid'=>$userid])->one();
-
-
-        if($userwexp){
-          $ret = 1;
-        }else{
-          $ret = 0;
-        }
-
-        return $ret;
-    }
-    public function cuserorgac($userid){
-        $ret = null;
-        $userorgac = Organizationactivity::find()->where(['userid'=>$userid])->one();
-
-
-        if($userorgac){
-          $ret = 1;
-        }else{
-          $ret = 0;
-        }
-
-        return $ret;
-    }
-    public function cuserecontact($userid){
-        $ret = null;
-        $userecontact = Useremergencycontact::find()->where(['userid'=>$userid])->one();
-
-
-        if($userecontact){
-          $ret = 1;
-        }else{
-          $ret = 0;
-        }
-
-        return $ret;
-    }
-    public function cuserreff($userid){
-        $ret = null;
-        $userreff = Userreference::find()->where(['userid'=>$userid])->one();
-
-        if($userreff){
-          $ret = 1;
-        }else{
-          $ret = 0;
-        }
-
-        return $ret;
-    }
-    public function cuserhealth($userid){
-        $ret = null;
-        $userhealth = Userhealth::find()->where(['userid'=>$userid])->one();
-        $userabout = Userabout::find()->where(['userid'=>$userid])->one();
-
-        if($userhealth && $userabout){
-          $ret = 1;
-        }else{
-          $ret = 0;
-        }
-
-        return $ret;
-    }
-    public function cuserainfo($userid){
-        $ret = null;
-        $userhealth = Userhealth::find()->where(['userid'=>$userid])->one();
-        $userabout = Userabout::find()->where(['userid'=>$userid])->one();
-
-        if($userhealth OR $userabout){
-          $ret = 1;
-        }else{
-          $ret = 0;
-        }
-
-        return $ret;
-    }
-    public function cuploaddoc($userid){
-        $ret = null;
-        $uploaddoc = Uploadocument::find()->where(['userid'=>$userid])->one();
-
-        if($uploaddoc){
-          $ret = 1;
-        }else{
-          $ret = 0;
-        }
-
-        return $ret;
-    }
-    public function checkcandidate($id){
-        $ret = null;
-        $tr = Transrincian::find()->where(['id'=> $id])->one();
-        $trori = Transrincianori::find()->where(['id'=> $tr->idpktable])->one();
-        $tp = Transperner::find()->where(['id'=> $tr->idpktable])->one();
-        $transjo = Transjo::find()->where(['nojo'=> $tr->nojo])->one();
-        $candidate = Recruitmentcandidate::find()
-          ->where(['recruitreqid'=>$id])
-          ->andWhere(['or',
-           ['status'=> 4],
-           ['status'=> 26]
-         ])
-          ->all();
-
-        if($candidate){
-          $ret = count($candidate);
-        }else{
-          $ret = 0;
-        }
-        if($tr->typejo == 1){
-          if($transjo->flag_peralihan == 1){
-            if($tr->type_rekrut == 1 OR $tr->type_rekrut == 3){
-              $ret = $tr->jumlah;
-            }
-          }else{
-            if($tr->type_rekrut == 3){
-              $ret = $tr->jumlah;
-            }
-          }
-        }else{
-          if($transjo->flag_peralihan == 1){
-            if($tp->type_rep == 1 OR $tp->type_rep == 3){
-              $ret = $tr->jumlah;
-            }
-          }else{
-
-            if(!is_null($tp) && $tp->type_rep == 3){
-              $ret = $tr->jumlah;
-            }
-          }
-        }
-
-
-
-
-        return $ret;
+    $data = [
+      'use rprofile' => $userprofile,
+      'user family' => $userfamily,
+      'user formal education' => $userfedu,
+      'user nonformal education' => $usernfedu,
+      'user foreign language' => $usernflang,
+      'user work experience' => $userwexp,
+      'user organization' => $userorgac,
+      'user emergencycontact' => $userecontact,
+      'user reference' => $userreff,
+      'user skill' => $userhealth
+    ];
+    $dataarray = null;
+    foreach ($data as $key => $value) {
+      if ($value == 0) {
+        $dataarray[] = $key;
       }
-    public function checkapplied($id){
-        $ret = null;
-        $tr = Transrincian::find()->where(['id'=> $id])->one();
-        $trori = Transrincianori::find()->where(['id'=> $tr->idpktable])->one();
-        // var_dump($tr->type_rekrut);die();
-        $tp = Transperner::find()->where(['id'=> $tr->idpktable])->one();
-        $transjo = Transjo::find()->where(['nojo'=> $tr->nojo])->one();
-        $candidate = Recruitmentcandidate::find()
-          ->where(['recruitreqid'=>$id])
-          ->all();
+    }
 
-        if($candidate){
-          $ret = count($candidate);
-        }else{
-          $ret = 0;
-        }
-        if($tr->typejo == 1){
-          if($transjo->flag_peralihan == 1){
-            if($tr->type_rekrut == 1 OR $tr->type_rekrut == 3){
-              $ret = $tr->jumlah;
-            }
-          }else{
-            if($tr->type_rekrut == 3){
-              $ret = $tr->jumlah;
-            }
-          }
-        }else{
-          if($transjo->flag_peralihan == 1){
-            if($tp->type_rep == 1 OR $tp->type_rep == 3){
-              $ret = $tr->jumlah;
-            }
-          }else{
+    $ret = $dataarray;
 
-            if(!is_null($tp) && $tp->type_rep == 3){
-              $ret = $tr->jumlah;
-            }
-          }
+    return $ret;
+  }
+  public function cuserprofile($userid) {
+    $ret = null;
+    $userprofile = Userprofile::find()->where(['userid' => $userid])->one();
+
+
+    if ($userprofile) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+
+    return $ret;
+  }
+  public function cuserfamily($userid) {
+    $ret = null;
+    $userfamily = Userfamily::find()->where(['userid' => $userid])->one();
+
+
+    if ($userfamily) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+
+    return $ret;
+  }
+  public function cuserfeducation($userid) {
+    $ret = null;
+    $userfedu = Userformaleducation::find()->where(['userid' => $userid])->one();
+
+
+    if ($userfedu) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+
+    return $ret;
+  }
+  public function cusernfeducation($userid) {
+    $ret = null;
+    $usernfedu = Usernonformaleducation::find()->where(['userid' => $userid])->one();
+
+
+    if ($usernfedu) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+
+    return $ret;
+  }
+  public function cuserflang($userid) {
+    $ret = null;
+    $usernflang = Userforeignlanguage::find()->where(['userid' => $userid])->one();
+
+
+    if ($usernflang) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+
+    return $ret;
+  }
+  public function cuserwexperience($userid) {
+    $ret = null;
+    $userwexp = Userworkexperience::find()->where(['userid' => $userid])->one();
+
+
+    if ($userwexp) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+
+    return $ret;
+  }
+  public function cuserorgac($userid) {
+    $ret = null;
+    $userorgac = Organizationactivity::find()->where(['userid' => $userid])->one();
+
+
+    if ($userorgac) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+
+    return $ret;
+  }
+  public function cuserecontact($userid) {
+    $ret = null;
+    $userecontact = Useremergencycontact::find()->where(['userid' => $userid])->one();
+
+
+    if ($userecontact) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+
+    return $ret;
+  }
+  public function cuserreff($userid) {
+    $ret = null;
+    $userreff = Userreference::find()->where(['userid' => $userid])->one();
+
+    if ($userreff) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+
+    return $ret;
+  }
+  public function cuserhealth($userid) {
+    $ret = null;
+    $userhealth = Userhealth::find()->where(['userid' => $userid])->one();
+    $userabout = Userabout::find()->where(['userid' => $userid])->one();
+
+    if ($userhealth && $userabout) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+
+    return $ret;
+  }
+  public function cuserainfo($userid) {
+    $ret = null;
+    $userhealth = Userhealth::find()->where(['userid' => $userid])->one();
+    $userabout = Userabout::find()->where(['userid' => $userid])->one();
+
+    if ($userhealth or $userabout) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+
+    return $ret;
+  }
+  public function cuploaddoc($userid) {
+    $ret = null;
+    $uploaddoc = Uploadocument::find()->where(['userid' => $userid])->one();
+
+    if ($uploaddoc) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+
+    return $ret;
+  }
+  public function checkcandidate($id) {
+    $ret = null;
+    $tr = Transrincian::find()->where(['id' => $id])->one();
+    $trori = Transrincianori::find()->where(['id' => $tr->idpktable])->one();
+    $tp = Transperner::find()->where(['id' => $tr->idpktable])->one();
+    $transjo = Transjo::find()->where(['nojo' => $tr->nojo])->one();
+    $candidate = Recruitmentcandidate::find()
+      ->where(['recruitreqid' => $id])
+      ->andWhere([
+        'or',
+        ['status' => 4],
+        ['status' => 26]
+      ])
+      ->all();
+
+    if ($candidate) {
+      $ret = count($candidate);
+    } else {
+      $ret = 0;
+    }
+    if ($tr->typejo == 1) {
+      if ($transjo->flag_peralihan == 1) {
+        if ($tr->type_rekrut == 1 or $tr->type_rekrut == 3) {
+          $ret = $tr->jumlah;
         }
-        return $ret;
+      } else {
+        if ($tr->type_rekrut == 3) {
+          $ret = $tr->jumlah;
+        }
       }
-      public function checkJohired($id,$condition){
-        $ret = null;
-        $tr = Transrincian::find()->where(['id'=> $id])->one();
-        $trori = Transrincianori::find()->where(['id'=> $tr->idpktable])->one();
-        $tp = Transperner::find()->where(['id'=> $tr->idpktable])->one();
-        $transjo = Transjo::find()->where(['nojo'=> $tr->nojo])->one();
-
-        if($condition == 1){
-          $candidate = Hiring::find()
-            ->where(['recruitreqid'=>$id])
-            ->andWhere(['or',
-              ['statushiring'=> 4],
-              ['statushiring'=> 7],
-              ['statushiring'=> 8]
-          ])->all();
-        }else{
-          $candidate = Hiring::find()
-            ->where(['recruitreqid'=>$id])
-            ->andWhere(['or',
-              ['statushiring'=> 4],
-              ['statushiring'=> 7],
-              ['statushiring'=> 8],
-              ['statushiring'=> 1]
-          ])->all();
+    } else {
+      if ($transjo->flag_peralihan == 1) {
+        if ($tp->type_rep == 1 or $tp->type_rep == 3) {
+          $ret = $tr->jumlah;
         }
+      } else {
 
-        if($candidate){
-          $ret = count($candidate);
-        }else{
-          $ret = 0;
+        if (!is_null($tp) && $tp->type_rep == 3) {
+          $ret = $tr->jumlah;
         }
-
-        if($tr->typejo == 1){
-          if($transjo->flag_peralihan == 1){
-            if($tr->type_rekrut == 1 OR $tr->type_rekrut == 3){
-              $ret = $tr->jumlah;
-
-            }
-          }else{
-            if($tr->type_rekrut == 3){
-              $ret = $tr->jumlah;
-            }
-          }
-        }else{
-          if($transjo->flag_peralihan == 1){
-            if($tp->type_rep == 1 OR $tp->type_rep == 3){
-              $ret = $tr->jumlah;
-            }
-          }else{
-              if(!is_null($tp) && $tp->type_rep == 3){
-
-              $ret = $tr->jumlah;
-            }
-          }
-        }
-
-        return $ret;
-    }
-    public function checkstatusjo($id){
-        $ret = null;
-        $transrincian = Transrincian::find()->where(['id'=>$id])->one();
-        $candidate = Recruitmentcandidate::find()->where(['recruitreqid'=>$id,'status'=> 4])->all();
-
-        if($transrincian->jumlah == count($candidate)){
-          $ret = 'Done';
-        }else{
-          $ret = 'On Progress';
-        }
-
-        return $ret;
-    }
-    public function checkstatuscr($id){
-        $ret = null;
-        $crjo = Chagerequestjo::find()->where(['recruitreqid'=>$id, 'status'=>1])->one();
-
-        if($crjo){
-          $ret = 1;
-        }else{
-          $ret = 0;
-        }
-
-        return $ret;
-    }
-    public function checkstatusjoHired($id,$newjumlah){
-        $ret = null;
-        $hired = Hiring::find()->where(['recruitreqid'=>$id,'statushiring'=> 4])->all();
-
-        if($newjumlah == count($hired)){
-          $ret = 1;
-        }else{
-          $ret = 0;
-        }
-
-        return $ret;
+      }
     }
 
 
+
+
+    return $ret;
+  }
+  public function checkapplied($id) {
+    $ret = null;
+    $tr = Transrincian::find()->where(['id' => $id])->one();
+    $trori = Transrincianori::find()->where(['id' => $tr->idpktable])->one();
+    // var_dump($tr->type_rekrut);die();
+    $tp = Transperner::find()->where(['id' => $tr->idpktable])->one();
+    $transjo = Transjo::find()->where(['nojo' => $tr->nojo])->one();
+    $candidate = Recruitmentcandidate::find()
+      ->where(['recruitreqid' => $id])
+      ->all();
+
+    if ($candidate) {
+      $ret = count($candidate);
+    } else {
+      $ret = 0;
+    }
+    if ($tr->typejo == 1) {
+      if ($transjo->flag_peralihan == 1) {
+        if ($tr->type_rekrut == 1 or $tr->type_rekrut == 3) {
+          $ret = $tr->jumlah;
+        }
+      } else {
+        if ($tr->type_rekrut == 3) {
+          $ret = $tr->jumlah;
+        }
+      }
+    } else {
+      if ($transjo->flag_peralihan == 1) {
+        if ($tp->type_rep == 1 or $tp->type_rep == 3) {
+          $ret = $tr->jumlah;
+        }
+      } else {
+
+        if (!is_null($tp) && $tp->type_rep == 3) {
+          $ret = $tr->jumlah;
+        }
+      }
+    }
+    return $ret;
+  }
+  public function checkJohired($id, $condition) {
+    $ret = null;
+    $tr = Transrincian::find()->where(['id' => $id])->one();
+    $trori = Transrincianori::find()->where(['id' => $tr->idpktable])->one();
+    $tp = Transperner::find()->where(['id' => $tr->idpktable])->one();
+    $transjo = Transjo::find()->where(['nojo' => $tr->nojo])->one();
+
+    if ($condition == 1) {
+      $candidate = Hiring::find()
+        ->where(['recruitreqid' => $id])
+        ->andWhere([
+          'or',
+          ['statushiring' => 4],
+          ['statushiring' => 7],
+          ['statushiring' => 8]
+        ])->all();
+    } else {
+      $candidate = Hiring::find()
+        ->where(['recruitreqid' => $id])
+        ->andWhere([
+          'or',
+          ['statushiring' => 4],
+          ['statushiring' => 7],
+          ['statushiring' => 8],
+          ['statushiring' => 1]
+        ])->all();
+    }
+
+    if ($candidate) {
+      $ret = count($candidate);
+    } else {
+      $ret = 0;
+    }
+
+    if ($tr->typejo == 1) {
+      if ($transjo->flag_peralihan == 1) {
+        if ($tr->type_rekrut == 1 or $tr->type_rekrut == 3) {
+          $ret = $tr->jumlah;
+        }
+      } else {
+        if ($tr->type_rekrut == 3) {
+          $ret = $tr->jumlah;
+        }
+      }
+    } else {
+      if ($transjo->flag_peralihan == 1) {
+        if ($tp->type_rep == 1 or $tp->type_rep == 3) {
+          $ret = $tr->jumlah;
+        }
+      } else {
+        if (!is_null($tp) && $tp->type_rep == 3) {
+
+          $ret = $tr->jumlah;
+        }
+      }
+    }
+
+    return $ret;
+  }
+  public function checkstatusjo($id) {
+    $ret = null;
+    $transrincian = Transrincian::find()->where(['id' => $id])->one();
+    $candidate = Recruitmentcandidate::find()->where(['recruitreqid' => $id, 'status' => 4])->all();
+
+    if ($transrincian->jumlah == count($candidate)) {
+      $ret = 'Done';
+    } else {
+      $ret = 'On Progress';
+    }
+
+    return $ret;
+  }
+  public function checkstatuscr($id) {
+    $ret = null;
+    $crjo = Chagerequestjo::find()->where(['recruitreqid' => $id, 'status' => 1])->one();
+
+    if ($crjo) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+
+    return $ret;
+  }
+  public function checkstatusjoHired($id, $newjumlah) {
+    $ret = null;
+    $hired = Hiring::find()->where(['recruitreqid' => $id, 'statushiring' => 4])->all();
+
+    if ($newjumlah == count($hired)) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+
+    return $ret;
+  }
 }

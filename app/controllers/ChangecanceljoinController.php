@@ -92,12 +92,11 @@ class ChangecanceljoinController extends Controller
    */
   public function actionCreate($id = null)
   {
-    // $approvalname = ArrayHelper::map(User::find()->where('role = 20 OR role = 17')->asArray()->all(), 'id', 'name');
     $reason = ArrayHelper::map(Masterreasoncanceljoin::find()->asArray()->all(), 'id', 'reason');
     if ($id) {
       $model = $this->findModel($id);
       $namaquery = Hiring::find()
-        ->joinWith(['userprofile'])
+        // ->joinWith(['userprofile'])
         ->joinWith(['changecanceljoin'])
         ->andWhere(['statushiring' => 4])
         ->andWhere([
@@ -119,13 +118,13 @@ class ChangecanceljoinController extends Controller
             ])
             ->count();
           if ($value->userid == $model->userid) {
-            $name[$value->userid] = $value->userprofile->fullname . ' / ' . $value->perner;
+            $name[$value->userid] = $value->perner;
           }
           if ($value->changecanceljoin->status == 4 && $checkdraft == 0) {
-            $name[$value->userid] = $value->userprofile->fullname . ' / ' . $value->perner;
+            $name[$value->userid] = $value->perner;
           }
         } else {
-          $name[$value->userid] = $value->userprofile->fullname . ' / ' . $value->perner;
+          $name[$value->userid] = $value->perner;
         }
       }
     } else {

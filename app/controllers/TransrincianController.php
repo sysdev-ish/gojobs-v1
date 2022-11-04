@@ -201,6 +201,7 @@ class TransrincianController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
     public function actionRecreqlist($q = null, $id = null) {
     \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
     $outs = ['results' => ['id' => '', 'text' => '']];
@@ -271,8 +272,6 @@ class TransrincianController extends Controller
         }else{
           $outs['results'] = null;
         }
-
-
     }
     elseif ($id > 0) {
         $outs['results'] = ['id' => $id, 'text' => Transrincian::findOne($id)->nojo];

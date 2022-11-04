@@ -18,7 +18,7 @@ class Changehiringsearch extends Changehiring
     public function rules()
     {
         return [
-            [['id', 'userid', 'newuserid', 'perner', 'recruitreqid', 'newrecruitreqid', 'createdby', 'approvedby', 'status', 'reason', 'typechangehiring'], 'integer'],
+            [['id', 'userid', 'newuserid', 'perner', 'recruitreqid', 'oldrecruitreqid', 'createdby', 'approvedby', 'status', 'reason', 'typechangehiring'], 'integer'],
             [['createtime', 'updatetime', 'approvedtime', 'fullname', 'cancelhiring', 'hiringdate', 'newhiringdate', 'contractperiode', 'newcontractperiode'], 'safe'],
         ];
     }
@@ -64,7 +64,7 @@ class Changehiringsearch extends Changehiring
             'userid' => $this->userid,
             'perner' => $this->perner,
             'recruitreqid' => $this->recruitreqid,
-            'newrecruitreqid' => $this->newrecruitreqid,
+            'oldrecruitreqid' => $this->oldrecruitreqid,
             'createtime' => $this->createtime,
             'updatetime' => $this->updatetime,
             'approvedtime' => $this->approvedtime,

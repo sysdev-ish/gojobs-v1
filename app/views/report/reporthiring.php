@@ -152,7 +152,7 @@ app\assets\ReportAsset::register($this);
                       // 'contentOptions'=>['style'=>'width: 150px;'],
                       'format' => 'raw',
                       'value'=>function ($data) {
-                        return ($data->recrequest->hire_jabatan_sap)? ((is_numeric($data->recrequest->hire_jabatan_sap))?$data->recrequest->jabatansap->value2:'-'):'-';
+                        return ($data->recrequest)? ((is_numeric($data->recrequest))?$data->recrequest->jabatansap->value2:'-'):'-';
                     }
                     ],
 
@@ -1183,7 +1183,7 @@ app\assets\ReportAsset::register($this);
                   'label' => 'Jabatan (SAP)',
                   'format' => 'raw',
                   'value' => function ($data) {
-                    return ($data->recrequest->hire_jabatan_sap) ? $data->recrequest->jabatansap->value2 : '-';
+                    return ($data->recrequest) ? $data->recrequest->jabatansap->value2 : '-';
                   }
                 ],
                 

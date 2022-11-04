@@ -25,8 +25,7 @@ use DateInterval;
 
 class UtilComponent extends Component
 {
-  public function logger($type = 'info', $message = null)
-  {
+  public function logger($type = 'info', $message = null) {
     $ret = null;
 
     if ($message) {
@@ -49,14 +48,12 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  public function todate($date)
-  {
+  public function todate($date) {
     $time = strtotime($date);
     return $time;
   }
 
-  public function getlayout()
-  {
+  public function getlayout() {
     if (Yii::$app->user->isGuest) {
       $role = 2;
     } else {
@@ -72,8 +69,7 @@ class UtilComponent extends Component
     return $layout;
   }
 
-  public function loginlayout()
-  {
+  public function loginlayout() {
     if (Yii::$app->user->isGuest) {
       $role = 2;
     } else {
@@ -88,8 +84,7 @@ class UtilComponent extends Component
     return $layout;
   }
 
-  public function getprofileuser($userid)
-  {
+  public function getprofileuser($userid) {
     $ret = null;
     $userprofile = Userprofile::find()->where(['userid' => $userid])->one();
     if ($userprofile) {
@@ -101,8 +96,7 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  public function permission($roleid, $modulecode)
-  {
+  public function permission($roleid, $modulecode) {
     $ret = false;
     if (!Yii::$app->user->isGuest) {
       if ($modulecode == "B01" && $roleid == 2) {
@@ -135,8 +129,7 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  protected function getroleid($grouprolepermissionid)
-  {
+  protected function getroleid($grouprolepermissionid) {
     $ret = null;
     if ($grouprolepermissionid) {
       $getrole = Mappinggrouprolepermission::find()->where(['grouprolepermissionid' => $grouprolepermissionid, 'active' => 1])->all();
@@ -152,8 +145,7 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  public function getusername($username)
-  {
+  public function getusername($username) {
     $ret = null;
     if ($username) {
       // $ret = null;
@@ -193,8 +185,7 @@ class UtilComponent extends Component
   // }
 
 
-  public function sendmailgojobs($to, $subject, $body, $identifier)
-  {
+  public function sendmailgojobs($to, $subject, $body, $identifier) {
     $curl = new curl\Curl();
     $verification = $curl->setPostParams([
       'from' => 'no-replay@ish.co.id',
@@ -223,8 +214,7 @@ class UtilComponent extends Component
     return $response;
   }
 
-  public function sendmail($to, $subject, $body, $identifier)
-  {
+  public function sendmail($to, $subject, $body, $identifier) {
     $curl = new curl\Curl();
     $verification = $curl->setPostParams([
       // 'from' => 'gojobs@ish.co.id',
@@ -251,8 +241,7 @@ class UtilComponent extends Component
     return $response;
   }
 
-  public function sendmailexternal($to, $subject, $body, $identifier, $userid, $fullname)
-  {
+  public function sendmailexternal($to, $subject, $body, $identifier, $userid, $fullname) {
     $curl = new curl\Curl();
     $verification = $curl->setPostParams([
       // 'from' => 'gojobs@ish.co.id',
@@ -283,8 +272,7 @@ class UtilComponent extends Component
     return $response;
   }
 
-  public function sendmailinternal($to, $subject, $body, $identifier)
-  {
+  public function sendmailinternal($to, $subject, $body, $identifier) {
     $curl = new curl\Curl();
     $verification = $curl->setPostParams([
       // 'from' => 'gojobs@ish.co.id',
@@ -313,8 +301,7 @@ class UtilComponent extends Component
   }
 
   //start connect hris
-  public function getaccesstoken($code)
-  {
+  public function getaccesstoken($code) {
     $curl = new curl\Curl();
     $getaccesstoken = $curl->setPostParams([
       'grant_type' => 'authorization_code',
@@ -328,8 +315,7 @@ class UtilComponent extends Component
     return $response;
   }
 
-  public function getuserdata($token)
-  {
+  public function getuserdata($token) {
     $curl = new curl\Curl();
     $getuserdata = $curl->setPostParams([
       'access_token' => $token,
@@ -339,8 +325,7 @@ class UtilComponent extends Component
     return $response;
   }
 
-  public function logout($token)
-  {
+  public function logout($token) {
     $curl = new curl\Curl();
     $logout = $curl->setPostParams([
       'access_token' => $token,
@@ -351,8 +336,7 @@ class UtilComponent extends Component
   }
   //end connect hris
 
-  public function terbilang($bilangan)
-  {
+  public function terbilang($bilangan) {
     $angka = array(
       '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
       '0', '0', '0', '0', '0', '0'
@@ -442,8 +426,7 @@ class UtilComponent extends Component
     return trim($kalimat);
   }
 
-  public function indodate($date)
-  {
+  public function indodate($date) {
     $days = date("D", strtotime($date));
     $dates = date("Y-m-d", strtotime($date));
     switch ($days) {
@@ -503,8 +486,7 @@ class UtilComponent extends Component
     return $day . ', ' . $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
   }
 
-  public function getpersonalarea($persaid)
-  {
+  public function getpersonalarea($persaid) {
     $ret = null;
     if ($persaid) {
       $curl = new curl\Curl();
@@ -522,8 +504,7 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  public function getarea($areaid)
-  {
+  public function getarea($areaid) {
     $ret = null;
     if ($areaid) {
       $curl = new curl\Curl();
@@ -541,8 +522,7 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  public function getskilllayanan($skilllayananid)
-  {
+  public function getskilllayanan($skilllayananid) {
     $ret = null;
     if ($skilllayananid) {
       $curl = new curl\Curl();
@@ -561,8 +541,7 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  public function getpayrollarea($payrollareaid)
-  {
+  public function getpayrollarea($payrollareaid) {
     $ret = null;
     if ($payrollareaid) {
       $curl = new curl\Curl();
@@ -581,8 +560,7 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  public function getjabatan($jabatanid)
-  {
+  public function getjabatan($jabatanid) {
     $ret = null;
     if ($jabatanid) {
       $curl = new curl\Curl();
@@ -601,8 +579,7 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  public function getjabatanid($jabatan)
-  {
+  public function getjabatanid($jabatan) {
     $ret = null;
     if ($jabatan) {
       $curl = new curl\Curl();
@@ -621,8 +598,7 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  public function getnamebynik($nik)
-  {
+  public function getnamebynik($nik) {
     $ret = null;
     if ($nik) {
       $curl = new curl\Curl();
@@ -646,8 +622,7 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  public function ordinal($num)
-  {
+  public function ordinal($num) {
     $last = substr($num, -1);
     if (
       $last > 3  or
@@ -665,8 +640,7 @@ class UtilComponent extends Component
     return $num . $ext;
   }
 
-  public function diffdate($date1, $date2)
-  {
+  public function diffdate($date1, $date2) {
     $begin = new DateTime($date1);
     $end = new DateTime($date2);
     $end = $end->modify('+1 month');
@@ -681,8 +655,7 @@ class UtilComponent extends Component
     return $counter;
   }
 
-  public function aplhired($userid)
-  {
+  public function aplhired($userid) {
     $ret = null;
     $userhired = Hiring::find()->where(['userid' => $userid, 'statushiring' => 4, 'statusbiodata' => 4])->one();
     if ($userhired) {
@@ -694,8 +667,7 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  function generateRandomString($length = 5)
-  {
+  function generateRandomString($length = 5) {
     $chars = "23456789ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz";
     $charArray = str_split($chars);
     $charCount = strlen($chars);
@@ -707,8 +679,7 @@ class UtilComponent extends Component
     return $result;
   }
 
-  public function insppjp($perner, $joindate)
-  {
+  public function insppjp($perner, $joindate) {
     $ret = null;
     if ($perner && $joindate) {
       $curl = new curl\Curl();
@@ -727,8 +698,7 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  public function create_login_log()
-  {
+  public function create_login_log() {
     $ret = null;
     if (!Yii::$app->user->isGuest) {
       $checklog = Logactivity::find()->where('userid =' . Yii::$app->user->identity->id . ' AND date = CURDATE()')->one();

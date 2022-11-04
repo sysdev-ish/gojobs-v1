@@ -157,8 +157,10 @@ $model->canceldate = ($model->canceldate == "0000-00-00") ? null : $model->cance
         </table>
       </div>
       <div class="box-footer">
-        <?= Html::a('Save to draft', ['index'], ['class' => 'btn btn-danger btn-flat pull-right', 'style' => 'margin-left:10px;']) ?>
-        <?= Html::submitButton('Submit', ['class' => 'btn btn-success btn-flat pull-right']) ?>
+        <div class="pull-right">
+          <?= Html::a('Save to draft', ['index'], ['class' => 'btn btn-danger btn-flat', 'style' => 'margin-right:10px;']) ?>
+          <?= Html::submitButton('Submit', ['class' => 'btn btn-success btn-flat']) ?>
+        </div>
       </div>
     </div>
   </div>

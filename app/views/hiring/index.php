@@ -105,9 +105,9 @@ if(Yii::$app->utils->permission($role,'m37')){
                         'title'=>'View Profile detail'
                     ]);
                     return $btn;
-                }
-
+                  }
                 ],
+
                 // 'createtime',
                 // 'updatetime',
                 [
@@ -115,9 +115,9 @@ if(Yii::$app->utils->permission($role,'m37')){
                   'format' => 'raw',
                   'value'=>function ($data) {
                   return ($data->perner)?$data->perner:"";
-                }
-
+                  }
                 ],
+
 
                 [
 
@@ -135,9 +135,9 @@ if(Yii::$app->utils->permission($role,'m37')){
                         'title'=>'View Recruitment Request Detail'
                     ]);
                     return $btn;
-                }
-
+                  }
                 ],
+
                 [
                   'label' => 'type jo',
                   'attribute' => 'typejorincian',
@@ -155,9 +155,9 @@ if(Yii::$app->utils->permission($role,'m37')){
                     ]),
                   'value'=>function ($data) {
                     return ($data->recrequest)?(($data->recrequest->typejo==1)?"New Project":"Replacement"):"-";
-                }
-
+                  }
                 ],
+
                 [
                   'label' => 'Area (SAP)',
                   'attribute' => 'areasap',
@@ -166,9 +166,9 @@ if(Yii::$app->utils->permission($role,'m37')){
 
                   'value'=>function ($data) {
                     return ($data->recrequest)?((($data->recrequest->area_sap))?(($data->recrequest->areasap)?(($data->recrequest->areasap->value2)?$data->recrequest->areasap->value2 : ""):''):""):"-";
-                }
-
+                  }
                 ],
+
                 [
                   'label' => 'Jabatan (SAP)',
                   'attribute' => 'jabatansap',
@@ -176,23 +176,23 @@ if(Yii::$app->utils->permission($role,'m37')){
                   'format' => 'html',
 
                   'value'=>function ($data) {
-                  if ($data->recrequest) {
-                    if ($data->recrequest->hire_jabatan_sap) {
-                      // return $data->recrequest->hire_jabatan_sap;
-                      if ($data->recrequest->jabatansap) {
-                        return $data->recrequest->jabatansap->value2;
+                    if ($data->recrequest) {
+                      if ($data->recrequest->hire_jabatan_sap) {
+                        // return $data->recrequest->hire_jabatan_sap;
+                        if ($data->recrequest->jabatansap) {
+                          return $data->recrequest->jabatansap->value2;
+                        } else {
+                          return "-";
+                        }
                       } else {
                         return "-";
                       }
                     } else {
                       return "-";
                     }
-                  } else {
-                    return "-";
                   }
-                }
-
                 ],
+
                 [
                   'label' => 'SAP',
                   'attribute' => 'typejo',
@@ -210,9 +210,9 @@ if(Yii::$app->utils->permission($role,'m37')){
                     ]),
                   'value'=>function ($data) {
                     return ($data->typejo==1)?"ISH":"Peralihan";
-                }
-
+                  }
                 ],
+
                 [
                   'label' => 'Status',
                   'attribute' => 'status',
@@ -232,9 +232,9 @@ if(Yii::$app->utils->permission($role,'m37')){
                     return "Status Hiring : ".(($data->statushiring0)?$data->statushiring0->statusname:'-')."<br>".
                       "Status Biodata : ".(($data->statusbiodata0)?$data->statusbiodata0->statusname:'-')."<br>".
                       "SAP Message : ".(($data->message)?$data->message:"-");
-                }
-
+                  }
                 ],
+
                 [
                   'label' => 'PM',
                   'attribute' => 'userpm',
@@ -242,9 +242,9 @@ if(Yii::$app->utils->permission($role,'m37')){
                   'format' => 'html',
                   'value'=>function ($data) {
                     return ($data->recrequest)?(($data->recrequest->userpm)?((Yii::$app->utils->getusername($data->recrequest->userpm))?Yii::$app->utils->getusername($data->recrequest->userpm):$data->recrequest->userpm):''):"-";
-                }
-
+                  }
                 ],
+
                 // [
                 //   'attribute' => 'statushiring',
                 //   'contentOptions'=>['style'=>'width: 100px;'],

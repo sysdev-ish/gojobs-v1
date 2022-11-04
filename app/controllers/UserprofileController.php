@@ -207,7 +207,8 @@ class UserprofileController extends Controller
               $model->bpjsnumber = "00000000000";
             }
             if($model->havenpwp == 0 OR $model->npwpnumber == ''){
-              $model->npwpnumber = "000000000000000";
+              // $model->npwpnumber = "000000000000000";
+              $model->npwpnumber = "999999999999999";
             }
             $model->photo = UploadedFile::getInstance($model,'photo');
             $model->cvupload = UploadedFile::getInstance($model,'cvupload');

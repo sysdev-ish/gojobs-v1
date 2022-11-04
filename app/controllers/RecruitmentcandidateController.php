@@ -460,20 +460,15 @@ class RecruitmentcandidateController extends Controller
       $modelreccan = Recruitmentcandidate::find()->where(['id'=>$reccanid])->one();
       $modelrecreq = Transrincian::find()->where(['id'=>$modelreccan->recruitreqid])->one();
 
-
       $modeluprofile = Userprofile::find()->where(['userid'=>$userid])->one();
-      $modelulogin = Userlogin::find()->where(['id'=>$userid])->one();
-
+      // $modelulogin = Userlogin::find()->where(['id'=>$userid])->one();
 
       $model->fullname = $modeluprofile->fullname;
 
-
       if ($model->load(Yii::$app->request->post())) {
-
         if($model->save()){
           return $this->redirect(['index']);
         }
-
       } else {
         return $this->renderAjax('changejo', [
           'model' => $model,

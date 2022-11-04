@@ -7,6 +7,7 @@ use app\models\Masterstatuscr;
 use app\models\Transrincian;
 use yii\helpers\ArrayHelper;
 use yii\bootstrap\Modal;
+use linslin\yii2\curl;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\Changehiringsearch */
@@ -91,7 +92,24 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
             ],
 
             [
-              'label' => 'No Jo',
+              'label' => 'Type',
+              'attribute' => 'typechangehiring',
+              'format' => 'html',
+              'value'=>function ($data) {
+                if ($data->typechangehiring == 1) {
+                  return "Perubahan Nomor JO";
+                } elseif ($data->typechangehiring == 2) {
+                  return "Tukar JO"; 
+                } elseif ($data->typechangehiring == 3) {
+                  return "Perubahan Tanggal Hiring";
+                } else {
+                  return "Perubahan Periode Kontrak";
+                }
+              }
+            ],
+
+            [
+              'label' => 'No JO',
               'format' => 'html',
               'value' => function ($data) {
                 if ($data->userid) {
@@ -108,9 +126,10 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
               'label' => 'Replacement',
               'format' => 'html',
               'value' => function ($data) {
-                return "Date Hiring: " . ($data->newhiringdate) . "<br>" .
-                "Contract Periode: " . ($data->newcontractperiode) . "<br>" .
-                "No JO: " . ($data->newrecruitreqid) ;
+                return 
+                "No JO: " . ($data->oldrecruitreqid) . "<br>" .
+                "Date Hiring: " . ($data->newhiringdate) . "<br>" .
+                "Contract Periode: " . ($data->newcontractperiode);
               } 
             ],
 
@@ -159,26 +178,34 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
               ]),
               'value'=>function ($data) {
                 if($data->status == 1){$label='label-danger';}elseif($data->status == 2 OR $data->status == 3 OR $data->status == 6){$label='label-warning';}elseif($data->status == 4 OR $data->status == 9){$label='label-success';}elseif($data->status == 8){$label='label-info';}else{$label='label-danger';}
-                return '<span class="label '.$label.'">'.$data->statusprocess->statusname.'</span>';
+                return '<span class="label '.$label.'">'.$data->statusprocess->statusname. '</span><br>';
               }
             ],
 
-            // [
-            //   'label' => 'Remarks',
-            //   'attribute' => 'remarks',
-            //   'format' => 'html',
-            //   'value'=>function ($data) {
-            //     if ($data->status == 9) {
-            //       if ($data->perner == null) {
-            //         return "<b><i>".$data->remarks."</i></b><br>";
-            //       } else {
-            //         return "<b><i>".$data->remarks."</i></b><br>";
-            //       }
-            //     } else {
-            //       return "<b><i>".$data->remarks."</i></b><br>";
-            //     }
-            //   }
-            // ],
+            [
+              'label' => 'Remarks',
+              'attribute' => 'remarks',
+              'format' => 'html',
+              'value' => function ($data) {
+                if ($data->status == 9) {
+                  $curl = new curl\Curl();
+                  $getdatapekerjabyperner =  $curl->setPostParams([
+                    'perner' => $data->perner,
+                    'token' => 'ish**2019',
+                  ])
+                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+                  // var_dump($datapekerjabyperner);die;
+                  if ($datapekerjabyperner == null) {
+                    return "<b><i>" . $data->remarks . "</i></b><br>" . $data->userremarks . "<br>Proses Selesai";
+                  } else {
+                    return "<b><i>" . $data->remarks . "</i></b><br>" . $data->userremarks . "<br>Proses Selesai, Perner belum Dihapus";
+                  }
+                } else {
+                  return "<b><i>" . $data->remarks . "</i></b><br>" . $data->userremarks . "<br>";
+                }
+              }
+            ],
 
             ['class' => 'yii\grid\ActionColumn',
             'contentOptions'=>['style'=>'min-width: 210px;'],

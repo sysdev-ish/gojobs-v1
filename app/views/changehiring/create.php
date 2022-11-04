@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="changehiring-create">
     <?= $this->render('_form', [
     'model' => $model,
-    'name' => $name,
+    'data' => $data,
     'reason' => $reason,
     ]) ?>
 </div>

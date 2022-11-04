@@ -162,12 +162,17 @@ return [
     <tr>    
         <td valign="top">Nomor JO</td>
         <td valign="top">:</td>
-        <td valign="top">{recruitreqid}</td>
+        <td valign="top">{oldrecruitreqid}</td>
     </tr>
     <tr>    
         <td valign="top">Nama Project</td>
         <td valign="top">:</td>
-        <td valign="top">{project}</td>
+        <td valign="top">{layanan}</td>
+    </tr>
+    <tr>    
+        <td valign="top">Skill Layanan</td>
+        <td valign="top">:</td>
+        <td valign="top">{skill}</td>
     </tr>
     <tr>    
         <td valign="top">Area</td>
@@ -184,17 +189,9 @@ return [
         <td valign="top">:</td>
         <td valign="top">{level}</td>
     </tr>
+    </table>
     <br>Diubah Menjadi<br>
-    <tr>    
-        <td valign="top">Nama Pekerja</td>
-        <td valign="top">:</td>
-        <td valign="top">{fullname}</td>
-    </tr>
-    <tr>    
-        <td valign="top">Perner</td>
-        <td valign="top">:</td>
-        <td valign="top">{perner}</td>
-    </tr>
+    <table>
     <tr>    
         <td valign="top">Nomor JO</td>
         <td valign="top">:</td>
@@ -203,22 +200,22 @@ return [
     <tr>    
         <td valign="top">Nama Project</td>
         <td valign="top">:</td>
-        <td valign="top">{project}</td>
+        <td valign="top">{newlayanan}</td>
+    </tr>
+    <tr>    
+        <td valign="top">Skill Layanan</td>
+        <td valign="top">:</td>
+        <td valign="top">{newskill}</td>
     </tr>
     <tr>    
         <td valign="top">Area</td>
         <td valign="top">:</td>
-        <td valign="top">{area}</td>
+        <td valign="top">{newarea}</td>
     </tr>
     <tr>    
         <td valign="top">Jabatan</td>
         <td valign="top">:</td>
-        <td valign="top">{jabatan}</td>
-    </tr>
-    <tr>    
-        <td valign="top">Level</td>
-        <td valign="top">:</td>
-        <td valign="top">{level}</td>
+        <td valign="top">{newjabatan}</td>
     </tr>
     <br>
     <tr>    
@@ -226,8 +223,9 @@ return [
         <td valign="top">:</td>
         <td valign="top">{reason}</td>
     </tr>
+    </table>
 
-    Silakan masuk ke link gojobs.id sub menu Change Hiring untuk melakukan verifikasi lebih lanjut.
+    Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> Change Request sub menu Change Hiring untuk melakukan verifikasi lebih lanjut.
     Have a great day !
     ',
     
@@ -256,7 +254,7 @@ return [
     <tr>    
         <td valign="top">Nama Project</td>
         <td valign="top">:</td>
-        <td valign="top">{project}</td>
+        <td valign="top">{layanan}</td>
     </tr>
     <tr>    
         <td valign="top">Area</td>
@@ -273,41 +271,43 @@ return [
         <td valign="top">:</td>
         <td valign="top">{level}</td>
     </tr>
+    </table>
     <br>Diubah Menjadi<br>
+    <table>
     <tr>    
         <td valign="top">Nama Pekerja</td>
         <td valign="top">:</td>
-        <td valign="top">{fullname}</td>
+        <td valign="top">{newfullname}</td>
     </tr>
     <tr>    
         <td valign="top">Perner</td>
         <td valign="top">:</td>
-        <td valign="top">{perner}</td>
+        <td valign="top">{newperner}</td>
     </tr>
     <tr>    
         <td valign="top">Nomor JO</td>
         <td valign="top">:</td>
-        <td valign="top">{recruitreqid}</td>
+        <td valign="top">{newrecruitreqid}</td>
     </tr>
     <tr>    
         <td valign="top">Nama Project</td>
         <td valign="top">:</td>
-        <td valign="top">{project}</td>
+        <td valign="top">{newlayanan}</td>
     </tr>
     <tr>    
         <td valign="top">Area</td>
         <td valign="top">:</td>
-        <td valign="top">{area}</td>
+        <td valign="top">{newarea}</td>
     </tr>
     <tr>    
         <td valign="top">Jabatan</td>
         <td valign="top">:</td>
-        <td valign="top">{jabatan}</td>
+        <td valign="top">{newjabatan}</td>
     </tr>
     <tr>    
         <td valign="top">Level</td>
         <td valign="top">:</td>
-        <td valign="top">{level}</td>
+        <td valign="top">{newlevel}</td>
     </tr>
     <br>
     <tr>    
@@ -315,8 +315,9 @@ return [
         <td valign="top">:</td>
         <td valign="top">{reason}</td>
     </tr>
+    </table>
 
-    Silakan masuk ke link gojobs.id sub menu Change Hiring untuk melakukan verifikasi lebih lanjut.
+    Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> sub menu Change Hiring untuk melakukan verifikasi lebih lanjut.
     Have a great day !
     ',
     
@@ -345,7 +346,7 @@ return [
     <tr>    
         <td valign="top">Nama Project</td>
         <td valign="top">:</td>
-        <td valign="top">{project}</td>
+        <td valign="top">{layanan}</td>
     </tr>
     <tr>    
         <td valign="top">Area</td>
@@ -363,29 +364,32 @@ return [
         <td valign="top">{level}</td>
     </tr>
     <tr>    
+        <td valign="top">Periode Kontrak</td>
+        <td valign="top">:</td>
+        <td valign="top">{contractperiode}</td>
+    </tr>
+    <tr>    
         <td valign="top">Tanggal Hiring</td>
         <td valign="top">:</td>
         <td valign="top">{hiringdate}</td>
-    </tr>
+    </tr>    
+    </table>
+    <br>Diubah Menjadi<br>
+    <table>
     <tr>    
         <td valign="top">Tanggal Hiring (Pergantian)</td>
         <td valign="top">:</td>
         <td valign="top">{newhiringdate}</td>
     </tr>
-    <tr>    
-        <td valign="top">Periode Kontrak</td>
-        <td valign="top">:</td>
-        <td valign="top">{contractperiode}</td>
-    </tr>
-
     <br>
     <tr>    
         <td valign="top">Alasan</td>
         <td valign="top">:</td>
         <td valign="top">{reason}</td>
     </tr>
+    </table>
 
-    Silakan masuk ke link gojobs.id sub menu Change Hiring untuk melakukan verifikasi lebih lanjut.
+    Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> sub menu Change Hiring untuk melakukan verifikasi lebih lanjut.
     Have a great day !
     ',
     
@@ -414,7 +418,7 @@ return [
     <tr>    
         <td valign="top">Nama Project</td>
         <td valign="top">:</td>
-        <td valign="top">{project}</td>
+        <td valign="top">{layanan}</td>
     </tr>
     <tr>    
         <td valign="top">Area</td>
@@ -441,20 +445,23 @@ return [
     <td valign="top">:</td>
     <td valign="top">{contractperiode}</td>
     </tr>
+    </table>
+    <br>Diubah Menjadi<br>
+    <table>
     <tr>    
         <td valign="top">Periode Kontrak (Pergantian)</td>
         <td valign="top">:</td>
         <td valign="top">{newcontractperiode}</td>
     </tr>
-
     <br>
     <tr>    
         <td valign="top">Alasan</td>
         <td valign="top">:</td>
         <td valign="top">{reason}</td>
     </tr>
+    </table>
 
-    Silakan masuk ke link gojobs.id sub menu Change Hiring untuk melakukan verifikasi lebih lanjut.
+    Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> sub menu Change Hiring untuk melakukan verifikasi lebih lanjut.
     Have a great day !
     ',
 ];

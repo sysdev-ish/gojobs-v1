@@ -90,19 +90,20 @@ class ChangehiringController extends Controller
         $reason = ArrayHelper::map(Masterreasonchangehiring::find()->asArray()->all(), 'id', 'reason');
         if ($id) {
             $model = $this->findModel($id);
-            $namaquery = Hiring::find()
-                ->joinWith(['userprofile'])
+            $dataquery = Hiring::find()
+                // ->joinWith(['userprofile'])
                 ->joinWith(['changehiring'])
                 ->andWhere(['statushiring' => 4])
+                ->andWhere(['statusbiodata' => 4])
                 ->andWhere([
                     'or',
                     ['changehiring.userid' => null],
                     ['changehiring.status' => 4],
                     ['hiring.userid' => $model->userid],
-                ])
-                ->all();
-            $name = array();
-            foreach ($namaquery as $key => $value) {
+                ])->orderBy([
+                    'hiring.perner' => SORT_DESC])->limit(10)->all();
+            $data = array();
+            foreach ($dataquery as $key => $value) {
                 if ($value->changehiring) {
                     $checkdraft =  Changehiring::find()
                         ->andWhere(['userid' => $value->userid])
@@ -113,13 +114,13 @@ class ChangehiringController extends Controller
                         ])
                         ->count();
                     if ($value->userid == $model->userid) {
-                        $name[$value->userid] = $value->userprofile->fullname . ' / ' . $value->perner;
+                        $data[$value->userid] =  $value->perner;
                     }
                     if ($value->changehiring->status == 4 && $checkdraft == 0) {
-                        $name[$value->userid] = $value->userprofile->fullname . ' / ' . $value->perner;
+                        $data[$value->userid] =  $value->perner;
                     }
                 } else {
-                    $name[$value->userid] = $value->userprofile->fullname . ' / ' . $value->perner;
+                    $data[$value->userid] =  $value->perner;
                 }
             }
         } else {
@@ -133,61 +134,104 @@ class ChangehiringController extends Controller
 
         $model->scenario = 'createupdate';
         if ($model->load(Yii::$app->request->post())) {
+            $model->flag = 1;
             $model->status = 2;
             $model->remarks = "Process";
+            //existingmodel
             $hiring = Hiring::find()->where(['userid' => $model->userid, 'statushiring' => 4])->one();
+            $getjo = Hiring::find()->where(['userid' => $model->userid, 'statushiring' => 4])->one();
+            $modelrecreq = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
+            $model->oldrecruitreqid = $modelrecreq->id;
+            $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
+            $newhiring = Hiring::find()->where(['userid' => $model->newuserid, 'statushiring' => 4])->one();
             if ($model->save()) {
-                if ($model->userid) {
-                    $getjo = Hiring::find()->where(['userid' => $model->userid, 'statushiring' => 4])->one();
-                    $modelrecreq = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
-                    $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
-
-                    $name = $userprofile->fullname;
-                    $perner = $getjo->perner;
-                    if ($modelrecreq->transjo->n_project == "" || $modelrecreq->transjo->n_project == "Pilih") {
-                        $layanan = $modelrecreq->transjo->project;
-                    } else {
-                        $layanan = $modelrecreq->transjo->n_project;
-                    }
-                    if (Yii::$app->utils->getarea($modelrecreq->area_sap)) {
-                        $area = Yii::$app->utils->getarea($modelrecreq->area_sap);
-                    } else {
-                        $area = '-';
-                    }
-                    if (Yii::$app->utils->getjabatan($modelrecreq->hire_jabatan_sap)) {
-                        $jabatan = Yii::$app->utils->getjabatan($modelrecreq->hire_jabatan_sap);
-                    } else {
-                        $jabatan = '-';
-                    }
-                } else { // jika userid tidak ada maka ambil data dari 88.5 -> service getdatapekerja
-                    $curl = new curl\Curl();
-                    $getdatapekerjabyperner =  $curl->setPostParams([
-                        'perner' => $model->perner,
-                        'token' => 'ish**2019',
-                    ])
-                        ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
-                    $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                    $name = $datapekerjabyperner[0]->CNAME;
-                    $perner = $model->perner;
-                    $layanan = $datapekerjabyperner[0]->WKTXT;
-                    $area = $datapekerjabyperner[0]->BTRTX;
-                    $jabatan = $datapekerjabyperner[0]->PLATX;
+                $name = $userprofile->fullname;
+                $perner = $getjo->perner;
+                if ($modelrecreq->transjo->n_project == "" || $modelrecreq->transjo->n_project == "Pilih") {
+                    $layanan = $modelrecreq->transjo->project;
+                } else {
+                    $layanan = $modelrecreq->transjo->n_project;
                 }
-                if ($model->typechangehiring == 1) {
-                    $to = 'khusnul.hisyam@ish.co.id';
-                    $subject = 'Notifikasi Approvaal Change Hiring Pekerja';
+                if (Yii::$app->utils->getarea($modelrecreq->area_sap)) {
+                    $area = Yii::$app->utils->getarea($modelrecreq->area_sap);
+                } else {
+                    $area = '-';
+                }
+                if (Yii::$app->utils->getskilllayanan($modelrecreq->skill_sap)) {
+                    $skill = Yii::$app->utils->getskilllayanan($modelrecreq->skill_sap);
+                } else {
+                    $skill = '-';
+                }
+                if (Yii::$app->utils->getjabatan($modelrecreq->hire_jabatan_sap)) {
+                    $jabatan = Yii::$app->utils->getjabatan($modelrecreq->hire_jabatan_sap);
+                } else {
+                    $jabatan = '-';
+                }
+                $curl = new curl\Curl();
+                $getlevels = $curl->setPostParams([
+                    'level' => $modelrecreq->level_sap,
+                    'token' => 'ish**2019',
+                ])->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
+                $level  = json_decode($getlevels);
+                $level = ($level) ? $level : "";
+
+                //condition scheme 1-4
+                if ($model->typechangehiring == 1) { //perubahan no jo
+                    //replacemodel
+                    $modelnewrecreq = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
+                    //existingmodel
+                    if ($modelnewrecreq->transjo) {
+                        $newlayanan = $modelnewrecreq->transjo->n_project;
+                    } else {
+                        $newlayanan = '-';
+                    }
+                    // var_dump($newlayanan);die();
+                    if (Yii::$app->utils->getarea($modelnewrecreq->area_sap)) {
+                        $newarea = Yii::$app->utils->getarea($modelnewrecreq->area_sap);
+                    } else {
+                        $newarea = '-';
+                    }
+                    if (Yii::$app->utils->getskilllayanan($modelnewrecreq->skill_sap)) {
+                        $newskill = Yii::$app->utils->getskilllayanan($modelnewrecreq->skill_sap);
+                    } else {
+                        $newskill = '-';
+                    }
+                    if (Yii::$app->utils->getjabatan($modelnewrecreq->hire_jabatan_sap)) {
+                        $newjabatan = Yii::$app->utils->getjabatan($modelnewrecreq->hire_jabatan_sap);
+                    } else {
+                        $newjabatan = '-';
+                    }
+
+                    $to = 'khusnul.hisyam@ish.co.id'; //mailtesting
+                    // $to = 'proman@ish.co.id';
+                    $subject = 'Notifikasi Approval Change No JO Pekerja';
                     $body = Yii::$app->params['mailChangeschema1']; //cek body in utilcomponent -> params
                     $body = str_replace('{creator}', $model->createduser->name, $body);
+                    //existing
                     $body = str_replace('{fullname}', $name, $body);
+                    $body = str_replace('{oldrecruitreqid}', $modelrecreq->nojo, $body);
                     $body = str_replace('{perner}', $perner, $body);
                     $body = str_replace('{layanan}', $layanan, $body);
+                    $body = str_replace('{skill}', $skill, $body);
                     $body = str_replace('{area}', $area, $body);
                     $body = str_replace('{jabatan}', $jabatan, $body);
-                    $body = str_replace('{reason}', $reason, $body);
+                    $body = str_replace('{level}', $level, $body);
+                    //replacement
+                    $body = str_replace('{recruitreqid}', $modelnewrecreq->nojo, $body);
+                    $body = str_replace('{newlayanan}', $newlayanan, $body);
+                    $body = str_replace('{newarea}', $newarea, $body);
+                    $body = str_replace('{newskill}', $newskill, $body);
+                    $body = str_replace('{newjabatan}', $newjabatan, $body);
+                    $body = str_replace('{reason}', $model->changehiringreason->reason, $body);
+                    // var_dump($body);die();
                     $sendmail = Yii::$app->utils->sendmail($to, $subject, $body, 21);
-                } elseif ($model->typechangehiring == 2) {
-                    $to = 'khusnul.hisyam@ish.co.id';
-                    $subject = 'Notifikasi Approvaal Change Hiring Pekerja';
+                } elseif ($model->typechangehiring == 2) { //swap jo
+                    $model->recruitreqid = $modelrecreq;
+                    $model->newrecruitreqid = 
+                    
+                    $to = 'khusnul.hisyam@ish.co.id'; //mailtesting
+                    // $to = 'proman@ish.co.id';
+                    $subject = 'Notifikasi Approval Swap No JO';
                     $body = Yii::$app->params['mailChangeschema2']; //cek body in utilcomponent -> params
                     $body = str_replace('{creator}', $model->createduser->name, $body);
                     $body = str_replace('{fullname}', $name, $body);
@@ -195,11 +239,13 @@ class ChangehiringController extends Controller
                     $body = str_replace('{layanan}', $layanan, $body);
                     $body = str_replace('{area}', $area, $body);
                     $body = str_replace('{jabatan}', $jabatan, $body);
-                    $body = str_replace('{reason}', $reason, $body);
+                    $body = str_replace('{level}', $level, $body);
+                    $body = str_replace('{reason}',$reason, $body);
                     $sendmail = Yii::$app->utils->sendmail($to, $subject, $body, 22);
-                } elseif ($model->typechangehiring == 3) {
-                    $to = 'khusnul.hisyam@ish.co.id';
-                    $subject = 'Notifikasi Approvaal Change Hiring Pekerja';
+                } elseif ($model->typechangehiring == 3) { //ganti tanggal hiring
+                    $to = 'khusnul.hisyam@ish.co.id'; //mailtesting
+                    // $to = 'proman@ish.co.id';
+                    $subject = 'Notifikasi Approval Date Hiring';
                     $body = Yii::$app->params['mailChangeschema3']; //cek body in utilcomponent -> params
                     $body = str_replace('{creator}', $model->createduser->name, $body);
                     $body = str_replace('{fullname}', $name, $body);
@@ -209,9 +255,10 @@ class ChangehiringController extends Controller
                     $body = str_replace('{jabatan}', $jabatan, $body);
                     $body = str_replace('{reason}', $reason, $body);
                     $sendmail = Yii::$app->utils->sendmail($to, $subject, $body, 23);
-                } elseif ($model->typechangehiring == 4) {
-                    $to = 'khusnul.hisyam@ish.co.id';
-                    $subject = 'Notifikasi Approvaal Change Hiring Pekerja';
+                } elseif ($model->typechangehiring == 4) { //ganti periode kontrak
+                    $to = 'khusnul.hisyam@ish.co.id'; //mailtesting
+                    // $to = 'proman@ish.co.id';
+                    $subject = 'Notifikasi Approval Contract Periode';
                     $body = Yii::$app->params['mailChangeschema4']; //cek body in utilcomponent -> params
                     $body = str_replace('{creator}', $model->createduser->name, $body);
                     $body = str_replace('{fullname}', $name, $body);
@@ -231,7 +278,7 @@ class ChangehiringController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'name' => $name,
+                'data' => $data,
                 'reason' => $reason,
             ]);
         }
@@ -453,29 +500,8 @@ class ChangehiringController extends Controller
                 $hire = "Gojobs";
                 $updatecr->fullname = $name;
                 $updatecr->perner = $cekhiring->perner;
-            } else {
-                $updatecr->userid = null;
-                $updatecr->perner = $perner;
-
-                $curl = new curl\Curl();
-                $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $perner,
-                    'token' => 'ish**2019',
-                ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
-                $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                $name = $datapekerjabyperner[0]->CNAME;
-                $persa = $datapekerjabyperner[0]->WKTXT;
-                $area = $datapekerjabyperner[0]->BTRTX;
-                $skilllayanan = $datapekerjabyperner[0]->PEKTX;
-                $payrollarea = $datapekerjabyperner[0]->ABTXT;
-                $jabatan = $datapekerjabyperner[0]->PLATX;
-                $level = $datapekerjabyperner[0]->TRFAR_TXT;
-                $hire = 'Non Gojobs';
-                $updatecr->fullname = $name;
             }
             $checkperner = Changehiring::find()->where('perner = ' . $perner . ' and status > 1 and status <> 5 and status <> 6')->one();
-
             if ($checkperner) {
                 $checkperner = '';
             } else {
@@ -484,6 +510,7 @@ class ChangehiringController extends Controller
             }
 
             $dataprofile = [
+                'nojo' => $getjo->nojo,
                 'perner' => $perner,
                 'name' => $name,
                 'persa' => $persa,
@@ -501,18 +528,162 @@ class ChangehiringController extends Controller
         return Json::encode($dataprofile);
     }
 
+    public function actionGetnewuserabout()
+    {
+        $userid = $_POST['newuserid'];
+        $id = $_POST['id'];
+        $updatecr = $this->findModel($id);
+        if ($userid) {
+            $cekhiring = Hiring::find()->where(['userid' => $userid, 'statushiring' => 4])->one();
+            $perner = $cekhiring->perner;
+            if ($cekhiring) {
+                $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+                $updatecr->userid = $cekhiring->userid;
+                $name = $cekhiring->userprofile->fullname;
+                $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap)) ? Yii::$app->utils->getpersonalarea($getjo->persa_sap) : "";
+                $area = (Yii::$app->utils->getarea($getjo->area_sap)) ? Yii::$app->utils->getarea($getjo->area_sap) : "";
+                $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap)) ? Yii::$app->utils->getskilllayanan($getjo->skill_sap) : "";
+                $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap)) ? Yii::$app->utils->getpayrollarea($getjo->abkrs_sap) : "";
+                $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap)) ? Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap) : "";
+                $curl = new curl\Curl();
+                $getlevels = $curl->setPostParams([
+                    'level' => $getjo->level_sap,
+                    'token' => 'ish**2019',
+                ])
+                    ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
+                $level  = json_decode($getlevels);
+                $level = ($level) ? $level : "";
+                $hire = "Gojobs";
+                $updatecr->fullname = $name;
+                $updatecr->perner = $cekhiring->perner;
+            }
+            $checkperner = Changehiring::find()->where('perner = ' . $perner . ' and status > 1 and status <> 5 and status <> 6')->one();
+
+            if ($checkperner) {
+                $checkperner = '';
+            } else {
+                $checkperner = 1;
+                $updatecr->save(false);
+            }
+
+            $dataprofile = [
+                'nojo' => $getjo->nojo,
+                'perner' => $perner,
+                'name' => $name,
+                'persa' => $persa,
+                'area' => $area,
+                'skilllayanan' => $skilllayanan,
+                'payrollarea' => $payrollarea,
+                'jabatan' => $jabatan,
+                'level' => $level,
+                'hire' => $hire,
+                'checkperner' => $checkperner,
+            ];
+        } else {
+            $dataprofile = '';
+        }
+        return Json::encode($dataprofile);
+    }
+
+    public function actionGetnewrecruitreqid()
+    {
+        $newrecruitreqid = $_POST['recruitreqid'];
+        if ($newrecruitreqid) {
+            $getjo = Transrincian::find()->where(['id' => $newrecruitreqid])->one();
+            $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap)) ? Yii::$app->utils->getpersonalarea($getjo->persa_sap) : "";
+            $area = (Yii::$app->utils->getarea($getjo->area_sap)) ? Yii::$app->utils->getarea($getjo->area_sap) : "";
+            $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap)) ? Yii::$app->utils->getskilllayanan($getjo->skill_sap) : "";
+            $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap)) ? Yii::$app->utils->getpayrollarea($getjo->abkrs_sap) : "";
+            $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap)) ? Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap) : "";
+            $curl = new curl\Curl();
+            $getlevels = $curl->setPostParams([
+                'level' => $getjo->level_sap,
+                'token' => 'ish**2019',
+            ])
+                ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
+            $level  = json_decode($getlevels);
+            $level = ($level) ? $level : "";
+
+            $datarec = [
+                'new_recruitreqid' => $newrecruitreqid,
+                'new_persa' => $persa,
+                'new_area' => $area,
+                'new_skilllayanan' => $skilllayanan,
+                'new_payrollarea' => $payrollarea,
+                'new_jabatan' => $jabatan,
+                'new_level' => $level,
+            ];
+        } else {
+            $datarec = '';
+        }
+        // var_dump($datarec);die();
+        return Json::encode($datarec);
+    }
+
+    public function actionRecreqlist($q = null, $id = null)
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $outs = ['results' => ['id' => '', 'text' => '']];
+        if (!is_null($q)) {
+            $wherecontent = $q;
+            $query =  Transrincian::find()
+                ->select(['trans_rincian_rekrut.id', 'trans_rincian_rekrut.nojo', 'trans_rincian_rekrut.jabatan', 'trans_rincian_rekrut.lokasi', 'projectrekrut' => 'trans_rincian_rekrut.n_project', 'job_function.name_job_function', 'trans_jo.type_replace', 'trans_jo.type_jo', 'trans_jo.n_project', 'trans_jo.project', 'mapping_city.city_name', 'sapjabatan' => 'sapjob.value2', 'trans_rincian_rekrut.hire_jabatan_sap', 'trans_rincian_rekrut.persa_sap', 'trans_rincian_rekrut.area_sap', 'trans_rincian_rekrut.skill_sap', 'level_sap' => 'trans_rincian_rekrut.level_sap', 'saparea' => 'saparea.value2', 'sappersa' => 'sappersonalarea.value2', 'sapskill' => 'sapskilllayanan.value2'])
+
+                ->joinWith("jobfunc")
+                ->joinWith("transjo")
+                ->joinWith("city")
+                ->joinWith("jabatansap")
+                ->joinWith("areasap")
+                ->joinWith("persasap")
+                ->joinWith("skillsap")
+                ->andWhere('trans_rincian_rekrut.skema = 1')
+                ->andWhere([
+                    'or',
+                    ['LIKE', 'trans_rincian_rekrut.nojo', $wherecontent],
+                    ['LIKE', 'trans_rincian_rekrut.id', $wherecontent],
+                    ['LIKE', 'sapjob.value2', $wherecontent],
+                    ['LIKE', 'saparea.value2', $wherecontent],
+                    ['LIKE', 'sappersonalarea.value2', $wherecontent]
+                ])
+                ->orderBy([
+                    'trans_rincian_rekrut.id' => SORT_DESC
+                ])
+                ->limit(200)
+                ->asArray()->all();
+            $out = null;
+            foreach ($query as $key => $value) {
+                $out[] = $value;
+            }
+            if ($out) {
+                $outs['results'] = $out;
+            } else {
+                $outs['results'] = null;
+            }
+        } elseif ($id > 0) {
+            $outs['results'] = ['id' => $id, 'text' => Transrincian::findOne($id)->nojo];
+        } else {
+            $outs['results'] = ['id' => ' ', 'text' => ' '];
+        }
+        // var_dump($outs);die;
+        return $outs;
+    }
+
     public function actionAutosave()
     {
         $id = $_POST['id'];
         $userid = $_POST['userid'];
         $cancelhiring = $_POST['cancelhiring'];
         $reason = $_POST['reason'];
+        $type = $_POST['typechangehiring'];
+        $userremarks = $_POST['userremarks'];
         if ($id) {
             $model = $this->findModel($id);
             $model->userid = $userid;
             $model->cancelhiring = $cancelhiring;
             $model->reason = $reason;
+            $model->typechangehiring = $type;
             $model->remarks = "Draft";
+            $model->userremarks = $userremarks;
             $model->save(false);
         }
     }

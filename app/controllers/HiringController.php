@@ -289,21 +289,23 @@ class HiringController extends Controller
     $cekpaycontroll =  $curl->setPostParams([
       'token' => 'ish@2019!',
       'ABKRS' => $transrincian->abkrs_sap,
-    ])->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
+      ])->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
     $payrollcontrollresult  = json_decode($cekpaycontroll);
+    // var_dump($payrollcontrollresult);die;
     if ($payrollcontrollresult->status == 1) {
-      $cekposition =  $curl->setPostParams([
-        'token' => 'ish@2019!',
-        'STELL' => $transrincian->hire_jabatan_sap,
-        'WERKS' => $transrincian->persa_sap,
-        'PERSK' => $transrincian->skill_sap,
-        'BTRTL' => $transrincian->area_sap,
-        'ABKRS' => $transrincian->abkrs_sap,
-      ])
-        ->post('http://192.168.88.5/service/index.php/Rfccekposisi');
-      $cekpositionresult  = json_decode($cekposition);
-      if ($cekpositionresult) {
-        if ($cekpositionresult->CODE == 'S') {
+      // $cekposition =  $curl->setPostParams([
+      //   'token' => 'ish@2019!',
+      //   'STELL' => $transrincian->hire_jabatan_sap,
+      //   'WERKS' => $transrincian->persa_sap,
+      //   'PERSK' => $transrincian->skill_sap,
+      //   'BTRTL' => $transrincian->area_sap,
+      //   'ABKRS' => $transrincian->abkrs_sap,
+      //   ])
+      //   ->post('http://192.168.88.5/service/index.php/Rfccekposisi');
+      //   $cekpositionresult  = json_decode($cekposition);
+      //   var_dump($cekpositionresult);die;
+      // if ($cekpositionresult) {
+      //   if ($cekpositionresult->CODE == 'S') {
           if ($userprofile->gender == 'male') {
             $gender = '1';
           } else {
@@ -409,22 +411,25 @@ class HiringController extends Controller
             $model->save();
           }
           print_r(json_encode($ret));
-        } else {
-          $model->statushiring = 3;
-          $model->message = 'VACANT POSITION NOT FOUND';
-          $model->save();
-          $retpos = ['status' => "NOK", 'message' => 'VACANT POSITION NOT FOUND', 'pernr' => null];
-          print_r(json_encode($retpos));
         }
-      } else {
-        $model->statushiring = 3;
-        $model->message = 'You have already locked Position';
-        $model->save();
-        $retpos = ['status' => "NOK", 'message' => 'You have already locked Position', 'pernr' => null];
-        print_r(json_encode($retpos));
-      }
+        // else {
+        //   $model->statushiring = 3;
+        //   $model->message = 'VACANT POSITION NOT FOUND';
+        //   $model->save();
+        //   $retpos = ['status' => "NOK", 'message' => 'VACANT POSITION NOT FOUND', 'pernr' => null];
+        //   print_r(json_encode($retpos));
+        // }
+      // } 
+      // else {
+      //   $model->statushiring = 3;
+      //   $model->message = 'You have already locked Position';
+      //   $model->save();
+      //   $retpos = ['status' => "NOK", 'message' => 'You have already locked Position', 'pernr' => null];
+      //   print_r(json_encode($retpos));
+      // }
       // return $this->redirect(['index']);
-    } else {
+    // }
+    else {
       $model->statushiring = 3;
       $model->message = 'You have already locked payroll controll';
       $model->save();
@@ -440,15 +445,15 @@ class HiringController extends Controller
       $subject = 'Pemberitahuan PT Infomedia Solusi Humanika';
       $body = Yii::$app->params['mailFeedback'];
       $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
-      if ($verification) {
-        $to = 'khusnul.hisyam@ish.co.id';
-        $subject = 'Informasi Approve Hiring';
-        $body = Yii::$app->params['mailLog'];
-        $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
-        $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
-        $body = str_replace('{area}', $transrincian->areasap->value2, $body);
-        $sendmail = Yii::$app->utils->sendmail($to, $subject, $body, 9);
-      }
+      // if ($verification) {
+      //   $to = 'khusnul.hisyam@ish.co.id';
+      //   $subject = 'Informasi Approve Hiring';
+      //   $body = Yii::$app->params['mailLog'];
+      //   $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
+      //   $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
+      //   $body = str_replace('{area}', $transrincian->areasap->value2, $body);
+      //   $sendmail = Yii::$app->utils->sendmail($to, $subject, $body, 9);
+      // }
     }
     // } 
 
