@@ -22,15 +22,17 @@ use Yii;
  * @property string $remarks
  * @property int $reason
  * @property string $fullname
- * @property string $cancelhiring
- * @property string $hiringdate
- * @property string $newhiringdate
- * @property string $contractperiode
- * @property string $newcontractperiode
+ * @property string $changehiring
+ * @property string $tglinput
+ * @property string $oldtglinput
+ * @property string $awalkontrak
+ * @property string $oldawalkontrak
  * @property int $typechangehiring
  * @property string $userremarks
- * @property int $flag
+ * @property string $akhirkontrak
+ * @property string $oldakhirkontrak
  */
+
 class Changehiring extends \yii\db\ActiveRecord
 {
     public $checkperner;
@@ -54,9 +56,9 @@ class Changehiring extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['userid', 'perner', 'recruitreqid', 'oldrecruitreqid', 'createdby', 'approvedby', 'status', 'reason', 'typechangehiring', 'flag'], 'integer'],
-            // [['oldrecruitreqid', 'newhiringdate', 'newcontractperiode'], 'required'],
-            [['createtime', 'updatetime', 'approvedtime','remarks', 'userremarks', 'cancelhiring', 'hiringdate', 'newhiringdate', 'contractperiode', 'newcontractperiode'], 'safe'],
+            [['userid', 'newuserid', 'perner', 'recruitreqid', 'oldrecruitreqid', 'createdby', 'approvedby', 'status', 'reason', 'typechangehiring'], 'integer'],
+            [['status'], 'required', 'on' => "approve"],
+            [['createtime', 'updatetime', 'approvedtime', 'remarks', 'userremarks', 'changehiring', 'tglinput', 'oldtglinput', 'awalkontrak', 'akhirkontrak', 'oldawalkontrak', 'oldakhirkontrak'], 'safe'],
             [['checkperner'], 'required', 'message' => 'this perner has been on processed Change Hiring', 'on' => 'createupdate'],
             [['fullname'], 'string', 'max' => 255],
         ];
@@ -85,12 +87,13 @@ class Changehiring extends \yii\db\ActiveRecord
             'reason' => 'Reason',
             'typechangehiring' => 'Type Change Hiring',
             'fullname' => 'Fullname',
-            'cancelhiring' => 'Cancel hiring',
-            'hiringdate' => 'Hiring date',
-            'newhiringdate' => 'Existing Hiring date',
-            'contractperiode' => 'Contract periode',
-            'newcontractperiode' => 'Existing contract periode',
-            'flag' => 'Flag',
+            'changehiring' => 'Cancel hiring',
+            'tglinput' => 'Hiring Date',
+            'oldtglinput' => 'Existing Hiring date',
+            'awalkontrak' => 'Awal Kontrak',
+            'akhirkontrak' => 'Akhir Kontrak',
+            'oldawalkontrak' => 'Existing Awal Kontrak',
+            'oldakhirkontrak' => 'Existing Akhir Kontrak',
         ];
     }
 
@@ -174,5 +177,4 @@ class Changehiring extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Transrincian::className(), ['jabatan_sap', 'hire_jabatan_sap']);
     }
-
 }

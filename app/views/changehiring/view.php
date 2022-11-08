@@ -152,11 +152,11 @@ $this->params['breadcrumbs'][] = $this->title;
           'attribute' => 'reason',
           'format' => 'html',
           'value' => function ($data) {
-            return ($data->reason) ? $data->canceljoinreason->reason : "<i class='text-red'>not set</i>";
+            return ($data->reason) ? $data->changehiringreason->reason : "<i class='text-red'>not set</i>";
           }
         ],
 
-        'cancelhiring',
+        'changehiring',
 
         [
           'label' => 'Approver',
@@ -186,6 +186,7 @@ $this->params['breadcrumbs'][] = $this->title;
           }
         ],
         'remarks',
+        'userremarks',
         [
           'attribute' => 'createdby',
           'format' => 'html',
@@ -198,6 +199,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'createtime',
         'updatetime',
         'approvedtime',
+
       ],
     ]) ?>
   </div>

@@ -31,14 +31,6 @@ Modal::begin([
 echo "<div id='approvecrhiring-view'></div>";
 Modal::end();
 
-Modal::begin([
-    'header'=>'<h4 class="modal-title">Confirmation Change Hiring</h4>',
-    'id'=>'confirmcrhiring-modal',
-    'size'=>'modal-lg'
-]);
-echo "<div id='confirmcrhiring-view'></div>";
-Modal::end();
-
 if(Yii::$app->user->isGuest){
   $role = null;
 }else{
@@ -49,23 +41,20 @@ $actionview = '';
 $actionupdate = '';
 $actiondelete = '';
 $actionapprove = '';
-$actionconfirmation = '';
-if(Yii::$app->utils->permission($role,'m88')){
+
+if(Yii::$app->utils->permission($role,'m93')){
   $actionview = '{view}';
 }
-if(Yii::$app->utils->permission($role,'m90')){
+if(Yii::$app->utils->permission($role,'m94')){
   $actionupdate = '{update}';
 }
-if(Yii::$app->utils->permission($role,'m91')){
+if(Yii::$app->utils->permission($role,'m95')){
   $actiondelete = '{delete}';
 }
-if(Yii::$app->utils->permission($role,'m92')){
+if(Yii::$app->utils->permission($role,'m96')){
   $actionapprove = '{approve}';
 }
-if (Yii::$app->user->identity->username == '9802618' || Yii::$app->user->identity->username == '9103005' || Yii::$app->user->identity->username == "seysi.lupi1@ish.co.id") {
-  $actionconfirmation = '{confirmation}';
-}
-$action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirmation;
+$action = $actionview.$actionupdate.$actiondelete.$actionapprove;
 ?>
 <div class="changehiring-index box box-default">
   <?php if(Yii::$app->utils->permission($role,'m68')): ?>
@@ -109,37 +98,52 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
             ],
 
             [
-              'label' => 'No JO',
+              'label' => 'Existing',
               'format' => 'html',
               'value' => function ($data) {
-                if ($data->userid) {
-                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
-                  if ($cekhiring) {
-                    $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
-                  }
-                  return ($getjo) ? $getjo->nojo : '-';
+                if ($data->oldrecruitreqid) {
+                  $getjo = Transrincian::find()->where(['id' => $data->oldrecruitreqid])->one();
+                  return
+                    'No JO Existing:<br>' . ($getjo->nojo);
+                } elseif ($data->oldtglinput) {
+                  return
+                    'Date Hiring Existing:<br>' . ($data->oldtglinput);
+                } elseif ($data->oldawalkontrak || $data->oldakhirkontrak) {
+                  return
+                    'Contract Periode Existing:<br>' . ($data->oldawalkontrak) . " - " . ($data->oldakhirkontrak);
+                } else {
+                  return "-";
                 }
-              }
+              } 
             ],
-
+            
             [
               'label' => 'Replacement',
               'format' => 'html',
               'value' => function ($data) {
-                return 
-                "No JO: " . ($data->oldrecruitreqid) . "<br>" .
-                "Date Hiring: " . ($data->newhiringdate) . "<br>" .
-                "Contract Periode: " . ($data->newcontractperiode);
+                if ($data->recruitreqid) {
+                  $getjo = Transrincian::find()->where(['id' => $data->recruitreqid])->one();
+                  return
+                    'No JO Replacement:<br>' . ($getjo->nojo);
+                } elseif ($data->tglinput) {
+                  return
+                    'Date Hiring Replacement:<br>' . ($data->tglinput);
+                } elseif ($data->awalkontrak || $data->akhirkontrak) {
+                  return
+                    'Contract Periode Replacement:<br>' . ($data->awalkontrak) . " - " . ($data->akhirkontrak);
+                } else {
+                  return "-";
+                }
               } 
             ],
 
             [
-              'label' => 'Cancel Hiring',
-              'attribute' => 'cancelhiring',
+              'label' => 'Change Hiring Date',
+              'attribute' => 'changehiring',
               'contentOptions'=>['style'=>'min-width: 100px;'],
               'format' => 'html',
               'value'=>function ($data) {
-                return $data->cancelhiring;
+                return $data->changehiring;
               }
             ],
 
@@ -234,22 +238,6 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove.$actionconfirma
                       'data-toggle'=>'tooltip',
                       'data-placement'=>'bottom',
                       'title'=>'Approve'
-                  ]);
-                  return $btn;
-              },
-              'confirmation' => function($url,$model,$key){
-                if($model->status == 8){
-                  $disabled = false;
-                }else{
-                  $disabled = true;
-                }
-                  $btn = Html::button('<i class="fa fa-check-square-o" style="font-size:12pt;"></i>',[
-                      'value'=>Yii::$app->urlManager->createUrl('changehiring/confirmcancel?id='.$model->id), //<---- here is where you define the action that handles the ajax request
-                      'class'=> 'btn btn-sm btn-success confirmcrhiring-modal-click',
-                      'disabled' => $disabled,
-                      'data-toggle'=>'tooltip',
-                      'data-placement'=>'bottom',
-                      'title'=>'Confirm'
                   ]);
                   return $btn;
               },

@@ -436,14 +436,9 @@ return [
         <td valign="top">{level}</td>
     </tr>
     <tr>    
-        <td valign="top">Tanggal Hiring</td>
-        <td valign="top">:</td>
-        <td valign="top">{hiringdate}</td>
-    </tr>
-    <tr>    
     <td valign="top">Periode Kontrak</td>
     <td valign="top">:</td>
-    <td valign="top">{contractperiode}</td>
+    <td valign="top">{oldawalkontrak} - {oldakhirkontrak}</td>
     </tr>
     </table>
     <br>Diubah Menjadi<br>
@@ -451,7 +446,7 @@ return [
     <tr>    
         <td valign="top">Periode Kontrak (Pergantian)</td>
         <td valign="top">:</td>
-        <td valign="top">{newcontractperiode}</td>
+        <td valign="top">{awalkontrak} - {akhirkontrak}</td>
     </tr>
     <br>
     <tr>    

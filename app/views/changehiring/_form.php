@@ -12,7 +12,7 @@ use kartik\file\FileInput;
 /* @var $form yii\widgets\ActiveForm */
 
 $recruitreqs = empty($model->recruitreqid) ? '' : Transrincian::findOne($model->recruitreqid)->nojo;
-$model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->cancelhiring;
+$model->changehiring = ($model->changehiring == "0000-00-00") ? null : $model->changehiring;
 ?>
 <?php $form = ActiveForm::begin(); ?>
 <div class="row">
@@ -37,11 +37,11 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
         ?>
 
         <?= $form->field($model, 'checkperner')->hiddenInput(['id' => 'checkperner'])->label(false) ?>
-        <?= $form->field($model, 'cancelhiring')->widget(
+        <?= $form->field($model, 'changehiring')->widget(
           DatePicker::className(),
           [
             'type' => DatePicker::TYPE_COMPONENT_APPEND,
-            'options' => ['placeholder' => 'Date', 'id' => 'cancelhiring', 'onChange' => "autosave();"],
+            'options' => ['placeholder' => 'Date', 'id' => 'changehiring', 'onChange' => "autosave();"],
             'pluginOptions' => [
               'autoclose' => true,
               'format' => 'yyyy-mm-dd',
@@ -242,12 +242,11 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
         </div>
         <!-- condition three -->
         <div id="formdatehiring" style="<?php echo $displayformdatehiring; ?>">
-          <?= $form->field($model, 'hiringdate')->textInput(['disabled' => true]); ?>
-          <?= $form->field($model, 'newhiringdate')->widget(
+          <?= $form->field($model, 'tglinput')->widget(
             DatePicker::className(),
             [
               'type' => DatePicker::TYPE_COMPONENT_APPEND,
-              'options' => ['placeholder' => 'Date', 'id' => 'newhiringdate'],
+              'options' => ['placeholder' => 'Date', 'id' => 'tglinput', 'onChange' => 'getchangedatehiring();'],
               'pluginOptions' => [
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd',
@@ -259,12 +258,24 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
         </div>
         <!-- condition four -->
         <div id="formcontractperiode" style="<?php echo $displayformcontractperiode; ?>">
-          <?= $form->field($model, 'contractperiode')->textInput(['disabled' => true]); ?>
-          <?= $form->field($model, 'newcontractperiode')->widget(
+          <?= $form->field($model, 'awalkontrak')->widget(
             DatePicker::className(),
             [
               'type' => DatePicker::TYPE_COMPONENT_APPEND,
-              'options' => ['placeholder' => 'Date', 'id' => 'newcontractperiode'],
+              'options' => ['placeholder' => 'Date', 'id' => 'awalkontrak', 'onChange' => 'getchangedatecontract();'],
+              'pluginOptions' => [
+                'autoclose' => true,
+                'format' => 'yyyy-mm-dd',
+                'todayHighlight' => true
+              ]
+            ]
+          );
+          ?>
+          <?= $form->field($model, 'akhirkontrak')->widget(
+            DatePicker::className(),
+            [
+              'type' => DatePicker::TYPE_COMPONENT_APPEND,
+              'options' => ['placeholder' => 'Date', 'id' => 'akhirkontrak'],
               'pluginOptions' => [
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd',
@@ -291,44 +302,54 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
         <table class="table no-border">
           <tbody>
             <tr>
-              <td width="12%"><b>Perner</b></td>
+              <td width="20%"><b>Perner</b></td>
               <td width="30%" id="pernerdisp">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>No JO (Recruitreqid)</b></td>
+              <td width="20%"><b>No JO (Recruitreqid)</b></td>
               <td width="30%" id="nojo">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Name</b></td>
+              <td width="20%"><b>Name</b></td>
               <td width="30%" id="name">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Personal Area</b></td>
+              <td width="20%"><b>Personal Area</b></td>
               <td width="30%" id="persa">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Area</b></td>
+              <td width="20%"><b>Area</b></td>
               <td width="30%" id="area">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Skill Layanan</b></td>
+              <td width="20%"><b>Skill Layanan</b></td>
               <td width="30%" id="skilllayanan">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Payroll Area</b></td>
+              <td width="20%"><b>Payroll Area</b></td>
               <td width="30%" id="payrollarea">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Jabatan</b></td>
+              <td width="20%"><b>Jabatan</b></td>
               <td width="30%" id="jabatan">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Level</b></td>
+              <td width="20%"><b>Level</b></td>
               <td width="30%" id="level">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Hiring From</b></td>
+              <td width="20%"><b>Hiring From</b></td>
               <td width="30%" id="hire">-</td>
+            </tr>
+            <tr>
+              <td width="20%"><b>Hiring Date Existing</b></td>
+              <td width="30%" id="hiringdate">-</td>
+            </tr>
+            <tr>
+              <td width="20%"><b>Contract Periode Existing</b></td>
+              <td width="30%" id="cpstart">-</td>
+              <td width="30%"> s/d</td>
+              <td width="30%" id="cpend">-</td>
             </tr>
           </tbody>
         </table>
@@ -345,27 +366,27 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
         <table class="table no-border" id="infocaseone" style="<?php echo $displayformcaseone; ?>">
           <tbody>
             <tr>
-              <td width="12%"><b>No JO</b></td>
+              <td width="20%"><b>No JO</b></td>
               <td width="30%" id="newrec_recruitreqid">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Personal Area</b></td>
+              <td width="20%"><b>Personal Area</b></td>
               <td width="30%" id="newrec_persa">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Area</b></td>
+              <td width="20%"><b>Area</b></td>
               <td width="30%" id="newrec_area">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Skill Layanan</b></td>
+              <td width="20%"><b>Skill Layanan</b></td>
               <td width="30%" id="newrec_skilllayanan">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Payroll Area</b></td>
+              <td width="20%"><b>Payroll Area</b></td>
               <td width="30%" id="newrec_payrollarea">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Jabatan</b></td>
+              <td width="20%"><b>Jabatan</b></td>
               <td width="30%" id="newrec_jabatan">-</td>
             </tr>
           </tbody>
@@ -374,43 +395,43 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
         <table class="table no-border" id="infocasetwo" style="<?php echo $displayformcasetwo; ?>">
           <tbody>
             <tr>
-              <td width="12%"><b>Perner</b></td>
+              <td width="20%"><b>Perner</b></td>
               <td width="30%" id="newpernerdisp">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>No JO (Recruitreqid)</b></td>
+              <td width="20%"><b>No JO (Recruitreqid)</b></td>
               <td width="30%" id="newnojo">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Name</b></td>
+              <td width="20%"><b>Name</b></td>
               <td width="30%" id="newname">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Personal Area</b></td>
+              <td width="20%"><b>Personal Area</b></td>
               <td width="30%" id="newpersa">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Area</b></td>
+              <td width="20%"><b>Area</b></td>
               <td width="30%" id="newarea">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Skill Layanan</b></td>
+              <td width="20%"><b>Skill Layanan</b></td>
               <td width="30%" id="newskilllayanan">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Payroll Area</b></td>
+              <td width="20%"><b>Payroll Area</b></td>
               <td width="30%" id="newpayrollarea">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Jabatan</b></td>
+              <td width="20%"><b>Jabatan</b></td>
               <td width="30%" id="newjabatan">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Level</b></td>
+              <td width="20%"><b>Level</b></td>
               <td width="30%" id="newlevel">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Hiring From</b></td>
+              <td width="20%"><b>Hiring From</b></td>
               <td width="30%" id="newhire">-</td>
             </tr>
           </tbody>
@@ -419,11 +440,7 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
         <table class="table no-border" id="infocasethree" style="<?php echo $displayformcasethree; ?>">
           <tbody>
             <tr>
-              <td width="12%"><b>Hiring Date Existing</b></td>
-              <td width="30%" id="hiringdateexisting">-</td>
-            </tr>
-            <tr>
-              <td width="12%"><b>Hiring Date Replacement</b></td>
+              <td width="20%"><b>Hiring Date Replacement</b></td>
               <td width="30%" id="hiringdatereplacement">-</td>
             </tr>
           </tbody>
@@ -432,12 +449,10 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
         <table class="table no-border" id="infocasefour" style="<?php echo $displayformcasefour; ?>">
           <tbody>
             <tr>
-              <td width="12%"><b>Contract Periode Existing</b></td>
-              <td width="30%" id="contractexisting">-</td>
-            </tr>
-            <tr>
-              <td width="12%"><b>Contract Periode Replacement</b></td>
-              <td width="30%" id="contractreplacement">-</td>
+              <td width="20%"><b>Contract Periode Existing</b></td>
+              <td width="30%" id="cpstartreplacement">-</td>
+              <td width="30%"> s/d</td>
+              <td width="30%" id="cpendreplacement">-</td>
             </tr>
           </tbody>
         </table>
@@ -456,7 +471,7 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
 <script>
   function autosave() {
     var userid = $('#userid').val();
-    var cancelhiringdate = $('#cancelhiring').val();
+    var changehiringdate = $('#changehiring').val();
     var reasonid = $('#reason').val();
     var typechangehiring = $('#typechangehiring').val();
     var userremarks = $('#userremarks').val();
@@ -466,7 +481,7 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
       cache: false,
       data: {
         userid: userid,
-        cancelhiring: cancelhiringdate,
+        changehiring: changehiringdate,
         reason: reasonid,
         typechangehiring: typechangehiring,
         userremarks: userremarks,
@@ -563,6 +578,9 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
         var jabatan = '';
         var level = '';
         var hire = '';
+        var hiringdate = '';
+        var cpstart = '';
+        var cpend = '';
         var checkperner = '';
 
         if (obj.perner) {
@@ -595,6 +613,15 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
         if (obj.hire) {
           var hire = obj.hire;
         }
+        if (obj.hiringdate) {
+          var hiringdate = obj.hiringdate;
+        }
+        if (obj.cpstart) {
+          var cpstart = obj.cpstart;
+        }
+        if (obj.cpend) {
+          var cpend = obj.cpend;
+        }
         if (obj.checkperner) {
           var checkperner = obj.checkperner;
         }
@@ -609,6 +636,9 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
         document.getElementById('jabatan').innerHTML = jabatan;
         document.getElementById('level').innerHTML = level;
         document.getElementById('hire').innerHTML = hire;
+        document.getElementById('hiringdate').innerHTML = hiringdate;
+        document.getElementById('cpstart').innerHTML = cpstart;
+        document.getElementById('cpend').innerHTML = cpend;
         $("#checkperner").val(checkperner);
 
       },
@@ -693,4 +723,5 @@ $model->cancelhiring = ($model->cancelhiring == "0000-00-00") ? null : $model->c
       },
     });
   }
+
 </script>

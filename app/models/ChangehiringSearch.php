@@ -19,7 +19,7 @@ class Changehiringsearch extends Changehiring
     {
         return [
             [['id', 'userid', 'newuserid', 'perner', 'recruitreqid', 'oldrecruitreqid', 'createdby', 'approvedby', 'status', 'reason', 'typechangehiring'], 'integer'],
-            [['createtime', 'updatetime', 'approvedtime', 'fullname', 'cancelhiring', 'hiringdate', 'newhiringdate', 'contractperiode', 'newcontractperiode'], 'safe'],
+            [['createtime', 'updatetime', 'approvedtime', 'fullname', 'changehiring', 'tglinput', 'oldtglinput', 'awalkontrak','oldawalkontrak', 'akhirkontrak', 'oldakhirkontrak'], 'safe'],
         ];
     }
 
@@ -72,11 +72,13 @@ class Changehiringsearch extends Changehiring
             'approvedby' => $this->approvedby,
             'status' => $this->status,
             'reason' => $this->reason,
-            'cancelhiring' => $this->cancelhiring,
-            'hiringdate' => $this->hiringdate,
-            'newhiringdate' => $this->newhiringdate,
-            'contractperiode' => $this->contractperiode,
-            'newcontractperiode' => $this->newcontractperiode,
+            'changehiring' => $this->changehiring,
+            'tglinput' => $this->tglinput,
+            'oldtglinput' => $this->oldtglinput,
+            'awalkontrak' => $this->awalkontrak,
+            'oldawalkontrak' => $this->oldawalkontrak,
+            'akhirkontrak' => $this->akhirkontrak,
+            'oldakhirkontrak' => $this->oldakhirkontrak,
             'typechangehiring' => $this->typechangehiring,
         ]);
 

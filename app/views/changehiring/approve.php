@@ -162,12 +162,7 @@ use linslin\yii2\curl;
   </div>
   <div class="col-md-12">
     <div class="chagerequestjo-form">
-      <?php $form = ActiveForm::begin([
-        'options' => [
-          'enctype' => 'multipart/form-data',
-          'id' => 'stopjo-form'
-        ]
-      ]); ?>
+      <?php $form = ActiveForm::begin(); ?>
       <div class="box-body table-responsive">
 
         <?php
@@ -179,7 +174,7 @@ use linslin\yii2\curl;
             'allowClear' => false,
             'initialize' => true,
           ],
-        ])->label('');
+          ])->label('Action');
         ?>
       </div>
       <br>
