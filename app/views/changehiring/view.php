@@ -195,7 +195,7 @@ $this->params['breadcrumbs'][] = $this->title;
             return ($data->createduser) ? $data->createduser->name : "";
           }
         ],
-
+        
         'createtime',
         'updatetime',
         'approvedtime',

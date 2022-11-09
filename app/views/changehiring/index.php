@@ -162,7 +162,7 @@ $action = $actionview.$actionupdate.$actiondelete.$actionapprove;
               'attribute' => 'approveduser',
               'format' => 'html',
               'value'=>function ($data) {
-                return ($data->approveduser)?$data->approveduser->name: "PM";
+                return ($data->approveduser)?$data->approveduser->name: "-";
               }
             ],
 

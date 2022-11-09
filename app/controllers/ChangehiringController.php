@@ -356,15 +356,15 @@ class ChangehiringController extends Controller
     {
         $model = $this->findModel($id);
         $userid = $model->userid;
+        $perner = $model->perner;
         $userprofile = Userprofile::find()->where(['userid' => $userid])->one();
         $hiring = Hiring::find()->where(['userid' => $userid])->one();
         $modelrecreq = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
-        $modelreccan = Recruitmentcandidate::find()->where(['userid' => $userid, 'recruitreqid' => $model->recruitreqid])->one();
+        $modelreccan = Recruitmentcandidate::find()->where(['userid' => $userid])->one();
         $model->scenario = 'approve';
         if ($model->load(Yii::$app->request->post())) {
             $model->approvedtime = date('Y-m-d H-i-s');
             if ($model->status == 8) { //approve -> check form
-                // var_dump('dd');die;
                 // $hiring->statusbiodata = 0;
                 if ($model->typechangehiring == 1) {
                     $hiring->recruitreqid = $model->recruitreqid;
@@ -391,8 +391,8 @@ class ChangehiringController extends Controller
                     return 0;
                 }
                 
-                $updatesap = $this->UpdateSapPersonaldata($id, $userid);
-                var_dump($updatesap);die;
+                $updatesap = $this->UpdateSapPersonaldata($id, $userid, $perner);
+                // var_dump($updatesap);die;
                 if ($updatesap) {
                     $model->remarks = $updatesap;
                     $model->status = 6;
@@ -663,205 +663,172 @@ class ChangehiringController extends Controller
         }
     }
 
-    protected function UpdateSapPersonaldata($id, $userid)
+    protected function UpdateSapPersonaldata($id, $userid, $perner)
     {
         $model = Hiring::find()->where(['userid' => $userid, 'statushiring' => 4])->one();
-        $tglinputhiring = date_create($model->tglinput);
-        $tglinput = date_format($tglinputhiring, 'd.m.Y');
-        $userabout = Userabout::find()->where(['userid' => $model->userid])->one();
         $transrincian = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
-        $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
-        $birthdate = date_create($userprofile->birthdate);
+        
         $tglinput = date_create($model->tglinput);
         $awalkontrak = date_create($model->awalkontrak);
         $akhirkontrak = date_create($model->akhirkontrak);
-        $wedingdate = date_create($userprofile->weddingdate);
-        $url = "http://192.168.88.60:8080/ish-rest/ZINFHRF_00025";
-        if ($userprofile->gender == 'male') {
-            $gender = '1';
-            if ($userprofile->maritalstatus == 'married') {
-                $spben = 'X';
+        // var_dump($tglinput);die();
+        $curl = new curl\Curl();
+        $getdatapekerjabyperner =  $curl->setPostParams([
+            'perner' => $perner,
+            'token' => 'ish**2019',
+        ])->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
+        $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+        $ABKRS = $datapekerjabyperner[0]->ABKRS;
+
+        $curl = new curl\Curl();
+        $cekpaycontroll =  $curl->setPostParams([
+            'token' => 'ish@2019!',
+            'ABKRS' => $ABKRS,
+        ])
+            ->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
+        $payrollcontrollresult  = json_decode($cekpaycontroll);
+        // var_dump($cekpaycontroll);die;
+        if ($payrollcontrollresult->status == 1) {
+            $url = "http://192.168.88.60:8080/ish-rest/ZINFHRF_00025";
+
+            if ($model->typechangehiring == 1) {
+                $infotype = ['0001'];
+            } elseif ($model->typechangehiring == 2) {
+                $infotype = ['0001', '0002'];
+            } elseif ($model->typechangehiring == 3) {
+                $infotype = ['0016', '0035'];
+            } elseif ($model->typechangehiring == 4) {
+                $infotype = ['0041'];
             } else {
-                $spben = '';
+                return 0;
             }
-        } else {
-            $gender = '2';
-            if ($userprofile->maritalstatus == 'married') {
-                $spben = 'X';
-            } else {
-                $spben = '';
+
+            if ($transrincian->kontrak == 'PKWT') {
+                $cttyp = '02';
+            } elseif ($transrincian->kontrak == 'PARTTIME' or $transrincian->kontrak == 'Part Time') {
+                $cttyp = '09';
+            } elseif ($transrincian->kontrak == 'MAGANG') {
+                $cttyp = '10';
+            } elseif ($transrincian->kontrak == 'KEMITRAAN') {
+                $cttyp = '08';
+            } elseif ($transrincian->kontrak == 'THL') {
+                $cttyp = '07';
+            } elseif ($transrincian->kontrak == 'PKWT-KEMITRAAN PB') {
+                $cttyp = '11';
             }
-        }
-        if ($userprofile->religion == 'islam') {
-            $agama = '01';
-        } elseif ($userprofile->religion == 'christian') {
-            $agama = '02';
-        } elseif ($userprofile->religion == 'protestant') {
-            $agama = '02';
-        } elseif ($userprofile->religion == 'hindu') {
-            $agama = '04';
-        } elseif ($userprofile->religion == 'buddha') {
-            $agama = '05';
-        } elseif ($userprofile->religion == 'catholic') {
-            $agama = '03';
-        } else {
-            $agama = '07';
-        }
-        if ($model->flaginfotype022 == 1 and $model->flaginfotype021 == 1) {
-            if ($userprofile->maritalstatus == 'single') {
-                $statuskawin = '0';
-                $marrd = '';
-                $marst = '';
-                $infotype = ['0041', '0006', '0028', '0185', '0241', '0242', '0009', '0008', '0016', '0035', '0037'];
-            } else {
-                $statuskawin = '1';
-                $marrd = 'X';
-                $marst = 'X';
-                $infotype = ['0002', '0041', '0006', '0028', '0185', '0241', '0242', '0009', '0008', '0016', '0035', '0037'];
-            }
-        } else if ($model->flaginfotype022 == 1) {
-            if ($userprofile->maritalstatus == 'single') {
-                $statuskawin = '0';
-                $marrd = '';
-                $marst = '';
-                $infotype = ['0041', '0006', '0021', '0028', '0185', '0241', '0242', '0009', '0008', '0016', '0035', '0037'];
-            } else {
-                $statuskawin = '1';
-                $marrd = 'X';
-                $marst = 'X';
-                $infotype = ['0002', '0041', '0006', '0021', '0028', '0185', '0241', '0242', '0009', '0008', '0016', '0035', '0037'];
-            }
-        } else if ($model->flaginfotype021 == 1) {
-            if ($userprofile->maritalstatus == 'single') {
-                $statuskawin = '0';
-                $marrd = '';
-                $marst = '';
-                $infotype = ['0041', '0006', '0022', '0028', '0185', '0241', '0242', '0009', '0008', '0016', '0035', '0037'];
-            } else {
-                $statuskawin = '1';
-                $marrd = 'X';
-                $marst = 'X';
-                $infotype = ['0002', '0041', '0006', '0022', '0028', '0185', '0241', '0242', '0009', '0008', '0016', '0035', '0037'];
-            }
-        } else {
-            if ($userprofile->maritalstatus == 'single') {
-                $statuskawin = '0';
-                $marrd = '';
-                $marst = '';
-                $infotype = ['0041', '0006', '0021', '0022', '0028', '0185', '0241', '0242', '0009', '0008', '0016', '0035', '0037'];
-            } else {
-                $statuskawin = '1';
-                $marrd = 'X';
-                $marst = 'X';
-                $infotype = ['0002', '0041', '0006', '0021', '0022', '0028', '0185', '0241', '0242', '0009', '0008', '0016', '0035', '0037'];
-            }
-        }
 
-        if ($transrincian->kontrak == 'PKWT') {
-            $cttyp = '02';
-        } elseif ($transrincian->kontrak == 'PARTTIME' or $transrincian->kontrak == 'Part Time') {
-            $cttyp = '09';
-        } elseif ($transrincian->kontrak == 'MAGANG') {
-            $cttyp = '10';
-        } elseif ($transrincian->kontrak == 'KEMITRAAN') {
-            $cttyp = '08';
-        } elseif ($transrincian->kontrak == 'THL') {
-            $cttyp = '07';
-        } elseif ($transrincian->kontrak == 'PKWT-KEMITRAAN PB') {
-            $cttyp = '11';
-        }
+            $request_data = [
+                [
+                    'pernr' => "$model->perner",
+                    'inftypList' => $infotype,
 
-        $request_data = [
-            [
-                'pernr' => "$model->perner",
-                'inftypList' => $infotype,
+                    'p00001List' => [
+                        [
+                            'PERNR' => "$model->perner",
+                            'SUBTY' => 'Z1',
+                            'OBJPS' => '',
+                            'SPRPS' => '',
+                            'ENDDA' => '31.12.9999',
+                            'BEGDA' => date_format($tglinput, 'd.m.Y'),
+                            'SEQNR' => '',
+                            'WERKS' => $transrincian->persa_sap,
+                            'PERSG' => '8',
+                            'PERSK' => $transrincian->skill_sap,
+                            'BTRTL' => $transrincian->area_sap,
+                            'ABKRS' => $transrincian->abkrs_sap,
+                            'PLANS' => '',
+                            'STELL' => $transrincian->hire_jabatan_sap,
+                        ]
+                    ],
 
-                //data contract
-                'p00016List' => [
-                    [
-                        'endda' => '31.12.9999',
-                        'begda' => date_format($tglinput, 'd.m.Y'),
-                        'operation' => 'INS',
-                        'pernr' => "$model->perner",
-                        'infty' => '0016',
-                        'lfzfr' => '',
-                        'lfzzh' => '',
-                        'lfzso' => '',
-                        'kgzfr' => '',
-                        'kgzzh' => '',
-                        'prbzt' => '',
-                        'prbeh' => '',
-                        'kdgfr' => '',
-                        'kdgf2' => '',
-                        'arber' => date_format($akhirkontrak, 'd.m.Y'),
-                        'konsl' => '59',
-                        'cttyp' => $cttyp,
-                        'zwrkpl' => ''
-                    ]
-                ],
-                'p00035List' => [
-                    [
-                        'endda' => '31.12.9999',
-                        'begda' => date_format($tglinput, 'd.m.Y'),
-                        'operation' => 'INS',
-                        'pernr' => "$model->perner",
-                        'infty' => '0035',
-                        'subty' => 'Z1',
-                        'itxex' => 'X',
-                        'dat35' => date_format($awalkontrak, 'd.m.Y'),
-                    ]
-                ],
+                    //data contract
+                    'p00016List' => [
+                        [
+                            'endda' => '31.12.9999',
+                            'begda' => date_format($tglinput, 'd.m.Y'),
+                            'operation' => 'INS',
+                            'pernr' => "$model->perner",
+                            'infty' => '0016',
+                            'lfzfr' => '',
+                            'lfzzh' => '',
+                            'lfzso' => '',
+                            'kgzfr' => '',
+                            'kgzzh' => '',
+                            'prbzt' => '',
+                            'prbeh' => '',
+                            'kdgfr' => '',
+                            'kdgf2' => '',
+                            'arber' => date_format($akhirkontrak, 'd.m.Y'),
+                            'konsl' => '59',
+                            'cttyp' => $cttyp,
+                            'zwrkpl' => ''
+                        ]
+                    ],
+                    'p00035List' => [
+                        [
+                            'endda' => '31.12.9999',
+                            'begda' => date_format($tglinput, 'd.m.Y'),
+                            'operation' => 'INS',
+                            'pernr' => "$model->perner",
+                            'infty' => '0035',
+                            'subty' => 'Z1',
+                            'itxex' => 'X',
+                            'dat35' => date_format($awalkontrak, 'd.m.Y'),
+                        ]
+                    ],
 
-                //data joindate
-                'p00041List' => [
-                    [
-                        'endda' => '',
-                        'begda' => '',
-                        'operation' => 'INS',
-                        'pernr' => "$model->perner",
-                        'infty' => '0041',
-                        'dar01' => '01',
-                        'dat01' => date_format($awalkontrak, 'd.m.Y'),
-                        'dar02' => '',
-                        'dat02' => ''
-                    ]
-                ],
+                    //data joindate
+                    'p00041List' => [
+                        [
+                            'endda' => '',
+                            'begda' => '',
+                            'operation' => 'INS',
+                            'pernr' => "$model->perner",
+                            'infty' => '0041',
+                            'dar01' => '01',
+                            'dat01' => date_format($awalkontrak, 'd.m.Y'),
+                            'dar02' => '',
+                            'dat02' => ''
+                        ]
+                    ],
 
-            ]
-        ];
+                ]
+            ];
 
-        $json = json_encode($request_data);
-        // var_dump($json);die;
-        $headers  = [
-            'Content-Type: application/json',
-            'cache-control: no-cache"=',
-        ];
+            $json = json_encode($request_data);
+            var_dump($json);die;
+            $headers  = [
+                'Content-Type: application/json',
+                'cache-control: no-cache"=',
+            ];
 
 
-        $ch = curl_init();
+            $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-        // var_dump('ok');die;
-        $response = curl_exec($ch);
+            // var_dump('ok');die;
+            $response = curl_exec($ch);
 
-        curl_close($ch);
-        $ret = json_decode($response);
-        $log = array();
-        if ($ret) {
-            foreach ($ret as $key => $value) {
-                if ($value->success <> TRUE) {
-                    $log  = $value->message;
+            curl_close($ch);
+            $ret = json_decode($response);
+            $log = array();
+            if ($ret) {
+                foreach ($ret as $key => $value) {
+                    if ($value->success <> TRUE) {
+                        $log  = $value->message;
+                    }
                 }
+            } else {
+                $log = 'error SAP';
             }
         } else {
-            $log = 'error SAP';
+            $log = 'error payroll controll';
         }
-
         return $log;
     }
 
