@@ -15,30 +15,30 @@ $baseUrl = Yii::$app->request->baseUrl;
       <div class="row">
         <aside class="widget col-md-4 widget_contact_info">
           <div class="widget_contact_wrap">
-            <a class="careerfy-footer-logo" href="<?php echo $baseUrl; ?>"><img src="<?php echo $baseUrl; ?>/images/logo-gojobs.webp" alt="" width= "250" height="100"></a>
+            <a class="careerfy-footer-logo" href="<?php echo $baseUrl; ?>"><img src="<?php echo $baseUrl; ?>/images/logo-gojobs.webp" alt="" width="250" height="100"></a>
             <p>Mencari dan menyalurkan kandidat yang spesifik sesuai dengan kebutuhan perusahaan.
           </div>
         </aside>
         <aside class="widget col-md-8 widget_nav_manu">
           <div class="footer-widget-title">
-            <h2>Quick Links</h2>
+            <h2>Gojobs.id</h2>
           </div>
           <div class="col-md-4">
             <ul>
-              <li><a href="http://gojobs.id/rekrut/site/searchjob">Browse Jobs</a></li>
-              <li><a href="">Browse Categories</a></li>
+              <li><a href="http://gojobs.id/rekrut/site/searchjob">Cari Pekerjaan</a></li>
+              <li><a href="http://gojobs.id/rekrut/site#category">Cari Berdasarkan Kategori</a></li>
             </ul>
           </div>
           <div class="col-md-4">
             <ul>
-              <li><a href="#">Submit Resume</a></li>
-              <li><a href="#">Candidate Dashboard</a></li>
+              <li><a href="#">Notifikasi Pekerjaan</a></li>
+              <li><a href="http://gojobs.id/rekrut/site/contact">Kontak</a></li>
             </ul>
           </div>
           <div class="col-md-4">
             <ul>
-              <li><a href="#">Job Alerts</a></li>
-              <li><a href="http://gojobs.id/rekrut/site/contact">Contact</a></li>
+              <li><a href="http://gojobs.id/rekrut/site/privacypolicy">Kebijakan Privasi</a></li>
+              <li><a href="http://gojobs.id/rekrut/site/termscondition">Ketentuan Pengguna</a></li>
             </ul>
           </div>
         </aside>

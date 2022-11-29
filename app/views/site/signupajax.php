@@ -33,7 +33,7 @@ use yii\helpers\ArrayHelper;
 
                 <div class="form-group">
 
-                  <?= $form->field($model, 'agree')->label('Dengan ini saya menyetujui aturan penggunaan dan kebijakan privasi dari PT Infomedia Solusi Humanika')->checkbox(['checked' => false, 'required' => true]) ?>
+                  <?= $form->field($model, 'agree')->label('Dengan ini saya menyetujui <a style="color: #4f87fb" href="https://gojobs.id/rekrut/site/termscondition" target="_blank">Aturan Penggunaan</a> dan <a style="color: #4f87fb" href="https://gojobs.id/rekrut/site/privacypolicy" target="_blank">Kebijakan Privasi</a> dari PT Infomedia Solusi Humanika')->checkbox(['checked' => false, 'required' => true]) ?>
                 </div>
                 <div class="box-footer">
                   <?= Html::submitButton('Register', ['class' => 'btn btn-primary pull-right', 'name' => 'signup-button']) ?>

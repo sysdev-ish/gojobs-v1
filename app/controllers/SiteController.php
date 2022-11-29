@@ -418,9 +418,9 @@ class SiteController extends Controller
     if(isset($_GET['code'])){
       $auth_code = $_GET['code'];
       $accesstoken = Yii::$app->oauth->getaccesstoken($auth_code);
+      // var_dump($accesstoken);die;
       $token = json_decode($accesstoken);
       $user = Yii::$app->oauth->getuserdata($token->data->access_token);
-      // var_dump($token);
       // var_dump($user);die;
       if($user){
       return $this->goHome();
@@ -649,4 +649,17 @@ class SiteController extends Controller
 
 		$this->redirect($_SERVER['HTTP_REFERER']);
 	}
+
+  public function actionTermscondition ()
+  {
+    $this->layout = Yii::$app->utils->getlayout();
+    return $this->render('termscondition');
+  }
+
+  public function actionPrivacypolicy ()
+  {
+    $this->layout = Yii::$app->utils->getlayout();
+    return $this->render('privacypolicy');
+  }
+
 }

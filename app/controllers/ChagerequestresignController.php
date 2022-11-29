@@ -259,6 +259,7 @@ class ChagerequestresignController extends Controller
           ->post('http://192.168.88.5/service/index.php/Rfcresign');
 
           $rfcresign  = json_decode($putrfcresign);
+          // var_dump($rfcresign);die;
           $message = 'successful';
           if($rfcresign->CODE == 'S'){
             $url = "http://192.168.88.60:8080/ish-rest/ZINFHRF_00025";
@@ -296,7 +297,7 @@ class ChagerequestresignController extends Controller
               ]
             ];
 
-            //var_dump($request_data);
+            // var_dump($request_data);
 
             $json = json_encode($request_data);
 

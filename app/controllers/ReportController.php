@@ -11,6 +11,7 @@ use app\models\Hiring;
 use app\models\Hiringsearch;
 use app\models\Hiringreport;
 use app\models\Applicantreport;
+use app\models\Changehiringreport;
 use app\models\Joborderreport;
 use app\models\Organizationactivity;
 use app\models\Mastereducation;
@@ -209,7 +210,7 @@ class ReportController extends Controller
   public function actionReportchangehiring()
   {
     // $this->scenario
-    $searchModel = new Changejoreport();
+    $searchModel = new Changehiringreport();
     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
     $area = ArrayHelper::map(Saparea::find()->asArray()->all(), 'value1', 'value2');
     $parea = ArrayHelper::map(Sappersonalarea::find()->asArray()->all(), 'value1', 'value2');

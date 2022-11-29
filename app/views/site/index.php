@@ -70,7 +70,7 @@ $baseUrl = Yii::$app->request->baseUrl;
     <!-- Main Section -->
 
     <!-- Main Section -->
-    <div class="careerfy-main-section">
+    <div class="careerfy-main-section" id="category">
         <div class="container">
             <div class="row">
 
