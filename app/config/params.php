@@ -249,7 +249,7 @@ return [
     <tr>    
         <td valign="top">Nomor JO</td>
         <td valign="top">:</td>
-        <td valign="top">{recruitreqid}</td>
+        <td valign="top">{oldrecruitreqid}</td>
     </tr>
     <tr>    
         <td valign="top">Nama Project</td>
@@ -287,7 +287,7 @@ return [
     <tr>    
         <td valign="top">Nomor JO</td>
         <td valign="top">:</td>
-        <td valign="top">{newrecruitreqid}</td>
+        <td valign="top">{recruitreqid}</td>
     </tr>
     <tr>    
         <td valign="top">Nama Project</td>

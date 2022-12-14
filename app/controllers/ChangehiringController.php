@@ -196,12 +196,11 @@ class ChangehiringController extends Controller
                     //replacemodel
                     $modelnewrecreq = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
                     //existingmodel
-                    if ($modelnewrecreq->transjo) {
-                        $newlayanan = $modelnewrecreq->transjo->n_project;
+                    if ($modelnewrecreq->transjo->n_project == "" || $modelnewrecreq->transjo->n_project == "Pilih") {
+                        $newlayanan = $modelnewrecreq->transjo->project;
                     } else {
-                        $newlayanan = '-';
+                        $newlayanan = $modelnewrecreq->transjo->n_project;
                     }
-                    // var_dump($newlayanan);die();
                     if (Yii::$app->utils->getarea($modelnewrecreq->area_sap)) {
                         $newarea = Yii::$app->utils->getarea($modelnewrecreq->area_sap);
                     } else {
@@ -240,17 +239,17 @@ class ChangehiringController extends Controller
                     $body = str_replace('{newjabatan}', $newjabatan, $body);
                     $body = str_replace('{reason}', $model->changehiringreason->reason, $body);
                     // var_dump($body);die();
-                    // $sendmail = Yii::$app->utils->sendmail($to, $subject, $body, 21);
+                    $sendmail = Yii::$app->utils->sendmail($to, $subject, $body, 21);
                 } elseif ($model->typechangehiring == 2) { //swap jo
                     //replacemodel
                     $modelnewrecreq = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
+                    // var_dump($modelnewrecreq);die;
                     //existingmodel
-                    if ($modelnewrecreq->transjo) {
-                        $newlayanan = $modelnewrecreq->transjo->n_project;
+                    if ($modelnewrecreq->transjo->n_project == "" || $modelnewrecreq->transjo->n_project == "Pilih") {
+                        $newlayanan = $modelnewrecreq->transjo->project;
                     } else {
-                        $newlayanan = '-';
+                        $newlayanan = $modelnewrecreq->transjo->n_project;
                     }
-                    // var_dump($newlayanan);die();
                     if (Yii::$app->utils->getarea($modelnewrecreq->area_sap)) {
                         $newarea = Yii::$app->utils->getarea($modelnewrecreq->area_sap);
                     } else {
@@ -267,6 +266,14 @@ class ChangehiringController extends Controller
                         $newjabatan = '-';
                     }
 
+                    $curl = new curl\Curl();
+                    $getlevels = $curl->setPostParams([
+                        'level' => $modelnewrecreq->level_sap,
+                        'token' => 'ish**2019',
+                    ])->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
+                    $newlevel  = json_decode($getlevels);
+                    $newlevel = ($newlevel) ? $newlevel : "";
+
                     $to = 'khusnul.hisyam@ish.co.id'; //mailtesting
                     // $to = 'proman@ish.co.id';
                     $subject = 'Notifikasi Approval Swap JO Pekerja';
@@ -275,7 +282,7 @@ class ChangehiringController extends Controller
                     //existing
                     $body = str_replace('{fullname}', $name, $body);
                     $body = str_replace('{oldrecruitreqid}', $modelrecreq->nojo, $body);
-                    $body = str_replace('{perner}', $perner, $body);
+                    $body = str_replace('{perner}', $hiring->perner, $body);
                     $body = str_replace('{layanan}', $layanan, $body);
                     $body = str_replace('{skill}', $skill, $body);
                     $body = str_replace('{area}', $area, $body);
@@ -283,10 +290,13 @@ class ChangehiringController extends Controller
                     $body = str_replace('{level}', $level, $body);
                     //replacement
                     $body = str_replace('{recruitreqid}', $modelnewrecreq->nojo, $body);
+                    $body = str_replace('{newfullname}', $model->fullname, $body);
+                    $body = str_replace('{newperner}', $model->perner, $body);
                     $body = str_replace('{newlayanan}', $newlayanan, $body);
                     $body = str_replace('{newarea}', $newarea, $body);
                     $body = str_replace('{newskill}', $newskill, $body);
                     $body = str_replace('{newjabatan}', $newjabatan, $body);
+                    $body = str_replace('{newlevel}', $newlevel, $body);
                     $body = str_replace('{reason}', $model->changehiringreason->reason, $body);
                     // var_dump($body);die();
                     $sendmail = Yii::$app->utils->sendmail($to, $subject, $body, 22);
@@ -665,9 +675,12 @@ class ChangehiringController extends Controller
 
     protected function UpdateSapPersonaldata($id, $userid, $perner)
     {
-        $model = Hiring::find()->where(['userid' => $userid, 'statushiring' => 4])->one();
-        $transrincian = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
-        
+        $model = $this->findModel($id);
+        $newuserid = $model->newuserid;
+        $hiring = Hiring::find()->where(['userid' => $userid, 'statushiring' => 4])->one();
+        $newhiring = Hiring::find()->where(['userid' => $newuserid, 'statushiring' => 4])->one();
+        $transrincian = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
+        $newtransrincian = Transrincian::find()->where(['id' => $newhiring->recruitreqid])->one();
         $tglinput = date_create($model->tglinput);
         $awalkontrak = date_create($model->awalkontrak);
         $akhirkontrak = date_create($model->akhirkontrak);

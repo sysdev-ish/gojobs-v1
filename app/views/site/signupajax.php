@@ -9,39 +9,33 @@ use yii\bootstrap\ActiveForm;
 use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
 
-
 ?>
 
+<div class="row">
+  <div class="col-lg-12">
+    <?php $form = ActiveForm::begin([
+      'id' => 'form-signup',
+      // 'enableClientValidation' => true,
+      // 'enableAjaxValidation' => true,
+    ]); ?>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <?php $form = ActiveForm::begin([
-              'id' => 'form-signup',
-              // 'enableClientValidation' => true,
-              // 'enableAjaxValidation' => true,
-            ]); ?>
+    <?= $form->field($model, 'name') ?>
 
-                <?= $form->field($model, 'name') ?>
+    <?= $form->field($model, 'mobile') ?>
 
-                <?= $form->field($model, 'mobile') ?>
+    <?= $form->field($model, 'email') ?>
 
-                <?= $form->field($model, 'email') ?>
+    <?= $form->field($model, 'password')->passwordInput() ?>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+    <?= $form->field($model, 'retype_password')->passwordInput() ?>
 
-                <?= $form->field($model, 'retype_password')->passwordInput() ?>
+    <div class="form-group">
 
-                <div class="form-group">
-
-                  <?= $form->field($model, 'agree')->label('Dengan ini saya menyetujui <a style="color: #4f87fb" href="https://gojobs.id/rekrut/site/termscondition" target="_blank">Aturan Penggunaan</a> dan <a style="color: #4f87fb" href="https://gojobs.id/rekrut/site/privacypolicy" target="_blank">Kebijakan Privasi</a> dari PT Infomedia Solusi Humanika')->checkbox(['checked' => false, 'required' => true]) ?>
-                </div>
-                <div class="box-footer">
-                  <?= Html::submitButton('Register', ['class' => 'btn btn-primary pull-right', 'name' => 'signup-button']) ?>
-
-
-
-                </div>
-                </div>
-
-            <?php ActiveForm::end(); ?>
-        </div>
+      <?= $form->field($model, 'agree')->label('Dengan ini saya menyetujui <a style="color: #4f87fb" href="https://gojobs.id/rekrut/site/termscondition" target="_blank">Aturan Penggunaan</a> dan <a style="color: #4f87fb" href="https://gojobs.id/rekrut/site/privacypolicy" target="_blank">Kebijakan Privasi</a> dari PT Infomedia Solusi Humanika')->checkbox(['checked' => false, 'required' => true]) ?>
+    </div>
+    <div class="box-footer">
+      <?= Html::submitButton('Register', ['class' => 'btn btn-primary pull-right', 'name' => 'signup-button']) ?>
+    </div>
+  </div>
+  <?php ActiveForm::end(); ?>
+</div>

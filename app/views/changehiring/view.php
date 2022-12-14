@@ -24,7 +24,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'perner',
         'fullname',
         'userid',
-
+        [
+          'label' => 'Type',
+          'attribute' => 'typechangehiring',
+          'format' => 'html',
+          'value' => function ($data) {
+            if ($data->typechangehiring == 1) {
+              return "Perubahan Nomor JO";
+            } elseif ($data->typechangehiring == 2) {
+              return "Tukar JO";
+            } elseif ($data->typechangehiring == 3) {
+              return "Perubahan Tanggal Hiring";
+            } else {
+              return "Perubahan Periode Kontrak";
+            }
+          }
+        ],
         [
           'label' => 'No JO',
           'format' => 'html',

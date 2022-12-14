@@ -15,7 +15,7 @@ use linslin\yii2\curl;
 <div class="row">
   <div class="col-sm-12">
     <blockquote>
-      <p>Approval Change Cancel Join for <b><?php echo $model->fullname; ?></b> perner (<?php echo $model->perner; ?>).</p>
+      <p>Approval Change Change Hiring for <b><?php echo $model->fullname; ?></b> perner (<?php echo $model->perner; ?>).</p>
       <small>Personal Area (SAP) <cite title="Source Title"><b>
             <?php if ($model->userid) {
               $cekhiring = Hiring::find()->where('userid =' . $model->userid . ' and (statushiring = 4 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();

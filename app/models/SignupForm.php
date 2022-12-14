@@ -72,8 +72,9 @@ class SignupForm extends Model
       $user->role = 2;
       $user->setPassword($this->password);
       $user->generateAuthKey();
-      $randomstring = Yii::$app->utils->generateRandomString(4);
+      $randomstring = Yii::$app->utils->generateRandomString(6);
       $user->verify_code = $randomstring;
+      // $user->verify_code = 'bypass';
       $user->verify_status = 0;
      if ($user->save()) {
        $timeupdate = Userlogin::findOne($user->id);
