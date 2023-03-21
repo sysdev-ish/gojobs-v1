@@ -44,7 +44,8 @@ class Chagerequestresign extends \yii\db\ActiveRecord
             [['userid', 'createdby', 'updatedby', 'perner', 'reason', 'approvedby', 'status','checkperner'], 'integer'],
             [['status'], 'required', 'on'=>"approve"],
             [['createtime', 'updatetime', 'approvedtime',  'resigndate'], 'safe'],
-            [['reason', 'resigndate','approvedby','perner'], 'required' , 'on'=>'createupdate'],
+            [['approvedby','perner'], 'required' , 'on'=>'createupdate'],
+            // [['reason', 'resigndate','approvedby','perner'], 'required' , 'on'=>'createupdate'],
             [['checkperner'], 'required','message'=>'this perner has been on processed resign', 'on'=>'createupdate'],
             [['fullname', 'remarks','userremarks'], 'string', 'max' => 255],
         ];

@@ -65,10 +65,10 @@ class Transrincian extends \yii\db\ActiveRecord
     {
         return Yii::$app->get('dbjo');
     }
-    public static function getDb2()
-    {
-        return Yii::$app->get('db');
-    }
+    // public static function getDb2()
+    // {
+    //     return Yii::$app->get('db');
+    // }
 
     /**
      * {@inheritdoc}

@@ -16,10 +16,7 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
 <div class="row">
   <div class="col-md-4">
     <div class="chagerequestdata-form box box-default">
-
       <div class="box-body table-responsive">
-
-
         <?= $form->field($model, 'perner')->widget(Select2::classname(), [
           // 'data' => $datakaryawan,
           'initValueText' => $datakaryawan, // set the initial display text
@@ -70,7 +67,7 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
           DatePicker::className(),
           [
             'type' => DatePicker::TYPE_COMPONENT_APPEND,
-            'options' => ['placeholder' => 'Date', 'id' => 'resigndate', 'onChange' => "autosave();"],
+            'options' => ['placeholder' => 'Date', 'id' => 'resigndate'],
             'pluginOptions' => [
               'autoclose' => true,
               'format' => 'yyyy-mm-dd',
@@ -86,7 +83,8 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
             'onChange' => "autosave();",
           ],
           'pluginOptions' => [
-            'allowClear' => false,
+            'autoClose' => true,
+            'allowClear' => true,
             'initialize' => true,
           ],
         ])->label('Reason');
@@ -146,6 +144,18 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
               <td width="12%"><b>Hiring From</b></td>
               <td width="30%" id="hire">-</td>
             </tr>
+            <tr>
+              <td width="12%"><b>Reason Resign</b></td>
+              <td width="30%" id="resign_reason">-</td>
+            </tr>
+            <tr>
+              <td width="12%"><b>Tanggal Resign</b></td>
+              <td width="30%" id="resign_date">-</td>
+            </tr>
+            <tr>
+              <td width="12%"><b>Status Perner</b></td>
+              <td width="30%" id="status">-</td>
+            </tr>
 
           </tbody>
         </table>
@@ -167,7 +177,7 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
 
   function autosave() {
     var approvedbyid = $('#approvedby').val();
-    var resigndateid = $('#resigndate').val();
+    // var resigndateid = $('#resigndate').val();
     var reasonid = $('#reason').val();
     var userremarksval = $('#userremarks').val();
 
@@ -176,7 +186,7 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
       cache: false,
       data: {
         approvedby: approvedbyid,
-        resigndate: resigndateid,
+        // resigndate: resigndateid,
         reason: reasonid,
         userremarks: userremarksval,
         id: <?php echo $model->id; ?>,
@@ -207,6 +217,9 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
         var jabatan = '';
         var level = '';
         var hire = '';
+        var status = '';
+        var resign_reason = '';
+        var resign_date = '';
         var checkperner = '';
 
 
@@ -237,6 +250,15 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
         if (obj.hire) {
           var hire = obj.hire;
         }
+        if (obj.status) {
+          var status = obj.status;
+        }
+        if (obj.resign_date) {
+          var resign_date = obj.resign_date;
+        }
+        if (obj.resign_reason) {
+          var resign_reason = obj.resign_reason;
+        }
         if (obj.checkperner) {
           var checkperner = obj.checkperner;
         }
@@ -249,6 +271,9 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
         document.getElementById('jabatan').innerHTML = jabatan;
         document.getElementById('level').innerHTML = level;
         document.getElementById('hire').innerHTML = hire;
+        document.getElementById('status').innerHTML = status;
+        document.getElementById('resign_reason').innerHTML = resign_reason;
+        document.getElementById('resign_date').innerHTML = resign_date;
         $("#checkperner").val(checkperner);
       },
     });

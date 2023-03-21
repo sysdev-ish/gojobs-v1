@@ -67,7 +67,7 @@ app\assets\DashboardAsset::register($this);
           <h3><?php echo $totaljo; ?>
             <!-- <span style="padding-left:10px; font-size:large; font-style:italic; font-weight: 300;">orang</span> -->
           </h3>
-          <p>Total Kebutuhan Job Order 1</p>
+          <p>Total Kebutuhan Job Order</p>
         </div>
         <div class="icon">
           <i class="ion ion-bag"></i>

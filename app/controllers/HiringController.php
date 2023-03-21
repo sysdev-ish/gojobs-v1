@@ -105,6 +105,7 @@ class HiringController extends Controller
       'dataProviderprofile' => $dataProviderprofile,
     ]);
   }
+  
   public function actionCreate($userid)
   {
     $recruitreqid = $_POST['recruitreqid'];
@@ -256,7 +257,7 @@ class HiringController extends Controller
                 Have a great day !
                 ';
                 // var_dump($body);die;
-                $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
+                $verification = Yii::$app->utils->sendmail($to, $subject, $body, 12);
                 // var_dump($jobfamily->id);die;
                 // var_dump('sampe');die;
                 return 2;

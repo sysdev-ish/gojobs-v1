@@ -53,11 +53,11 @@ class Transrinciansearch extends Transrincian
      */
     public function search($params)
     {
-        $query = Transrincian::find();
-        $query->joinWith("jobfunc");
-        $query->joinWith("transjo");
-        $query->joinWith("city")->distinct();
-        $query->joinWith("jabatansap");
+        $query = Transrincian::find('id');
+        // $query->joinWith("jobfunc");
+        // $query->joinWith("transjo");
+        // $query->joinWith("city")->distinct();
+        // $query->joinWith("jabatansap");
         $query->andWhere('trans_rincian_rekrut.skema = 1');
         $query->andWhere('trans_rincian_rekrut.typejo <> 3');
 

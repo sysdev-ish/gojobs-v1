@@ -103,7 +103,8 @@ class ChangehiringController extends Controller
                     ['changehiring.status' => 4],
                     ['hiring.userid' => $model->userid],
                 ])->orderBy([
-                    'hiring.perner' => SORT_DESC])->all();
+                    'hiring.perner' => SORT_DESC
+                ])->all();
             $data = array();
             foreach ($dataquery as $key => $value) {
                 if ($value->changehiring) {
@@ -217,7 +218,7 @@ class ChangehiringController extends Controller
                         $newjabatan = '-';
                     }
 
-                    $to = 'khusnul.hisyam@ish.co.id'; //mailtesting
+                    $to = 'khusnul.hisyam@ish.co.id'; //yourmailtesting
                     // $to = 'proman@ish.co.id';
                     $subject = 'Notifikasi Approval Change No JO Pekerja';
                     $body = Yii::$app->params['mailChangeschema1']; //cek body in utilcomponent -> params
@@ -379,29 +380,32 @@ class ChangehiringController extends Controller
                 if ($model->typechangehiring == 1) {
                     $hiring->recruitreqid = $model->recruitreqid;
                     $modelreccan->recruitreqid = $model->recruitreqid;
-                    if ($modelrecreq->status_rekrut == 2 ) {
+                    if ($modelrecreq->status_rekrut == 2) {
                         $modelrecreq->status_rekrut = 1;
                     } elseif ($modelrecreq->status_rekrut == 4) {
                         $modelrecreq->status_rekrut = 3;
                     } else {
                         return 0;
-                    }                    
+                    }
+                    $updatesap = $this->UpdateSapPersonaldata($id, $userid, $perner);
                 } elseif ($model->typechangehiring == 2) {
                     $newhiring = Hiring::find()->where(['userid' => $model->newuserid])->one();
                     $modelreccan->recruitreqid = $model->recruitreqid;
                     //swap JO
                     $hiring->recruitreqid = $model->oldrecruitreqid; //existing recruireqid replace to selected
                     $newhiring->recruitreqid = $model->recruitreqid; //selected recruireqid replace to existing
+                    $updatesap = $this->UpdateSapPersonaldata($id, $userid, $perner);
                 } elseif ($model->typechangehiring == 3) {
                     $hiring->tglinput = $model->tglinput;
+                    $updatesap = $this->UpdateSapPersonaldata($id, $userid, $perner);
                 } elseif ($model->typechangehiring == 4) {
                     $hiring->awalkontrak = $model->awalkontrak;
                     $hiring->akhirkontrak = $model->akhirkontrak;
+                    $updatesap = $this->UpdateSapPersonaldata($id, $userid, $perner);
                 } else {
                     return 0;
                 }
-                
-                $updatesap = $this->UpdateSapPersonaldata($id, $userid, $perner);
+
                 // var_dump($updatesap);die;
                 if ($updatesap) {
                     $model->remarks = $updatesap;
@@ -555,6 +559,8 @@ class ChangehiringController extends Controller
     public function actionGetnewrecruitreqid()
     {
         $newrecruitreqid = $_POST['recruitreqid'];
+        $id = $_POST['id'];
+        $updatecr = $this->findModel($id);
         if ($newrecruitreqid) {
             $getjo = Transrincian::find()->where(['id' => $newrecruitreqid])->one();
             $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap)) ? Yii::$app->utils->getpersonalarea($getjo->persa_sap) : "";
@@ -586,6 +592,36 @@ class ChangehiringController extends Controller
         // var_dump($datarec);die();
         return Json::encode($datarec);
     }
+
+    public function actionGetscp()
+    {
+        $cpstart = $_POST['awalkontrak'];
+        $id = $_POST['id'];
+        $updatecr = $this->findModel($id);
+        if ($cpstart) {
+            $cekhiring = Hiring::find()->where(['userid' => $userid, 'statushiring' => 4])->one();
+            $perner = $cekhiring->perner;
+            $rawdata = [
+                'awalkontrak' => $cpstart
+            ];
+        } else {
+            $rawdata = '';
+        }
+        return Json::encode($rawdata);   
+    }
+    
+    public function actionGetecp()
+    {
+        $cpend = $_POST['akhirkontrak'];
+        if ($cpend) {
+            $rawdata = [
+                'akhirkontrak' => $cpend
+            ];
+        } else {
+            $rawdata = '';
+        }
+        return Json::encode($rawdata);
+    } 
 
     public function actionRecreqlist($q = null, $id = null)
     {
@@ -704,14 +740,15 @@ class ChangehiringController extends Controller
         if ($payrollcontrollresult->status == 1) {
             $url = "http://192.168.88.60:8080/ish-rest/ZINFHRF_00025";
 
-            if ($model->typechangehiring == 1) {
-                $infotype = ['0001'];
-            } elseif ($model->typechangehiring == 2) {
-                $infotype = ['0001', '0002'];
-            } elseif ($model->typechangehiring == 3) {
-                $infotype = ['0016', '0035'];
-            } elseif ($model->typechangehiring == 4) {
-                $infotype = ['0041'];
+            if ($model->typechangehiring == 1) { //perubahan nojo
+                $infotype = ['0001']; //0001 -> menyimpan data pekerja (new, rotasi, resign, )
+
+            } elseif ($model->typechangehiring == 2) { //swap jo
+                $infotype = ['0001', '0002']; //0002 -> menyimpan personal data
+            } elseif ($model->typechangehiring == 3) { //
+                $infotype = ['0016', '0035']; //0016 -> menyimpan data kontrak kerja //0035 -> menyimpan status sk pekerja
+            } elseif ($model->typechangehiring == 4) { //ganti periode kontrak
+                $infotype = ['0041']; //0041 -> menyimpan data join date
             } else {
                 return 0;
             }
@@ -809,7 +846,8 @@ class ChangehiringController extends Controller
             ];
 
             $json = json_encode($request_data);
-            var_dump($json);die;
+            var_dump($json);
+            die;
             $headers  = [
                 'Content-Type: application/json',
                 'cache-control: no-cache"=',

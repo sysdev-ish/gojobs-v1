@@ -147,136 +147,6 @@ class ChagerequestdatabankController extends Controller
     ]);
   }
 
-  /**
-   * Creates a new Chagerequestdata model.
-   * If creation is successful, the browser will be redirected to the 'view' page.
-   * @return mixed
-   */
-  public function actionAutosave()
-  {
-    $id = $_POST['id'];
-    $approvedby = $_POST['approvedby'];
-    if ($id) {
-      $model = $this->findModel($id);
-      $model->approvedby = $approvedby;
-      $model->save(false);
-    }
-  }
-
-  public function actionGetuserabout()
-  {
-
-    $perner = $_POST['perner'];
-    $id = $_POST['id'];
-    $updatecr = $this->findModel($id);
-    $crdtransbankacc = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 4])->one();
-    if ($perner) {
-      $cekhiring = Hiring::find()->where(['perner' => $perner, 'statushiring' => 4])->one();
-      if ($cekhiring) {
-
-        $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
-        $model = Userabout::find()->where(['userid' => $cekhiring->userid])->one();
-        $document = Uploadocument::find()->where(['userid' => $cekhiring->userid])->one();
-        $updatecr->userid = $cekhiring->userid;
-        $name = $cekhiring->userprofile->fullname;
-        $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap)) ? Yii::$app->utils->getpersonalarea($getjo->persa_sap) : "";
-        $area = (Yii::$app->utils->getarea($getjo->area_sap)) ? Yii::$app->utils->getarea($getjo->area_sap) : "";
-        $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap)) ? Yii::$app->utils->getskilllayanan($getjo->skill_sap) : "";
-        $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap)) ? Yii::$app->utils->getpayrollarea($getjo->abkrs_sap) : "";
-        $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap)) ? Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap) : "";
-        $curl = new curl\Curl();
-        $getlevels = $curl->setPostParams([
-          'level' => $getjo->level_sap,
-          'token' => 'ish**2019',
-        ])
-          ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
-        $level  = json_decode($getlevels);
-        $level = ($level) ? $level : "";
-        $status = "Active";
-        $resignreason = "-";
-        $resigndate = "-";
-        $hire = "Gojobs";
-        $bankaccount = ($model->bankname) ? $model->bankname->bank : null;
-        $bankaccountnumber = $model->bankaccountnumber;
-        $bankaccountfile = ($model->passbook) ? $model->passbook : null;
-        $updatecr->fullname = $name;
-        $updatecr->perner = $cekhiring->perner;
-      } else {
-        $updatecr->userid = null;
-        $updatecr->perner = $perner;
-
-        $curl = new curl\Curl();
-        $getdatapekerjabyperner =  $curl->setPostParams([
-          'perner' => $perner,
-          'token' => 'ish**2019',
-        ])
-          ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-        $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-        $name = $datapekerjabyperner[0]->CNAME;
-        $persa = $datapekerjabyperner[0]->WKTXT;
-        $area = $datapekerjabyperner[0]->BTRTX;
-        $skilllayanan = $datapekerjabyperner[0]->PEKTX;
-        $payrollarea = $datapekerjabyperner[0]->ABTXT;
-        $jabatan = $datapekerjabyperner[0]->PLATX;
-        $level = $datapekerjabyperner[0]->TRFAR_TXT;
-        $status = "Active";
-        $resigndate = "-";
-
-        if ($datapekerjabyperner[0]->MASSN == "Z8") {
-          $status = "Resign";
-          $resigndate = "-";
-
-          if ($datapekerjabyperner[0]->DAT35) {
-            $year = substr($datapekerjabyperner[0]->DAT35, 0, 4);
-            $month = substr($datapekerjabyperner[0]->DAT35, 4, 2);
-            $date = substr($datapekerjabyperner[0]->DAT35, 6, 2);
-            $resigndate = $date . "-" . $month . "-" . $year;
-          }
-        }
-
-        $resignreason = $datapekerjabyperner[0]->MSGTX;
-        $hire = 'Non Gojobs';
-        $masterbank = Masterbank::find()->where(['sapid' => $datapekerjabyperner[0]->BANKL])->one();
-        $bankaccount = ($masterbank) ? $masterbank->bank : $datapekerjabyperner[0]->BANKL;
-        $bankaccountnumber = $datapekerjabyperner[0]->BANKN;
-        $bankaccountfile = null;
-        $updatecr->fullname = $name;
-      }
-      $bankaccountnewval = ($crdtransbankacc) ? (($crdtransbankacc->bankname) ? $crdtransbankacc->bankname->bank : null) : null;
-      $bankaccountnumbernewval = ($crdtransbankacc) ? $crdtransbankacc->newvalue2 : null;
-      $bankaccountnewdoc = ($crdtransbankacc) ? $crdtransbankacc->newdoc : null;
-      $updatecr->save(false);
-
-      if ($bankaccount) {
-        $dataprofile = [
-          'perner' => $perner,
-          'name' => $name,
-          'persa' => $persa,
-          'area' => $area,
-          'skilllayanan' => $skilllayanan,
-          'payrollarea' => $payrollarea,
-          'jabatan' => $jabatan,
-          'level' => $level,
-          'status' => $status,
-          'resignreason' => $resignreason,
-          'resigndate' => $resigndate,
-          'hire' => $hire,
-          'bankaccount' => $bankaccount,
-          'bankaccountnumber' => $bankaccountnumber,
-          'bankaccountfile' => $bankaccountfile,
-          'bankaccountnewval' => $bankaccountnewval,
-          'bankaccountnumbernewval' => $bankaccountnumbernewval,
-          'bankaccountnewdoc' => $bankaccountnewdoc,
-        ];
-      } else {
-        $dataprofile = '';
-      }
-    } else {
-      $dataprofile = '';
-    }
-    return Json::encode($dataprofile);
-  }
-
   public function actionCreate($id = null)
   {
     // $getid = Userprofile::find()->where(['userid'=>$userid])->one();
@@ -318,8 +188,7 @@ class ChagerequestdatabankController extends Controller
       $getid->save();
       return $this->redirect(['create', 'id' => $getid->id]);
     }
-    if ($model->load(Yii::$app->request->post()))
-    {
+    if ($model->load(Yii::$app->request->post())) {
       $curl = new curl\Curl();
       $getdatapekerjabyperner =  $curl->setPostParams([
         'perner' => $model->perner,
@@ -331,13 +200,11 @@ class ChagerequestdatabankController extends Controller
       $resigndate = "";
       $resignreason = "";
 
-      if ($datapekerjabyperner[0]->MASSN == "Z8")
-      {
+      if ($datapekerjabyperner[0]->MASSN == "Z8") {
         $statusresign = 2;
         $resigndate = "";
         $resignreason = $datapekerjabyperner[0]->MSGTX;
-        if ($datapekerjabyperner[0]->DAT35)
-        {
+        if ($datapekerjabyperner[0]->DAT35) {
           $year = substr($datapekerjabyperner[0]->DAT35, 0, 4);
           $month = substr($datapekerjabyperner[0]->DAT35, 4, 2);
           $date = substr($datapekerjabyperner[0]->DAT35, 6, 2);
@@ -350,16 +217,13 @@ class ChagerequestdatabankController extends Controller
       $model->resignreason = $resignreason;
       $model->resigndate = $resigndate;
       $model->status = 2;
-      if ($model->save())
-      {
-        if ($model->status == 2)
-        {
+      if ($model->save()) {
+        if ($model->status == 2) {
           $user = User::find()->where(['id' => $model->approvedby])->one();
         } else {
           $user = User::find()->where(['id' => $model->approvedby2])->one();
         }
-        if ($model->userid)
-        {
+        if ($model->userid) {
           $getjo = Hiring::find()->where(['userid' => $model->userid, 'statushiring' => 4])->one();
 
           $modelrecreq = Transrincian::find()->where(['id' => $getjo->recruitreqid])->one();
@@ -514,7 +378,7 @@ class ChagerequestdatabankController extends Controller
     if ($model->load(Yii::$app->request->post())) {
       $model->approvedtime = date('Y-m-d H-i-s');
       $model->save();
-      
+
       //add by kaha
       $model->status = 3;
       if ($model->status == 3) {
@@ -619,7 +483,7 @@ class ChagerequestdatabankController extends Controller
       ]);
     }
   }
-  
+
   public function actionApprove2($id)
   {
     $model = $this->findModel($id);
@@ -707,6 +571,137 @@ class ChagerequestdatabankController extends Controller
       ]);
     }
   }
+
+  /**
+   * Creates a new Chagerequestdata model.
+   * If creation is successful, the browser will be redirected to the 'view' page.
+   * @return mixed
+   */
+  public function actionAutosave()
+  {
+    $id = $_POST['id'];
+    $approvedby = $_POST['approvedby'];
+    if ($id) {
+      $model = $this->findModel($id);
+      $model->approvedby = $approvedby;
+      $model->save(false);
+    }
+  }
+
+  public function actionGetuserabout()
+  {
+
+    $perner = $_POST['perner'];
+    $id = $_POST['id'];
+    $updatecr = $this->findModel($id);
+    $crdtransbankacc = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 4])->one();
+    if ($perner) {
+      $cekhiring = Hiring::find()->where(['perner' => $perner, 'statushiring' => 4])->one();
+      if ($cekhiring) {
+
+        $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+        $model = Userabout::find()->where(['userid' => $cekhiring->userid])->one();
+        $document = Uploadocument::find()->where(['userid' => $cekhiring->userid])->one();
+        $updatecr->userid = $cekhiring->userid;
+        $name = $cekhiring->userprofile->fullname;
+        $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap)) ? Yii::$app->utils->getpersonalarea($getjo->persa_sap) : "";
+        $area = (Yii::$app->utils->getarea($getjo->area_sap)) ? Yii::$app->utils->getarea($getjo->area_sap) : "";
+        $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap)) ? Yii::$app->utils->getskilllayanan($getjo->skill_sap) : "";
+        $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap)) ? Yii::$app->utils->getpayrollarea($getjo->abkrs_sap) : "";
+        $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap)) ? Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap) : "";
+        $curl = new curl\Curl();
+        $getlevels = $curl->setPostParams([
+          'level' => $getjo->level_sap,
+          'token' => 'ish**2019',
+        ])
+          ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
+        $level  = json_decode($getlevels);
+        $level = ($level) ? $level : "";
+        $status = "Active";
+        $resignreason = "-";
+        $resigndate = "-";
+        $hire = "Gojobs";
+        $bankaccount = ($model->bankname) ? $model->bankname->bank : null;
+        $bankaccountnumber = $model->bankaccountnumber;
+        $bankaccountfile = ($model->passbook) ? $model->passbook : null;
+        $updatecr->fullname = $name;
+        $updatecr->perner = $cekhiring->perner;
+      } else {
+        $updatecr->userid = null;
+        $updatecr->perner = $perner;
+
+        $curl = new curl\Curl();
+        $getdatapekerjabyperner =  $curl->setPostParams([
+          'perner' => $perner,
+          'token' => 'ish**2019',
+        ])
+          ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
+        $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+        $name = $datapekerjabyperner[0]->CNAME;
+        $persa = $datapekerjabyperner[0]->WKTXT;
+        $area = $datapekerjabyperner[0]->BTRTX;
+        $skilllayanan = $datapekerjabyperner[0]->PEKTX;
+        $payrollarea = $datapekerjabyperner[0]->ABTXT;
+        $jabatan = $datapekerjabyperner[0]->PLATX;
+        $level = $datapekerjabyperner[0]->TRFAR_TXT;
+        $status = "Active";
+        $resigndate = "-";
+
+        if ($datapekerjabyperner[0]->MASSN == "Z8") {
+          $status = "Resign";
+          $resigndate = "-";
+
+          if ($datapekerjabyperner[0]->DAT35) {
+            $year = substr($datapekerjabyperner[0]->DAT35, 0, 4);
+            $month = substr($datapekerjabyperner[0]->DAT35, 4, 2);
+            $date = substr($datapekerjabyperner[0]->DAT35, 6, 2);
+            $resigndate = $date . "-" . $month . "-" . $year;
+          }
+        }
+
+        $resignreason = $datapekerjabyperner[0]->MSGTX;
+        $hire = 'Non Gojobs';
+        $masterbank = Masterbank::find()->where(['sapid' => $datapekerjabyperner[0]->BANKL])->one();
+        $bankaccount = ($masterbank) ? $masterbank->bank : $datapekerjabyperner[0]->BANKL;
+        $bankaccountnumber = $datapekerjabyperner[0]->BANKN;
+        $bankaccountfile = null;
+        $updatecr->fullname = $name;
+      }
+      $bankaccountnewval = ($crdtransbankacc) ? (($crdtransbankacc->bankname) ? $crdtransbankacc->bankname->bank : null) : null;
+      $bankaccountnumbernewval = ($crdtransbankacc) ? $crdtransbankacc->newvalue2 : null;
+      $bankaccountnewdoc = ($crdtransbankacc) ? $crdtransbankacc->newdoc : null;
+      $updatecr->save(false);
+
+      if ($bankaccount) {
+        $dataprofile = [
+          'perner' => $perner,
+          'name' => $name,
+          'persa' => $persa,
+          'area' => $area,
+          'skilllayanan' => $skilllayanan,
+          'payrollarea' => $payrollarea,
+          'jabatan' => $jabatan,
+          'level' => $level,
+          'status' => $status,
+          'resignreason' => $resignreason,
+          'resigndate' => $resigndate,
+          'hire' => $hire,
+          'bankaccount' => $bankaccount,
+          'bankaccountnumber' => $bankaccountnumber,
+          'bankaccountfile' => $bankaccountfile,
+          'bankaccountnewval' => $bankaccountnewval,
+          'bankaccountnumbernewval' => $bankaccountnumbernewval,
+          'bankaccountnewdoc' => $bankaccountnewdoc,
+        ];
+      } else {
+        $dataprofile = '';
+      }
+    } else {
+      $dataprofile = '';
+    }
+    return Json::encode($dataprofile);
+  }
+
 
   protected function UpdateSapPersonaldata($id, $userid, $perner)
   {
@@ -876,7 +871,7 @@ class ChagerequestdatabankController extends Controller
       $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
       $outs['results'] = ['id' => $id, 'text' => $datapekerjabyperner];
     } else {
-      
+
       $outs['results'] = ['id' => ' ', 'text' => ' '];
     }
     // var_dump($outs);die;

@@ -9,10 +9,11 @@ use app\models\Transrincian;
 /* @var $this yii\web\View */
 /* @var $model app\models\Chagerequestdata */
 /* @var $form yii\widgets\ActiveForm */
+
 Modal::begin([
-    'header'=>'<h4 class="modal-title">Update Data</h4>',
-    'id'=>'crformupdatebank-modal',
-    'size'=>'modal-lg'
+  'header' => '<h4 class="modal-title">Update Data</h4>',
+  'id' => 'crformupdatebank-modal',
+  'size' => 'modal-lg'
 ]);
 
 echo "<div id='crformupdatebank'></div>";
@@ -29,35 +30,38 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
         echo   $form->field($model, 'perner')->widget(Select2::classname(), [
           // 'data' => $datakaryawan,
           'initValueText' => $datakaryawan, // set the initial display text
-          'options' => ['placeholder' => '- select -', 'id'=>'perner',
-                        'onChange'=>"getdataforchangereq();",
-                      ],
+          'options' => [
+            'placeholder' => '- select -', 'id' => 'perner',
+            'onChange' => "getdataforchangereq();",
+          ],
           'pluginOptions' => [
-              'allowClear' => true,
-              'initialize' => true,
-              'minimumInputLength' => 4,
-              'language' => [
-                  'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
-              ],
-              'ajax' => [
-                  'url' => \yii\helpers\Url::to(['chagerequestdatabank/getdatakaryawan']),
-                  'dataType' => 'json',
-                  'data' => new \yii\web\JsExpression('function(params) { return {q:params.term}; }'),
+            'allowClear' => true,
+            'initialize' => true,
+            'minimumInputLength' => 4,
+            'language' => [
+              'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
+            ],
+            'ajax' => [
+              'url' => \yii\helpers\Url::to(['chagerequestdatabank/getdatakaryawan']),
+              'dataType' => 'json',
+              'data' => new \yii\web\JsExpression('function(params) { return {q:params.term}; }'),
 
 
-              ],
-              'escapeMarkup' => new \yii\web\JsExpression('function (markup) { return markup; }'),
-              'templateResult' => new \yii\web\JsExpression('function(a) {
+            ],
+            'escapeMarkup' => new \yii\web\JsExpression('function (markup) { return markup; }'),
+            'templateResult' => new \yii\web\JsExpression('function(a) {
                 if(a.id == "" || a.id == null){return "No Data";}else{return a.id+" - "+  a.CNAME};
               }'),
-              // 'templateSelection' => new \yii\web\JsExpression('function (a) { return a.nojo + " | " + a.name_job_function + " | " + a.city_name; }'),
-              'templateSelection' => new \yii\web\JsExpression('function (a) {
+            // 'templateSelection' => new \yii\web\JsExpression('function (a) { return a.nojo + " | " + a.name_job_function + " | " + a.city_name; }'),
+            'templateSelection' => new \yii\web\JsExpression('function (a) {
                 // alert(a);
                 if(a.id == "" || a.id == null){return "No Data";}else{return a.id};
               }'),
-              ],
+          ],
         ])->label('Perner / Name');
         ?>
+        <?= $form->field($model, 'checkperner')->hiddenInput(['id' => 'checkperner'])->label(false) ?>
+        
         <?= $form->field($model, 'approvedby')->hiddenInput()->label(false) ?>
         <?= $form->field($model, 'approvedby2')->hiddenInput()->label(false) ?>
         <?= $form->field($model, 'approvedbyname')->textInput(['disabled' => true])->label('Approval 1') ?>
@@ -147,16 +151,15 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
               <td width="30%" id="bankaccount">-</td>
               <td rowspan="2" style="vertical-align: middle !important;font-size:16pt;" id="bankaccounticon"></td>
               <td width="30%" class="text-red" id="bankaccountnewval"></td>
-              <td rowspan="2" style="vertical-align: middle !important;" width="10%" id="actionbankaccount"
-                style="display:none;">
+              <td rowspan="2" style="vertical-align: middle !important;" width="10%" id="actionbankaccount" style="display:none;">
                 <?php
-                  echo  Html::button('<i class="fa fa-pencil" style="font-size:12pt;"></i>',[
-                        'value'=>Yii::$app->urlManager->createUrl('crdtransaction/create?crdid='.$model->id.'&param=4'), //<---- here is where you define the action that handles the ajax request
-                        'class'=>'btn btn-sm btn-info updatebankacc-modal-click',
-                        'data-toggle'=>'tooltip',
-                        'data-placement'=>'bottom',
-                        'title'=>'Update'
-                    ]);?>
+                echo  Html::button('<i class="fa fa-pencil" style="font-size:12pt;"></i>', [
+                  'value' => Yii::$app->urlManager->createUrl('crdtransaction/create?crdid=' . $model->id . '&param=4'), //<---- here is where you define the action that handles the ajax request
+                  'class' => 'btn btn-sm btn-info updatebankacc-modal-click',
+                  'data-toggle' => 'tooltip',
+                  'data-placement' => 'bottom',
+                  'title' => 'Update'
+                ]); ?>
               </td>
             </tr>
             <tr>
@@ -178,7 +181,7 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
   <div class="col-md-12">
     <div class="box box-solid">
       <div class="box-footer">
-        <?= Html::a('Save to draft', ['index'], ['class' => 'btn btn-danger btn-flat pull-right', 'style'=>'margin-left:10px;']) ?>
+        <?= Html::a('Save to draft', ['index'], ['class' => 'btn btn-danger btn-flat pull-right', 'style' => 'margin-left:10px;']) ?>
 
         <?= Html::submitButton('Submit', ['class' => 'btn btn-success btn-flat pull-right']) ?>
       </div>
@@ -188,7 +191,7 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
 <?php ActiveForm::end(); ?>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function() {
     getdataforchangereq();
   });
 
@@ -200,10 +203,10 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
       cache: false,
       data: {
         approvedby: approvedbyid,
-        id: <?php echo $model->id ;?>,
+        id: <?php echo $model->id; ?>,
       },
       url: '<?php echo Yii::$app->urlManager->createUrl(['chagerequestdatabank/autosave']) ?>',
-      success: function (data, textStatus, jqXHR) {}
+      success: function(data, textStatus, jqXHR) {}
     });
   }
 
@@ -214,10 +217,10 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
       cache: false,
       data: {
         perner: perner,
-        id: <?php echo $model->id ;?>,
+        id: <?php echo $model->id; ?>,
       },
       url: '<?php echo Yii::$app->urlManager->createUrl(['chagerequestdatabank/getuserabout']) ?>',
-      success: function (data, textStatus, jqXHR) {
+      success: function(data, textStatus, jqXHR) {
         togleAction(perner);
         var obj = JSON.parse(data);
         var pernerres = '';
@@ -234,15 +237,13 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
         var hire = '';
         var bankaccount = '';
         var bankaccountnumber = '';
-
         var bankaccountfile = '';
-
         var bankaccountnewval = '';
         var bankaccountnumbernewval = '';
-
         var bankaccountnewdoc = '';
-
         var bankaccounticon = '';
+
+        var checkperner = '';
 
         if (obj.perner) {
           var pernerres = obj.perner;
@@ -306,8 +307,13 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
           var bankaccountnewdoc =
             '<br><a class="btn btn-sm btn-default text-muted" href="/rekrut/app/assets/upload/bankaccount/' + obj
             .bankaccountnewdoc + '?=' + <?php echo rand(1, 32000); ?> +
-          '"  target="_blank"><i class="fa fa-download"></i> ' + obj.bankaccountnewdoc + '</a>';
+            '"  target="_blank"><i class="fa fa-download"></i> ' + obj.bankaccountnewdoc + '</a>';
         }
+
+        if (obj.checkperner) {
+          var checkperner = obj.checkperner;
+        }
+
         document.getElementById('pernerdisp').innerHTML = pernerres;
         document.getElementById('name').innerHTML = name;
         document.getElementById('persa').innerHTML = persa;
@@ -325,12 +331,10 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
 
         document.getElementById('bankaccountnewval').innerHTML = bankaccountnewval;
         document.getElementById('bankaccountnumbernewval').innerHTML = bankaccountnumbernewval +
-        bankaccountnewdoc;
+          bankaccountnewdoc;
 
         document.getElementById('bankaccounticon').innerHTML = bankaccounticon;
-
-
-
+        $("#checkperner").val(checkperner);
       },
     });
   }

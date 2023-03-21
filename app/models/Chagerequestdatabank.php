@@ -17,7 +17,7 @@ use Yii;
  * @property int $approvedby
  * @property int $kategorydata
  */
-class Chagerequestdata extends \yii\db\ActiveRecord
+class Chagerequestdatabank extends \yii\db\ActiveRecord
 {
   public $approvedbyname;
   public $approvedby2name;
@@ -38,11 +38,11 @@ class Chagerequestdata extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['status','remarks'], 'required', 'on' => 'approve'],
             // [['approvedby','personaldatafill'], 'required', 'on' => 'submit'],
             [['userid', 'createdby', 'updatedby', 'approvedby', 'kategorydata','cekemp','statusresign', 'checkperner'], 'integer'],
             [['createtime', 'updatetime', 'approvedtime','resigndate'], 'safe'],
             [['resignreason'], 'string', 'max' => 445],
-            [['status','remarks'], 'required', 'on' => 'approve'],
             [['checkperner'], 'required', 'message' => 'this perner has been on processed Change Data', 'on' => 'createupdate'],
 
         ];

@@ -188,7 +188,7 @@ class UtilComponent extends Component
   public function sendmailgojobs($to, $subject, $body, $identifier) {
     $curl = new curl\Curl();
     $verification = $curl->setPostParams([
-      'from' => 'no-replay@ish.co.id',
+      'from' => 'noreply@gojobs.id',
       'to[]' => $to,
       'subject' => $subject,
       'body' => $body,
@@ -664,6 +664,17 @@ class UtilComponent extends Component
       $ret = null;
     }
 
+    return $ret;
+  }
+
+  public function hired($userid, $transrincian) {
+    $ret = null;
+    $userhired = Hiring::find()->where(['userid' => $userid, 'statushiring' => 4, 'statusbiodata' => 4, 'recruitreqid' => $transrincian])->one();
+    if ($userhired) {
+      $ret = $userhired;
+    } else {
+      $ret = null;
+    }
     return $ret;
   }
 

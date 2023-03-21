@@ -362,7 +362,7 @@ class ChangecanceljoinController extends Controller
             <br><br>
             Have a great day !
             ';
-            $verification = Yii::$app->utils->sendmailgojobs($to, $subject, $body, 20);
+            $verification = Yii::$app->utils->sendmail($to, $subject, $body, 20);
             // var_dump($body);die();
           //klasifisikasi 20 -> notif to admin SAP cek mailcounter //jika tidak arrary pakai sendmail saja
         }

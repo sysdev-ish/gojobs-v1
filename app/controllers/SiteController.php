@@ -235,15 +235,17 @@ class SiteController extends Controller
     $model = new Transrinciansearch();
     $year = date('Y');
     $model->yeardata = $year;
+    //joborder
     $totaljo = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and YEAR(trans_jo.tanggal) = '" . $year . "'")->count();
     $totalclosed = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and trans_rincian_rekrut.status_rekrut = 2 and YEAR(trans_jo.tanggal) = '" . $year . "'")->count();
     $totalpending = $totaljo - $totalclosed;
-    $totalemp = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and YEAR(trans_jo.tanggal) = '" . $year . "'")->sum('jumlah');
     $totalempclosed = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and trans_rincian_rekrut.status_rekrut = 2 and YEAR(trans_jo.tanggal) = '" . $year . "'")->sum('jumlah');
-    $totalemppending = $totalemp - $totalempclosed;
+    //totalapplicant
     $totalapplicant = Userprofile::find()->where("YEAR(createtime) = '" . $year . "'")->count();
-    // $totalapplicants3 =
+    $totalemp = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and YEAR(trans_jo.tanggal) = '" . $year . "'")->sum('jumlah');
+    // totalcandidate
     $candidatecount = Recruitmentcandidate::find()->where("YEAR(createtime) = '" . $year . "'")->count();
+    $totalemppending = $totalemp - $totalempclosed;
     $interviewapp = Interview::find()->where("YEAR(createtime) = '" . $year . "'")->count();
     $onintcount = Interview::find()->where("YEAR(createtime) = '" . $year . "'  and (status = 1 OR status = 0)")->count();
     $passintcount = Interview::find()->where("YEAR(createtime) = '" . $year . "'  and status = 2")->count();

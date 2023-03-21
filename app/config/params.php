@@ -6,7 +6,7 @@ return [
     'mailFeedback' => '<table>
 
     <br>
-    Hi Kakak, Selamat ya!
+    Hi {fullname}, Selamat ya!
     <br>
     </table>
     <br>
