@@ -27,6 +27,7 @@ use Yii;
 class Chagerequestresign extends \yii\db\ActiveRecord
 {
   public $checkperner;
+  public $file_upload;
     /**
      * {@inheritdoc}
      */
@@ -47,7 +48,7 @@ class Chagerequestresign extends \yii\db\ActiveRecord
             [['approvedby','perner'], 'required' , 'on'=>'createupdate'],
             // [['reason', 'resigndate','approvedby','perner'], 'required' , 'on'=>'createupdate'],
             [['checkperner'], 'required','message'=>'this perner has been on processed resign', 'on'=>'createupdate'],
-            [['fullname', 'remarks','userremarks'], 'string', 'max' => 255],
+            [['fullname', 'remarks','userremarks', 'file_upload'], 'string', 'max' => 255],
         ];
     }
 
@@ -71,6 +72,7 @@ class Chagerequestresign extends \yii\db\ActiveRecord
             'approvedby' => 'Approved by',
             'status' => 'Status',
             'remarks' => 'Remarks',
+            'file_upload' => 'File Upload',
         ];
     }
     public function getUserprofile()
@@ -96,5 +98,10 @@ class Chagerequestresign extends \yii\db\ActiveRecord
     public function getResignreason()
     {
         return $this->hasOne(Masterresignreason::className(), ['id' => 'reason']);
+    }
+
+    public function getHiring()
+    {
+        return $this->hasOne(Hiring::className(), ['userid' => 'userid']);
     }
 }

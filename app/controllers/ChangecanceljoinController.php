@@ -96,35 +96,41 @@ class ChangecanceljoinController extends Controller
     if ($id) {
       $model = $this->findModel($id);
       $namaquery = Hiring::find()
-        // ->joinWith(['userprofile'])
+        ->joinWith(['userprofile'])
         ->joinWith(['changecanceljoin'])
         ->andWhere(['statushiring' => 4])
         ->andWhere([
           'or',
           ['changecanceljoin.userid' => null],
-          ['changecanceljoin.status' => 4],
+          ['changecanceljoin.status' => 1],
           ['hiring.userid' => $model->userid],
         ])
         ->all();
+
       $name = array();
       foreach ($namaquery as $key => $value) {
         if ($value->changecanceljoin) {
-          $checkdraft =  Changecanceljoin::find()
+          $check =  Changecanceljoin::find()
             ->andWhere(['userid' => $value->userid])
             ->andWhere([
               'or',
-              ['status' => 1],
+              ['status' => 4],
               ['status' => 6],
             ])
             ->count();
+          //comment by kaha 2/11/22 -> optimize loadtime
           if ($value->userid == $model->userid) {
-            $name[$value->userid] = $value->perner;
+            // $name[$value->userid] = $value->perner;
+            $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
           }
-          if ($value->changecanceljoin->status == 4 && $checkdraft == 0) {
-            $name[$value->userid] = $value->perner;
+          if (!$check) {
+            // var_dump('dd');
+            // $name[$value->userid] = $value->perner;
+             $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
           }
         } else {
-          $name[$value->userid] = $value->perner;
+          // $name[$value->userid] = $value->perner;
+           $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
         }
       }
     } else {
@@ -362,8 +368,8 @@ class ChangecanceljoinController extends Controller
             <br><br>
             Have a great day !
             ';
-            $verification = Yii::$app->utils->sendmail($to, $subject, $body, 20);
-            // var_dump($body);die();
+          $verification = Yii::$app->utils->sendmail($to, $subject, $body, 20);
+          // var_dump($body);die();
           //klasifisikasi 20 -> notif to admin SAP cek mailcounter //jika tidak arrary pakai sendmail saja
         }
       } else {
@@ -381,13 +387,13 @@ class ChangecanceljoinController extends Controller
   public function actionConfirmcancel($id)
   {
     $model = $this->findModel($id);
-    // $model->scenario = 'confirmation';
+    // var_dump($model);die();
+    $model->scenario = 'confirmation';
     if ($model->load(Yii::$app->request->post())) {
       $model->approvedtime = date('Y-m-d H-i-s');
-      if ($model->status = 4) {
+      if ($model->status == 4) {
         $model->status = 9;
         $model->remarks = 'Successfull';
-        // $hiring = Hiring::find()->where(['statushiring' => 4])->one();
         $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
         if ($hiring) {
           $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $hiring->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
@@ -410,16 +416,17 @@ class ChangecanceljoinController extends Controller
               $modelrecreq->save(false);
             }
           }
-        }
-        else {
+        } else {
           Yii::$app->session->setFlash('error', "Tidak bisa di Approve/ Confirm Cancel Join karena sudah di proses, silakan cek data kembali.");
           return $this->redirect(['index']);
         }
-      } else  {
+      } else {
+        $model->remarks = 'Reject';
         $model->save();
-      } return $this->redirect(['index']);
-    }
-    else {
+        Yii::$app->session->setFlash('success', "Confirmed.");
+      }
+      return $this->redirect(['index']);
+    } else {
       return $this->renderAjax('_formconfirmation', [
         'model' => $model
       ]);

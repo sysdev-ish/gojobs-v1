@@ -32,6 +32,7 @@ class AppAsset extends AssetBundle
     public $js = [
       'js/app.min.js',
       'js/custom.js',
+      'js/gojobs.js',
       'js/modal-loading.js',
     ];
     public $depends = [

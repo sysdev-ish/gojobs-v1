@@ -30,28 +30,28 @@ class ChagerequestdataController extends Controller
   public function behaviors()
   {
     return [
-        'access' => [
-            'class' => AccessControl::className(),
-            'only' => ['index','update','create','view','delete'],
-            'rules' => [
-                [
-                    'actions' => ['index','update','create','view','delete'],
-                    'allow' => true,
-                    'roles' => ['@'],
-                    'matchCallback'=>function(){
-                          return (Yii::$app->utils->permission(Yii::$app->user->identity->role,'m52'));
-                      }
+      'access' => [
+        'class' => AccessControl::className(),
+        'only' => ['index', 'update', 'create', 'view', 'delete'],
+        'rules' => [
+          [
+            'actions' => ['index', 'update', 'create', 'view', 'delete'],
+            'allow' => true,
+            'roles' => ['@'],
+            'matchCallback' => function () {
+              return (Yii::$app->utils->permission(Yii::$app->user->identity->role, 'm52'));
+            }
 
-                ],
+          ],
 
-            ],
         ],
-        'verbs' => [
-            'class' => VerbFilter::className(),
-            'actions' => [
-                'delete' => ['POST'],
-            ],
+      ],
+      'verbs' => [
+        'class' => VerbFilter::className(),
+        'actions' => [
+          'delete' => ['POST'],
         ],
+      ],
     ];
   }
 
@@ -61,13 +61,13 @@ class ChagerequestdataController extends Controller
    */
   public function actionIndex()
   {
-      $searchModel = new Chagerequestdatasearch();
-      $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    $searchModel = new Chagerequestdatasearch();
+    $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-      return $this->render('index', [
-          'searchModel' => $searchModel,
-          'dataProvider' => $dataProvider,
-      ]);
+    return $this->render('index', [
+      'searchModel' => $searchModel,
+      'dataProvider' => $dataProvider,
+    ]);
   }
 
   /**
@@ -79,28 +79,28 @@ class ChagerequestdataController extends Controller
   {
     $model = $this->findModel($id);
     $userid = $model->userid;
-    $document = Uploadocument::find()->where(['userid'=>$userid])->one();
-    $userprofile = Userprofile::find()->where(['userid'=>$userid])->one();
-    $crdtransnpwp = Crdtransaction::find()->where(['crdid'=>$id,'dataid'=>1])->one();
-    $crdtransbpjs = Crdtransaction::find()->where(['crdid'=>$id,'dataid'=>2])->one();
-    $crdtransjamsostek = Crdtransaction::find()->where(['crdid'=>$id,'dataid'=>3])->one();
-      return $this->renderAjax('view', [
-          'model' => $model,
-          'userprofile'=>$userprofile,
-          'document'=>$document,
-          'npwpnumberoldval'=>($crdtransnpwp)?$crdtransnpwp->oldvalue:null,
-          'bpjsnumberoldval'=>($crdtransbpjs)?$crdtransbpjs->oldvalue:null,
-          'jamsosteknumberoldval'=>($crdtransjamsostek)?$crdtransjamsostek->oldvalue:null,
-          'npwpnumbernewval'=>($crdtransnpwp)?$crdtransnpwp->newvalue:null,
-          'bpjsnumbernewval'=>($crdtransbpjs)?$crdtransbpjs->newvalue:null,
-          'jamsosteknumbernewval'=>($crdtransjamsostek)?$crdtransjamsostek->newvalue:null,
-          'npwpfileolddoc'=>($crdtransnpwp)?$crdtransnpwp->olddoc:null,
-          'bpjsfileolddoc'=>($crdtransbpjs)?$crdtransbpjs->olddoc:null,
-          'jamsostekfileolddoc'=>($crdtransjamsostek)?$crdtransjamsostek->olddoc:null,
-          'npwpfilenewdoc'=>($crdtransnpwp)?$crdtransnpwp->newdoc:null,
-          'bpjsfilenewdoc'=>($crdtransbpjs)?$crdtransbpjs->newdoc:null,
-          'jamsostekfilenewdoc'=>($crdtransjamsostek)?$crdtransjamsostek->newdoc:null,
-      ]);
+    $document = Uploadocument::find()->where(['userid' => $userid])->one();
+    $userprofile = Userprofile::find()->where(['userid' => $userid])->one();
+    $crdtransnpwp = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 1])->one();
+    $crdtransbpjs = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 2])->one();
+    $crdtransjamsostek = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 3])->one();
+    return $this->renderAjax('view', [
+      'model' => $model,
+      'userprofile' => $userprofile,
+      'document' => $document,
+      'npwpnumberoldval' => ($crdtransnpwp) ? $crdtransnpwp->oldvalue : null,
+      'bpjsnumberoldval' => ($crdtransbpjs) ? $crdtransbpjs->oldvalue : null,
+      'jamsosteknumberoldval' => ($crdtransjamsostek) ? $crdtransjamsostek->oldvalue : null,
+      'npwpnumbernewval' => ($crdtransnpwp) ? $crdtransnpwp->newvalue : null,
+      'bpjsnumbernewval' => ($crdtransbpjs) ? $crdtransbpjs->newvalue : null,
+      'jamsosteknumbernewval' => ($crdtransjamsostek) ? $crdtransjamsostek->newvalue : null,
+      'npwpfileolddoc' => ($crdtransnpwp) ? $crdtransnpwp->olddoc : null,
+      'bpjsfileolddoc' => ($crdtransbpjs) ? $crdtransbpjs->olddoc : null,
+      'jamsostekfileolddoc' => ($crdtransjamsostek) ? $crdtransjamsostek->olddoc : null,
+      'npwpfilenewdoc' => ($crdtransnpwp) ? $crdtransnpwp->newdoc : null,
+      'bpjsfilenewdoc' => ($crdtransbpjs) ? $crdtransbpjs->newdoc : null,
+      'jamsostekfilenewdoc' => ($crdtransjamsostek) ? $crdtransjamsostek->newdoc : null,
+    ]);
   }
 
   /**
@@ -108,169 +108,172 @@ class ChagerequestdataController extends Controller
    * If creation is successful, the browser will be redirected to the 'view' page.
    * @return mixed
    */
-    public function actionAutosave() {
-      $id = $_POST['id'];
-      $approvedby = $_POST['approvedby'];
-      if($id){
-        $model = $this->findModel($id);
-        $model->approvedby = $approvedby;
-        $model->save(false);
-      }
+  public function actionAutosave()
+  {
+    $id = $_POST['id'];
+    $approvedby = $_POST['approvedby'];
+    if ($id) {
+      $model = $this->findModel($id);
+      $model->approvedby = $approvedby;
+      $model->save(false);
     }
+  }
 
-    public function actionGetuserprofile() {
+  public function actionGetuserprofile()
+  {
 
-      $userid = $_POST['userid'];
-      $id = $_POST['id'];
-      if($userid){
-        $model = Userprofile::find()->where(['userid'=>$userid])->one();
-        $document = Uploadocument::find()->where(['userid'=>$userid])->one();
-        $cekhiring = Hiring::find()->where(['userid'=>$model->userid,'statushiring'=>4])->one();
-        $getjo = Transrincian::find()->where(['id'=>$cekhiring->recruitreqid])->one();
-        $updatecr = $this->findModel($id);
-        $updatecr->userid = $userid;
-        $updatecr->perner = $cekhiring->perner;
-        $updatecr->fullname = $cekhiring->userprofile->fullname;
-        $perner = $cekhiring->perner;
-        $name = $cekhiring->userprofile->fullname;
-        $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap))?Yii::$app->utils->getpersonalarea($getjo->persa_sap): "";
-        $area = (Yii::$app->utils->getarea($getjo->area_sap))?Yii::$app->utils->getarea($getjo->area_sap): "";
-        $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap))?Yii::$app->utils->getskilllayanan($getjo->skill_sap): "";
-        $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap))?Yii::$app->utils->getpayrollarea($getjo->abkrs_sap): "";
-        $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap))?Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap): "";
-        $curl = new curl\Curl();
-        $getlevels = $curl->setPostParams([
-          'level' => $getjo->level_sap,
-          'token' => 'ish**2019',
-        ])
+    $userid = $_POST['userid'];
+    $id = $_POST['id'];
+    if ($userid) {
+      $model = Userprofile::find()->where(['userid' => $userid])->one();
+      $document = Uploadocument::find()->where(['userid' => $userid])->one();
+      $cekhiring = Hiring::find()->where(['userid' => $model->userid, 'statushiring' => 4])->one();
+      $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+      $updatecr = $this->findModel($id);
+      $updatecr->userid = $userid;
+      $updatecr->perner = $cekhiring->perner;
+      $updatecr->fullname = $cekhiring->userprofile->fullname;
+      $perner = $cekhiring->perner;
+      $name = $cekhiring->userprofile->fullname;
+      $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap)) ? Yii::$app->utils->getpersonalarea($getjo->persa_sap) : "";
+      $area = (Yii::$app->utils->getarea($getjo->area_sap)) ? Yii::$app->utils->getarea($getjo->area_sap) : "";
+      $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap)) ? Yii::$app->utils->getskilllayanan($getjo->skill_sap) : "";
+      $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap)) ? Yii::$app->utils->getpayrollarea($getjo->abkrs_sap) : "";
+      $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap)) ? Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap) : "";
+      $curl = new curl\Curl();
+      $getlevels = $curl->setPostParams([
+        'level' => $getjo->level_sap,
+        'token' => 'ish**2019',
+      ])
         ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
-        $level  = json_decode($getlevels);
-        $level = ($level)?$level : "";
-        $hire = "Gojobs";
-        $updatecr->save();
-        $crdtransnpwp = Crdtransaction::find()->where(['crdid'=>$id,'dataid'=>1])->one();
-        $crdtransbpjs = Crdtransaction::find()->where(['crdid'=>$id,'dataid'=>2])->one();
-        $crdtransjamsostek = Crdtransaction::find()->where(['crdid'=>$id,'dataid'=>3])->one();
-        if($model){
-          $dataprofile = [
-            'perner' => $perner,
-            'name' => $name,
-            'persa' => $persa,
-            'area' => $area,
-            'skilllayanan' => $skilllayanan,
-            'payrollarea' => $payrollarea,
-            'jabatan' => $jabatan,
-            'level' => $level,
-            'hire' => $hire,
-            'npwpnumber'=>$model->npwpnumber,
-            'bpjsnumber'=>$model->bpjsnumber,
-            'jamsosteknumber'=>$model->jamsosteknumber,
-            'npwpfile'=>($document)?$document->npwp:null,
-            'bpjsfile'=>($document)?$document->bpjskesehatan:null,
-            'jamsostekfile'=>($document)?$document->jamsostek:null,
-            'npwpnumbernewval'=>($crdtransnpwp)?$crdtransnpwp->newvalue:null,
-            'bpjsnumbernewval'=>($crdtransbpjs)?$crdtransbpjs->newvalue:null,
-            'jamsosteknumbernewval'=>($crdtransjamsostek)?$crdtransjamsostek->newvalue:null,
-            'npwpfilenewdoc'=>($crdtransnpwp)?$crdtransnpwp->newdoc:null,
-            'bpjsfilenewdoc'=>($crdtransbpjs)?$crdtransbpjs->newdoc:null,
-            'jamsostekfilenewdoc'=>($crdtransjamsostek)?$crdtransjamsostek->newdoc:null,
-          ];
-        }else{
-          $dataprofile = '';
-        }
-      }else{
+      $level  = json_decode($getlevels);
+      $level = ($level) ? $level : "";
+      $hire = "Gojobs";
+      $updatecr->save();
+      $crdtransnpwp = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 1])->one();
+      $crdtransbpjs = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 2])->one();
+      $crdtransjamsostek = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 3])->one();
+      if ($model) {
+        $dataprofile = [
+          'perner' => $perner,
+          'name' => $name,
+          'persa' => $persa,
+          'area' => $area,
+          'skilllayanan' => $skilllayanan,
+          'payrollarea' => $payrollarea,
+          'jabatan' => $jabatan,
+          'level' => $level,
+          'hire' => $hire,
+          'npwpnumber' => $model->npwpnumber,
+          'bpjsnumber' => $model->bpjsnumber,
+          'jamsosteknumber' => $model->jamsosteknumber,
+          'npwpfile' => ($document) ? $document->npwp : null,
+          'bpjsfile' => ($document) ? $document->bpjskesehatan : null,
+          'jamsostekfile' => ($document) ? $document->jamsostek : null,
+          'npwpnumbernewval' => ($crdtransnpwp) ? $crdtransnpwp->newvalue : null,
+          'bpjsnumbernewval' => ($crdtransbpjs) ? $crdtransbpjs->newvalue : null,
+          'jamsosteknumbernewval' => ($crdtransjamsostek) ? $crdtransjamsostek->newvalue : null,
+          'npwpfilenewdoc' => ($crdtransnpwp) ? $crdtransnpwp->newdoc : null,
+          'bpjsfilenewdoc' => ($crdtransbpjs) ? $crdtransbpjs->newdoc : null,
+          'jamsostekfilenewdoc' => ($crdtransjamsostek) ? $crdtransjamsostek->newdoc : null,
+        ];
+      } else {
         $dataprofile = '';
       }
-
-      return Json::encode($dataprofile);
+    } else {
+      $dataprofile = '';
     }
+
+    return Json::encode($dataprofile);
+  }
   public function actionCreate($id = null)
   {
-      // $getid = Userprofile::find()->where(['userid'=>$userid])->one();
-      $approvalname = ArrayHelper::map(User::find()->where('role in(11,17,24,25)')->asArray()->all(), 'id', 'name');
-      if($id){
-        $model = $this->findModel($id);
-        $crdtrans = Crdtransaction::find()->where(['crdid'=>$id])->one();
-        if($crdtrans){
-          $model->personaldatafill = 1;
-        }
+    // $getid = Userprofile::find()->where(['userid'=>$userid])->one();
+    $approvalname = ArrayHelper::map(User::find()->where('role in(11,17,24,25)')->asArray()->all(), 'id', 'name');
+    if ($id) {
+      $model = $this->findModel($id);
+      $crdtrans = Crdtransaction::find()->where(['crdid' => $id])->one();
+      if ($crdtrans) {
+        $model->personaldatafill = 1;
+      }
 
-        $namaquery = Hiring::find()
+      $namaquery = Hiring::find()
         ->joinWith(['userprofile'])
         ->joinWith(['changereqdata'])
-        ->andWhere(['statushiring'=>4])
-        ->andWhere(['or',
-          ['chagerequestdata.userid'=>null],
-          ['chagerequestdata.status'=>4],
+        ->andWhere(['statushiring' => 4])
+        ->andWhere([
+          'or',
+          ['chagerequestdata.userid' => null],
+          ['chagerequestdata.status' => 4],
           // ['chagerequestdata.status'=>5],
           ['hiring.userid' => $model->userid],
         ])->all();
-        $name = array();
-        foreach ($namaquery as $key => $value) {
-          if($value->changereqdata){
+      $name = array();
+      foreach ($namaquery as $key => $value) {
+        if ($value->changereqdata) {
 
           // $checkdraft =  Chagerequestdata::find()->where(['userid'=>$value->userid, 'status'=>1, 'kategorydata'=>1])->count();
           $checkdraft =  Chagerequestdata::find()
-                        ->andWhere(['userid'=>$value->userid])
-                        ->andWhere(['kategorydata'=>1])
-                        ->andWhere(['or',
-                          ['status'=>1],
-                          ['status'=>6],
-                        ])
-                        ->count();
-          if($value->userid == $model->userid || $value->changereqdata->kategorydata != 1){
+            ->andWhere(['userid' => $value->userid])
+            ->andWhere(['kategorydata' => 1])
+            ->andWhere([
+              'or',
+              ['status' => 1],
+              ['status' => 6],
+            ])
+            ->count();
+          if ($value->userid == $model->userid || $value->changereqdata->kategorydata != 1) {
             // var_dump($model->userid);die;
-            $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
+            $name[$value->userid] = $value->userprofile->fullname . ' / ' . $value->perner;
           }
-            if($value->changereqdata->status == 4 && $checkdraft == 0){
-              $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
-            }
-          }else{
-            $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
+          if ($value->changereqdata->status == 4 && $checkdraft == 0) {
+            $name[$value->userid] = $value->userprofile->fullname . ' / ' . $value->perner;
           }
+        } else {
+          $name[$value->userid] = $value->userprofile->fullname . ' / ' . $value->perner;
         }
-
-      }else{
-        $getid = new Chagerequestdata();
-        $getid->createtime = date('Y-m-d H-i-s');
-        $getid->updatetime = date('Y-m-d H-i-s');
-        $getid->createdby = Yii::$app->user->identity->id;
-        $getid->updatedby = Yii::$app->user->identity->id;
-        $getid->kategorydata = 1;
-        $getid->save();
-        return $this->redirect(['create', 'id' => $getid->id]);
       }
-      $model->scenario = 'submit';
-      if ($model->load(Yii::$app->request->post())) {
-          $getjo = Hiring::find()->where(['userid'=>$model->userid, 'statushiring'=>4])->one();
-          $modelrecreq = Transrincian::find()->where(['id'=>$getjo->recruitreqid])->one();
-          $model->status = 2;
-          // $model->perner = $getjo->perner;
-          // $model->perner = $getjo->userprofile->fullname;
-          if($model->save()){
+    } else {
+      $getid = new Chagerequestdata();
+      $getid->createtime = date('Y-m-d H-i-s');
+      $getid->updatetime = date('Y-m-d H-i-s');
+      $getid->createdby = Yii::$app->user->identity->id;
+      $getid->updatedby = Yii::$app->user->identity->id;
+      $getid->kategorydata = 1;
+      $getid->save();
+      return $this->redirect(['create', 'id' => $getid->id]);
+    }
+    $model->scenario = 'submit';
+    if ($model->load(Yii::$app->request->post())) {
+      $getjo = Hiring::find()->where(['userid' => $model->userid, 'statushiring' => 4])->one();
+      $modelrecreq = Transrincian::find()->where(['id' => $getjo->recruitreqid])->one();
+      $model->status = 2;
+      // $model->perner = $getjo->perner;
+      // $model->perner = $getjo->userprofile->fullname;
+      if ($model->save()) {
 
-            $userprofile = Userprofile::find()->where(['userid'=>$model->userid])->one();
-            $user = User::find()->where(['id'=>$model->approvedby])->one();
-            if ($modelrecreq->transjo->n_project == "" || $modelrecreq->transjo->n_project == "Pilih"){
-              $layanan = $modelrecreq->transjo->project;
-            }else{
-              $layanan = $modelrecreq->transjo->n_project;
-            }
-            if(Yii::$app->utils->getarea($modelrecreq->area_sap)){
-              $area = Yii::$app->utils->getarea($modelrecreq->area_sap);
-            }else{
-              $area = '-';
-            }
-            if(Yii::$app->utils->getjabatan($modelrecreq->hire_jabatan_sap)){
-              $jabatan = Yii::$app->utils->getjabatan($modelrecreq->hire_jabatan_sap);
-            }else{
-              $jabatan = '-';
-            }
-            $to = $user->email;
-            $subject = 'Notifikasi Approval Perubahan Data Pekerja';
-            $body = 'Semangat Pagi,,
+        $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
+        $user = User::find()->where(['id' => $model->approvedby])->one();
+        if ($modelrecreq->transjo->n_project == "" || $modelrecreq->transjo->n_project == "Pilih") {
+          $layanan = $modelrecreq->transjo->project;
+        } else {
+          $layanan = $modelrecreq->transjo->n_project;
+        }
+        if (Yii::$app->utils->getarea($modelrecreq->area_sap)) {
+          $area = Yii::$app->utils->getarea($modelrecreq->area_sap);
+        } else {
+          $area = '-';
+        }
+        if (Yii::$app->utils->getjabatan($modelrecreq->hire_jabatan_sap)) {
+          $jabatan = Yii::$app->utils->getjabatan($modelrecreq->hire_jabatan_sap);
+        } else {
+          $jabatan = '-';
+        }
+        $to = $user->email;
+        $subject = 'Notifikasi Approval Perubahan Data Pekerja';
+        $body = 'Semangat Pagi,,
             <br>
-            Anda mendapatkan permintaan Approval Perubahan Data Pekerja dari <span style="text-transform: uppercase;"><b>'.$model->createduser->name.'</b></span> dengan rincian sebagai berikut :
+            Anda mendapatkan permintaan Approval Perubahan Data Pekerja dari <span style="text-transform: uppercase;"><b>' . $model->createduser->name . '</b></span> dengan rincian sebagai berikut :
 
             <br>
             <br>
@@ -278,27 +281,27 @@ class ChagerequestdataController extends Controller
             <tr>
             <td valign="top">Nama Pekerja</td>
             <td valign="top">:</td>
-            <td valign="top">'.$userprofile->fullname.'</td>
+            <td valign="top">' . $userprofile->fullname . '</td>
             </tr>
             <tr>
             <td valign="top">Perner</td>
             <td valign="top">:</td>
-            <td valign="top">'.$getjo->perner.'</td>
+            <td valign="top">' . $getjo->perner . '</td>
             </tr>
             <tr>
             <td valign="top">Nama Project</td>
             <td valign="top">:</td>
-            <td valign="top">'.$layanan.'</td>
+            <td valign="top">' . $layanan . '</td>
             </tr>
             <tr>
             <td valign="top">Area</td>
             <td valign="top">:</td>
-            <td valign="top">'.$area.'</td>
+            <td valign="top">' . $area . '</td>
             </tr>
             <tr>
             <td valign="top">Jabatan</td>
             <td valign="top">:</td>
-            <td valign="top">'.$jabatan.'</td>
+            <td valign="top">' . $jabatan . '</td>
             </tr>
             <tr>
             </table>
@@ -308,18 +311,17 @@ class ChagerequestdataController extends Controller
             <br><br>
             Have a great day !
             ';
-            // var_dump($body);die;
-            $verification = Yii::$app->utils->sendmail($to,$subject,$body,11);
-          }
-          return $this->redirect(['index']);
-      } else {
-          return $this->render('create', [
-              'model' => $model,
-              'name' => $name,
-              'approvalname' => $approvalname,
-          ]);
+        // var_dump($body);die;
+        $verification = Yii::$app->utils->sendmail($to, $subject, $body, 20);
       }
-
+      return $this->redirect(['index']);
+    } else {
+      return $this->render('create', [
+        'model' => $model,
+        'name' => $name,
+        'approvalname' => $approvalname,
+      ]);
+    }
   }
 
   /**
@@ -332,41 +334,40 @@ class ChagerequestdataController extends Controller
   {
 
     return $this->redirect(['create', 'id' => $id]);
-
   }
   public function actionApprove($id, $userid)
   {
     $model = $this->findModel($id);
     $userid = $model->userid;
-    $userprofile = Userprofile::find()->where(['userid'=>$userid])->one();
-    $document = Uploadocument::find()->where(['userid'=>$userid])->one();
-    $crdtransnpwp = Crdtransaction::find()->where(['crdid'=>$id,'dataid'=>1])->one();
-    $crdtransbpjs = Crdtransaction::find()->where(['crdid'=>$id,'dataid'=>2])->one();
-    $crdtransjamsostek = Crdtransaction::find()->where(['crdid'=>$id,'dataid'=>3])->one();
+    $userprofile = Userprofile::find()->where(['userid' => $userid])->one();
+    $document = Uploadocument::find()->where(['userid' => $userid])->one();
+    $crdtransnpwp = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 1])->one();
+    $crdtransbpjs = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 2])->one();
+    $crdtransjamsostek = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 3])->one();
     $model->scenario = 'approve';
     if ($model->load(Yii::$app->request->post())) {
-      if($model->status == 4){
+      if ($model->status == 4) {
         $updatesap = $this->UpdateSapPersonaldata($id, $userid);
         // var_dump($updatesap);die;
-        if($updatesap){
+        if ($updatesap) {
           $model->remarks = $updatesap;
           $model->status = 6;
           $model->save();
-        }else{
+        } else {
           $model->remarks = 'successful';
           $model->approvedtime = date('Y-m-d H-i-s');
           $model->save();
-          if($crdtransnpwp){
+          if ($crdtransnpwp) {
             $userprofile->npwpnumber = $crdtransnpwp->newvalue;
             $userprofile->havenpwp = 1;
             $document->npwp = $crdtransnpwp->newdoc;
           }
-          if($crdtransjamsostek){
+          if ($crdtransjamsostek) {
             $userprofile->jamsosteknumber = $crdtransjamsostek->newvalue;
             $userprofile->havejamsostek = 1;
             $document->jamsostek = $crdtransjamsostek->newdoc;
           }
-          if($crdtransbpjs){
+          if ($crdtransbpjs) {
             $userprofile->bpjsnumber = $crdtransbpjs->newvalue;
             $userprofile->havebpjs = 1;
             $document->bpjskesehatan = $crdtransbpjs->newdoc;
@@ -374,62 +375,62 @@ class ChagerequestdataController extends Controller
           $userprofile->save(false);
           $document->save(false);
         }
-      }else{
+      } else {
         $model->save();
       }
 
       // $model->save();
       return $this->redirect(['index']);
-    }else{
+    } else {
       return $this->renderAjax('approve', [
-          'model' => $model,
-          'userprofile'=>$userprofile,
-          'document'=>$document,
-          'npwpnumberoldval'=>($crdtransnpwp)?$crdtransnpwp->oldvalue:null,
-          'bpjsnumberoldval'=>($crdtransbpjs)?$crdtransbpjs->oldvalue:null,
-          'jamsosteknumberoldval'=>($crdtransjamsostek)?$crdtransjamsostek->oldvalue:null,
-          'npwpnumbernewval'=>($crdtransnpwp)?$crdtransnpwp->newvalue:null,
-          'bpjsnumbernewval'=>($crdtransbpjs)?$crdtransbpjs->newvalue:null,
-          'jamsosteknumbernewval'=>($crdtransjamsostek)?$crdtransjamsostek->newvalue:null,
-          'npwpfileolddoc'=>($crdtransnpwp)?$crdtransnpwp->olddoc:null,
-          'bpjsfileolddoc'=>($crdtransbpjs)?$crdtransbpjs->olddoc:null,
-          'jamsostekfileolddoc'=>($crdtransjamsostek)?$crdtransjamsostek->olddoc:null,
-          'npwpfilenewdoc'=>($crdtransnpwp)?$crdtransnpwp->newdoc:null,
-          'bpjsfilenewdoc'=>($crdtransbpjs)?$crdtransbpjs->newdoc:null,
-          'jamsostekfilenewdoc'=>($crdtransjamsostek)?$crdtransjamsostek->newdoc:null,
+        'model' => $model,
+        'userprofile' => $userprofile,
+        'document' => $document,
+        'npwpnumberoldval' => ($crdtransnpwp) ? $crdtransnpwp->oldvalue : null,
+        'bpjsnumberoldval' => ($crdtransbpjs) ? $crdtransbpjs->oldvalue : null,
+        'jamsosteknumberoldval' => ($crdtransjamsostek) ? $crdtransjamsostek->oldvalue : null,
+        'npwpnumbernewval' => ($crdtransnpwp) ? $crdtransnpwp->newvalue : null,
+        'bpjsnumbernewval' => ($crdtransbpjs) ? $crdtransbpjs->newvalue : null,
+        'jamsosteknumbernewval' => ($crdtransjamsostek) ? $crdtransjamsostek->newvalue : null,
+        'npwpfileolddoc' => ($crdtransnpwp) ? $crdtransnpwp->olddoc : null,
+        'bpjsfileolddoc' => ($crdtransbpjs) ? $crdtransbpjs->olddoc : null,
+        'jamsostekfileolddoc' => ($crdtransjamsostek) ? $crdtransjamsostek->olddoc : null,
+        'npwpfilenewdoc' => ($crdtransnpwp) ? $crdtransnpwp->newdoc : null,
+        'bpjsfilenewdoc' => ($crdtransbpjs) ? $crdtransbpjs->newdoc : null,
+        'jamsostekfilenewdoc' => ($crdtransjamsostek) ? $crdtransjamsostek->newdoc : null,
       ]);
     }
   }
   protected function UpdateSapPersonaldata($id, $userid)
   {
-    $model = Hiring::find()->where(['userid'=>$userid,'statushiring'=>4])->one();
+    $model = Hiring::find()->where(['userid' => $userid, 'statushiring' => 4])->one();
     $tglinputhiring = date_create($model->tglinput);
-    $tglinput = date_format($tglinputhiring,'d.m.Y');
+    $tglinput = date_format($tglinputhiring, 'd.m.Y');
     $modelcr = $this->findModel($id);
-    $userprofile = Userprofile::find()->where(['userid'=>$userid])->one();
-    $crdtransnpwp = Crdtransaction::find()->where(['crdid'=>$id,'dataid'=>1])->one();
-    $crdtransbpjs = Crdtransaction::find()->where(['crdid'=>$id,'dataid'=>2])->one();
-    $crdtransjamsostek = Crdtransaction::find()->where(['crdid'=>$id,'dataid'=>3])->one();
+    $userprofile = Userprofile::find()->where(['userid' => $userid])->one();
+    $crdtransnpwp = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 1])->one();
+    $crdtransbpjs = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 2])->one();
+    $crdtransjamsostek = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 3])->one();
     $url = "http://192.168.88.60:8080/ish-rest/ZINFHRF_00025";
-    if($userprofile->gender == 'male'){
+    if ($userprofile->gender == 'male') {
       $gender = '1';
-      if($userprofile->maritalstatus == 'married'){
+      if ($userprofile->maritalstatus == 'married') {
         $spben = 'X';
-      }else{
+      } else {
         $spben = '';
       }
-    }else{
+    } else {
       $gender = '2';
-      if($userprofile->maritalstatus == 'married'){
+      if ($userprofile->maritalstatus == 'married') {
         $spben = 'X';
-      }else{
+      } else {
         $spben = '';
       }
     }
-    if($userprofile->maritalstatus == 'single'){
+    if ($userprofile->maritalstatus == 'single') {
       $marrd = '';
       $marst = '';
-    }else{
+    } else {
       $marrd = 'X';
       $marst = 'X';
     }
@@ -439,62 +440,62 @@ class ChagerequestdataController extends Controller
     $infotypenpwp = [];
     $infotypejamsostek = [];
     $infotypebpjs = [];
-    if($crdtransnpwp){
+    if ($crdtransnpwp) {
       $infotypenpwp = ['0241'];
       $npwpval = $crdtransnpwp->newvalue;
     }
-    if($crdtransjamsostek){
+    if ($crdtransjamsostek) {
       $infotypejamsostek = ['0242'];
       $jamsostekval = $crdtransjamsostek->newvalue;
     }
-    if($crdtransbpjs){
+    if ($crdtransbpjs) {
       $infotypebpjs = ['0037'];
       $bpjsval = $crdtransbpjs->newvalue;
     }
-    $infotype = array_merge($infotypenpwp,$infotypejamsostek,$infotypebpjs);
+    $infotype = array_merge($infotypenpwp, $infotypejamsostek, $infotypebpjs);
     $request_data = [
       [
-        'pernr'=> "$model->perner",
-        'inftypList'=>$infotype,
+        'pernr' => "$model->perner",
+        'inftypList' => $infotype,
         //01  no ktp, 02  sim a, 03  sim b, 04  sim c, 05  nik, 06  agent id, 07  passport, 08  virtual bpjs, 09  kartu keluarga, 80  application id
 
-        'p00241List'=>[
+        'p00241List' => [
           [
-            'endda'=>'31.12.9999',
-            'begda'=> $tglinput,
-            'operation'=>'INS',
-            'pernr'=> "$model->perner",
-            'infty'=>'0241',
-            'taxid'=> $npwpval, //validasi max character 15
-            'marrd'=> $marrd,
-            'spben'=> $spben,
-            'depnd'=> 'f',
-            'rdate'=> ''
+            'endda' => '31.12.9999',
+            'begda' => $tglinput,
+            'operation' => 'INS',
+            'pernr' => "$model->perner",
+            'infty' => '0241',
+            'taxid' => $npwpval, //validasi max character 15
+            'marrd' => $marrd,
+            'spben' => $spben,
+            'depnd' => 'f',
+            'rdate' => ''
           ]
         ],
-        'p00242List'=>[
+        'p00242List' => [
           [
-            'endda'=>'31.12.9999',
-            'begda'=> $tglinput,
-            'operation'=> 'INS',
-            'pernr'=> "$model->perner",
-            'infty'=>'0242',
-            'jamid'=> $jamsostekval, //validasi max character 11
-            'marst'=> $marst
+            'endda' => '31.12.9999',
+            'begda' => $tglinput,
+            'operation' => 'INS',
+            'pernr' => "$model->perner",
+            'infty' => '0242',
+            'jamid' => $jamsostekval, //validasi max character 11
+            'marst' => $marst
           ]
         ],
-        'p00037List'=>[
+        'p00037List' => [
           [
-            'endda'=>'31.12.9999',
-            'begda'=> $tglinput,
-            'operation'=> 'INS',
-            'pernr'=> "$model->perner",
-            'infty'=>'0037',
-            'subty'=> "0016",
-            'vsart'=> "0016",
-            'vsges'=> "11",
-            'vsnum'=> $bpjsval, //validasi max character 11
-            'waers'=> "IDR"
+            'endda' => '31.12.9999',
+            'begda' => $tglinput,
+            'operation' => 'INS',
+            'pernr' => "$model->perner",
+            'infty' => '0037',
+            'subty' => "0016",
+            'vsart' => "0016",
+            'vsges' => "11",
+            'vsnum' => $bpjsval, //validasi max character 11
+            'waers' => "IDR"
           ]
         ],
 
@@ -525,19 +526,17 @@ class ChagerequestdataController extends Controller
     curl_close($ch);
     $ret = json_decode($response);
     $log = array();
-    if($ret){
+    if ($ret) {
       foreach ($ret as $key => $value) {
-        if ($value->success <> TRUE){
+        if ($value->success <> TRUE) {
           $log  = $value->message;
         }
       }
-
-    }else{
+    } else {
       $log = 'error SAP';
     }
 
     return $log;
-
   }
 
   /**
@@ -548,9 +547,9 @@ class ChagerequestdataController extends Controller
    */
   public function actionDelete($id)
   {
-      $this->findModel($id)->delete();
+    $this->findModel($id)->delete();
 
-      return $this->redirect(['index']);
+    return $this->redirect(['index']);
   }
 
   /**
@@ -562,10 +561,10 @@ class ChagerequestdataController extends Controller
    */
   protected function findModel($id)
   {
-      if (($model = Chagerequestdata::findOne($id)) !== null) {
-          return $model;
-      } else {
-          throw new NotFoundHttpException('The requested page does not exist.');
-      }
+    if (($model = Chagerequestdata::findOne($id)) !== null) {
+      return $model;
+    } else {
+      throw new NotFoundHttpException('The requested page does not exist.');
+    }
   }
 }

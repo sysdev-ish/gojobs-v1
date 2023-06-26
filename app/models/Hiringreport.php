@@ -98,6 +98,16 @@ class Hiringreport extends Hiring
       $query->where('statushiring <> 5 and statushiring <> 1');
     }
 
+    if ($this->status) {
+      if ($this->status == 4) {
+        $query->where('statushiring = 4');
+      } else if ($this->status == 7) {
+        $query->where('statushiring = 7');
+      } else {
+        $query->Where('statushiring IN (null)');
+      }
+    }
+
     if (!$this->validate()) {
       return $dataProvider;
     }

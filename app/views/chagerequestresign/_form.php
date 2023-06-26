@@ -35,8 +35,6 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
               'url' => \yii\helpers\Url::to(['chagerequestresign/getdatakaryawan']),
               'dataType' => 'json',
               'data' => new \yii\web\JsExpression('function(params) { return {q:params.term}; }'),
-
-
             ],
             'escapeMarkup' => new \yii\web\JsExpression('function (markup) { return markup; }'),
             'templateResult' => new \yii\web\JsExpression('function(a) {
@@ -80,7 +78,7 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
           'data' => $reason,
           'options' => [
             'placeholder' => '- select -', 'id' => 'reason',
-            'onChange' => "autosave();",
+            // 'onChange' => "autosave();",
           ],
           'pluginOptions' => [
             'autoClose' => true,
@@ -91,9 +89,6 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
         ?>
         <?= $form->field($model, 'userremarks')->textArea(['id' => 'userremarks', 'onChange' => "autosave();"])->label('Remarks');
         ?>
-
-
-
       </div>
     </div>
   </div>
@@ -187,7 +182,7 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
       data: {
         approvedby: approvedbyid,
         // resigndate: resigndateid,
-        reason: reasonid,
+        // reason: reasonid,
         userremarks: userremarksval,
         id: <?php echo $model->id; ?>,
       },

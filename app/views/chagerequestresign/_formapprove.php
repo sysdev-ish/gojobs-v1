@@ -7,7 +7,7 @@ use kartik\select2\Select2;
 use linslin\yii2\curl;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Chagerequestjo */
+/* @var $model app\models\Chagerequestresign */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 <div class="row">
@@ -17,11 +17,11 @@ use linslin\yii2\curl;
     </blockquote>
   </div>
 <div class="col-md-12">
-  <div class="chagerequestjo-form">
+  <div class="chagerequestresign-form">
       <?php $form = ActiveForm::begin([
         'options'=>[
           'enctype'=>'multipart/form-data',
-          'id'=>'stopjo-form'
+          'id'=>'chagerequestresign-form'
         ]
       ]); ?>
       <div class="box-body table-responsive">

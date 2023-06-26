@@ -145,8 +145,8 @@ class ChagerequestresignController extends Controller
           $area = $datapekerjabyperner[0]->BTRTX;
           $jabatan = $datapekerjabyperner[0]->PLATX;
         }
-        // $to = $user->email;
-        $to = 'khusnul.hisyam@ish.co.id';
+        $to = $user->email;
+        // $to = "khusnul.hisyam@ish.co.id";
         $subject = 'Notifikasi Approval Resign Pekerja';
         $body = 'Semangat Pagi,,
               <br>
@@ -191,7 +191,6 @@ class ChagerequestresignController extends Controller
         // var_dump($body);die;
         $verification = Yii::$app->utils->sendmail($to, $subject, $body, 12);
       }
-      // var_dump($model);
       return $this->redirect(['index']);
     } else {
       return $this->render('create', [
@@ -216,8 +215,8 @@ class ChagerequestresignController extends Controller
       } else {
         $model->save();
       }
-
-      // $model->save();
+      //session for alert
+      Yii::$app->session->setFlash('success', "Waiting for Resign Execution process.");
       return $this->redirect(['index']);
     } else {
       return $this->renderAjax('_formapprove', [
@@ -449,10 +448,12 @@ class ChagerequestresignController extends Controller
     }
     return $outs;
   }
+
   public function actionUpdate($id)
   {
     return $this->redirect(['create', 'id' => $id]);
   }
+
   public function actionGetuserabout()
   {
 
@@ -482,9 +483,8 @@ class ChagerequestresignController extends Controller
         $hire = "Gojobs";
         $updatecr->fullname = $name;
         $updatecr->perner = $cekhiring->perner;
-        $status = $cekhiring->statushiring;
-        $resigndate = "";
-        $resignreason = "";
+        $status = $cekhiring->statushiring0->statusname;
+        $hiringdate = $cekhiring->tglinput;
       } else {
         $updatecr->userid = null;
         $updatecr->perner = $perner;
@@ -507,22 +507,25 @@ class ChagerequestresignController extends Controller
         $status = $datapekerjabyperner[0]->MASSN;
         $flagreason = $datapekerjabyperner[0]->MASSG;
         $updatecr->fullname = $name;
-        if ($status == "Z8") {
-          $resignreason = $datapekerjabyperner[0]->MSGTX;
-          if ($datapekerjabyperner[0]->DAT35) {
-            $year = substr($datapekerjabyperner[0]->DAT35, 0, 4);
-            $month = substr($datapekerjabyperner[0]->DAT35, 4, 2);
-            $date = substr($datapekerjabyperner[0]->DAT35, 6, 2);
-            $resigndate = $year . "-" . $month . "-" . $date;
-          }
-        } 
-        $updatecr->resigndate = $resigndate;
-        $updatecr->reason = $flagreason;
-
+        $hiringdate = "";
       }
-      
+
       $checkperner = Chagerequestresign::find()->where('perner = ' . $perner . ' and status > 1 and status <> 5 and status <> 6')->one();
       //add by kaha 21/02/23      
+      if ($status == "Z8") {
+        $resignreason = $datapekerjabyperner[0]->MSGTX;
+        if ($datapekerjabyperner[0]->DAT35) {
+          $year = substr($datapekerjabyperner[0]->DAT35, 0, 4);
+          $month = substr($datapekerjabyperner[0]->DAT35, 4, 2);
+          $date = substr($datapekerjabyperner[0]->DAT35, 6, 2);
+          $resigndate = $year . "-" . $month . "-" . $date;
+        }
+        $updatecr->resigndate = $resigndate;
+        $updatecr->reason = $flagreason;
+      } else {
+        $resigndate = "";
+        $resignreason = "";
+      }
 
       if ($checkperner) {
         $checkperner = '';
@@ -544,13 +547,15 @@ class ChagerequestresignController extends Controller
         'checkperner' => $checkperner,
         'status' => $status,
         'resign_reason' => $resignreason,
-        'resign_date' => $resigndate
+        'resign_date' => $resigndate,
+        'hiring_date' => $hiringdate
       ];
     } else {
       $dataprofile = '';
     }
     return Json::encode($dataprofile);
   }
+
   public function actionAutosave()
   {
     $id = $_POST['id'];
@@ -568,6 +573,119 @@ class ChagerequestresignController extends Controller
       $model->userremarks = $userremarks;
       $model->save(false);
     }
+  }
+
+  public function actionBulkapprove()
+  {
+    $this->enableCsrfValidation = false;
+
+    $userIds = [];
+    $id = null;
+    if (isset($_GET['id'])) {
+      //get data from gojobs.js -> selected field from the table
+      $userIds = $_GET['id'];
+      $id = Chagerequestresign::find()->where('id IN (' . implode(',', $userIds) . ')', [])->all();
+
+      $count = 0;
+      $model = null;
+
+      foreach ($id as $loadmodel) {
+        $model = $this->findModel($loadmodel->id);
+        if ($model->load(Yii::$app->request->post())) {
+          $model->approvedtime = date('Y-m-d H-i-s');
+          if ($model->status == 8) {
+            $model->remarks = "Waiting for Resign Execution process";
+            $model->save();
+          }
+          $model->save();
+          $count++;
+          if ($count == count($id)) {
+            Yii::$app->session->setFlash('success', "Waiting for Resign Execution process.");
+            return $this->redirect(['index']);
+          }
+        } else {
+          return $this->renderAjax('_formbulkapprove', [
+            'model' => $model,
+            'id' => $id,
+          ]);
+        }
+      }
+    }
+  }
+
+
+  //add by kaha 13/6/23
+  public function actionUpload()
+  {
+    $model = new Chagerequestresign();
+    $uploadIdentifier = $this->user->id . '-' . Yii::$app->utils->generateRandomString(3) . '-' . time();
+    $uploadData = null;
+    $uploadDataFirstRow = '';
+
+    return $this->render('upload', [
+      'model' => $model,
+      'uploadIdentifier' => $uploadIdentifier,
+      'uploadData' => $uploadData,
+      'uploadDataFirstRow' => $uploadDataFirstRow,
+    ]);
+  }
+
+  //add by kaha 13/6/23
+  public function actionUploaddo()
+  {
+    $user = User::findOne($this->user->id);
+    $ret = array(
+      'fileName' => null,
+      'fileRealName' => null,
+      'fileSize' => null,
+      'countData' => 0,
+      'ok' => 0,
+    );
+    $allowedMimeTypes = explode(',', $this->module->param->get('dataUploadMimes'));
+    $allowedExtensions = explode(',', $this->module->param->get('dataUploadExtensions'));
+
+    if (isset($_POST['identifier']) && isset($_FILES['Store'])) {
+      $identifier = $_POST['identifier'];
+      $filePost = array(
+        'name' => $_FILES['Store']['name']['file_upload'],
+        'type' => $_FILES['Store']['type']['file_upload'],
+        'tmpName' => $_FILES['Store']['tmp_name']['file_upload'],
+        'error' => $_FILES['Store']['error']['file_upload'],
+        'size' => $_FILES['Store']['size']['file_upload'],
+      );
+
+      $mimeType = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $filePost['tmpName']);
+      if (in_array($mimeType, $allowedMimeTypes)) {
+        $dirAbs = Yii::getAlias('@webroot') . $this->module->param->get('dataUploadDir');
+        $dirRel = Yii::getAlias('@web') . $this->module->param->get('dataUploadDir');
+
+        $phpExe = Yii::getAlias('@app') . '/yii';
+
+        // Copy file
+        $fileNames = explode('.', $filePost['name']);
+        $ext = strtolower($fileNames[count($fileNames) - 1]);
+        if (in_array($ext, $allowedExtensions)) {
+          if ($ext == 'txt') $ext = 'csv';
+          $destFile = $dirAbs . '/' . $identifier . '.' . $ext;
+          move_uploaded_file($filePost['tmpName'], $destFile);
+
+          $phpCommand = 'php ' . $phpExe . ' uploadstore ' . $destFile . ' ' . $user->id;
+          $shell = shell_exec($phpCommand);
+          $shell = json_decode($shell, true);
+
+          $ret['fileName'] = $filePost['name'];
+          $ret['fileRealName'] = $identifier . '.' . $ext;
+          $ret['fileSize'] = $this->module->util->formatBytes($filePost['size']);
+          $ret['countData'] = isset($shell['countData']) ? $shell['countData'] : 0;
+          $ret['firstDataRow'] = isset($shell['firstRow']) ? $shell['firstRow'] : '';
+          if ($ret['countData'] > 0) $ret['ok'] = 1;
+          else $ret['ok'] = 0;
+        }
+      }
+    }
+
+    Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    return $ret;
   }
 
   /**

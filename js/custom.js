@@ -1168,6 +1168,26 @@ $(function () {
           .append(html);
       });
   });
+  
+  $('.approvebulkcrresign-modal-click').click(function () {
+    var loading = new Loading({
+      direction: 'hor',
+      discription: 'Loading...',
+        defaultApply: 	true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr('value'), function(html) {
+        loading.out()
+        $('#approvebulkcrresign-modal')
+          .modal('show')
+          .find('#approvebulkcrresign-view')
+          .empty()
+          .append(html);
+      });
+  });
+
   $('.approvecrcanceljoin-modal-click').click(function () {
     var loading = new Loading({
       direction: 'hor',

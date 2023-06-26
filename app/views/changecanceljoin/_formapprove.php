@@ -15,7 +15,7 @@ use linslin\yii2\curl;
 <div class="row">
   <div class="col-sm-12">
     <blockquote>
-      <p>Confirmation Change Cancel Join for <b><?php echo $model->fullname; ?></b> perner (<?php echo $model->perner; ?>).</p>
+      <p>Approval Change Cancel Join for <b><?php echo $model->fullname; ?></b> perner (<?php echo $model->perner; ?>).</p>
       <small>Personal Area (SAP) <cite title="Source Title"><b>
             <?php if ($model->userid) {
               $cekhiring = Hiring::find()->where('userid =' . $model->userid . ' and (statushiring = 4 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
@@ -131,32 +131,32 @@ use linslin\yii2\curl;
             }
             echo $jabatan; ?></b></cite></small>
       <small>level (SAP) <cite title="Source Title"><b>
-            <?php if ($model->userid) {
-              $cekhiring = Hiring::find()->where('userid =' . $model->userid . ' and (statushiring = 4 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
-              if ($cekhiring) {
-                $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
-                $curl = new curl\Curl();
-                $getlevels = $curl->setPostParams([
-                  'level' => $getjo->level_sap,
-                  'token' => 'ish**2019',
-                ])
-                  ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
-                $level  = json_decode($getlevels);
-                $level = ($level) ? $level : "";
-              } else {
-                $level = "-";
-              }
-            } else {
-              $curl = new curl\Curl();
-              $getdatapekerjabyperner =  $curl->setPostParams([
-                'perner' => $model->perner,
-                'token' => 'ish**2019',
-              ])
-                ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
-              $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-              $level = $datapekerjabyperner[0]->TRFAR_TXT;
-            }
-            echo $level; ?></b></cite>
+        <?php if ($model->userid) {
+        $cekhiring = Hiring::find()->where('userid =' . $model->userid . ' and (statushiring = 4 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
+        if ($cekhiring) {
+          $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+          $curl = new curl\Curl();
+          $getlevels = $curl->setPostParams([
+            'level' => $getjo->level_sap,
+            'token' => 'ish**2019',
+          ])
+            ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
+          $level  = json_decode($getlevels);
+          $level = ($level) ? $level : "";
+        } else {
+          $level = "-";
+        }
+      } else {
+        $curl = new curl\Curl();
+        $getdatapekerjabyperner =  $curl->setPostParams([
+          'perner' => $model->perner,
+          'token' => 'ish**2019',
+        ])
+          ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+        $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+        $level = $datapekerjabyperner[0]->TRFAR_TXT;
+      }
+      echo $level; ?></b></cite>
       </small>
     </blockquote>
   </div>
@@ -169,9 +169,9 @@ use linslin\yii2\curl;
         ]
       ]); ?>
       <div class="box-body table-responsive">
+
         <?php
-        $data = [4 => 'Confirm', 5 => 'Reject'];
-        // $data = [4 => 'Confirm'];
+        $data = [8 => 'Approve', 5 => 'Reject', 6 => 'Revise'];
         echo   $form->field($model, 'status')->widget(Select2::classname(), [
           'data' => $data,
           'options' => ['placeholder' => '- select -'],
@@ -181,8 +181,8 @@ use linslin\yii2\curl;
           ],
         ])->label('Select Confirmation');
         ?>
-        <?= $form->field($model, 'userremarks')->textArea(['maxlength' => true]) ?>
       </div>
+      <br>
       <div class="box-footer">
         <?= Html::submitButton('Submit', ['class' => 'btn btn-success btn-flat pull-right']) ?>
       </div>

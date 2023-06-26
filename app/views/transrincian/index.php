@@ -124,14 +124,13 @@ $action = $actionstop . $actionview . $actionaddcandidate;
           'format' => 'html',
           'value' => function ($data) {
             if ($data->hire_jabatan_sap) {
-              if (is_numeric($data->hire_jabatan_sap)){
+              if (is_numeric($data->hire_jabatan_sap)) {
                 if ($data->jabatansap) {
                   return $data->jabatansap->value2;
                 } else {
                   return "-";
                 }
-              }
-              else {
+              } else {
                 return "-";
               }
             } else {

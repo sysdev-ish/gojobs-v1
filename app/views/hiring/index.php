@@ -89,7 +89,7 @@ if(Yii::$app->utils->permission($role,'m37')){
                 ['class' => 'yii\grid\SerialColumn'],
                 'id',
                 'updatetime',
-                // 'userid',
+                'userid',
                 [
                   'label' => 'Full Name',
                   'attribute' => 'fullname',

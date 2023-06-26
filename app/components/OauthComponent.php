@@ -14,11 +14,13 @@ class OauthComponent extends Component {
     $getaccesstoken = $curl->setPostParams([
       'grant_type' => 'authorization_code',
       'code' => $code,
-      'redirect_uri' => 'https://gojobs.id/rekrut/site/oauthhris',
-      'client_id' => 'goj0bsid',
-      'client_secret' => 'e95h0gf8x8mwlek9bqgy',
+      // 'redirect_uri' => 'https://gojobs.id/rekrut/site/oauthhris',
+      'redirect_uri' => 'http://localhost/rekrut/site/oauthhris',
+      'client_id' => 'GojobsDev',
+      'client_secret' => 'so5fjnikjeood7aotoc1',
     ])
-    ->post('passport.ish.co.id/core/api/sso/token');
+    //->post('passport.ish.co.id/core/api/sso/token');
+    ->post('http://192.168.88.151/core/api/sso/token');
     $response = $getaccesstoken;
     return $response;
   }
@@ -27,7 +29,8 @@ class OauthComponent extends Component {
     $getuserdata = $curl->setPostParams([
       'access_token' => $token,
     ])
-    ->post('passport.ish.co.id/core/api/sso/info');
+    //->post('passport.ish.co.id/core/api/sso/info');
+    ->post('http://192.168.88.151/core/api/sso/info');
     $useroauthdata = json_decode($getuserdata);
     if($useroauthdata->code == 1){
       // var_dump(Yii::$app->getUser());die;
@@ -73,7 +76,8 @@ class OauthComponent extends Component {
     $logout = $curl->setPostParams([
       'access_token' => $user->access_token,
     ])
-    ->post('passport.ish.co.id/core/api/sso/logout');
+    //->post('passport.ish.co.id/core/api/sso/logout');
+    ->post('http://192.168.88.151/core/api/sso/logout');
     // var_dump($getaccesstoken);die;
     $response = $logout;
     return $response;

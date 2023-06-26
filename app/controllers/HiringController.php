@@ -642,18 +642,18 @@ class HiringController extends Controller
 
     $hiringstatus = Yii::$app->utils->aplhired($model);
     if ($hiringstatus) {
-      $to = $hiring->mail->email;
+      // $to = $hiring->mail->email;
       //170
       // $to = 'seysi.lupi@ish.co.id';
-      // $to = 'khusnul.hisyam@ish.co.id';
+      $to = 'khusnul.hisyam@ish.co.id';
 
       $subject = 'Pemberitahuan PT Infomedia Solusi Humanika';
       $body = Yii::$app->params['mailFeedback'];
       $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
       // $sendmail = Yii::$app->utils->sendmailexternal($to, $subject, $body, 11, $userid, $fullname);
-      // if ($verification) {
-      //   echo 'successfully';
-      // }
+      if ($verification) {
+        echo 'successfully';
+      }
     }
   }
 
@@ -788,6 +788,8 @@ class HiringController extends Controller
         'konfe' => $agama,
       ];
 
+      // var_dump($request_data);die();
+
       $json = json_encode($request_data);
 
       // print_r($json);
@@ -808,12 +810,13 @@ class HiringController extends Controller
       curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
       curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-      // var_dump('ok');die;
       $response = curl_exec($ch);
 
       curl_close($ch);
       $ret = json_decode($response);
+      // var_dump($ret);die();
       // [status] => NOK [message] => [pernr] =>
+      // var_dump($response);die();
       if ($ret->status == 'OK') {
         $model->perner = $ret->pernr;
         $model->statushiring = 4;
@@ -827,6 +830,9 @@ class HiringController extends Controller
       print_r(json_encode($ret));
       // return $this->redirect(['index']);
     } else {
+      $model->statushiring = 3;
+      $model->message = 'You have already locked payroll controll';
+      $model->save();
       $retlock = ['status' => "NOK", 'message' => 'lock', 'pernr' => null];
       print_r(json_encode($retlock));
     }

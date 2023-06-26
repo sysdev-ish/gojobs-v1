@@ -36,7 +36,7 @@ use yii\helpers\Url;
             'pluginOptions' => [
               'autoclose' => true,
               'startDate' => '2019-01-01',
-              'endDate' => '+5y', //where you define enddate more than today
+              'endDate' => '+5y', //where you define enddate more than today add by kaha 15/8/22
               // 'timePickerIncrement'=>60,
               'format' => 'yyyy-mm-dd',
               'todayHighlight' => true
@@ -176,8 +176,8 @@ use yii\helpers\Url;
       </div>
     </div>
     <div class="col-md-12">
-      <div class="col-md-12 order-1">
-        <div class="form-group">
+      <div class="col-md-12">
+        <div class="form-group pull-right">
           <?php //Html::submitButton('Search', ['class' => 'btn btn-primary', 'onClick'=>'alert("test");return false;']) 
           ?>
           <?= Html::submitButton('Search', [

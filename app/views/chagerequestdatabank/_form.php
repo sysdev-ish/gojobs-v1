@@ -61,7 +61,7 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
         ])->label('Perner / Name');
         ?>
         <?= $form->field($model, 'checkperner')->hiddenInput(['id' => 'checkperner'])->label(false) ?>
-        
+
         <?= $form->field($model, 'approvedby')->hiddenInput()->label(false) ?>
         <?= $form->field($model, 'approvedby2')->hiddenInput()->label(false) ?>
         <?= $form->field($model, 'approvedbyname')->textInput(['disabled' => true])->label('Approval 1') ?>

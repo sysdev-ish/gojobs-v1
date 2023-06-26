@@ -23,6 +23,7 @@ use app\models\Mappingsegmen;
 use app\models\Mastercity;
 use app\models\Masterjobfamily;
 use app\models\Masterstatuscr;
+use app\models\Masterstatushiring;
 use app\models\Mastersubjobfamily;
 use app\models\Saparea;
 use app\models\Sappersonalarea;
@@ -226,8 +227,7 @@ class ReportController extends Controller
       'areaish' => $areaish,
       'region' => $region,
       'jobfamily' => $jobfamily,
-      'subjobfamily' => $subjobfamily,
-
+      'subjobfamily' => $subjobfamily
     ]);
   }
   protected function generateCV($userid)

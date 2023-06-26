@@ -416,8 +416,9 @@ class SiteController extends Controller
     if (isset($_GET['code'])) {
       $auth_code = $_GET['code'];
       $accesstoken = Yii::$app->oauth->getaccesstoken($auth_code);
-      // var_dump($accesstoken);die;
+      //var_dump($accesstoken);die;
       $token = json_decode($accesstoken);
+      //var_dump($token);die;
       $user = Yii::$app->oauth->getuserdata($token->data->access_token);
       // var_dump($user);die;
       if ($user) {
