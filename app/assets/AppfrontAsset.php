@@ -67,8 +67,8 @@ class AppfrontAsset extends AssetBundle
     \Yii::$app->assetManager->bundles['yii\\bootstrap\\BootstrapAsset'] = [
         'css' => [],
     ];
-    // \Yii::$app->assetManager->bundles['yii\\web\\JqueryAsset'] = [
-    //     'js' => [],
-    // ];
+    \Yii::$app->assetManager->bundles['yii\\web\\JqueryAsset'] = [
+        'js' => [],
+    ];
     }
 }

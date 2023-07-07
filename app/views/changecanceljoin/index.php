@@ -86,20 +86,20 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove . $action
 
         // 'id',
         [
-          'label' => 'Perner',
-          'attribute' => 'perner',
-          'format' => 'html',
-          'value' => function ($data) {
-            return $data->perner;
-          }
-        ],
-
-        [
           'label' => 'Name',
           'attribute' => 'fullname',
           'format' => 'html',
           'value' => function ($data) {
             return $data->fullname;
+          }
+        ],
+
+        [
+          'label' => 'Perner',
+          'attribute' => 'perner',
+          'format' => 'html',
+          'value' => function ($data) {
+            return $data->perner;
           }
         ],
 

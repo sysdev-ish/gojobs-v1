@@ -384,7 +384,7 @@ class ChagerequestresignController extends Controller
       }
     } else {
       // $message = $rfcresign->MESSAGE;
-      $model->remarks = 'data pekerja sudah tidak ada di sap profile 1 atau sudah di resign kan';
+      $model->remarks = 'data pekerja sudah tidak ada di sap atau sudah di resign kan';
       $model->status = 4;
       $model->save(false);
       $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
@@ -395,7 +395,7 @@ class ChagerequestresignController extends Controller
         $hiring->save(false);
         $recruitmentcandidate->save(false);
       }
-      $retpos = ['status' => "NOK", 'message' => 'data pekerja sudah tidak ada di sap profile 1 atau sudah di resign kan'];
+      $retpos = ['status' => "NOK", 'message' => 'data pekerja sudah tidak ada di sap atau sudah di resign kan'];
       print_r(json_encode($retpos));
     }
   }

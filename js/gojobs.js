@@ -8,12 +8,22 @@ var gojobs = {
 
             var userId = [];
 
+            console.log(userId)
+
             // get data selected from checkbox
             $("input:checkbox[name='selection_all']").change(e => {
               let opts = $("input:checkbox[name='selection[]']:checked").map((i, el) => el.value).get();
-              //console.log(opts);
+              console.log(opts);
               userId = opts;
             });
+
+            // get data selected from checkbox
+            $("input:checkbox[name='selection']").change(e => {
+              let opts = $("input:checkbox[name='selection[]']:checked").map((i, el) => el.value).get();
+              console.log(opts);
+              userId = opts;
+            });
+
 
             $('#massApprove').click(function(){
 

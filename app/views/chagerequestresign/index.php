@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Masterresignreason;
 use yii\helpers\Html;
 use yii\grid\GridView;
 // use kartik\grid\GridView;
@@ -7,6 +8,7 @@ use kartik\grid\CheckboxColumn;
 use kartik\grid\SerialColumn;
 use kartik\select2\Select2;
 use app\models\Masterstatuscr;
+use app\models\User;
 use yii\helpers\ArrayHelper;
 use yii\bootstrap\Modal;
 use yii\widgets\ActiveForm;
@@ -70,16 +72,26 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove;
 
 
 <div class="chagerequestresign-index box box-default">
-  <?php if (Yii::$app->utils->permission($role, 'm68')) : ?>
-    <div class="box-header with-border">
+  <div class="box-header with-border">
+    <?php if (Yii::$app->utils->permission($role, 'm68')) : ?>
       <?= Html::a('Create', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
-      <?= Html::a('Upload Data', ['upload'], ['class' => 'btn btn-warning btn-flat']) ?>
+      <!-- <? //= Html::a('Upload Data', ['upload'], ['class' => 'btn btn-warning btn-flat']) 
+            ?> -->
+    <?php endif; ?>
 
 
-      <!-- <div id="massApprove" class="btn btn-info pull-right approvebulkcrresign" title="" data-toggle="tooltip" data-placement="bottom" onclick="getRows()" data-original-title="Mass Approve">Mass Approval
+    <!-- <div id="massApprove" class="btn btn-info pull-right approvebulkcrresign" title="" data-toggle="tooltip" data-placement="bottom" onclick="getRows()" data-original-title="Mass Approve">Mass Approval
       </div> -->
 
 
+    <?php if (Yii::$app->utils->permission($role, 'm71')) : ?>
+      <!-- <? //php 
+            // if ($model->status == 2) {
+            // $disabled = false;
+            // } else {
+            // $disabled = true;
+            // }
+            ?> -->
       <?= Html::button('Mass Approval', [
         /*'value' => Yii::$app->urlManager->createUrl('chagerequestresign/bulkapprove'),
         'class' => 'btn btn-info pull-right approvebulkcrresign-modal-click',*/
@@ -88,14 +100,15 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove;
         'data-target' => '#approvebulkcrresign-modal',
         'data-toggle' => 'tooltip',
         'data-placement' => 'bottom',
-        'title' => 'Mass Approve',
+        'title' => 'Mass Approve hanya bisa setelah memilih status Waiting Approval 1 saja',
         'id' => 'massApprove',
+        // 'disabled' => $disabled
         //'onclick' => "getRows()",
       ]) ?>
+    <?php endif; ?>
 
 
-    </div>
-  <?php endif; ?>
+  </div>
 
   <div class="box-body table-responsive">
     <?php // echo $this->render('_search', ['model' => $searchModel]); 
@@ -120,50 +133,81 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove;
         // 'id',
         [
           'label' => 'Name',
+          'contentOptions' => ['style' => 'width: 140px;'],
           'attribute' => 'fullname',
           'format' => 'html',
           'value' => function ($data) {
             return $data->fullname;
           }
         ],
+
         [
           'label' => 'Perner',
+          'contentOptions' => ['style' => 'width: 80px;'],
           'attribute' => 'perner',
           'format' => 'html',
           'value' => function ($data) {
             return $data->perner;
           }
         ],
+
         [
           'attribute' => 'resigndate',
-          'contentOptions' => ['style' => 'min-width: 100px;'],
+          'contentOptions' => ['style' => 'width: 100px;'],
           'format' => 'html',
           'value' => function ($data) {
             return $data->resigndate;
           }
-
         ],
+
+        [
+          'attribute' => 'reason',
+          'contentOptions' => ['style' => 'width: 100px;'],
+          'format' => 'html',
+          'filter' => \kartik\select2\Select2::widget([
+            'model' => $searchModel,
+            'attribute' => 'reason',
+            'data' => ArrayHelper::map(Masterresignreason::find()->asArray()->all(), 'id', 'reason'),
+            'options' => ['placeholder' => '--'],
+            'pluginOptions' => [
+              'allowClear' => true,
+              // 'width' => '120px',
+            ],
+          ]),
+          'value' => function ($data) {
+            return ($data->resignreason) ? $data->resignreason->reason : "";
+          }
+        ],
+
         [
           'label' => 'Created By',
-          'attribute' => 'createduser',
+          'contentOptions' => ['style' => 'width: 90px;'],
+          'attribute' => 'createdby',
           'format' => 'html',
           'value' => function ($data) {
-
             return ($data->createduser) ? $data->createduser->name : "";
           }
-
         ],
+
         [
-
           'label' => 'Approver',
-          'attribute' => 'approveduser',
+          'contentOptions' => ['style' => 'min-width: 120px;'],
+          'attribute' => 'approvedby',
           'format' => 'html',
+          'filter' => \kartik\select2\Select2::widget([
+            'model' => $searchModel,
+            'attribute' => 'approvedby',
+            'data' => ArrayHelper::map(User::find()->where('role = 20 OR role = 17')->asArray()->all(), 'id', 'name'),
+            'options' => ['placeholder' => '--'],
+            'pluginOptions' => [
+              'allowClear' => true,
+            ],
+          ]),
           'value' => function ($data) {
-
             return ($data->approveduser) ? $data->approveduser->name : "";
           }
-
         ],
+
         [
           'attribute' => 'status',
           'contentOptions' => ['style' => 'width: 100px;'],
@@ -193,28 +237,34 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove;
             }
             return '<span class="label ' . $label . '">' . $data->statusprocess->statusname . '</span>';
           }
-
         ],
+
         [
 
           'label' => 'Remarks',
+          'contentOptions' => ['style' => 'width: 110px;'],
           'attribute' => 'remarks',
           'format' => 'html',
           'value' => function ($data) {
-
             return "<b><i>" . $data->remarks . "</i></b><br>" . $data->userremarks;
           }
-
         ],
+
         [
           'class' => 'yii\grid\ActionColumn',
           'contentOptions' => ['style' => 'min-width: 180px;'],
           'template' => '<div class="btn-group pull-right">' . $action . '</div>',
           'buttons' => [
             'view' => function ($url, $model, $key) {
+              if ($model->status == 1 && $model->perner == null) {
+                $disabled = true;
+              } else {
+                $disabled = false;
+              }
               $btn = Html::button('<i class="fa fa-eye" style="font-size:12pt;"></i>', [
                 'value' => Yii::$app->urlManager->createUrl('chagerequestresign/view?id=' . $model->id),
                 'class' => 'btn btn-sm btn-default viewcresign-modal-click',
+                'disabled' => $disabled,
                 'data-toggle' => 'tooltip',
                 'data-placement' => 'bottom',
                 'title' => 'Views Detail'
@@ -319,7 +369,8 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove;
       data: {
         id: id
       },
-      url: '<?//php echo Yii::$app->urlManager->createUrl(["chagerequestresign/bulkapprove"]) ?>',
+      url: '<? //php echo Yii::$app->urlManager->createUrl(["chagerequestresign/bulkapprove"]) 
+            ?>',
       dataType: "json",
       success: function(data, textStatus, jqXHR) {
       }
