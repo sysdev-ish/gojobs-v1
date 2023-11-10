@@ -22,7 +22,8 @@ $recruitreqs = empty($model->recruitreqid) ? '' : Transrincian::findOne($model->
 
         <?= $form->field($model, 'fullname')->textInput(['disabled' => true]) ?>
 
-        <?php echo $form->field($model, 'recruitreqid')->widget(Select2::classname(), [
+        <?php
+        echo   $form->field($model, 'recruitreqid')->widget(Select2::classname(), [
             // 'data' => $recruitreq,
             'model' => $model,
             'attribute' => 'perner',
@@ -61,6 +62,8 @@ $recruitreqs = empty($model->recruitreqid) ? '' : Transrincian::findOne($model->
             ],
         ]);
         ?>
+
+
     </div>
     <div class="box-footer">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success btn-flat pull-right']) ?>

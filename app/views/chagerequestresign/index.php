@@ -133,7 +133,7 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove;
         // 'id',
         [
           'label' => 'Name',
-          'contentOptions' => ['style' => 'width: 140px;'],
+          'contentOptions' => ['style' => 'min-width: 150px;'],
           'attribute' => 'fullname',
           'format' => 'html',
           'value' => function ($data) {
@@ -162,7 +162,7 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove;
 
         [
           'attribute' => 'reason',
-          'contentOptions' => ['style' => 'width: 100px;'],
+          'contentOptions' => ['style' => 'width: 120px;'],
           'format' => 'html',
           'filter' => \kartik\select2\Select2::widget([
             'model' => $searchModel,
@@ -179,11 +179,30 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove;
           }
         ],
 
+        // [
+        //   'label' => 'Created By',
+        //   'contentOptions' => ['style' => 'width: 90px;'],
+        //   'attribute' => 'createdby',
+        //   'format' => 'html',
+        //   'value' => function ($data) {
+        //     return ($data->createduser) ? $data->createduser->name : "";
+        //   }
+        // ],
+
         [
-          'label' => 'Created By',
-          'contentOptions' => ['style' => 'width: 90px;'],
+          'label' => 'Creater',
+          'contentOptions' => ['style' => 'min-width: 100px;'],
           'attribute' => 'createdby',
           'format' => 'html',
+          'filter' => \kartik\select2\Select2::widget([
+            'model' => $searchModel,
+            'attribute' => 'createdby',
+            'data' => ArrayHelper::map(User::find()->where('role = 22 OR role = 23 AND status = 10')->asArray()->all(), 'id', 'name'),
+            'options' => ['placeholder' => '--'],
+            'pluginOptions' => [
+              'allowClear' => true,
+            ],
+          ]),
           'value' => function ($data) {
             return ($data->createduser) ? $data->createduser->name : "";
           }
@@ -191,13 +210,13 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove;
 
         [
           'label' => 'Approver',
-          'contentOptions' => ['style' => 'min-width: 120px;'],
+          'contentOptions' => ['style' => 'min-width: 100px;'],
           'attribute' => 'approvedby',
           'format' => 'html',
           'filter' => \kartik\select2\Select2::widget([
             'model' => $searchModel,
             'attribute' => 'approvedby',
-            'data' => ArrayHelper::map(User::find()->where('role = 20 OR role = 17')->asArray()->all(), 'id', 'name'),
+            'data' => ArrayHelper::map(User::find()->where('role = 20 OR role = 17 AND status = 10')->asArray()->all(), 'id', 'name'),
             'options' => ['placeholder' => '--'],
             'pluginOptions' => [
               'allowClear' => true,
@@ -325,55 +344,3 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove;
     ]); ?>
   </div>
 </div>
-
-<!--<script>
-  // $('.approvebulkcrresign-modal-click').click(function() {
-  //   var loading = new Loading({
-  //     direction: 'hor',
-  //     discription: 'Loading...',
-  //     defaultApply: true,
-  //   });
-
-  //   console.log('hai');
-  //   event.preventDefault();
-  //   this.blur();
-  //   $.get($(this).attr('value'), function(html) {
-  //     loading.out()
-  //     $('#approvebulkcrresign-modal')
-  //       .modal('show')
-  //       .find('#approvebulkcrresign-view')
-  //       .empty()
-  //       .append(html);
-  //   });
-  // });
-
-
-  function getRows() {
-    //var id as row_id from the gridview column
-    // var list = [] is an array for storing the values selected from the gridview 
-    // so as to post to the controller.
-    var id = $('#grid').yiiGridView('getSelectedRows');
-    // console.log(id);
-
-    if ($('#massApprove').legth > 0) {
-      alert('div is exist');
-    }
-
-    $("#userSelected").append(id.toString());
-
-    console.log(id)
-
-    $.ajax({
-      type: 'POST',
-      cache: false,
-      data: {
-        id: id
-      },
-      url: '<? //php echo Yii::$app->urlManager->createUrl(["chagerequestresign/bulkapprove"]) 
-            ?>',
-      dataType: "json",
-      success: function(data, textStatus, jqXHR) {
-      }
-    });
-  }
-</script>-->

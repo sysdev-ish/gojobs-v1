@@ -53,8 +53,9 @@ use kartik\select2\Select2;
          }
 
         ?>
-        <?php if ($model->isNewRecord) : ?>
+        <?php if ($model->isNewRecord): ?>
         <?= $form->field($model, 'password')->passwordInput() ?>
+
         <?= $form->field($model, 'retype_password')->passwordInput() ?>
       <?php endif; ?>
 

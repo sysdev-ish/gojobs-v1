@@ -11,8 +11,8 @@ use yii\helpers\Html;
 
     <?= $this->render('_formaddcandidate2', [
     'model' => $model,
-    'modeluprofile' => $modeluprofile,
-    'recruitreq' => $recruitreq,
+    // 'modeluprofile' => $modeluprofile,
+    // 'recruitreq' => $recruitreq,
     'searchModelprofile' => $searchModelprofile,
     'dataProviderprofile' => $dataProviderprofile,
     'transrincianid' => $transrincianid,

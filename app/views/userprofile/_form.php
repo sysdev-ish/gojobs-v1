@@ -305,7 +305,6 @@ use yii\helpers\Url;
                 <?= $form->field($model, 'lokasikerja')->textInput(['maxlength' => true]) ?>
               </div>
             </div>
-
             <div class="col-md-12">
               <div class="col-md-12">
                 <?= $form->field($model, 'jenispekerjaan')->textInput(['maxlength' => true]) ?>
@@ -408,27 +407,32 @@ use yii\helpers\Url;
                     'onChange' => "
                           if ($(this).val() == 1) {
                             $('#alasanvaksinrow').show();
+
                             $('#tanggallokasisert1').hide();
                             $('#tanggalvaksin1').val('');
                             $('#lokasivaksin1').val('');
                             $('.fileinput-remove-button').click();
+
                             $('#tanggallokasisert2').hide();
                             $('#tanggalvaksin2').val('');
                             $('#lokasivaksin2').val('');
-
                           }else if($(this).val() == 2){
                             $('#alasanvaksinrow').hide();
                             $('#alasanvaksin').val('').trigger('change') ;
+
                             $('#tanggallokasisert1').show();
                             $('#tanggallokasisert2').hide();
                             $('#tanggalvaksin2').val('');
                             $('#lokasivaksin2').val('');
                             $('.fileinput-remove-button').click();
 
+
                           }else if ($(this).val() == 3) {
                             $('#alasanvaksinrow').hide();
                             $('#alasanvaksin').val('').trigger('change') ;
+
                             $('#tanggallokasisert1').show();
+
                             $('#tanggallokasisert2').show();
                           }
                           ;
@@ -942,6 +946,7 @@ use yii\helpers\Url;
                   ]
                 ]); ?>
               <?php endif; ?>
+              <span>Maximal upload file size: 5MB, and allowed filetypes: png, jpg, jpeg, pdf</span>
             </div>
           </div>
           <div class="col-md-12">
@@ -985,6 +990,7 @@ use yii\helpers\Url;
                   ]
                 ]); ?>
               <?php endif; ?>
+              <span>Maximal upload file size: 5MB, and allowed filetypes: png, jpg, jpeg, pdf</span>
             </div>
           </div>
           <div class="col-md-12">
@@ -1142,6 +1148,7 @@ use yii\helpers\Url;
                     ]
                   ]); ?>
                 <?php endif; ?>
+                <span>Maximal upload file size: 5MB, and allowed filetypes: png, jpg, jpeg, pdf</span>
               </div>
             </div>
           </div>
@@ -1210,6 +1217,7 @@ use yii\helpers\Url;
                     ]
                   ]); ?>
                 <?php endif; ?>
+                <span>Maximal upload file size: 5MB, and allowed filetypes: png, jpg, jpeg, pdf</span>
               </div>
             </div>
           </div>

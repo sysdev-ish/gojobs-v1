@@ -178,21 +178,21 @@ $action = $actionview . $actionapprove;
               return $btn;
             },
             'approve' => function ($url, $model, $key) {
-              // if($model->status ==  1 OR $model->status ==  2){
-              //   $disabled = true;
-              //   if($model->status == 1 and (Yii::$app->user->identity->role == 10 OR Yii::$app->user->identity->role == 16)){
-              //     $disabled = false;
-              //   }
-              //   if($model->status == 2 and $model->approvedby2 == Yii::$app->user->identity->username){
-              //     $disabled = false;
-              //   }
-              // }else{
-              //   $disabled = true;
-              // }
+              if ($model->status ==  1 or $model->status ==  2) {
+                $disabled = true;
+                if ($model->status == 1 and (Yii::$app->user->identity->role == 10 or Yii::$app->user->identity->role == 16)) {
+                  $disabled = false;
+                }
+                if ($model->status == 2 and $model->approvedby2 == Yii::$app->user->identity->username) {
+                  $disabled = false;
+                }
+              } else {
+                $disabled = true;
+              }
               $btn = Html::button('<i class="fa fa-gavel" style="font-size:12pt;"></i>', [
                 'value' => Yii::$app->urlManager->createUrl('chagerequestjo/approve?id=' . $model->id), //<---- here is where you define the action that handles the ajax request
                 'class' => 'btn btn-sm btn-info approvecrjo-modal-click',
-                // 'disabled' => $disabled,
+                'disabled' => $disabled,
                 'data-toggle' => 'tooltip',
                 'data-placement' => 'bottom',
                 'title' => 'Approve'

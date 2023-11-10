@@ -64,10 +64,6 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'drivinglicencecarnumber') ?>
 
     <?php // echo $form->field($model, 'drivinglicencemotorcyclenumber') ?>
-    
-    <?php echo $form->field($model, 'jobfamily') ?>
-    
-    <?php // echo $form->field($model, 'subjobfamily') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

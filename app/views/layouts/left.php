@@ -117,7 +117,7 @@
           ],
 
           [
-            'label' => 'Recruitment Proccess',
+            'label' => 'Recruitment Process',
             'icon' => 'spinner',
             'url' => '#',
             'visible' => (Yii::$app->utils->permission($role, 'm4') or Yii::$app->utils->permission($role, 'm7') or Yii::$app->utils->permission($role, 'm10') or Yii::$app->utils->permission($role, 'm38') or Yii::$app->utils->permission($role, 'm40') or Yii::$app->utils->permission($role, 'm42') or Yii::$app->utils->permission($role, 'm44')),

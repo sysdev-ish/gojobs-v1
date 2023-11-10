@@ -238,15 +238,19 @@ Modal::end();
         var npwpnumber = '';
         var bpjsnumber = '';
         var jamsosteknumber = '';
+
         var npwpfilelink = '';
         var bpjsfilelink = '';
         var jamsostekfilelink = '';
+
         var npwpnumbernewval = '';
         var bpjsnumbernewval = '';
         var jamsosteknumbernewval = '';
+
         var npwpfilenewdoclink = '';
         var bpjsfilenewdoclink = '';
         var jamsostekfilenewdoclink = '';
+
         var npwpnumbericon = '';
         var bpjsnumbericon = '';
         var jamsosteknumbericon = '';
@@ -287,6 +291,8 @@ Modal::end();
         if (obj.jamsosteknumber) {
           var jamsosteknumber = obj.jamsosteknumber;
         }
+
+
         if (obj.npwpfile) {
           var npwpfilelink = '<br><a class="btn btn-sm btn-default text-muted" href="/rekrut/app/assets/upload/npwp/' + obj.npwpfile + '" target="_blank"><i class="fa fa-download"></i> ' + obj.npwpfile + '</a>';
         }
@@ -296,6 +302,8 @@ Modal::end();
         if (obj.jamsostekfile) {
           var jamsostekfilelink = '<br><a class="btn btn-sm btn-default text-muted" href="/rekrut/app/assets/upload/jamsostek/' + obj.jamsostekfile + '" target="_blank"><i class="fa fa-download"></i> ' + obj.jamsostekfile + '</a>';
         }
+
+
         if (obj.npwpnumbernewval) {
           var npwpnumbernewval = obj.npwpnumbernewval;
           var npwpnumbericon = '<span class="fa fa-retweet"></span>';
@@ -308,6 +316,7 @@ Modal::end();
           var jamsosteknumbernewval = obj.jamsosteknumbernewval;
           var jamsosteknumbericon = '<span class="fa fa-retweet"></span>';
         }
+
         if (obj.npwpfilenewdoc) {
           var npwpfilenewdoclink = '<br><a class="btn btn-sm btn-default text-muted" href="/rekrut/app/assets/upload/npwp/' + obj.npwpfilenewdoc + '?=' + <?php echo rand(1, 32000); ?> + '"  target="_blank"><i class="fa fa-download"></i> ' + obj.npwpfilenewdoc + '</a>';
         }
@@ -317,7 +326,6 @@ Modal::end();
         if (obj.jamsostekfilenewdoc) {
           var jamsostekfilenewdoclink = '<br><a class="btn btn-sm btn-default text-muted" href="/rekrut/app/assets/upload/jamsostek/' + obj.jamsostekfilenewdoc + '?=' + <?php echo rand(1, 32000); ?> + '" target="_blank"><i class="fa fa-download"></i> ' + obj.jamsostekfilenewdoc + '</a>';
         }
-        
         document.getElementById('pernerdisp').innerHTML = pernerres;
         document.getElementById('name').innerHTML = name;
         document.getElementById('persa').innerHTML = persa;
@@ -330,12 +338,17 @@ Modal::end();
         document.getElementById('npwp').innerHTML = npwpnumber + npwpfilelink;
         document.getElementById('bpjskes').innerHTML = bpjsnumber + bpjsfilelink;
         document.getElementById('bpjstk').innerHTML = jamsosteknumber + jamsostekfilelink;
+
         document.getElementById('npwpnewval').innerHTML = npwpnumbernewval + npwpfilenewdoclink;
         document.getElementById('bpjskesnewval').innerHTML = bpjsnumbernewval + bpjsfilenewdoclink;
         document.getElementById('bpjstknewval').innerHTML = jamsosteknumbernewval + jamsostekfilenewdoclink;
+
         document.getElementById('npwpicon').innerHTML = npwpnumbericon;
         document.getElementById('bpjskesicon').innerHTML = bpjsnumbericon;
         document.getElementById('bpjstkicon').innerHTML = jamsosteknumbericon;
+
+
+
       },
     });
   }

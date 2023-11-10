@@ -60,7 +60,7 @@ use yii\helpers\Url;
             'allowClear' => true,
             'multiple' => true
           ],
-        ]);
+        ])->label('Kota');
         ?>
       </div>
     </div>
@@ -151,7 +151,7 @@ use yii\helpers\Url;
     </div>
     <div class="col-md-12">
       <div class="col-md-12">
-        <div class="form-group">
+        <div class="form-group pull-right">
           <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
           <?= Html::a('Reset', ['/report/reportjoborder'], ['class' => 'btn btn-default', 'id' => 'resethiringreport']) ?>
         </div>

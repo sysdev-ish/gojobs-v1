@@ -42,11 +42,11 @@ if (Yii::$app->user->isGuest) {
     // $userid = Yii::$app->user->identity->id;
     $role = Yii::$app->user->identity->role;
 }
-if (Yii::$app->utils->permission($role, 'm82') && Yii::$app->utils->permission($role, 'm83')) {
+if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($role, 'm26')) {
     $action = '{view}{update}{delete}';
-} elseif (Yii::$app->utils->permission($role, 'm82')) {
+} elseif (Yii::$app->utils->permission($role, 'm25')) {
     $action = '{view}{update}';
-} elseif (Yii::$app->utils->permission($role, 'm83')) {
+} elseif (Yii::$app->utils->permission($role, 'm26')) {
     $action = '{view}{delete}';
 } else {
     $action = '{view}';
@@ -54,17 +54,16 @@ if (Yii::$app->utils->permission($role, 'm82') && Yii::$app->utils->permission($
 
 ?>
 <div class="mastersubjobfamily-index box box-default">
-    <?php if (Yii::$app->utils->permission($role, 'm81')) : ?>
-        <div class="box-header with-border">
-            <?php echo Html::button('Create', [
-                'value' => Yii::$app->urlManager->createUrl('mastersubjobfamily/create'), //<---- here is where you define the action that handles the ajax request
-                'class' => 'btn btn-md btn-success createmastersubjobfamily-modal-click',
-                'data-toggle' => 'tooltip',
-                'data-placement' => 'bottom',
-                'title' => 'Create New Sub Job Family'
-            ]); ?>
-        </div>
-    <?php endif; ?>
+
+    <div class="box-header with-border">
+        <?php echo Html::button('Create', [
+            'value' => Yii::$app->urlManager->createUrl('mastersubjobfamily/create'), //<---- here is where you define the action that handles the ajax request
+            'class' => 'btn btn-md btn-success createmastersubjobfamily-modal-click',
+            'data-toggle' => 'tooltip',
+            'data-placement' => 'bottom',
+            'title' => 'Create New Sub Job Family'
+        ]); ?>
+    </div>
     <div class="box-body table-responsive">
         <?php // echo $this->render('_search', ['model' => $searchModel]); 
         ?>

@@ -148,13 +148,14 @@ app\assets\ReportAsset::register($this);
             [
               // 'label' => 'Jabatan (SAP)',
               // 'format' => 'raw',
-              // 'value'=>function ($data) {
-              //   return ($data->recrequest->hire_jabatan_sap)? ((is_numeric($data->recrequest->hire_jabatan_sap))?$data->recrequest->jabatansap->value2:'-'):'-';
+              // 'value' => function ($data) {
+              //   return ($data->recrequest->hire_jabatan_sap) ? ((is_numeric($data->recrequest->hire_jabatan_sap)) ? $data->recrequest->jabatansap->value2 : '-') : '-';
               // }
               'label' => 'Jabatan (SAP)',
               'format' => 'raw',
               'value' => function ($data) {
-                return ($data->recrequest) ? $data->recrequest->jabatansap->value2 : '-';
+                // return ($data->recrequest) ? $data->recrequest->jabatansap->value2 : '-';
+                return ($data->recrequest) ? (($data->recrequest->jabatansap) ? $data->recrequest->jabatansap->value2 : '-' ) : '-';
               }
             ],
 
@@ -364,7 +365,7 @@ app\assets\ReportAsset::register($this);
               'format' => ['date', 'php:Y-m-d'],
               'value' => function ($data) {
 
-                return ($data->userprofile->createtime) ? $data->userprofile->createtime : "";
+                return ($data->userprofile) ? $data->userprofile->createtime : "";
               }
 
             ],
@@ -372,7 +373,7 @@ app\assets\ReportAsset::register($this);
               'label' => 'No Telp',
               'value' => function ($data) {
 
-                return ($data->userprofile->phone) ? $data->userprofile->phone : "";
+                return ($data->userprofile) ? $data->userprofile->phone : "";
               }
 
             ],
@@ -394,7 +395,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'raw',
               'value' => function ($data) {
 
-                return ($data->userprofile->gender) ? $data->userprofile->gender : "";
+                return ($data->userprofile) ? $data->userprofile->gender : "";
               }
 
             ],
@@ -403,7 +404,7 @@ app\assets\ReportAsset::register($this);
               'format' => ['date', 'php:Y-m-d'],
               'value' => function ($data) {
 
-                return ($data->userprofile->birthdate) ? $data->userprofile->birthdate : "";
+                return ($data->userprofile) ? $data->userprofile->birthdate : "";
               }
 
             ],
@@ -412,7 +413,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'raw',
               'value' => function ($data) {
 
-                return ($data->userprofile->birthplace) ? $data->userprofile->birthplace : "";
+                return ($data->userprofile) ? $data->userprofile->birthplace : "";
               }
 
             ],
@@ -421,7 +422,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'raw',
               'value' => function ($data) {
 
-                return ($data->userprofile->addressktp) ? $data->userprofile->addressktp : "";
+                return ($data->userprofile) ? $data->userprofile->addressktp : "";
               }
 
             ],
@@ -430,7 +431,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'raw',
               'value' => function ($data) {
 
-                return ($data->userprofile->cityktp->kota) ? $data->userprofile->cityktp->kota : "";
+                return ($data->userprofile) ? $data->userprofile->cityktp->kota : "";
               }
 
             ],
@@ -439,7 +440,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'raw',
               'value' => function ($data) {
 
-                return ($data->userprofile->provincektp->provinsi) ? $data->userprofile->provincektp->provinsi : "";
+                return ($data->userprofile) ? $data->userprofile->provincektp->provinsi : "";
               }
 
             ],
@@ -448,7 +449,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'raw',
               'value' => function ($data) {
 
-                return ($data->userprofile->address) ? $data->userprofile->address : "";
+                return ($data->userprofile) ? $data->userprofile->address : "";
               }
 
             ],
@@ -457,7 +458,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'raw',
               'value' => function ($data) {
 
-                return ($data->userprofile->city->kota) ? $data->userprofile->city->kota : "";
+                return ($data->userprofile) ? $data->userprofile->city->kota : "";
               }
 
             ],
@@ -466,7 +467,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'raw',
               'value' => function ($data) {
 
-                return ($data->userprofile->province->provinsi) ? $data->userprofile->province->provinsi : "";
+                return ($data->userprofile) ? $data->userprofile->province->provinsi : "";
               }
 
             ],
@@ -484,7 +485,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'raw',
               'value' => function ($data) {
 
-                return ($data->userprofile->religion) ? $data->userprofile->religion : "";
+                return ($data->userprofile) ? $data->userprofile->religion : "";
               }
 
             ],
@@ -493,7 +494,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'raw',
               'value' => function ($data) {
 
-                return ($data->userprofile->bloodtype) ? $data->userprofile->bloodtype : "";
+                return ($data->userprofile) ? $data->userprofile->bloodtype : "";
               }
 
             ],
@@ -502,7 +503,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'raw',
               'value' => function ($data) {
 
-                return ($data->userprofile->maritalstatus) ? $data->userprofile->maritalstatus : "";
+                return ($data->userprofile) ? $data->userprofile->maritalstatus : "";
               }
 
             ],
@@ -511,7 +512,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'text',
               'value' => function ($data) {
                 // var_dump(number_format(intval($data->userprofile->identitynumber), 0 , "." , " "));die();
-                return (is_string($data->userprofile->identitynumber)) ? number_format(intval($data->userprofile->identitynumber), 0, ".", " ") : "";
+                return ($data->userprofile) ? number_format(intval($data->userprofile->identitynumber), 0, ".", " ") : "";
               }
             ],
 
@@ -520,7 +521,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'text',
               'value' => function ($data) {
 
-                return (is_string($data->userprofile->jamsosteknumber)) ? number_format(intval($data->userprofile->jamsosteknumber), 0, ".", " ") : "";
+                return ($data->userprofile) ? number_format(intval($data->userprofile->jamsosteknumber), 0, ".", " ") : "";
               }
 
             ],
@@ -529,7 +530,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'text',
               'value' => function ($data) {
 
-                return ($data->userprofile->bpjsnumber) ? $data->userprofile->bpjsnumber : "";
+                return ($data->userprofile) ? $data->userprofile->bpjsnumber : "";
               }
 
             ],
@@ -537,7 +538,7 @@ app\assets\ReportAsset::register($this);
               'label' => 'No NPWP',
               'format' => 'text',
               'value' => function ($data) {
-                return (is_string($data->userprofile->npwpnumber)) ? number_format(intval($data->userprofile->npwpnumber), 0, ".", " ") : "";
+                return ($data->userprofile) ? number_format(intval($data->userprofile->npwpnumber), 0, ".", " ") : "";
               }
             ],
 
@@ -545,7 +546,7 @@ app\assets\ReportAsset::register($this);
               'label' => 'No SIM A',
               'format' => 'text',
               'value' => function ($data) {
-                return (is_string($data->userprofile->drivinglicencecarnumber)) ? number_format(intval($data->userprofile->drivinglicencecarnumber), 0, ".", " ") : "";
+                return ($data->userprofile) ? number_format(intval($data->userprofile->drivinglicencecarnumber), 0, ".", " ") : "";
               }
             ],
 
@@ -553,7 +554,7 @@ app\assets\ReportAsset::register($this);
               'label' => 'No SIM C',
               'format' => 'text',
               'value' => function ($data) {
-                return (is_string($data->userprofile->drivinglicencemotorcyclenumber)) ? number_format(intval($data->userprofile->drivinglicencemotorcyclenumber), 0, ".", " ") : "";
+                return ($data->userprofile) ? number_format(intval($data->userprofile->drivinglicencemotorcyclenumber), 0, ".", " ") : "";
               }
             ],
 
@@ -1181,7 +1182,8 @@ app\assets\ReportAsset::register($this);
               'label' => 'Jabatan (SAP)',
               'format' => 'raw',
               'value' => function ($data) {
-                return ($data->recrequest) ? $data->recrequest->jabatansap->value2 : '-';
+                // return ($data->recrequest) ? $data->recrequest->jabatansap->value2 : '-';
+                return ($data->recrequest) ? (($data->recrequest->jabatansap) ? $data->recrequest->jabatansap->value2 : '-') : '-';
               }
             ],
 

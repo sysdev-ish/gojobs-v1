@@ -68,12 +68,11 @@ use yii\helpers\Url;
       </div>
       <div class="col-md-4">
         <?php
-        echo   $form->field($model, 'area')->widget(Select2::classname(), [
-          'data' => $area,
-          'options' => ['placeholder' => '- select -', 'id' => 'area'],
+        echo   $form->field($model, 'sap')->widget(Select2::classname(), [
+          'data' => [1 => "ISH", 2 => "Peralihan"],
+          'options' => ['placeholder' => '- select -', 'id' => 'sap'],
           'pluginOptions' => [
-            'allowClear' => true,
-            'multiple' => true
+            'allowClear' => true
           ],
         ]);
         ?>
@@ -131,18 +130,7 @@ use yii\helpers\Url;
             'allowClear' => true,
             'initialize' => false,
           ],
-        ]);
-        ?>
-      </div>
-      <div class="col-md-3">
-        <?php
-        echo   $form->field($model, 'sap')->widget(Select2::classname(), [
-          'data' => [1 => "ISH", 2 => "Peralihan"],
-          'options' => ['placeholder' => '- select -', 'id' => 'sap'],
-          'pluginOptions' => [
-            'allowClear' => true
-          ],
-        ]);
+        ])->label('Personal Area');
         ?>
       </div>
       <div class="col-md-3">
@@ -173,6 +161,18 @@ use yii\helpers\Url;
             'initialize' => true,
           ],
         ]); ?>
+      </div>
+      <div class="col-md-3">
+        <?php
+        echo   $form->field($model, 'area')->widget(Select2::classname(), [
+          'data' => $area,
+          'options' => ['placeholder' => '- select -', 'id' => 'area'],
+          'pluginOptions' => [
+            'allowClear' => true,
+            'multiple' => true
+          ],
+        ])->label('Kota');
+        ?>
       </div>
     </div>
     <div class="col-md-12">

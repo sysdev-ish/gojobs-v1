@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
 use app\models\MappingCity;
+use app\models\Masterjobfamily;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Transrinciansearch */
@@ -24,6 +25,18 @@ use app\models\MappingCity;
   <ul>
     <li>
       <?= $form->field($model, 'jobfunclike')->textInput(['placeholder' => "Job Title .."])->label(false) ?>
+    </li>
+    <li>
+      <?php
+      $city = ArrayHelper::map(Masterjobfamily::find()->asArray()->all(), 'id', 'jobfamily');
+      echo   $form->field($model, 'jobfamily')->widget(Select2::classname(), [
+        'data' => $city,
+        'options' => ['placeholder' => '- All Category Job -', 'id' => 'jobfamily'],
+        'pluginOptions' => [
+          'allowClear' => true
+        ],
+      ])->label(false);
+      ?>
     </li>
     <li>
       <?php
@@ -57,5 +70,7 @@ use app\models\MappingCity;
       <input type="submit" value=""> <i class="careerfy-icon careerfy-search"></i>
     </li>
   </ul>
+
   <?php ActiveForm::end(); ?>
+
 </div>

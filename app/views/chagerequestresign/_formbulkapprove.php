@@ -89,7 +89,7 @@ use linslin\yii2\curl;
             'allowClear' => false,
             'initialize' => true,
           ],
-        ])->label('');
+        ])->label('Select Confirmation');
         ?>
         <?= $form->field($model, 'remarks')->textArea(['maxlength' => true]) ?>
       </div>

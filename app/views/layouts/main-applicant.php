@@ -50,22 +50,18 @@ $uploadUrl = Yii::$app->request->baseUrl . '/app/assets/upload';
             ]
         );
         ?>
-
     </div>
-    <!-- <script src="<?php //echo Yii::$app->request->baseUrl;  
-                        ?>/js/frontend/script/jquery.js"></script> -->
-    <!-- <script src="<?php //echo Yii::$app->request->baseUrl;  
-                        ?>/js/frontend/script/bootstrap.js"></script> -->
-
-    <!-- <script src="<?//php echo Yii::$app->request->baseUrl;  ?>/js/frontend/script/slick-slider.js"></script> -->
-    <!-- <script src="<?//php echo Yii::$app->request->baseUrl;  ?>/js/frontend/plugin-script/counter.js"></script> -->
-    <!-- <script src="<?//php echo Yii::$app->request->baseUrl;  ?>/js/frontend/plugin-script/fancybox.pack.js"></script> -->
-    <!-- <script src="<?//php echo Yii::$app->request->baseUrl;  ?>/js/frontend/plugin-script/isotope.min.js"></script> -->
-    <!-- <script src="<?//php echo Yii::$app->request->baseUrl;  ?>/js/frontend/plugin-script/progressbar.js"></script> -->
-    <!-- <script src="<?//php echo Yii::$app->request->baseUrl;  
-                        ?>/js/frontend/build/mediaelement-and-player.js"></script> -->
-    <!-- <script src="<?//php echo Yii::$app->request->baseUrl;  ?>/js/frontend/plugin-script/functions.js"></script> -->
-    <!-- <script src="<?//php echo Yii::$app->request->baseUrl;  ?>/js/frontend/script/functions.js"></script> -->
+    
+    <script src="<?php echo Yii::$app->request->baseUrl;  ?>/js/frontend/script/jquery.js"></script>
+    <!-- <script src="<?//php echo Yii::$app->request->baseUrl;  ?>/js/frontend/script/bootstrap.js"></script> -->
+    <!-- <script src="<?//php echo Yii::$app->request->baseUrl;  ?>/js/frontend/script/slick-slider.js"></script>
+    <script src="<?//php echo Yii::$app->request->baseUrl;  ?>/js/frontend/plugin-script/counter.js"></script>
+    <script src="<?//php echo Yii::$app->request->baseUrl;  ?>/js/frontend/plugin-script/fancybox.pack.js"></script>
+    <script src="<?//php echo Yii::$app->request->baseUrl;  ?>/js/frontend/plugin-script/isotope.min.js"></script>
+    <script src="<?//php echo Yii::$app->request->baseUrl;  ?>/js/frontend/plugin-script/progressbar.js"></script>
+    <script src="<?//php echo Yii::$app->request->baseUrl;  ?>/js/frontend/build/mediaelement-and-player.js"></script>
+    <script src="<?//php echo Yii::$app->request->baseUrl;  ?>/js/frontend/plugin-script/functions.js"></script>
+    <script src="<?//php echo Yii::$app->request->baseUrl;  ?>/js/frontend/script/functions.js"></script> -->
     <?php $this->endBody() ?>
 </body>
 

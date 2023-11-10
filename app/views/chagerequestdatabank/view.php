@@ -31,8 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     return ($data->perner)?$data->perner:"";
                 }
-                ],
 
+                ],
                 [
                   'label' => 'Personal Area',
                   'format' => 'html',
@@ -52,9 +52,9 @@ $this->params['breadcrumbs'][] = $this->title;
                       $persa = ($datapekerjabyperner)?$datapekerjabyperner[0]->WKTXT:"not found";
                     }
                     return $persa;
-                  }
-                ],
+                }
 
+                ],
                 [
                   'label' => 'Area',
                   'format' => 'html',
@@ -74,9 +74,9 @@ $this->params['breadcrumbs'][] = $this->title;
                       $area = ($datapekerjabyperner)?$datapekerjabyperner[0]->BTRTX:"not found";
                     }
                     return $area;
-                  }
-                ],
+                }
 
+                ],
                 [
                   'label' => 'Skill Layanan',
                   'format' => 'html',
@@ -96,9 +96,9 @@ $this->params['breadcrumbs'][] = $this->title;
                       $skilllayanan = ($datapekerjabyperner)?$datapekerjabyperner[0]->PEKTX:"not found";
                     }
                     return $skilllayanan;
-                  }
-                ],
+                }
 
+                ],
                 [
                   'label' => 'Payroll Area',
                   'format' => 'html',
@@ -118,9 +118,9 @@ $this->params['breadcrumbs'][] = $this->title;
                       $payrollarea = ($datapekerjabyperner)?$datapekerjabyperner[0]->ABTXT:"not found";
                     }
                     return $payrollarea;
-                  }
-                ],
+                }
 
+                ],
                 [
                   'label' => 'Jabatan',
                   'format' => 'html',
@@ -140,9 +140,9 @@ $this->params['breadcrumbs'][] = $this->title;
                       $jabatan = ($datapekerjabyperner)?$datapekerjabyperner[0]->PLATX:"not found";
                     }
                     return $jabatan;
-                  }
-                ],
+                }
 
+                ],
                 [
                   'label' => 'Level',
                   'format' => 'html',
@@ -169,9 +169,9 @@ $this->params['breadcrumbs'][] = $this->title;
                       $level = ($datapekerjabyperner)?$datapekerjabyperner[0]->TRFAR_TXT:"not found";
                     }
                     return $level;
-                  }
-                ],
+                }
 
+                ],
                 [
                   'label' => 'Status',
                   'format' => 'html',
@@ -185,16 +185,22 @@ $this->params['breadcrumbs'][] = $this->title;
                       ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
                       $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
                       $status = "Active";
+
                       if($datapekerjabyperner[0]->MASSN == "Z8"){
                         $status = "Resign";
+
                         }
                     }else{
                       $status = ($data->statusresign == 1)?"Active":"Resign";
                     }
+
+
+
+
                     return $status;
                 }
-                ],
 
+                ],
                 [
                   'label' => 'Resign Reason',
                   'format' => 'html',
@@ -211,10 +217,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     }else{
                       $resignreason = $data->resignreason;
                     }
-                    return $resignreason;
-                  }
-                ],
 
+
+
+                    return $resignreason;
+                }
+
+                ],
                 [
                   'label' => 'Resign Date',
                   'format' => 'html',
@@ -243,10 +252,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     }else{
                       $resigndate = $data->resigndate;
                     }
-                    return $resigndate;
-                  }
-                ],
 
+
+
+                    return $resigndate;
+                }
+
+                ],
                 'createtime',
                 'updatetime',
                 'approvedtime',
@@ -254,26 +266,29 @@ $this->params['breadcrumbs'][] = $this->title;
                   'label' => 'Created By',
                   'format' => 'html',
                   'value'=>function ($data) {
-                    return ($data->createduser)?$data->createduser->name:"";
-                  }
-                ],
 
+                    return ($data->createduser)?$data->createduser->name:"";
+                }
+
+                ],
                 [
                   'label' => 'Updated By',
                   'format' => 'html',
                   'value'=>function ($data) {
-                    return ($data->updateduser)?$data->updateduser->name:"";
-                  }
-                ],
 
+                    return ($data->updateduser)?$data->updateduser->name:"";
+                }
+
+                ],
                 [
                   'label' => 'Approved By',
                   'format' => 'html',
                   'value'=>function ($data) {
-                    return ($data->approveduser)?$data->approveduser->name:"";
-                  }
-                ],
 
+                    return ($data->approveduser)?$data->approveduser->name:"";
+                }
+
+                ],
                 // 'kategorydata',
             ],
         ]) ?>
@@ -314,6 +329,8 @@ $this->params['breadcrumbs'][] = $this->title;
             (($bankaccountnewdoc)?Html::a('<i class="fa fa-download"></i> '.$bankaccountnewdoc , ['/app/assets/upload/bankaccount/'.$bankaccountnewdoc],['target'=>'_blank', 'class' => 'btn btn-sm btn-default text-muted']):'-');?> </td>
           </tr>
         <?php endif; ?>
+
+
     </tbody></table>
   </div>
 </div>

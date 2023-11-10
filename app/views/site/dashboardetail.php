@@ -5,9 +5,10 @@
 use kartik\date\DatePicker;
 use yii\helpers\Html;
 use kartik\select2\Select2;
+use Mpdf\Tag\Select;
 use yii\widgets\ActiveForm;
 
-$this->title = 'Dashboard';
+$this->title = 'Dashboard Detail';
 $this->params['breadcrumbs'][] = $this->title;
 app\assets\DashboardAsset::register($this);
 ?>
@@ -24,9 +25,7 @@ app\assets\DashboardAsset::register($this);
   }
 </style>
 <div class="site-dashboard">
-
   <div class="row">
-
     <div class="col-lg-3">
       <div class="box box-default collapsed-box">
         <div class="box-header with-border">
@@ -37,6 +36,7 @@ app\assets\DashboardAsset::register($this);
             </button>
           </div>
         </div>
+
         <div class="box-body">
           <?php $form = ActiveForm::begin([
             'action' => ['dashboard'],
@@ -44,7 +44,7 @@ app\assets\DashboardAsset::register($this);
 
           ]); ?>
           <div class="input-group">
-            <div class="col-lg-12" style="margin-bottom:15px;">
+            <div class="col-lg-12">
               <?php
               $thisYear = date('Y', time());
               $thisYeard = date('Y', time());
@@ -58,7 +58,7 @@ app\assets\DashboardAsset::register($this);
                 'pluginOptions' => [
                   'allowClear' => true
                 ],
-              ])->label('Year');
+              ])->label(false);
               ?>
             </div>
             <span class="input-group-btn">
@@ -79,6 +79,7 @@ app\assets\DashboardAsset::register($this);
             </button>
           </div>
         </div>
+
         <div class="box-body">
           <?php $form = ActiveForm::begin([
             'action' => ['dashboardetail'],
@@ -114,7 +115,7 @@ app\assets\DashboardAsset::register($this);
                   'allowClear' => true,
                   'multiple' => true
                 ],
-                ])->label('Personal Area'); ?>
+              ])->label('Personal Area'); ?>
             </div>
             <div class="col-lg-4">
               <?php echo $form->field($model, 'area_sap')->widget(Select2::classname(), [
@@ -134,7 +135,6 @@ app\assets\DashboardAsset::register($this);
         </div>
       </div>
     </div>
-
   </div>
 
   <h4> Job Order </h4>
@@ -334,13 +334,16 @@ app\assets\DashboardAsset::register($this);
       </div>
     </div> -->
   </div>
-  
+
   <div class="row">
-    <div class="col-lg-6 col-xs-12">
+    <div class="col-lg-2 col-xs-12">
+    </div>
+    <div class="col-lg-8 col-xs-12">
       <div class="box">
         <div class="box-header">
           <h3 class="box-title">Recruitment Process</h3>
         </div>
+
         <div class="box-body no-padding">
           <table class="table table-striped">
             <tbody>
@@ -349,6 +352,7 @@ app\assets\DashboardAsset::register($this);
                 <th>Task</th>
                 <th style="width: 40px">Count</th>
               </tr>
+
               <tr>
                 <td>1.</td>
                 <td>Psikotest</td>
@@ -373,6 +377,7 @@ app\assets\DashboardAsset::register($this);
 
                 <td align="right"><span class="badge bg-default"><?php echo $failpsicount; ?></span></td>
               </tr>
+
               <tr>
                 <td>2.</td>
                 <td>Interview</td>
@@ -397,6 +402,7 @@ app\assets\DashboardAsset::register($this);
 
                 <td align="right"><span class="badge bg-default"><?php echo $failintcount; ?></span></td>
               </tr>
+
               <tr>
                 <td>3.</td>
                 <td>User Interview</td>
@@ -426,63 +432,6 @@ app\assets\DashboardAsset::register($this);
         </div>
       </div>
     </div>
-    <div class="col-lg-6 col-xs-12">
-      <div id="canvas-holder" style="width:100%;">
-        <canvas id="chart-area" height="250"></canvas>
-      </div>
+    <div class="col-lg-2 col-xs-12">
     </div>
   </div>
-
-  <script>
-    var config = {
-      type: 'funnel',
-      data: {
-        datasets: [{
-          data: [
-            <?php echo $totalapplicant; ?>,
-            <?php echo $interviewapp; ?>,
-            <?php echo $psikotestapp; ?>,
-            <?php echo $uinterviewapp; ?>
-          ],
-          backgroundColor: [
-            "#dd4b39",
-            "#f39c12",
-            "#36A2EB",
-            "#00a65a"
-          ],
-          hoverBackgroundColor: [
-            "#dd4b39",
-            "#f39c12",
-            "#36A2EB",
-            "#00a65a"
-          ]
-        }],
-        labels: [
-          "Pelamar (Candidate)",
-          "Interview",
-          "Psikotest",
-          "User Interview"
-        ]
-      },
-      options: {
-        responsive: true,
-        sort: 'desc',
-        legend: {
-          position: 'top'
-        },
-        title: {
-          display: true,
-          text: 'Recruitment Process Chart'
-        },
-        animation: {
-          animateScale: true,
-          animateRotate: true
-        }
-      }
-    };
-
-    window.onload = function() {
-      var ctx = document.getElementById("chart-area").getContext("2d");
-      window.myDoughnut = new Chart(ctx, config);
-    };
-  </script>

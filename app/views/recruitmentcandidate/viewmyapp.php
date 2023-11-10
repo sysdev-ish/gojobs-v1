@@ -9,49 +9,51 @@ use yii\widgets\DetailView;
 $this->title = "My Application";
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<?php if(Yii::$app->utils->getlayout() == 'main'): ?>
-<div class="row">
-  <div class="col-md-3">
-    <?= $this->render(
+<?php if (Yii::$app->utils->getlayout() == 'main') : ?>
+  <div class="row">
+    <div class="col-md-3">
+      <?= $this->render(
         '/layouts/leftprofile.php',
         [
           'userid' => $userid,
         ]
-    ) ?>
-  </div>
-  <div class="col-md-9">
-    <div class="userprofile-view box box-solid">
-      <div class="box-header with-border">
-        <h3 class="box-title">My Applications</h3>
-      </div>
-
+      ) ?>
+    </div>
+    <div class="col-md-9">
+      <div class="userprofile-view box box-solid">
+        <div class="box-header with-border">
+          <h3 class="box-title">My Applications</h3>
+        </div>
         <div class="box-body table-responsive">
           <table class="table table-striped">
-                <tbody><tr>
-                  <th>No</th>
-                  <!-- <th>Job Function Category</th> -->
-                  <th>Job Function</th>
-                  <th>Location</th>
-                  <th>Status</th>
+            <tbody>
+              <tr>
+                <th>No</th>
+                <!-- <th>Job Function Category</th> -->
+                <th>Job Function</th>
+                <th>Location</th>
+                <th>Status</th>
 
-                </tr>
-                <?php foreach ($modelall as $key => $model) { ?>
+              </tr>
+              <?php foreach ($modelall as $key => $model) { ?>
                 <tr>
-                  <td><?php echo $key+1; ?></td>
-                  <!-- <td><?php //echo $model->recrequest->jobfunc->jobcat->name_job_function_category; ?></td> -->
-                  <td><?php echo ($model->recrequest->hire_jabatan_sap)? ((is_numeric($model->recrequest->hire_jabatan_sap))?$model->recrequest->jabatansap->value2:'-'):'-'; ?></td>
-                  <td><?php echo ($model->recrequest->city)?$model->recrequest->city->city_name:'-'; ?></td>
-                  <td><?php echo ($model->status == 0)?'Candidate':'On Recruitment Process';?></td>
+                  <td><?php echo $key + 1; ?></td>
+                  <!-- <td><?php //echo $model->recrequest->jobfunc->jobcat->name_job_function_category; 
+                            ?></td> -->
+                  <td><?php echo ($model->recrequest->hire_jabatan_sap) ? ((is_numeric($model->recrequest->hire_jabatan_sap)) ? $model->recrequest->jabatansap->value2 : '-') : '-'; ?></td>
+                  <td><?php echo ($model->recrequest->city) ? $model->recrequest->city->city_name : '-'; ?></td>
+                  <td><?php echo ($model->status == 0) ? 'Candidate' : 'On Recruitment Process'; ?></td>
 
                 </tr>
               <?php } ?>
 
-              </tbody></table>
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
   </div>
-</div>
-<?php else: ?>
+<?php else : ?>
   <div class="careerfy-subheader careerfy-subheader-without-bg">
     <div class="container">
       <div class="row">
@@ -85,47 +87,66 @@ $this->params['breadcrumbs'][] = $this->title;
               [
                 'userid' => $userid,
               ]
-              ) ?>
+            ) ?>
 
-            </aside>
-            <div class="careerfy-column-8">
-              <div class="careerfy-employer-box-section">
-                <div class="careerfy-profile-title">
-                  <h2><?= Yii::t('app', 'My Applied Job') ?></h2>
+          </aside>
+          <div class="careerfy-column-8">
+            <div class="careerfy-employer-box-section">
+              <div class="careerfy-profile-title">
+                <h2><?= Yii::t('app', 'My Applied Job') ?></h2>
+              </div>
+              <div class="careerfy-applied-jobs">
+                <ul class="careerfy-row">
+                  <?php foreach ($modelall as $key => $model) { ?>
+                    <li class="careerfy-column-12">
+                      <div class="careerfy-applied-jobs-wrap">
+                        <div class="careerfy-table-layer">
+                          <div class="careerfy-table-row">
+                            <div class="careerfy-featured-listing-text">
+                              <h1>
+                                <?php echo (is_numeric($model->recrequest->jabatan)) ? $model->recrequest->jobfunc->name_job_function : $model->recrequest->jabatan; ?>
+                              </h1>
+                              <time><i class="fa fa-calendar"></i> Date Applied: <?php echo ($model->createtime) ? date('d-m-Y', strtotime($model->createtime)) : '-'; ?></time>
+                              <div class="careerfy-featured-listing-options">
+                                <ul>
+                                  <li>
+                                    <i class="careerfy-icon careerfy-maps-and-flags"></i><?php echo ($model->recrequest->city) ? $model->recrequest->city->city_name : '-'; ?>
+                                  </li>
+                                  <li><i class="careerfy-icon careerfy-filter-tool-black-shape"></i>
+                                    Accounting / Finance
+                                  </li>
+                                  <li class="careerfy-right">
+                                    Status:
+                                    <?php
+                                    if ($model->status == 0) {
+                                      $label = 'label-warning';
+                                    } elseif ($model->status == 4 or $model->status == 5 or $model->status == 6 or $model->status == 7 or $model->status == 12 or $model->status == 13 or $model->status == 14 or $model->status == 15) {
+                                      $label = 'label-success';
+                                    } elseif ($model->status == 8 or $model->status == 9 or $model->status == 10 or $model->status == 16 or $model->status == 17 or $model->status == 18 or $model->status == 19 or $model->status == 24) {
+                                      $label = 'label-danger';
+                                    } else {
+                                      $label = 'label-primary';
+                                    }
+                                    echo ' <span class="label ' . $label . '">' . $model->statuscandidate->statusname . '</span>';
+                                    ?>
 
-                </div>
-                <div class="careerfy-description">
-                  <div class="box-body table-responsive">
-                    <table class="table table-striped">
-                          <tbody><tr>
-                            <th>No</th>
-                            <!-- <th>Job Function Category</th> -->
-                            <th>Job Function</th>
-                            <th>Location</th>
-                            <th>Status</th>
-
-                          </tr>
-                          <?php foreach ($modelall as $key => $model) { ?>
-                          <tr>
-                            <td><?php echo $key+1; ?></td>
-                            <!-- <td><?php //echo $model->recrequest->jobfunc->jobcat->name_job_function_category; ?></td> -->
-                            <td><?php echo (is_numeric($model->recrequest->jabatan)) ? $model->recrequest->jobfunc->name_job_function : $model->recrequest->jabatan; ?></td>
-                            <td><?php echo ($model->recrequest->city)?$model->recrequest->city->city_name:'-'; ?></td>
-                            <td><?php echo ($model->status == 0)?'Candidate':'On Recruitment Process';?></td>
-
-                          </tr>
-                        <?php } ?>
-
-                        </tbody></table>
-                  </div>
-                </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  <?php } ?>
+                </ul>
               </div>
             </div>
-
           </div>
         </div>
       </div>
-      <!-- Main Section -->
-
     </div>
+    <!-- Main Section -->
+
+  </div>
 <?php endif; ?>

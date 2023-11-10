@@ -6,6 +6,7 @@ use yii\grid\GridView;
 use kartik\select2\Select2;
 use app\models\Masterstatuscr;
 use app\models\Transrincian;
+use app\models\User;
 use yii\helpers\ArrayHelper;
 use yii\bootstrap\Modal;
 use linslin\yii2\curl;
@@ -141,8 +142,19 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove . $action
 
         [
           'label' => 'Approver',
-          'attribute' => 'approveduser',
+          'attribute' => 'approvedby',
+          'contentOptions' => ['style' => 'width: 140px;'],
           'format' => 'html',
+          'filter' => \kartik\select2\Select2::widget([
+            'model' => $searchModel,
+            'attribute' => 'approvedby',
+            'data' => ArrayHelper::map(User::find()->where('role = 10 AND status = 10')->asArray()->all(), 'id', 'name'),
+            'options' => ['placeholder' => '--'],
+            'pluginOptions' => [
+              'allowClear' => true,
+              // 'width' => '120px',
+            ],
+          ]),
           'value' => function ($data) {
             return ($data->approveduser) ? $data->approveduser->name : "-";
             // return "PM";

@@ -333,9 +333,9 @@ app\assets\ReportAsset::register($this);
                     'value'=>function ($data) {
 
                       return ($data->transjo)?$data->transjo->tanggal : "";
-                    }
-                  ],
+                  }
 
+                  ],
                   [
                     'label' => 'Type JO',
                     'attribute' => 'typejo',
@@ -343,9 +343,10 @@ app\assets\ReportAsset::register($this);
                     'value'=>function ($data) {
 
                       return ($data->typejo == 1)?"New Project" : "Replacement";
-                    }
-                  ],
 
+                  }
+
+                  ],
                   [
                     'label' => 'Personal Area',
                     'attribute' => 'persa_sap',
@@ -353,9 +354,10 @@ app\assets\ReportAsset::register($this);
                     'value'=>function ($data) {
 
                       return ($data->persasap)?$data->persasap->value2 : "";
-                    }
-                  ],
 
+                  }
+
+                  ],
                   [
                     'label' => 'Area',
                     'attribute' => 'area_sap',
@@ -363,9 +365,9 @@ app\assets\ReportAsset::register($this);
                     'value'=>function ($data) {
 
                       return ($data->areasap)?$data->areasap->value2 : "";
-                    }
-                  ],
+                  }
 
+                  ],
                   [
                     'label' => 'Status',
                     'attribute' => 'status_rekrut',
@@ -389,9 +391,9 @@ app\assets\ReportAsset::register($this);
                           break;
                       }
                     return $status;
-                    }
-                  ],
+                  }
 
+                  ],
                   [
                     'label' => 'Jumlah',
                     'format' => 'raw',
@@ -427,9 +429,9 @@ app\assets\ReportAsset::register($this);
                       $hiredpending = Hiring::find()->where(['recruitreqid'=>$data->id,'statushiring'=>3])->count();
                       return ($hired)?$hired:(($hiredpending)?"Fail On Hiring":"-");
                     }
-                    }
-                  ],
+                  }
 
+                  ],
               ],
           ]);
           ?>

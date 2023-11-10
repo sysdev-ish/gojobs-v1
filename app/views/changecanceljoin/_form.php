@@ -34,7 +34,7 @@ $model->canceldate = ($model->canceldate == "0000-00-00") ? null : $model->cance
                 'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
               ],
           ],
-        ])->label('Name / Perner');
+        ])->label('Perner');
         ?>
 
         <?= $form->field($model, 'checkperner')->hiddenInput(['id' => 'checkperner'])->label(false) ?>
@@ -157,8 +157,8 @@ $model->canceldate = ($model->canceldate == "0000-00-00") ? null : $model->cance
         </table>
       </div>
       <div class="box-footer">
-        <?= Html::a('Save to draft', ['index'], ['class' => 'btn btn-danger btn-flat pull-right', 'style' => 'margin-left:10px;']) ?>
-        <?= Html::submitButton('Submit', ['class' => 'btn btn-success btn-flat pull-right']) ?>
+        <?= Html::submitButton('Submit', ['class' =>'btn btn-success btn-flat pull-right', 'style' => 'margin-left:10px;']) ?>
+        <?= Html::a('Save to draft', ['index'], ['class' => 'btn btn-danger btn-flat pull-right']) ?>
       </div>
     </div>
   </div>

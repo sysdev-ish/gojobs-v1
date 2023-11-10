@@ -6,6 +6,11 @@ use yii\bootstrap\Modal;
 use app\models\Masterstatusprocess;
 use app\models\Userinterview;
 use app\models\Interviewform;
+use app\models\Mastercity;
+use app\models\Masteroffice;
+use app\models\Sapjob;
+use app\models\User;
+use kartik\date\DatePicker;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
@@ -81,7 +86,7 @@ if (Yii::$app->utils->permission($role, 'm11') && Yii::$app->utils->permission($
       'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
 
-        'id',
+        // 'id',
         [
           'label' => 'Invitation Number',
           'contentOptions' => ['style' => 'width: 100px;'],
@@ -97,42 +102,46 @@ if (Yii::$app->utils->permission($role, 'm11') && Yii::$app->utils->permission($
             ]);
             return $btn;
           }
-
         ],
+
         [
           'label' => 'Full Name',
           'attribute' => 'fullname',
           'contentOptions' => ['style' => 'width: 100px;'],
           'format' => 'raw',
           'value' => function ($data) {
-            $btn = Html::button($data->userprofile->fullname, [
-              'value' => Yii::$app->urlManager->createUrl('userprofile/viewshort?userid=' . $data->userid), //<---- here is where you define the action that handles the ajax request
-              'class' => 'btn btn-link profileviewshort-modal-click',
-              'style' => 'padding:0px;',
-              'data-toggle' => 'tooltip',
-              'data-placement' => 'bottom',
-              'title' => 'View Profile detail'
-            ]);
-            return $btn;
+            if ($data->userprofile) {
+              $btn = Html::button($data->userprofile->fullname, [
+                'value' => Yii::$app->urlManager->createUrl('userprofile/viewshort?userid=' . $data->userid), //<---- here is where you define the action that handles the ajax request
+                'class' => 'btn btn-link profileviewshort-modal-click',
+                'style' => 'padding:0px;',
+                'data-toggle' => 'tooltip',
+                'data-placement' => 'bottom',
+                'title' => 'View Profile detail'
+              ]);
+              return $btn;
+            } else {
+              return '';
+            }
           }
-
         ],
-        // [
-        //   'label' => 'Job Function',
-        //   // 'attribute' => 'jobfunc',
-        //   // 'contentOptions'=>['style'=>'width: 150px;'],
-        //   'format' => 'html',
-        //   'value'=>function ($data) {
-        //
-        //     return (is_numeric($data->reccandidate->recrequest->jabatan)) ? $data->reccandidate->recrequest->jobfunc->name_job_function : $data->reccandidate->recrequest->jabatan;
-        // }
-        //
-        // ],
+
         [
           'label' => 'Jabatan (SAP)',
           // 'attribute' => 'jabatansap',
           'format' => 'html',
+          'filter' => \kartik\select2\Select2::widget([
+            'model' => $searchModel,
+            'attribute' => 'jabatansap',
+            'data' => ArrayHelper::map(Sapjob::find()->asArray()->all(), 'value2', 'value2'),
+            'options' => ['placeholder' => '--'],
+            'pluginOptions' => [
+              'allowClear' => true,
+              // 'width' => '120px',
+            ],
+          ]),
           'value' => function ($data) {
+
             if ($data->reccandidate->recrequest->hire_jabatan_sap) {
               if (is_numeric($data->reccandidate->recrequest->hire_jabatan_sap)) {
                 if ($data->reccandidate->recrequest->jabatansap) {
@@ -147,42 +156,89 @@ if (Yii::$app->utils->permission($role, 'm11') && Yii::$app->utils->permission($
               return "-";
             }
           }
-
         ],
+
         [
           'label' => 'City',
+          // 'attribute' => 'city',
           'contentOptions' => ['style' => 'width: 100px;'],
+          'filter' => \kartik\select2\Select2::widget([
+            'model' => $searchModel,
+            'attribute' => 'city',
+            'data' => ArrayHelper::map(Mastercity::find()->asArray()->all(), 'kota', 'kota'),
+            'options' => ['placeholder' => '--'],
+            'pluginOptions' => [
+              'allowClear' => true,
+              // 'width' => '120px',
+            ],
+          ]),
           'format' => 'html',
           'value' => function ($data) {
 
-            $ret = null;
-
-            if (isset($data->reccandidate->recrequest->city))
-              $ret = ($data->reccandidate->recrequest->city) ? $data->reccandidate->recrequest->city->city_name : "";
-
-            return $ret;
+            return ($data->reccandidate) ? (($data->reccandidate->recrequest->city) ? $data->reccandidate->recrequest->city->city_name : "") : '-';
           }
-
         ],
+
         [
           'attribute' => 'scheduledate',
+          'filter' => DatePicker::widget([
+            'model' => $searchModel,
+            'attribute' => 'scheduledate',
+            'options' => ['placeholder' => 'Date', 'autocomplete' => 'off'],
+            'readonly' => false,
+            'removeButton' => false,
+            'pluginOptions' => [
+              'startDate' => '2000-01-01',
+              'format' => 'yyyy-mm-dd',
+              'todayHighlight' => true
+            ]
+          ]),
           'format' => 'html',
           'value' => function ($data) {
-
             return Yii::$app->utils->indodate($data->scheduledate) . ' ' . date("H:i", strtotime($data->scheduledate));
           }
-
         ],
+
         [
           'attribute' => 'date',
+          'filter' => DatePicker::widget([
+            'model' => $searchModel,
+            'attribute' => 'date',
+            'options' => ['placeholder' => 'Date', 'autocomplete' => 'off'],
+            'readonly' => false,
+            'removeButton' => false,
+            'pluginOptions' => [
+              'startDate' => '2000-01-01',
+              'format' => 'yyyy-mm-dd',
+              'todayHighlight' => true
+            ]
+          ]),
           'format' => 'html',
           'value' => function ($data) {
-
             return ($data->date) ? Yii::$app->utils->indodate($data->date) : '-';
           }
-
         ],
-        'masteroffice.officename',
+
+        [
+          'label' => 'Office Name',
+          // 'attribute' => 'city',
+          'contentOptions' => ['style' => 'width: 100px;'],
+          'format' => 'html',
+          'filter' => \kartik\select2\Select2::widget([
+            'model' => $searchModel,
+            'attribute' => 'officeid',
+            'data' => ArrayHelper::map(Masteroffice::find()->asArray()->all(), 'id', 'officename'),
+            'options' => ['placeholder' => '--'],
+            'pluginOptions' => [
+              'allowClear' => true,
+              // 'width' => '120px',
+            ],
+          ]),
+          'value' => function ($data) {
+            return ($data->officeid) ? $data->masteroffice->officename : "";
+          }
+        ],
+
         [
           'label' => 'Room',
           'contentOptions' => ['style' => 'width: 150px;'],
@@ -191,18 +247,28 @@ if (Yii::$app->utils->permission($role, 'm11') && Yii::$app->utils->permission($
 
             return ($data->roomid != null) ? Yii::$app->utils->ordinal($data->masterroom->floor) . ' Floor, ' . $data->masterroom->room . ' Room' : ' ';
           }
-
         ],
+
         [
-          'label' => 'PIC User Interview',
+          'label' => 'PIC Interview',
           'contentOptions' => ['style' => 'width: 100px;'],
           'format' => 'html',
+          'filter' => \kartik\select2\Select2::widget([
+            'model' => $searchModel,
+            'attribute' => 'pic',
+            'data' => ArrayHelper::map(User::find()->where('role = 22 OR role = 3 AND status = 10')->asArray()->all(), 'id', 'name'),
+            'options' => ['placeholder' => '--'],
+            'pluginOptions' => [
+              'allowClear' => true,
+              // 'width' => '120px',
+            ],
+          ]),
           'value' => function ($data) {
-
-            return ($data->pic) ? $data->userpic->name : '';
+            return ($data->pic != null) ? $data->userpic->name : '';
           }
-
         ],
+
+
 
         [
           'attribute' => 'status',
@@ -230,8 +296,8 @@ if (Yii::$app->utils->permission($role, 'm11') && Yii::$app->utils->permission($
             }
             return '<span class="label ' . $label . '">' . $data->statusprocess->statusname . '</span>';
           }
-
         ],
+
 
 
         // 'recruitmentcandidateid',
@@ -243,16 +309,18 @@ if (Yii::$app->utils->permission($role, 'm11') && Yii::$app->utils->permission($
           'template' => '<div class="btn-group pull-right">' . $action . '</div>',
           'buttons' => [
             'download' => function ($url, $model) {
-              $cekforminterview = Interviewform::find()->where(['interviewid' => $model->id])->one();
-              if ($cekforminterview) {
-                $disabled = false;
-              } else {
-                if ($model->documentinterview) {
-                  $disabled = false;
-                } else {
-                  $disabled = true;
-                }
-              }
+              // $cekforminterview = Interviewform::find()->where(['interviewid' => $model->id])->one();
+              // if ($cekforminterview) {
+              //   $disabled = false;
+              // } else {
+              //   if ($model->documentinterview) {
+              //     $disabled = false;
+              //   } else {
+              //     $disabled = true;
+              //   }
+              // }
+
+              ($model->status == 2) ? $disabled = false : $disabled = true;
               $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
               $randChar = '';
 

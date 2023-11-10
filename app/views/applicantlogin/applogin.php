@@ -31,9 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'email:email',
                 // 'mobile',
                 // 'password_hash',
-
+                
                 // 'status',
                 'verify_code',
+                'password_reset_token',
                 // 'auth_key',
 
                 // 'verify_status',

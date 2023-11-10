@@ -333,6 +333,7 @@ app\assets\ReportAsset::register($this);
                 if ($cekhiring) {
                   $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                 }
+                // var_dump($getjo->transjo);die;
                 return ($getjo->transjo->segmen) ? $getjo->transjo->segmen->divisi : '-';
               }
             ],

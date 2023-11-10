@@ -115,24 +115,14 @@ if(Yii::$app->utils->permission($role,'m41')){
                 [
                   'label' => 'Jabatan (SAP)',
                   // 'attribute' => 'jabatansap',
+                  // 'contentOptions'=>['style'=>'width: 150px;'],
                   'format' => 'html',
                   'value'=>function ($data) {
-                    if ($data->reccandidate->recrequest->hire_jabatan_sap) {
-                      if (is_numeric($data->reccandidate->recrequest->hire_jabatan_sap)) {
-                        if ($data->reccandidate->recrequest->jabatansap) {
-                          return $data->reccandidate->recrequest->jabatansap->value2;
-                        } else {
-                          return "-";
-                        }
-                      } else {
-                        return "-";
-                      }
-                    } else {
-                      return "-";
-                    }
-                  }
-                ],
 
+                    return ($data->reccandidate->recrequest->hire_jabatan_sap)? ((is_numeric($data->reccandidate->recrequest->hire_jabatan_sap))?$data->reccandidate->recrequest->jabatansap->value2:'-'):'-';
+                }
+
+                ],
                 [
                   'label' => 'City',
                   // 'attribute' => 'city',
@@ -149,6 +139,7 @@ if(Yii::$app->utils->permission($role,'m41')){
                 [
                   'label' => 'Date',
                   'attribute' => 'scheduledate',
+                  // 'contentOptions'=>['style'=>'width: 150px;'],
                   'format' => 'html',
                   'value'=>function ($data) {
 

@@ -1,8 +1,11 @@
 <?php
 
+use app\models\Mastercity;
+use app\models\Sapjob;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Modal;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\Transrinciansearch */
@@ -66,17 +69,23 @@ $action = $actionstop . $actionview . $actionaddcandidate;
       'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
 
-        'id',
-        'nojo',
+        [
+          'attribute' => 'id',
+          'contentOptions' => ['style' => 'width: 50px;']
+        ],
+        [
+          'attribute' => 'nojo',
+          'contentOptions' => ['style' => 'width: 250px;']
+        ],
 
         [
-          'label' => 'typejo',
+          'label' => 'Type JO',
           'attribute' => 'typejo',
           'format' => 'html',
           'filter' => \kartik\select2\Select2::widget([
             'model' => $searchModel,
             'attribute' => 'typejo',
-            'data' => [1 => "New Project", 2 => "replacement"],
+            'data' => [1 => "New Project", 2 => "Replacement"],
             'options' => ['placeholder' => '--'],
             'pluginOptions' => [
               'allowClear' => true,
@@ -87,8 +96,8 @@ $action = $actionstop . $actionview . $actionaddcandidate;
 
             return ($data->typejo == 1) ? "New Project" : "Replacement";
           }
-
         ],
+
         [
           'label' => 'Due Date JO',
           'contentOptions' => ['style' => 'min-width: 100px;'],
@@ -118,10 +127,20 @@ $action = $actionstop . $actionview . $actionaddcandidate;
             }
           }
         ],
+
         [
           'label' => 'Jabatan (SAP)',
-          'attribute' => 'jabatansap',
           'format' => 'html',
+          'filter' => \kartik\select2\Select2::widget([
+            'model' => $searchModel,
+            'attribute' => 'jabatansap',
+            'data' => ArrayHelper::map(Sapjob::find()->asArray()->all(), 'value2', 'value2'),
+            'options' => ['placeholder' => '--'],
+            'pluginOptions' => [
+              'allowClear' => true,
+              // 'width' => '120px',
+            ],
+          ]),
           'value' => function ($data) {
             if ($data->hire_jabatan_sap) {
               if (is_numeric($data->hire_jabatan_sap)) {
@@ -137,17 +156,26 @@ $action = $actionstop . $actionview . $actionaddcandidate;
               return "-";
             }
           }
-
         ],
-        [
-          'label' => 'Area',
-          'attribute' => 'city',
-          'format' => 'html',
-          'value' => function ($data) {
 
+        [
+          'label' => 'City',
+          // 'attribute' => 'city',
+          'contentOptions' => ['style' => 'width: 100px;'],
+          'format' => 'html',
+          'filter' => \kartik\select2\Select2::widget([
+            'model' => $searchModel,
+            'attribute' => 'city',
+            'data' => ArrayHelper::map(Mastercity::find()->asArray()->all(), 'kota', 'kota'),
+            'options' => ['placeholder' => '--'],
+            'pluginOptions' => [
+              'allowClear' => true,
+              // 'width' => '120px',
+            ],
+          ]),
+          'value' => function ($data) {
             return ($data->city) ? $data->city->city_name : '';
           }
-
         ],
 
         [
@@ -155,15 +183,71 @@ $action = $actionstop . $actionview . $actionaddcandidate;
           'attribute' => 'n_project',
           'format' => 'html',
           'value' => function ($data) {
-
             return $data->n_project;
           }
-
         ],
-        'gender',
-        'pendidikan',
 
-        'jumlah',
+        // [
+        //   'label' => 'Gender',
+        //   'attribute' => 'gender',
+        //   'format' => 'html',
+        //   'filter' => \kartik\select2\Select2::widget([
+        //     'model' => $searchModel,
+        //     'attribute' => 'gender',
+        //     'data' => ['Pria-Wanita' => "Pria-Wanita", 'Pria' => "Pria", 'Wanita' => "Wanita"],
+        //     'options' => ['placeholder' => '--'],
+        //     'pluginOptions' => [
+        //       'allowClear' => true,
+        //       'width' => '100px',
+        //     ],
+        //   ]),
+        //   'value' => function ($data) {
+        //     return ($data->gender) ? $data->gender : "-";
+        //   }
+        // ],
+
+        // [
+        //   'label' => 'Pendidikan',
+        //   'attribute' => 'pendidikan',
+        //   'format' => 'html',
+        //   'filter' => \kartik\select2\Select2::widget([
+        //     'model' => $searchModel,
+        //     'attribute' => 'pendidikan',
+        //     'data' => ['SD' => "SD", 'SMP' => "SMP", 'SMA' => "SMA", 'D1' =>"D1", 'D2' => "D2", 'D3' =>"D3", 'S1' =>"S1", 'S2' => "S2"],
+        //     'options' => ['placeholder' => '--'],
+        //     'pluginOptions' => [
+        //       'allowClear' => true,
+        //       'width' => '100px',
+        //     ],
+        //   ]),
+        //   'value' => function ($data) {
+        //     return ($data->pendidikan) ? $data->pendidikan : "-";
+        //   }
+        // ],
+
+        // [
+        //   'label' => 'Kontrak',
+        //   'attribute' => 'kontrak',
+        //   'format' => 'html',
+        //   'filter' => \kartik\select2\Select2::widget([
+        //     'model' => $searchModel,
+        //     'attribute' => 'kontrak',
+        //     'data' => ['PKWT' => "PKWT", 'KEMITRAAN' => "KEMITRAAN", 'MAGANG' => "MAGANG", 'PART TIME' =>"PART TIME", 'THL' => "THL", 'PKWT-KEMITRAAN PB' =>"PKWT-KEMITRAAN PB"],
+        //     'options' => ['placeholder' => '--'],
+        //     'pluginOptions' => [
+        //       'allowClear' => true,
+        //       'width' => '120px',
+        //     ],
+        //   ]),
+        //   'value' => function ($data) {
+        //     return ($data->kontrak) ? $data->kontrak : "-";
+        //   }
+        // ],
+
+        [
+          'attribute' => 'jumlah',
+          'contentOptions' => ['style' => 'width: 80px;']
+        ],
 
         [
           'label' => 'Status',
@@ -203,8 +287,8 @@ $action = $actionstop . $actionview . $actionaddcandidate;
 
             return $status;
           }
-
         ],
+
 
         [
           'label' => 'Total Applied',
@@ -213,17 +297,17 @@ $action = $actionstop . $actionview . $actionaddcandidate;
 
             return Yii::$app->check->checkapplied($data->id);
           }
-
         ],
+
         [
-          'label' => 'Jumlah Kandidat lolos',
+          'label' => 'Candidated',
           'format' => 'html',
           'value' => function ($data) {
 
             return Yii::$app->check->checkcandidate($data->id);
           }
-
         ],
+
         [
           'label' => 'Hired',
           'format' => 'html',
@@ -231,8 +315,8 @@ $action = $actionstop . $actionview . $actionaddcandidate;
 
             return Yii::$app->check->checkJohired($data->id, 1);
           }
-
         ],
+
 
 
         // 'komentar',

@@ -1,9 +1,12 @@
 <?php
 
+use app\models\Mastercity;
+use app\models\Mastersubjobfamily;
 use yii\helpers\Html;
 use kartik\select2\Select2;
 use app\models\Recruitmentcandidate;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
@@ -21,6 +24,8 @@ use yii\widgets\Pjax;
     <p>Add Candidate for Recruitment request by No Jo <?php echo $modelrecreq->nojo; ?>.</p>
     <small>Job detail for <cite title="Source Title"><?php echo (is_numeric($modelrecreq->jabatan)) ? $modelrecreq->jobfunc->jobcat->name_job_function_category . ' - ' . $modelrecreq->jobfunc->name_job_function : $modelrecreq->jabatan; ?></cite></small>
     <small>Project <cite title="Source Title"><?php echo ($modelrecreq->transjo->n_project == '' || $modelrecreq->transjo->n_project == 'Pilih') ? $modelrecreq->transjo->project : $modelrecreq->transjo->n_project; ?></cite></small>
+    <small>Job Requirement: <cite title="Source Title"><?php echo $modelrecreq->transjo ? $modelrecreq->transjo->syarat : "-"; ?></cite></small>
+    <small>Job Description: <cite title="Source Title"><?php echo $modelrecreq->transjo ? $modelrecreq->transjo->deskripsi : "-"; ?></cite></small>
   </blockquote>
   <div class="box-body table-responsive">
     <?= GridView::widget([
@@ -31,7 +36,6 @@ use yii\widgets\Pjax;
       'layout' => "{items}\n{summary}\n{pager}",
       'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
-
 
         'fullname',
         [
@@ -47,26 +51,72 @@ use yii\widgets\Pjax;
             ],
           ]),
           'contentOptions' => ['style' => 'max-width: 100px;']
-
         ],
 
         // 'birthdate',
         // 'lasteducation',
         'address:ntext',
         [
+          'attribute' => 'phone',
+          'value' => 'phone',
+          'contentOptions' => ['style' => 'width: 150px;']
+        ],
+
+        [
+          'attribute' => 'identitynumber',
+          'value' => 'identitynumber',
+          'contentOptions' => ['style' => 'width: 150px;']
+        ],
+
+        [
           'attribute' => 'cityname',
+          // 'filter' => \kartik\select2\Select2::widget([
+          //   'model' => $searchModelprofile,
+          //   'attribute' => 'cityname',
+          //   'data' => ArrayHelper::map(Mastercity::find()->asArray()->all(), 'kota', 'kota'),
+          //   'options' => ['placeholder' => '--'],
+          //   'pluginOptions' => [
+          //     'allowClear' => true,
+          //     // 'width' => '120px',
+          //   ],
+          // ]),
           'value' => 'city.kota',
           'contentOptions' => ['style' => 'width: 150px;']
+        ],
 
+        [
+          'attribute' => 'lastposition',
+          'contentOptions' => ['style' => 'width: 150px;'],
+          'format' => 'raw',
+          'filter' => \kartik\select2\Select2::widget([
+            'model' => $searchModelprofile,
+            'attribute' => 'lastposition',
+            'data' => ArrayHelper::map(Mastersubjobfamily::find()->asArray()->all(), 'id', 'subjobfamily'),
+            'options' => ['placeholder' => ' -- '],
+            'pluginOptions' => [
+              'allowClear' => true,
+              'width' => '150px',
+            ],
+          ]),
+          'value' => 'userworkexperience.lastposition'
         ],
 
         [
           'class' => 'yii\grid\ActionColumn',
           'contentOptions' => ['style' => 'min-width: 100px;'],
-          'template' => '<div id = "actionpjax" class="btn-group pull-right">{addcandidate}</div>',
+          'template' => '<div id = "actionpjax" class="btn-group pull-right">{download}{addcandidate}</div>',
           'buttons' => [
-            'addcandidate' => function ($url, $model) use ($transrincianid) {
+            'download' => function ($url, $model) {
+              if ($model->userid) {
+                $disabled = false;
+              } else {
+                $disabled = true;
+              }
+              return
+                Html::a('<i class=" fa fa-print margin-r-5"></i>', ['userprofile/printcv', 'userid' => $model->userid], ['target' => '_blank', 'data-pjax' => "0", 'class' => 'btn btn-sm btn-primary']);
+            },
 
+            'addcandidate' => function ($url, $model) use ($transrincianid) {
               $cekcandidate = Recruitmentcandidate::find()->where(['userid' => $model->userid, 'recruitreqid' => $transrincianid])->one();
               if ($cekcandidate) {
                 $icon = '<i class="fa fa-check  text-green" style="font-size:12pt;"></i>';

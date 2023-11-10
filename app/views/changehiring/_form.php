@@ -190,7 +190,7 @@ $model->changehiring = ($model->changehiring == "0000-00-00") ? null : $model->c
             'initValueText' => $recruitreqs, // set the initial display text
             'options' => [
               'placeholder' => '- select -',
-              'id' => 'recruitreqid',
+              'id' => 'id',
               'onChange' => 'getdatanewrecruitreqid'
             ],
             'pluginOptions' => [
@@ -237,7 +237,7 @@ $model->changehiring = ($model->changehiring == "0000-00-00") ? null : $model->c
               'allowClear' => true,
               'initialize' => true,
             ],
-          ])->label('Perner Replacement/ Swap JO');
+          ])->label('Perner Replacement');
           ?>
         </div>
         <!-- condition three -->
@@ -262,7 +262,7 @@ $model->changehiring = ($model->changehiring == "0000-00-00") ? null : $model->c
             DatePicker::className(),
             [
               'type' => DatePicker::TYPE_COMPONENT_APPEND,
-              'options' => ['placeholder' => 'Date', 'id' => 'awalkontrak', 'onChange' => 'getstartcontract();'],
+              'options' => ['placeholder' => 'Date', 'id' => 'awalkontrak', 'onChange' => 'getchangedatecontract();'],
               'pluginOptions' => [
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd',
@@ -275,7 +275,7 @@ $model->changehiring = ($model->changehiring == "0000-00-00") ? null : $model->c
             DatePicker::className(),
             [
               'type' => DatePicker::TYPE_COMPONENT_APPEND,
-              'options' => ['placeholder' => 'Date', 'id' => 'akhirkontrak', 'onChange' => 'getendcontract();'],
+              'options' => ['placeholder' => 'Date', 'id' => 'akhirkontrak'],
               'pluginOptions' => [
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd',
@@ -347,7 +347,9 @@ $model->changehiring = ($model->changehiring == "0000-00-00") ? null : $model->c
             </tr>
             <tr>
               <td width="20%"><b>Contract Periode Existing</b></td>
-              <td width="30%"><span id="cpstart">-</span> s/d <span id="cpend">-</span></td>
+              <td width="30%" id="cpstart">-</td>
+              <td width="30%"> s/d</td>
+              <td width="30%" id="cpend">-</td>
             </tr>
           </tbody>
         </table>
@@ -386,10 +388,6 @@ $model->changehiring = ($model->changehiring == "0000-00-00") ? null : $model->c
             <tr>
               <td width="20%"><b>Jabatan</b></td>
               <td width="30%" id="newrec_jabatan">-</td>
-            </tr>
-            <tr>
-              <td width="20%"><b>Level</b></td>
-              <td width="30%" id="newrec_level">-</td>
             </tr>
           </tbody>
         </table>
@@ -451,8 +449,10 @@ $model->changehiring = ($model->changehiring == "0000-00-00") ? null : $model->c
         <table class="table no-border" id="infocasefour" style="<?php echo $displayformcasefour; ?>">
           <tbody>
             <tr>
-              <td width="20%"><b>Contract Periode Replacement</b></td>
-              <td width="30%"><span id="cpstartreplacemmet">-</span> s/d <span id="cpendreplacement">-</span></td>
+              <td width="20%"><b>Contract Periode Existing</b></td>
+              <td width="30%" id="cpstartreplacement">-</td>
+              <td width="30%"> s/d</td>
+              <td width="30%" id="cpendreplacement">-</td>
             </tr>
           </tbody>
         </table>
@@ -539,13 +539,13 @@ $model->changehiring = ($model->changehiring == "0000-00-00") ? null : $model->c
           var newrec_level = obj.level;
         }
 
-        document.getElementById('newrec_recruitreqid').innerHTML = newrec_recruitreqid;
-        document.getElementById('newrec_persa').innerHTML = newrec_persa;
-        document.getElementById('newrec_area').innerHTML = newrec_area;
-        document.getElementById('newrec_skilllayanan').innerHTML = newrec_skilllayanan;
-        document.getElementById('newrec_payrollarea').innerHTML = newrec_payrollarea;
-        document.getElementById('newrec_jabatan').innerHTML = newrec_jabatan;
-        document.getElementById('newrec_level').innerHTML = newrec_level;
+        document.getElementById('newrec_recruitreqid').innerHTML = recruitreqid;
+        document.getElementById('newrec_persa').innerHTML = persa;
+        document.getElementById('newrec_area').innerHTML = area;
+        document.getElementById('newrec_skilllayanan').innerHTML = skilllayanan;
+        document.getElementById('newrec_payrollarea').innerHTML = payrollarea;
+        document.getElementById('newrec_jabatan').innerHTML = jabatan;
+        document.getElementById('newrec_level').innerHTML = level;
 
       },
     });
@@ -724,47 +724,4 @@ $model->changehiring = ($model->changehiring == "0000-00-00") ? null : $model->c
     });
   }
 
-  function getstartcontract() {
-    var newstartcontract = $('awalkontrak').val();
-    $.ajax({
-      type: 'POST',
-      cache: false,
-      data: {
-        awalkontrak: newstartcontract,
-        id: <?php echo $model->id; ?>,
-      },
-      url: '<?php echo Yii::$app->urlManager->createUrl(['changehiring/getscp']) ?>',
-      success: function(data, textStatus, jqXHR) {
-        var obj = JSO.parse(data);
-        var awalkontrak = '';
-
-        if (obj.awalkontrak) {
-          var awalkontrakres = obj.awalkontrak;
-        }
-        document.getElementById('cpstartreplacemmet').innerHTML = awalkontrakres;
-      },
-    });
-  }
-
-  function getendcontract() {
-    var newendcontract = $('akhirkontrak').val();
-    $.ajax({
-      type: 'POST',
-      cache: false,
-      data: {
-        akhirkontrak: newendcontract,
-        id: <?php echo $model->id; ?>,
-      },
-      url: '<?php echo Yii::$app->urlManager->createUrl(['changehiring/getecp']) ?>',
-      success: function(data, textStatus, jqXHR) {
-        var obj = JSO.parse(data);
-        var akhirkontrak = '';
-
-        if (obj.akhirkontrak) {
-          var akhirkontrakres = obj.akhirkontrak;
-        }
-        document.getElementById('cpendreplacemmet').innerHTML = akhirkontrakres;
-      },
-    });
-  }
 </script>

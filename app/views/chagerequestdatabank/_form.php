@@ -18,6 +18,7 @@ Modal::begin([
 
 echo "<div id='crformupdatebank'></div>";
 
+
 Modal::end();
 $datakaryawan = empty($model->perner) ? '' : $model->perner;
 ?>
@@ -25,7 +26,10 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
 <div class="row">
   <div class="col-md-4">
     <div class="chagerequestdata-form box box-default">
+
       <div class="box-body table-responsive">
+
+
         <?php
         echo   $form->field($model, 'perner')->widget(Select2::classname(), [
           // 'data' => $datakaryawan,
@@ -37,7 +41,7 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
           'pluginOptions' => [
             'allowClear' => true,
             'initialize' => true,
-            'minimumInputLength' => 4,
+            'minimumInputLength' => 5,
             'language' => [
               'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
             ],
@@ -58,17 +62,17 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
                 if(a.id == "" || a.id == null){return "No Data";}else{return a.id};
               }'),
           ],
-        ])->label('Perner / Name');
+        ])->label('Perner');
         ?>
         <?= $form->field($model, 'checkperner')->hiddenInput(['id' => 'checkperner'])->label(false) ?>
-
         <?= $form->field($model, 'approvedby')->hiddenInput()->label(false) ?>
         <?= $form->field($model, 'approvedby2')->hiddenInput()->label(false) ?>
         <?= $form->field($model, 'approvedbyname')->textInput(['disabled' => true])->label('Approval 1') ?>
         <?= $form->field($model, 'approvedby2name')->textInput(['disabled' => true])->label('Approval 2') ?>
-
       </div>
     </div>
+
+
   </div>
   <div class="col-md-8">
 
@@ -242,7 +246,6 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
         var bankaccountnumbernewval = '';
         var bankaccountnewdoc = '';
         var bankaccounticon = '';
-
         var checkperner = '';
 
         if (obj.perner) {
@@ -290,12 +293,8 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
 
 
         if (obj.bankaccountfile) {
-          var bankaccountfile =
-            '<br><a class="btn btn-sm btn-default text-muted" href="/rekrut/app/assets/upload/bankaccount/' + obj
-            .bankaccountfile + '" target="_blank"><i class="fa fa-download"></i> ' + obj.bankaccountfile + '</a>';
+          var bankaccountfile = '<br><a class="btn btn-sm btn-default text-muted" href="/rekrut/app/assets/upload/bankaccount/' + obj.bankaccountfile + '" target="_blank"><i class="fa fa-download"></i> ' + obj.bankaccountfile + '</a>';
         }
-
-
 
         if (obj.bankaccountnewval) {
           var bankaccountnewval = obj.bankaccountnewval;
@@ -304,10 +303,7 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
         }
 
         if (obj.bankaccountnewdoc) {
-          var bankaccountnewdoc =
-            '<br><a class="btn btn-sm btn-default text-muted" href="/rekrut/app/assets/upload/bankaccount/' + obj
-            .bankaccountnewdoc + '?=' + <?php echo rand(1, 32000); ?> +
-            '"  target="_blank"><i class="fa fa-download"></i> ' + obj.bankaccountnewdoc + '</a>';
+          var bankaccountnewdoc = '<br><a class="btn btn-sm btn-default text-muted" href="/rekrut/app/assets/upload/bankaccount/' + obj.bankaccountnewdoc + '?=' + <?php echo rand(1, 32000); ?> + '"  target="_blank"><i class="fa fa-download"></i> ' + obj.bankaccountnewdoc + '</a>';
         }
 
         if (obj.checkperner) {
@@ -330,10 +326,10 @@ $datakaryawan = empty($model->perner) ? '' : $model->perner;
         document.getElementById('bankaccountnumber').innerHTML = bankaccountnumber + bankaccountfile;
 
         document.getElementById('bankaccountnewval').innerHTML = bankaccountnewval;
-        document.getElementById('bankaccountnumbernewval').innerHTML = bankaccountnumbernewval +
-          bankaccountnewdoc;
+        document.getElementById('bankaccountnumbernewval').innerHTML = bankaccountnumbernewval + bankaccountnewdoc;
 
         document.getElementById('bankaccounticon').innerHTML = bankaccounticon;
+
         $("#checkperner").val(checkperner);
       },
     });

@@ -10,6 +10,7 @@ use kartik\date\DatePicker;
 /* @var $form yii\widgets\ActiveForm */
 
 $datakaryawan = empty($model->perner) ? '' : $model->perner;
+// $model->resigndate = ($model->resigndate == "0000-00-00") ? date("Y-m-d") : $model->resigndate;
 $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resigndate;
 ?>
 <?php $form = ActiveForm::begin(); ?>
@@ -35,6 +36,8 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
               'url' => \yii\helpers\Url::to(['chagerequestresign/getdatakaryawan']),
               'dataType' => 'json',
               'data' => new \yii\web\JsExpression('function(params) { return {q:params.term}; }'),
+
+
             ],
             'escapeMarkup' => new \yii\web\JsExpression('function (markup) { return markup; }'),
             'templateResult' => new \yii\web\JsExpression('function(a) {
@@ -59,18 +62,35 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
             'allowClear' => false,
             'initialize' => true,
           ],
-        ])->label('Approve By');
-        ?>
+          ])->label('Approve By');
+          ?>
         <?= $form->field($model, 'resigndate')->widget(
           DatePicker::className(),
           [
             'type' => DatePicker::TYPE_COMPONENT_APPEND,
-            'options' => ['placeholder' => 'Date', 'id' => 'resigndate'],
+            'options' => [
+              'placeholder' => 'Date',
+              'id' => 'resigndate',
+              'onChange' => "autosave();",
+            ],
+            // 'id' => 'hiring_date',
             'pluginOptions' => [
               'autoclose' => true,
               'format' => 'yyyy-mm-dd',
               'todayHighlight' => true
-            ]
+            ],
+            // 'pluginEvents' => [
+            //   'changeDate' => 'function(e) {
+            //       var hiringDate = $("#hiring_date").val();
+            //       console.log(hiringDate);
+            //       var selectedDate = e.date;
+            //       if (selectedDate < hiringDate) {
+            //           console.log("Selected date is in the past.");
+            //       } else {
+            //           console.log("Selected date is in the future.");
+            //       }
+            //   }',
+            // ],
           ]
         );
         ?>
@@ -78,17 +98,17 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
           'data' => $reason,
           'options' => [
             'placeholder' => '- select -', 'id' => 'reason',
-            // 'onChange' => "autosave();",
+            'onChange' => "autosave();",
           ],
           'pluginOptions' => [
-            'autoClose' => true,
-            'allowClear' => true,
+            'allowClear' => false,
             'initialize' => true,
           ],
         ])->label('Reason');
         ?>
         <?= $form->field($model, 'userremarks')->textArea(['id' => 'userremarks', 'onChange' => "autosave();"])->label('Remarks');
         ?>
+
       </div>
     </div>
   </div>
@@ -140,6 +160,10 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
               <td width="30%" id="hire">-</td>
             </tr>
             <tr>
+              <td width="12%"><b>Hiring Date</b></td>
+              <td width="30%" id="hiring_date">-</td>
+            </tr>
+            <tr>
               <td width="12%"><b>Reason Resign</b></td>
               <td width="30%" id="resign_reason">-</td>
             </tr>
@@ -149,7 +173,7 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
             </tr>
             <tr>
               <td width="12%"><b>Status Perner</b></td>
-              <td width="30%" id="status">-</td>
+              <td width="30%" id="hiring_status">-</td>
             </tr>
 
           </tbody>
@@ -172,7 +196,7 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
 
   function autosave() {
     var approvedbyid = $('#approvedby').val();
-    // var resigndateid = $('#resigndate').val();
+    var resigndateid = $('#resigndate').val();
     var reasonid = $('#reason').val();
     var userremarksval = $('#userremarks').val();
 
@@ -181,8 +205,8 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
       cache: false,
       data: {
         approvedby: approvedbyid,
-        // resigndate: resigndateid,
-        // reason: reasonid,
+        resigndate: resigndateid,
+        reason: reasonid,
         userremarks: userremarksval,
         id: <?php echo $model->id; ?>,
       },
@@ -212,9 +236,10 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
         var jabatan = '';
         var level = '';
         var hire = '';
-        var status = '';
+        var hiring_status = '';
         var resign_reason = '';
         var resign_date = '';
+        var hiring_date = '';
         var checkperner = '';
 
 
@@ -245,14 +270,17 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
         if (obj.hire) {
           var hire = obj.hire;
         }
-        if (obj.status) {
-          var status = obj.status;
+        if (obj.hiring_status) {
+          var hiring_status = obj.hiring_status;
         }
         if (obj.resign_date) {
           var resign_date = obj.resign_date;
         }
         if (obj.resign_reason) {
           var resign_reason = obj.resign_reason;
+        }
+        if (obj.hiring_date) {
+          var hiring_date = obj.hiring_date;
         }
         if (obj.checkperner) {
           var checkperner = obj.checkperner;
@@ -266,9 +294,10 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
         document.getElementById('jabatan').innerHTML = jabatan;
         document.getElementById('level').innerHTML = level;
         document.getElementById('hire').innerHTML = hire;
-        document.getElementById('status').innerHTML = status;
+        document.getElementById('hiring_status').innerHTML = hiring_status;
         document.getElementById('resign_reason').innerHTML = resign_reason;
         document.getElementById('resign_date').innerHTML = resign_date;
+        document.getElementById('hiring_date').innerHTML = hiring_date;
         $("#checkperner").val(checkperner);
       },
     });

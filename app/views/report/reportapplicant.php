@@ -27,7 +27,7 @@ app\assets\ReportAsset::register($this);
 ?>
 <div class="hiring-index box box-default">
   <div class="box-body">
-    <?php echo $this->render('_searchapplicant', ['model' => $searchModel, 'education' => $education, 'statuscandidate' => $statuscandidate, 'mastercity' => $mastercity]); ?>
+    <?php echo $this->render('_searchapplicant', ['model' => $searchModel, 'education' => $education, 'statuscandidate' => $statuscandidate, 'mastercity' => $mastercity, 'province' => $province]); ?>
   </div>
 </div>
 <div class="row">
@@ -133,7 +133,7 @@ app\assets\ReportAsset::register($this);
               'label' => 'Pendidikan terakhir',
               'format' => 'raw',
               'value' => function ($data) {
-                  return ($data->education) ? $data->education->educatioanallevel0->education : "";
+                  return ($data->education) ? $data->education->masteredu->education : "";
               }
             ],
 
@@ -383,7 +383,7 @@ app\assets\ReportAsset::register($this);
               'label' => 'Last Education',
               'format' => 'raw',
               'value' => function ($data) {
-                return ($data->education) ? $data->education->educatioanallevel0->education : "";
+                return ($data->education) ? $data->education->masteredu->education : "";
               }
             ],
 

@@ -70,7 +70,7 @@ $baseUrl = Yii::$app->request->baseUrl;
     <!-- Main Section -->
 
     <!-- Main Section -->
-    <div class="careerfy-main-section" id="category">
+    <div class="careerfy-main-section">
         <div class="container">
             <div class="row">
 
@@ -85,12 +85,26 @@ $baseUrl = Yii::$app->request->baseUrl;
                     <div class="categories-list">
                         <ul class="careerfy-row">
 
-                            <?php foreach ($jobcategory as $data) : ?>                                
-                                <li class="careerfy-column-4">
-                                    <i class="careerfy-icon careerfy-<?php echo $data['icon']; ?>"></i>
-                                    <a href="/rekrut/site/searchjob?Transrinciansearch%5Bstatus_rekrut%5D=1&Transrinciansearch%5Bjobfamily%5D=<?php echo $data['id']; ?>"> <?php echo $data['jobfamily']; ?> </a>
-                                    <span>Open Vacancies</span>
-                                </li>
+                            <?php foreach ($jobcategory as $data) : ?>
+                                <a href="/rekrut/site/searchjob?Transrinciansearch%5Bstatus_rekrut%5D=1&Transrinciansearch%5Bjobfamily%5D=<?php echo $data['id']; ?>">
+                                    <li class="careerfy-column-4" style="margin-bottom: 0px;">
+                                        <div class="careerfy-joblisting-classic-wrap" style="box-shadow: none; border-color: #d1d1d1;">
+                                            <!-- <div class="container"> -->
+                                            <div class="row" style="text-align: center; margin-bottom: 0px;">
+                                                <div class="col-xs-3">
+                                                    <figure><i class="careerfy-icon careerfy-<?php echo $data['icon']; ?>"></i></figure>
+                                                </div>
+                                                <div class="col-xs-9" style="text-align: left;">
+                                                    <h1 style="font-size: 18px; margin-bottom: 5px;">
+                                                        <a class="btn-link" href="/rekrut/site/searchjob?Transrinciansearch%5Bstatus_rekrut%5D=1&Transrinciansearch%5Bjobfamily%5D=<?php echo $data['id']; ?>"> <?php echo $data['jobfamily']; ?> </a>
+                                                    </h1>
+                                                    <span>Open Vacancies</span>
+                                                </div>
+                                            </div>
+                                            <!-- </div> -->
+                                        </div>
+                                    </li>
+                                </a>
                             <?php endforeach; ?>
 
                         </ul>
