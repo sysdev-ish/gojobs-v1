@@ -53,7 +53,10 @@ class Chagerequestdatasearch extends Chagerequestdata
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['id' => SORT_DESC]]
+            'sort' => ['defaultOrder' => ['id' => SORT_DESC]],
+            // 'pagination' => [
+            //   'pageSize' => 10,
+            // ],
         ]);
 
         $this->load($params);

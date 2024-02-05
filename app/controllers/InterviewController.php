@@ -26,45 +26,44 @@ use yii\filters\AccessControl;
 use yii\web\UploadedFile;
 
 /**
-* InterviewController implements the CRUD actions for Interview model.
-*/
-
+ * InterviewController implements the CRUD actions for Interview model.
+ */
 class InterviewController extends Controller
 {
   /**
-  * @inheritdoc
-  */
+   * @inheritdoc
+   */
   public function behaviors()
   {
     return [
-        'access' => [
-            'class' => AccessControl::className(),
-            'only' => ['index','update','create','view','intproc','delete'],
-            'rules' => [
-              [
-                  'actions' => ['index','update','create','view','intproc','delete'],
-                  'allow' => true,
-                  'roles' => ['@'],
-                  'matchCallback'=>function(){
-                       return (Yii::$app->utils->permission(Yii::$app->user->identity->role,'m4'));
-                   }
+      'access' => [
+        'class' => AccessControl::className(),
+        'only' => ['index', 'update', 'create', 'view', 'intproc', 'delete'],
+        'rules' => [
+          [
+            'actions' => ['index', 'update', 'create', 'view', 'intproc', 'delete'],
+            'allow' => true,
+            'roles' => ['@'],
+            'matchCallback' => function () {
+              return (Yii::$app->utils->permission(Yii::$app->user->identity->role, 'm4'));
+            }
 
-              ],
-            ],
+          ],
         ],
-        'verbs' => [
-            'class' => VerbFilter::className(),
-            'actions' => [
-                'delete' => ['POST'],
-            ],
+      ],
+      'verbs' => [
+        'class' => VerbFilter::className(),
+        'actions' => [
+          'delete' => ['POST'],
         ],
+      ],
     ];
   }
 
   /**
-  * Lists all Interview models.
-  * @return mixed
-  */
+   * Lists all Interview models.
+   * @return mixed
+   */
   public function actionIndex()
   {
     $searchModel = new Interviewsearch();
@@ -77,10 +76,10 @@ class InterviewController extends Controller
   }
 
   /**
-  * Displays a single Interview model.
-  * @param integer $id
-  * @return mixed
-  */
+   * Displays a single Interview model.
+   * @param integer $id
+   * @return mixed
+   */
   public function actionView($id)
   {
     return $this->render('view', [
@@ -89,16 +88,16 @@ class InterviewController extends Controller
   }
 
   /**
-  * Creates a new Interview model.
-  * If creation is successful, the browser will be redirected to the 'view' page.
-  * @return mixed
-  */
-  public function actionCreate($userid,$reccanid)
+   * Creates a new Interview model.
+   * If creation is successful, the browser will be redirected to the 'view' page.
+   * @return mixed
+   */
+  public function actionCreate($userid, $reccanid)
   {
     $model = new Interview();
-    $modeluprofile = Userprofile::find()->where(['userid'=>$userid])->one();
-    $modelreccan = Recruitmentcandidate::find()->where(['id'=>$reccanid])->one();
-    $modelrecreq = Transrincian::find()->where(['id'=>$modelreccan->recruitreqid])->one();
+    $modeluprofile = Userprofile::find()->where(['userid' => $userid])->one();
+    $modelreccan = Recruitmentcandidate::find()->where(['id' => $reccanid])->one();
+    $modelrecreq = Transrincian::find()->where(['id' => $modelreccan->recruitreqid])->one();
     $model->fullname = $modeluprofile->fullname;
     $model->userid = $modeluprofile->userid;
     $model->recruitmentcandidateid = $reccanid;
@@ -124,19 +123,19 @@ class InterviewController extends Controller
   }
 
   /**
-  * Updates an existing Interview model.
-  * If update is successful, the browser will be redirected to the 'view' page.
-  * @param integer $id
-  * @return mixed
-  */
+   * Updates an existing Interview model.
+   * If update is successful, the browser will be redirected to the 'view' page.
+   * @param integer $id
+   * @return mixed
+   */
   public function actionUpdate($id)
   {
     $model = $this->findModel($id);
     $userid = $model->userid;
     $reccanid = $model->recruitmentcandidateid;
-    $modeluprofile = Userprofile::find()->where(['userid'=>$userid])->one();
-    $modelreccan = Recruitmentcandidate::find()->where(['id'=>$reccanid])->one();
-    $modelrecreq = Transrincian::find()->where(['id'=>$modelreccan->recruitreqid])->one();
+    $modeluprofile = Userprofile::find()->where(['userid' => $userid])->one();
+    $modelreccan = Recruitmentcandidate::find()->where(['id' => $reccanid])->one();
+    $modelrecreq = Transrincian::find()->where(['id' => $modelreccan->recruitreqid])->one();
     $model->fullname = $modeluprofile->fullname;
     $model->userid = $modeluprofile->userid;
     $model->recruitmentcandidateid = $reccanid;
@@ -160,35 +159,36 @@ class InterviewController extends Controller
       ]);
     }
   }
+
   public function actionIntprocnew($id)
   {
     $model = $this->findModel($id);
     $userid = $model->userid;
     $reccanid = $model->recruitmentcandidateid;
-    $modeluprofile = Userprofile::find()->where(['userid'=>$userid])->one();
-    $modelreccan = Recruitmentcandidate::find()->where(['id'=>$reccanid])->one();
-    $modelrecreq = Transrincian::find()->where(['id'=>$modelreccan->recruitreqid])->one();
+    $modeluprofile = Userprofile::find()->where(['userid' => $userid])->one();
+    $modelreccan = Recruitmentcandidate::find()->where(['id' => $reccanid])->one();
+    $modelrecreq = Transrincian::find()->where(['id' => $modelreccan->recruitreqid])->one();
     $model->fullname = $modeluprofile->fullname;
     $model->userid = $modeluprofile->userid;
     $model->recruitmentcandidateid = $reccanid;
     $office = ArrayHelper::map(Masteroffice::find()->asArray()->all(), 'id', 'officename');
-    $pic = ArrayHelper::map(Userlogin::find()->asArray()->where(['role'=> 1])->all(), 'id', 'name');
+    $pic = ArrayHelper::map(Userlogin::find()->asArray()->where(['role' => 1])->all(), 'id', 'name');
     $model->setScenario('intproc');
-    if ($model->load(Yii::$app->request->post()) && $modelreccan->load(Yii::$app->request->post()) ) {
+    if ($model->load(Yii::$app->request->post()) && $modelreccan->load(Yii::$app->request->post())) {
 
       // var_dump('sampe');die;
       $model->updatetime = date('Y-m-d H-i-s');
-      if ($model->status == 3){
+      if ($model->status == 3) {
         $modelreccan->status = 8;
-      }else{
+      } else {
         $modelreccan->status = 5;
       }
-      $model->documentinterview = UploadedFile::getInstance($model,'documentinterview');
-      if($model->documentinterview){
-        $assetUrl = Yii::getAlias('@app'). '/assets';
+      $model->documentinterview = UploadedFile::getInstance($model, 'documentinterview');
+      if ($model->documentinterview) {
+        $assetUrl = Yii::getAlias('@app') . '/assets';
         $fileextp = $model->documentinterview->extension;
-        $filep = $userid.'-documentinterview.'.$fileextp;
-        if ($model->documentinterview->saveAs($assetUrl.'/upload/documentinterview/'.$filep)){
+        $filep = $userid . '-documentinterview.' . $fileextp;
+        if ($model->documentinterview->saveAs($assetUrl . '/upload/documentinterview/' . $filep)) {
           $model->documentinterview = $filep;
         }
       }
@@ -206,24 +206,25 @@ class InterviewController extends Controller
       ]);
     }
   }
+
   public function actionIntproc($id)
   {
     $model = $this->findModel($id);
     $userid = $model->userid;
     $reccanid = $model->recruitmentcandidateid;
-    $modeluprofile = Userprofile::find()->where(['userid'=>$userid])->one();
-    $modelreccan = Recruitmentcandidate::find()->where(['id'=>$reccanid])->one();
-    $modelrecreq = Transrincian::find()->where(['id'=>$modelreccan->recruitreqid])->one();
+    $modeluprofile = Userprofile::find()->where(['userid' => $userid])->one();
+    $modelreccan = Recruitmentcandidate::find()->where(['id' => $reccanid])->one();
+    $modelrecreq = Transrincian::find()->where(['id' => $modelreccan->recruitreqid])->one();
     $model->fullname = $modeluprofile->fullname;
     $model->userid = $modeluprofile->userid;
     $model->recruitmentcandidateid = $reccanid;
     $office = ArrayHelper::map(Masteroffice::find()->asArray()->all(), 'id', 'officename');
-    $pic = ArrayHelper::map(Userlogin::find()->asArray()->where(['role'=> 1])->all(), 'id', 'name');
+    $pic = ArrayHelper::map(Userlogin::find()->asArray()->where(['role' => 1])->all(), 'id', 'name');
     $formtype = ArrayHelper::map(Masterformtype::find()->asArray()->all(), 'id', 'formtype');
     $model->setScenario('intproc');
-    $masterpenilaian = Masteraspekpenilaian::find()->where(['grouppenilaian'=>1])->all();
+    $masterpenilaian = Masteraspekpenilaian::find()->where(['grouppenilaian' => 1])->all();
     $interviewforms = [new Interviewform()];
-    for($i = 1; $i < count($masterpenilaian); $i++) {
+    for ($i = 1; $i < count($masterpenilaian); $i++) {
       $interviewforms[] = new Interviewform();
     }
 
@@ -239,9 +240,9 @@ class InterviewController extends Controller
       }
       // var_dump('sampe');die;
       $model->updatetime = date('Y-m-d H-i-s');
-      if ($model->status == 3){
+      if ($model->status == 3) {
         $modelreccan->status = 8;
-      }else{
+      } else {
         $modelreccan->status = 5;
       }
       // var_dump($modelreccan->recruitreqid);die;
@@ -263,26 +264,29 @@ class InterviewController extends Controller
   }
 
   /**
-  * Deletes an existing Interview model.
-  * If deletion is successful, the browser will be redirected to the 'index' page.
-  * @param integer $id
-  * @return mixed
-  */
-  public function actionDownloadinterviewform($id){
+   * Deletes an existing Interview model.
+   * If deletion is successful, the browser will be redirected to the 'index' page.
+   * @param integer $id
+   * @return mixed
+   */
+  public function actionDownloadinterviewform($id)
+  {
     // Yii::$app->response->format = 'pdf';
     $this->layout = 'pdfprint';
     $model = $this->findModel($id);
-    $profile = Userprofile::find()->where(['userid'=>$model->userid])->one();
-    $masterpenilaian = Masteraspekpenilaian::find()->where(['grouppenilaian'=>1])->all();
-    $lasteducationid = Userformaleducation::find()->where(['userid'=>$model->userid])->orderBy("educationallevel DESC")->one();
+    $profile = Userprofile::find()->where(['userid' => $model->userid])->one();
+    $masterpenilaian = Masteraspekpenilaian::find()->where(['grouppenilaian' => 1])->all();
+    $lasteducationid = Userformaleducation::find()->where(['userid' => $model->userid])->orderBy("educationallevel DESC")->one();
 
-    if($lasteducationid){ $lasteducation = Mastereducation::find()->where(['idmastereducation'=>$lasteducationid->educationallevel])->one(); }else{
+    if ($lasteducationid) {
+      $lasteducation = Mastereducation::find()->where(['idmastereducation' => $lasteducationid->educationallevel])->one();
+    } else {
       $lasteducation =  null;
     }
-    $lastexperiences = Userworkexperience::find()->where(['userid'=>$model->userid])->orderBy("startdate DESC")->one();
-    if($lastexperiences){
+    $lastexperiences = Userworkexperience::find()->where(['userid' => $model->userid])->orderBy("startdate DESC")->one();
+    if ($lastexperiences) {
       $lastexperience = $lastexperiences;
-    }else{
+    } else {
       $lastexperience = null;
     }
 
@@ -361,14 +365,58 @@ class InterviewController extends Controller
       }
       ',
       'options' => ['title' => 'Interview Form']
-
-
     ]);
 
     // return the pdf output as per the destination setting
     return $pdf->render();
-
   }
+
+  public function actionIntupload($id)
+  {
+    $model = $this->findModel($id);
+    $userid = $model->userid;
+    $reccanid = $model->recruitmentcandidateid;
+    $modeluprofile = Userprofile::find()->where(['userid' => $userid])->one();
+    $modelreccan = Recruitmentcandidate::find()->where(['id' => $reccanid])->one();
+    $modelrecreq = Transrincian::find()->where(['id' => $modelreccan->recruitreqid])->one();
+    $model->fullname = $modeluprofile->fullname;
+    $model->userid = $modeluprofile->userid;
+    $model->recruitmentcandidateid = $reccanid;
+    $office = ArrayHelper::map(Masteroffice::find()->asArray()->all(), 'id', 'officename');
+    $pic = ArrayHelper::map(Userlogin::find()->asArray()->where(['role' => 1])->all(), 'id', 'name');
+    $model->setScenario('intupload');
+    if ($model->load(Yii::$app->request->post())) {
+      $model->updatetime = date('Y-m-d H-i-s');
+      $model->documentinterview = UploadedFile::getInstance($model, 'documentinterview');
+      if ($model->documentinterview) {
+        $assetUrl = Yii::getAlias('@app') . '/assets';
+        $fileextp = $model->documentinterview->extension;
+        $filep = $userid . '-documentinterview.' . $fileextp;
+        if ($model->documentinterview->saveAs($assetUrl . '/upload/documentinterview/' . $filep)) {
+          $model->documentinterview = $filep;
+        }
+      }
+      $model->updatetime = date('Y-m-d H-i-s');
+      if ($model->status == 3) {
+        $modelreccan->status = 8;
+      } else {
+        $modelreccan->status = 5;
+      }
+      // var_dump($modelreccan->recruitreqid);die;
+      $model->save();
+      $modelreccan->save();
+      return $this->redirect(['interview/index']);
+    } else {
+      return $this->renderAjax('intupload', [
+        'model' => $model,
+        'modelreccan' => $modelreccan,
+        'modelrecreq' => $modelrecreq,
+        'office' => $office,
+        'pic' => $pic,
+      ]);
+    }
+  }
+
   public function actionDelete($id)
   {
     $this->findModel($id)->delete();
@@ -377,12 +425,12 @@ class InterviewController extends Controller
   }
 
   /**
-  * Finds the Interview model based on its primary key value.
-  * If the model is not found, a 404 HTTP exception will be thrown.
-  * @param integer $id
-  * @return Interview the loaded model
-  * @throws NotFoundHttpException if the model cannot be found
-  */
+   * Finds the Interview model based on its primary key value.
+   * If the model is not found, a 404 HTTP exception will be thrown.
+   * @param integer $id
+   * @return Interview the loaded model
+   * @throws NotFoundHttpException if the model cannot be found
+   */
   protected function findModel($id)
   {
     if (($model = Interview::findOne($id)) !== null) {

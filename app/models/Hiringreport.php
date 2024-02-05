@@ -77,9 +77,9 @@ class Hiringreport extends Hiring
     // $query->leftJoin('masterjobfamily', 'masterjobfamily.id = mastersubjobfamily.jobfamily_id');
 
     //Add by pwd 2022-05-31
-    $subQuery = 'SELECT kodejabatan FROM recruitment_dev.mappingjob
-        LEFT JOIN recruitment_dev.mastersubjobfamily ON mastersubjobfamily.id = mappingjob.subjobfamilyid
-        LEFT JOIN recruitment_dev.masterjobfamily ON masterjobfamily.id = mastersubjobfamily.jobfamily_id';
+    $subQuery = 'SELECT kodejabatan FROM recruitment.mappingjob
+        LEFT JOIN recruitment.mastersubjobfamily ON mastersubjobfamily.id = mappingjob.subjobfamilyid
+        LEFT JOIN recruitment.masterjobfamily ON masterjobfamily.id = mastersubjobfamily.jobfamily_id';
 
     // add conditions that should always apply here
     $dataProvider = new ActiveDataProvider([
@@ -91,21 +91,13 @@ class Hiringreport extends Hiring
     // $query->where('statushiring = 7');
 
     if ($this->sap <> 2) {
+      // var_dump($this->sap);die;
+      //$query->where('statushiring = 4 or statushiring = 7 or (typejo = 2 and statushiring = 8)');
       //Add by pwd
       $query->where('statushiring = 4 or statushiring = 7 or (hiring.typejo = 2 and statushiring = 8)');
     } else {
       // var_dump($this->sap);die;
       $query->where('statushiring <> 5 and statushiring <> 1');
-    }
-
-    if ($this->status) {
-      if ($this->status == 4) {
-        $query->where('statushiring = 4');
-      } else if ($this->status == 7) {
-        $query->where('statushiring = 7');
-      } else {
-        $query->Where('statushiring IN (null)');
-      }
     }
 
     if (!$this->validate()) {
@@ -190,7 +182,7 @@ class Hiringreport extends Hiring
             }
             if (count($arrValueJo) > 0) $query->andWhere('hiring.recruitreqid IN (' . implode(',', $arrValueJo) . ')', []);
           }
-        } 
+        }
       }
       else {
         $query->andWhere('hiring.recruitreqid IN (null)');

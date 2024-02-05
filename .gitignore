@@ -13,9 +13,6 @@ nbproject
 Thumbs.db
 
 # composer vendor dir
-/app/runtime
-
-# composer vendor dir
 /app/vendor
 
 # composer itself is not needed
@@ -35,4 +32,12 @@ tests/_support/_generated
 #vagrant folder
 /app/.vagrant
 
+/app/config/db.php
 
+/app/vendor
+/app/vendor backup
+
+cvtemp/
+exportemp/
+extra-images/
+images/

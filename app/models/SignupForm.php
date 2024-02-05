@@ -1,4 +1,5 @@
 <?php
+
 namespace app\models;
 
 use app\models\User;
@@ -7,8 +8,8 @@ use yii\base\Model;
 use Yii;
 
 /**
-* Signup form
-*/
+ * Signup form
+ */
 class SignupForm extends Model
 {
   public $username;
@@ -21,8 +22,8 @@ class SignupForm extends Model
   public $mobile;
 
   /**
-  * @inheritdoc
-  */
+   * @inheritdoc
+   */
   public function rules()
   {
     return [
@@ -32,7 +33,7 @@ class SignupForm extends Model
       // ['username', 'string', 'min' => 2, 'max' => 255],
 
       ['email', 'filter', 'filter' => 'trim'],
-      [['email','name','mobile'], 'required'],
+      [['email', 'name', 'mobile'], 'required'],
       [['mobile'], 'integer'],
       ['email', 'email'],
       ['email', 'string', 'max' => 255],
@@ -46,20 +47,20 @@ class SignupForm extends Model
 
       ['retype_password', 'required'],
       ['retype_password', 'string', 'min' => 6],
-      ['retype_password', 'compare', 'compareAttribute'=>'password', 'skipOnEmpty' => false, 'message'=>"Passwords don't match"],
+      ['retype_password', 'compare', 'compareAttribute' => 'password', 'skipOnEmpty' => false, 'message' => "Passwords don't match"],
 
 
     ];
   }
 
   /**
-  * Signs user up.
-  *
-  * @return User|null the saved model or null if saving fails
-  */
+   * Signs user up.
+   *
+   * @return User|null the saved model or null if saving fails
+   */
   public function generateValKey()
   {
-      $this->auth_key = Yii::$app->security->generateRandomString();
+    $this->auth_key = Yii::$app->security->generateRandomString();
   }
   public function signup()
   {
@@ -73,33 +74,28 @@ class SignupForm extends Model
       $user->setPassword($this->password);
       $user->generateAuthKey();
       $randomstring = Yii::$app->utils->generateRandomString(6);
+      // $randomstring = 'bypass'; //comment this for temporary if email down/limit
       $user->verify_code = $randomstring;
-      // $user->verify_code = 'bypass';
+      // $user->verify_status = 1; //comment this for temporary if email down/limit
       $user->verify_status = 0;
-     if ($user->save()) {
-       $timeupdate = Userlogin::findOne($user->id);
-       $timeupdate->created_at = date('Y-m-d H-i-s');
-       $timeupdate->updated_at = date('Y-m-d H-i-s');
-       $timeupdate->createdat = date('Y-m-d H-i-s');
-       $timeupdate->updatedat = date('Y-m-d H-i-s');
-       $timeupdate->save(false);
+      if ($user->save()) {
+        $timeupdate = Userlogin::findOne($user->id);
+        $timeupdate->created_at = date('Y-m-d H-i-s');
+        $timeupdate->updated_at = date('Y-m-d H-i-s');
+        $timeupdate->createdat = date('Y-m-d H-i-s');
+        $timeupdate->updatedat = date('Y-m-d H-i-s');
+        $timeupdate->save(false);
 
-       $to = $this->email;
-       $subject = 'Verify email';
-       $body = 'Dear '.$this->name.' ,
-       <br>
-       We need to make sure that this is you and not misused by unauthorized parties.
-       <br>
-       <br>
-       This is your Verification Code :
-       <br>
-       '.$randomstring.'<br>
-       --You are receiving this email from Global Support because you registered on gojobs ISH with this email address--';
-       $verification = Yii::$app->utils->sendmail($to,$subject,$body,1);
-       return $user;
-     }
+        $to = $this->email;
+        $subject = 'Verify email';
+        $body = Yii::$app->params['mailSignUp'];
+        $body = str_replace('{fullname}', $this->name, $body);
+        $body = str_replace('{token}', $randomstring, $body);
 
-
+        //comment this for temporary if email down/limit
+        $verification = Yii::$app->utils->sendmail($to, $subject, $body, 1);
+        return $user;
+      }
     }
 
     return null;

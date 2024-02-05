@@ -155,7 +155,7 @@ class ChagerequestdatabankController extends Controller
     if ($id) {
       $model = $this->findModel($id);
       $model->approvedby = 53;
-      $model->approvedby2 = 18608;
+      $model->approvedby2 = 131281;
       $model->approvedbyname = User::findOne(53)->name;
       $model->approvedby2name = User::findOne(18608)->name;
       //  $name = ArrayHelper::map(Hiring::find()
@@ -167,17 +167,17 @@ class ChagerequestdatabankController extends Controller
       //   ['hiring.userid' => $model->userid],
       // ])
       //  ->asArray()->all(), 'userid', 'userprofile.fullname');
-      $namaquery = Hiring::find()
-        ->joinWith(['userprofile'])
-        ->joinWith(['changereqdata'])
-        ->andWhere(['statushiring' => 4])
-        // ->andWhere(['chagerequestdata.kategorydata'=>2])
-        ->andWhere([
-          'or',
-          ['chagerequestdata.userid' => null],
-          ['chagerequestdata.status' => 3],
-          ['hiring.userid' => $model->userid],
-        ])->all();
+      // $namaquery = Hiring::find()
+      //   ->joinWith(['userprofile'])
+      //   ->joinWith(['changereqdata'])
+      //   ->andWhere(['statushiring' => 4])
+      //   // ->andWhere(['chagerequestdata.kategorydata'=>2])
+      //   ->andWhere([
+      //     'or',
+      //     ['chagerequestdata.userid' => null],
+      //     ['chagerequestdata.status' => 3],
+      //     ['hiring.userid' => $model->userid],
+      //   ])->all();
     } else {
       $getid = new Chagerequestdata();
       $getid->createtime = date('Y-m-d H-i-s');
@@ -188,6 +188,7 @@ class ChagerequestdatabankController extends Controller
       $getid->save();
       return $this->redirect(['create', 'id' => $getid->id]);
     }
+    $model->scenario = 'createupdate';
     if ($model->load(Yii::$app->request->post())) {
       $curl = new curl\Curl();
       $getdatapekerjabyperner =  $curl->setPostParams([
@@ -254,51 +255,20 @@ class ChagerequestdatabankController extends Controller
           $area = $datapekerjabyperner[0]->BTRTX;
           $jabatan = $datapekerjabyperner[0]->PLATX;
         }
+
         //add by kaha
-        // $to = $user->email;
-        $to = 'khusnul.hisyam@ish.co.id';
+        $to = $user->email;
+        // $to = 'khusnul.hisyam@ish.co.id';
         // $to = 'seysi.lupi@ish.co.id';
         $subject = 'Notifikasi Approval Perubahan Data Bank';
-        $body = 'Semangat Pagi,,
-              <br>
-              Anda mendapatkan permintaan Approval Perubahan Data Bank dari <span style="text-transform: uppercase;"><b>' . $model->createduser->name . '</b></span> dengan rincian sebagai berikut :
-              <br>
-              <br>
-              <table>
-              <tr>
-              <td valign="top">Nama Pekerja</td>
-              <td valign="top">:</td>
-              <td valign="top">' . $name . '</td>
-              </tr>
-              <tr>
-              <td valign="top">Perner</td>
-              <td valign="top">:</td>
-              <td valign="top">' . $perner . '</td>
-              </tr>
-              <tr>
-              <td valign="top">Nama Project</td>
-              <td valign="top">:</td>
-              <td valign="top">' . $layanan . '</td>
-              </tr>
-              <tr>
-              <td valign="top">Area</td>
-              <td valign="top">:</td>
-              <td valign="top">' . $area . '</td>
-              </tr>
-              <tr>
-              <td valign="top">Jabatan</td>
-              <td valign="top">:</td>
-              <td valign="top">' . $jabatan . '</td>
-              </tr>
-              <tr>
-              </table>
-              <br>
-              <br>
-              Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> untuk melakukan verifikasi lebih lanjut.
-              <br><br>
-              Have a great day !
-              ';
-        // var_dump($body);die;
+        $body = Yii::$app->params['approvalDataBank'];
+        $body = str_replace('{creator}', $model->createduser->name, $body);
+        $body = str_replace('{fullname}', $name, $body);
+        $body = str_replace('{perner}', $perner, $body);
+        $body = str_replace('{layanan}', $layanan, $body);
+        $body = str_replace('{area}', $area, $body);
+        $body = str_replace('{jabatan}', $jabatan, $body);
+
         $verification = Yii::$app->utils->sendmail($to, $subject, $body, 12);
       }
       return $this->redirect(['index']);
@@ -416,54 +386,19 @@ class ChagerequestdatabankController extends Controller
           $jabatan = $datapekerjabyperner[0]->PLATX;
         }
         //add by kaha
-        // $to = $user->email;
+        $to = $user->email;
         // $to = 'khusnul.hisyam@ish.co.id';
-        $to = 'seysi.lupi@ish.co.id';
+        // $to = 'seysi.lupi@ish.co.id';
         $subject = 'Notifikasi Approval Perubahan Data Bank';
-        $body = 'Semangat Pagi,,
-          <br>
-          Anda mendapatkan permintaan Approval Perubahan Data Bank dari <span style="text-transform: uppercase;"><b>' . $model->createduser->name . '</b></span> dengan rincian sebagai berikut :
-
-          <br>
-          <br>
-          <table>
-          <tr>
-          <td valign="top">Nama Pekerja</td>
-          <td valign="top">:</td>
-          <td valign="top">' . $name . '</td>
-          </tr>
-          <tr>
-          <td valign="top">Perner</td>
-          <td valign="top">:</td>
-          <td valign="top">' . $perner . '</td>
-          </tr>
-          <tr>
-          <td valign="top">Nama Project</td>
-          <td valign="top">:</td>
-          <td valign="top">' . $layanan . '</td>
-          </tr>
-          <tr>
-          <td valign="top">Area</td>
-          <td valign="top">:</td>
-          <td valign="top">' . $area . '</td>
-          </tr>
-          <tr>
-          <td valign="top">Jabatan</td>
-          <td valign="top">:</td>
-          <td valign="top">' . $jabatan . '</td>
-          </tr>
-          <tr>
-          </table>
-          <br>
-          <br>
-          Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> untuk melakukan verifikasi lebih lanjut.
-          <br><br>
-          Have a great day !
-          ';
-        // var_dump($body);die;
+        $body = Yii::$app->params['approvalDataBank2'];
+        $body = str_replace('{creator}', $model->createduser->name, $body);
+        $body = str_replace('{fullname}', $name, $body);
+        $body = str_replace('{perner}', $perner, $body);
+        $body = str_replace('{layanan}', $layanan, $body);
+        $body = str_replace('{area}', $area, $body);
+        $body = str_replace('{jabatan}', $jabatan, $body);
         $verification = Yii::$app->utils->sendmail($to, $subject, $body, 12);
       }
-      // $model->save();
       return $this->redirect(['index']);
     } else {
       return $this->renderAjax('approve', [
@@ -522,29 +457,31 @@ class ChagerequestdatabankController extends Controller
     $model->scenario = 'approve';
     if ($model->load(Yii::$app->request->post())) {
       if ($model->status == 4) {
-        $updatesap = $this->UpdateSapPersonaldata($id, $userid, $perner);
-        // var_dump($updatesap);die;
-        if ($updatesap) {
-          $model->remarks = $updatesap;
-          $model->status = 7;
-          $model->save();
-        } else {
-
-          $model->remarks = 'successful';
-          $model->approvedtime2 = date('Y-m-d H-i-s');
-          $model->save();
-          if ($userprofile) {
-
-            if ($crdtransbankacc) {
-              $userabout->bankid = ($crdtransbankacc->newvalue) ? $crdtransbankacc->newvalue : '';
-              $userabout->bankaccountnumber = ($crdtransbankacc->newvalue2) ? $crdtransbankacc->newvalue2 : '';
-              $userabout->passbook = ($crdtransbankacc->newdoc) ? $crdtransbankacc->newdoc : '';
-              $document->bankaccount = ($crdtransbankacc->newdoc) ? $crdtransbankacc->newdoc : '';
+        $modelhiring = Hiring::find()->where(['userid' => $userid, 'statushiring' => 4])->one();
+        if ($modelhiring) {
+          $updatesap = $this->UpdateSapPersonaldata($id, $userid, $perner);
+          // var_dump($updatesap);die;
+          if ($updatesap) {
+            $model->remarks = $updatesap;
+            $model->status = 7;
+            $model->save();
+          } else {
+            $model->remarks = 'successful';
+            $model->approvedtime2 = date('Y-m-d H-i-s');
+            $model->save();
+            if ($userprofile) {
+              if ($crdtransbankacc) {
+                $userabout->bankid = ($crdtransbankacc->newvalue) ? $crdtransbankacc->newvalue : '';
+                $userabout->bankaccountnumber = ($crdtransbankacc->newvalue2) ? $crdtransbankacc->newvalue2 : '';
+                $userabout->passbook = ($crdtransbankacc->newdoc) ? $crdtransbankacc->newdoc : '';
+                $document->bankaccount = ($crdtransbankacc->newdoc) ? $crdtransbankacc->newdoc : '';
+              }
+              $userabout->save(false);
+              $document->save(false);
             }
-
-            $userabout->save(false);
-            $document->save(false);
           }
+        } else {
+          Yii::$app->session->setFlash('error', "Silahkan Reject saja Perner sudah Tidak Aktif.");
         }
       } else {
         $model->save();
@@ -571,137 +508,6 @@ class ChagerequestdatabankController extends Controller
       ]);
     }
   }
-
-  /**
-   * Creates a new Chagerequestdata model.
-   * If creation is successful, the browser will be redirected to the 'view' page.
-   * @return mixed
-   */
-  public function actionAutosave()
-  {
-    $id = $_POST['id'];
-    $approvedby = $_POST['approvedby'];
-    if ($id) {
-      $model = $this->findModel($id);
-      $model->approvedby = $approvedby;
-      $model->save(false);
-    }
-  }
-
-  public function actionGetuserabout()
-  {
-
-    $perner = $_POST['perner'];
-    $id = $_POST['id'];
-    $updatecr = $this->findModel($id);
-    $crdtransbankacc = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 4])->one();
-    if ($perner) {
-      $cekhiring = Hiring::find()->where(['perner' => $perner, 'statushiring' => 4])->one();
-      if ($cekhiring) {
-
-        $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
-        $model = Userabout::find()->where(['userid' => $cekhiring->userid])->one();
-        $document = Uploadocument::find()->where(['userid' => $cekhiring->userid])->one();
-        $updatecr->userid = $cekhiring->userid;
-        $name = $cekhiring->userprofile->fullname;
-        $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap)) ? Yii::$app->utils->getpersonalarea($getjo->persa_sap) : "";
-        $area = (Yii::$app->utils->getarea($getjo->area_sap)) ? Yii::$app->utils->getarea($getjo->area_sap) : "";
-        $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap)) ? Yii::$app->utils->getskilllayanan($getjo->skill_sap) : "";
-        $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap)) ? Yii::$app->utils->getpayrollarea($getjo->abkrs_sap) : "";
-        $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap)) ? Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap) : "";
-        $curl = new curl\Curl();
-        $getlevels = $curl->setPostParams([
-          'level' => $getjo->level_sap,
-          'token' => 'ish**2019',
-        ])
-          ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
-        $level  = json_decode($getlevels);
-        $level = ($level) ? $level : "";
-        $status = "Active";
-        $resignreason = "-";
-        $resigndate = "-";
-        $hire = "Gojobs";
-        $bankaccount = ($model->bankname) ? $model->bankname->bank : null;
-        $bankaccountnumber = $model->bankaccountnumber;
-        $bankaccountfile = ($model->passbook) ? $model->passbook : null;
-        $updatecr->fullname = $name;
-        $updatecr->perner = $cekhiring->perner;
-      } else {
-        $updatecr->userid = null;
-        $updatecr->perner = $perner;
-
-        $curl = new curl\Curl();
-        $getdatapekerjabyperner =  $curl->setPostParams([
-          'perner' => $perner,
-          'token' => 'ish**2019',
-        ])
-          ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-        $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-        $name = $datapekerjabyperner[0]->CNAME;
-        $persa = $datapekerjabyperner[0]->WKTXT;
-        $area = $datapekerjabyperner[0]->BTRTX;
-        $skilllayanan = $datapekerjabyperner[0]->PEKTX;
-        $payrollarea = $datapekerjabyperner[0]->ABTXT;
-        $jabatan = $datapekerjabyperner[0]->PLATX;
-        $level = $datapekerjabyperner[0]->TRFAR_TXT;
-        $status = "Active";
-        $resigndate = "-";
-
-        if ($datapekerjabyperner[0]->MASSN == "Z8") {
-          $status = "Resign";
-          $resigndate = "-";
-
-          if ($datapekerjabyperner[0]->DAT35) {
-            $year = substr($datapekerjabyperner[0]->DAT35, 0, 4);
-            $month = substr($datapekerjabyperner[0]->DAT35, 4, 2);
-            $date = substr($datapekerjabyperner[0]->DAT35, 6, 2);
-            $resigndate = $date . "-" . $month . "-" . $year;
-          }
-        }
-
-        $resignreason = $datapekerjabyperner[0]->MSGTX;
-        $hire = 'Non Gojobs';
-        $masterbank = Masterbank::find()->where(['sapid' => $datapekerjabyperner[0]->BANKL])->one();
-        $bankaccount = ($masterbank) ? $masterbank->bank : $datapekerjabyperner[0]->BANKL;
-        $bankaccountnumber = $datapekerjabyperner[0]->BANKN;
-        $bankaccountfile = null;
-        $updatecr->fullname = $name;
-      }
-      $bankaccountnewval = ($crdtransbankacc) ? (($crdtransbankacc->bankname) ? $crdtransbankacc->bankname->bank : null) : null;
-      $bankaccountnumbernewval = ($crdtransbankacc) ? $crdtransbankacc->newvalue2 : null;
-      $bankaccountnewdoc = ($crdtransbankacc) ? $crdtransbankacc->newdoc : null;
-      $updatecr->save(false);
-
-      if ($bankaccount) {
-        $dataprofile = [
-          'perner' => $perner,
-          'name' => $name,
-          'persa' => $persa,
-          'area' => $area,
-          'skilllayanan' => $skilllayanan,
-          'payrollarea' => $payrollarea,
-          'jabatan' => $jabatan,
-          'level' => $level,
-          'status' => $status,
-          'resignreason' => $resignreason,
-          'resigndate' => $resigndate,
-          'hire' => $hire,
-          'bankaccount' => $bankaccount,
-          'bankaccountnumber' => $bankaccountnumber,
-          'bankaccountfile' => $bankaccountfile,
-          'bankaccountnewval' => $bankaccountnewval,
-          'bankaccountnumbernewval' => $bankaccountnumbernewval,
-          'bankaccountnewdoc' => $bankaccountnewdoc,
-        ];
-      } else {
-        $dataprofile = '';
-      }
-    } else {
-      $dataprofile = '';
-    }
-    return Json::encode($dataprofile);
-  }
-
 
   protected function UpdateSapPersonaldata($id, $userid, $perner)
   {
@@ -824,39 +630,174 @@ class ChagerequestdatabankController extends Controller
    */
   public function actionDelete($id)
   {
-    $model = $this->findModel($id)->delete();
-    if ($model) {
-      Yii::$app->session->setFlash('success', "Data Dihapus.");
-      return $this->redirect(['index']);
-    } else {
-      Yii::$app->session->setFlash('error', "Data Tidak Bisa Dihapus.");
-      return $this->redirect(['index']);
+    $this->findModel($id)->delete();
+
+    return $this->redirect(['index']);
+  }
+
+  /**
+   * Creates a new Chagerequestdata model.
+   * If creation is successful, the browser will be redirected to the 'view' page.
+   * @return mixed
+   */
+  public function actionAutosave()
+  {
+    $id = $_POST['id'];
+    $approvedby = $_POST['approvedby'];
+    if ($id) {
+      $model = $this->findModel($id);
+      $model->approvedby = $approvedby;
+      $model->save(false);
     }
   }
+
+  public function actionGetuserabout()
+  {
+
+    $perner = $_POST['perner'];
+    $id = $_POST['id'];
+    $updatecr = $this->findModel($id);
+    $crdtransbankacc = Crdtransaction::find()->where(['crdid' => $id, 'dataid' => 4])->one();
+    if ($perner) {
+      $cekhiring = Hiring::find()->where(['perner' => $perner, 'statushiring' => 4])->one();
+
+      if ($cekhiring) {
+
+        $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+        $model = Userabout::find()->where(['userid' => $cekhiring->userid])->one();
+        $document = Uploadocument::find()->where(['userid' => $cekhiring->userid])->one();
+        $updatecr->userid = $cekhiring->userid;
+        $name = $cekhiring->userprofile->fullname;
+        $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap)) ? Yii::$app->utils->getpersonalarea($getjo->persa_sap) : "";
+        $area = (Yii::$app->utils->getarea($getjo->area_sap)) ? Yii::$app->utils->getarea($getjo->area_sap) : "";
+        $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap)) ? Yii::$app->utils->getskilllayanan($getjo->skill_sap) : "";
+        $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap)) ? Yii::$app->utils->getpayrollarea($getjo->abkrs_sap) : "";
+        $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap)) ? Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap) : "";
+        $curl = new curl\Curl();
+        $getlevels = $curl->setPostParams([
+          'level' => $getjo->level_sap,
+          'token' => 'ish**2019',
+        ])
+          ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
+        $level  = json_decode($getlevels);
+        $level = ($level) ? $level : "";
+        $status = "Active";
+        $resignreason = "-";
+        $resigndate = "-";
+        $hire = "Gojobs";
+        $bankaccount = ($model->bankname) ? $model->bankname->bank : null;
+        $bankaccountnumber = $model->bankaccountnumber;
+        $bankaccountfile = ($model->passbook) ? $model->passbook : null;
+        $updatecr->fullname = $name;
+        $updatecr->perner = $cekhiring->perner;
+      } else {
+        $updatecr->userid = null;
+        $updatecr->perner = $perner;
+
+        $curl = new curl\Curl();
+        $getdatapekerjabyperner =  $curl->setPostParams([
+          'perner' => $perner,
+          'token' => 'ish**2019',
+        ])
+          ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
+        $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+        $name = $datapekerjabyperner[0]->CNAME;
+        $persa = $datapekerjabyperner[0]->WKTXT;
+        $area = $datapekerjabyperner[0]->BTRTX;
+        $skilllayanan = $datapekerjabyperner[0]->PEKTX;
+        $payrollarea = $datapekerjabyperner[0]->ABTXT;
+        $jabatan = $datapekerjabyperner[0]->PLATX;
+        $level = $datapekerjabyperner[0]->TRFAR_TXT;
+        $status = "Active";
+        $resigndate = "-";
+
+        if ($datapekerjabyperner[0]->MASSN == "Z8") {
+          $status = "Resign";
+          $resigndate = "-";
+
+          if ($datapekerjabyperner[0]->DAT35) {
+            $year = substr($datapekerjabyperner[0]->DAT35, 0, 4);
+            $month = substr($datapekerjabyperner[0]->DAT35, 4, 2);
+            $date = substr($datapekerjabyperner[0]->DAT35, 6, 2);
+            $resigndate = $date . "-" . $month . "-" . $year;
+          }
+        }
+
+        $resignreason = $datapekerjabyperner[0]->MSGTX;
+        $hire = 'Non Gojobs';
+        $masterbank = Masterbank::find()->where(['sapid' => $datapekerjabyperner[0]->BANKL])->one();
+        $bankaccount = ($masterbank) ? $masterbank->bank : $datapekerjabyperner[0]->BANKL;
+        $bankaccountnumber = $datapekerjabyperner[0]->BANKN;
+        $bankaccountfile = null;
+        $updatecr->fullname = $name;
+      }
+      $bankaccountnewval = ($crdtransbankacc) ? (($crdtransbankacc->bankname) ? $crdtransbankacc->bankname->bank : null) : null;
+      $bankaccountnumbernewval = ($crdtransbankacc) ? $crdtransbankacc->newvalue2 : null;
+      $bankaccountnewdoc = ($crdtransbankacc) ? $crdtransbankacc->newdoc : null;
+      // $updatecr->save(false);
+
+      //addbykaha 15/3/23
+      $checkperner = Chagerequestdata::find()->where('perner = ' . $perner . ' and status > 1 and status <> 4 and status <> 5 and status <> 6 and kategorydata = 2')->one();
+
+
+      if ($checkperner) {
+        $checkperner = '';
+      } else {
+        $checkperner = 1;
+        $updatecr->save(false);
+      }
+
+      if ($bankaccount) {
+        $dataprofile = [
+          'perner' => $perner,
+          'name' => $name,
+          'persa' => $persa,
+          'area' => $area,
+          'skilllayanan' => $skilllayanan,
+          'payrollarea' => $payrollarea,
+          'jabatan' => $jabatan,
+          'level' => $level,
+          'status' => $status,
+          'resignreason' => $resignreason,
+          'resigndate' => $resigndate,
+          'hire' => $hire,
+          'bankaccount' => $bankaccount,
+          'bankaccountnumber' => $bankaccountnumber,
+          'bankaccountfile' => $bankaccountfile,
+          'bankaccountnewval' => $bankaccountnewval,
+          'bankaccountnumbernewval' => $bankaccountnumbernewval,
+          'bankaccountnewdoc' => $bankaccountnewdoc,
+          'checkperner' => $checkperner,
+        ];
+      } else {
+        $dataprofile = '';
+      }
+    } else {
+      $dataprofile = '';
+    }
+    return Json::encode($dataprofile);
+  }
+
   public function actionGetdatakaryawan($q = null, $id = null)
   {
     \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-    // var_dump($id);die;
     $outs = ['results' => ['id' => '', 'text' => '']];
     if (!is_null($q)) {
       $wherecontent = $q;
-      // var_dump($wherecontent);die;
       $curl = new curl\Curl();
       $getdatapekerja = $curl->setPostParams([
         'q' => $q,
         'token' => 'ish**2019',
       ])->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
       $datapekerja  = json_decode($getdatapekerja);
-
-      // var_dump($datapekerja);die;
       $out = null;
       if ($datapekerja) {
         foreach ($datapekerja as $key => $value) {
           $out[] = $value;
-
           // $out['results'] = $value['jobfunc']['name_job_function'];
         }
       }
+
       if ($out) {
         $outs['results'] = $out;
       } else {
@@ -871,10 +812,9 @@ class ChagerequestdatabankController extends Controller
       $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
       $outs['results'] = ['id' => $id, 'text' => $datapekerjabyperner];
     } else {
-
       $outs['results'] = ['id' => ' ', 'text' => ' '];
     }
-    // var_dump($outs);die;
+
     return $outs;
   }
 

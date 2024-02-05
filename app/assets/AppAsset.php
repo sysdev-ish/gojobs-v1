@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link http://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -30,10 +31,11 @@ class AppAsset extends AssetBundle
     ];
 
     public $js = [
-      'js/app.min.js',
-      'js/custom.js',
-      'js/gojobs.js',
-      'js/modal-loading.js',
+        'js/app.min.js',
+        'js/custom.js',
+        'js/gojobs.js',
+        'js/workorder.js',
+        'js/modal-loading.js',
     ];
     public $depends = [
         'rmrevin\yii\fontawesome\AssetBundle',

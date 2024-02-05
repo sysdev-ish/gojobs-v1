@@ -31,8 +31,8 @@ class UserroleController extends Controller
                     'allow' => true,
                     'roles' => ['@'],
                     'matchCallback'=>function(){
-                      return (Yii::$app->utils->permission(Yii::$app->user->identity->role,'m19'));
-                    }
+                         return (Yii::$app->utils->permission(Yii::$app->user->identity->role,'m19'));
+                     }
 
                 ],
               ],
@@ -81,17 +81,15 @@ class UserroleController extends Controller
     public function actionCreate()
     {
         $model = new Userrole();
-        if ($model->load(Yii::$app->request->post()))
-        {
-          // var_dump($model->countcheck);die;
+        if ($model->load(Yii::$app->request->post())) {
           $model->createtime = date('Y-m-d H-i-s');
           $model->updatetime = date('Y-m-d H-i-s');
-          if ($model->save())
-          {  
-            for ($i=1; $i <= $model->countcheck ; $i++)
-            {
+          if($model->save()){
+
+            for ($i=1; $i <= $model->countcheck ; $i++) {
               $modelname = 'm'.$i;
               $module = $model->$modelname;
+
               if($module != 0){
                 $modelrpermission = new Rolepermission();
                 $modelrpermission->createtime = date('Y-m-d H-i-s');
@@ -100,15 +98,15 @@ class UserroleController extends Controller
                 $modelrpermission->modulecode = $modelname;
                 $modelrpermission->save();
               }
+
             }
           }
-          return $this->redirect(['index']);
-        }
-        else
-        {
-          return $this->render('create', [
-              'model' => $model,
-          ]);
+
+            return $this->redirect(['index']);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
     }
 

@@ -20,6 +20,8 @@ class DashboardAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+      'css/ionicons/css/ionicons.css',
+      'css/ionicons/css/ionicons.min.css',
     ];
 
     public $js = [

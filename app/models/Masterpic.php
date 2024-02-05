@@ -56,4 +56,8 @@ class Masterpic extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Userlogin::className(), ['id' => 'userid']);
     }
+    public function getUserpic()
+    {
+        return $this->hasOne(Userdata::className(), ['id' => 'pic']);
+    }
 }

@@ -18,6 +18,8 @@ class Transrinciansearch extends Transrincian
     public $city;
     public $statusrekrut;
     public $yeardata;
+    public $start_date;
+    public $end_date;
     public $projectrekrut;
     public $jabatansap;
     public $areasap;
@@ -31,7 +33,7 @@ class Transrinciansearch extends Transrincian
     {
         return [
             [['id', 'jumlah', 'skema', 'flag_jobs', 'flag_app', 'idpktable', 'typejo'], 'integer'],
-            [['nojo', 'jabatan', 'gender', 'pendidikan', 'lokasi', 'atasan', 'kontrak', 'waktu', 'komentar', 'ket_done', 'upd', 'lup', 'upd_jobs', 'lup_jobs', 'upd_app', 'ket_rej', 'status_rekrut', 'ket_rekrut', 'upd_rekrut', 'pic_hi', 'n_pic_hi', 'pic_manar', 'n_pic_manar', 'pic_rekrut', 'n_pic_rekrut', 'level', 'level_txt', 'skilllayanan', 'skilllayanan_txt', 'level_sap', 'persa_sap', 'skill_sap', 'area_sap', 'jabatan_sap', 'jabatan_sap_nm', 'jenis_pro_sap', 'skema_sap', 'abkrs_sap', 'hire_jabatan_sap', 'zparam', 'lup_skema', 'upd_skema', 'jobfunc', 'jobfunclike', 'project', 'city', 'statusrekrut', 'n_project', 'yeardata', 'jabatansap', 'areasap', 'persasap', 'jobfamily', 'jocategory'], 'safe'],
+            [['nojo', 'jabatan', 'gender', 'pendidikan', 'lokasi', 'atasan', 'kontrak', 'waktu', 'komentar', 'ket_done', 'upd', 'lup', 'upd_jobs', 'lup_jobs', 'upd_app', 'ket_rej', 'status_rekrut', 'ket_rekrut', 'upd_rekrut', 'pic_hi', 'n_pic_hi', 'pic_manar', 'n_pic_manar', 'pic_rekrut', 'n_pic_rekrut', 'level', 'level_txt', 'skilllayanan', 'skilllayanan_txt', 'level_sap', 'persa_sap', 'skill_sap', 'area_sap', 'jabatan_sap', 'jabatan_sap_nm', 'jenis_pro_sap', 'skema_sap', 'abkrs_sap', 'hire_jabatan_sap', 'zparam', 'lup_skema', 'upd_skema', 'jobfunc', 'jobfunclike', 'project', 'city', 'statusrekrut', 'n_project', 'yeardata', 'jabatansap', 'areasap', 'persasap', 'jobfamily', 'jocategory', 'start_date', 'end_date'], 'safe'],
         ];
     }
 
@@ -53,7 +55,7 @@ class Transrinciansearch extends Transrincian
      */
     public function search($params)
     {
-        $query = Transrincian::find('id');
+        $query = Transrincian::find();
         // $query->joinWith("jobfunc");
         // $query->joinWith("transjo");
         // $query->joinWith("city")->distinct();
@@ -61,17 +63,11 @@ class Transrinciansearch extends Transrincian
         $query->andWhere('trans_rincian_rekrut.skema = 1');
         $query->andWhere('trans_rincian_rekrut.typejo <> 3');
 
-        //join server yg sama
-        // $query->leftJoin('recruitment_dev.mappingjob', 'mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
-        // $query->leftJoin('recruitment_dev.mastersubjobfamily', 'mastersubjobfamily.id = mappingjob.subjobfamilyid');
-        // $query->leftJoin('recruitment_dev.masterjobfamily', 'masterjobfamily.id = mastersubjobfamily.jobfamily_id');
-
-        //query join beda server
-        //Add by pwd 2022-05-31
+        //Add by kaha 2022-06-1
         $subQuery = 'SELECT kodejabatan 
-        FROM recruitment_dev.mappingjob
-        LEFT JOIN recruitment_dev.mastersubjobfamily ON mastersubjobfamily.id = mappingjob.subjobfamilyid
-        LEFT JOIN recruitment_dev.masterjobfamily ON masterjobfamily.id = mastersubjobfamily.jobfamily_id';
+        FROM recruitment.mappingjob
+        LEFT JOIN recruitment.mastersubjobfamily ON mastersubjobfamily.id = mappingjob.subjobfamilyid
+        LEFT JOIN recruitment.masterjobfamily ON masterjobfamily.id = mastersubjobfamily.jobfamily_id';
 
         //type jo
         // 1 = new rekrut, 2 = replace
@@ -103,6 +99,23 @@ class Transrinciansearch extends Transrincian
             return $dataProvider;
         }
 
+        // Add by kaha 2023-10-13
+        if ($this->jobfunclike) {
+            $query->joinWith("jobfunc");
+        }
+        if ($this->city) {
+            $query->joinWith("city")->distinct();
+        }
+        if ($this->project) {
+            $query->joinWith("transjo");
+        }
+        if ($this->jabatansap) {
+            $query->joinWith("jabatansap");
+        }
+        if ($this->areasap) {
+            $query->joinWith("areasap");
+        }
+
         // grid filtering conditions
         $query->andFilterWhere([
             'trans_rincian_rekrut.id' => $this->id,
@@ -116,6 +129,7 @@ class Transrinciansearch extends Transrincian
             'trans_rincian_rekrut.typejo' => $this->typejo,
             'job_function.id' => $this->jobfunc,
             'sapjob.value2' => $this->jabatansap,
+            'saparea.value1' => $this->areasap,
         ]);
 
         $query->andFilterWhere(['like', 'trans_rincian_rekrut.nojo', $this->nojo])
@@ -163,16 +177,14 @@ class Transrinciansearch extends Transrincian
             // ->andFilterWhere(['like', 'trans_jo.jumlah', $this->statusrekrut])
             ->andFilterWhere(['or', ['like', 'trans_jo.n_project', $this->project], ['like', 'trans_jo.project', $this->project]]);
 
-        //query jika servernya sama
         // if ($this->jobfamily) {
         //     $query->andWhere('masterjobfamily.id = :mjId', [':mjId' => $this->jobfamily]);
         // }
-            
-        //query jika servernya beda
+
         //Add by kaha 2022-06-11
         if ($this->jobfamily) {
             $subQuery .= ' WHERE masterjobfamily.id = :id';
-            $subQuery = Yii::$app->db->createCommand($subQuery)->bindValue(':id', $this->jobfamily)->queryAll();
+            $subQuery = Yii::$app->db->createCommand($subQuery)->bindParam(':id', $this->jobfamily)->queryAll();
             if ($subQuery) {
                 $arrValue = [];
                 foreach ($subQuery as $sq) {

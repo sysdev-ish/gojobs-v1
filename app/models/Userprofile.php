@@ -36,7 +36,7 @@ use Yii;
  */
 class Userprofile extends \yii\db\ActiveRecord
 {
-  public $cityname;
+    public $cityname;
     /**
      * {@inheritdoc}
      */
@@ -51,39 +51,39 @@ class Userprofile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['userid', 'createtime', 'updatetime', 'fullname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'postalcodektp','phone', 'addressktp', 'nationality','maritalstatus', 'religion', 'bloodtype','cityid','provinceid','cityidktp','provinceidktp','identitynumber','tinggibadan','beratbadan', 'lokasikerja','jenispekerjaan'], 'required'],
-            [['userid','havejamsostek','havenpwp','havebpjs', 'npwpnumber','bpjsnumber','postalcode','postalcodektp','identitynumber','kknumber'], 'integer'],
-            [['postalcode','postalcodektp'], 'string', 'min'=> 5, 'max'=> 5 ],
-            [['identitynumber','kknumber'], 'string', 'min'=> 16, 'max'=> 16 ],
-            [['npwpnumber'], 'string', 'min'=> 15, 'max'=> 15],
-            [['jamsosteknumber','bpjsnumber'], 'string', 'min'=> 11, 'max'=> 11],
+            [['userid', 'createtime', 'updatetime', 'fullname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'postalcodektp', 'phone', 'addressktp', 'nationality', 'maritalstatus', 'religion', 'bloodtype', 'cityid', 'provinceid', 'cityidktp', 'provinceidktp', 'identitynumber', 'tinggibadan', 'beratbadan', 'lokasikerja', 'jenispekerjaan'], 'required'],
+            [['userid', 'havejamsostek', 'havenpwp', 'havebpjs', 'npwpnumber', 'bpjsnumber', 'postalcode', 'postalcodektp', 'identitynumber', 'kknumber'], 'integer'],
+            [['postalcode', 'postalcodektp'], 'string', 'min' => 5, 'max' => 5],
+            [['identitynumber', 'kknumber'], 'string', 'min' => 16, 'max' => 16],
+            [['npwpnumber'], 'string', 'min' => 15, 'max' => 15],
+            [['jamsosteknumber', 'bpjsnumber'], 'string', 'min' => 11, 'max' => 11],
             [['createtime', 'updatetime', 'birthdate', 'weddingdate'], 'safe'],
             [['tinggibadan', 'beratbadan'], 'number'],
             [['gender', 'address', 'domicilestatus', 'domicilestatusdescription', 'addressktp', 'religion', 'maritalstatus', 'bloodtype'], 'string'],
-            [['fullname', 'nickname', 'birthplace','nokitas','lokasikerja','jenispekerjaan'], 'string', 'max' => 255],
+            [['fullname', 'nickname', 'birthplace', 'nokitas', 'lokasikerja', 'jenispekerjaan'], 'string', 'max' => 255],
             [['phone', 'nationality', 'drivinglicencecarnumber', 'drivinglicencemotorcyclenumber'], 'string', 'max' => 75],
 
-            [['photo','cvupload'], 'file', 'skipOnEmpty' => 'true', 'maxSize' => 5072000, 'tooBig' => 'Limit is 5Mb', 'extensions' => 'png, jpg, jpeg'],
+            [['photo', 'cvupload'], 'file', 'skipOnEmpty' => 'true', 'maxSize' => 5072000, 'tooBig' => 'Limit is 5Mb', 'extensions' => 'png, jpg, jpeg'],
             // [['identitynumber', 'kknumber'], 'unique'],
             [['identitynumber'], 'unique'],
 
             ['bpjsnumber', 'required', 'when' => function ($model) {
-                  return $model->havebpjs;
-              }, 'whenClient' => new \yii\web\JsExpression("
+                return $model->havebpjs;
+            }, 'whenClient' => new \yii\web\JsExpression("
                 function (attribute, value) {
                     return $('#userprofile-havebpjs').is(':checked');
                 }
             ")],
             ['jamsosteknumber', 'required', 'when' => function ($model) {
-                  return $model->jamsosteknumber;
-              }, 'whenClient' => new \yii\web\JsExpression("
+                return $model->jamsosteknumber;
+            }, 'whenClient' => new \yii\web\JsExpression("
                 function (attribute, value) {
                     return $('#userprofile-havejamsostek').is(':checked');
                 }
             ")],
             ['npwpnumber', 'required', 'when' => function ($model) {
-                  return $model->npwpnumber;
-              }, 'whenClient' => new \yii\web\JsExpression("
+                return $model->npwpnumber;
+            }, 'whenClient' => new \yii\web\JsExpression("
                 function (attribute, value) {
                     return $('#userprofile-havenpwp').is(':checked');
                 }
@@ -97,52 +97,52 @@ class Userprofile extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         // return [
-            // 'id' => 'ID',
-            // 'userid' => 'Userid',
-            // 'createtime' => 'Createtime',
-            // 'updatetime' => 'Updatetime',
-            // 'fullname' => 'Full name',
-            // 'nickname' => 'Nick name',
-            // 'gender' => 'Gender',
-            // 'birthdate' => 'Birth date',
-            // 'birthplace' => 'Birth place',
-            // 'address' => 'Domicile Address',
-            // 'postalcode' => 'Postalcode',
-            // 'postalcodektp' => 'Postalcode',
-            // 'phone' => 'Phone',
-            // 'domicilestatus' => 'Domicilestatus',
-            // 'domicilestatusdescription' => 'Domicile status description',
-            // 'addressktp' => 'Address By ID',
-            // 'nationality' => 'Nationality',
-            // 'religion' => 'Religion',
-            // 'maritalstatus' => 'Marital status',
-            // 'weddingdate' => 'Wedding date',
-            // 'bloodtype' => 'Blood type',
-            // 'identitynumber' => 'Identity number',
-            // 'jamsosteknumber' => 'Jamsostek number',
-            // 'havejamsostek' => 'Yes',
-            // 'bpjsnumber' => 'BPJS number',
-            // 'havebpjs' => 'Yes',
-            // 'npwpnumber' => 'NPWP number',
-            // 'havenpwp' => 'Yes',
-            // 'drivinglicencecarnumber' => 'Driving licence car number',
-            // 'drivinglicencemotorcyclenumber' => 'Driving licence motorcycle number',
-            // 'cityid' => 'City',
-            // 'provinceid' => 'Province',
-            // 'cityidktp' => 'City',
-            // 'provinceidktp' => 'Province',
-            // 'photo' => 'Photo',
-            // 'cityname' => 'City',
-            // 'kknumber' => 'Family Card (Kartu Keluarga) Number',
-            // 'tinggibadan' => 'Height',
-            // 'beratbadan' => 'Weight',
-            // 'nokitas' => 'KITAS Number',
-            // 'lokasikerja' => 'Work Location',
-            // 'cvupload' => 'Curriculum Vitae',
-            // 'jenispekerjaan' => 'Working type',
+        // 'id' => 'ID',
+        // 'userid' => 'Userid',
+        // 'createtime' => 'Createtime',
+        // 'updatetime' => 'Updatetime',
+        // 'fullname' => 'Full name',
+        // 'nickname' => 'Nick name',
+        // 'gender' => 'Gender',
+        // 'birthdate' => 'Birth date',
+        // 'birthplace' => 'Birth place',
+        // 'address' => 'Domicile Address',
+        // 'postalcode' => 'Postalcode',
+        // 'postalcodektp' => 'Postalcode',
+        // 'phone' => 'Phone',
+        // 'domicilestatus' => 'Domicilestatus',
+        // 'domicilestatusdescription' => 'Domicile status description',
+        // 'addressktp' => 'Address By ID',
+        // 'nationality' => 'Nationality',
+        // 'religion' => 'Religion',
+        // 'maritalstatus' => 'Marital status',
+        // 'weddingdate' => 'Wedding date',
+        // 'bloodtype' => 'Blood type',
+        // 'identitynumber' => 'Identity number',
+        // 'jamsosteknumber' => 'Jamsostek number',
+        // 'havejamsostek' => 'Yes',
+        // 'bpjsnumber' => 'BPJS number',
+        // 'havebpjs' => 'Yes',
+        // 'npwpnumber' => 'NPWP number',
+        // 'havenpwp' => 'Yes',
+        // 'drivinglicencecarnumber' => 'Driving licence car number',
+        // 'drivinglicencemotorcyclenumber' => 'Driving licence motorcycle number',
+        // 'cityid' => 'City',
+        // 'provinceid' => 'Province',
+        // 'cityidktp' => 'City',
+        // 'provinceidktp' => 'Province',
+        // 'photo' => 'Photo',
+        // 'cityname' => 'City',
+        // 'kknumber' => 'Family Card (Kartu Keluarga) Number',
+        // 'tinggibadan' => 'Height',
+        // 'beratbadan' => 'Weight',
+        // 'nokitas' => 'KITAS Number',
+        // 'lokasikerja' => 'Work Location',
+        // 'cvupload' => 'Curriculum Vitae',
+        // 'jenispekerjaan' => 'Working type',
         // ];
-		
-		return [
+
+        return [
             'id' => 'ID',
             'userid' => 'Userid',
             'createtime' => 'Createtime',

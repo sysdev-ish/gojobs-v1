@@ -187,7 +187,7 @@ if (Yii::$app->utils->permission($role, 'm8') && Yii::$app->utils->permission($r
           ]),
           'value' => function ($data) {
 
-            // return ($data->reccandidate->recrequest->city) ? $data->reccandidate->recrequest->city->city_name : "";
+            // return $data->reccandidate->recrequest->city;
             return ($data->reccandidate->recrequest) ? $data->reccandidate->recrequest->city->city_name : "";
           }
         ],

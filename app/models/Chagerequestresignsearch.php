@@ -43,7 +43,7 @@ class Chagerequestresignsearch extends Chagerequestresign
     public function search($params)
     {
         $query = Chagerequestresign::find();
-        // $query->joinWith("approveduser");
+        $query->joinWith("approveduser");
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

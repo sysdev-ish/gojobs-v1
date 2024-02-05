@@ -26,6 +26,9 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
 
+    const whitelist = 'whitelist';
+    const blacklist = 'blacklist';
+
     /**
      * @inheritdoc
      */
@@ -52,6 +55,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            ['is_whitelist', 'default', 'value' => self::whitelist],
         ];
     }
 
@@ -184,5 +188,25 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function updateStatus($newStatus)
+    {
+        if (in_array($newStatus, [User::whitelist, User::blacklist])) {
+            $this->status = $newStatus;
+            return $this->save();
+        }
+
+        return false;
+    }
+    // 
+    public function updateWhitelist($newWhitelist)
+    {
+        if (in_array($newWhitelist, [User::STATUS_ACTIVE, User::STATUS_DELETED])) {
+            $this->whitelist = $newWhitelist;
+            return $this->save();
+        }
+
+        return false;
     }
 }

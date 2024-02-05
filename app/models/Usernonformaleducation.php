@@ -35,7 +35,7 @@ class Usernonformaleducation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'institutions', 'startdate', 'enddate','iscertificate'], 'required'],
+            [['type', 'institutions', 'startdate', 'enddate', 'iscertificate'], 'required'],
             [['userid', 'iscertificate'], 'integer'],
             [['createtime', 'updatetime', 'startdate', 'enddate'], 'safe'],
             [['type'], 'string'],
@@ -51,13 +51,13 @@ class Usernonformaleducation extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'userid' => 'Userid',
-            'createtime' => 'Createtime',
-            'updatetime' => 'Updatetime',
+            'userid' => 'User ID',
+            'createtime' => 'Create Time',
+            'updatetime' => 'Update Time',
             'type' => 'Type',
             'institutions' => 'Institutions',
-            'startdate' => 'Startdate',
-            'enddate' => 'Enddate',
+            'startdate' => 'Start date',
+            'enddate' => 'End date',
             'iscertificate' => 'Iscertificate',
         ];
     }

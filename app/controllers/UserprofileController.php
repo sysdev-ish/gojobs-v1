@@ -22,14 +22,13 @@ use app\models\Recruitmentcandidate;
 use app\models\Userprofilesearch;
 use app\models\Uservaksin;
 use app\models\Masteralasanvaksin;
-use app\models\Mastersubjobfamily;
+use app\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
 use yii\filters\AccessControl;
-use yii\helpers\Json;
 
 /**
  * UserprofileController implements the CRUD actions for Userprofile model.
@@ -44,11 +43,11 @@ class UserprofileController extends Controller
     return [
       'access' => [
         'class' => AccessControl::className(),
-        'only' => ['index', 'update', 'create', 'view', 'delete', 'views', 'cwizard', 'uwizard', 'viewshort', 'printcv'],
+        'only' => ['index', 'update', 'create', 'view', 'delete', 'views', 'cwizard', 'uwizard', 'viewshort', 'printcv', 'resultsummary'],
         'rules' => [
 
           [
-            'actions' => ['index', 'create', 'view', 'delete'],
+            'actions' => ['index', 'create', 'view', 'delete', 'resiltsummary'],
             'allow' => true,
             'roles' => ['@'],
             'matchCallback' => function () {
@@ -58,6 +57,24 @@ class UserprofileController extends Controller
           ],
           [
             'actions' => ['views', 'view'],
+            'allow' => true,
+            'roles' => ['@'],
+            'matchCallback' => function () {
+              // var_dump( (int)Yii::$app->request->get('userid'));die;
+              if (Yii::$app->user->identity->role == 2) {
+                if ((int)Yii::$app->request->get('userid') == Yii::$app->user->identity->id) {
+                  $ret = true;
+                } else {
+                  $ret = false;
+                }
+              } else {
+                $ret = (Yii::$app->utils->permission(Yii::$app->user->identity->role, 'm13'));
+              }
+              return $ret;
+            }
+          ],
+          [
+            'actions' => ['resultsummary'],
             'allow' => true,
             'roles' => ['@'],
             'matchCallback' => function () {
@@ -97,7 +114,7 @@ class UserprofileController extends Controller
 
           ],
           [
-            'actions' => ['cwizard', 'uwizard', 'viewshort', 'printcv'],
+            'actions' => ['cwizard', 'uwizard', 'viewshort', 'printcv', 'resultsummary'],
             'allow' => true,
             'roles' => ['@'],
           ],
@@ -163,6 +180,7 @@ class UserprofileController extends Controller
       'userid' => $userid,
     ]);
   }
+  
   public function actionViewshortwd($userid, $recid)
   {
     $this->layout = Yii::$app->utils->getlayout();
@@ -177,6 +195,16 @@ class UserprofileController extends Controller
       'model' => $model,
       'userid' => $userid,
       'recid' => $recid,
+    ]);
+  }
+  
+  public function actionResultsummary($userid)
+  {
+    $this->layout = Yii::$app->utils->getlayout();
+    $model = Userprofile::find()->where(['userid' => $userid])->one();
+    return $this->renderAjax('resultsummary', [
+      'model' => $model,
+      'userid' => $userid,
     ]);
   }
 
@@ -208,7 +236,7 @@ class UserprofileController extends Controller
       }
       if ($model->havenpwp == 0 or $model->npwpnumber == '') {
         // $model->npwpnumber = "000000000000000";
-        $model->npwpnumber = "999999999999999";
+        $model->npwpnumber = "999999999999999"; //change by kaha 1/11/22 -> request pm
       }
       $model->photo = UploadedFile::getInstance($model, 'photo');
       $model->cvupload = UploadedFile::getInstance($model, 'cvupload');
@@ -305,7 +333,8 @@ class UserprofileController extends Controller
           $model->bpjsnumber = "00000000000";
         }
         if ($model->havenpwp == 0 or $model->npwpnumber == '') {
-          $model->npwpnumber = "000000000000000";
+          // $model->npwpnumber = "000000000000000";
+          $model->npwpnumber = "999999999999999"; //change by kaha 1/11/22 -> request pm
         }
         $model->photo = UploadedFile::getInstance($model, 'photo');
         $model->cvupload = UploadedFile::getInstance($model, 'cvupload');
@@ -653,6 +682,32 @@ class UserprofileController extends Controller
     }
   }
 
+  public function actionUpdatewhitelist($id)
+  {
+    $model = User::find()->where(['id' => $id])->one();
+    // 
+    if ($model->load(Yii::$app->request->post())) {
+      // var_dump($model->load(Yii::$app->request->post('is_whitelist')));die();
+      if ($model) {
+        if ($model->updateStatus('whitelist')) {
+          Yii::$app->session->setFlash('success', "Note: User updated.");
+        } else {
+          Yii::$app->session->setFlash('error', "Note: User cant update.");
+        }
+      } else {
+        // User not found
+        // Handle the error case
+        Yii::$app->session->setFlash('error', "Note: User not Found.");
+      }
+      return $this->redirect(['index']);
+    } else {
+      return $this->renderAjax('white-list', [
+        'model' => $model,
+      ]);
+    }
+  }
+
+
   /**
    * Deletes an existing Userprofile model.
    * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -699,42 +754,6 @@ class UserprofileController extends Controller
       'userhealth' => $userhealth,
       'userabout' => $userabout,
     ]);
-  }
-
-  public function actionGethiring()
-  {
-    $out = [];
-    if (isset($_POST['depdrop_parents'])) {
-      $parents = $_POST['depdrop_parents'];
-      $subjobfamily = empty($parents[0]) ? null : $parents[0];
-
-      $model = Mastersubjobfamily::find()->asArray()->where(['jobfamily_id' => $subjobfamily])->all();
-      // var_dump($model);die;
-      $selected  = null;
-      if ($parents != null && count($model) > 0) {
-        $selected = '';
-        $id1 = '';
-        if (!empty($_POST['depdrop_params'])) {
-          $params = $_POST['depdrop_params'];
-          $id1 = $params[0]; // get the value of model_id1
-          foreach ($model as $key => $value) {
-            $out[] = ['id' => $value['id'], 'name' => '' . $value['subjobfamily']];
-            $oc[] = $value['id'];
-            if ($key == 0) {
-              $out[] = ['id' => '0', 'name' => 'all'];
-              $aux = '0';
-            }
-          }
-          ((in_array($id1, $oc))) ? $selected = $id1 : $selected = $aux;
-        }
-        // $outs = array_push($out, ['id'=>"0",'name'=>'all']);
-        // var_dump($outs);die;
-        sort($out);
-        echo Json::encode(['output' => $out, 'selected' => $selected]);
-        return;
-      }
-    }
-    echo Json::encode(['output' => '', 'selected' => '']);
   }
 
   /**

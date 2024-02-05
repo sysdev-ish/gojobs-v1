@@ -164,7 +164,9 @@ class RecruitmentcandidateController extends Controller
     $modeluprofile = Userprofile::find()->where(['userid' => $userid])->one();
     $model->fullname = $modeluprofile->fullname;
     $model->userid = $modeluprofile->userid;
-    $recruitreq = ArrayHelper::map(Transrincian::find()->asArray()->limit(100)->all(), 'id', 'nojo');
+    $year = date('Y');
+    $recruitreq = ArrayHelper::map(Transrincian::find()->asArray()->where('status_rekrut = 1 OR status_rekrut = 3 ')->all(), 'id', 'nojo');
+    // $recruitreq = ArrayHelper::map(Transrincian::find()->asArray()->limit(100)->all(), 'id', 'nojo');
 
     if ($model->load(Yii::$app->request->post())) {
       $model->createtime = date('Y-m-d H-i-s');
@@ -204,16 +206,18 @@ class RecruitmentcandidateController extends Controller
   public function actionAddcandidate2($id)
   {
     $model = new Recruitmentcandidate();
-    $modeluprofile = Userprofile::find()->all();
-    $recruitreq = ArrayHelper::map(Transrincian::find()->asArray()->limit(100)->all(), 'id', 'nojo');
+    // $modeluprofile = Userprofile::find()->all();
+    // $recruitreq = ArrayHelper::map(Transrincian::find()->asArray()->limit(100)->all(), 'id', 'nojo');
     $modelrecreq = Transrincian::find()->where(['id' => $id, 'status_rekrut' => 1])->one();
     $searchModelprofile = new Userprofilesearch();
+    // $searchModelprofile->select(['id', 'fullname', 'address', 'gender', 'city'])->all();
+
     $dataProviderprofile = $searchModelprofile->search(Yii::$app->request->queryParams);
 
     return $this->renderAjax('addcandidate2', [
       'model' => $model,
-      'modeluprofile' => $modeluprofile,
-      'recruitreq' => $recruitreq,
+      // 'modeluprofile' => $modeluprofile,
+      // 'recruitreq' => $recruitreq,
       'searchModelprofile' => $searchModelprofile,
       'dataProviderprofile' => $dataProviderprofile,
       'transrincianid' => $id,
@@ -329,119 +333,31 @@ class RecruitmentcandidateController extends Controller
         $to = $modelulogin->email;
         $subject = 'Undangan ' . $invitefor . ' PT Infomedia Solusi Humanika';
         // var_dump($modelreccan->status.' '.$modelreccan->method);die;
+
         if ($modelreccan->status == 2 && $modelreccan->method == 2) {
-          $body = '
-          <table>
-          <tr>
-          <td valign="top">No Undangan</td>
-          <td valign="top">:</td>
-          <td valign="top">' . $modelreccan->invitationnumber . '</td>
-          </tr>
-          </table>
-          <br>
-          <br>
-          Semangat Pagiii..
-          <br>
-          <br>
-          Hallo Sdr/i' . $modeluprofile->fullname . ' .. ,
-          <br>
-          <br>
-          PT Infomedia Solusi Humanika (ISH) mengucapkan selamat kepada anda yang telah lulus seleksi dokumen untuk posisi pekerjaan posisi "' . $jabatans . '", dan lokasi kerja di "' . $areas . '"
-
-          <br>
-          <br>
-          Selanjutnya anda diminta untuk mengerjakan psikotest online dengan panduan sebagi berikut :
-          <br>
-          <br>
-          1.Psikotes online dikerjakan menggunakan ponsel pintar, pastikan jaringan akses internet bagus dan paket data tersedia<
-          <br>
-          2.Waktu pengerjaan psikotes adalah 30 menit sehingga pastikan anda bebas dari gangguan selama mengerjakan psikotes
-          <br>
-          3.Untuk memulai psikotes online, silahkan klik http://app.hipotest.com
-          <br>
-          4.Selanjutnya anda diminta untuk melakukan Registrasi & Login sesuai dengan ketentuan pada website tersebut
-          <br>
-          5.Untuk memulai Tes, masukkan kode token : ' . $modelreccan->kodetoken . '
-          <br>
-          6.Anda diminta untuk mengerjakan seluruh rangkaian psikotes
-          <br>
-          <br>
-          <i>  PERHATIAN !</i>
-          <br>
-          <br>
-          <i>  Pengerjaan psikotes ini WAJIB DISELESAIKAN sebelum (H+2 dari Tanggal Pengajuan) dan pukul 24.00. </i>
-          <br>
-          <br>
-          <i>  Selamat Mengerjakan.. </i>
-          <br>
-          Salam,
-          <br>
-          <br>
-          HR Process - PT Infomedia Solusi Humanika (ISH)
-          <br>
-          <br>
-          <br>
-          <b>
-          Talented and Qualified People| Solid-Speed-Smart
-          </b>
-
-          ';
+          $body = Yii::$app->params['recruitmentProcessOnline'];
+          $body = str_replace('{invitation_number}', $modelreccan->invitationnumber, $body);
+          $body = str_replace('{fullname}', $modeluprofile->fullname, $body);
+          $body = str_replace('{jabatan}', $jabatans, $body);
+          $body = str_replace('{area}', $areas, $body);
+          $body = str_replace('{token}', $modelreccan->kodetoken, $body);
         } else {
-          $body = 'Yth ' . $modeluprofile->fullname . ' .. ,
-          <br>
-          Sdr/i PT. Infomedia Solusi Humanika Mengundang anda untuk ' . $invitefor . ' posisi "' . $jabatans . '", Pada :
-
-            <br>
-            <br>
-            <table>
-            <tr>
-            <td valign="top">No Undangan</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $modelreccan->invitationnumber . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Hari</td>
-            <td valign="top">:</td>
-            <td valign="top">' . Yii::$app->utils->indodate($model->scheduledate) . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Pukul</td>
-            <td valign="top">:</td>
-            <td valign="top"> ' . date("H:i", strtotime($model->scheduledate)) . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Bertemu</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $pic->name . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Alamat</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $model->masteroffice->address . '(' . Html::a('Link location map', 'https://maps.google.com/?q=' . $model->masteroffice->lat . ',' . $model->masteroffice->long, ['target' => '_blank']) . ')</td>
-            </tr>
-            <tr>
-            <td valign="top">Ruangan</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $room . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Lantai</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $floor . '</td>
-            </tr>
-
-            </table>
-            <br>
-            <br>
-            <i>  -- Note : Dgn Menggunakan Pakaian Formal Rapih ( No Jeans ) dan Membawa CV dan Lamaran Kerja Lengkapnya . -- </i>
-            <br>
-            <i>  Konfirmasi dengan sms ke no :' . $pic->mobile . '  </i>
-            <br>
-            <i> ' . $infodata . '</i>
-            ';
+          $body = Yii::$app->params['recruitmentProcessOffline'];
+          $body = str_replace('{invitation_number}', $modelreccan->invitationnumber, $body);
+          $body = str_replace('{invitation_for}', $invitefor, $body);
+          $body = str_replace('{fullname}', $modeluprofile->fullname, $body);
+          $body = str_replace('{jabatan}', $jabatans, $body);
+          $body = str_replace('{area}', $areas, $body);
+          $body = str_replace('{date}', Yii::$app->utils->indodate($model->scheduledate), $body);
+          $body = str_replace('{time}', date("H:i", strtotime($model->scheduledate)), $body);
+          $body = str_replace('{pic}', $pic->name, $body);
+          $body = str_replace('{pic_number}', $pic->mobile, $body);
+          $body = str_replace('{pic_data}', $infodata, $body);
+          $body = str_replace('{address}', $model->masteroffice->address . '(' . Html::a('Link location map', 'https://maps.google.com/?q=' . $model->masteroffice->lat . ',' . $model->masteroffice->long, ['target' => '_blank']), $body);
+          $body = str_replace('{room}', $room, $body);
+          $body = str_replace('{floor}', $floor, $body);
         }
 
-        // var_dump($body);die;
         $verification = Yii::$app->utils->sendmail($to, $subject, $body, $identifier);
         return $this->redirect(['index']);
       }
@@ -455,18 +371,23 @@ class RecruitmentcandidateController extends Controller
       ]);
     }
   }
+
   public function actionChangejo($userid, $reccanid)
   {
     $model = $this->findModel($reccanid);
     $modelreccan = Recruitmentcandidate::find()->where(['id' => $reccanid])->one();
     $modelrecreq = Transrincian::find()->where(['id' => $modelreccan->recruitreqid])->one();
 
+
     $modeluprofile = Userprofile::find()->where(['userid' => $userid])->one();
-    // $modelulogin = Userlogin::find()->where(['id'=>$userid])->one();
+    $modelulogin = Userlogin::find()->where(['id' => $userid])->one();
+
 
     $model->fullname = $modeluprofile->fullname;
 
+
     if ($model->load(Yii::$app->request->post())) {
+
       if ($model->save()) {
         return $this->redirect(['index']);
       }
@@ -478,6 +399,7 @@ class RecruitmentcandidateController extends Controller
       ]);
     }
   }
+
   public function actionApplyjob($userid, $jobsid)
   {
     $model = new Recruitmentcandidate();
@@ -487,9 +409,35 @@ class RecruitmentcandidateController extends Controller
     $model->typeinterview = 1;
     $model->recruitreqid = $jobsid;
     $model->userid = $userid;
-    $model->save();
+
+    // add by kaha to send notif email after apply job
+    $transrincian = Transrincian::find()->where(['id' => $jobsid])->one();
+    $userprofile = Userprofile::find()->where(['userid' => $userid])->one();
+    if ($model->save()) {
+      // get layanan
+      if ($transrincian->transjo->n_project == "" || $transrincian->transjo->n_project == "Pilih") {
+        $layanan = $transrincian->transjo->project;
+      } else {
+        $layanan = $transrincian->transjo->n_project;
+      }
+      // get jabatan
+      if (Yii::$app->utils->getjabatan($transrincian->hire_jabatan_sap)) {
+        $jabatan = Yii::$app->utils->getjabatan($transrincian->hire_jabatan_sap);
+      } else {
+        $jabatan = '';
+      }
+      $to = $userprofile->userlogin->email;
+      $subject = 'PT Infomedia Solusi Humanika (ISH) – Lamaran Telah Diterima - ' . $userprofile->fullname;
+      $body = Yii::$app->params['notificationApplyJob'];
+      $body = str_replace('{fullname}', $userprofile->fullname, $body);
+      $body = str_replace('{layanan}', $layanan, $body);
+      $body = str_replace('{jabatan}', $jabatan, $body);
+      // var_dump($body);die;
+      $verification = Yii::$app->utils->sendmail($to, $subject, $body, 25);
+    }
     return $this->redirect(['site/searchjob']);
   }
+
   public function actionWalkin($userid, $jobsid)
   {
     $interviewcheck = Interview::find()

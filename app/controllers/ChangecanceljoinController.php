@@ -92,45 +92,48 @@ class ChangecanceljoinController extends Controller
    */
   public function actionCreate($id = null)
   {
+    // $approvalname = ArrayHelper::map(User::find()->where('role = 20 OR role = 17')->asArray()->all(), 'id', 'name');
     $reason = ArrayHelper::map(Masterreasoncanceljoin::find()->asArray()->all(), 'id', 'reason');
     if ($id) {
       $model = $this->findModel($id);
+      //check perner 
       $namaquery = Hiring::find()
-        ->joinWith(['userprofile'])
+        // ->joinWith(['userprofile']) //comment by kaha 2/11/22 -> optimize loadtime
         ->joinWith(['changecanceljoin'])
         ->andWhere(['statushiring' => 4])
+        ->andWhere(['statusbiodata' => 4])
         ->andWhere([
           'or',
           ['changecanceljoin.userid' => null],
           ['changecanceljoin.status' => 1],
+          ['changecanceljoin.status' => 5],
+          ['changecanceljoin.status' => 6],
+          ['changecanceljoin.status' => 9],
           ['hiring.userid' => $model->userid],
-        ])
-        ->all();
-
+        ])->all();
       $name = array();
       foreach ($namaquery as $key => $value) {
         if ($value->changecanceljoin) {
-          $check =  Changecanceljoin::find()
+          $check = Changecanceljoin::find()
             ->andWhere(['userid' => $value->userid])
             ->andWhere([
               'or',
-              ['status' => 4],
               ['status' => 6],
             ])
             ->count();
           //comment by kaha 2/11/22 -> optimize loadtime
           if ($value->userid == $model->userid) {
-            // $name[$value->userid] = $value->perner;
-            $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
+            $name[$value->userid] = $value->perner;
+            // $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
           }
-          if (!$check) {
+          if ($check == 0) {
             // var_dump('dd');
-            // $name[$value->userid] = $value->perner;
-             $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
+            $name[$value->userid] = $value->perner;
+            //  $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
           }
         } else {
-          // $name[$value->userid] = $value->perner;
-           $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
+          $name[$value->userid] = $value->perner;
+          //  $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
         }
       }
     } else {
@@ -196,55 +199,18 @@ class ChangecanceljoinController extends Controller
           $jabatan = $datapekerjabyperner[0]->PLATX;
         }
         // $to = $user->email; //jika approvernya milih
-        // $to =  "proman@ish.co.id";
-        $to =  "khusnul.hisyam@ish.co.id";
+        $to =  "proman@ish.co.id";
+        // $to =  "khusnul.hisyam@ish.co.id";
         $subject = 'Notifikasi Approval Cancel Join Pekerja';
-        $body = 'Test';
-        $body = 'Semangat Pagi,
-            <br>
-            Anda mendapatkan permintaan Approval "Cancel Join Pekerja" dari <span style="text-transform: uppercase;"><b>' . $model->createduser->name . '</b></span> dengan rincian sebagai berikut :
+        $body = Yii::$app->params['approvalCancelJoin'];
+        $body = str_replace('{creator}', $model->createduser->name, $body);
+        $body = str_replace('{fullname}', $name, $body);
+        $body = str_replace('{perner}', $perner, $body);
+        $body = str_replace('{layanan}', $layanan, $body);
+        $body = str_replace('{area}', $area, $body);
+        $body = str_replace('{jabatan}', $jabatan, $body);
+        $body = str_replace('{reason}', $model->canceljoinreason->reason, $body);
 
-            <br>
-            <br>
-            <table>
-            <tr>
-            <td valign="top">Nama Pekerja</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $name . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Perner</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $perner . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Nama Project</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $layanan . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Area</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $area . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Jabatan</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $jabatan . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Reason</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $model->canceljoinreason->reason . '</td>
-            </tr>
-            <tr>
-            </table>
-            <br>
-            <br>
-            Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> untuk melakukan verifikasi lebih lanjut.
-            <br><br>
-            Terima kasih!
-            ';
         // cek utils -> util component -> sendmailgojobs
         $verification = Yii::$app->utils->sendmail($to, $subject, $body, 15);
         //15, klasifikasi untuk changecancel join cek table mailcounter/maillog
@@ -320,54 +286,18 @@ class ChangecanceljoinController extends Controller
             $jabatan = $datapekerjabyperner[0]->PLATX;
           }
           //sendmail notification for sap admin -> service canceljoin (belum ada)
-          $to = "hisyamulio9@gmail.com, hisyamkstd@gmail.com";
-          // $to =  "indri.yulita@ish.co.id, setiawan@ish.co.id";
+          // $to = "hisyamulio9@gmail.com, hisyamkstd@gmail.com";
+          $to =  "setiawan@ish.co.id";
           $subject = 'Notifikasi Cancel Join SAP Admin';
-          $body = 'Semangat Pagi,
-            <br>
-            Anda mendapatkan permintaan "Cancel Join Pekerja" dan Hapus Perner dari <span style="text-transform: uppercase;"><b>' . $model->approveduser->name . '</b></span> dengan rincian sebagai berikut :
+          $body = Yii::$app->params['confirmationCancelJoin'];
+          $body = str_replace('{creator}', $model->approveduser->name, $body);
+          $body = str_replace('{fullname}', $name, $body);
+          $body = str_replace('{perner}', $perner, $body);
+          $body = str_replace('{layanan}', $layanan, $body);
+          $body = str_replace('{area}', $area, $body);
+          $body = str_replace('{jabatan}', $jabatan, $body);
+          $body = str_replace('{reason}', $model->canceljoinreason->reason, $body);
 
-            <br>
-            <br>
-            <table>
-            <tr>
-            <td valign="top">Nama Pekerja</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $name . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Perner</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $perner . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Nama Project</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $layanan . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Area</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $area . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Jabatan</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $jabatan . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Reason</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $model->canceljoinreason->reason . '</td>
-            </tr>
-            <tr>
-            </table>
-            <br>
-            <br>
-            Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> Sub Menu Cancel Join untuk melakukan (confirmation) dan menghapus perner di SAP.
-            <br><br>
-            Have a great day !
-            ';
           $verification = Yii::$app->utils->sendmail($to, $subject, $body, 20);
           // var_dump($body);die();
           //klasifisikasi 20 -> notif to admin SAP cek mailcounter //jika tidak arrary pakai sendmail saja
@@ -395,35 +325,74 @@ class ChangecanceljoinController extends Controller
         $model->status = 9;
         $model->remarks = 'Successfull';
         $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
-        if ($hiring) {
-          $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $hiring->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
-          // var_dump($recruitmentcandidate);die();
-          $modelrecreq = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
+        $curl = new curl\Curl();
+        $getdatapekerja = $curl->setPostParams([
+          'perner' => $model->perner,
+          'token' => 'ish**2019',
+        ])
+          ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+        $dataprofile  = json_decode($getdatapekerja);
+        if ($dataprofile) {
+          if ($hiring) {
+            $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $hiring->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
+            // var_dump($recruitmentcandidate);die();
+            $modelrecreq = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
+            if ($model->save()) {
+              $hiring->statushiring = 6;
+              $recruitmentcandidate->status = 24;
+              $hiring->save(false);
+              $recruitmentcandidate->save(false);
+              if ($modelrecreq->status_rekrut = 2) {
+                $modelrecreq->status_rekrut = 1;
+                $modelrecreq->save(false);
+              } else if ($modelrecreq->status_rekrut = 4) {
+                $modelrecreq->status_rekrut = 3;
+                $modelrecreq->save(false);
+              } else {
+                $modelrecreq->save(false);
+              }
+              Yii::$app->session->setFlash('success', "Done Confirm Cancel Join.");
+              return $this->redirect(['index']);
+            }
+          } else {
+            Yii::$app->session->setFlash('error', "Tidak bisa di Approve/ Confirm Cancel Join karena sudah di proses, silakan cek data kembali.");
+            return $this->redirect(['index']);
+          }
+        } else {
+          if($hiring) {
+            $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $hiring->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
+            $modelrecreq = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
+          } else {
+            $hiringres = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 7])->one();
+            $modelrecreq = Transrincian::find()->where(['id' => $hiringres->recruitreqid])->one();
+          }
+          $model->status = 9;
           if ($model->save()) {
-            $hiring->statushiring = 6;
-            $recruitmentcandidate->status = 24;
-            $hiring->save(false);
-            $recruitmentcandidate->save(false);
+            if ($hiring) {
+              $hiring->statushiring = 6;
+              $hiring->save(false);
+              $recruitmentcandidate->status = 24;
+              $recruitmentcandidate->save(false);
+            }
             if ($modelrecreq->status_rekrut = 2) {
               $modelrecreq->status_rekrut = 1;
               $modelrecreq->save(false);
-            }
-            if ($modelrecreq->status_rekrut = 4) {
+            } else if ($modelrecreq->status_rekrut = 4) {
               $modelrecreq->status_rekrut = 3;
               $modelrecreq->save(false);
-            }
-            if ($modelrecreq->status_rekrut = 1 or $modelrecreq->status_rekrut = 1) {
+            } else {
               $modelrecreq->save(false);
             }
+            Yii::$app->session->setFlash('success', "Done Confirm Cancel Join, Note: Check Perner on Resign.");
+            return $this->redirect(['index']);
           }
-        } else {
-          Yii::$app->session->setFlash('error', "Tidak bisa di Approve/ Confirm Cancel Join karena sudah di proses, silakan cek data kembali.");
+          Yii::$app->session->setFlash('error', "Data pekerja sudah tidak ada di SAP sudah dihapus atau sudah di resign kan");
           return $this->redirect(['index']);
         }
       } else {
         $model->remarks = 'Reject';
+        $model->status = 5;
         $model->save();
-        Yii::$app->session->setFlash('success', "Confirmed.");
       }
       return $this->redirect(['index']);
     } else {

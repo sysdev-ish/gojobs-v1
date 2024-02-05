@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link http://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -29,25 +30,26 @@ class AppfrontAsset extends AssetBundle
         'css/frontend/font-awesome.css',
         'css/frontend/flaticon.css',
         'css/frontend/fonts/next-icon/flat-icon.css',
-        'css/frontend/slick-slider.css',
-        'css/frontend/plugin-css/fancybox.css',
+        // 'css/frontend/slick-slider.css',
+        // 'css/frontend/plugin-css/fancybox.css',
         'css/frontend/plugin-css/plugin.css',
         'css/frontend/style.css',
-        'css/frontend/homepage-two.css',
-        'css/frontend/homepage-three.css',
-        'css/frontend/homepage-four.css',
+        // 'css/frontend/homepage-two.css',
+        // 'css/frontend/homepage-three.css',
+        // 'css/frontend/homepage-four.css',
         'css/frontend/color.css',
         'css/frontend/responsive.css',
-        'css/frontend/homepage-two-typo.css',
-        'css/frontend/home-two-color.css',
+        // 'css/frontend/homepage-two-typo.css',
+        // 'css/frontend/home-two-color.css',
         'css/cssloadajax/modal-loading-animate.css',
         'css/cssloadajax/modal-loading.css',
     ];
 
     public $js = [
-      // 'js/app.min.js',
-      'js/custom.js',
-      'js/modal-loading.js',
+        // 'js/app.min.js',
+        // 'js/custom.js',
+        'js/custom.js',
+        'js/modal-loading.js',
     ];
     public $depends = [
         // 'rmrevin\yii\fontawesome\AssetBundle',
@@ -62,13 +64,13 @@ class AppfrontAsset extends AssetBundle
      */
     public function init()
     {
-      parent::init();
-    // resetting BootstrapAsset to not load own css files
-    \Yii::$app->assetManager->bundles['yii\\bootstrap\\BootstrapAsset'] = [
-        'css' => [],
-    ];
-    \Yii::$app->assetManager->bundles['yii\\web\\JqueryAsset'] = [
-        'js' => [],
-    ];
+        parent::init();
+        // resetting BootstrapAsset to not load own css files
+        \Yii::$app->assetManager->bundles['yii\\bootstrap\\BootstrapAsset'] = [
+            'css' => [],
+        ];
+        \Yii::$app->assetManager->bundles['yii\\web\\JqueryAsset'] = [
+            'js' => [],
+        ];
     }
 }

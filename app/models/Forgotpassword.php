@@ -38,26 +38,22 @@ class Forgotpassword extends Model
   public function forgotpassword($username)
   {
     if ($this->validate()) {
+      //comment this for temporary if email down/limit
       $randomstring = Yii::$app->utils->generateRandomString(6);
-      // $randomstring = 'resetpass';
+
+      // $randomstring = 'bypassreset';
       $modelsave = Userdata::find()->where(['username' => $username, 'role' => 2])->one();
       if ($modelsave) {
         $modelsave->password_reset_token = $randomstring;
-
         if ($modelsave->save(false)) {
           $to = $modelsave->email;
+          // $to = 'khusnul.hisyam@ish.co.id';
           $subject = 'Password Reset token';
-          $body = 'Dear User ,
-         <br>
-         We need to make sure that this is you and not misused by unauthorized parties.
-         <br>
-         <br>
-         This is your Password Reset Token :
-         <br>
-         ' . $randomstring . '<br>
-         --You are receiving this email from gojobs.id because you registered on gojobs.id with this email address--';
+          $body = Yii::$app->params['mailForgotPassword'];
+          $body = str_replace('{token}', $randomstring, $body);
+
+          //comment this for temporary if email down/limit
           $verification = Yii::$app->utils->sendmail($to, $subject, $body, 3);
-          // comment for temporary
           return $modelsave->id;
         }
       } else {

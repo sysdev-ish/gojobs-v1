@@ -55,9 +55,9 @@ class Userhealth extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'userid' => 'Userid',
-            'createtime' => 'Createtime',
-            'updatetime' => 'Updatetime',
+            'userid' => 'User ID',
+            'createtime' => 'Create Time',
+            'updatetime' => 'Update Time',
 			'sick' => Yii::t('app', 'Have you ever experienced seriously ill?'),
             'when' => Yii::t('app', 'If yes, When?'),
             'effect' => Yii::t('app', 'what are the consequences until now'),

@@ -51,12 +51,12 @@ class Organizationactivity extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'userid' => 'Userid',
-            'createtime' => 'Createtime',
-            'updatetime' => 'Updatetime',
-            'organizationname' => 'Organizationname',
-            'organizationplace' => 'Organizationplace',
-            'organizationskill' => 'Organizationskill',
+            'userid' => 'User ID',
+            'createtime' => 'Create Time',
+            'updatetime' => 'Update Time',
+            'organizationname' => 'Organization Name',
+            'organizationplace' => 'Organization Place',
+            'organizationskill' => 'Organization Skill',
             'duration' => 'Duration',
             'position' => 'Position',
         ];

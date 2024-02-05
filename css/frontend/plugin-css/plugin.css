@@ -38,12 +38,6 @@
     padding: 14px;
 }
 
-.careerfy-typo-wrap .careerfy-column-4:hover {
-    /* margin: 8px; */
-    /* background-color: #ededed; */
-    box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 10%);
-    border-radius: 12px;
-}
 
 .careerfy-column-12 {
     width: 100%;
@@ -186,10 +180,12 @@
 }
 .categories-list ul li a {
     display: block;
-    text-transform: uppercase;
-    font-weight: 500;
+    /* text-transform: uppercase; */
+    font-weight: 600;
     line-height: 1;
     margin-bottom: 4px;
+    font-size: 14px;
+    overflow-wrap: break-word;
 }
 .categories-list ul li span {
     font-size: 12px;

@@ -24,13 +24,17 @@ use app\models\Recruitmentcandidate;
 use app\models\Chagerequestjo;
 use app\models\Hiring;
 use app\models\Transjo;
-
+use app\models\User;
+use app\models\WoHiring;
+use app\models\WoRecruitmentCandidate;
+use app\models\Workorder;
 
 class checkComponent extends Component
 {
 
 
-  public function datacompleted($userid) {
+  public function datacompleted($userid)
+  {
     $ret = null;
     $userprofile = $this->cuserprofile($userid);
     // $userfamily = $this->cuserfamily($userid);
@@ -53,7 +57,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function datacompletedhiring($userid) {
+  public function datacompletedhiring($userid)
+  {
     $ret = null;
     $userprofile = $this->cuserprofile($userid);
     $userfamily = $this->cuserfamily($userid);
@@ -75,7 +80,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function datanotcompleted($userid) {
+  public function datanotcompleted($userid)
+  {
     $ret = null;
     $userprofile = $this->cuserprofile($userid);
     $userfamily = $this->cuserfamily($userid);
@@ -111,7 +117,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function cuserprofile($userid) {
+  public function cuserprofile($userid)
+  {
     $ret = null;
     $userprofile = Userprofile::find()->where(['userid' => $userid])->one();
 
@@ -124,7 +131,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function cuserfamily($userid) {
+  public function cuserfamily($userid)
+  {
     $ret = null;
     $userfamily = Userfamily::find()->where(['userid' => $userid])->one();
 
@@ -137,7 +145,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function cuserfeducation($userid) {
+  public function cuserfeducation($userid)
+  {
     $ret = null;
     $userfedu = Userformaleducation::find()->where(['userid' => $userid])->one();
 
@@ -150,7 +159,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function cusernfeducation($userid) {
+  public function cusernfeducation($userid)
+  {
     $ret = null;
     $usernfedu = Usernonformaleducation::find()->where(['userid' => $userid])->one();
 
@@ -163,7 +173,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function cuserflang($userid) {
+  public function cuserflang($userid)
+  {
     $ret = null;
     $usernflang = Userforeignlanguage::find()->where(['userid' => $userid])->one();
 
@@ -176,7 +187,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function cuserwexperience($userid) {
+  public function cuserwexperience($userid)
+  {
     $ret = null;
     $userwexp = Userworkexperience::find()->where(['userid' => $userid])->one();
 
@@ -189,7 +201,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function cuserorgac($userid) {
+  public function cuserorgac($userid)
+  {
     $ret = null;
     $userorgac = Organizationactivity::find()->where(['userid' => $userid])->one();
 
@@ -202,7 +215,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function cuserecontact($userid) {
+  public function cuserecontact($userid)
+  {
     $ret = null;
     $userecontact = Useremergencycontact::find()->where(['userid' => $userid])->one();
 
@@ -215,7 +229,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function cuserreff($userid) {
+  public function cuserreff($userid)
+  {
     $ret = null;
     $userreff = Userreference::find()->where(['userid' => $userid])->one();
 
@@ -227,7 +242,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function cuserhealth($userid) {
+  public function cuserhealth($userid)
+  {
     $ret = null;
     $userhealth = Userhealth::find()->where(['userid' => $userid])->one();
     $userabout = Userabout::find()->where(['userid' => $userid])->one();
@@ -240,7 +256,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function cuserainfo($userid) {
+  public function cuserainfo($userid)
+  {
     $ret = null;
     $userhealth = Userhealth::find()->where(['userid' => $userid])->one();
     $userabout = Userabout::find()->where(['userid' => $userid])->one();
@@ -253,7 +270,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function cuploaddoc($userid) {
+  public function cuploaddoc($userid)
+  {
     $ret = null;
     $uploaddoc = Uploadocument::find()->where(['userid' => $userid])->one();
 
@@ -265,7 +283,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function checkcandidate($id) {
+  public function checkcandidate($id)
+  {
     $ret = null;
     $tr = Transrincian::find()->where(['id' => $id])->one();
     $trori = Transrincianori::find()->where(['id' => $tr->idpktable])->one();
@@ -287,6 +306,7 @@ class checkComponent extends Component
     }
     if ($tr->typejo == 1) {
       if ($transjo->flag_peralihan == 1) {
+        // if($trori->type_rekrut == 1 OR $trori->type_rekrut == 3){
         if ($tr->type_rekrut == 1 or $tr->type_rekrut == 3) {
           $ret = $tr->jumlah;
         }
@@ -313,11 +333,11 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function checkapplied($id) {
+  public function checkapplied($id)
+  {
     $ret = null;
     $tr = Transrincian::find()->where(['id' => $id])->one();
     $trori = Transrincianori::find()->where(['id' => $tr->idpktable])->one();
-    // var_dump($tr->type_rekrut);die();
     $tp = Transperner::find()->where(['id' => $tr->idpktable])->one();
     $transjo = Transjo::find()->where(['nojo' => $tr->nojo])->one();
     $candidate = Recruitmentcandidate::find()
@@ -331,6 +351,7 @@ class checkComponent extends Component
     }
     if ($tr->typejo == 1) {
       if ($transjo->flag_peralihan == 1) {
+        // if($trori->type_rekrut == 1 OR $trori->type_rekrut == 3){
         if ($tr->type_rekrut == 1 or $tr->type_rekrut == 3) {
           $ret = $tr->jumlah;
         }
@@ -351,9 +372,14 @@ class checkComponent extends Component
         }
       }
     }
+
+
+
+
     return $ret;
   }
-  public function checkJohired($id, $condition) {
+  public function checkJohired($id, $condition)
+  {
     $ret = null;
     $tr = Transrincian::find()->where(['id' => $id])->one();
     $trori = Transrincianori::find()->where(['id' => $tr->idpktable])->one();
@@ -368,7 +394,8 @@ class checkComponent extends Component
           ['statushiring' => 4],
           ['statushiring' => 7],
           ['statushiring' => 8]
-        ])->all();
+        ])
+        ->all();
     } else {
       $candidate = Hiring::find()
         ->where(['recruitreqid' => $id])
@@ -378,7 +405,8 @@ class checkComponent extends Component
           ['statushiring' => 7],
           ['statushiring' => 8],
           ['statushiring' => 1]
-        ])->all();
+        ])
+        ->all();
     }
 
     if ($candidate) {
@@ -389,6 +417,7 @@ class checkComponent extends Component
 
     if ($tr->typejo == 1) {
       if ($transjo->flag_peralihan == 1) {
+        // if($trori->type_rekrut == 1 OR $trori->type_rekrut == 3){
         if ($tr->type_rekrut == 1 or $tr->type_rekrut == 3) {
           $ret = $tr->jumlah;
         }
@@ -412,7 +441,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function checkstatusjo($id) {
+  public function checkstatusjo($id)
+  {
     $ret = null;
     $transrincian = Transrincian::find()->where(['id' => $id])->one();
     $candidate = Recruitmentcandidate::find()->where(['recruitreqid' => $id, 'status' => 4])->all();
@@ -425,7 +455,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function checkstatuscr($id) {
+  public function checkstatuscr($id)
+  {
     $ret = null;
     $crjo = Chagerequestjo::find()->where(['recruitreqid' => $id, 'status' => 1])->one();
 
@@ -437,7 +468,8 @@ class checkComponent extends Component
 
     return $ret;
   }
-  public function checkstatusjoHired($id, $newjumlah) {
+  public function checkstatusjoHired($id, $newjumlah)
+  {
     $ret = null;
     $hired = Hiring::find()->where(['recruitreqid' => $id, 'statushiring' => 4])->all();
 
@@ -447,6 +479,129 @@ class checkComponent extends Component
       $ret = 0;
     }
 
+    return $ret;
+  }
+
+  // check component for appplied, candidate, or hired in workorder
+  public function wo_candidate($id)
+  {
+    $ret = null;
+    $tr = Workorder::find()->where(['id' => $id])->one();
+    $candidate = WoRecruitmentCandidate::find()
+      ->where(['wo_id' => $id])
+      ->andWhere([
+        'or',
+        ['status' => 4],
+        ['status' => 26]
+      ])
+      ->all();
+
+    if ($candidate) {
+      $ret = count($candidate);
+    } else {
+      $ret = 0;
+    }
+    if ($tr) {
+        $ret = $tr->total_job;
+    }
+    return $ret;
+  }
+  // 
+  public function wo_applied($id)
+  {
+    $ret = null;
+    $workorder = Workorder::find()->where(['id' => $id])->one();
+    $candidate = WoRecruitmentCandidate::find()->where(['wo_id' => $id])->all();
+
+    if ($candidate) {
+      $ret = count($candidate);
+    } else {
+      $ret = 0;
+    }
+    // 
+    if ($workorder) {
+        $ret = $workorder->total_applied;
+    }
+    return $ret;
+  }
+  // 
+  public function wo_hired($id, $condition)
+  {
+    $ret = null;
+    $tr = Workorder::find()->where(['id' => $id])->one();
+
+    if ($condition == 1) {
+      $candidate = WoHiring::find()
+        ->where(['wo_id' => $id])
+        ->andWhere([
+          'or',
+          ['hiring_status' => 4],
+          ['hiring_status' => 7],
+          ['hiring_status' => 8]
+        ])
+        ->all();
+    } else {
+      $candidate = WoHiring::find()
+        ->where(['wo_id' => $id])
+        ->andWhere([
+          'or',
+          ['hiring_status' => 4],
+          ['hiring_status' => 7],
+          ['hiring_status' => 8],
+          ['hiring_status' => 1]
+        ])
+        ->all();
+    }
+
+    if ($candidate) {
+      $ret = count($candidate);
+    } else {
+      $ret = 0;
+    }
+
+    if ($tr) {
+      $ret = $tr->total_job;
+    }
+
+    return $ret;
+  }
+
+
+  // check user from blacklist or block
+  public function checkBlacklist($mobile, $email, $name)
+  {
+    // 
+    $ret = null;
+
+    $check_data = User::find()->where([
+      'or',
+      ['mobile' => $mobile], ['email' => $email], ['name' => $name]
+    ])->andWhere(['is_whitelist' => 'whitelist'])->one();
+
+    if ($check_data) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+
+    return $ret;
+  }
+
+  public function checkBlacklistLogin($username)
+  {
+    // 
+    $ret = null;
+
+    // $check_data = User::find()->where(['username' => $username])->one();
+    $check_data = User::find()->where(['username' => $username, 'is_whitelist' => 'whitelist'])->one();
+    // var_dump($check_data);die();
+
+    if ($check_data) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+    // var_dump($ret);die();
     return $ret;
   }
 }

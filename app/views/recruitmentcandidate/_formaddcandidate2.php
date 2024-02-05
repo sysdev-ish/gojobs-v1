@@ -103,9 +103,12 @@ use yii\widgets\Pjax;
 
         [
           'class' => 'yii\grid\ActionColumn',
-          'contentOptions' => ['style' => 'min-width: 100px;'],
-          'template' => '<div id = "actionpjax" class="btn-group pull-right">{download}{addcandidate}</div>',
+          'contentOptions' => ['style' => 'min-width: 140px;'],
+          'template' => '<div id = "actionpjax" class="btn-group pull-right">{view}{download}{addcandidate}</div>',
           'buttons' => [
+            'view' => function ($url, $model) {
+              return Html::a('<i class="fa fa-eye" style="font-size:12pt;"></i>', ['userprofile/views', 'userid' => $model->userid], ['target' =>'_blank', 'data-pjax' => "0", 'class' => 'btn btn-sm btn-info', 'data-toggle' => 'tooltip', 'title' => 'Detail View User']);
+            },
             'download' => function ($url, $model) {
               if ($model->userid) {
                 $disabled = false;
@@ -113,7 +116,7 @@ use yii\widgets\Pjax;
                 $disabled = true;
               }
               return
-                Html::a('<i class=" fa fa-print margin-r-5"></i>', ['userprofile/printcv', 'userid' => $model->userid], ['target' => '_blank', 'data-pjax' => "0", 'class' => 'btn btn-sm btn-primary']);
+                Html::a('<i class=" fa fa-print margin-r-5"></i>', ['userprofile/printcv', 'userid' => $model->userid], ['target' => '_blank', 'data-pjax' => "0", 'class' =>'btn btn-sm btn-primary', 'data-toggle' => 'tooltip', 'title' => 'Download CV User']);
             },
 
             'addcandidate' => function ($url, $model) use ($transrincianid) {

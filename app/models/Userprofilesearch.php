@@ -12,19 +12,20 @@ use app\models\Userprofile;
  */
 class Userprofilesearch extends Userprofile
 {
-  public $cityname;
-  public $industry;
-  public $lastposition;
-  public $jobfamily;
+    public $cityname;
+    public $industry;
+    public $lastposition;
+    public $jobfamily;
+    public $start_birthdate;
+    public $end_birthdate;
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'userid'], 'integer'],
-            [['createtime', 'updatetime', 'fullname', 'nickname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'phone', 'domicilestatus', 'domicilestatusdescription', 'addressktp', 'nationality', 'religion', 'maritalstatus', 'weddingdate', 'bloodtype', 'identitynumber', 'jamsosteknumber', 'npwpnumber', 'drivinglicencecarnumber', 'drivinglicencemotorcyclenumber','cityname'
-            ,'jobfamily','lastposition','industry'], 'safe'],
+            [['id','userid', 'jobfamily'], 'integer'],
+            [['createtime', 'updatetime', 'fullname', 'nickname', 'gender', 'birthdate', 'birthplace', 'address', 'postalcode', 'phone', 'domicilestatus', 'domicilestatusdescription', 'addressktp', 'nationality', 'religion', 'maritalstatus', 'weddingdate', 'bloodtype', 'identitynumber', 'jamsosteknumber', 'npwpnumber', 'drivinglicencecarnumber', 'drivinglicencemotorcyclenumber', 'cityname', 'lastposition', 'industry', 'start_birthdate', 'end_birthdate'], 'safe'],
         ];
     }
 
@@ -47,13 +48,9 @@ class Userprofilesearch extends Userprofile
     public function search($params)
     {
         $query = Userprofile::find();
-        $query->joinWith("city");
-        $query->joinWith("userworkexperience");
-        $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.subjobfamily = userworkexperience.lastposition');
-        // add conditions that should always apply here
-
-        //addbykaha
-        $subQuery = 'SELECT lastposition FROM userworkexperience LEFT JOIN mastersubjobfamily ON mastersubjobfamily.subjobfamily = userworkexperience.lastposition';
+        // $query->joinWith("city");
+        // $query->joinWith("userworkexperience");
+        // $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.subjobfamily = userworkexperience.lastposition');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -63,39 +60,35 @@ class Userprofilesearch extends Userprofile
         $this->load($params);
 
         if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
             return $dataProvider;
         }
 
-        // var_dump($subQuery);die;
-        //adbykaha
-        // if($this->lastposition) {
-        //     $subQuery .= ' WHERE mastersubjobfamily.id';
-        //     $subQuery = Yii::$app->db->createCommand($subQuery)->bindValue(':id', $this->lastposition);
-        //     if($subQuery) {
-        //         $arrValue = [];
-        //         foreach ($subQuery as $sub) {
-        //             $arrValue = $sub['lastposition'];
-        //         }
-        //         if(count($arrValue) > 0) $query->andWhere('masterjobfamily.id IN (' . implode(',', $array). ')', []);
-        //     }
-        //     else {
-        //         $query->andWhere('masterjobfamily.id IN (null)');
-        //     }
-        // }
+        // add conditions that should always apply here
+        // Add by kaha 2023-10-13
+        if ($this->jobfamily or $this->industry or $this->lastposition or $this->cityname) {
+            $query->leftJoin('userworkexperience', 'userworkexperience.userid = userprofile.userid');
+            $query->leftJoin('mastersubjobfamily', 'mastersubjobfamily.subjobfamily = userworkexperience.lastposition');
+            $query->leftJoin('mastercity', 'mastercity.kotaid = userprofile.cityid');
+        }
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            'userprofile.id' => $this->id,
             'userid' => $this->userid,
             'createtime' => $this->createtime,
             'updatetime' => $this->updatetime,
             'birthdate' => $this->birthdate,
             'weddingdate' => $this->weddingdate,
             'gender' => $this->gender,
+            'mastersubjobfamily.jobfamily_id' => $this->jobfamily,
+            // 'mastercity.kotaid' => $this->cityname,
         ]);
 
         $query->andFilterWhere(['like', 'fullname', $this->fullname])
             ->andFilterWhere(['like', 'nickname', $this->nickname])
+            // ->andFilterWhere(['between', 'birthdate', $this->start_birthdate, $this->end_birthdate])
             ->andFilterWhere(['like', 'birthplace', $this->birthplace])
             ->andFilterWhere(['like', 'address', $this->address])
             ->andFilterWhere(['like', 'postalcode', $this->postalcode])
@@ -112,12 +105,11 @@ class Userprofilesearch extends Userprofile
             ->andFilterWhere(['like', 'npwpnumber', $this->npwpnumber])
             ->andFilterWhere(['like', 'drivinglicencecarnumber', $this->drivinglicencecarnumber])
             ->andFilterWhere(['like', 'drivinglicencemotorcyclenumber', $this->drivinglicencemotorcyclenumber])
-            ->andFilterWhere(['like', 'kota', $this->cityname])
-            ->andFilterWhere(['like', 'userworkexperience.industry', $this->industry])
-            // ->andFilterWhere(['like', 'userworkexperience.lastposition', $this->lastposition])
-            ->andFilterWhere(['like', 'mastersubjobfamily.id', $this->lastposition])
-            ->andFilterWhere(['like', 'mastersubjobfamily.jobfamily_id', $this->jobfamily]);
+            ->andFilterWhere(['like', 'mastercity.kota', $this->cityname])
 
+            ->andFilterWhere(['like', 'userworkexperience.industry', $this->industry])
+            ->andFilterWhere(['like', 'userworkexperience.lastposition', $this->lastposition]);
+            // ->andFilterWhere(['like', 'mastersubjobfamily.jobfamily_id', $this->jobfamily]);
         return $dataProvider;
     }
 }

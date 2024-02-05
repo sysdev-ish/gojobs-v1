@@ -33,10 +33,9 @@ Modal::begin([
   'id' => 'signup-modal',
   'size' => 'modal-md'
 ]);
-
 echo "<div id='signupview'></div>";
-
 Modal::end();
+
 ?>
 
 <style type="text/css">

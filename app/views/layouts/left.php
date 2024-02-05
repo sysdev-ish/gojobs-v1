@@ -107,6 +107,22 @@
               ],
             ],
           ],
+          // [
+          //   'label' => 'Recruitment Request',
+          //   'icon' => 'feed (alias)',
+          //   'url' => '#',
+          //   'visible' => (Yii::$app->utils->permission($role, 'm1')),
+          //   'items' => [
+          //     [
+          //       'label' => 'List', 'icon' => 'circle-o', 'url' => ['/transrincian/index'], 'visible' => (Yii::$app->utils->permission($role, 'm1')),
+          //       'active' => Yii::$app->controller->id == 'transrincian',
+          //     ],
+          //     [
+          //       'label' => 'Manages', 'icon' => 'circle-o', 'url' => ['/transrincian/manage'], 'visible' => (Yii::$app->utils->permission($role, 'm1')),
+          //       'active' => Yii::$app->controller->id == 'transrincian',
+          //     ],
+          //   ]
+          // ],
           [
             'label' => 'Recruitment Request', 'icon' => 'feed (alias)', 'url' => ['/transrincian/index'], 'visible' => (Yii::$app->utils->permission($role, 'm1')),
             'active' => Yii::$app->controller->id == 'transrincian'
@@ -176,6 +192,10 @@
                 'active' => Yii::$app->controller->id == 'masterareaish'
               ],
               [
+                'label' => 'CMS', 'icon' => 'circle-o', 'url' => ['/cms/index'], 'visible' => (Yii::$app->utils->permission($role, 'm132')),
+                'active' => Yii::$app->controller->id == 'cms'
+              ],
+              [
                 'label' => 'Group User Role', 'icon' => 'circle-o', 'url' => ['/grouprolepermission/index'], 'visible' => (Yii::$app->utils->permission($role, 'm19')),
                 'active' => Yii::$app->controller->id == 'grouprolepermission'
               ],
@@ -222,6 +242,40 @@
               [
                 'label' => 'User Role', 'icon' => 'circle-o', 'url' => ['/userrole/index'], 'visible' => (Yii::$app->utils->permission($role, 'm19')),
                 'active' => Yii::$app->controller->id == 'userrole'
+              ],
+            ],
+          ],
+
+          // 
+          [
+            'label' => 'Recruitment Non SAP',
+            'icon' => 'spinner',
+            'url' => '#',
+            'visible' => (Yii::$app->utils->permission($role, 'm102') or Yii::$app->utils->permission($role, 'm107') or Yii::$app->utils->permission($role, 'm112') or Yii::$app->utils->permission($role, 'm117') or Yii::$app->utils->permission($role, 'm122') or Yii::$app->utils->permission($role, 'm127')),
+            'items' => [
+              [
+                'label' => 'Manage Jobs', 'icon' => 'circle-o', 'url' => ['/workorder/index'], 'visible' => (Yii::$app->utils->permission($role, 'm102')),
+                'active' => Yii::$app->controller->id == 'workorder'
+              ],
+              [
+                'label' => 'Candidate', 'icon' => 'circle-o', 'url' => ['/wocandidate/index'], 'visible' => (Yii::$app->utils->permission($role, 'm107')),
+                'active' => Yii::$app->controller->id == 'wocandidate'
+              ],
+              // [
+              //   'label' => 'Psikotest', 'icon' => 'circle-o', 'url' => ['/wopsikotest/index'], 'visible' => (Yii::$app->utils->permission($role, 'm112')),
+              //   'active' => Yii::$app->controller->id == 'wopsikotest'
+              // ],
+              // [
+              //   'label' => 'Interview', 'icon' => 'circle-o', 'url' => ['/wointerview/index'], 'visible' => (Yii::$app->utils->permission($role, 'm117')),
+              //   'active' => Yii::$app->controller->id == 'wointerview'
+              // ],
+              // [
+              //   'label' => 'User Interview', 'icon' => 'circle-o', 'url' => ['/wouserinterview/index'], 'visible' => (Yii::$app->utils->permission($role, 'm122')),
+              //   'active' => Yii::$app->controller->id == 'wouserinterview'
+              // ],
+              [
+                'label' => 'Hiring', 'icon' => 'circle-o', 'url' => ['/wohiring/index'], 'visible' => (Yii::$app->utils->permission($role, 'm127')),
+                'active' => Yii::$app->controller->id == 'wohiring'
               ],
             ],
           ],

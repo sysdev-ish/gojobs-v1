@@ -53,8 +53,8 @@ class Userworkexperience extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'userid' => 'Userid',
-            'createtime' => 'Createtime',
-            'updatetime' => 'Updatetime',
+            'createtime' => 'Create Time',
+            'updatetime' => 'Update Time',
             'companyname' => 'Company name',
             'companyaddress' => 'Company address',
             'startdate' => 'Start date',

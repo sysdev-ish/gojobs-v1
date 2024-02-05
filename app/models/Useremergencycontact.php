@@ -52,9 +52,9 @@ class Useremergencycontact extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'userid' => 'Userid',
-            'createtime' => 'Createtime',
-            'updatetime' => 'Updatetime',
+            'userid' => 'User ID',
+            'createtime' => 'Create Time',
+            'updatetime' => 'Update Time',
             'fullname' => 'Fullname',
             'address' => 'Address',
             'phone' => 'Phone',

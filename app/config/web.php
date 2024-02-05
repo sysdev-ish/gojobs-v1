@@ -3,6 +3,7 @@
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 $dbjo = require __DIR__ . '/dbjo.php';
+
 use kartik\mpdf\Pdf;
 use app\models\Userdata;
 
@@ -10,19 +11,18 @@ $config = [
     'id' => 'gojobs',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'name'=> 'GO JOBS',
+    'name' => 'GO JOBS',
 
-    'timeZone' => 'Asia/Jakarta',
     'language' => 'id',
 
-    'on beforeRequest' => function($event) {
-        Yii::$app->language = Yii::$app->session->get('language', 'id');	
-        if (!Yii::$app->user->isGuest){
+    'on beforeRequest' => function ($event) {
+        Yii::$app->language = Yii::$app->session->get('language', 'id');
+        if (!Yii::$app->user->isGuest) {
             $session = Yii::$app->session;
-            if ($session->isActive){
-                $checktoken = Userdata::find()->where(['id'=>Yii::$app->user->identity->id, 'access_token'=>null])->andWhere('role <> 2')->one();
-                if($checktoken){
-                $session->destroy();
+            if ($session->isActive) {
+                $checktoken = Userdata::find()->where(['id' => Yii::$app->user->identity->id, 'access_token' => null])->andWhere('role <> 2')->one();
+                if ($checktoken) {
+                    $session->destroy();
                 }
             }
         }
@@ -31,7 +31,6 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
-        // '@upload' => Yii::getAlias('@app') . '/upload'
     ],
     'components' => [
         'user' => [
@@ -53,13 +52,14 @@ $config = [
             'destination' => Pdf::DEST_BROWSER,
             'methods' => [
                 // 'SetHeader'=>['Krajee Report Header'],
-                'SetFooter'=>['{PAGENO}'],
+                'SetFooter' => ['{PAGENO}'],
             ]
 
             // refer settings section for all configuration options
         ],
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            // insert a secret key in the following (if it is empty) - this is required by cookie validation
+
             'cookieValidationKey' => '5dc9u6xggSAU1t09t_mrJ5LX-UPgY76r',
             'enableCsrfValidation' => false,
         ],
@@ -99,15 +99,6 @@ $config = [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
-                [
-                    'class' => 'yii\log\EmailTarget',
-                    'mailer' => 'mailer',
-                    'levels' => ['error', 'warning'],
-                    'message' => [
-                        'to' => ['hisyamkstd@gmail.com'],
-                        'subject' => 'Log message',
-                    ],
-                ],
             ],
         ],
         'db' => $db,
@@ -116,10 +107,9 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-            '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-            '<controller:\w+>/<action:\w+>/<id:[0-9]+>'=>'<controller>/<action>',
-            '<controller:\w+>/<action:\w+>/<slug:[a-zA-Z0-9_\-]+>'=>'<controller>/<action>',
-            'class' => 'app\components\SearchUrlRule',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>/<id:[0-9]+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>/<slug:[a-zA-Z0-9_\-]+>' => '<controller>/<action>',
             ],
         ],
 
@@ -142,31 +132,36 @@ $config = [
     'params' => $params,
     'modules' => [
         'gridview' => [
-        'class' => 'kartik\grid\Module',]
+            'class' => 'kartik\grid\Module',
+        ],
+        // Add the Summernote module configuration
+        'summernote' =>  [
+            'class' => 'kartik\summernote\Module',
+        ],
         // enter optional module parameters below - only if you need to
         // use your own export download action or custom translation
         // message source
         // 'downloadAction' => 'gridview/export/download',
         // 'i18n' => []
-        ],
-    ];
+    ],
+];
 
-    if (YII_ENV_DEV) {
+if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        // 'allowedIPs' => ['127.0.0.1', '::1', '192.168.88.33'],
-        'allowedIPs' => ['*'],
+        'allowedIPs' => ['127.0.0.1', '::1', '192.168.88.33'],
+        // 'allowedIPs' => ['*'],
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        // 'allowedIPs' => ['127.0.0.1', '::1', '192.168.88.33'],
-        'allowedIPs' => ['*'],
+        'allowedIPs' => ['127.0.0.1', '::1', '192.168.88.33'],
+        // 'allowedIPs' => ['*'],
     ];
 }
 

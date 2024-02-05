@@ -21,7 +21,7 @@ use Yii;
  */
 class Userinterview extends \yii\db\ActiveRecord
 {
-  public $fullname;
+    public $fullname;
     /**
      * {@inheritdoc}
      */
@@ -37,16 +37,16 @@ class Userinterview extends \yii\db\ActiveRecord
     {
         return [
             [['userid', 'createtime', 'updatetime'], 'required'],
-            [['status','desc'], 'required', 'on'=>'uintproc'],
-            [['pic'], 'required', 'on'=>'updateuint'],
-            [['userid', 'status', 'recruitmentcandidateid', 'officeid', 'roomid', 'pic','officepic'], 'integer'],
+            [['status', 'desc'], 'required', 'on' => 'uintproc'],
+            [['pic'], 'required', 'on' => 'updateuint'],
+            [['userid', 'status', 'recruitmentcandidateid', 'officeid', 'roomid', 'pic', 'officepic'], 'integer'],
             [['createtime', 'updatetime', 'scheduledate', 'date'], 'safe'],
-            [['desc','addinfo'], 'string', 'max' => 1045],
+            [['desc', 'addinfo'], 'string', 'max' => 1045],
             [['penandatangan'], 'string', 'max' => 145],
             [['documentinterview'], 'file', 'skipOnEmpty' => 'true', 'maxSize' => 3072000, 'tooBig' => 'Limit is 3Mb', 'extensions' => 'png, jpg, jpeg, pdf'],
             ['documentinterview', 'required', 'when' => function ($model) {
-                  return $model->status;
-              }, 'whenClient' => new \yii\web\JsExpression("
+                return $model->status;
+            }, 'whenClient' => new \yii\web\JsExpression("
                 function (attribute, value) {
                     return ($('#userinterview-status').val() == 2);
                 }
@@ -60,23 +60,23 @@ class Userinterview extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-          'id' => 'ID',
-          'userid' => 'Userid',
-          'createtime' => 'Createtime',
-          'updatetime' => 'Updatetime',
-          'scheduledate' => 'Schedule for User Interview',
-          'date' => 'Date of User Interview',
-          'status' => 'Status',
-          'recruitmentcandidateid' => 'Recruitmentcandidateid',
-          'officeid' => 'Office',
-          'officepic' => 'Office PIC',
-          'fullname' => 'Full Name',
-          'pic' => 'PIC User Interview',
-          'roomid' => 'Room',
-          'desc' => 'Dekripsi',
-          'addinfo' => 'Keterangan / Tambahan informasi hasil interview ',
-          'penandatangan' => 'Nama Tandatangan Pewawancara',
-          'documentinterview' => 'Upload Form Interview ',
+            'id' => 'ID',
+            'userid' => 'User ID',
+            'createtime' => 'Create Time',
+            'updatetime' => 'Update Time',
+            'scheduledate' => 'Schedule for User Interview',
+            'date' => 'Date of User Interview',
+            'status' => 'Status',
+            'recruitmentcandidateid' => 'Recruitmentcandidateid',
+            'officeid' => 'Office',
+            'officepic' => 'Office PIC',
+            'fullname' => 'Full Name',
+            'pic' => 'PIC User Interview',
+            'roomid' => 'Room',
+            'desc' => 'Dekripsi',
+            'addinfo' => 'Keterangan / Tambahan informasi hasil interview ',
+            'penandatangan' => 'Nama Tandatangan Pewawancara',
+            'documentinterview' => 'Upload Form Interview ',
         ];
     }
     public function getUserprofile()

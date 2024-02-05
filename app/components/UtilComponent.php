@@ -1,5 +1,4 @@
 <?php
-
 namespace app\components;
 
 use Yii;
@@ -16,6 +15,7 @@ use app\models\Transrincian;
 use app\models\Mailcounter;
 use app\models\Logactivity;
 use app\models\Maillog;
+use app\models\Workorder;
 use app\modules\dashboard\models\Whatsapp;
 use app\modules\dashboard\models\Sms;
 
@@ -25,20 +25,21 @@ use DateInterval;
 
 class UtilComponent extends Component
 {
-  public function logger($type = 'info', $message = null) {
+  public function logger($type = 'info', $message = null)
+  {
     $ret = null;
 
-    if ($message) {
+    if($message){
       switch ($type) {
         case 'error':
-          $log_msg = date('Y-m-d H:i:s') . ' ERROR ' . $message;
-          break;
+        $log_msg = date('Y-m-d H:i:s') . ' ERROR ' . $message;
+        break;
         case 'warning':
-          $log_msg = date('Y-m-d H:i:s') . ' WARNING ' . $message;
-          break;
+        $log_msg = date('Y-m-d H:i:s') . ' WARNING ' . $message;
+        break;
         default:
-          $log_msg = date('Y-m-d H:i:s') . ' INFO ' . $message;
-          break;
+        $log_msg = date('Y-m-d H:i:s') . ' INFO ' . $message;
+        break;
       }
 
       $log_filename = 'haier-app-' . date('Y-m-d') . '.log';
@@ -48,95 +49,89 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  public function todate($date) {
-    $time = strtotime($date);
+  public function todate($date)
+  {
+    $time=strtotime($date);
     return $time;
   }
 
-  public function getlayout() {
-    if (Yii::$app->user->isGuest) {
+  public function getlayout()
+  {
+    if(Yii::$app->user->isGuest)
+    {
       $role = 2;
-    } else {
+    }else
+    {
       // $userid = Yii::$app->user->identity->id;
       $role = Yii::$app->user->identity->role;
     }
-    if ($role == 2) {
+    if($role==2)
+    {
       $layout = 'main-applicant';
-    } else {
+    }else
+    {
       $layout = 'main';
     }
 
     return $layout;
   }
 
-  public function loginlayout() {
-    if (Yii::$app->user->isGuest) {
-      $role = 2;
-    } else {
-      $role = Yii::$app->user->identity->role;
-    }
-
-    if ($role == 2) {
-      $layout = 'main-login';
-    } else {
-      $layout = 'main';
-    }
-    return $layout;
-  }
-
-  public function getprofileuser($userid) {
+  public function getprofileuser($userid)
+  {
     $ret = null;
-    $userprofile = Userprofile::find()->where(['userid' => $userid])->one();
-    if ($userprofile) {
+    $userprofile = Userprofile::find()->where(['userid'=>$userid])->one();
+    if($userprofile){
       $ret = $userprofile;
-    } else {
+    }else{
       $ret = null;
     }
 
     return $ret;
   }
 
-  public function permission($roleid, $modulecode) {
+  public function permission($roleid,$modulecode)
+  {
     $ret = false;
-    if (!Yii::$app->user->isGuest) {
-      if ($modulecode == "B01" && $roleid == 2) {
-        $ret = false;
-      } else {
+    if(!Yii::$app->user->isGuest){
+      if($modulecode == "B01" && $roleid == 2){
+          $ret = false;
+      }else {
         $getgrouprole = Yii::$app->user->identity->grouprolepermissionid;
         $rolepermission = null;
-        if ($getgrouprole) {
+        if($getgrouprole){
           $getroleid = $this->getroleid($getgrouprole);
 
           // var_dump($getgrouprole);die;
-          if ($getroleid) {
+          if($getroleid){
             $getroleid = implode(',', $getroleid);
-            $rolepermission = Rolepermission::find()->where('roleid IN (' . $getroleid . ') and modulecode = "' . $modulecode . '"')->one();
+            $rolepermission = Rolepermission::find()->where('roleid IN (' . $getroleid . ') and modulecode = "'.$modulecode.'"')->one();
           }
-        } else {
-          $rolepermission = Rolepermission::find()->where(['roleid' => $roleid, 'modulecode' => $modulecode])->one();
+        }else{
+          $rolepermission = Rolepermission::find()->where(['roleid'=>$roleid,'modulecode'=>$modulecode])->one();
         }
-        if ($rolepermission) {
+        if($rolepermission){
           $ret = true;
-        } else {
-          if ($modulecode == "B01") {
+        }else{
+          if($modulecode == "B01"){
             $ret = true;
-          } else {
+          }else {
             $ret = false;
           }
         }
       }
-    }
+      }
     return $ret;
   }
 
-  protected function getroleid($grouprolepermissionid) {
+  protected function getroleid($grouprolepermissionid)
+  {
     $ret = null;
-    if ($grouprolepermissionid) {
-      $getrole = Mappinggrouprolepermission::find()->where(['grouprolepermissionid' => $grouprolepermissionid, 'active' => 1])->all();
+    if($grouprolepermissionid){
+      $getrole = Mappinggrouprolepermission::find()->where(['grouprolepermissionid'=>$grouprolepermissionid,'active'=>1])->all();
       $roleids = null;
-      if ($getrole) {
+      if($getrole){
         $roleids = array();
-        foreach ($getrole as $tr) {
+        foreach($getrole as $tr){
           $roleids[] = $tr->roleid;
         }
       }
@@ -145,18 +140,19 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  public function getusername($username) {
+  public function getusername($username)
+  {
     $ret = null;
-    if ($username) {
+    if($username){
       // $ret = null;
       // var_dump($username);die;
-      $getname = Userlogin::find()->where(['username' => $username])->one();
-      if ($getname) {
+      $getname = Userlogin::find()->where(['username'=>$username])->one();
+      if($getname){
         $ret = $getname->name;
-      } else {
+      }else{
         $ret = null;
-        $getnamebyothersid = Userlogin::find()->where(['othersid' => $username])->one();
-        if ($getnamebyothersid) {
+        $getnamebyothersid = Userlogin::find()->where(['othersid'=>$username])->one();
+        if($getnamebyothersid){
           $ret = $getnamebyothersid->name;
         }
       }
@@ -185,7 +181,8 @@ class UtilComponent extends Component
   // }
 
 
-  public function sendmailgojobs($to, $subject, $body, $identifier) {
+  public function sendmailgojobs($to, $subject, $body, $identifier)
+  {
     $curl = new curl\Curl();
     $verification = $curl->setPostParams([
       'from' => 'noreply@gojobs.id',
@@ -194,10 +191,11 @@ class UtilComponent extends Component
       'body' => $body,
       'token' => 'ish@cipete',
       'cc' => '',
-    ])->post('http://192.168.88.27/mailgateway/send');
+    ])->post('https://app.sintesys.id/core/openapi/sendmail');
+    // ])->post('http://192.168.88.27/mailgateway/send');
     $response = $verification[8];
-    var_dump($response);
-    die;
+    // var_dump($verification);
+    // die;
     $now = date('Y-m-d');
     $updatetoday = Mailcounter::find()->where(['date' => $now, 'klasifikasi' => $identifier])->one();
     if ($updatetoday) {
@@ -214,17 +212,19 @@ class UtilComponent extends Component
     return $response;
   }
 
-  public function sendmail($to, $subject, $body, $identifier) {
+  public function sendmail($to, $subject, $body, $identifier)
+  {
     $curl = new curl\Curl();
     $verification = $curl->setPostParams([
-      // 'from' => 'gojobs@ish.co.id',
+      'from' => 'noreply@gojobs.id',
       'to[]' => $to,
       'subject' => $subject,
       'body' => $body,
-      'token' => 'ish@gojobs',
-    ])->post('http://192.168.88.27/mailgatewaygojobs/send');
+      'token' => 'ish@cipete',
+    ])->post('https://app.sintesys.id/core/openapi/sendmail');
+    // ])->post('http://192.168.88.27/mailgatewaygojobs/send');
     $response = $verification[8];
-    // var_dump($response);die;
+    // var_dump($verification);die;
     $now = date('Y-m-d');
     $updatetoday = Mailcounter::find()->where(['date' => $now, 'klasifikasi' => $identifier])->one();
     if ($updatetoday) {
@@ -241,26 +241,28 @@ class UtilComponent extends Component
     return $response;
   }
 
-  public function sendmailexternal($to, $subject, $body, $identifier, $userid, $fullname) {
+  public function sendmailexternal($to,$subject,$body,$identifier,$userid,$fullname)
+  {
     $curl = new curl\Curl();
     $verification = $curl->setPostParams([
-      // 'from' => 'gojobs@ish.co.id',
+      'from' => 'noreply@gojobs.id',
       'to[]' => $to,
       'subject' => $subject,
       'body' => $body,
-      'token' => 'ish@gojobs',
-    ])->post('http://192.168.88.27/mailgatewaygojobs/send');
+      'token' => 'ish@cipete',
+    ])->post('https://app.sintesys.id/core/openapi/sendmail');
+    // ])->post('http://192.168.88.27/mailgatewaygojobs/send');
     $response = $verification[8];
     // $now = date('Y-m-d');
     $now = date('Y-m-d');
-    $updatetoday = Maillog::find()->where(['date' => $now, 'klasifikasi' => $identifier, 'userid' => $userid, 'fullname' => $fullname])->one();
+    $updatetoday = Maillog::find()->where(['date'=>$now, 'klasifikasi'=>$identifier, 'userid'=>$userid, 'fullname'=>$fullname])->one();
     // $updatetoday = Maillog::find()->where(['date'=>$now, 'klasifikasi'=>$identifier])->one();
     // var_dump($response);die;
-    if ($updatetoday) {
+    if($updatetoday){
       $addcounter = $updatetoday->count + 1;
       $updatetoday->count = $addcounter;
       $updatetoday->save(false);
-    } else {
+    }else{
       $newtoday = new Maillog();
       $newtoday->date = date('Y-m-d');
       $newtoday->count = 1;
@@ -272,25 +274,28 @@ class UtilComponent extends Component
     return $response;
   }
 
-  public function sendmailinternal($to, $subject, $body, $identifier) {
+  public function sendmailinternal($to,$subject,$body,$identifier)
+  {
     $curl = new curl\Curl();
     $verification = $curl->setPostParams([
-      // 'from' => 'gojobs@ish.co.id',
+      // 'from' => 'noreply@gojobs.id',
       'to' => $to,
       'subject' => $subject,
       'body' => $body,
       'token' => 'ish@!notif',
       'appsenderid' => 1,
-    ])->post('http://192.168.88.70/notification/web/api/sendmail');
+    ])->post('https://app.sintesys.id/core/openapi/sendmail');
+    // ])->post('http://192.168.88.70/notification/web/api/sendmail');
     $response = $verification;
     $now = date('Y-m-d');
-    $updatetoday = Mailcounter::find()->where(['date' => $now, 'klasifikasi' => $identifier])->one();
+    $updatetoday = Mailcounter::find()->where(['date'=>$now, 'klasifikasi'=>$identifier])->one();
     // var_dump($response);die;
-    if ($updatetoday) {
+    if($updatetoday)
+    {
       $addcounter = $updatetoday->count + 1;
       $updatetoday->count = $addcounter;
       $updatetoday->save(false);
-    } else {
+    }else{
       $newtoday = new Mailcounter();
       $newtoday->date = date('Y-m-d');
       $newtoday->count = 1;
@@ -298,10 +303,11 @@ class UtilComponent extends Component
       $newtoday->save(false);
     }
     return $response;
-  }
+    }
 
-  //start connect hris
-  public function getaccesstoken($code) {
+    //start connect hris
+    public function getaccesstoken($code)
+    {
     $curl = new curl\Curl();
     $getaccesstoken = $curl->setPostParams([
       'grant_type' => 'authorization_code',
@@ -315,7 +321,8 @@ class UtilComponent extends Component
     return $response;
   }
 
-  public function getuserdata($token) {
+  public function getuserdata($token)
+  {
     $curl = new curl\Curl();
     $getuserdata = $curl->setPostParams([
       'access_token' => $token,
@@ -325,7 +332,8 @@ class UtilComponent extends Component
     return $response;
   }
 
-  public function logout($token) {
+  public function logout($token)
+  {
     $curl = new curl\Curl();
     $logout = $curl->setPostParams([
       'access_token' => $token,
@@ -336,16 +344,13 @@ class UtilComponent extends Component
   }
   //end connect hris
 
-  public function terbilang($bilangan) {
-    $angka = array(
-      '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
-      '0', '0', '0', '0', '0', '0'
-    );
-    $kata = array(
-      '', 'satu', 'dua', 'tiga', 'empat', 'lima',
-      'enam', 'tujuh', 'delapan', 'sembilan'
-    );
-    $tingkat = array('', 'ribu', 'juta', 'milyar', 'triliun');
+  public function terbilang($bilangan)
+  {
+    $angka = array('0','0','0','0','0','0','0','0','0','0',
+    '0','0','0','0','0','0');
+    $kata = array('','satu','dua','tiga','empat','lima',
+    'enam','tujuh','delapan','sembilan');
+    $tingkat = array('','ribu','juta','milyar','triliun');
 
     $panjang_bilangan = strlen($bilangan);
 
@@ -358,7 +363,7 @@ class UtilComponent extends Component
     /* mengambil angka-angka yang ada dalam bilangan,
     dimasukkan ke dalam array */
     for ($i = 1; $i <= $panjang_bilangan; $i++) {
-      $angka[$i] = substr($bilangan, - ($i), 1);
+      $angka[$i] = substr($bilangan,-($i),1);
     }
 
     $i = 1;
@@ -374,17 +379,17 @@ class UtilComponent extends Component
       $kata3 = "";
 
       /* untuk ratusan */
-      if ($angka[$i + 2] != "0") {
-        if ($angka[$i + 2] == "1") {
+      if ($angka[$i+2] != "0") {
+        if ($angka[$i+2] == "1") {
           $kata1 = "seratus";
         } else {
-          $kata1 = $kata[$angka[$i + 2]] . " ratus";
+          $kata1 = $kata[$angka[$i+2]] . " ratus";
         }
       }
 
       /* untuk puluhan atau belasan */
-      if ($angka[$i + 1] != "0") {
-        if ($angka[$i + 1] == "1") {
+      if ($angka[$i+1] != "0") {
+        if ($angka[$i+1] == "1") {
           if ($angka[$i] == "0") {
             $kata2 = "sepuluh";
           } elseif ($angka[$i] == "1") {
@@ -393,22 +398,21 @@ class UtilComponent extends Component
             $kata2 = $kata[$angka[$i]] . " belas";
           }
         } else {
-          $kata2 = $kata[$angka[$i + 1]] . " puluh";
+          $kata2 = $kata[$angka[$i+1]] . " puluh";
         }
       }
 
       /* untuk satuan */
       if ($angka[$i] != "0") {
-        if ($angka[$i + 1] != "1") {
+        if ($angka[$i+1] != "1") {
           $kata3 = $kata[$angka[$i]];
         }
       }
 
       /* pengujian angka apakah tidak nol semua,
       lalu ditambahkan tingkat */
-      if (($angka[$i] != "0") or ($angka[$i + 1] != "0") or
-        ($angka[$i + 2] != "0")
-      ) {
+      if (($angka[$i] != "0") OR ($angka[$i+1] != "0") OR
+      ($angka[$i+2] != "0")) {
         $subkalimat = "$kata1 $kata2 $kata3 " . $tingkat[$j] . " ";
       }
 
@@ -417,53 +421,54 @@ class UtilComponent extends Component
       $kalimat = $subkalimat . $kalimat;
       $i = $i + 3;
       $j = $j + 1;
+
     }
 
     /* mengganti satu ribu jadi seribu jika diperlukan */
-    if (($angka[5] == "0") and ($angka[6] == "0")) {
-      $kalimat = str_replace("satu ribu", "seribu", $kalimat);
+    if (($angka[5] == "0") AND ($angka[6] == "0")) {
+      $kalimat = str_replace("satu ribu","seribu",$kalimat);
     }
     return trim($kalimat);
-  }
+    }
 
-  public function indodate($date) {
+    public function indodate($date){
     $days = date("D", strtotime($date));
     $dates = date("Y-m-d", strtotime($date));
-    switch ($days) {
+    switch($days){
       case 'Sun':
-        $day = "Minggu";
-        break;
+      $day = "Minggu";
+      break;
 
       case 'Mon':
-        $day = "Senin";
-        break;
+      $day = "Senin";
+      break;
 
       case 'Tue':
-        $day = "Selasa";
-        break;
+      $day = "Selasa";
+      break;
 
       case 'Wed':
-        $day = "Rabu";
-        break;
+      $day = "Rabu";
+      break;
 
       case 'Thu':
-        $day = "Kamis";
-        break;
+      $day = "Kamis";
+      break;
 
       case 'Fri':
-        $day = "Jumat";
-        break;
+      $day = "Jumat";
+      break;
 
       case 'Sat':
-        $day = "Sabtu";
-        break;
+      $day = "Sabtu";
+      break;
 
       default:
-        $day = "Tidak di ketahui";
-        break;
+      $day = "Tidak di ketahui";
+      break;
     };
 
-    $bulan = array(
+    $bulan = array (
       1 =>   'Januari',
       2 => 'Februari',
       3 => 'Maret',
@@ -483,48 +488,56 @@ class UtilComponent extends Component
     // variabel pecahkan 1 = bulan
     // variabel pecahkan 2 = tahun
 
-    return $day . ', ' . $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
+    return $day.', '.$pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
   }
 
-  public function getpersonalarea($persaid) {
+  public function getpersonalarea($persaid)
+  {
     $ret = null;
-    if ($persaid) {
+    if($persaid)
+    {
       $curl = new curl\Curl();
       $getpersonalarea = $curl->setPostParams([
         'persaid' => $persaid,
         'token' => 'ish**2019',
       ])->post('http://192.168.88.5/service/index.php/sap_masterdata/getpersonalarea');
       $personalarea  = json_decode($getpersonalarea);
-      if ($personalarea) {
+      if($personalarea)
+      {
         $ret = $personalarea->value2;
-      } else {
+      }else{
         $ret = null;
       }
     }
     return $ret;
   }
 
-  public function getarea($areaid) {
+  public function getarea($areaid)
+  {
     $ret = null;
-    if ($areaid) {
+    if($areaid)
+    {
       $curl = new curl\Curl();
       $getarea = $curl->setPostParams([
         'areaid' => $areaid,
         'token' => 'ish**2019',
       ])->post('http://192.168.88.5/service/index.php/sap_masterdata/getarea');
       $area  = json_decode($getarea);
-      if ($area) {
+      if($area)
+      {
         $ret = $area->value2;
-      } else {
+      }else{
         $ret = null;
       }
     }
     return $ret;
   }
 
-  public function getskilllayanan($skilllayananid) {
+  public function getskilllayanan($skilllayananid)
+  {
     $ret = null;
-    if ($skilllayananid) {
+    if($skilllayananid)
+    {
       $curl = new curl\Curl();
       $getskillayanan = $curl->setPostParams([
         'skilllayananid' => $skilllayananid,
@@ -532,18 +545,21 @@ class UtilComponent extends Component
       ])->post('http://192.168.88.5/service/index.php/sap_masterdata/getskilllayanan');
       $skilllayanan  = json_decode($getskillayanan);
 
-      if ($skilllayanan) {
+      if($skilllayanan)
+      {
         $ret = $skilllayanan->value2;
-      } else {
+      }else{
         $ret = null;
       }
     }
     return $ret;
   }
 
-  public function getpayrollarea($payrollareaid) {
+  public function getpayrollarea($payrollareaid)
+  {
     $ret = null;
-    if ($payrollareaid) {
+    if($payrollareaid)
+    {
       $curl = new curl\Curl();
       $getpayrollarea = $curl->setPostParams([
         'payrollareaid' => $payrollareaid,
@@ -551,18 +567,21 @@ class UtilComponent extends Component
       ])->post('http://192.168.88.5/service/index.php/sap_masterdata/getpayrollarea');
       $payrollarea  = json_decode($getpayrollarea);
 
-      if ($payrollarea) {
+      if($payrollarea)
+      {
         $ret = $payrollarea->value2;
-      } else {
+      }else{
         $ret = null;
       }
     }
     return $ret;
   }
 
-  public function getjabatan($jabatanid) {
+  public function getjabatan($jabatanid)
+  {
     $ret = null;
-    if ($jabatanid) {
+    if($jabatanid)
+    {
       $curl = new curl\Curl();
       $getjabatan = $curl->setPostParams([
         'jabatanid' => $jabatanid,
@@ -570,18 +589,21 @@ class UtilComponent extends Component
       ])->post('http://192.168.88.5/service/index.php/sap_masterdata/getjabatan');
       $jabatan  = json_decode($getjabatan);
       // var_dump($jabatan);die;
-      if ($jabatan) {
+      if($jabatan)
+      {
         $ret = $jabatan->value2;
-      } else {
+      }else{
         $ret = null;
       }
     }
     return $ret;
   }
 
-  public function getjabatanid($jabatan) {
+  public function getjabatanid($jabatan)
+  {
     $ret = null;
-    if ($jabatan) {
+    if($jabatan)
+    {
       $curl = new curl\Curl();
       $getjabatan = $curl->setPostParams([
         'jabatan' => $jabatan,
@@ -589,18 +611,21 @@ class UtilComponent extends Component
       ])->post('http://192.168.88.5/service/index.php/sap_masterdata/getjabatanid');
       $jabatan  = json_decode($getjabatan);
       // var_dump($jabatan);die;
-      if ($jabatan) {
+      if($jabatan)
+      {
         $ret = $jabatan->value1;
-      } else {
+      }else{
         $ret = null;
       }
     }
     return $ret;
   }
 
-  public function getnamebynik($nik) {
+  public function getnamebynik ($nik)
+  {
     $ret = null;
-    if ($nik) {
+    if($nik)
+    {
       $curl = new curl\Curl();
       $getname = $curl->setPostParams([
         'auth_token' => 'ish@cipete2018!',
@@ -611,10 +636,12 @@ class UtilComponent extends Component
       $name  = json_decode($getname);
       // var_dump($name);die;
 
-      if ($name) {
-        if ($name->code) {
+      if($name)
+      {
+        if($name->code)
+        {
           $ret = $name->data->name;
-        } else {
+        }else{
           $ret = null;
         }
       }
@@ -622,40 +649,48 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  public function ordinal($num) {
-    $last = substr($num, -1);
-    if (
-      $last > 3  or
-      $last == 0 or
-      ($num >= 11 and $num <= 19)
-    ) {
-      $ext = 'th';
-    } else if ($last == 3) {
-      $ext = 'rd';
-    } else if ($last == 2) {
-      $ext = 'nd';
-    } else {
-      $ext = 'st';
+  public function ordinal ($num)
+  {
+    $last=substr($num,-1);
+    if( $last>3  or
+    $last==0 or
+    ( $num >= 11 and $num <= 19 ) )
+    {
+      $ext='th';
     }
-    return $num . $ext;
+    else if( $last==3 )
+    {
+      $ext='rd';
+    }
+    else if( $last==2 )
+    {
+      $ext='nd';
+    }
+    else
+    {
+      $ext='st';
+    }
+    return $num.$ext;
   }
 
-  public function diffdate($date1, $date2) {
-    $begin = new DateTime($date1);
-    $end = new DateTime($date2);
-    $end = $end->modify('+1 month');
+  public function diffdate ($date1, $date2)
+  {
+    $begin = new DateTime( $date1 );
+    $end = new DateTime( $date2 );
+    $end = $end->modify( '+1 month' );
 
     $interval = DateInterval::createFromDateString('1 month');
 
     $period = new DatePeriod($begin, $interval, $end);
     $counter = 0;
-    foreach ($period as $dt) {
-      $counter++;
+    foreach($period as $dt) {
+        $counter++;
     }
-    return $counter;
+  return $counter;
   }
 
-  public function aplhired($userid) {
+  public function aplhired($userid)
+  {
     $ret = null;
     $userhired = Hiring::find()->where(['userid' => $userid, 'statushiring' => 4, 'statusbiodata' => 4])->one();
     if ($userhired) {
@@ -667,9 +702,11 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  public function hired($userid, $transrincian) {
+  //add by kaha -> karena ada userid yg kadang di hiring lagi dengan jo beda
+  public function hired($userid, $recruitreqid)
+  {
     $ret = null;
-    $userhired = Hiring::find()->where(['userid' => $userid, 'statushiring' => 4, 'statusbiodata' => 4, 'recruitreqid' => $transrincian])->one();
+    $userhired = Hiring::find()->where(['userid' => $userid, 'statushiring' => 4, 'statusbiodata' => 4, 'recruitreqid' => $recruitreqid])->one();
     if ($userhired) {
       $ret = $userhired;
     } else {
@@ -678,21 +715,25 @@ class UtilComponent extends Component
     return $ret;
   }
 
-  function generateRandomString($length = 5) {
+  function generateRandomString($length = 5)
+  {
     $chars = "23456789ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz";
     $charArray = str_split($chars);
     $charCount = strlen($chars);
     $result = "";
-    for ($i = 1; $i <= $length; $i++) {
-      $randChar = rand(0, $charCount - 1);
+    for($i=1;$i<=$length;$i++)
+    {
+      $randChar = rand(0,$charCount-1);
       $result .= $charArray[$randChar];
     }
     return $result;
   }
 
-  public function insppjp($perner, $joindate) {
+  public function insppjp($perner,$joindate)
+  {
     $ret = null;
-    if ($perner && $joindate) {
+    if($perner && $joindate)
+    {
       $curl = new curl\Curl();
       $insppjp = $curl->setPostParams([
         'perner' => $perner,
@@ -700,20 +741,24 @@ class UtilComponent extends Component
       ])->post('http://192.168.88.5/hrms/RFCIT9002.php');
       $returninsppjp  = json_decode($insppjp);
 
-      if ($returninsppjp) {
+      if($returninsppjp)
+      {
         $ret = $returninsppjp->CODE;
-      } else {
+      }else{
         $ret = null;
       }
     }
     return $ret;
   }
-
-  public function create_login_log() {
+  
+  public function create_login_log()
+  {
     $ret = null;
-    if (!Yii::$app->user->isGuest) {
-      $checklog = Logactivity::find()->where('userid =' . Yii::$app->user->identity->id . ' AND date = CURDATE()')->one();
-      if ($checklog) {
+    if(!Yii::$app->user->isGuest)
+    {
+      $checklog = Logactivity::find()->where('userid ='.Yii::$app->user->identity->id.' AND date = CURDATE()')->one();
+      if($checklog)
+      {
         $logmodel = $checklog;
         // var_dump($checklog);die;
 
@@ -721,7 +766,8 @@ class UtilComponent extends Component
         $logmodel->lastlogin = date('Y-m-d H-i-s');
         $logmodel->counter =  $checklog->counter + 1;
         $logmodel->save();
-      } else {
+
+      }else{
         $nik = Yii::$app->user->identity->username;
         $newlogmodel = new Logactivity();
 
@@ -734,8 +780,10 @@ class UtilComponent extends Component
         ])->post('https://hris.ish.co.id/core/api/employee/detail');
         $dataresult  = json_decode($getdata);
 
-        if ($dataresult) {
-          if ($dataresult->code == 1) {
+        if($dataresult)
+        {
+          if($dataresult->code == 1)
+          {
             $divisionid = $dataresult->data->positions[0]->division_id;
             $divisionname = $dataresult->data->positions[0]->division_name;
           }
@@ -757,4 +805,40 @@ class UtilComponent extends Component
     return $ret;
     // var_dump(Yii::$app->user->identity->id);die;
   }
+
+  function latestwo()
+  {
+    $model = (new \yii\db\Query())
+      ->from('workorder')
+      ->max('nojo');
+    $code = $model;
+    $getnumber = '';
+    $n = (int) $code + 1;
+
+    //manipulation data for incrementdata
+    $inext = strlen($n);
+    switch ($inext) {
+      case 1:
+        $getnumber = "00000" . $n;
+        break;
+      case 2:
+        $getnumber = "0000" . $n;
+        break;
+      case 3:
+        $getnumber = "000" . $n;
+        break;
+      case 4:
+        $getnumber = "00" . $n;
+        break;
+      case 5:
+        $getnumber = "0" . $n;
+        break;
+      case 6:
+        $getnumber = $n;
+        break;
+    }
+    $wo_number = $getnumber . '/ISH/WO/01010107/' . date('Y');
+    return $wo_number;
+  }
+
 }

@@ -148,47 +148,16 @@ class ChagerequestresignController extends Controller
         $to = $user->email;
         // $to = "khusnul.hisyam@ish.co.id";
         $subject = 'Notifikasi Approval Resign Pekerja';
-        $body = 'Semangat Pagi,,
-              <br>
-              Anda mendapatkan permintaan Approval "Resign Pekerja" dari <span style="text-transform: uppercase;"><b>' . $model->createduser->name . '</b></span> dengan rincian sebagai berikut :
+        $body = Yii::$app->params['approvalResign'];
+        $body = str_replace('{creator}', $model->createduser->name, $body);
+        $body = str_replace('{fullname}', $name, $body);
+        $body = str_replace('{perner}', $perner, $body);
+        $body = str_replace('{layanan}', $layanan, $body);
+        $body = str_replace('{area}', $area, $body);
+        $body = str_replace('{jabatan}', $jabatan, $body);
+        $body = str_replace('{reason}', $model->resignreason->reason, $body);
 
-              <br>
-              <br>
-              <table>
-              <tr>
-              <td valign="top">Nama Pekerja</td>
-              <td valign="top">:</td>
-              <td valign="top">' . $name . '</td>
-              </tr>
-              <tr>
-              <td valign="top">Perner</td>
-              <td valign="top">:</td>
-              <td valign="top">' . $perner . '</td>
-              </tr>
-              <tr>
-              <td valign="top">Nama Project</td>
-              <td valign="top">:</td>
-              <td valign="top">' . $layanan . '</td>
-              </tr>
-              <tr>
-              <td valign="top">Area</td>
-              <td valign="top">:</td>
-              <td valign="top">' . $area . '</td>
-              </tr>
-              <tr>
-              <td valign="top">Jabatan</td>
-              <td valign="top">:</td>
-              <td valign="top">' . $jabatan . '</td>
-              </tr>
-              <tr>
-              </table>
-              <br>
-              <br>
-              Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> untuk melakukan verifikasi lebih lanjut.
-              <br><br>
-              Have a great day !
-              ';
-        // var_dump($body);die;
+        // send mail
         $verification = Yii::$app->utils->sendmail($to, $subject, $body, 12);
       }
       return $this->redirect(['index']);
@@ -210,13 +179,17 @@ class ChagerequestresignController extends Controller
     if ($model->load(Yii::$app->request->post())) {
       $model->approvedtime = date('Y-m-d H-i-s');
       if ($model->status == 8) {
-        $model->remarks = "Waiting for Resign Execution process";
+        if ($model->resigndate < date('Y-m-d')) {
+          $model->remarks = "Process Resign";
+        } else {
+          $model->remarks = "Waiting for Resign Execution process";
+        }
         $model->save();
       } else {
         $model->save();
       }
       //session for alert
-      Yii::$app->session->setFlash('success', "Waiting for Resign Execution process.");
+      Yii::$app->session->setFlash('success', "On process.");
       return $this->redirect(['index']);
     } else {
       return $this->renderAjax('_formapprove', [
@@ -384,7 +357,7 @@ class ChagerequestresignController extends Controller
       }
     } else {
       // $message = $rfcresign->MESSAGE;
-      $model->remarks = 'data pekerja sudah tidak ada di sap atau sudah di resign kan';
+      $model->remarks = 'Data pekerja sudah tidak ada di SAP atau sudah di resign kan';
       $model->status = 4;
       $model->save(false);
       $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
@@ -395,7 +368,7 @@ class ChagerequestresignController extends Controller
         $hiring->save(false);
         $recruitmentcandidate->save(false);
       }
-      $retpos = ['status' => "NOK", 'message' => 'data pekerja sudah tidak ada di sap atau sudah di resign kan'];
+      $retpos = ['status' => "NOK", 'message' => 'Data pekerja sudah tidak ada di SAP atau sudah di resign kan'];
       print_r(json_encode($retpos));
     }
   }
@@ -510,7 +483,7 @@ class ChagerequestresignController extends Controller
         $hiringdate = "";
       }
 
-      $checkperner = Chagerequestresign::find()->where('perner = ' . $perner . ' and status > 1 and status <> 5 and status <> 6')->one();
+      $checkperner = Chagerequestresign::find()->where('perner = ' . $perner . ' and status > 1 and status <> 5 and status <> 6 and status <> 4')->one();
       //add by kaha 21/02/23      
       if ($status == "Z8") {
         $resignreason = $datapekerjabyperner[0]->MSGTX;
@@ -525,7 +498,7 @@ class ChagerequestresignController extends Controller
       } else {
         $resigndate = "";
         $resignreason = "";
-      }
+      } 
 
       if ($checkperner) {
         $checkperner = '';
@@ -545,7 +518,7 @@ class ChagerequestresignController extends Controller
         'level' => $level,
         'hire' => $hire,
         'checkperner' => $checkperner,
-        'status' => $status,
+        'hiring_status' => $status,
         'resign_reason' => $resignreason,
         'resign_date' => $resigndate,
         'hiring_date' => $hiringdate
@@ -560,14 +533,14 @@ class ChagerequestresignController extends Controller
   {
     $id = $_POST['id'];
     $approvedby = $_POST['approvedby'];
-    // $resigndate = $_POST['resigndate'];
+    $resigndate = $_POST['resigndate'];
     $reason = $_POST['reason'];
     $userremarks = $_POST['userremarks'];
     // var_dump($resigndate);die;
     if ($id) {
       $model = $this->findModel($id);
       $model->approvedby = $approvedby;
-      // $model->resigndate = $resigndate;
+      $model->resigndate = $resigndate;
       $model->reason = $reason;
       $model->remarks = "draft";
       $model->userremarks = $userremarks;
@@ -687,7 +660,7 @@ class ChagerequestresignController extends Controller
     Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
     return $ret;
   }
-
+  
   /**
    * Deletes an existing Chagerequestresign model.
    * If deletion is successful, the browser will be redirected to the 'index' page.

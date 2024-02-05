@@ -64,15 +64,15 @@ class Joborderreport extends Transrincian
 
     //Add by pwd
     //Add by pwd 2022-05-31
-    // $query->leftJoin('recruitment_dev.mappingjob', 'recruitment_dev.mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
-    // $query->leftJoin('recruitment_dev.mastersubjobfamily', 'recruitment_dev.mastersubjobfamily.id = mappingjob.subjobfamilyid');
-    // $query->leftJoin('recruitment_dev.masterjobfamily', 'recruitment_dev.masterjobfamily.id = mastersubjobfamily.jobfamily_id');
+    // $query->leftJoin('recruitment.mappingjob', 'recruitment.mappingjob.kodejabatan = trans_rincian_rekrut.hire_jabatan_sap');
+    // $query->leftJoin('recruitment.mastersubjobfamily', 'recruitment.mastersubjobfamily.id = mappingjob.subjobfamilyid');
+    // $query->leftJoin('recruitment.masterjobfamily', 'recruitment.masterjobfamily.id = mastersubjobfamily.jobfamily_id');
 
     //Add by pwd 2022-05-31
     $subQuery = 'SELECT kodejabatan 
-        FROM recruitment_dev.mappingjob
-        LEFT JOIN recruitment_dev.mastersubjobfamily ON mastersubjobfamily.id = mappingjob.subjobfamilyid
-        LEFT JOIN recruitment_dev.masterjobfamily ON masterjobfamily.id = mastersubjobfamily.jobfamily_id';
+        FROM recruitment.mappingjob
+        LEFT JOIN recruitment.mastersubjobfamily ON mastersubjobfamily.id = mappingjob.subjobfamilyid
+        LEFT JOIN recruitment.masterjobfamily ON masterjobfamily.id = mastersubjobfamily.jobfamily_id';
 
     $dataProvider = new ActiveDataProvider([
       'query' => $query,

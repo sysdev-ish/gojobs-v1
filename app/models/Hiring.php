@@ -17,13 +17,13 @@ use Yii;
  */
 class Hiring extends \yii\db\ActiveRecord
 {
-  public $fullname;
-  public $persa;
-  public $area;
-  public $skilllayanan;
-  public $payrollarea;
-  public $jabatan;
-  public $level;
+    public $fullname;
+    public $persa;
+    public $area;
+    public $skilllayanan;
+    public $payrollarea;
+    public $jabatan;
+    public $level;
     /**
      * {@inheritdoc}
      */
@@ -39,12 +39,12 @@ class Hiring extends \yii\db\ActiveRecord
     {
         return [
             [['userid', 'createtime', 'updatetime', 'statushiring', 'statusbiodata'], 'required'],
-            [['tglinput','awalkontrak','akhirkontrak','persa','area','skilllayanan','payrollarea','jabatan','level'], 'required', 'on'=>'approveish'],
-            [['tglinput','awalkontrak','akhirkontrak'], 'required', 'on'=>'approvesso'],
+            [['tglinput', 'awalkontrak', 'akhirkontrak', 'persa', 'area', 'skilllayanan', 'payrollarea', 'jabatan', 'level'], 'required', 'on' => 'approveish'],
+            [['tglinput', 'awalkontrak', 'akhirkontrak'], 'required', 'on' => 'approvesso'],
             // ['recruitreqid' , 'jovalidation', 'on'=>'approve'],
-            [['userid', 'perner', 'statushiring', 'statusbiodata','flaginfotype022','createdby','updateby','approvedby','rejectedby','recruitreqid'], 'integer'],
-            [['message','keterangan'], 'string', 'max' => 445],
-            [['createtime', 'updatetime','tglinput','awalkontrak','akhirkontrak'], 'safe'],
+            [['userid', 'perner', 'statushiring', 'statusbiodata', 'flaginfotype022', 'createdby', 'updateby', 'approvedby', 'rejectedby', 'recruitreqid'], 'integer'],
+            [['message', 'keterangan'], 'string', 'max' => 445],
+            [['createtime', 'updatetime', 'tglinput', 'awalkontrak', 'akhirkontrak'], 'safe'],
         ];
     }
 
@@ -55,7 +55,7 @@ class Hiring extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'userid' => 'Userid',
+            'userid' => 'ID User',
             'createtime' => 'Hiring time',
             'updatetime' => 'Updatetime',
             'perner' => 'Perner',
@@ -71,12 +71,14 @@ class Hiring extends \yii\db\ActiveRecord
             'updateby' => 'Updated by',
             'approvedby' => 'Approve by',
             'recruitreqid' => 'Job Order',
+            'recrequest.id' => 'ID JO',
+            'userprofile.id' => 'ID Applicant',
         ];
     }
     public function jovalidation($attribute, $params)
     {
         $vartest = 1;
-        if ($this->recruitreqid > $vartest ) {
+        if ($this->recruitreqid > $vartest) {
             $this->addError($attribute, 'test salah.');
             return false;
         }

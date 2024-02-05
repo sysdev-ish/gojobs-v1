@@ -198,9 +198,11 @@ class ChagerequestdataController extends Controller
       }
 
       $namaquery = Hiring::find()
-        ->joinWith(['userprofile'])
+        // ->joinWith(['userprofile']) //comment by kaha 2/11/22 -> optimize loadtime
         ->joinWith(['changereqdata'])
+        // add validasi hiring success & biodata update ke SAP success
         ->andWhere(['statushiring' => 4])
+        ->andWhere(['statusbiodata' => 4])
         ->andWhere([
           'or',
           ['chagerequestdata.userid' => null],
@@ -211,8 +213,6 @@ class ChagerequestdataController extends Controller
       $name = array();
       foreach ($namaquery as $key => $value) {
         if ($value->changereqdata) {
-
-          // $checkdraft =  Chagerequestdata::find()->where(['userid'=>$value->userid, 'status'=>1, 'kategorydata'=>1])->count();
           $checkdraft =  Chagerequestdata::find()
             ->andWhere(['userid' => $value->userid])
             ->andWhere(['kategorydata' => 1])
@@ -222,15 +222,18 @@ class ChagerequestdataController extends Controller
               ['status' => 6],
             ])
             ->count();
+          //comment by kaha 2/11/22 -> optimize loadtime
           if ($value->userid == $model->userid || $value->changereqdata->kategorydata != 1) {
-            // var_dump($model->userid);die;
-            $name[$value->userid] = $value->userprofile->fullname . ' / ' . $value->perner;
+            $name[$value->userid] = $value->perner;
+            // $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
           }
           if ($value->changereqdata->status == 4 && $checkdraft == 0) {
-            $name[$value->userid] = $value->userprofile->fullname . ' / ' . $value->perner;
+            $name[$value->userid] = $value->perner;
+            //  $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
           }
         } else {
-          $name[$value->userid] = $value->userprofile->fullname . ' / ' . $value->perner;
+          $name[$value->userid] = $value->perner;
+          //  $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
         }
       }
     } else {
@@ -271,47 +274,14 @@ class ChagerequestdataController extends Controller
         }
         $to = $user->email;
         $subject = 'Notifikasi Approval Perubahan Data Pekerja';
-        $body = 'Semangat Pagi,,
-            <br>
-            Anda mendapatkan permintaan Approval Perubahan Data Pekerja dari <span style="text-transform: uppercase;"><b>' . $model->createduser->name . '</b></span> dengan rincian sebagai berikut :
-
-            <br>
-            <br>
-            <table>
-            <tr>
-            <td valign="top">Nama Pekerja</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $userprofile->fullname . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Perner</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $getjo->perner . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Nama Project</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $layanan . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Area</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $area . '</td>
-            </tr>
-            <tr>
-            <td valign="top">Jabatan</td>
-            <td valign="top">:</td>
-            <td valign="top">' . $jabatan . '</td>
-            </tr>
-            <tr>
-            </table>
-            <br>
-            <br>
-            Silakan masuk ke link <a href="https://gojobs.id">gojobs.id</a> untuk melakukan verifikasi lebih lanjut.
-            <br><br>
-            Have a great day !
-            ';
-        // var_dump($body);die;
+        $body = Yii::$app->params['approvalData'];
+        $body = str_replace('{creator}', $model->createduser->name, $body);
+        $body = str_replace('{fullname}', $userprofile->fullname, $body);
+        $body = str_replace('{perner}', $getjo->perner, $body);
+        $body = str_replace('{layanan}', $layanan, $body);
+        $body = str_replace('{area}', $area, $body);
+        $body = str_replace('{jabatan}', $jabatan, $body);
+        // send mail
         $verification = Yii::$app->utils->sendmail($to, $subject, $body, 20);
       }
       return $this->redirect(['index']);

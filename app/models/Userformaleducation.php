@@ -59,17 +59,17 @@ class Userformaleducation extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'userid' => 'Userid',
-            'createtime' => 'Createtime',
-            'updatetime' => 'Updatetime',
-            'educationallevel' => 'Educationallevel',
-            'institutions' => 'Institutions',
-            'city' => 'City',
-            'majoring' => 'Majoring',
-            'startdate' => 'Startdate',
-            'enddate' => 'Enddate',
+            'userid' => 'User ID',
+            'createtime' => 'Create Time',
+            'updatetime' => 'Update Time',
+            'educationallevel' => Yii::t('app', 'Education Level'),
+            'institutions' => Yii::t('app', 'Institutions'),
+            'city' => Yii::t('app', 'City'),
+            'majoring' => Yii::t('app', 'Majoring'),
+            'startdate' => Yii::t('app', 'Start date'),
+            'enddate' => Yii::t('app', 'End date'),
             'status' => 'Status',
-            'gpa' => 'Gpa',
+            'gpa' => Yii::t('app', 'GPA'),
         ];
     }
 
@@ -85,6 +85,11 @@ class Userformaleducation extends \yii\db\ActiveRecord
      * @return \yii\db\ActiveQuery
      */
     public function getEducationallevel0()
+    {
+        return $this->hasOne(Mastereducation::className(), ['idmastereducation' => 'educationallevel']);
+    }
+
+    public function getMasteredu()
     {
         return $this->hasOne(Mastereducation::className(), ['idmastereducation' => 'educationallevel']);
     }

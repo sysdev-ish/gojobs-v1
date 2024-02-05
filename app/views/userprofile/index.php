@@ -34,8 +34,18 @@ Modal::begin([
 ]);
 
 echo "<div id='addcandidateform'></div>";
-
 Modal::end();
+
+Modal::begin([
+  'header' => '<h4 class="modal-title">Update User Whitelist</h4>',
+  'id' => 'whitelist-modal',
+  'size' => 'modal-lg'
+]);
+
+echo "<div id='whitelist'></div>";
+Modal::end();
+
+
 if (Yii::$app->user->isGuest) {
   $role = null;
 } else {
@@ -43,7 +53,7 @@ if (Yii::$app->user->isGuest) {
   $role = Yii::$app->user->identity->role;
 }
 if (Yii::$app->utils->permission($role, 'm14')) {
-  $action = '{view}{addcandidate}';
+  $action = '{view}{whitelist}{addcandidate}';
 } else {
   $action = '{view}';
 }
@@ -198,11 +208,22 @@ if (Yii::$app->utils->permission($role, 'm14')) {
 
         [
           'class' => 'yii\grid\ActionColumn',
-          'contentOptions' => ['style' => 'min-width: 100px;'],
+          'contentOptions' => ['style' => 'min-width: 140px;'],
           'template' => '<div class="btn-group pull-right">' . $action . '</div>',
           'buttons' => [
             'view' => function ($url, $model) {
-              return Html::a('<i class="fa fa-pencil" style="font-size:12pt;"></i>', ['views', 'userid' => $model->userid], ['class' => 'btn btn-sm btn-info', 'data-toggle' => 'tooltip', 'title' => 'Detail View']);
+              return Html::a('<i class="fa fa-eye" style="font-size:12pt;"></i>', ['views', 'userid' => $model->userid], ['class' => 'btn btn-sm btn-info', 'data-toggle' => 'tooltip', 'title' => 'Detail View']);
+            },
+
+            'whitelist' => function ($url, $model, $key) {
+              $btn = Html::button('<i class="fa fa-pencil" style="font-size:12pt;"></i>', [
+                'value' => Yii::$app->urlManager->createUrl('userprofile/updatewhitelist?id=' . $model->userid), //<---- here is where you define the action that handles the ajax request
+                'class' => 'btn btn-sm btn-default whitelist-modal-click',
+                'data-toggle' => 'tooltip',
+                'data-placement' => 'bottom',
+                'title' => 'Set User Whitelist',
+              ]);
+              return $btn;
             },
 
             'addcandidate' => function ($url, $model, $key) {

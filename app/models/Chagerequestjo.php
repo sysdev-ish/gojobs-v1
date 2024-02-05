@@ -23,7 +23,7 @@ use Yii;
  */
 class Chagerequestjo extends \yii\db\ActiveRecord
 {
-  public $counthiredtype1;
+    public $counthiredtype1;
     /**
      * {@inheritdoc}
      */
@@ -38,14 +38,14 @@ class Chagerequestjo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['jumlahstop','documentevidence','reason'], 'required','on'=>"create"],
-            [['status'], 'required', 'on'=>"approve"],
-            [['recruitreqid', 'createdby', 'updatedby', 'approvedby', 'status', 'oldjumlah','reason','jumlahstop','counthiredtype1'], 'integer'],
+            [['jumlahstop', 'documentevidence', 'reason'], 'required', 'on' => "create"],
+            [['status'], 'required', 'on' => "approve"],
+            [['recruitreqid', 'createdby', 'updatedby', 'approvedby', 'status', 'oldjumlah', 'reason', 'jumlahstop', 'counthiredtype1'], 'integer'],
             [['createtime', 'updatetime', 'approvedtime'], 'safe'],
             [['remarks'], 'string', 'max' => 445],
             [['documentevidence'], 'string', 'max' => 345],
-            ['jumlahstop' ,'integer', 'max'=> $this->oldjumlah, 'on'=>"create"],
-            ['jumlahstop' ,'integer', 'max'=> $this->counthiredtype1, 'on'=>"create"]
+            ['jumlahstop', 'integer', 'max' => $this->oldjumlah, 'on' => "create"],
+            ['jumlahstop', 'integer', 'max' => $this->counthiredtype1, 'on' => "create"]
         ];
     }
 

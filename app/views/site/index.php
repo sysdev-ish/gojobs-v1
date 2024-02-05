@@ -10,6 +10,7 @@ use app\models\Masterjobfamily;
 use app\models\Mastersubjobfamily;
 use app\models\Transrincian;
 use Codeception\Lib\Di;
+use yii\bootstrap\Modal;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
@@ -18,6 +19,25 @@ use yii\helpers\HtmlPurifier;
 $this->title = 'Search Job';
 
 $baseUrl = Yii::$app->request->baseUrl;
+
+if (Yii::$app->session->hasFlash('showBanner')) {
+    $this->registerJs('$("#modal-banner").modal("show");');
+}
+
+if (Yii::$app->user->isGuest) {
+} else {
+    // Display dynamic content from the database
+    if ($bannerContent) {
+    Modal::begin([
+        'header' => '<h4 class="modal-title"></h4>',
+        'id' => 'modal-banner',
+        'size' => 'modal-xl',
+    ]);
+        echo '<img src="' . Yii::$app->request->baseUrl . '/app/assets/upload/cms/' . $bannerContent->assets_path . '" alt="Banner Image" class="img-responsive" />';
+        Modal::end();
+    } else {
+    }
+}
 
 ?>
 <div class="careerfy-banner careerfy-typo-wrap">

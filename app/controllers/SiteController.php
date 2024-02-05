@@ -27,9 +27,13 @@ use app\models\Tpasif;
 use app\models\Forgotpassword;
 use app\models\Resetpassword;
 use app\models\Chagerequestjo;
+use app\models\Cms;
 use app\models\Masterjobfamily;
+use app\models\Saparea;
+use app\models\Sappersonalarea;
 use linslin\yii2\curl;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 use yii\web\HttpException;
 
 class SiteController extends Controller
@@ -112,6 +116,7 @@ class SiteController extends Controller
     $jobcategory = Masterjobfamily::find()->andWhere('status = 1')->orderby(['jobfamily' => SORT_ASC])->all();
     $totaljocategory  = Transrincian::find()->andWhere('trans_rincian_rekrut.status_rekrut <> 1')->groupBy(['hire_jabatan_sap'])->count();
     $totalapplicant = Userprofile::find()->count();
+    $bannerContent = Cms::find(1)->where('type_content = 1')->andWhere('status = 1')->one();
 
     if (Yii::$app->user->isGuest) {
       return $this->render('index', [
@@ -136,6 +141,7 @@ class SiteController extends Controller
             if (Yii::$app->check->datacompleted(Yii::$app->user->identity->id) == 0 and Yii::$app->user->identity->role == 2) {
               return $this->redirect(['userprofile/cwizard']);
             } else {
+              Yii::$app->session->setFlash('showBanner', true);
               return $this->render('index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
@@ -145,6 +151,7 @@ class SiteController extends Controller
                 'jobfunction' => $jobfunction,
                 'jobcategory' => $jobcategory,
                 'totaljocategory' => $totaljocategory,
+                'bannerContent' => $bannerContent,
               ]);
             }
           } else {
@@ -235,17 +242,15 @@ class SiteController extends Controller
     $model = new Transrinciansearch();
     $year = date('Y');
     $model->yeardata = $year;
-    //joborder
     $totaljo = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and YEAR(trans_jo.tanggal) = '" . $year . "'")->count();
     $totalclosed = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and trans_rincian_rekrut.status_rekrut = 2 and YEAR(trans_jo.tanggal) = '" . $year . "'")->count();
     $totalpending = $totaljo - $totalclosed;
-    $totalempclosed = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and trans_rincian_rekrut.status_rekrut = 2 and YEAR(trans_jo.tanggal) = '" . $year . "'")->sum('jumlah');
-    //totalapplicant
-    $totalapplicant = Userprofile::find()->where("YEAR(createtime) = '" . $year . "'")->count();
     $totalemp = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and YEAR(trans_jo.tanggal) = '" . $year . "'")->sum('jumlah');
-    // totalcandidate
-    $candidatecount = Recruitmentcandidate::find()->where("YEAR(createtime) = '" . $year . "'")->count();
+    $totalempclosed = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and trans_rincian_rekrut.status_rekrut = 2 and YEAR(trans_jo.tanggal) = '" . $year . "'")->sum('jumlah');
     $totalemppending = $totalemp - $totalempclosed;
+    $totalapplicant = Userprofile::find()->where("YEAR(createtime) = '" . $year . "'")->count();
+    // $totalapplicants3 =
+    $candidatecount = Recruitmentcandidate::find()->where("YEAR(createtime) = '" . $year . "'")->count();
     $interviewapp = Interview::find()->where("YEAR(createtime) = '" . $year . "'")->count();
     $onintcount = Interview::find()->where("YEAR(createtime) = '" . $year . "'  and (status = 1 OR status = 0)")->count();
     $passintcount = Interview::find()->where("YEAR(createtime) = '" . $year . "'  and status = 2")->count();
@@ -347,6 +352,7 @@ class SiteController extends Controller
         $totalophiring = Hiring::find()->where("statushiring <> 4 and statushiring <> 5")->count();
         $totalstopjo = Chagerequestjo::find()->where(['status' => 3])->groupBy(['recruitreqid'])->count();
         $datastopjo = Chagerequestjo::find()->where(['status' => 3])->groupBy(['recruitreqid'])->all();
+        $totalpekerjastopjo = 0;
         foreach ($datastopjo as $key => $value) {
           $pkerjastop = $value->oldjumlah - $value->jumlah;
           $totalpekerjastopjo += $pkerjastop;
@@ -354,9 +360,13 @@ class SiteController extends Controller
       }
     }
 
+    $parea = ArrayHelper::map(Sappersonalarea::find()->asArray()->all(), 'value1', 'value2');
+    $area = ArrayHelper::map(Saparea::find()->asArray()->all(), 'value1', 'value2');
 
     return $this->render('dashboard', [
       'model' => $model,
+      'parea' => $parea,
+      'area' => $area,
       'totaljo' => $totaljo,
       'totalclosed' => $totalclosed,
       'totalpending' => $totalpending,
@@ -387,6 +397,206 @@ class SiteController extends Controller
       'totalpekerjastopjo' => $totalpekerjastopjo,
     ]);
   }
+
+  public function actionDashboardetail()
+  {
+
+    $model = new Transrinciansearch();
+
+    $year = date('Y');
+    $model->yeardata = $year;
+
+    $totaljo = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and YEAR(trans_jo.tanggal) = '" . $year . "'")->count();
+    $totalclosed = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and trans_rincian_rekrut.status_rekrut = 2 and YEAR(trans_jo.tanggal) = '" . $year . "'")->count();
+    $totalpending = $totaljo - $totalclosed;
+    $totalemp = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and YEAR(trans_jo.tanggal) = '" . $year . "'")->sum('jumlah');
+    $totalempclosed = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and trans_rincian_rekrut.status_rekrut = 2 and YEAR(trans_jo.tanggal) = '" . $year . "'")->sum('jumlah');
+    $totalemppending = $totalemp - $totalempclosed;
+    $totalapplicant = Userprofile::find()->where("YEAR(createtime) = '" . $year . "'")->count();
+    // $totalapplicants3 =
+    $candidatecount = Recruitmentcandidate::find()->where("YEAR(createtime) = '" . $year . "'")->count();
+    $interviewapp = Interview::find()->where("YEAR(createtime) = '" . $year . "'")->count();
+    $onintcount = Interview::find()->where("YEAR(createtime) = '" . $year . "'  and (status = 1 OR status = 0)")->count();
+    $passintcount = Interview::find()->where("YEAR(createtime) = '" . $year . "'  and status = 2")->count();
+    $failintcount = Interview::find()->where("YEAR(createtime) = '" . $year . "'  and status = 3")->count();
+
+    $psikotestapp = Psikotest::find()->where("YEAR(createtime) = '" . $year . "'")->count();
+    $onpsicount = Psikotest::find()->where("YEAR(createtime) = '" . $year . "'  and (status = 1 OR status = 0)")->count();
+    $passpsicount = Psikotest::find()->where("YEAR(createtime) = '" . $year . "'  and status = 2")->count();
+    $failpsicount = Psikotest::find()->where("YEAR(createtime) = '" . $year . "'  and status = 3")->count();
+
+    $uinterviewapp = Userinterview::find()->where("YEAR(createtime) = '" . $year . "'")->count();
+    $onuinterviewcount = Userinterview::find()->where("YEAR(createtime) = '" . $year . "'  and (status = 1 OR status = 0)")->count();
+    $passuinterviewcount = Userinterview::find()->where("YEAR(createtime) = '" . $year . "'  and status = 2")->count();
+    $failuinterviewcount = Userinterview::find()->where("YEAR(createtime) = '" . $year . "'  and status = 3")->count();
+
+    $tsoftskillapp = Tsoftskill::find()->where("YEAR(createtime) = '" . $year . "'")->count();
+    $thardskillapp = Thardskill::find()->where("YEAR(createtime) = '" . $year . "'")->count();
+    $tpasifapp = Tpasif::find()->where("YEAR(createtime) = '" . $year . "'")->count();
+    $taktifapp = Taktif::find()->where("YEAR(createtime) = '" . $year . "'")->count();
+    $totalhiring = Hiring::find()->where("YEAR(createtime) = '" . $year . "' and statushiring = 4")->count();
+    $totalophiring = Hiring::find()->where("YEAR(createtime) = '" . $year . "' and statushiring <> 4 and statushiring <> 5")->count();
+
+    $totalstopjo = Chagerequestjo::find()->where("YEAR(createtime) = '" . $year . "' and status = 3")->groupBy(['recruitreqid'])->count();
+    $datastopjo = Chagerequestjo::find()->where("YEAR(createtime) = '" . $year . "' and status = 3")->groupBy(['recruitreqid'])->all();
+    $totalpekerjastopjo = 0;
+    foreach ($datastopjo as $key => $value) {
+      $pkerjastop = $value->oldjumlah - $value->jumlah;
+      $totalpekerjastopjo += $pkerjastop;
+    }
+
+    if ($model->load(Yii::$app->request->post())) {
+
+      if ($model->start_date and $model->end_date and $model->persa_sap and $model->area_sap) {
+
+        $start_date = $model->start_date;
+        $end_date = $model->end_date;
+
+        $persa = $model->persa_sap;
+        if ($persa) {
+          $persa_sap = '"' . implode('","', $persa) . '"';
+        } else {
+          $persa_sap = '""';
+        }
+
+        $area = $model->area_sap;
+        if ($area) {
+          $area_sap = '"' . implode('","', $area) . '"';
+        } else {
+          $area_sap = '""';
+        }
+
+        $recruitreq = Transrincian::find()->select('id')->where("persa_sap IN (" . $persa_sap . ") and area_sap IN (" . $area_sap . ") ")->column();
+        $recruitreq_id = implode(',', $recruitreq);
+        // var_dump($recruitreq);die();
+
+        $recruitment_candidate = Recruitmentcandidate::find()->select('id')->where("recruitreqid IN (" . $recruitreq_id . ")")->column();
+        $recruitment_candidate_id = implode(',', $recruitment_candidate);
+        // var_dump($recruitment_candidate_id);die();
+
+        $totaljo = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and trans_jo.tanggal between '" . $start_date . "' and '" . $end_date . "' and persa_sap IN (" . $persa_sap . ") and area_sap IN (" . $area_sap . ") ")->count();
+        // var_dump($totaljo);die();
+
+        $totalclosed = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and trans_rincian_rekrut.status_rekrut = 2 and trans_jo.tanggal between '" . $start_date . "' and '" . $end_date . "' and persa_sap IN (" . $persa_sap . ") and area_sap IN (" . $area_sap . ") ")->count();
+        // var_dump($totaljo);die();
+        $totalpending = $totaljo - $totalclosed;
+
+        $totalemp = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and trans_jo.tanggal between '" . $start_date . "' and '" . $end_date . "' and persa_sap IN (" . $persa_sap . ") and area_sap IN (" . $area_sap . ") ")->sum('jumlah');
+        $totalempclosed = Transrincian::find()->joinWith("transjo")->where("trans_rincian_rekrut.skema = 1 and trans_rincian_rekrut.status_rekrut = 2 and trans_jo.tanggal between '" . $start_date . "' and '" . $end_date . "' and persa_sap IN (" . $persa_sap . ") and area_sap IN (" . $area_sap . ") ")->sum('jumlah');
+        $totalemppending = $totalemp - $totalempclosed;
+
+        $totalapplicant = Userprofile::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' ")->count();
+
+        $candidatecount = Recruitmentcandidate::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and id IN (" . $recruitment_candidate_id . ") ")->count();
+        $interviewapp = Interview::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and id IN (" . $recruitment_candidate_id . ") ")->count();
+        $onintcount = Interview::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and (status = 1 OR status = 0) and recruitmentcandidateid IN (" . $recruitment_candidate_id . ") ")->count();
+        $passintcount = Interview::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and status = 2 and recruitmentcandidateid IN (" . $recruitment_candidate_id . ") ")->count();
+        $failintcount = Interview::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and status = 3 and recruitmentcandidateid IN (" . $recruitment_candidate_id . ") ")->count();
+
+        $psikotestapp = Psikotest::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and recruitmentcandidateid IN (" . $recruitment_candidate_id . ") ")->count();
+        $onpsicount = Psikotest::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and (status = 1 OR status = 0) and recruitmentcandidateid IN (" . $recruitment_candidate_id . ") ")->count();
+        $passpsicount = Psikotest::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and status = 2 and recruitmentcandidateid IN (" . $recruitment_candidate_id . ") ")->count();
+        $failpsicount = Psikotest::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and status = 3 and recruitmentcandidateid IN (" . $recruitment_candidate_id . ") ")->count();
+
+        $uinterviewapp = Userinterview::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and recruitmentcandidateid IN (" . $recruitment_candidate_id . ") ")->count();
+        $onuinterviewcount = Userinterview::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and (status = 1 OR status = 0) and recruitmentcandidateid IN (" . $recruitment_candidate_id . ") ")->count();
+        $passuinterviewcount = Userinterview::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and status = 2 and recruitmentcandidateid IN (" . $recruitment_candidate_id . ") ")->count();
+        $failuinterviewcount = Userinterview::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and status = 3 and recruitmentcandidateid IN (" . $recruitment_candidate_id . ") ")->count();
+
+        $tsoftskillapp = Tsoftskill::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and recruitmentcandidateid IN (" . $recruitment_candidate_id . ") ")->count();
+        $thardskillapp = Thardskill::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and recruitmentcandidateid IN (" . $recruitment_candidate_id . ") ")->count();
+        $tpasifapp = Tpasif::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and recruitmentcandidateid IN (" . $recruitment_candidate_id . ") ")->count();
+        $taktifapp = Taktif::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and recruitmentcandidateid IN (" . $recruitment_candidate_id . ") ")->count();
+
+        $totalhiring = Hiring::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and statushiring = 4 and recruitreqid IN (" . $recruitreq_id . ") ")->count();
+        $totalophiring = Hiring::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and statushiring <> 4 and statushiring <> 5 and recruitreqid IN (" . $recruitreq_id . ") ")->count();
+        $totalstopjo = Chagerequestjo::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and status = 3 and recruitreqid IN (" . $recruitreq_id . ") ")->groupBy(['recruitreqid'])->count();
+        $datastopjo = Chagerequestjo::find()->where("createtime between '" . $start_date . "' and '" . $end_date . "' and status = 3 and recruitreqid IN (" . $recruitreq_id . ") ")->groupBy(['recruitreqid'])->all();
+
+        $totalpekerjastopjo = 0;
+        foreach ($datastopjo as $key => $value) {
+          // var_dump($datastopjo);die();
+          $pkerjastop = $value->oldjumlah - $value->jumlah;
+          $totalpekerjastopjo += $pkerjastop;
+        }
+      } else {
+        $totaljo = Transrincian::find()->where('skema = 1')->count();
+        $totalclosed = Transrincian::find()->where('skema = 1')->andWhere('status_rekrut = 2')->count();
+        $totalpending = $totaljo - $totalclosed;
+        $totalemp = Transrincian::find()->where('skema = 1')->count();
+        $totaleclosed = Transrincian::find()->where('skema = 1')->andWhere('status_rekrut = 2')->count();
+        $totalempending = $totalemp - $totaleclosed;
+        $totalapplicant = Userprofile::find()->count();
+        $candidatecount = Recruitmentcandidate::find()->count();
+        $interviewapp = Interview::find()->count();
+        $onintcount = Interview::find()->where("status = 1 OR status = 0")->count();
+        $passintcount = Interview::find()->where("status = 2")->count();
+        $failintcount = Interview::find()->where("status = 3")->count();
+
+        $psikotestapp = Psikotest::find()->count();
+        $onpsicount = Psikotest::find()->where("status = 1 OR status = 0")->count();
+        $passpsicount = Psikotest::find()->where("status = 2")->count();
+        $failpsicount = Psikotest::find()->where("status = 3")->count();
+
+        $uinterviewapp = Userinterview::find()->count();
+        $onuinterviewcount = Userinterview::find()->where("status = 1 OR status = 0")->count();
+        $passuinterviewcount = Userinterview::find()->where("status = 2")->count();
+        $failuinterviewcount = Userinterview::find()->where("status = 3")->count();
+
+        $tsoftskillapp = Tsoftskill::find()->count();
+        $thardskillapp = Thardskill::find()->count();
+        $tpasifapp = Tpasif::find()->count();
+        $taktifapp = Taktif::find()->count();
+        $totalhiring = Hiring::find()->where("statushiring = 4")->count();
+        $totalophiring = Hiring::find()->where("statushiring <> 4 and statushiring <> 5")->count();
+        $totalstopjo = Chagerequestjo::find()->where(['status' => 3])->groupBy(['recruitreqid'])->count();
+        $datastopjo = Chagerequestjo::find()->where(['status' => 3])->groupBy(['recruitreqid'])->all();
+        $totalpekerjastopjo = 0;
+        foreach ($datastopjo as $key => $value) {
+          $pkerjastop = $value->oldjumlah - $value->jumlah;
+          $totalpekerjastopjo += $pkerjastop;
+        }
+      }
+    }
+
+    $parea = ArrayHelper::map(Sappersonalarea::find()->asArray()->all(), 'value1', 'value2');
+    $area = ArrayHelper::map(Saparea::find()->asArray()->all(), 'value1', 'value2');
+
+    return $this->render('dashboardetail', [
+      'model' => $model,
+      'parea' => $parea,
+      'area' => $area,
+      'totaljo' => $totaljo,
+      'totalclosed' => $totalclosed,
+      'totalpending' => $totalpending,
+      'totalemp' => $totalemp,
+      'totalempclosed' => $totalempclosed,
+      'totalemppending' => $totalemppending,
+      'totalapplicant' => $totalapplicant,
+      'candidatecount' => $candidatecount,
+      'interviewapp' => $interviewapp,
+      'psikotestapp' => $psikotestapp,
+      'uinterviewapp' => $uinterviewapp,
+      'tsoftskillapp' => $tsoftskillapp,
+      'thardskillapp' => $thardskillapp,
+      'tpasifapp' => $tpasifapp,
+      'taktifapp' => $taktifapp,
+      'onintcount' => $onintcount,
+      'passintcount' => $passintcount,
+      'failintcount' => $failintcount,
+      'onpsicount' => $onpsicount,
+      'passpsicount' => $passpsicount,
+      'failpsicount' => $failpsicount,
+      'onuinterviewcount' => $onuinterviewcount,
+      'passuinterviewcount' => $passuinterviewcount,
+      'failuinterviewcount' => $failuinterviewcount,
+      'totalhiring' => $totalhiring,
+      'totalophiring' => $totalophiring,
+      'totalstopjo' => $totalstopjo,
+      'totalpekerjastopjo' => $totalpekerjastopjo,
+    ]);
+  }
+
   public function actionLogin()
   {
     if (!Yii::$app->user->isGuest) {
@@ -416,9 +626,8 @@ class SiteController extends Controller
     if (isset($_GET['code'])) {
       $auth_code = $_GET['code'];
       $accesstoken = Yii::$app->oauth->getaccesstoken($auth_code);
-      //var_dump($accesstoken);die;
+      // var_dump($accesstoken);die;
       $token = json_decode($accesstoken);
-      //var_dump($token);die;
       $user = Yii::$app->oauth->getuserdata($token->data->access_token);
       // var_dump($user);die;
       if ($user) {
@@ -500,28 +709,26 @@ class SiteController extends Controller
 
     return $this->goHome();
   }
+
   public function actionResendvcode()
   {
     if (!Yii::$app->user->isGuest) {
 
       $user = Userdata::find()->where(['id' => Yii::$app->user->identity->id])->one();
       $randomstring = Yii::$app->utils->generateRandomString(6);
+      // $randomstring = "bypass"; //comment if email quota is set
       $user->verify_code = $randomstring;
       $user->updated_at = date('Y-m-d H-i-s');
 
       if ($user->save(false)) {
         $to = $user->email;
         $subject = 'Verify email';
-        $body = 'Dear ' . $user->name . ' ,
-       <br>
-       We need to make sure that this is you and not misused by unauthorized parties.
-       <br>
-       <br>
-       This is your Verification Code :
-       <br>
-       ' . $randomstring . '<br>
-       --You are receiving this email from Global Support because you registered on gojobs ISH with this email address--';
-        $verification = Yii::$app->utils->sendmail($to, $subject, $body, 2); //comment this if email limit make condition on top function
+        $body = Yii::$app->params['mailSignUp'];
+        $body = str_replace('{fullname}', $user->name, $body);
+        $body = str_replace('{token}', $randomstring, $body);
+
+        //comment this if email limit make condition on top function
+        $verification = Yii::$app->utils->sendmail($to, $subject, $body, 2);
       }
       return $this->redirect('verifycode');
     } else {
@@ -573,6 +780,7 @@ class SiteController extends Controller
         if (Yii::$app->user->identity->verify_status == 1) {
           return $this->redirect(['userprofile/cwizard']);
         } else {
+
           return $this->redirect('verifycode');
         }
       } else {
@@ -643,12 +851,20 @@ class SiteController extends Controller
   public function actionTermscondition()
   {
     $this->layout = Yii::$app->utils->getlayout();
-    return $this->render('termscondition');
+    $bannerContent = Cms::find(1)->where('type_content = 3')->andWhere('status = 1')->one();
+
+    return $this->render('termscondition', [
+      'bannerContent' => $bannerContent,
+    ]);
   }
 
   public function actionPrivacypolicy()
   {
     $this->layout = Yii::$app->utils->getlayout();
-    return $this->render('privacypolicy');
+    $bannerContent = Cms::find(1)->where('type_content = 2')->andWhere('status = 1')->one();
+
+    return $this->render('privacypolicy', [
+      'bannerContent' => $bannerContent,
+    ]);
   }
 }

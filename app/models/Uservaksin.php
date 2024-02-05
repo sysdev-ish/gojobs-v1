@@ -40,7 +40,8 @@ class Uservaksin extends \yii\db\ActiveRecord
         return [
             [['statusvaksin', 'alasan', 'createdby', 'updateby','userid'], 'integer'],
             [['tanggalvaksin1', 'tanggalvaksin2', 'createtime', 'updatetime'], 'safe'],
-            [['statusvaksin','createtime', 'updatetime'], 'required'],
+            // [['statusvaksin','createtime', 'updatetime'], 'required'],
+            // [['statusvaksin','createtime', 'updatetime'], 'required'],
             [['lokasivaksin1', 'lokasivaksin2'], 'string', 'max' => 45],
             // [['sertvaksin1', 'sertvaksin2'], 'string', 'max' => 145],
             [['userid'], 'unique'],

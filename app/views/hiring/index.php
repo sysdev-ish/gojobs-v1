@@ -50,6 +50,7 @@ Modal::begin([
 echo "<div id='hiringapprove'></div>";
 
 Modal::end();
+
 Modal::begin([
   'header' => '<h4 class="modal-title">View Recruitment Request</h4>',
   'id' => 'recreq-modal',
@@ -57,7 +58,6 @@ Modal::begin([
 ]);
 
 echo "<div id='recreqview'></div>";
-
 Modal::end();
 if (Yii::$app->user->isGuest) {
   $role = null;
@@ -233,7 +233,7 @@ if (Yii::$app->utils->permission($role, 'm37')) {
         [
           'label' => 'SAP',
           'attribute' => 'typejo',
-          'contentOptions' => ['style' => 'width: 100px;'],
+          'contentOptions' => ['style' => 'width: 80px;'],
           'format' => 'html',
           'filter' => \kartik\select2\Select2::widget([
             'model' => $searchModel,
@@ -242,7 +242,7 @@ if (Yii::$app->utils->permission($role, 'm37')) {
             'options' => ['placeholder' => '--'],
             'pluginOptions' => [
               'allowClear' => true,
-              'width' => '100px',
+              'width' => '80px',
             ],
           ]),
           'value' => function ($data) {
@@ -253,7 +253,7 @@ if (Yii::$app->utils->permission($role, 'm37')) {
         [
           'label' => 'Status',
           'attribute' => 'status',
-          'contentOptions' => ['style' => 'width: 200px;'],
+          'contentOptions' => ['style' => 'width: 180px;'],
           'format' => 'html',
           'filter' => \kartik\select2\Select2::widget([
             'model' => $searchModel,
@@ -262,7 +262,7 @@ if (Yii::$app->utils->permission($role, 'm37')) {
             'options' => ['placeholder' => '--'],
             'pluginOptions' => [
               'allowClear' => true,
-              'width' => '300px',
+              'width' => '180px',
             ],
           ]),
           'value' => function ($data) {
@@ -346,9 +346,11 @@ if (Yii::$app->utils->permission($role, 'm37')) {
           ]),
           'format' => 'html',
           'value' => function ($data) {
-            return $data->tglinput;
+            // return $data->tglinput;
+            return Yii::$app->utils->indodate($data->createtime) . ' ' . date("H:i", strtotime($data->createtime));
           }
         ],
+        // 'createtime',
         // 'awalkontrak',
         // 'akhirkontrak',
         // 'message',

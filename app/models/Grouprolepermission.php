@@ -28,7 +28,7 @@ class Grouprolepermission extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['grouprolepermission','createtime', 'updatetime'], 'required'],
+            [['createtime', 'updatetime'], 'required'],
             [['createtime', 'updatetime'], 'safe'],
             [['grouprolepermission'], 'string', 'max' => 145],
         ];

@@ -46,7 +46,15 @@ $url = \yii\helpers\Url::to(['transrincian/recreqlist']);
             'contentOptions' => ['style' => 'width: 150px;'],
             'format' => 'raw',
             'value' => function ($data) {
-              return $data->userprofile->fullname;
+              $checkcompletion = Yii::$app->checkhiring->datacompleted($data->userid);
+              if ($checkcompletion == 1) {
+                $label = 'label-success';
+                $completed = 'Data Biodata Completed';
+              } else {
+                $label = 'label-warning';
+                $completed = 'Data Biodata Not Completed';
+              }
+              return $data->userprofile->fullname . '<br><span class="label ' . $label . '">' . $completed . '</span>';
             }
           ],
 

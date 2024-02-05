@@ -16,10 +16,11 @@ use Yii;
  * @property int $status
  * @property int $recruitmentcandidateid
  * @property string $invitationnumber
+ * @property string $documentinterview
  */
 class Interview extends \yii\db\ActiveRecord
 {
-  public $fullname;
+    public $fullname;
 
     /**
      * {@inheritdoc}
@@ -35,13 +36,14 @@ class Interview extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['scheduledate','officeid'], 'required'],
-            [['status'], 'required', 'on'=>'intproc'],
-            [['pic'], 'required', 'on'=>'update'],
-            [['userid', 'status', 'recruitmentcandidateid','roomid','pic','officepic','formtypeid'], 'integer'],
+            [['scheduledate', 'officeid'], 'required'],
+            [['status'], 'required', 'on' => 'intproc'],
+            [['documentinterview'], 'required', 'on' => 'intupload'],
+            [['pic'], 'required', 'on' => 'update'],
+            [['userid', 'status', 'recruitmentcandidateid', 'roomid', 'pic', 'officepic', 'formtypeid'], 'integer'],
             [['createtime', 'updatetime', 'scheduledate', 'date'], 'safe'],
             [['skalarating'], 'string', 'max' => 45],
-            [['desc','addinfo'], 'string', 'max' => 1045],
+            [['desc', 'addinfo'], 'string', 'max' => 1045],
         ];
     }
 
@@ -66,7 +68,8 @@ class Interview extends \yii\db\ActiveRecord
             'pic' => 'PIC Interview',
             'skalarating' => 'Skala Rating',
             'desc' => 'Dekripsi',
-            'addinfo' => 'Keterangan / Tambahan informasi hasil interview '
+            'addinfo' => 'Keterangan/ Tambahan informasi hasil interview',
+            'documentinterview' => 'Document Manual Interview'
 
         ];
     }

@@ -282,4 +282,41 @@ Modal::end();
       </div>
     </div>
   </div>
+
+  <div class="col-md-6">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Job Description & Requirement</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th>Description</th>
+              <th>Requirement</th>
+              <th></th>
+            </tr>
+            <?php
+            if ($transjo) {
+              foreach ($transjo as $key => $value) {
+            ?>
+                <tr>
+                  <td><?php echo $value->deskripsi; ?></td>
+                  <td><?php echo $value->syarat; ?></td>
+                </tr>
+              <?php }
+            } else { ?>
+              <tr>
+                <td colspan="6">No data...</td>
+              </tr>
+            <?php } ?>
+
+          </tbody>
+        </table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+  </div>
+
 </div>

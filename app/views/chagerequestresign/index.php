@@ -9,6 +9,7 @@ use kartik\grid\SerialColumn;
 use kartik\select2\Select2;
 use app\models\Masterstatuscr;
 use app\models\User;
+use kartik\export\ExportMenu;
 use yii\helpers\ArrayHelper;
 use yii\bootstrap\Modal;
 use yii\widgets\ActiveForm;
@@ -75,8 +76,16 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove;
   <div class="box-header with-border">
     <?php if (Yii::$app->utils->permission($role, 'm68')) : ?>
       <?= Html::a('Create', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
-      <!-- <? //= Html::a('Upload Data', ['upload'], ['class' => 'btn btn-warning btn-flat']) 
-            ?> -->
+      <?php
+      $sampleFile = Yii::getAlias('@web') . '/assets/data/example/competitorproduct.csv?' . $randChar;
+      $sampleFileXls = Yii::getAlias('@web') . '/assets/data/example/competitorproduct.xls?' . $randChar;
+      $sampleFileXlsx = Yii::getAlias('@web') . '/assets/data/example/competitorproduct.xlsx?' . $randChar;
+      ?>
+      <li><a href="<?php echo $sampleFile; ?>">Comma Separated Values (.csv/.txt)</a></li>
+      <li><a href="<?php echo $sampleFileXls; ?>">Microsoft Excel (.xls)</a></li>
+      <li><a href="<?php echo $sampleFileXlsx; ?>">Microsoft Excel 2007 (.xlsx)</a></li>
+
+      <?= Html::a('Upload Data', ['upload'], ['class' => 'btn btn-warning btn-flat']) ?>
     <?php endif; ?>
 
 
@@ -245,16 +254,21 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove;
             // return $data->status;
             if ($data->status == 1) {
               $label = 'label-danger';
+              $status = $data->statusprocess->statusname;
             } elseif ($data->status == 2 or $data->status == 3) {
               $label = 'label-warning';
+              $status = $data->statusprocess->statusname;
             } elseif ($data->status == 4) {
               $label = 'label-success';
+              $status = $data->statusprocess->statusname;
             } elseif ($data->status == 8) {
               $label = 'label-info';
+              $status = $data->statusprocess->statusname;
             } else {
               $label = 'label-danger';
+              $status = '';
             }
-            return '<span class="label ' . $label . '">' . $data->statusprocess->statusname . '</span>';
+            return '<span class="label ' . $label . '">' . $status . '</span>';
           }
         ],
 

@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Mastercity;
+use app\models\Saparea;
 use app\models\Sapjob;
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -58,6 +59,13 @@ $action = $actionstop . $actionview . $actionaddcandidate;
 
 ?>
 <div class="transrincian-index box box-default">
+  <div class="box-header with-heaader">
+    <?php echo Html::a('<i class="fa fa-tasks" style="font-size:12pt;"></i>', ['manage'], [
+      'class' => 'btn btn-sm btn-default pull-right',
+      'data-toggle' => 'tooltip',
+      'title' => 'Change Layout'
+    ]); ?>
+  </div>
 
   <div class="box-body table-responsive">
     <?php // echo $this->render('_search', ['model' => $searchModel]); 
@@ -152,6 +160,28 @@ $action = $actionstop . $actionview . $actionaddcandidate;
               } else {
                 return "-";
               }
+            } else {
+              return "-";
+            }
+          }
+        ],
+
+        [
+          'label' => 'Area (SAP)',
+          'format' => 'html',
+          'filter' => \kartik\select2\Select2::widget([
+            'model' => $searchModel,
+            'attribute' => 'areasap',
+            'data' => ArrayHelper::map(Saparea::find()->asArray()->all(), 'value1', 'value2'),
+            'options' => ['placeholder' => '--'],
+            'pluginOptions' => [
+              'allowClear' => true,
+              // 'width' => '120px',
+            ],
+          ]),
+          'value' => function ($data) {
+            if ($data->area_sap) {
+              return $data->areasap->value2;
             } else {
               return "-";
             }

@@ -38,12 +38,12 @@ class Chagerequestdata extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            // [['approvedby','personaldatafill'], 'required', 'on' => 'submit'],
             [['userid', 'createdby', 'updatedby', 'approvedby', 'kategorydata','cekemp','statusresign', 'checkperner'], 'integer'],
+            [['status','remarks'], 'required', 'on' => 'approve'],
+            [['checkperner'], 'required', 'message' => 'This perner has been on processed Change Data Bank', 'on' => 'createupdate'],
+            [['approvedby','personaldatafill'], 'required', 'on' => 'submit'],
             [['createtime', 'updatetime', 'approvedtime','resigndate'], 'safe'],
             [['resignreason'], 'string', 'max' => 445],
-            [['status','remarks'], 'required', 'on' => 'approve'],
-            [['checkperner'], 'required', 'message' => 'this perner has been on processed Change Data', 'on' => 'createupdate'],
 
         ];
     }
@@ -62,7 +62,7 @@ class Chagerequestdata extends \yii\db\ActiveRecord
             'createdby' => 'Created by',
             'updatedby' => 'Updated by',
             'approvedby' => 'Approved by',
-            'kategorydata' => 'Kategorydata',
+            'kategorydata' => 'Category data',
             'personaldatafill' => 'Change request data',
             'cekemp' => 'Data Pekerja',
         ];

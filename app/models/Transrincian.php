@@ -65,10 +65,10 @@ class Transrincian extends \yii\db\ActiveRecord
     {
         return Yii::$app->get('dbjo');
     }
-    // public static function getDb2()
-    // {
-    //     return Yii::$app->get('db');
-    // }
+    public static function getDb2()
+    {
+        return Yii::$app->get('db');
+    }
 
     /**
      * {@inheritdoc}
@@ -149,7 +149,7 @@ class Transrincian extends \yii\db\ActiveRecord
             'skema_sap' => 'Skema Sap',
             'abkrs_sap' => 'Abkrs Sap',
             'hire_jabatan_sap' => 'Hire Jabatan Sap',
-            'zparam' => 'Zparam',
+            'zparam' => 'ZParameter',
             'lup_skema' => 'Lup Skema',
             'upd_skema' => 'Upd Skema',
             'n_project' => 'Project',

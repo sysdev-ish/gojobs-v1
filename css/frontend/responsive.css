@@ -476,7 +476,7 @@
 	}
 
 	.categories-list ul li.careerfy-column-3 {
-		width: 50%;
+		width: 100%;
 	}
 
 	.careerfy-featured-listing>ul>li {
@@ -490,7 +490,8 @@
 
 	.careerfy-banner-search ul li,
 	.careerfy-banner-search ul li:last-child {
-		width: 50%;
+		/* width: 50%; */
+		width: 100%;
 	}
 
 	.careerfy-banner-search {
