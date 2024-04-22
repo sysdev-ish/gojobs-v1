@@ -95,6 +95,7 @@ class CmsController extends Controller
             }
             $model->created_time = date('Y-m-d H-i-s');
             $model->updated_time = date('Y-m-d H-i-s');
+            $model->slug = Yii::$app->utils->slugify($model->title, $delimiter = '-');
             $model->status = 1;
             if ($model->save()){
                 Yii::$app->session->setFlash('success', "Data ditambahkan.");
@@ -118,7 +119,7 @@ class CmsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        
         if ($model->load(Yii::$app->request->post())) {
             $model->assets_path = UploadedFile::getInstance($model, 'assets_path');
             if ($model->assets_path) {
@@ -129,6 +130,7 @@ class CmsController extends Controller
                     $model->assets_path = $filep;
                 }
             }
+            $model->slug = Yii::$app->utils->slugify($model->title, $delimiter = '-');
             $model->updated_time = date('Y-m-d H-i-s');
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', "Data diupdate.");

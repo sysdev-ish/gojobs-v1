@@ -42,7 +42,8 @@ class Forgotpassword extends Model
       $randomstring = Yii::$app->utils->generateRandomString(6);
 
       // $randomstring = 'bypassreset';
-      $modelsave = Userdata::find()->where(['username' => $username, 'role' => 2])->one();
+      // $modelsave = Userdata::find()->where(['username' => $username, 'role' => 2])->one();
+      $modelsave = Userdata::find()->where(['or', ['email' => $username], ['username' => $username]])->one();
       if ($modelsave) {
         $modelsave->password_reset_token = $randomstring;
         if ($modelsave->save(false)) {

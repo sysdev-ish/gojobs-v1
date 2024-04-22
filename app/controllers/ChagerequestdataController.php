@@ -186,6 +186,7 @@ class ChagerequestdataController extends Controller
 
     return Json::encode($dataprofile);
   }
+  
   public function actionCreate($id = null)
   {
     // $getid = Userprofile::find()->where(['userid'=>$userid])->one();

@@ -244,8 +244,9 @@ class ChagerequestresignController extends Controller
           'ANSVH' => $dataprofile[0]->ANSVH,
           'PLANS' => $dataprofile[0]->PLANS,
         ])
-          ->post('http://192.168.88.5/service/index.php/Rfcresign');
-
+        ->post('http://192.168.88.5/service/index.php/Rfcresign');
+        // var_dump($putrfcresign);die();
+          
         $rfcresign  = json_decode($putrfcresign);
         $message = 'successful';
         if ($rfcresign->CODE == 'S') {

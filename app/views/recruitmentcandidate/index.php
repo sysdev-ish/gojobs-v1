@@ -252,9 +252,9 @@ if (Yii::$app->utils->permission($role, 'm3') && Yii::$app->utils->permission($r
           'value' => function ($data) {
             return ($data->typeinterview == 1) ? 'Invite' : 'Walk in';
           }
-          
+
         ],
-        
+
         [
           'attribute' => 'method',
           'contentOptions' => ['style' => 'width: 80px;'],
@@ -349,7 +349,7 @@ if (Yii::$app->utils->permission($role, 'm3') && Yii::$app->utils->permission($r
             },
 
             'invite' => function ($url, $model, $key) {
-              // (Yii::$app->chproc->interview($model->userid,$model->id) == 3 )?$disabled = false : $disabled = true;
+              // (Yii::$app->chproc->interview($model->userid, $model->id) == 3) ? $disabled = false : $disabled = true;
               $cekcandidate = Recruitmentcandidate::find()->where(['status' => 4, 'userid' => $model->userid])->one();
               if ($cekcandidate) {
                 $disabled = true;

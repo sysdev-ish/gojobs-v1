@@ -95,7 +95,7 @@ class checkComponent extends Component
     $userhealth = $this->cuserhealth($userid);
 
     $data = [
-      'use rprofile' => $userprofile,
+      'user profile' => $userprofile,
       'user family' => $userfamily,
       'user formal education' => $userfedu,
       'user nonformal education' => $usernfedu,

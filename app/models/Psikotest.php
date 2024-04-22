@@ -73,9 +73,9 @@ class Psikotest extends \yii\db\ActiveRecord
           'documentpsikotest' => 'Psychogram',
       ];
     }
-    public function getUserprofile()
+    public function getUserProfile()
     {
-        return $this->hasOne(Userprofile::className(), ['userid' => 'userid']);
+        return $this->hasOne(UserProfile::className(), ['userid' => 'userid']);
     }
     public function getUserdata()
     {
