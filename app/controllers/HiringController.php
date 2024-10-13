@@ -18,6 +18,7 @@ use app\models\Recruitmentcandidatefhsearch;
 use app\models\Userlogin;
 use app\models\User;
 use app\models\Maillog;
+use app\models\Recruitmentcandidate;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -37,10 +38,10 @@ class HiringController extends Controller
     return [
       'access' => [
         'class' => AccessControl::className(),
-        'only' => ['index', 'update', 'create', 'view', 'approve', 'reject', 'addhiring', 'delete'],
+        'only' => ['index', 'update', 'create', 'createmanual', 'view', 'approve', 'reject', 'addhiring', 'delete'],
         'rules' => [
           [
-            'actions' => ['index', 'update', 'create', 'view', 'approve', 'reject', 'addhiring', 'delete'],
+            'actions' => ['index', 'update', 'create', 'createmanual', 'view', 'approve', 'reject', 'addhiring', 'delete'],
             'allow' => true,
             'roles' => ['@'],
             'matchCallback' => function () {
@@ -105,7 +106,7 @@ class HiringController extends Controller
       'dataProviderprofile' => $dataProviderprofile,
     ]);
   }
-  
+
   public function actionCreate($userid)
   {
     $recruitreqid = $_POST['recruitreqid'];
@@ -228,6 +229,72 @@ class HiringController extends Controller
     }
   }
 
+  public function actionCreatemanual($userid, $joborderid)
+  {
+    $recruitreqid = $joborderid;
+    if ($recruitreqid) {
+      // die('die');
+      $model = new Hiring();
+      $modelcountjo = Hiring::find()->where('recruitreqid = ' . $recruitreqid . ' AND statushiring <> 5 AND statushiring <> 6 AND statushiring <> 7')->count();
+      $transrincian = Transrincian::find()->where(['id' => $recruitreqid])->one();
+      $userprofile = Userprofile::find()->where(['userid' => $userid])->one();
+      $chagerequestjo = Chagerequestjo::find()->where(['recruitreqid' => $recruitreqid])
+        ->andWhere([
+          'or',
+          ['status' => 1],
+          ['status' => 2]
+        ])->one();
+      if ($chagerequestjo) {
+        $countnewjumlah = $chagerequestjo->jumlah;
+      } else {
+        $countnewjumlah = $transrincian->jumlah;
+      }
+      if ($transrincian->typejo == 3) {
+        return "Success Add Hiring 5";
+      } else {
+        if ($modelcountjo >= $transrincian->jumlah) {
+          return "Fail Add Hiring 4";
+        } else if ($modelcountjo >= $countnewjumlah) {
+          return "Fail Add Hiring 6";
+        } else {
+          $transjo = Transjo::find()->where(['nojo' => $transrincian->nojo])->one();
+          // $typerekrut = Transrincian::find()->where(['type_rekrut'=>$transrincian->type_rekrut])->one();
+
+          $awalkontrak = $transjo->tanggal;
+          $lama = substr($transjo->lama, 0, 2);
+          $akhirkontrak = date('Y-m-d', strtotime('+' . $lama . ' month', strtotime($awalkontrak)));
+          $model->userid = $userid;
+          $model->recruitreqid = $recruitreqid;
+          $model->createtime = date('Y-m-d H-i-s');
+          $model->updatetime = date('Y-m-d H-i-s');
+          $model->tglinput = date('Y-m-d');
+          $model->awalkontrak = $awalkontrak;
+          $model->akhirkontrak = $akhirkontrak;
+          $model->statushiring = 1;
+          $model->statusbiodata = 1;
+          if ($transjo->flag_peralihan == 1) {
+            $model->typejo = 2;
+          }
+          $model->createdby = Yii::$app->user->identity->id;
+          $model->updateby = Yii::$app->user->identity->id;
+          Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+          if ($transrincian->skema == 0) {
+            return 0;
+          } else {
+            if ($model->save()) {
+              return "Success Add Hiring";
+            } else {
+              return "Fail";
+            }
+          }
+        }
+      }
+    } else {
+      // die('die-here');
+      return "Fail JO Not Found";
+    }
+  }
+
   //hiringprocess
   public function actionHiringprocess($id)
   {
@@ -250,10 +317,12 @@ class HiringController extends Controller
       'BTRTL' => $transrincian->area_sap,
       'ABKRS' => $transrincian->abkrs_sap,
     ])
-      ->post('http://192.168.88.5/service/index.php/Rfccekposisi'); //var_dump($cekposition);die;
+      ->post('http://192.168.88.5/service/index.php/Rfccekposisi');
+    // var_dump($cekposition);die();
     $cekpositionresult  = json_decode($cekposition);
 
     if ($cekpositionresult) {
+      // var_dump($cekpositionresult->CODE);die();
       if ($cekpositionresult->CODE == 'S') {
         $cekpaycontroll =  $curl->setPostParams([
           'token' => 'ish@2019!',
@@ -355,6 +424,8 @@ class HiringController extends Controller
 
           curl_close($ch);
           $ret = json_decode($response);
+
+          // var_dump($ret);die();
           //
           if ($ret) {
             if ($ret->status == 'OK') {
@@ -410,7 +481,8 @@ class HiringController extends Controller
       $subject = 'Pemberitahuan PT Infomedia Solusi Humanika';
       $body = Yii::$app->params['mailFeedback'];
       $body = str_replace('{fullname}', $hiring->userprofile->fullname, $body);
-      $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11); //11 -> Candidate Feedback
+      //11 -> Candidate Feedback
+      // $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
     }
   }
 
@@ -422,390 +494,35 @@ class HiringController extends Controller
     $model = $this->findModel($id);
     $transrincian = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
     $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
-    if ($model) {
-      // $model = $id;
-      //
-      $transrincian = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
-      $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
-      $tglinput = date_create($model->tglinput);
-      // var_dump($transrincian);die;
-      // $curl = new curl\Curl();
-      // $cekposition =  $curl->setPostParams([
-      //   'token' => 'ish@2019!',
-      //   'STELL' => $transrincian->hire_jabatan_sap,
-      //   'WERKS' => $transrincian->persa_sap,
-      //   'PERSK' => $transrincian->skill_sap,
-      //   'BTRTL' => $transrincian->area_sap,
-      //   'ABKRS' => $transrincian->abkrs_sap,
-      // ])
-      //   ->post('http://192.168.88.5/service/index.php/Rfccekposisi'); //var_dump($cekposition);die;
-      // $cekpositionresult  = json_decode($cekposition);
-      // if ($cekpositionresult->CODE != 'S') {
-
-      $curl = new curl\Curl();
-      $cekpaycontroll =  $curl->setPostParams([
-        'token' => 'ish@2019!',
-        'ABKRS' => $transrincian->abkrs_sap,
-      ])->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
-      $payrollcontrollresult  = json_decode($cekpaycontroll);
-      // var_dump($payrollcontrollresult);die;
-      if ($payrollcontrollresult->status == 1) {
-
-        if ($userprofile->gender == 'male') {
-          $gender = '1';
-        } else {
-          $gender = '2';
-        }
-        if ($userprofile->maritalstatus == 'single') {
-          $statuskawin = '0';
-        } else {
-          $statuskawin = '1';
-        }
-        if ($userprofile->religion == 'islam') {
-          $agama = '01';
-        } elseif ($userprofile->religion == 'christian') {
-          $agama = '02';
-        } elseif ($userprofile->religion == 'protestant') {
-          $agama = '02';
-        } elseif ($userprofile->religion == 'hindu') {
-          $agama = '04';
-        } elseif ($userprofile->religion == 'buddha') {
-          $agama = '05';
-        } elseif ($userprofile->religion == 'catholic') {
-          $agama = '03';
-        } else {
-          $agama = '07';
-        }
-        if ($transrincian->kontrak == 'PKWT') {
-          $kontrak = '01';
-        } elseif ($transrincian->kontrak == 'PARTTIME' or $transrincian->kontrak == 'Part Time') {
-          $kontrak = '03';
-        } elseif ($transrincian->kontrak == 'MAGANG') {
-          $kontrak = '05';
-        } elseif ($transrincian->kontrak == 'KEMITRAAN') {
-          $kontrak = '06';
-        } elseif ($transrincian->kontrak == 'THL') {
-          $kontrak = '07';
-        } elseif ($transrincian->kontrak == 'PKWT-KEMITRAAN PB') {
-          $kontrak = '01';
-        }
-
-        if ($transrincian->typejo == 1) {
-          $massg = "01";
-        } else {
-          $massg = "03";
-        }
-        $birthdate = date_create($userprofile->birthdate);
-        $url = "http://192.168.88.60:8080/ish-rest/hiring/insert";
-        $request_data = [
-          'begda' => date_format($tglinput, 'Y.m.d'),
-          'endda' => '9999.12.31',
-          'massn' => 'Z1',
-          'massg' => $massg,
-          'werks' => $transrincian->persa_sap,
-          'persg' => '8',
-          'persk' => $transrincian->skill_sap,
-          'btrtl' => $transrincian->area_sap,
-          'abkrs' => $transrincian->abkrs_sap,
-          'ansvh' => $kontrak,
-          'stell' => $transrincian->hire_jabatan_sap,
-          'cname' => $userprofile->fullname,
-          'anred' => $gender,
-          'sprsl' => 'ID',
-          'gbpas' => date_format($birthdate, 'Y.m.d'),
-          'gbort' => $userprofile->birthplace,
-          'natio' => 'ID',
-          'gblnd' => 'ID',
-          'famst' => $statuskawin,
-          'konfe' => $agama,
-        ];
-
-        $json = json_encode($request_data);
-
-        // print_r($json);
-        // die;
-        // echo '<br>';
-
-        $headers  = [
-          'Content-Type: application/json',
-          'cache-control: no-cache"=',
-        ];
-
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-        $response = curl_exec($ch);
-
-        // var_dump($response);die();
-
-        curl_close($ch);
-        $ret = json_decode($response);
-        // [status] => NOK [message] => [pernr] =>
-        if ($ret->status == 'OK') {
-          $model->perner = $ret->pernr;
-          $model->statushiring = 4;
-          $model->message = $ret->message;
-          $model->save();
-        } else {
-          $model->statushiring = 3;
-          $model->message = $ret->message;
-          $model->save();
-        }
-        print_r(json_encode($ret));
-        // return $this->redirect(['index']);
-      } else {
-        $model->statushiring = 3;
-        $model->message = 'You have already locked payroll controll';
-        $model->save();
-        $retlock = ['status' => "NOK", 'message' => 'lock', 'pernr' => null];
-        print_r(json_encode($retlock));
-        //change by kaha 2/11/22 -> for by pass lock position (Search position on SAP)
-        // $retlock = ['status' => "NOK", 'message' => 'lock', 'pernr' => null];
-        // print_r(json_encode($retlock));
-      }
-      $hiring = Hiring::find()->where(['userid' => $model->userid])->one();
-      $userid = $hiring->userid;
-      $recruitreqid = $hiring->recruitreqid;
-      $hiringstatus = Yii::$app->utils->hired($userid, $recruitreqid);
-      if ($hiringstatus) {
-        // $to = $hiring->mail->email;
-        $to = 'khusnul.hisyam@ish.co.id';
-        $subject = 'Pemberitahuan PT Infomedia Solusi Humanika';
-        $body = Yii::$app->params['mailFeedback'];
-        $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
-        if ($verification) {
-          echo 'succesfully';
-        }
-      } else {
-        echo 'succesfully, not sent mail';
-      }
-    } else {
-      $retpos = ['status' => "NOK", 'message' => 'temp hold running', 'pernr' => null];
-      print_r(json_encode($retpos));
-    }
-  }
-
-  //change by kaha 2/11/22 -> for by pass lock position (Search position on SAP)
-  public function actionHiringmanual($id)
-  {
-    // $id = Hiring::find()->where(['statushiring' => 3, 'statusbiodata' => 2, 'perner' => null])->one();
-    // if ($id) {
-    $model = $this->findModel($id);
-    //
-    $transrincian = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
-    // var_dump($transrincian);die();
-    $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
     $tglinput = date_create($model->tglinput);
-    //
-    $curl = new curl\Curl();
-    $cekpaycontroll =  $curl->setPostParams([
-      'token' => 'ish@2019!',
-      'ABKRS' => $transrincian->abkrs_sap,
-    ])->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
-    $payrollcontrollresult  = json_decode($cekpaycontroll);
-    // var_dump($payrollcontrollresult);die;
-    if ($payrollcontrollresult->status == 1) {
 
-      if ($userprofile->gender == 'male') {
-        $gender = '1';
-      } else {
-        $gender = '2';
-      }
-      if ($userprofile->maritalstatus == 'single') {
-        $statuskawin = '0';
-      } else {
-        $statuskawin = '1';
-      }
-      if ($userprofile->religion == 'islam') {
-        $agama = '01';
-      } elseif ($userprofile->religion == 'christian') {
-        $agama = '02';
-      } elseif ($userprofile->religion == 'protestant') {
-        $agama = '02';
-      } elseif ($userprofile->religion == 'hindu') {
-        $agama = '04';
-      } elseif ($userprofile->religion == 'buddha') {
-        $agama = '05';
-      } elseif ($userprofile->religion == 'catholic') {
-        $agama = '03';
-      } else {
-        $agama = '07';
-      }
-      if ($transrincian->kontrak == 'PKWT') {
-        $kontrak = '01';
-      } elseif ($transrincian->kontrak == 'PARTTIME' or $transrincian->kontrak == 'Part Time') {
-        $kontrak = '03';
-      } elseif ($transrincian->kontrak == 'MAGANG') {
-        $kontrak = '05';
-      } elseif ($transrincian->kontrak == 'KEMITRAAN') {
-        $kontrak = '06';
-      } elseif ($transrincian->kontrak == 'THL') {
-        $kontrak = '07';
-      } elseif ($transrincian->kontrak == 'PKWT-KEMITRAAN PB') {
-        $kontrak = '01';
-      }
-
-      if ($transrincian->typejo == 1) {
-        $massg = "01";
-      } else {
-        $massg = "03";
-      }
-      $birthdate = date_create($userprofile->birthdate);
-      $url = "http://192.168.88.60:8080/ish-rest/hiring/insert";
-      $request_data = [
-        'begda' => date_format($tglinput, 'Y.m.d'),
-        'endda' => '9999.12.31',
-        'massn' => 'Z1',
-        'massg' => $massg,
-        'werks' => $transrincian->persa_sap,
-        'persg' => '8',
-        'persk' => $transrincian->skill_sap,
-        'btrtl' => $transrincian->area_sap,
-        'abkrs' => $transrincian->abkrs_sap,
-        'ansvh' => $kontrak,
-        'stell' => $transrincian->hire_jabatan_sap,
-        'cname' => $userprofile->fullname,
-        'anred' => $gender,
-        'sprsl' => 'ID',
-        'gbpas' => date_format($birthdate, 'Y.m.d'),
-        'gbort' => $userprofile->birthplace,
-        'natio' => 'ID',
-        'gblnd' => 'ID',
-        'famst' => $statuskawin,
-        'konfe' => $agama,
-      ];
-
-      $json = json_encode($request_data);
-
-      $headers  = [
-        'Content-Type: application/json',
-        'cache-control: no-cache"=',
-      ];
-
-      $ch = curl_init();
-
-      curl_setopt($ch, CURLOPT_URL, $url);
-      curl_setopt($ch, CURLOPT_POST, 1);
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-      curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-      $response = curl_exec($ch);
-
-      curl_close($ch);
-      $ret = json_decode($response);
-      //
-      if ($ret->status == 'OK') {
-        $model->perner = $ret->pernr;
-        $model->statushiring = 4;
-        $model->message = $ret->message;
-
-        //success get perner insert data to sintesys
-        $data_request = [
-          'client_name' => $transrincian->persa_sap ? Yii::$app->utils->getpersonalarea($transrincian->persa_sap) : "-",
-          'department_name' => $transrincian->area_sap ? Yii::$app->utils->getpersonalarea($transrincian->area_sap) : "-",
-          'perner' => $ret->pernr,
-          'realname' => $userprofile->fullname,
-          'email' => $ret->pernr . $userprofile->userlogin->email,
-          'mobile' => $ret->pernr . $userprofile->userlogin->mobile,
-          'service_code' => $transrincian->persa_sap,
-          'btrtl' => $transrincian->area_sap,
-        ];
-
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-          CURLOPT_URL => 'https://app.sintesys.id/core/openapi/gojobs/insertuser',
-          CURLOPT_RETURNTRANSFER => true,
-          CURLOPT_ENCODING => '',
-          CURLOPT_MAXREDIRS => 10,
-          CURLOPT_TIMEOUT => 0,
-          CURLOPT_FOLLOWLOCATION => true,
-          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-          CURLOPT_CUSTOMREQUEST => 'POST',
-          CURLOPT_POSTFIELDS => $data_request,
-          CURLOPT_HTTPHEADER => array(
-            'token: raD1adR01d'
-          ),
-        ));
-
-        $response_sintesys = curl_exec($curl);
-        // echo($response_sintesys);
-        curl_close($curl);
-
-        $model->save();
-
-      } else {
-        $model->statushiring = 3;
-        $model->message = $ret->message;
-        $model->save();
-      }
-      print_r(json_encode($ret));
-      // return $this->redirect(['index']);
-    } else {
-      $model->statushiring = 3;
-      $model->message = 'You have already locked payroll controll';
-      $model->save();
-      $retlock = ['status' => "NOK", 'message' => 'lock', 'pernr' => null];
-      print_r(json_encode($retlock));
-      // print_r(json_encode($retlock));
-    }
-    $hiring = Hiring::find()->where(['userid' => $model->userid])->one();
-    $userid = $hiring->userid;
-    $recruitreqid = $hiring->recruitreqid;
-    $hiringstatus = Yii::$app->utils->hired($userid, $recruitreqid);
-    if ($hiringstatus) {
-      $to = 'khusnul.hisyam@ish.co.id';
-      $subject = 'Pemberitahuan PT Infomedia Solusi Humanika';
-      $body = Yii::$app->params['mailFeedback'];
-      $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
-      if ($verification) {
-        echo 'succesfully';
-      }
-    } else {
-      echo 'succesfully, not sent mail';
-    }
-    // } else {
-    //   $retpos = ['status' => "NOK", 'message' => 'temp hold running', 'pernr' => null];
-    //   print_r(json_encode($retpos));
-    // }
-  }
-
-  //cront faile
-  public function actionHiringtest($id = null)
-  {
-    $id = Hiring::find()->where(['statushiring' => 3, 'statusbiodata' => 2])->orderBy(['id' => SORT_DESC])->one();
-    if ($id) {
-      // var_dump('here');
-      $model = $this->findModel($id);
+    if ($model) {
       $transrincian = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
       $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
-      $hiring = Hiring::find()->where(['userid' => $model])->one();
-
-      $tglinput = date_create($model->tglinput);
+      // var_dump($transrincian);die;
       $curl = new curl\Curl();
-      $cekpaycontroll =  $curl->setPostParams([
+      $cekposition =  $curl->setPostParams([
         'token' => 'ish@2019!',
+        'STELL' => $transrincian->hire_jabatan_sap,
+        'WERKS' => $transrincian->persa_sap,
+        'PERSK' => $transrincian->skill_sap,
+        'BTRTL' => $transrincian->area_sap,
         'ABKRS' => $transrincian->abkrs_sap,
-      ])->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
-      $payrollcontrollresult  = json_decode($cekpaycontroll);
-      if ($payrollcontrollresult->status == 1) {
-        $cekposition =  $curl->setPostParams([
-          'token' => 'ish@2019!',
-          'STELL' => $transrincian->hire_jabatan_sap,
-          'WERKS' => $transrincian->persa_sap,
-          'PERSK' => $transrincian->skill_sap,
-          'BTRTL' => $transrincian->area_sap,
-          'ABKRS' => $transrincian->abkrs_sap,
-        ])
-          ->post('http://192.168.88.5/service/index.php/Rfccekposisi');
-        $cekpositionresult  = json_decode($cekposition);
-        if ($cekpositionresult) {
-          if ($cekpositionresult->CODE == 'S') {
+      ])
+        ->post('http://192.168.88.5/service/index.php/Rfccekposisi'); //var_dump($cekposition);die;
+      $cekpositionresult  = json_decode($cekposition);
+      // var_dump($cekpositionresult);die();
+      if ($cekpositionresult) {
+        if ($cekpositionresult->CODE == 'S') {
+          $curl = new curl\Curl();
+          $cekpaycontroll =  $curl->setPostParams([
+            'token' => 'ish@2019!',
+            'ABKRS' => $transrincian->abkrs_sap,
+          ])->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
+          $payrollcontrollresult  = json_decode($cekpaycontroll);
+          // var_dump($payrollcontrollresult);die;
+          if ($payrollcontrollresult->status == 1) {
+
             if ($userprofile->gender == 'male') {
               $gender = '1';
             } else {
@@ -895,36 +612,229 @@ class HiringController extends Controller
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
             $response = curl_exec($ch);
+            var_dump($response);
+            die();
 
             curl_close($ch);
             $ret = json_decode($response);
-            // var_dump($ret);die;
-            // [status] => NOK [message] => [pernr] =>
-            if ($ret->status == 'OK') {
-              $model->perner = $ret->pernr;
-              $model->statushiring = 4;
-              $model->message = $ret->message;
-              $model->save();
+
+            if ($ret) {
+              if ($ret->status == 'OK') {
+                $model->perner = $ret->pernr;
+                $model->statushiring = 4;
+                $model->message = $ret->message;
+                $model->save();
+              } else {
+                $model->statushiring = 3;
+                $model->message = $ret->message;
+                $model->save();
+              }
+              print_r(json_encode($ret));
             } else {
               $model->statushiring = 3;
-              $model->message = $ret->message;
+              $model->message = "error response null";
               $model->save();
+              $retlock = ['status' => "NOK", 'message' => 'error response null', 'pernr' => null];
+              print_r(json_encode($retlock));
             }
-            print_r(json_encode($ret));
           } else {
             $model->statushiring = 3;
-            $model->message = 'VACANT POSITION NOT FOUND';
+            $model->message = 'You have already locked payroll controll';
             $model->save();
-            $retpos = ['status' => "NOK", 'message' => 'VACANT POSITION NOT FOUND', 'pernr' => null];
-            print_r(json_encode($retpos));
+            $retlock = ['status' => "NOK", 'message' => 'lock', 'pernr' => null];
+            print_r(json_encode($retlock));
           }
         } else {
           $model->statushiring = 3;
-          $model->message = 'You have already locked Position';
+          $model->message = 'VACANT POSITION NOT FOUND';
           $model->save();
-          $retpos = ['status' => "NOK", 'message' => 'You have already locked Position', 'pernr' => null];
+          $retpos = ['status' => "NOK", 'message' => 'VACANT POSITION NOT FOUND', 'pernr' => null];
           print_r(json_encode($retpos));
         }
+      } else {
+        $model->statushiring = 3;
+        $model->message = 'You have already locked Position';
+        $model->save();
+        $retpos = ['status' => "NOK", 'message' => 'You have already locked Position', 'pernr' => null];
+        print_r(json_encode($retpos));
+      }
+
+      $hiring = Hiring::find()->where(['userid' => $model->userid])->one();
+      $userid = $hiring->userid;
+      $recruitreqid = $hiring->recruitreqid;
+      $hiringstatus = Yii::$app->utils->hired($userid, $recruitreqid);
+      if ($hiringstatus) {
+        // $to = $hiring->mail->email;
+        $to = 'khusnul.hisyam@ish.co.id';
+        $subject = 'Pemberitahuan PT Infomedia Solusi Humanika';
+        $body = Yii::$app->params['mailFeedback'];
+        $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
+        if ($verification) {
+          echo 'succesfully';
+        }
+      } else {
+        echo 'succesfully, not sent mail';
+      }
+    } else {
+      $retpos = ['status' => "NOK", 'message' => 'temp hold running', 'pernr' => null];
+      print_r(json_encode($retpos));
+    }
+  }
+
+  //change by kaha 2/11/22 -> for by pass lock position (Search position on SAP)
+  public function actionHiringmanual($id)
+  {
+    $model = Hiring::find()->where(['statushiring' => 3, 'statusbiodata' => 2, 'perner' => null, 'id' => $id])->one();
+    if ($model) {
+      // $model = $this->findModel($id);
+      //
+      $transrincian = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
+      // var_dump($transrincian);die();
+      $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
+      $tglinput = date_create($model->tglinput);
+      //
+      $curl = new curl\Curl();
+      $cekpaycontroll =  $curl->setPostParams([
+        'token' => 'ish@2019!',
+        'ABKRS' => $transrincian->abkrs_sap,
+      ])->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
+      $payrollcontrollresult  = json_decode($cekpaycontroll);
+      // var_dump($payrollcontrollresult);die;
+      if ($payrollcontrollresult->status == 1) {
+
+        if ($userprofile->gender == 'male') {
+          $gender = '1';
+        } else {
+          $gender = '2';
+        }
+        if ($userprofile->maritalstatus == 'single') {
+          $statuskawin = '0';
+        } else {
+          $statuskawin = '1';
+        }
+        if ($userprofile->religion == 'islam') {
+          $agama = '01';
+        } elseif ($userprofile->religion == 'christian') {
+          $agama = '02';
+        } elseif ($userprofile->religion == 'protestant') {
+          $agama = '02';
+        } elseif ($userprofile->religion == 'hindu') {
+          $agama = '04';
+        } elseif ($userprofile->religion == 'buddha') {
+          $agama = '05';
+        } elseif ($userprofile->religion == 'catholic') {
+          $agama = '03';
+        } else {
+          $agama = '07';
+        }
+        if ($transrincian->kontrak == 'PKWT') {
+          $kontrak = '01';
+        } elseif ($transrincian->kontrak == 'PARTTIME' or $transrincian->kontrak == 'Part Time') {
+          $kontrak = '03';
+        } elseif ($transrincian->kontrak == 'MAGANG') {
+          $kontrak = '05';
+        } elseif ($transrincian->kontrak == 'KEMITRAAN') {
+          $kontrak = '06';
+        } elseif ($transrincian->kontrak == 'THL') {
+          $kontrak = '07';
+        } elseif ($transrincian->kontrak == 'PKWT-KEMITRAAN PB') {
+          $kontrak = '01';
+        }
+
+        if ($transrincian->typejo == 1) {
+          $massg = "01";
+        } else {
+          $massg = "03";
+        }
+        $birthdate = date_create($userprofile->birthdate);
+        $url = "http://192.168.88.60:8080/ish-rest/hiring/insert";
+        $request_data = [
+          'begda' => date_format($tglinput, 'Y.m.d'),
+          'endda' => '9999.12.31',
+          'massn' => 'Z1',
+          'massg' => $massg,
+          'werks' => $transrincian->persa_sap,
+          'persg' => '8',
+          'persk' => $transrincian->skill_sap,
+          'btrtl' => $transrincian->area_sap,
+          'abkrs' => $transrincian->abkrs_sap,
+          'ansvh' => $kontrak,
+          'stell' => $transrincian->hire_jabatan_sap,
+          'cname' => $userprofile->fullname,
+          'anred' => $gender,
+          'sprsl' => 'ID',
+          'gbpas' => date_format($birthdate, 'Y.m.d'),
+          'gbort' => $userprofile->birthplace,
+          'natio' => 'ID',
+          'gblnd' => 'ID',
+          'famst' => $statuskawin,
+          'konfe' => $agama,
+        ];
+
+        $json = json_encode($request_data);
+
+        $headers  = [
+          'Content-Type: application/json',
+          'cache-control: no-cache"=',
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        $response = curl_exec($ch);
+
+        curl_close($ch);
+        $ret = json_decode($response);
+        //
+        if ($ret->status == 'OK') {
+          $model->perner = $ret->pernr;
+          $model->statushiring = 4;
+          $model->message = $ret->message;
+
+          //success get perner insert data to sintesys
+          $data_request = [
+            'client_name' => $transrincian->persa_sap ? Yii::$app->utils->getpersonalarea($transrincian->persa_sap) : "-",
+            'department_name' => $transrincian->area_sap ? Yii::$app->utils->getpersonalarea($transrincian->area_sap) : "-",
+            'perner' => $ret->pernr,
+            'realname' => $userprofile->fullname,
+            'email' => $ret->pernr . $userprofile->userlogin->email,
+            'mobile' => $ret->pernr . $userprofile->userlogin->mobile,
+            'service_code' => $transrincian->persa_sap,
+            'btrtl' => $transrincian->area_sap,
+          ];
+
+          $curl = curl_init();
+          curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://app.sintesys.id/core/openapi/gojobs/insertuser',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => $data_request,
+            CURLOPT_HTTPHEADER => array(
+              'token: raD1adR01d'
+            ),
+          ));
+
+          $response_sintesys = curl_exec($curl);
+          // echo($response_sintesys);
+          curl_close($curl);
+
+          $model->save();
+        } else {
+          $model->statushiring = 3;
+          $model->message = $ret->message;
+          $model->save();
+        }
+        print_r(json_encode($ret));
         // return $this->redirect(['index']);
       } else {
         $model->statushiring = 3;
@@ -932,32 +842,50 @@ class HiringController extends Controller
         $model->save();
         $retlock = ['status' => "NOK", 'message' => 'lock', 'pernr' => null];
         print_r(json_encode($retlock));
+        // print_r(json_encode($retlock));
       }
-
-      $hiring = Hiring::find()->where(['userid' => $model])->one();
-      $hiringstatus = Yii::$app->utils->aplhired($model);
+      $hiring = Hiring::find()->where(['userid' => $model->userid])->one();
+      $userid = $hiring->userid;
+      $recruitreqid = $hiring->recruitreqid;
+      $hiringstatus = Yii::$app->utils->hired($userid, $recruitreqid);
       if ($hiringstatus) {
-        // $to = $hiring->mail->email;
         $to = 'khusnul.hisyam@ish.co.id';
-
         $subject = 'Pemberitahuan PT Infomedia Solusi Humanika';
         $body = Yii::$app->params['mailFeedback'];
         $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
         if ($verification) {
-          // $to = 'khusnul.hisyam@ish.co.id';
-          // $subject = 'Informasi Approve Hiring';
-          // $body = Yii::$app->params['mailFeedback'];
-          // $body = str_replace('{fullname}', $model->userprofile->fullname, $body);
-          // $body = str_replace('{jabatan}', $transrincian->jabatan, $body);
-          // $body = str_replace('{area}', $transrincian->areasap->value2, $body);
-          // $sendmail = Yii::$app->utils->sendmail($to, $subject, $body, 9);
           echo 'succesfully';
         }
+      } else {
+        echo 'succesfully, not sent mail';
       }
     } else {
-      $retpos = ['status' => "NOK", 'message' => 'temp hold running', 'pernr' => null];
+      $retpos = ['status' => "NOK", 'message' => 'Not Found Hiring Data', 'pernr' => null];
       print_r(json_encode($retpos));
     }
+  }
+
+  // active user again by perner
+  public function actionHiringActive($id = null)
+  {
+    $data = Hiring::find()->where(['statushiring' => 7, 'id' => $id])->orderBy(['id' => SORT_DESC])->one();
+
+    if ($data) {
+      $dataCandidate = RecruitmentCandidate::findOne(['userid' => $data->userid, 'recruitreqid' => $data->recruitreqid]);
+
+      $data->statushiring = 4;
+      $dataCandidate->status = 4;
+
+      if ($data->save(false) && $dataCandidate->save(false)) {
+        Yii::$app->session->setFlash('success', "Success Reset.");
+        return $this->redirect(['index']);
+      } else {
+        Yii::$app->session->setFlash('error', "Gagal Save.");
+      }
+    } else {
+      Yii::$app->session->setFlash('error', "Data tidak ada.");
+    }
+    return $this->redirect(['index']);
   }
 
   //updateprocesshiringsap
@@ -1457,7 +1385,7 @@ class HiringController extends Controller
     // return ob_get_clean();
     // return $this->redirect(['index']);
   }
-  
+
   public function actionHiringupdatetglkontrak($id)
   {
     $model = $this->findModel($id);
@@ -2001,7 +1929,7 @@ class HiringController extends Controller
       }
     }
   }
-  
+
   public function actionApprove($id)
   {
     $model = $this->findModel($id);
@@ -2039,6 +1967,7 @@ class HiringController extends Controller
       }
       $model->approvedby = Yii::$app->user->identity->id;
       $model->updatetime = date('Y-m-d H-i-s');
+      $model->approvetime = date('Y-m-d H-i-s');
       $model->save();
       $model = $this->findModel($id);
       $modelrecreq = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
@@ -2101,7 +2030,7 @@ class HiringController extends Controller
       ]);
     }
   }
-  
+
   public function actionReject($id)
   {
     $model = $this->findModel($id);
@@ -2109,8 +2038,29 @@ class HiringController extends Controller
     $model->statusbiodata = 5;
     $model->rejectedby = Yii::$app->user->identity->id;
 
-    $model->save();
+    $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $model->userid, 'recruitreqid' => $model->recruitreqid])->one();
+    $recruitmentcandidate->status = 24;
 
+    $modelrecreq = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
+
+    if ($model->save()) {
+      $recruitmentcandidate->save(false);
+
+      if ($modelrecreq->status_rekrut = 2) {
+        $modelrecreq->status_rekrut = 1;
+        $modelrecreq->save(false);
+      } else if ($modelrecreq->status_rekrut = 4) {
+        $modelrecreq->status_rekrut = 3;
+        $modelrecreq->save(false);
+      } else {
+        $modelrecreq->save(false);
+      }
+      Yii::$app->session->setFlash('success', "Done Reject.");
+
+      return $this->redirect(['index']);
+    }
+
+    Yii::$app->session->setFlash('error', "Cant Reject");
     return $this->redirect(['index']);
   }
 

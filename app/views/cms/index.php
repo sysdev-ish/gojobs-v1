@@ -116,10 +116,20 @@ if (Yii::$app->utils->permission($role, 'm133') && Yii::$app->utils->permission(
                             $type_content = "Banner";
                         } else if ($data->type_content == 2) {
                             $type_content = "Privacy & Policy";
-                        } else if ($data->type_content == 2) {
+                        } else if ($data->type_content == 3) {
                             $type_content = "Terms & Condition";
-                        } else {
+                        } else if ($data->type_content == 4) {
                             $type_content = "About & Contact";
+                        } else if ($data->type_content == 5) {
+                            $type_content = "Benefit";
+                        } else if ($data->type_content == 6) {
+                            $type_content = "Process Recruitment";
+                        } else if ($data->type_content == 7) {
+                            $type_content = "Testimonial";
+                        } else if ($data->type_content == 8) {
+                            $type_content = "FAQ";
+                        } else {
+                            $type_content = "";
                         }
                         return $type_content;
                     }

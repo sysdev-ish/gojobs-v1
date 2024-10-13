@@ -87,7 +87,7 @@ class MasterjobfamilyController extends Controller
             $model->createtime = date('Y-m-d H-i-s');
             $model->updatetime = date('Y-m-d H-i-s');
             $model->status = 1;
-            if ($model->save()) {
+            if ($model->save()){
                 Yii::$app->session->setFlash('success', "Data ditambahkan.");
             } else {
                 Yii::$app->session->setFlash('error', "Data sudah ada.");
@@ -136,17 +136,19 @@ class MasterjobfamilyController extends Controller
     {
         // $jobfamily = Masterjobfamily::find($id)->all();
         $model = $this->findModel($id);
-        try {
-            if ($model->delete()) {
+            try {
+                if ($model->delete()) {
                 Yii::$app->session->setFlash('success', "Data Dihapus.");
+                }
+                // else {
+                //     Yii::$app->session->setFlash('error', "Data Digunakan Di Tabel Lain.");
+                // }
+            } catch (\Exception $e) {
+                Yii::$app->session->setFlash('error', "Data Digunakan Di Tabel Lain.");
             }
-            // else {
-            //     Yii::$app->session->setFlash('error', "Data Digunakan Di Tabel Lain.");
-            // }
-        } catch (\Exception $e) {
-            Yii::$app->session->setFlash('error', "Data Digunakan Di Tabel Lain.");
-        }
         return $this->redirect(['index']);
+        
+
     }
 
     /**

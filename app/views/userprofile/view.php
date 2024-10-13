@@ -89,6 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'template' => '<div class="row" style="margin-bottom:8px;"><div class="col-xs-4 col-md-4"><strong>{label}</strong></div><div class="col-xs-4 col-md-4">{value}</div></div>',
               // 'options' => ['class' => 'table table-striped detail-view'],
               'attributes' => [
+                'userid',
                 [
                   'label' => 'Username',
                   'format' => 'html',
@@ -125,6 +126,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'weddingdate',
                 'bloodtype',
                 'identitynumber',
+                'kknumber',
                 'bpjsnumber',
                 'jamsosteknumber',
                 'npwpnumber',
@@ -355,6 +357,7 @@ $this->params['breadcrumbs'][] = $this->title;
                       'weddingdate',
                       'bloodtype',
                       'identitynumber',
+                      'kknumber',
                       'bpjsnumber',
                       'jamsosteknumber',
                       'npwpnumber',

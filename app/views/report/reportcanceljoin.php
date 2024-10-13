@@ -64,7 +64,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'value' => function ($data) {
                 if ($data->userid) {
-                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
                   if ($cekhiring) {
                     $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                   }
@@ -78,7 +78,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'value' => function ($data) {
                 if ($data->userid) {
-                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
                   if ($cekhiring) {
                     $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                     $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap)) ? Yii::$app->utils->getpersonalarea($getjo->persa_sap) : "";
@@ -95,7 +95,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'value' => function ($data) {
                 if ($data->userid) {
-                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
                   if ($cekhiring) {
                     $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                     $area = (Yii::$app->utils->getarea($getjo->area_sap)) ? Yii::$app->utils->getarea($getjo->area_sap) : "";
@@ -112,7 +112,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'value' => function ($data) {
                 if ($data->userid) {
-                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
                   if ($cekhiring) {
                     $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                     $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap)) ? Yii::$app->utils->getskilllayanan($getjo->skill_sap) : "";
@@ -129,7 +129,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'value' => function ($data) {
                 if ($data->userid) {
-                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
                   if ($cekhiring) {
                     $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                     $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap)) ? Yii::$app->utils->getpayrollarea($getjo->abkrs_sap) : "";
@@ -146,7 +146,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'value' => function ($data) {
                 if ($data->userid) {
-                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
                   if ($cekhiring) {
                     $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                     $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap)) ? Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap) : "";
@@ -163,7 +163,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'value' => function ($data) {
                 if ($data->userid) {
-                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
                   if ($cekhiring) {
                     $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                     $curl = new curl\Curl();
@@ -227,7 +227,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'raw',
               'value' => function ($data) {
 
-                $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+                $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
                 if ($cekhiring) {
                   $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                 }
@@ -282,7 +282,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'html',
               'value' => function ($data) {
                 if ($data->userid) {
-                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
                   if ($cekhiring) {
                     $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                   }
@@ -329,7 +329,7 @@ app\assets\ReportAsset::register($this);
               'format' => 'raw',
               'value' => function ($data) {
 
-                $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6)')->orderBy(["id" => SORT_DESC])->one();
+                $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
                 if ($cekhiring) {
                   $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                 }

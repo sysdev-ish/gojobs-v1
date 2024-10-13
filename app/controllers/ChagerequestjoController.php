@@ -90,8 +90,13 @@ class ChagerequestjoController extends Controller
         $modelrecreq->save(false);
         $model->approvedtime2 = date('Y-m-d H-i-s');
       }
+      
+      if ($model->status == 2) {
+        $model->approvedby = Yii::$app->user->identity->id;
+      }
+
       $model->approvedtime = date('Y-m-d H-i-s');
-      $model->approvedby = Yii::$app->user->identity->id;
+      
       // var_dump($model->approvedby);die;
       $model->save();
       return $this->redirect(['index']);
@@ -117,6 +122,15 @@ class ChagerequestjoController extends Controller
       $model->oldjumlah =  $modelrecreq->jumlah;
       // var_dump(Yii::$app->check->checkJohired($recruitreqid,2));die;
       $model->counthiredtype1 = $model->oldjumlah - Yii::$app->check->checkJohired($recruitreqid, 2);
+      $userpm = null;
+      if ($modelrecreq->userpm == 'ikbal1') {
+        $userpm = 20973;
+      } else if ($modelrecreq->userpm == 'setiawan1') {
+        $userpm = 1095;
+      } else {
+        $userpm = Yii::$app->utils->getuserid($modelrecreq->userpm);
+      }
+      $model->approvedby = $userpm;
     }
     if ($model->load(Yii::$app->request->post())) {
       $model->recruitreqid = $modelrecreq->id;

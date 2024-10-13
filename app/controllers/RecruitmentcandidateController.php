@@ -208,7 +208,12 @@ class RecruitmentcandidateController extends Controller
     $model = new Recruitmentcandidate();
     // $modeluprofile = Userprofile::find()->all();
     // $recruitreq = ArrayHelper::map(Transrincian::find()->asArray()->limit(100)->all(), 'id', 'nojo');
-    $modelrecreq = Transrincian::find()->where(['id' => $id, 'status_rekrut' => 1])->one();
+    // $modelrecreq = Transrincian::find()->where(['id' => $id, 'status_rekrut' => 1])->one();
+    $modelrecreq = Transrincian::find()
+    ->where(['id' => $id])
+    ->andWhere(['in', 'status_rekrut', [1, 3]])
+    ->one();
+
     $searchModelprofile = new Userprofilesearch();
     // $searchModelprofile->select(['id', 'fullname', 'address', 'gender', 'city'])->all();
 
@@ -501,9 +506,26 @@ class RecruitmentcandidateController extends Controller
   public function actionCancel($id)
   {
     $model = $this->findModel($id);
+    $modelrecreq = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
+    
     $model->status = 24;
-    $model->save(false);
-    return $this->redirect(['index']);
+    if ($model->save(false)) {
+      if ($modelrecreq->status_rekrut = 2) {
+        $modelrecreq->status_rekrut = 1;
+        $modelrecreq->save(false);
+      } else if ($modelrecreq->status_rekrut = 4) {
+        $modelrecreq->status_rekrut = 3;
+        $modelrecreq->save(false);
+      } else {
+        $modelrecreq->save(false);
+      }
+      Yii::$app->session->setFlash('success', "Done Confirm Cancel Candidate.");
+      return $this->redirect(['index']);
+    } else {
+      Yii::$app->session->setFlash('error', "Cant Cancel.");
+      return $this->redirect(['index']);
+    }
+
   }
 
   /**

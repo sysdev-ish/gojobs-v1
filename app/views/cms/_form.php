@@ -25,6 +25,10 @@ use floor12\summernote\Summernote;
                 2 => 'Privacy & Policy',
                 3 => 'Terms & Condition',
                 4 => 'About & Contact',
+                5 => 'Benefit',
+                6 => 'Process Recruitment',
+                7 => 'Testimonial',
+                8 => 'FAQ',
             ],
             'options' => [
                 'placeholder' => '- Select Type -',

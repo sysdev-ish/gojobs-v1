@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link http://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -42,455 +43,449 @@ class HrmshiringController extends Controller
         //try {
 
 
-            // open connection db
-            $db = new Connection(Yii::$app->db);
-            $db->open();
+        // open connection db
+        $db = new Connection(Yii::$app->db);
+        $db->open();
 
-            // open connection dbJo
-            $dbJo = new Connection(Yii::$app->dbjo);
-            $dbJo->open();
+        // open connection dbJo
+        $dbJo = new Connection(Yii::$app->dbjo);
+        $dbJo->open();
 
 
-            //Get Data Pekerja by Personel Area
-            //$url = 'http://192.168.88.5/service/index.php/sap_profile/getdatapekerjabypa';
-            $url = 'http://192.168.88.5/service/index.php/sap_profile/getactiveworker';
-            $attrs =  [
-              'personnalarea' => $client,
-              'token' => $this->_token85,
-            ];
-            $data = $this->baseCurl($url, 'post', $attrs);
-            if($data){
+        //Get Data Pekerja by Personel Area
+        //$url = 'http://192.168.88.5/service/index.php/sap_profile/getdatapekerjabypa';
+        $url = 'http://192.168.88.5/service/index.php/sap_profile/getactiveworker';
+        $attrs =  [
+            'personnalarea' => $client,
+            'token' => $this->_token85,
+        ];
+        $data = $this->baseCurl($url, 'post', $attrs);
+        if ($data) {
 
-                $i = 0;
-                foreach($data as $d){
-                    $i++;
+            $i = 0;
+            foreach ($data as $d) {
+                $i++;
 
-                    //if($i <= $limit){
-                    if($i >= $start && $i <= $limit){
+                //if($i <= $limit){
+                if ($i >= $start && $i <= $limit) {
 
-                        //Check employee exist
-                        $url = 'https://hrpay.ish.co.id/middleware/hraction/check';
-                        $attrs =  [
-                          'perner' => $d->id,
-                        ];
-                        $checkEmployee = $this->baseCurl($url, 'post', $attrs, ['token: ' . $this->_token]);
-                        if($checkEmployee){
-                            if($checkEmployee->status){
-                                if(!$checkEmployee->code){
+                    //Check employee exist
+                    $url = 'https://hrpay.ish.co.id/middleware/hraction/check';
+                    $attrs =  [
+                        'perner' => $d->id,
+                    ];
+                    $checkEmployee = $this->baseCurl($url, 'post', $attrs, ['token: ' . $this->_token]);
+                    if ($checkEmployee) {
+                        if ($checkEmployee->status) {
+                            if (!$checkEmployee->code) {
 
-                                    //Get worker
-                                    $url = 'http://192.168.88.5/service/index.php/sap_profile/getworker';
+                                //Get worker
+                                $url = 'http://192.168.88.5/service/index.php/sap_profile/getworker';
+                                $attrs = [
+                                    'perner' => $d->id,
+                                    // 'perner' => '205210',
+                                    'token' => $this->_token85,
+                                    'name' => $d->CNAME,
+                                ];
+                                $worker = $this->baseCurl($url, 'post', $attrs);
+                                if ($worker) {
+
+                                    //Check payroll area
+                                    $url = 'https://hrpay.ish.co.id/middleware/parea/check';
                                     $attrs = [
-                                        'perner' => $d->id,
-                                        // 'perner' => '205210',
-                                        'token' => $this->_token85,
-                                        'name' => $d->CNAME,
+                                        'code' => $worker[0]->payroll_area,
                                     ];
-                                    $worker = $this->baseCurl($url, 'post', $attrs);
-                                    if($worker){
+                                    $checkPa = $this->baseCurl($url, 'post', $attrs, ['token: ' . $this->_token]);
+                                    if ($checkPa) {
+                                        if ($checkPa->status) {
 
-                                        //Check payroll area
-                                        $url = 'https://hrpay.ish.co.id/middleware/parea/check';
-                                        $attrs = [
-                                            'code' => $worker[0]->payroll_area,
-                                        ];
-                                        $checkPa = $this->baseCurl($url, 'post', $attrs, ['token: ' . $this->_token]);
-                                        if($checkPa){
-                                            if($checkPa->status){
+                                            $jobCode = '-';
+                                            $city = '-';
+                                            $province = null;
+                                            $contractStartdate = null;
+                                            $contractEnddate = null;
+                                            $joinDate = null;
+                                            $birthDate = null;
+                                            $startEducationDate = null;
+                                            $endEducationDate = null;
+                                            $familyBirthDate1 = null;
 
-                                                $jobCode = '-';
-                                                $city = '-';
-                                                $province = null;
-                                                $contractStartdate = null;
-                                                $contractEnddate = null;
-                                                $joinDate = null;
-                                                $birthDate = null;
-                                                $startEducationDate = null;
-                                                $endEducationDate = null;
-                                                $familyBirthDate1 = null;
+                                            //Get sap area
+                                            $sql = 'SELECT * FROM `saparea` WHERE `value1` = "' . $worker[0]->area . '"';
+                                            $area = $dbJo->createCommand($sql)->queryOne();
+                                            if ($area) {
 
-                                                //Get sap area
-                                                $sql = 'SELECT * FROM `saparea` WHERE `value1` = "' . $worker[0]->area . '"';
-                                                $area = $dbJo->createCommand($sql)->queryOne();
-                                                if($area){
+                                                //Get mapping_city
+                                                $sql = 'SELECT * FROM `mapping_city` WHERE `city_id` = "' . $area['value1'] . '"';
+                                                $getCity = $dbJo->createCommand($sql)->queryOne();
+                                                if ($getCity) {
 
-                                                    //Get mapping_city
-                                                    $sql = 'SELECT * FROM `mapping_city` WHERE `city_id` = "' . $area['value1'] . '"';
-                                                    $getCity = $dbJo->createCommand($sql)->queryOne();
-                                                    if($getCity){
+                                                    $city = $getCity['city_name'];
 
-                                                        $city = $getCity['city_name'];
+                                                    //Get sapjob
+                                                    $sql = 'SELECT * FROM `sapjob` WHERE `value2` = "' . $worker[0]->job_name . '"';
+                                                    $getSapJob = $dbJo->createCommand($sql)->queryOne();
+                                                    if ($getSapJob) $jobCode = $getSapJob['value1'];
 
-                                                        //Get sapjob
-                                                        $sql = 'SELECT * FROM `sapjob` WHERE `value2` = "' . $worker[0]->job_name . '"';
-                                                        $getSapJob = $dbJo->createCommand($sql)->queryOne();
-                                                        if($getSapJob) $jobCode = $getSapJob['value1'];
+                                                    //Get province
+                                                    $sql = 'SELECT * FROM `province` WHERE `id` = ' . $getCity['province_id'];
+                                                    $getProvince = $dbJo->createCommand($sql)->queryOne();
+                                                    if ($getProvince) $province = $getProvince['name_province'];
 
-                                                        //Get province
-                                                        $sql = 'SELECT * FROM `province` WHERE `id` = ' . $getCity['province_id'];
-                                                        $getProvince = $dbJo->createCommand($sql)->queryOne();
-                                                        if($getProvince) $province = $getProvince['name_province'];
+                                                    if ($worker[0]->start_contract_date) {
+                                                        $year = substr($worker[0]->start_contract_date, 0, 4);
+                                                        $month = substr($worker[0]->start_contract_date, 4, 2);
+                                                        $date = substr($worker[0]->start_contract_date, 6, 2);
+                                                        $contractStartdate = $year . "-" . $month . "-" . $date;
+                                                    }
 
-                                                        if ($worker[0]->start_contract_date) {
-                                                            $year = substr($worker[0]->start_contract_date, 0, 4);
-                                                            $month = substr($worker[0]->start_contract_date, 4, 2);
-                                                            $date = substr($worker[0]->start_contract_date, 6, 2);
-                                                            $contractStartdate = $year . "-" . $month . "-" . $date;
-                                                        }
+                                                    if ($worker[0]->end_contract_date) {
+                                                        $year = substr($worker[0]->end_contract_date, 0, 4);
+                                                        $month = substr($worker[0]->end_contract_date, 4, 2);
+                                                        $date = substr($worker[0]->end_contract_date, 6, 2);
+                                                        $contractEnddate = $year . "-" . $month . "-" . $date;
+                                                    }
 
-                                                        if ($worker[0]->end_contract_date) {
-                                                            $year = substr($worker[0]->end_contract_date, 0, 4);
-                                                            $month = substr($worker[0]->end_contract_date, 4, 2);
-                                                            $date = substr($worker[0]->end_contract_date, 6, 2);
-                                                            $contractEnddate = $year . "-" . $month . "-" . $date;
-                                                        }
-
-                                                        if ($worker[0]->join_date) {
-                                                            $year = substr($worker[0]->join_date, 0, 4);
-                                                            $month = substr($worker[0]->join_date, 4, 2);
-                                                            $date = substr($worker[0]->join_date, 6, 2);
-                                                            $joinDate = $year . "-" . $month . "-" . $date;
-                                                        }
-                                                        // 
-                                                        if ($worker[0]->birth_date) {
-                                                            $year = substr($worker[0]->birth_date, 0, 4);
-                                                            $month = substr($worker[0]->birth_date, 4, 2);
-                                                            $date = substr($worker[0]->birth_date, 6, 2);
-                                                            $birthDate = $year . "-" . $month . "-" . $date;
-                                                        }
-                                                        if ($worker[0]->start_education_date) {
-                                                            $year = substr($worker[0]->start_education_date, 0, 4);
-                                                            $month = substr($worker[0]->start_education_date, 4, 2);
-                                                            $date = substr($worker[0]->start_education_date, 6, 2);
-                                                            $startEducationDate = $year . "-" . $month . "-" . $date;
-                                                        }
-                                                        if ($worker[0]->end_education_date) {
-                                                            $year = substr($worker[0]->end_education_date, 0, 4);
-                                                            $month = substr($worker[0]->end_education_date, 4, 2);
-                                                            $date = substr($worker[0]->end_education_date, 6, 2);
-                                                            $endEducationDate = $year . "-" . $month . "-" . $date;
-                                                        }
-                                                        //
-                                                        if ($worker[0]->family_birth_date_1) {
-                                                            $year = substr($worker[0]->family_birth_date_1, 0, 4);
-                                                            $month = substr($worker[0]->family_birth_date_1, 4, 2);
-                                                            $date = substr($worker[0]->family_birth_date_1, 6, 2);
-                                                            $familyBirthDate1 = $year . "-" . $month . "-" . $date;
-                                                        }
+                                                    if ($worker[0]->join_date) {
+                                                        $year = substr($worker[0]->join_date, 0, 4);
+                                                        $month = substr($worker[0]->join_date, 4, 2);
+                                                        $date = substr($worker[0]->join_date, 6, 2);
+                                                        $joinDate = $year . "-" . $month . "-" . $date;
+                                                    }
+                                                    // 
+                                                    if ($worker[0]->birth_date) {
+                                                        $year = substr($worker[0]->birth_date, 0, 4);
+                                                        $month = substr($worker[0]->birth_date, 4, 2);
+                                                        $date = substr($worker[0]->birth_date, 6, 2);
+                                                        $birthDate = $year . "-" . $month . "-" . $date;
+                                                    }
+                                                    if ($worker[0]->start_education_date) {
+                                                        $year = substr($worker[0]->start_education_date, 0, 4);
+                                                        $month = substr($worker[0]->start_education_date, 4, 2);
+                                                        $date = substr($worker[0]->start_education_date, 6, 2);
+                                                        $startEducationDate = $year . "-" . $month . "-" . $date;
+                                                    }
+                                                    if ($worker[0]->end_education_date) {
+                                                        $year = substr($worker[0]->end_education_date, 0, 4);
+                                                        $month = substr($worker[0]->end_education_date, 4, 2);
+                                                        $date = substr($worker[0]->end_education_date, 6, 2);
+                                                        $endEducationDate = $year . "-" . $month . "-" . $date;
+                                                    }
+                                                    //
+                                                    if ($worker[0]->family_birth_date_1) {
+                                                        $year = substr($worker[0]->family_birth_date_1, 0, 4);
+                                                        $month = substr($worker[0]->family_birth_date_1, 4, 2);
+                                                        $date = substr($worker[0]->family_birth_date_1, 6, 2);
+                                                        $familyBirthDate1 = $year . "-" . $month . "-" . $date;
                                                     }
                                                 }
+                                            }
 
-                                                $gender = 'LAKI-LAKI';
-                                                if($worker[0]->gender == 'female') $gendder = 'PEREMPUAN';
+                                            $gender = 'LAKI-LAKI';
+                                            if ($worker[0]->gender == 'female') $gendder = 'PEREMPUAN';
 
-                                                $maritalStatus = 'BELUM MENIKAH';
-                                                if ($worker[0]->marital_status == 0) $maritalStatus = 'MENIKAH';
+                                            $maritalStatus = 'BELUM MENIKAH';
+                                            if ($worker[0]->marital_status == 0) $maritalStatus = 'MENIKAH';
 
-                                                if($worker[0]->religion){
-                                                    switch ($worker[0]->religion) {
-                                                        case '01':
+                                            if ($worker[0]->religion) {
+                                                switch ($worker[0]->religion) {
+                                                    case '01':
+                                                    case '06':
                                                         $religion = 'ISLAM';
                                                         break;
-                                                        case '02':
+                                                    case '02':
                                                         $religion = 'KRISTEN';
                                                         break;
-                                                        case '03':
+                                                    case '03':
                                                         //$religion = 'PROTESTAN';
                                                         $religion = 'KATOLIK';
                                                         break;
-                                                        case '04':
+                                                    case '04':
                                                         $religion = 'HINDU';
                                                         break;
-                                                        case '05':
+                                                    case '05':
                                                         $religion = 'BUDHA';
                                                         break;
-                                                        default:
+                                                    default:
                                                         $religion = 'NOT FOUND';
-                                                    }
                                                 }
+                                            }
 
-                                                if($worker[0]->type_contract){
-                                                    switch ($worker[0]->type_contract) {
-                                                        case '01':
+                                            if ($worker[0]->type_contract) {
+                                                switch ($worker[0]->type_contract) {
+                                                    case '01':
                                                         $contractType = 'PKWT';
                                                         //$contractType = 'PKWT-KEMITRAAN PB';
                                                         break;
-                                                        case '03':
+                                                    case '03':
                                                         $contractType = 'PARTTIME';
                                                         break;
-                                                        case '05':
+                                                    case '05':
                                                         $contractType = 'MAGANG';
                                                         break;
-                                                        case '06':
+                                                    case '06':
                                                         $contractType = 'KEMITRAAN';
                                                         break;
-                                                        case '07':
+                                                    case '07':
                                                         $contractType = 'THL';
                                                         break;
-                                                        case '12':
+                                                    case '12':
                                                         $contractType = 'PKWT ke THL';
                                                         break;
-                                                        default:
+                                                    default:
                                                         $contractType = '';
-                                                    }
                                                 }
-
-                                                
-                                                $massg = 'REPLACEMENT';
-                                                if ($worker[0]->type_jo == '01') $massg = 'NEW';
-                                                
-                                                $isCertificate = '0';
-                                                if ($worker[0]->is_certificate_education == '01') $isCertificate = '1';
-
-                                                $genderFamily = 'perempuan';
-                                                if ($worker[0]->family_gender_1 == 'MALE') $genderFamily = 'laki-laki';
+                                            }
 
 
+                                            $massg = 'REPLACEMENT';
+                                            if ($worker[0]->type_jo == '01') $massg = 'NEW';
 
-                                                //Check position
-                                                $url = 'https://hrpay.ish.co.id/middleware/position/check';
-                                                $attrs = [
-                                                    'personel_area_code' => $worker[0]->personal_area,
-                                                    'job_code' => $jobCode,
-                                                    'skill_code' => $worker[0]->skill_job,
-                                                    'area_code' => $worker[0]->area,
-                                                    'level_code' => $worker[0]->level_job,
-                                                ];
-                                                $checkPosition = $this->baseCurl($url, 'post', $attrs, ['token: ' . $this->_token]);
-                                                if($checkPosition){
+                                            $isCertificate = '0';
+                                            if ($worker[0]->is_certificate_education == '01') $isCertificate = '1';
 
-                                                    if($checkPosition->code){
-                                                        if($checkPosition->status){
+                                            $genderFamily = 'perempuan';
+                                            if ($worker[0]->family_gender_1 == 'MALE') $genderFamily = 'laki-laki';
 
-                                                            
-                                                            //Insert hiring
-                                                            $url = 'https://hrpay.ish.co.id/middleware/hraction/hiring';
-                                                            $attrs = [
-                                                                'action_type' => 'Z1',
-                                                                'jo_type' => $massg,
-                                                                'contract_type' => $contractType,
-                                                                'contract_startdate' => $contractStartdate,
-                                                                'contract_enddate' => '9999-12-31',
-                                                                'personel_area_code' => $worker[0]->personal_area,
-                                                                'area_code' => $worker[0]->area,
-                                                                'payroll_area_code' => $worker[0]->payroll_area,
-                                                                'job_code' => $jobCode,
-                                                                'skill_code' => $worker[0]->skill_job,
-                                                                'level_code' => $worker[0]->level_job,
-                                                                'province_name' => ($province) ? $province : '-',
-                                                                'city_name' => ($city) ? $city : '-',
-                                                                'joindate' => $joinDate,
-                                                                'nationality' => 'INDONESIA',
-                                                                'sap_perner' => $worker[0]->perner,
-                                                                'position_id' => $checkPosition->data->code,
-                                                                'fullname' => $worker[0]->fullname,
-                                                                'birthplace' => $worker[0]->birth_place,
-                                                                'birthdate' => $birthDate,
-                                                                'religion' => $religion,
-                                                                'gender' => $gender,
-                                                                'ktp_number' => ($worker[0]->id_card_number) ? $worker[0]->id_card_number : '0000000000000000',
-                                                                'kk_number' => ($worker[0]->id_card_number) ? $worker[0]->id_card_number : '0000000000000000',
-                                                                // 'kk_number' => ($data_pekerja[0]->kknumber) ? $data_pekerja[0]->kknumber : '0000000000000000',
-                                                                'marital_status' => $maritalStatus,
-                                                                // 'debug' => 1
-                                                            ];
-                                                            $reqHiring = $this->baseCurl($url, 'post', $attrs, ['token: ' . $this->_token]); //var_dump($reqHiring);die;
-                                                            if($reqHiring){
-                                                                if($reqHiring->status){
 
-                                                                    $rethire = ['key' => $i, 'status' => $reqHiring->status, 'message' => $reqHiring->message, 'position' => $checkPosition->data->code, 'perner' => $worker[0]->perner];
-                                                                    echo json_encode($rethire) . "\n";
 
-                                                                    $educationLevel = $worker[0]->education_level;
-                                                                    if(!in_array($worker[0]->education_level, ['sd','sltp','slta','d1','d2','d3','s1','s2','s3','training','workshop','smp','sma'])) $educationLevel = 'training';
+                                            //Check position
+                                            $url = 'https://hrpay.ish.co.id/middleware/position/check';
+                                            $attrs = [
+                                                'personel_area_code' => $worker[0]->personal_area,
+                                                'job_code' => $jobCode,
+                                                'skill_code' => $worker[0]->skill_job,
+                                                'area_code' => $worker[0]->area,
+                                                'level_code' => $worker[0]->level_job,
+                                            ];
+                                            $checkPosition = $this->baseCurl($url, 'post', $attrs, ['token: ' . $this->_token]);
+                                            if ($checkPosition) {
 
-                                                                    //Insert bio
-                                                                    $url = 'https://hrpay.ish.co.id/middleware/employee/bio';
-                                                                    $attrs = [
-                                                                        'perner' => $reqHiring->data->personal_number,
-                                                                        'address' => [
-                                                                            [
-                                                                                'type' => 'ktp',
-                                                                                'contact_name' => 'default',
-                                                                                'address' => ($worker[0]->family_address_1) ? $worker[0]->family_address_1 : '-',
-                                                                                'city' => ($worker[0]->family_city_1) ? $worker[0]->family_city_1 : '-',
-                                                                                'zipcode' => ($worker[0]->family_postal_code_1) ? $worker[0]->family_postal_code_1 : '00000',
-                                                                            ],
-                                                                            [
-                                                                                'type' => 'emergency',
-                                                                                'contact_name' => 'default',
-                                                                                'address' => ($worker[0]->family_address_2) ? $worker[0]->family_address_2 : '-',
-                                                                                'city' => ($worker[0]->family_city_2) ? $worker[0]->family_city_2 : '-',
-                                                                                'zipcode' => ($worker[0]->family_postal_code_2) ? $worker[0]->family_postal_code_2 : '000000',
-                                                                            ],
-                                                                        ],
-                                                                        'family' => [
-                                                                            [
-                                                                                'type' => 'other',
-                                                                                'name' => ($worker[0]->family_name_1) ? $worker[0]->family_name_1 : 'undifined',
-                                                                                'gender' => $genderFamily,
-                                                                                'birthdate' => $familyBirthDate1 ? $familyBirthDate1 : '1900-12-31',
-                                                                            ]
-                                                                        ],
-                                                                        'education' => [
-                                                                            [
-                                                                                'startdate' => $startEducationDate ? $startEducationDate : '-',
-                                                                                'enddate' => $startEducationDate ? $startEducationDate : '9999-12-31',
-                                                                                'level' => $educationLevel,
-                                                                                'major' => ($worker[0]->education_major) ? $worker[0]->education_major : '-',
-                                                                                'certificate' => $isCertificate,
-                                                                                'finale_grade' => ($worker[0]->education_mark) ? $worker[0]->education_mark : '0',
-                                                                            ]
-                                                                        ],
-                                                                        'tax' => [
-                                                                            [
-                                                                                'npwp_registration_date' => $joinDate,
-                                                                                'company_tax_id' => '000000000000000',
-                                                                                'personal_tax_id' => ($worker[0]->tax_number) ? $worker[0]->tax_number : '000000000000000', // validasi max character 15
-                                                                            ],
-                                                                        ],
-                                                                        'jamsostek' => [
-                                                                            [
-                                                                                'id_number' => ($worker[0]->jamsostek_number) ? $worker[0]->jamsostek_number : '00000000000', // validasi max character 11
-                                                                                'married' => $maritalStatus,
-                                                                            ]
-                                                                        ],
-                                                                        'bank' => [
-                                                                            [
-                                                                                'startdate' => $joinDate,
-                                                                                'enddate' => '9999-12-31',
-                                                                                'bank_key' => $worker[0]->bank_type, //nama bank, kode ambil dari master bank ditambahkan kode bank sap
-                                                                                'bank_type' => 'main', //validasi max character 11
-                                                                                'bank_account' => $worker[0]->bank_number
-                                                                            ]
-                                                                        ],
+                                                if ($checkPosition->code) {
+                                                    if ($checkPosition->status) {
 
-                                                                        'email' => [
-                                                                            [
-                                                                                'email' => 'default@mail.com',
-                                                                                'type' => 'main'
-                                                                            ]
-                                                                        ],
-                                                                        'mobile' => [
-                                                                            [
-                                                                                'mobile' => $worker[0]->family_phone_number_1 ? $worker[0]->family_phone_number_1 : '08123456789',
-                                                                                'type' => 'main',
-                                                                            ]
-                                                                        ],
-                                                                    ];
-                                                                    //echo json_encode($attrs) . "\n";
-                                                                    $insertBio = $this->baseCurl($url, 'post', $attrs, ['token: ' . $this->_token]);
-                                                                    if($insertBio){
-                                                                        if($insertBio->status){
 
-                                                                            $retbio = ['key' => $i, 'status' => $insertBio->status, 'message' => $insertBio->message, 'perner' => $worker[0]->perner];
-                                                                            echo json_encode($retbio) . "\n";
+                                                        //Insert hiring
+                                                        $url = 'https://hrpay.ish.co.id/middleware/hraction/hiring';
+                                                        $attrs = [
+                                                            'action_type' => 'Z1',
+                                                            'jo_type' => $massg,
+                                                            'contract_type' => $contractType,
+                                                            'contract_startdate' => $contractStartdate,
+                                                            'contract_enddate' => '9999-12-31',
+                                                            'personel_area_code' => $worker[0]->personal_area,
+                                                            'area_code' => $worker[0]->area,
+                                                            'payroll_area_code' => $worker[0]->payroll_area,
+                                                            'job_code' => $jobCode,
+                                                            'skill_code' => $worker[0]->skill_job,
+                                                            'level_code' => $worker[0]->level_job,
+                                                            'province_name' => ($province) ? $province : '-',
+                                                            'city_name' => ($city) ? $city : '-',
+                                                            'joindate' => $joinDate,
+                                                            'nationality' => 'INDONESIA',
+                                                            'sap_perner' => $worker[0]->perner,
+                                                            'position_id' => $checkPosition->data->code,
+                                                            'fullname' => $worker[0]->fullname,
+                                                            'birthplace' => $worker[0]->birth_place,
+                                                            'birthdate' => $birthDate,
+                                                            'religion' => $religion,
+                                                            'gender' => $gender,
+                                                            'ktp_number' => ($worker[0]->id_card_number) ? $worker[0]->id_card_number : '0000000000000000',
+                                                            'kk_number' => ($worker[0]->id_card_number) ? $worker[0]->id_card_number : '0000000000000000',
+                                                            // 'kk_number' => ($data_pekerja[0]->kknumber) ? $data_pekerja[0]->kknumber : '0000000000000000',
+                                                            'marital_status' => $maritalStatus,
+                                                            // 'debug' => 1
+                                                        ];
+                                                        $reqHiring = $this->baseCurl($url, 'post', $attrs, ['token: ' . $this->_token]); //var_dump($reqHiring);die;
+                                                        if ($reqHiring) {
+                                                            if ($reqHiring->status) {
 
-                                                                        } else {
-
-                                                                            echo "Failed to insert bio status is 0. | ";
-                                                                            $retbio = ['key' => $i, 'status' => $insertBio->status, 'message' => $insertBio->message, 'perner' => $worker[0]->perner];
-                                                                            echo json_encode($retbio) . "\n";   
-
-                                                                        }
-                                                                    } else {
-                                                                        echo "Failed to insert bio. \n";
-                                                                    }
-                                                                } else {
-                                                                    
-                                                                    echo "Failed to request hiring status is 0. | ";
-                                                                    $rethire = ['key' => $i, 'status' => $reqHiring->status, 'message' => $reqHiring->message, 'position' => $checkPosition->data->code, 'perner' => $worker[0]->perner, 'contract_type' => $attrs['contract_type']];
-                                                                    echo json_encode($rethire) . "\n";
-
-                                                                    // INSERT LOG
-                                                                    $this->log('error', json_encode($rethire), $worker[0]->perner, $attrs, $checkPosition->message);
-
-                                                                }
-                                                            } else {
-
-                                                                echo "Failed to request hiring. | ";
                                                                 $rethire = ['key' => $i, 'status' => $reqHiring->status, 'message' => $reqHiring->message, 'position' => $checkPosition->data->code, 'perner' => $worker[0]->perner];
                                                                 echo json_encode($rethire) . "\n";
 
+                                                                $educationLevel = $worker[0]->education_level;
+                                                                if (!in_array($worker[0]->education_level, ['sd', 'sltp', 'slta', 'd1', 'd2', 'd3', 's1', 's2', 's3', 'training', 'workshop', 'smp', 'sma'])) $educationLevel = 'training';
+
+                                                                //Insert bio
+                                                                $url = 'https://hrpay.ish.co.id/middleware/employee/bio';
+                                                                $attrs = [
+                                                                    'perner' => $reqHiring->data->personal_number,
+                                                                    'address' => [
+                                                                        [
+                                                                            'type' => 'ktp',
+                                                                            'contact_name' => 'default',
+                                                                            'address' => ($worker[0]->family_address_1) ? $worker[0]->family_address_1 : '-',
+                                                                            'city' => ($worker[0]->family_city_1) ? $worker[0]->family_city_1 : '-',
+                                                                            'zipcode' => ($worker[0]->family_postal_code_1) ? $worker[0]->family_postal_code_1 : '00000',
+                                                                        ],
+                                                                        [
+                                                                            'type' => 'emergency',
+                                                                            'contact_name' => 'default',
+                                                                            'address' => ($worker[0]->family_address_2) ? $worker[0]->family_address_2 : '-',
+                                                                            'city' => ($worker[0]->family_city_2) ? $worker[0]->family_city_2 : '-',
+                                                                            'zipcode' => ($worker[0]->family_postal_code_2) ? $worker[0]->family_postal_code_2 : '000000',
+                                                                        ],
+                                                                    ],
+                                                                    'family' => [
+                                                                        [
+                                                                            'type' => 'other',
+                                                                            'name' => ($worker[0]->family_name_1) ? $worker[0]->family_name_1 : 'undifined',
+                                                                            'gender' => $genderFamily,
+                                                                            'birthdate' => $familyBirthDate1 ? $familyBirthDate1 : '1900-12-31',
+                                                                        ]
+                                                                    ],
+                                                                    'education' => [
+                                                                        [
+                                                                            'startdate' => $startEducationDate ? $startEducationDate : '-',
+                                                                            'enddate' => $startEducationDate ? $startEducationDate : '9999-12-31',
+                                                                            'level' => $educationLevel,
+                                                                            'major' => ($worker[0]->education_major) ? $worker[0]->education_major : '-',
+                                                                            'certificate' => $isCertificate,
+                                                                            'finale_grade' => ($worker[0]->education_mark) ? $worker[0]->education_mark : '0',
+                                                                        ]
+                                                                    ],
+                                                                    'tax' => [
+                                                                        [
+                                                                            'npwp_registration_date' => $joinDate,
+                                                                            'company_tax_id' => '000000000000000',
+                                                                            'personal_tax_id' => ($worker[0]->tax_number) ? $worker[0]->tax_number : '000000000000000', // validasi max character 15
+                                                                        ],
+                                                                    ],
+                                                                    'jamsostek' => [
+                                                                        [
+                                                                            'id_number' => ($worker[0]->jamsostek_number) ? $worker[0]->jamsostek_number : '00000000000', // validasi max character 11
+                                                                            'married' => $maritalStatus,
+                                                                        ]
+                                                                    ],
+                                                                    'bank' => [
+                                                                        [
+                                                                            'startdate' => $joinDate,
+                                                                            'enddate' => '9999-12-31',
+                                                                            'bank_key' => $worker[0]->bank_type, //nama bank, kode ambil dari master bank ditambahkan kode bank sap
+                                                                            'bank_type' => 'main', //validasi max character 11
+                                                                            'bank_account' => $worker[0]->bank_number
+                                                                        ]
+                                                                    ],
+
+                                                                    'email' => [
+                                                                        [
+                                                                            'email' => 'default@mail.com',
+                                                                            'type' => 'main'
+                                                                        ]
+                                                                    ],
+                                                                    'mobile' => [
+                                                                        [
+                                                                            'mobile' => $worker[0]->family_phone_number_1 ? $worker[0]->family_phone_number_1 : '08123456789',
+                                                                            'type' => 'main',
+                                                                        ]
+                                                                    ],
+                                                                ];
+                                                                //echo json_encode($attrs) . "\n";
+                                                                $insertBio = $this->baseCurl($url, 'post', $attrs, ['token: ' . $this->_token]);
+                                                                if ($insertBio) {
+                                                                    if ($insertBio->status) {
+
+                                                                        $retbio = ['key' => $i, 'status' => $insertBio->status, 'message' => $insertBio->message, 'perner' => $worker[0]->perner];
+                                                                        echo json_encode($retbio) . "\n";
+                                                                    } else {
+
+                                                                        echo "Failed to insert bio status is 0. | ";
+                                                                        $retbio = ['key' => $i, 'status' => $insertBio->status, 'message' => $insertBio->message, 'perner' => $worker[0]->perner];
+                                                                        echo json_encode($retbio) . "\n";
+                                                                    }
+                                                                } else {
+                                                                    echo "Failed to insert bio. \n";
+                                                                }
+                                                            } else {
+
+                                                                echo "Failed to request hiring status is 0. | ";
+                                                                $rethire = ['key' => $i, 'status' => $reqHiring->status, 'message' => $reqHiring->message, 'position' => $checkPosition->data->code, 'perner' => $worker[0]->perner, 'contract_type' => $attrs['contract_type']];
+                                                                echo json_encode($rethire) . "\n";
+
+                                                                // INSERT LOG
+                                                                $this->log('error', json_encode($rethire), $worker[0]->perner, $attrs, $checkPosition->message);
                                                             }
                                                         } else {
 
-                                                            echo "Failed to check position status is 0. | ";
-                                                            $rethire = ['key' => $i, 'status' => $checkPosition->status, 'message' => $checkPosition->message, 'perner' => $worker[0]->perner];
+                                                            echo "Failed to request hiring. | ";
+                                                            $rethire = ['key' => $i, 'status' => $reqHiring->status, 'message' => $reqHiring->message, 'position' => $checkPosition->data->code, 'perner' => $worker[0]->perner];
                                                             echo json_encode($rethire) . "\n";
-
-                                                            // INSERT LOG
-                                                            $this->log('error', json_encode($rethire), $worker[0]->perner, $attrs, $checkPosition->message);
-
                                                         }
                                                     } else {
 
-                                                        echo "Failed to check position code is 0. | ";
-                                                        $rethire = ['key' => $i, 'status' => $checkPosition->status, 'message' => $checkPosition->message, 'perner' => $worker[0]->perner, 'attrs' => json_encode($attrs)];
+                                                        echo "Failed to check position status is 0. | ";
+                                                        $rethire = ['key' => $i, 'status' => $checkPosition->status, 'message' => $checkPosition->message, 'perner' => $worker[0]->perner];
                                                         echo json_encode($rethire) . "\n";
 
                                                         // INSERT LOG
                                                         $this->log('error', json_encode($rethire), $worker[0]->perner, $attrs, $checkPosition->message);
-
                                                     }
-
                                                 } else {
-                                                    echo "Failed to check position. \n";
+
+                                                    echo "Failed to check position code is 0. | ";
+                                                    $rethire = ['key' => $i, 'status' => $checkPosition->status, 'message' => $checkPosition->message, 'perner' => $worker[0]->perner, 'attrs' => json_encode($attrs)];
+                                                    echo json_encode($rethire) . "\n";
+
+                                                    // INSERT LOG
+                                                    $this->log('error', json_encode($rethire), $worker[0]->perner, $attrs, $checkPosition->message);
                                                 }
                                             } else {
-                                                echo "Payroll Area check: " . $checkPa->message . "\n";
+                                                echo "Failed to check position. \n";
                                             }
                                         } else {
-                                            echo "Failed to check payroll area. \n";
+                                            echo "Payroll Area check: " . $checkPa->message . "\n";
                                         }
                                     } else {
-                                        echo "Failed to get worker. \n";
+                                        echo "Failed to check payroll area. \n";
                                     }
-
                                 } else {
-                                    echo "Employee is exist. | ";
-                                    $rethire = ['key' => $i, 'perner' => $d->id];
-                                    echo json_encode($rethire) . "\n";
+                                    echo "Failed to get worker. \n";
                                 }
                             } else {
-                                echo "Failed to check employee code is 0. \n";
+                                echo "Employee is exist. | ";
+                                $rethire = ['key' => $i, 'perner' => $d->id];
+                                echo json_encode($rethire) . "\n";
                             }
                         } else {
-                            echo "Failed to check employee. \n";
+                            echo "Failed to check employee code is 0. \n";
                         }
+                    } else {
+                        echo "Failed to check employee. \n";
                     }
                 }
-            } else {
-                echo "Failed to get data pekerja by PA. \n";
             }
+        } else {
+            echo "Failed to get data pekerja by PA. \n";
+        }
 
 
-            // Close db Connection
-            $db->close();
+        // Close db Connection
+        $db->close();
 
-            // Close dbjo Connection
-            $dbJo->close();
+        // Close dbjo Connection
+        $dbJo->close();
 
         //} catch(\Exception $e) {
-            //print_r($e->getMessage());
+        //print_r($e->getMessage());
         //}   
 
         return ExitCode::OK;
     }
 
-    private function baseCurl($url, $methode = 'get', $attributes, $header = null){
+    private function baseCurl($url, $methode = 'get', $attributes, $header = null)
+    {
         $ret = null;
-        
-        if($methode == 'get'){
+
+        if ($methode == 'get') {
 
             $params = null;
-            if(is_array($attributes)){
+            if (is_array($attributes)) {
                 $countAttr = count($attributes);
-                $i=0;
+                $i = 0;
                 foreach ($attributes as $key => $value) {
                     $i++;
                     $params .= $key . '=' . urlencode($value);
-                    if($i < $countAttr) $params .= '&';
+                    if ($i < $countAttr) $params .= '&';
                 }
                 $params = $params;
             }
@@ -500,24 +495,24 @@ class HrmshiringController extends Controller
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_URL, $url);   
+        curl_setopt($ch, CURLOPT_URL, $url);
 
-        if($methode == 'post'){
+        if ($methode == 'post') {
 
             $attributes = http_build_query($attributes);
 
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
             //curl_setopt($ch,CURLOPT_POST, 1); //0 for a get request
-            curl_setopt($ch,CURLOPT_POSTFIELDS, $attributes);
-            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch,CURLOPT_ENCODING, '');
-            curl_setopt($ch,CURLOPT_MAXREDIRS, 10);
-            curl_setopt($ch,CURLOPT_TIMEOUT, 0);
-            curl_setopt($ch,CURLOPT_FOLLOWLOCATION, true);
-            curl_setopt($ch,CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $attributes);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_ENCODING, '');
+            curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 0);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         }
-        if($header){
-            curl_setopt($ch,CURLOPT_HEADER, false);
+        if ($header) {
+            curl_setopt($ch, CURLOPT_HEADER, false);
             curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         }
 
@@ -531,9 +526,10 @@ class HrmshiringController extends Controller
 
         curl_close($ch);
 
-        if($httpcode != 200){
+        if ($httpcode != 200) {
             var_dump($url);
-            var_dump($response);die;
+            var_dump($response);
+            die;
         }
 
         $ret = json_decode($response);
@@ -542,7 +538,8 @@ class HrmshiringController extends Controller
     }
 
 
-    private function log($type, $body, $perner, $attrs, $msg){
+    private function log($type, $body, $perner, $attrs, $msg)
+    {
         $ret = true;
 
         // open connection db

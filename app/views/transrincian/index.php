@@ -1,7 +1,7 @@
 <?php
 
+use app\models\MappingCity;
 use app\models\Mastercity;
-use app\models\Saparea;
 use app\models\Sapjob;
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -46,6 +46,9 @@ if (Yii::$app->user->isGuest) {
 $actionstop = '';
 $actionview = '';
 $actionaddcandidate = '';
+if ($role = 1) {
+  $actionReset = '{reset}';
+}
 if (Yii::$app->utils->permission($role, 'm62')) {
   $actionstop = '{stop}';
 }
@@ -55,7 +58,7 @@ if (Yii::$app->utils->permission($role, 'm1')) {
 if (Yii::$app->utils->permission($role, 'm63')) {
   $actionaddcandidate = '{addcandidate2}';
 }
-$action = $actionstop . $actionview . $actionaddcandidate;
+$action = $actionstop . $actionview . $actionaddcandidate . $actionReset;
 
 ?>
 <div class="transrincian-index box box-default">
@@ -167,28 +170,6 @@ $action = $actionstop . $actionview . $actionaddcandidate;
         ],
 
         [
-          'label' => 'Area (SAP)',
-          'format' => 'html',
-          'filter' => \kartik\select2\Select2::widget([
-            'model' => $searchModel,
-            'attribute' => 'areasap',
-            'data' => ArrayHelper::map(Saparea::find()->asArray()->all(), 'value1', 'value2'),
-            'options' => ['placeholder' => '--'],
-            'pluginOptions' => [
-              'allowClear' => true,
-              // 'width' => '120px',
-            ],
-          ]),
-          'value' => function ($data) {
-            if ($data->area_sap) {
-              return $data->areasap->value2;
-            } else {
-              return "-";
-            }
-          }
-        ],
-
-        [
           'label' => 'City',
           // 'attribute' => 'city',
           'contentOptions' => ['style' => 'width: 100px;'],
@@ -196,7 +177,7 @@ $action = $actionstop . $actionview . $actionaddcandidate;
           'filter' => \kartik\select2\Select2::widget([
             'model' => $searchModel,
             'attribute' => 'city',
-            'data' => ArrayHelper::map(Mastercity::find()->asArray()->all(), 'kota', 'kota'),
+            'data' => ArrayHelper::map(MappingCity::find()->asArray()->all(), 'city_name', 'city_name'),
             'options' => ['placeholder' => '--'],
             'pluginOptions' => [
               'allowClear' => true,
@@ -428,8 +409,22 @@ $action = $actionstop . $actionview . $actionaddcandidate;
                 'title' => 'Stop Job Order',
               ]);
               return $btn;
-            }
-
+            },
+            'reset' => function ($url, $model) {
+              if ($model->status_rekrut == 2 || $model->status_rekrut == 4) {
+                $disabled = false;
+                return Html::a('<i class="fa fa-recycle" style="font-size:12pt;"></i>', ['transrincian-active', 'id' => $model->id], [
+                  'class' => 'btn btn-sm btn-info',
+                  'data' => [
+                    'confirm' => 'Are you sure you want to reset this item?',
+                    'method' => 'post',
+                  ],
+                  'data-toggle' => 'tooltip',
+                  'title' => 'reset',
+                  'disabled' => $disabled,
+                ]);
+              }
+            },
 
           ]
         ],

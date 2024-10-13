@@ -4,46 +4,48 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Modal;
 use app\models\Transrincian;
-use app\models\WoHiring;
+use app\models\Hiring;
 use app\models\Mastercity;
 use app\models\Masterstatuscandidate;
-use app\models\WoRecruitmentCandidate;
+use app\models\Recruitmentcandidate;
 use app\models\Sapjob;
-use app\models\WorkOrder;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\WoRecruitmentCandidatesearch */
+/* @var $searchModel app\models\Recruitmentcandidatesearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Recruitment Candidate';
 $this->params['breadcrumbs'][] = $this->title;
 $url = \yii\helpers\Url::to(['transrincian/recreqlist']);
-$recruitreqs = empty($model->wo_id) ? '' : WorkOrder::findOne($model->wo_id)->nojo;
+$recruitreqs = empty($model->recruitreqid) ? '' : Transrincian::findOne($model->recruitreqid)->nojo;
 Modal::begin([
   'header' => '<h4 class="modal-title">View Profile</h4>',
   'id' => 'profileviewshort-modal',
   'size' => 'modal-lg'
 ]);
+
 echo "<div id='profileviewshortview'></div>";
-Modal::end();
 
+Modal::end();
 Modal::begin([
-    'header' => '<h4 class="modal-title">View Work Order</h4>',
-    'id' => 'viewworkorder-modal',
-    'size' => 'modal-xl'
+  'header' => '<h4 class="modal-title">View Recruitment Request</h4>',
+  'id' => 'recreq-modal',
+  'size' => 'modal-lg'
 ]);
-echo "<div id='viewworkorder'></div>";
-Modal::end();
 
+echo "<div id='recreqview'></div>";
+
+Modal::end();
 Modal::begin([
   'header' => '<h4 class="modal-title">Change Recruitment Request</h4>',
   'id' => 'changejo-modal',
   'size' => 'modal-lg'
 ]);
-echo "<div id='changejoview'></div>";
-Modal::end();
 
+echo "<div id='changejoview'></div>";
+
+Modal::end();
 Modal::begin([
   'header' => '<h4 class="modal-title">Invite For Recruitment Process</h4>',
   'id' => 'invite-modal',
@@ -57,7 +59,7 @@ Modal::end();
 if (Yii::$app->user->isGuest) {
   $role = null;
 } else {
-  // $user_id = Yii::$app->user->identity->id;
+  // $userid = Yii::$app->user->identity->id;
   $role = Yii::$app->user->identity->role;
 }
 if (Yii::$app->utils->permission($role, 'm3') && Yii::$app->utils->permission($role, 'm46') && Yii::$app->utils->permission($role, 'm47')) {
@@ -73,7 +75,7 @@ if (Yii::$app->utils->permission($role, 'm3') && Yii::$app->utils->permission($r
 }
 
 ?>
-<div class="wocandidate-index box box-default">
+<div class="recruitmentcandidate-index box box-default">
   <div class="box-body table-responsive">
     <?php // echo $this->render('_search', ['model' => $searchModel]); 
     ?>
@@ -92,7 +94,7 @@ if (Yii::$app->utils->permission($role, 'm3') && Yii::$app->utils->permission($r
           'format' => 'raw',
           'value' => function ($data) {
             $btn = Html::button(($data->userprofile) ? $data->userprofile->fullname : '-', [
-              'value' => Yii::$app->urlManager->createUrl('userprofile/viewshort?userid=' . $data->user_id), //<---- here is where you define the action that handles the ajax request
+              'value' => Yii::$app->urlManager->createUrl('userprofile/viewshort?userid=' . $data->userid), //<---- here is where you define the action that handles the ajax request
               'class' => 'btn btn-link profileviewshort-modal-click',
               'style' => 'padding:0px;',
               'data-toggle' => 'tooltip',
@@ -103,22 +105,47 @@ if (Yii::$app->utils->permission($role, 'm3') && Yii::$app->utils->permission($r
           }
 
         ],
+        // 'userdata.email',
         'userdata.mobile',
+
+        // 'createtime',
+        // 'updatetime',
         [
 
           'label' => 'Recruitment Request',
-          'attribute' => 'wo_number',
+          'attribute' => 'nojo',
           'contentOptions' => ['style' => 'min-width: 180px;'],
           'format' => 'raw',
+          // 'filter' => \kartik\select2\Select2::widget([
+          //   'model' => $searchModel,
+          //   'attribute' => 'nojo',
+          //   'initValueText' => empty($searchModel->nojo) ? '' : Transrincian::findOne($searchModel->nojo)->nojo, // set the initial display text
+          //   'options' => ['placeholder' => '--'],
+          //   'pluginOptions' => [
+          //     'allowClear' => true,
+          //     'minimumInputLength' => 3,
+          //     'language' => [
+          //       'errorLoading' => new \yii\web\JsExpression("function () { return 'Waiting for results...'; }"),
+          //     ],
+          //     'ajax' => [
+          //       'url' => $url,
+          //       'dataType' => 'json',
+          //       'data' => new \yii\web\JsExpression('function(params) { return {q:params.term}; }'),
+          //     ],
+          //     'escapeMarkup' => new \yii\web\JsExpression('function (markup) { return markup; }'),
+          //     'templateResult' => new \yii\web\JsExpression('function(r) { return r.nojo; }'),
+          //     // 'templateSelection' => new \yii\web\JsExpression('function (r) { return r.nojo; }'),
+          //   ],
+          // ]),
           'value' => function ($data) {
-            if ($data->wo_id) {
-              $btn = Html::button($data->workorder->wo_number, [
-                'value' => Yii::$app->urlManager->createUrl('workorder/view?id=' . $data->wo_id), //<---- here is where you define the action that handles the ajax request
-                'class' => 'btn btn-link viewworkorder-modal-click',
+            if ($data->recrequest) {
+              $btn = Html::button($data->recrequest->nojo, [
+                'value' => Yii::$app->urlManager->createUrl('transrincian/viewshort?id=' . $data->recruitreqid), //<---- here is where you define the action that handles the ajax request
+                'class' => 'btn btn-link recreq-modal-click',
                 'style' => 'padding:0px;',
                 'data-toggle' => 'tooltip',
                 'data-placement' => 'bottom',
-                'title' => 'View Workorder Detail'
+                'title' => 'View Recruitment Request Detail'
               ]);
             } else {
               $btn = '';
@@ -144,10 +171,11 @@ if (Yii::$app->utils->permission($role, 'm3') && Yii::$app->utils->permission($r
           ]),
           // change value relational by kaha
           'value' => function ($data) {
-            if ($data->workorder) {
-              if (is_numeric($data->workorder->job_code)) {
-                if ($data->workorder->jobsap) {
-                  return $data->workorder->jobsap->jabatansap;
+            // return ($data->recrequest->hire_jabatan_sap)? ((is_numeric($data->recrequest->hire_jabatan_sap))?$data->recrequest->jabatansap->value2:'-'):'-';
+            if ($data->recrequest) {
+              if (is_numeric($data->recrequest->hire_jabatan_sap)) {
+                if ($data->recrequest->jabatansap) {
+                  return $data->recrequest->jabatansap->value2;
                 } else {
                   return "-";
                 }
@@ -175,7 +203,7 @@ if (Yii::$app->utils->permission($role, 'm3') && Yii::$app->utils->permission($r
               // 'width' => '120px',
             ],
           ]),
-          'value' => 'workorder.city.city_name'
+          'value' => 'recrequest.city.city_name'
         ],
 
         [
@@ -256,7 +284,7 @@ if (Yii::$app->utils->permission($role, 'm3') && Yii::$app->utils->permission($r
             },
 
             'cancel' => function ($url, $model) {
-              $cekhiring = WoHiring::find()->where(['user_id' => $model->user_id])->one();
+              $cekhiring = Hiring::find()->where(['userid' => $model->userid])->one();
               if ($model->status == 4) {
                 if ($cekhiring) {
                   $disabled = true;
@@ -283,12 +311,12 @@ if (Yii::$app->utils->permission($role, 'm3') && Yii::$app->utils->permission($r
               }
             },
             'changejo' => function ($url, $model, $key) {
-              // (Yii::$app->chproc->interview($model->user_id,$model->id) == 3 )?$disabled = false : $disabled = true;
-              $cekcandidate = WoRecruitmentCandidate::find()->where(['status' => 4, 'user_id' => $model->user_id, 'wo_id' => $model->wo_id, 'id' => $model->id])->one();
-              $cekhiring = WoHiring::find()->where(
-                "user_id = " . $model->user_id . " AND wo_id = " . $model->wo_id . " AND
-                hiring_status <> 5 AND
-                hiring_status <> 7"
+              // (Yii::$app->chproc->interview($model->userid,$model->id) == 3 )?$disabled = false : $disabled = true;
+              $cekcandidate = Recruitmentcandidate::find()->where(['status' => 4, 'userid' => $model->userid, 'recruitreqid' => $model->recruitreqid, 'id' => $model->id])->one();
+              $cekhiring = Hiring::find()->where(
+                "userid = " . $model->userid . " AND recruitreqid = " . $model->recruitreqid . " AND
+                statushiring <> 5 AND
+                statushiring <> 7"
               )->one();
               // if ($model->status == 4) {
               //   if ($cekhiring) {
@@ -310,7 +338,7 @@ if (Yii::$app->utils->permission($role, 'm3') && Yii::$app->utils->permission($r
               }
 
               $btn = Html::button('<i class="fa fa-retweet" style="font-size:12pt;"></i>', [
-                'value' => Yii::$app->urlManager->createUrl('wocandidate/changejo?user_id=' . $model->user_id . '&reccanid=' . $model->id), //<---- here is where you define the action that handles the ajax request
+                'value' => Yii::$app->urlManager->createUrl('recruitmentcandidate/changejo?userid=' . $model->userid . '&reccanid=' . $model->id), //<---- here is where you define the action that handles the ajax request
                 'class' => 'btn btn-sm btn-info changejo-modal-click',
                 'disabled' => $disabled,
                 'data-toggle' => 'tooltip',
@@ -321,7 +349,8 @@ if (Yii::$app->utils->permission($role, 'm3') && Yii::$app->utils->permission($r
             },
 
             'invite' => function ($url, $model, $key) {
-              $cekcandidate = WoRecruitmentCandidate::find()->where(['status' => 4, 'user_id' => $model->user_id])->one();
+              // (Yii::$app->chproc->interview($model->userid,$model->id) == 3 )?$disabled = false : $disabled = true;
+              $cekcandidate = Recruitmentcandidate::find()->where(['status' => 4, 'userid' => $model->userid])->one();
               if ($cekcandidate) {
                 $disabled = true;
               } else {
@@ -356,7 +385,7 @@ if (Yii::$app->utils->permission($role, 'm3') && Yii::$app->utils->permission($r
               }
 
               $btn = Html::button('<i class="fa fa-send (alias)" style="font-size:12pt;"></i>', [
-                'value' => Yii::$app->urlManager->createUrl('wocandidate/invite?user_id=' . $model->user_id . '&reccanid=' . $model->id), //<---- here is where you define the action that handles the ajax request
+                'value' => Yii::$app->urlManager->createUrl('recruitmentcandidate/invite?userid=' . $model->userid . '&reccanid=' . $model->id), //<---- here is where you define the action that handles the ajax request
                 'class' => 'btn btn-sm btn-primary invite-modal-click',
                 'disabled' => $disabled,
                 'data-toggle' => 'tooltip',

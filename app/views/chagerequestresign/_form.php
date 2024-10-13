@@ -94,6 +94,7 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
           ]
         );
         ?>
+        <p class="help-block">Jangan mengajukan tanggal resign dengan bulan yang sama di Hiringnya</p>
         <?= $form->field($model, 'reason')->widget(Select2::classname(), [
           'data' => $reason,
           'options' => [
@@ -160,14 +161,14 @@ $model->resigndate = ($model->resigndate == "0000-00-00") ? null : $model->resig
               <td width="30%" id="hire">-</td>
             </tr>
             <tr>
-              <td width="12%"><b>Hiring Date</b></td>
+              <td width="12%"><b>Hiring/ Resign Date</b></td>
               <td width="30%" id="hiring_date">-</td>
             </tr>
             <tr>
               <td width="12%"><b>Reason Resign</b></td>
               <td width="30%" id="resign_reason">-</td>
             </tr>
-            <tr>
+            <tr class="hidden">
               <td width="12%"><b>Tanggal Resign</b></td>
               <td width="30%" id="resign_date">-</td>
             </tr>

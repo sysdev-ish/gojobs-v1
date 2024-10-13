@@ -112,9 +112,6 @@ class Transrinciansearch extends Transrincian
         if ($this->jabatansap) {
             $query->joinWith("jabatansap");
         }
-        if ($this->areasap) {
-            $query->joinWith("areasap");
-        }
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -129,7 +126,6 @@ class Transrinciansearch extends Transrincian
             'trans_rincian_rekrut.typejo' => $this->typejo,
             'job_function.id' => $this->jobfunc,
             'sapjob.value2' => $this->jabatansap,
-            'saparea.value1' => $this->areasap,
         ]);
 
         $query->andFilterWhere(['like', 'trans_rincian_rekrut.nojo', $this->nojo])

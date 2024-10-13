@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'perner' => $data->perner,
                 'token' => 'ish**2019',
               ])
-                ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+                ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
               $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
               $persa = $datapekerjabyperner[0]->WKTXT;
             }
@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'perner' => $data->perner,
                 'token' => 'ish**2019',
               ])
-                ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+                ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
               $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
               $area = $datapekerjabyperner[0]->BTRTX;
             }
@@ -82,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'perner' => $data->perner,
                 'token' => 'ish**2019',
               ])
-                ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+                ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
               $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
               $skilllayanan = $datapekerjabyperner[0]->PEKTX;
             }
@@ -104,7 +104,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'perner' => $data->perner,
                 'token' => 'ish**2019',
               ])
-                ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+                ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
               $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
               $payrollarea = $datapekerjabyperner[0]->ABTXT;
             }
@@ -126,7 +126,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'perner' => $data->perner,
                 'token' => 'ish**2019',
               ])
-                ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+                ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
               $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
               $jabatan = $datapekerjabyperner[0]->PLATX;
             }
@@ -155,7 +155,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'perner' => $data->perner,
                 'token' => 'ish**2019',
               ])
-                ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+                ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
               $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
               $level = $datapekerjabyperner[0]->TRFAR_TXT;
             }

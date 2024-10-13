@@ -157,12 +157,10 @@ class WocandidateController extends Controller
         $recruitreq = ArrayHelper::map(Workorder::find()->asArray()->where('flag_recruitment = 1 OR flag_recruitment = 3 ')->all(), 'id', 'wo_number');
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->created_time = date('Y-m-d H-i-s');
-            $model->updated_time = date('Y-m-d H-i-s');
-            $model->created_by = Yii::$app->user->id;
-            $model->updated_by = Yii::$app->user->id;
+            $model->createtime = date('Y-m-d H-i-s');
+            $model->updatetime = date('Y-m-d H-i-s');
             $model->status = 0;
-            $model->type_interview = 1;
+            $model->typeinterview = 1;
             $model->save();
             return $this->redirect(['userprofile/index']);
         } else {
@@ -179,18 +177,16 @@ class WocandidateController extends Controller
         $model = new WoRecruitmentCandidate();
         //
         if (Yii::$app->request->isAjax) {
-            $model->user_id = $userid;
-            $model->created_time = date('Y-m-d H-i-s');
-            $model->updated_time = date('Y-m-d H-i-s');
-            $model->created_by = Yii::$app->user->id;
-            $model->updated_by = Yii::$app->user->id;
-            $model->wo_id = $id;
+            $model->userid = $userid;
+            $model->createtime = date('Y-m-d H-i-s');
+            $model->updatetime = date('Y-m-d H-i-s');
+            $model->recruitreqid = $id;
             $model->status = 0;
-            $model->type_interview = 1;
+            $model->typeinterview = 1;
 
             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
             if ($model->save()) {
-                return 'Add Candidate Successful';
+                return 'Add candidate successful';
             }
         }
         // return $this->redirect(['addcandidate2','id'=>$id]);

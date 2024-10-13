@@ -370,6 +370,63 @@ app\assets\ReportAsset::register($this);
 
             ],
             [
+              'label' => 'Status',
+              'format' => 'raw',
+              'value' => function ($data) {
+                $curl = new curl\Curl();
+                $getdatapekerjabyperner =  $curl->setPostParams([
+                  'perner' => $data->perner,
+                  'token' => 'ish**2019',
+                ])
+                  ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjabystatus');
+                $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+                // var_dump($datapekerjabyperner[0]);die;
+                return ($datapekerjabyperner) ? (($datapekerjabyperner[0]->MASSN == "Z8") ? "Withdrawn" : "Active") : '-';
+              }
+
+            ],
+            [
+              'label' => 'Reason',
+              'format' => 'raw',
+              'value' => function ($data) {
+                $curl = new curl\Curl();
+                $getdatapekerjabyperner =  $curl->setPostParams([
+                  'perner' => $data->perner,
+                  'token' => 'ish**2019',
+                ])
+                  ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjabystatus');
+                $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+                // var_dump($datapekerjabyperner[0]);die;
+                return ($datapekerjabyperner) ? (($datapekerjabyperner[0]->MASSN == "Z8") ? $datapekerjabyperner[0]->MSGTX : "") : '';
+              }
+
+            ],
+            [
+              'label' => 'Resign Date',
+              'format' => ['date', 'php:Y-m-d'],
+              'value' => function ($data) {
+                $curl = new curl\Curl();
+                $getdatapekerjabyperner =  $curl->setPostParams([
+                  'perner' => $data->perner,
+                  'token' => 'ish**2019',
+                ])
+                  ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjabystatus');
+                $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+                if ($datapekerjabyperner) {
+                  $date = strtotime($datapekerjabyperner[0]->BEGDA_00);
+                  $newformatdate = date('Y-m-d', $date);
+                  return ($datapekerjabyperner[0]->MASSN == "Z8") ? $newformatdate : "";
+                  // return $newformatdate;
+                } else {
+                  return "";
+                }
+
+                // var_dump($newformat);die;
+
+              }
+
+            ],
+            [
               'label' => 'No Telp',
               'value' => function ($data) {
 
@@ -973,63 +1030,6 @@ app\assets\ReportAsset::register($this);
 
             ],
             [
-              'label' => 'Status',
-              'format' => 'raw',
-              'value' => function ($data) {
-                $curl = new curl\Curl();
-                $getdatapekerjabyperner =  $curl->setPostParams([
-                  'perner' => $data->perner,
-                  'token' => 'ish**2019',
-                ])
-                  ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjabystatus');
-                $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                // var_dump($datapekerjabyperner[0]);die;
-                return ($datapekerjabyperner) ? (($datapekerjabyperner[0]->MASSN == "Z8") ? "Withdrawn" : "Active") : '-';
-              }
-
-            ],
-            [
-              'label' => 'Reason',
-              'format' => 'raw',
-              'value' => function ($data) {
-                $curl = new curl\Curl();
-                $getdatapekerjabyperner =  $curl->setPostParams([
-                  'perner' => $data->perner,
-                  'token' => 'ish**2019',
-                ])
-                  ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjabystatus');
-                $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                // var_dump($datapekerjabyperner[0]);die;
-                return ($datapekerjabyperner) ? (($datapekerjabyperner[0]->MASSN == "Z8") ? $datapekerjabyperner[0]->MSGTX : "") : '';
-              }
-
-            ],
-            [
-              'label' => 'Resign Date',
-              'format' => ['date', 'php:Y-m-d'],
-              'value' => function ($data) {
-                $curl = new curl\Curl();
-                $getdatapekerjabyperner =  $curl->setPostParams([
-                  'perner' => $data->perner,
-                  'token' => 'ish**2019',
-                ])
-                  ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjabystatus');
-                $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                if ($datapekerjabyperner) {
-                  $date = strtotime($datapekerjabyperner[0]->BEGDA_00);
-                  $newformatdate = date('Y-m-d', $date);
-                  return ($datapekerjabyperner[0]->MASSN == "Z8") ? $newformatdate : "";
-                  // return $newformatdate;
-                } else {
-                  return "";
-                }
-
-                // var_dump($newformat);die;
-
-              }
-
-            ],
-            [
               'label' => 'Status Vaksin',
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
@@ -1174,7 +1174,7 @@ app\assets\ReportAsset::register($this);
               // 'contentOptions'=>['style'=>'width: 100px;'],
               'format' => 'raw',
               'value' => function ($data) {
-                return $data->userprofile->fullname;
+                return ($data->userprofile) ? $data->userprofile->fullname : $data->userid;
               }
             ],
 

@@ -149,7 +149,7 @@ class Transrincian extends \yii\db\ActiveRecord
             'skema_sap' => 'Skema Sap',
             'abkrs_sap' => 'Abkrs Sap',
             'hire_jabatan_sap' => 'Hire Jabatan Sap',
-            'zparam' => 'ZParameter',
+            'zparam' => 'Zparam',
             'lup_skema' => 'Lup Skema',
             'upd_skema' => 'Upd Skema',
             'n_project' => 'Project',

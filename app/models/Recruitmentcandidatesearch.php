@@ -67,6 +67,8 @@ class Recruitmentcandidatesearch extends Recruitmentcandidate
             return $dataProvider;
         }
 
+        // 'recruitreqid' => $this->nojo,
+        $query->andWhere(['recruitmentcandidate.job_id' => null]);
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
@@ -74,7 +76,6 @@ class Recruitmentcandidatesearch extends Recruitmentcandidate
             'createtime' => $this->createtime,
             'updatetime' => $this->updatetime,
             'recruitreqid' => $this->recruitreqid,
-            // 'recruitreqid' => $this->nojo,
             'status' => $this->status,
             'typeinterview' => $this->typeinterview,
 

@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'perner' => $data->perner,
                     'token' => 'ish**2019',
                   ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
                   $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
                   $persa = ($datapekerjabyperner) ? $datapekerjabyperner[0]->WKTXT : '';
                 }
@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'perner' => $data->perner,
                     'token' => 'ish**2019',
                   ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
                   $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
                   $area = ($datapekerjabyperner) ? $datapekerjabyperner[0]->BTRTX : '';
                 }
@@ -102,7 +102,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'perner' => $data->perner,
                     'token' => 'ish**2019',
                   ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
                   $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
                   $skilllayanan = ($datapekerjabyperner) ? $datapekerjabyperner[0]->PEKTX : '';
                 }
@@ -128,7 +128,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'perner' => $data->perner,
                     'token' => 'ish**2019',
                   ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
                   $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
                   $payrollarea = ($datapekerjabyperner) ? $datapekerjabyperner[0]->ABTXT : '';
                 }
@@ -154,7 +154,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'perner' => $data->perner,
                     'token' => 'ish**2019',
                   ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
                   $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
                   $jabatan = ($datapekerjabyperner) ? $datapekerjabyperner[0]->PLATX : '';
                 }
@@ -187,7 +187,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'perner' => $data->perner,
                     'token' => 'ish**2019',
                   ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
                   $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
                   $level = ($datapekerjabyperner) ? $datapekerjabyperner[0]->TRFAR_TXT : '';
                 }
@@ -209,8 +209,12 @@ $this->params['breadcrumbs'][] = $this->title;
                   $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
                   $status = "Active";
 
-                  if ($datapekerjabyperner[0]->MASSN == "Z8") {
-                    $status = "Resign";
+                  if ($datapekerjabyperner) {
+                    if ($datapekerjabyperner[0]->MASSN == "Z8") {
+                      $status = "Resign, Silakan Reject Pengajuan Perubahan Data Bank";
+                    }
+                  } else {
+                    $status = "Cancel Join, Silakan Reject Pengajuan Perubahan Data Bank";
                   }
                 } else {
                   $status = ($data->statusresign == 1) ? "Active" : "Resign";
@@ -253,21 +257,21 @@ $this->params['breadcrumbs'][] = $this->title;
                   $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
                   $resigndate = "-";
 
-                  if ($datapekerjabyperner[0]->MASSN == "Z8") {
-                    $resigndate = "-";
+                  if ($datapekerjabyperner) {
+                    if ($datapekerjabyperner[0]->MASSN == "Z8") {
+                      $resigndate = "-";
 
-                    if ($datapekerjabyperner[0]->DAT35) {
-                      $year = substr($datapekerjabyperner[0]->DAT35, 0, 4);
-                      $month = substr($datapekerjabyperner[0]->DAT35, 4, 2);
-                      $date = substr($datapekerjabyperner[0]->DAT35, 6, 2);
-                      $resigndate = $year . "-" . $month . "-" . $date;
+                      if ($datapekerjabyperner[0]->DAT35) {
+                        $year = substr($datapekerjabyperner[0]->DAT35, 0, 4);
+                        $month = substr($datapekerjabyperner[0]->DAT35, 4, 2);
+                        $date = substr($datapekerjabyperner[0]->DAT35, 6, 2);
+                        $resigndate = $year . "-" . $month . "-" . $date;
+                      }
                     }
                   }
                 } else {
                   $resigndate = $data->resigndate;
                 }
-
-
 
                 return $resigndate;
               }
@@ -314,6 +318,8 @@ $this->params['breadcrumbs'][] = $this->title;
       <div class="box-body table-responsive">
         <table class="table no-border">
           <tbody>
+            <!-- <? //php var_dump($bankaccountoldval);die(); 
+                  ?> -->
             <?php if ($bankaccountoldval) : ?>
               <tr>
                 <td width="20%" style="text-align:right;"><b>Bank Account</b></td>
@@ -352,9 +358,47 @@ $this->params['breadcrumbs'][] = $this->title;
       <?php $form = ActiveForm::begin(); ?>
       <?php
       if ($model->status == 2) {
-        $data = [3 => 'Approve', 5 => 'Reject', 6 => 'Revise'];
+        $curl = new curl\Curl();
+        $getdatapekerjabyperner =  $curl->setPostParams([
+          'perner' => $model->perner,
+          'token' => 'ish**2019',
+        ])
+          ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
+        $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+
+        if ($datapekerjabyperner) {
+          if ($datapekerjabyperner[0]->MASSN == "Z8") {
+            $data = [5 => 'Reject', 6 => 'Revise'];
+          }
+          $data = [3 => 'Approve', 5 => 'Reject', 6 => 'Revise'];
+        }
+        // $cekhiring = Hiring::find()->where(['userid' => $model->userid, 'perner' => $model->perner, 'statushiring' => 4])->one();
+        // if ($cekhiring) {
+        //   $data = [3 => 'Approve', 5 => 'Reject', 6 => 'Revise'];
+        // } else {
+        //   $data = [5 => 'Reject', 6 => 'Revise'];
+        // }
       } else {
-        $data = [4 => 'Approve', 5 => 'Reject', 6 => 'Revise'];
+        $curl = new curl\Curl();
+        $getdatapekerjabyperner =  $curl->setPostParams([
+          'perner' => $model->perner,
+          'token' => 'ish**2019',
+        ])
+          ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
+        $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+
+        if ($datapekerjabyperner) {
+          if ($datapekerjabyperner[0]->MASSN == "Z8") {
+            $data = [5 => 'Reject', 6 => 'Revise'];
+          }
+          $data = [4 => 'Approve', 5 => 'Reject', 6 => 'Revise'];
+        }
+        // $cekhiring = Hiring::find()->where(['userid' => $model->userid, 'perner' => $model->perner, 'statushiring' => 4])->one();
+        // if ($cekhiring) {
+        //   $data = [4 => 'Approve', 5 => 'Reject', 6 => 'Revise'];
+        // } else {
+        //   $data = [5 => 'Reject', 6 => 'Revise'];
+        // }
       }
       echo   $form->field($model, 'status')->widget(Select2::classname(), [
         'data' => $data,

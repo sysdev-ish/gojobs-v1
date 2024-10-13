@@ -186,7 +186,6 @@ class ChagerequestdataController extends Controller
 
     return Json::encode($dataprofile);
   }
-  
   public function actionCreate($id = null)
   {
     // $getid = Userprofile::find()->where(['userid'=>$userid])->one();
@@ -209,9 +208,11 @@ class ChagerequestdataController extends Controller
           ['chagerequestdata.userid' => null],
           ['chagerequestdata.status' => 4],
           // ['chagerequestdata.status'=>5],
+          ['chagerequestdata.status' => 6],
           ['hiring.userid' => $model->userid],
         ])->all();
       $name = array();
+      // var_dump($name);die();
       foreach ($namaquery as $key => $value) {
         if ($value->changereqdata) {
           $checkdraft =  Chagerequestdata::find()
@@ -220,7 +221,7 @@ class ChagerequestdataController extends Controller
             ->andWhere([
               'or',
               ['status' => 1],
-              ['status' => 6],
+              // ['status' => 6],
             ])
             ->count();
           //comment by kaha 2/11/22 -> optimize loadtime
@@ -228,7 +229,7 @@ class ChagerequestdataController extends Controller
             $name[$value->userid] = $value->perner;
             // $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
           }
-          if ($value->changereqdata->status == 4 && $checkdraft == 0) {
+          if ($value->changereqdata->status == 4 || $value->changereqdata->status == 6 && $checkdraft == 0) {
             $name[$value->userid] = $value->perner;
             //  $name[$value->userid] = $value->userprofile->fullname.' / '.$value->perner;
           }

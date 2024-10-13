@@ -51,8 +51,8 @@ class Userabout extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['strengths', 'weakness', 'strengthsopinion', 'weaknessopinion', 'ambitionandhopefullness', 'specialskills', 'yourgoals', 'activityinsparetime', 'hobby', 'readyshift', 'readyovertime', 'readyoverstay', 'readyoutcity', 'joblikeskill', 'havepsikotest', 'expectsalary', 'readyforwork','infoofrecruitmentid'], 'required' , 'on'=>['create','update','updatepass']],
-            [['passbook'],'required','on'=>['updatepass']],
+            // [['strengths', 'weakness', 'strengthsopinion', 'weaknessopinion', 'ambitionandhopefullness', 'specialskills', 'yourgoals', 'activityinsparetime', 'hobby', 'readyshift', 'readyovertime', 'readyoverstay', 'readyoutcity', 'joblikeskill', 'havepsikotest', 'expectsalary', 'readyforwork','infoofrecruitmentid'], 'required' , 'on'=>['create','update','updatepass']],
+            // [['passbook'],'required','on'=>['updatepass']],
             [['userid', 'readyshift', 'readyovertime', 'readyoverstay', 'readyoutcity', 'havepsikotest', 'expectsalary','bankid','infoofrecruitmentid','bankaccountnumber'], 'integer'],
             [['createtime', 'updatetime','whenpsikotest'], 'safe'],
             [['strengths', 'weakness', 'strengthsopinion', 'weaknessopinion', 'ambitionandhopefullness', 'specialskills', 'activityinsparetime', 'hobby'], 'string', 'max' => 500],

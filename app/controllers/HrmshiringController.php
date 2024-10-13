@@ -697,19 +697,16 @@ class HrmshiringController extends Controller
                                 $model->save();
                                 $retbio = ['status' => $ret->status, 'message' => $ret->message, 'perner' => $rawhiring['perner']];
                                 print_r(json_encode($retbio));
-                                echo "<br>";
                               } else {
                                 $model->is_biodata_hrms = 2;
                                 $model->save();
                                 $retbio = ['status' => $ret->status, 'message' => $ret->message, 'perner' => $rawhiring['perner']];
                                 print_r(json_encode($retbio));
-                                echo "<br>";
                               }
                             }
                           } else {
                             $retlogin4 = ['status' => $access_token4->status, 'message' => $access_token4->message];
                             print_r(json_encode($retlogin4));
-                            echo "<br>";
                           }
 
                           // 
@@ -718,46 +715,38 @@ class HrmshiringController extends Controller
                           $update_hiring = 'Success Hiring HRMS';
                           $rethire = ['status' => $rethiring->status, 'message' => $rethiring->message . ', ' . $update_hiring, 'perner' => $rawhiring['perner']];
                           print_r(json_encode($rethire));
-                          echo "<br>";
                         } else {
                           $model->is_hiring_hrms = 2;
                           $model->save();
                           print_r($rethiring->message);
                           $rethire = ['status' => $rethiring->status, 'message' => $rethiring->message, 'perner' => $rawhiring['perner']];
                           print_r(json_encode($rethire));
-                          echo "<br>";
                         }
                       }
                     } else {
                       $retlogin3 = ['status' => $access_token3->status, 'message' => $access_token3->message];
                       print_r(json_encode($retlogin3));
-                      echo "<br>";
                     }
                   } else {
                     $retpos = ['status' => $position_result->status, 'message' => $position_result->message, 'perner' => $rawhiring['perner']];
                     print_r($retpos);
-                    echo "<br>";
                   }
                 } else {
                   $retpos = ['status' => $position_result->status, 'message' => $position_result->message, 'perner' => $rawhiring['perner']];
                   print_r($retpos);
-                  echo "<br>";
                 }
               } else {
                 $retlogin2 = ['status' => $access_token2->status, 'message' => $access_token2->message];
                 print_r(json_encode($retlogin2));
-                echo "<br>";
               }
             } else {
               print_r($paycontroll_check->message);
-              echo "<br>";
             }
           } else {
             $retlogin1 = [
               'status' => $access_token1->status, 'message' => $access_token1->message
             ];
             print_r($retlogin1);
-            echo "<br>";
           }
         }
       }
@@ -773,17 +762,14 @@ class HrmshiringController extends Controller
       'token' => 'ish**2019',
     ])
       ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjabypa');
+    $curl_pa->reset();
     $raw_obj  = json_decode($getbypa);
-    // echo '<pre>';
-    // var_dump($raw_obj);
-    // die();
-    // echo '</pre>';
 
-    $initiate = 201;
+    $initiate = 0;
     foreach ($raw_obj as $obj) {
       // 
       // $initiate++; // loss limit
-      if ($initiate++ == 250) break; // limit
+      if ($initiate++ == 51) break; // limit
       $curl_worker = new curl\Curl();
       $getdatapekerja =  $curl_worker->setPostParams([
         'perner' => $obj->id,
@@ -793,41 +779,42 @@ class HrmshiringController extends Controller
       ])
         ->post('http://192.168.88.5/service/index.php/sap_profile/getworker');
       // var_dump($getdatapekerja);die();
+      $curl_worker->reset();
       $data_pekerja  = json_decode($getdatapekerja);
-      // echo '<pre>';
       // var_dump($data_pekerja);die();
-      // echo '</pre>';
 
       if ($data_pekerja) {
-        $curl = new curl\Curl();
         // initial get access token
-        $check_token1 = $curl->setPostParams([
-          'username' => 'gojobs',
-          'password' => 'u3p5bL1E3'
-        ])->post('https://hrpay.ish.co.id/middleware/auth/login');
-        $access_token1 = json_decode($check_token1);
+        $curl = new curl\Curl();
+        // $check_token1 = $curl->setPostParams([
+        //   'username' => 'gojobs',
+        //   'password' => 'u3p5bL1E3'
+        // ])->post('https://hrpay.ish.co.id/middleware/auth/login');
+        // $access_token1 = json_decode($check_token1);
 
-        if ($access_token1->status == 1) {
+        // if ($access_token1->status == 1) {
           // initital check payroll controll hrpay
           $curl->setHeaders([
-            'token' => $access_token1->data->access_token
+            // 'token' => $access_token1->data->access_token
+            'token' => '*4mbur4do3l#'
           ]);
           $paycontroll_check = $curl->setPostParams([
             // payroll area code
             'code' => $data_pekerja[0]->payroll_area,
           ])->post('https://hrpay.ish.co.id/middleware/parea/check');
+          $curl->reset();
           $payrollcontroll_result = json_decode($paycontroll_check);
           // var_dump($payrollcontroll_result);die();
           if ($payrollcontroll_result->status == 1) {
             // initial get access token
             $curl2 = new curl\Curl();
-            $check_token2 = $curl2->setPostParams([
-              'username' => 'gojobs',
-              'password' => 'u3p5bL1E3'
-            ])->post('https://hrpay.ish.co.id/middleware/auth/login');
-            $access_token2 = json_decode($check_token2);
+            // $check_token2 = $curl2->setPostParams([
+            //   'username' => 'gojobs',
+            //   'password' => 'u3p5bL1E3'
+            // ])->post('https://hrpay.ish.co.id/middleware/auth/login');
+            // $access_token2 = json_decode($check_token2);
             // var_dump($access_token2);die();
-            if ($access_token2->status == 1) {
+            // if ($access_token2->status == 1) {
               $area = Saparea::find()->where(['value1' => $data_pekerja[0]->area])->one();
               $city = MappingCity::find()->where(['city_id' => $area->value1])->one();
               $job_code = Sapjob::find()->where(['value2' => $data_pekerja[0]->job_name])->one();
@@ -891,7 +878,8 @@ class HrmshiringController extends Controller
 
               // initial check position hrpay
               $curl2->setHeaders([
-                'token' => $access_token2->data->access_token
+                'token' => '*4mbur4do3l#'
+                // 'token' => $access_token2->data->access_token
               ]);
               // 
               $request_position = [
@@ -902,8 +890,10 @@ class HrmshiringController extends Controller
                 'level_code' => $data_pekerja[0]->level_job,
                 // 'debug' => 1
               ];
+              // var_dump($request_position);die();
 
               $position_check =  $curl2->setPostParams($request_position)->post('https://hrpay.ish.co.id/middleware/position/check');
+              $curl2->reset();
               $position_result = json_decode($position_check);
               // var_dump($position_result);die();
 
@@ -971,16 +961,17 @@ class HrmshiringController extends Controller
                   // initial hiring
                   // initial get access token
                   $curl3 = new curl\Curl();
-                  $check_token3 = $curl3->setPostParams([
-                    'username' => 'gojobs',
-                    'password' => 'u3p5bL1E3'
-                  ])->post('https://hrpay.ish.co.id/middleware/auth/login');
-                  $access_token3 = json_decode($check_token3);
+                  // $check_token3 = $curl3->setPostParams([
+                  //   'username' => 'gojobs',
+                  //   'password' => 'u3p5bL1E3'
+                  // ])->post('https://hrpay.ish.co.id/middleware/auth/login');
+                  // $access_token3 = json_decode($check_token3);
                   // var_dump($access_token3);die();
-                  if ($access_token3->status == 1) {
+                  // if ($access_token3->status == 1) {
                     // initial check position hrpay
                     $curl3->setHeaders([
-                      'token' => $access_token3->data->access_token
+                      // 'token' => $access_token3->data->access_token
+                      'token' => '*4mbur4do3l#'
                     ]);
 
                     // array data insert hiring
@@ -1016,6 +1007,7 @@ class HrmshiringController extends Controller
                     // var_dump($request_hiring);die();
                     $hiring_check = $curl3->setPostParams($request_hiring)->post('https://hrpay.ish.co.id/middleware/hraction/hiring');
                     // var_dump($hiring_check);die();
+                    $curl3->reset();
                     $rethiring = json_decode($hiring_check);
 
                     // echo '<pre>';
@@ -1026,19 +1018,19 @@ class HrmshiringController extends Controller
                     if ($rethiring) {
                       // result hiring -> update biodata
                       if ($rethiring->status == 1) {
-                        $curl4 = new curl\Curl();
+                        // $curl4 = new curl\Curl();
                         // initial get access token
-                        $check_token4 = $curl4->setPostParams([
-                          'username' => 'gojobs',
-                          'password' => 'u3p5bL1E3'
-                        ])->post('https://hrpay.ish.co.id/middleware/auth/login');
-                        $access_token4 = json_decode($check_token4);
-
-                        if ($access_token4->status == 1) {
+                        // $check_token4 = $curl4->setPostParams([
+                        //   'username' => 'gojobs',
+                        //   'password' => 'u3p5bL1E3'
+                        // ])->post('https://hrpay.ish.co.id/middleware/auth/login');
+                        // $access_token4 = json_decode($check_token4);
+                        // if ($access_token4->status == 1) {
                           // 
-                          $curl4->setHeaders([
-                            'token' => $access_token4->data->access_token
-                          ]);
+                          // $curl4->setHeaders([
+                            // 'token' => $access_token4->data->access_token
+                            // 'token' => '*4mbur4do3l#'
+                          // ]);
 
                           // initial request data to post insert biodata
                           $request_data = [
@@ -1117,81 +1109,73 @@ class HrmshiringController extends Controller
                           // initiate hit biodata update/ insert
                           $curl6 = new curl\Curl();
                           // initial get access token
-                          $check_token6 = $curl6->setPostParams([
-                            'username' => 'gojobs',
-                            'password' => 'u3p5bL1E3'
-                          ])->post('https://hrpay.ish.co.id/middleware/auth/login');
-                          $access_token6 = json_decode($check_token6);
-                          // echo '<pre>';
-                          // var_dump($request_data);die();
-                          // echo '</pre>';
+                          // $check_token6 = $curl6->setPostParams([
+                          //   'username' => 'gojobs',
+                          //   'password' => 'u3p5bL1E3'
+                          // ])->post('https://hrpay.ish.co.id/middleware/auth/login');
+                          // $access_token6 = json_decode($check_token6);
 
                           // initiate post biodata update
                           $curl6->setHeaders([
-                            'token' => $access_token6->data->access_token
+                            // 'token' => $access_token6->data->access_token
+                            'token' => '*4mbur4do3l#'
                           ]);
                           $raw_biodata = $curl6->setPostParams($request_data)->post('https://hrpay.ish.co.id/middleware/employee/bio');
                           // var_dump($raw_biodata);
                           // die();
+                          $curl6->reset();
                           $ret = json_decode($raw_biodata);
                           // 
                           if ($ret) {
                             if ($ret->status == 1) {
                               $retbio = ['key' => $initiate, 'status' => $ret->status, 'message' => $ret->message, 'perner' => $data_pekerja[0]->perner];
                               print_r(json_encode($retbio));
-                              echo "<br>";
                             } else {
                               $retbio = ['key' => $initiate, 'status' => $ret->status, 'message' => $ret->message, 'perner' => $data_pekerja[0]->perner];
-                              print_r(json_encode($retbio));
-                              echo "<br>";
+                              print_r(json_encode($retbio));                              
                             }
                           }
-                        } else {
-                          $retlogin4 = ['key' => $initiate, 'status' => $access_token4->status, 'message' => $access_token4->message];
-                          print_r(json_encode($retlogin4));
-                          echo "<br>";
-                        }
+                        // } else {
+                        //   $retlogin4 = ['key' => $initiate, 'status' => $access_token4->status, 'message' => $access_token4->message];
+                        //   print_r(json_encode($retlogin4));
+                        //   echo "<br>";
+                        // }
                         // 
                         $rethire = ['key' => $initiate, 'status' => $rethiring->status, 'message' => $rethiring->message, 'position' => $position_result->data->code, 'perner' => $data_pekerja[0]->perner];
                         print_r(json_encode($rethire));
-                        echo "<br>";
                       } else {
                         $rethire = ['key' => $initiate, 'status' => $rethiring->status, 'message' => $rethiring->message, 'position' => $position_result->data->code, 'perner' => $data_pekerja[0]->perner];
                         print_r(json_encode($rethire));
-                        echo "<br>";
                       }
                     }
-                  } else {
-                    $retlogin3 = ['key' => $initiate, 'status' => $access_token3->status, 'message' => $access_token3->message];
-                    print_r(json_encode($retlogin3));
-                    echo "<br>";
-                  }
+                  // } else {
+                  //   $retlogin3 = ['key' => $initiate, 'status' => $access_token3->status, 'message' => $access_token3->message];
+                  //   print_r(json_encode($retlogin3));
+                  //   echo "<br>";
+                  // }
                 } else {
                   $retpos = ['key' => $initiate, 'status' => $position_result->status, 'message' => $position_result->message, 'perner' => $data_pekerja[0]->perner];
                   print_r(json_encode($retpos));
-                  echo "<br>";
                 }
               } else {
                 $retpos = ['key' => $initiate, 'status' => $position_result->status, 'message' => $position_result->message, 'perner' => $data_pekerja[0]->perner];
                 print_r(json_encode($retpos));
-                echo "<br>";
               }
-            } else {
-              $retlogin2 = ['key' => $initiate, 'status' => $access_token2->status, 'message' => $access_token2->message];
-              print_r(json_encode($retlogin2));
-              echo "<br>";
-            }
+            // } else {
+            //   $retlogin2 = ['key' => $initiate, 'status' => $access_token2->status, 'message' => $access_token2->message];
+            //   print_r(json_encode($retlogin2));
+            //   echo "<br>";
+            // }
           } else {
             print_r($paycontroll_check->message);
-            echo "<br>";
           }
-        } else {
-          $retlogin1 = [
-            'key' => $initiate, 'status' => $access_token1->status, 'message' => $access_token1->message
-          ];
-          print_r($retlogin1);
-          echo "<br>";
-        }
+        // } else {
+        //   $retlogin1 = [
+        //     'key' => $initiate, 'status' => $access_token1->status, 'message' => $access_token1->message
+        //   ];
+        //   print_r($retlogin1);
+        //   echo "<br>";
+        // }
       }
     }
   }
@@ -1199,282 +1183,280 @@ class HrmshiringController extends Controller
   public function actionBiodatabysap($perner = null)
   {
 
-      // 
-      // $initiate++; // loss limit
-      $curl_worker = new curl\Curl();
-      $getdatapekerja =  $curl_worker->setPostParams([
-        'perner' => $perner,
-        // 'perner' => '228583',
-        'token' => 'ish**2019',
-      ])
-        ->post('http://192.168.88.5/service/index.php/sap_profile/getworker');
-      // var_dump($getdatapekerja);die();
-      $data_pekerja  = json_decode($getdatapekerja);
+    // 
+    // $initiate++; // loss limit
+    $curl_worker = new curl\Curl();
+    $getdatapekerja =  $curl_worker->setPostParams([
+      'perner' => $perner,
+      // 'perner' => '228583',
+      'token' => 'ish**2019',
+    ])
+      ->post('http://192.168.88.5/service/index.php/sap_profile/getworker');
+    // var_dump($getdatapekerja);die();
+    $data_pekerja  = json_decode($getdatapekerja);
 
-      if ($data_pekerja) {
-        $curl = new curl\Curl();
+    if ($data_pekerja) {
+      $curl = new curl\Curl();
+      // initial get access token
+      $check_token1 = $curl->setPostParams([
+        'username' => 'gojobs',
+        'password' => 'u3p5bL1E3'
+      ])->post('https://hrpay.ish.co.id/middleware/auth/login');
+      $access_token1 = json_decode($check_token1);
+
+      if ($access_token1->status == 1) {
+        // initital check payroll controll hrpay
+
+        $area = Saparea::find()->where(['value1' => $data_pekerja[0]->area])->one();
+        $city = MappingCity::find()->where(['city_name' => $area->value2])->one();
+        $job_code = Sapjob::find()->where(['value2' => $data_pekerja[0]->job_name])->one();
+        // var_dump($job_code);die();
+        // var_dump($city);die();
+        if ($city) {
+          $res_province = Province::find()->where(['id' => $city->province_id])->one();
+          $province = $res_province->name_province;
+        } else {
+          $province = '-';
+        }
+        // 
+        if ($data_pekerja[0]->start_contract_date) {
+          $year = substr($data_pekerja[0]->start_contract_date, 0, 4);
+          $month = substr($data_pekerja[0]->start_contract_date, 4, 2);
+          $date = substr($data_pekerja[0]->start_contract_date, 6, 2);
+          $contract_startdate = $year . "-" . $month . "-" . $date;
+        }
+
+        if ($data_pekerja[0]->end_contract_date) {
+          $year = substr($data_pekerja[0]->end_contract_date, 0, 4);
+          $month = substr($data_pekerja[0]->end_contract_date, 4, 2);
+          $date = substr($data_pekerja[0]->end_contract_date, 6, 2);
+          $contract_enddate = $year . "-" . $month . "-" . $date;
+        }
+
+        if ($data_pekerja[0]->join_date) {
+          $year = substr($data_pekerja[0]->join_date, 0, 4);
+          $month = substr($data_pekerja[0]->join_date, 4, 2);
+          $date = substr($data_pekerja[0]->join_date, 6, 2);
+          $join_date = $year . "-" . $month . "-" . $date;
+        }
+        // 
+        if ($data_pekerja[0]->birth_date) {
+          $year = substr($data_pekerja[0]->birth_date, 0, 4);
+          $month = substr($data_pekerja[0]->birth_date, 4, 2);
+          $date = substr($data_pekerja[0]->birth_date, 6, 2);
+          $birth_date = $year . "-" . $month . "-" . $date;
+        }
+        if ($data_pekerja[0]->start_education_date) {
+          $year = substr($data_pekerja[0]->start_education_date, 0, 4);
+          $month = substr($data_pekerja[0]->start_education_date, 4, 2);
+          $date = substr($data_pekerja[0]->start_education_date, 6, 2);
+          $start_education_date = $year . "-" . $month . "-" . $date;
+        }
+        if ($data_pekerja[0]->end_education_date) {
+          $year = substr($data_pekerja[0]->end_education_date, 0, 4);
+          $month = substr($data_pekerja[0]->end_education_date, 4, 2);
+          $date = substr($data_pekerja[0]->end_education_date, 6, 2);
+          $end_education_date = $year . "-" . $month . "-" . $date;
+        }
+        //
+        if ($data_pekerja[0]->family_birth_date_1) {
+          $year = substr($data_pekerja[0]->family_birth_date_1, 0, 4);
+          $month = substr($data_pekerja[0]->family_birth_date_1, 4, 2);
+          $date = substr($data_pekerja[0]->family_birth_date_1, 6, 2);
+          $family_birth_date_1 = $year . "-" . $month . "-" . $date;
+        }
+        // var_dump($contract_startdate);die();
+
+        if ($data_pekerja[0]->gender == 'male') {
+          $gender = 'LAKI-LAKI';
+        } else {
+          $gender = 'PEREMPUAN';
+        }
+        if ($data_pekerja[0]->marital_status == 0) {
+          $marital_status = 'BELUM MENIKAH';
+        } else {
+          $marital_status = 'MENIKAH';
+        }
+        if ($data_pekerja[0]->religion == '01') {
+          $religion = 'ISLAM';
+        } elseif ($data_pekerja[0]->religion == '02') {
+          $religion = 'KRISTEN';
+        } elseif ($data_pekerja[0]->religion == '03') {
+          $religion = 'PROTESTAN';
+        } elseif ($data_pekerja[0]->religion == '04') {
+          $religion = 'HINDU';
+        } elseif ($data_pekerja[0]->religion == '05') {
+          $religion = 'BUDDHA';
+        } elseif ($data_pekerja[0]->religion == '03') {
+          $religion = 'CATHOLIC';
+        } else {
+          $religion = 'NOT FOUND';
+        }
+        if ($data_pekerja[0]->type_contract == '01') {
+          $contract_type = 'PKWT';
+        } elseif ($data_pekerja[0]->type_contract == '03') {
+          $contract_type = 'PARTTIME';
+        } elseif ($data_pekerja[0]->type_contract == '05') {
+          $contract_type = 'MAGANG';
+        } elseif ($data_pekerja[0]->type_contract == '06') {
+          $contract_type = 'KEMITRAAN';
+        } elseif ($data_pekerja[0]->type_contract == '07') {
+          $contract_type = 'THL';
+        } elseif ($data_pekerja[0]->type_contract == '01') {
+          $contract_type = 'PKWT-KEMITRAAN PB';
+        } else {
+          $contract_type = '';
+        }
+        // 
+        if ($data_pekerja[0]->type_jo == '01') {
+          $massg = "NEW";
+        } else {
+          $massg = "REPLACEMENT";
+        }
+        // 
+        if ($data_pekerja[0]->is_certificate_education == '01') {
+          $is_certificate = "1";
+        } else {
+          $is_certificate = "0";
+        }
+
+        if ($data_pekerja[0]->family_gender_1 == 'MALE') {
+          $gender_family = "laki-laki";
+        } else {
+          $gender_family = "perempuan";
+        }
+
+        $curl4 = new curl\Curl();
         // initial get access token
-        $check_token1 = $curl->setPostParams([
+        $check_token4 = $curl4->setPostParams([
           'username' => 'gojobs',
           'password' => 'u3p5bL1E3'
         ])->post('https://hrpay.ish.co.id/middleware/auth/login');
-        $access_token1 = json_decode($check_token1);
+        $access_token4 = json_decode($check_token4);
 
-        if ($access_token1->status == 1) {
-          // initital check payroll controll hrpay
-
-          $area = Saparea::find()->where(['value1' => $data_pekerja[0]->area])->one();
-          $city = MappingCity::find()->where(['city_name' => $area->value2])->one();
-          $job_code = Sapjob::find()->where(['value2' => $data_pekerja[0]->job_name])->one();
-          // var_dump($job_code);die();
-          // var_dump($city);die();
-          if ($city) {
-            $res_province = Province::find()->where(['id' => $city->province_id])->one();
-            $province = $res_province->name_province;
-          } else {
-            $province = '-';
-          }
+        if ($access_token4->status == 1) {
           // 
-          if ($data_pekerja[0]->start_contract_date) {
-            $year = substr($data_pekerja[0]->start_contract_date, 0, 4);
-            $month = substr($data_pekerja[0]->start_contract_date, 4, 2);
-            $date = substr($data_pekerja[0]->start_contract_date, 6, 2);
-            $contract_startdate = $year . "-" . $month . "-" . $date;
-          }
+          $curl4->setHeaders([
+            'token' => $access_token4->data->access_token
+          ]);
 
-          if ($data_pekerja[0]->end_contract_date) {
-            $year = substr($data_pekerja[0]->end_contract_date, 0, 4);
-            $month = substr($data_pekerja[0]->end_contract_date, 4, 2);
-            $date = substr($data_pekerja[0]->end_contract_date, 6, 2);
-            $contract_enddate = $year . "-" . $month . "-" . $date;
-          }
-
-          if ($data_pekerja[0]->join_date) {
-            $year = substr($data_pekerja[0]->join_date, 0, 4);
-            $month = substr($data_pekerja[0]->join_date, 4, 2);
-            $date = substr($data_pekerja[0]->join_date, 6, 2);
-            $join_date = $year . "-" . $month . "-" . $date;
-          }
-          // 
-          if ($data_pekerja[0]->birth_date) {
-            $year = substr($data_pekerja[0]->birth_date, 0, 4);
-            $month = substr($data_pekerja[0]->birth_date, 4, 2);
-            $date = substr($data_pekerja[0]->birth_date, 6, 2);
-            $birth_date = $year . "-" . $month . "-" . $date;
-          }
-          if ($data_pekerja[0]->start_education_date) {
-            $year = substr($data_pekerja[0]->start_education_date, 0, 4);
-            $month = substr($data_pekerja[0]->start_education_date, 4, 2);
-            $date = substr($data_pekerja[0]->start_education_date, 6, 2);
-            $start_education_date = $year . "-" . $month . "-" . $date;
-          }
-          if ($data_pekerja[0]->end_education_date) {
-            $year = substr($data_pekerja[0]->end_education_date, 0, 4);
-            $month = substr($data_pekerja[0]->end_education_date, 4, 2);
-            $date = substr($data_pekerja[0]->end_education_date, 6, 2);
-            $end_education_date = $year . "-" . $month . "-" . $date;
-          }
-          //
-          if ($data_pekerja[0]->family_birth_date_1) {
-            $year = substr($data_pekerja[0]->family_birth_date_1, 0, 4);
-            $month = substr($data_pekerja[0]->family_birth_date_1, 4, 2);
-            $date = substr($data_pekerja[0]->family_birth_date_1, 6, 2);
-            $family_birth_date_1 = $year . "-" . $month . "-" . $date;
-          }
-          // var_dump($contract_startdate);die();
-
-          if ($data_pekerja[0]->gender == 'male') {
-            $gender = 'LAKI-LAKI';
-          } else {
-            $gender = 'PEREMPUAN';
-          }
-          if ($data_pekerja[0]->marital_status == 0) {
-            $marital_status = 'BELUM MENIKAH';
-          } else {
-            $marital_status = 'MENIKAH';
-          }
-          if ($data_pekerja[0]->religion == '01') {
-            $religion = 'ISLAM';
-          } elseif ($data_pekerja[0]->religion == '02') {
-            $religion = 'KRISTEN';
-          } elseif ($data_pekerja[0]->religion == '03') {
-            $religion = 'PROTESTAN';
-          } elseif ($data_pekerja[0]->religion == '04') {
-            $religion = 'HINDU';
-          } elseif ($data_pekerja[0]->religion == '05') {
-            $religion = 'BUDDHA';
-          } elseif ($data_pekerja[0]->religion == '03') {
-            $religion = 'CATHOLIC';
-          } else {
-            $religion = 'NOT FOUND';
-          }
-          if ($data_pekerja[0]->type_contract == '01') {
-            $contract_type = 'PKWT';
-          } elseif ($data_pekerja[0]->type_contract == '03') {
-            $contract_type = 'PARTTIME';
-          } elseif ($data_pekerja[0]->type_contract == '05') {
-            $contract_type = 'MAGANG';
-          } elseif ($data_pekerja[0]->type_contract == '06') {
-            $contract_type = 'KEMITRAAN';
-          } elseif ($data_pekerja[0]->type_contract == '07') {
-            $contract_type = 'THL';
-          } elseif ($data_pekerja[0]->type_contract == '01') {
-            $contract_type = 'PKWT-KEMITRAAN PB';
-          } else {
-            $contract_type = '';
-          }
-          // 
-          if ($data_pekerja[0]->type_jo == '01') {
-            $massg = "NEW";
-          } else {
-            $massg = "REPLACEMENT";
-          }
-          // 
-          if ($data_pekerja[0]->is_certificate_education == '01') {
-            $is_certificate = "1";
-          } else {
-            $is_certificate = "0";
-          }
-
-          if ($data_pekerja[0]->family_gender_1 == 'MALE') {
-            $gender_family = "laki-laki";
-          } else {
-            $gender_family = "perempuan";
-          }
-
-          $curl4 = new curl\Curl();
-          // initial get access token
-          $check_token4 = $curl4->setPostParams([
-            'username' => 'gojobs',
-            'password' => 'u3p5bL1E3'
-          ])->post('https://hrpay.ish.co.id/middleware/auth/login');
-          $access_token4 = json_decode($check_token4);
-
-          if ($access_token4->status == 1) {
-            // 
-            $curl4->setHeaders([
-              'token' => $access_token4->data->access_token
-            ]);
-
-            // initial request data to post insert biodata
-            $request_data = [
-              'perner' => '228583',
-              'address' => [
-                [
-                  'type' => 'ktp',
-                  'contact_name' => 'default',
-                  'address' => ($data_pekerja[0]->family_address_1) ? $data_pekerja[0]->family_address_1 : '-',
-                  'city' => ($data_pekerja[0]->family_city_1) ? $data_pekerja[0]->family_city_1 : '-',
-                  'zipcode' => ($data_pekerja[0]->family_postal_code_1) ? $data_pekerja[0]->family_postal_code_1 : '00000',
-                ],
-                [
-                  'type' => 'emergency',
-                  'contact_name' => 'default',
-                  'address' => ($data_pekerja[0]->family_address_2) ? $data_pekerja[0]->family_address_2 : '-',
-                  'city' => ($data_pekerja[0]->family_city_2) ? $data_pekerja[0]->family_city_2 : '-',
-                  'zipcode' => ($data_pekerja[0]->family_postal_code_2) ? $data_pekerja[0]->family_postal_code_2 : '000000',
-                ],
+          // initial request data to post insert biodata
+          $request_data = [
+            'perner' => '228583',
+            'address' => [
+              [
+                'type' => 'ktp',
+                'contact_name' => 'default',
+                'address' => ($data_pekerja[0]->family_address_1) ? $data_pekerja[0]->family_address_1 : '-',
+                'city' => ($data_pekerja[0]->family_city_1) ? $data_pekerja[0]->family_city_1 : '-',
+                'zipcode' => ($data_pekerja[0]->family_postal_code_1) ? $data_pekerja[0]->family_postal_code_1 : '00000',
               ],
-              'family' => [
-                [
+              [
+                'type' => 'emergency',
+                'contact_name' => 'default',
+                'address' => ($data_pekerja[0]->family_address_2) ? $data_pekerja[0]->family_address_2 : '-',
+                'city' => ($data_pekerja[0]->family_city_2) ? $data_pekerja[0]->family_city_2 : '-',
+                'zipcode' => ($data_pekerja[0]->family_postal_code_2) ? $data_pekerja[0]->family_postal_code_2 : '000000',
+              ],
+            ],
+            'family' => [
+              [
                 'type' => 'other',
                 'name' => ($data_pekerja[0]->family_name_1) ? $data_pekerja[0]->family_name_1 : 'undifined',
                 'gender' => ($gender_family) ? $gender_family : 'perempuan',
                 'birthdate' => $family_birth_date_1 ? $family_birth_date_1 : '1900-12-31',
-                ]
+              ]
+            ],
+            'education' => [
+              [
+                'startdate' => $start_education_date ? $start_education_date : '-',
+                'enddate' => $end_education_date ? $end_education_date : '9999-12-31',
+                'level' => ($data_pekerja[0]->education_level) ? $data_pekerja[0]->education_level : '-',
+                'major' => ($data_pekerja[0]->education_major) ? $data_pekerja[0]->education_major : '-',
+                'certificate' => $is_certificate,
+                'finale_grade' => ($data_pekerja[0]->education_mark) ? $data_pekerja[0]->education_mark : '0',
+              ]
+            ],
+            'tax' => [
+              [
+                'npwp_registration_date' => $join_date,
+                'company_tax_id' => '000000000000000',
+                'personal_tax_id' => ($data_pekerja[0]->tax_number) ? $data_pekerja[0]->tax_number : '000000000000000', // validasi max character 15
               ],
-              'education' => [
-                  [
-                  'startdate' => $start_education_date ? $start_education_date : '-',
-                  'enddate' => $end_education_date ? $end_education_date : '9999-12-31',
-                  'level' => ($data_pekerja[0]->education_level) ? $data_pekerja[0]->education_level : '-',
-                  'major' => ($data_pekerja[0]->education_major) ? $data_pekerja[0]->education_major : '-',
-                  'certificate' => $is_certificate,
-                  'finale_grade' => ($data_pekerja[0]->education_mark) ? $data_pekerja[0]->education_mark : '0',
-                ]
-              ],
-              'tax' => [
-                [
-                  'npwp_registration_date' => $join_date,
-                  'company_tax_id' => '000000000000000',
-                  'personal_tax_id' => ($data_pekerja[0]->tax_number) ? $data_pekerja[0]->tax_number : '000000000000000', // validasi max character 15
-                ],
-              ],
-              'jamsostek' => [
-                [
-                  'id_number' => ($data_pekerja[0]->jamsostek_number) ? $data_pekerja[0]->jamsostek_number : '00000000000', // validasi max character 11
-                  'married' => $marital_status,
-                ]
-              ],
-              'bank' => [
-                [
-                  'startdate' => $join_date,
-                  'enddate' => '9999-12-31',
-                  'bank_key' => $data_pekerja[0]->bank_type, //nama bank, kode ambil dari master bank ditambahkan kode bank sap
-                  'bank_type' => 'main', //validasi max character 11
-                  'bank_account' => $data_pekerja[0]->bank_number
-                ]
-              ],
+            ],
+            'jamsostek' => [
+              [
+                'id_number' => ($data_pekerja[0]->jamsostek_number) ? $data_pekerja[0]->jamsostek_number : '00000000000', // validasi max character 11
+                'married' => $marital_status,
+              ]
+            ],
+            'bank' => [
+              [
+                'startdate' => $join_date,
+                'enddate' => '9999-12-31',
+                'bank_key' => $data_pekerja[0]->bank_type, //nama bank, kode ambil dari master bank ditambahkan kode bank sap
+                'bank_type' => 'main', //validasi max character 11
+                'bank_account' => $data_pekerja[0]->bank_number
+              ]
+            ],
 
-              'email' => [
-                [
-                  'email' => 'default@mail.com',
-                  'type' => 'main'
-                ]
-              ],
-              'mobile' => [
-                [
-                  'mobile' => $data_pekerja[0]->family_phone_number_1 ? $data_pekerja[0]->family_phone_number_1 : '08123456789',
-                  'type' => 'main',
-                ]
-              ],
-            ];
+            'email' => [
+              [
+                'email' => 'default@mail.com',
+                'type' => 'main'
+              ]
+            ],
+            'mobile' => [
+              [
+                'mobile' => $data_pekerja[0]->family_phone_number_1 ? $data_pekerja[0]->family_phone_number_1 : '08123456789',
+                'type' => 'main',
+              ]
+            ],
+          ];
 
-            // initiate hit biodata update/ insert
-            $curl6 = new curl\Curl();
-            // initial get access token
-            $check_token6 = $curl6->setPostParams([
-              'username' => 'gojobs',
-              'password' => 'u3p5bL1E3'
-            ])->post('https://hrpay.ish.co.id/middleware/auth/login');
-            $access_token6 = json_decode($check_token6);
-            // echo '<pre>';
-            // var_dump($request_data);die();
-            // echo '</pre>';
+          // initiate hit biodata update/ insert
+          $curl6 = new curl\Curl();
+          // initial get access token
+          $check_token6 = $curl6->setPostParams([
+            'username' => 'gojobs',
+            'password' => 'u3p5bL1E3'
+          ])->post('https://hrpay.ish.co.id/middleware/auth/login');
+          $access_token6 = json_decode($check_token6);
+          // echo '<pre>';
+          // var_dump($request_data);die();
+          // echo '</pre>';
 
-            // initiate post biodata update
-            $curl6->setHeaders([
-              'token' => $access_token6->data->access_token
-            ]);
-            $raw_biodata = $curl6->setPostParams($request_data)->post('https://hrpay.ish.co.id/middleware/employee/bio');
-            // var_dump($raw_biodata);
-            // die();
-            $ret = json_decode($raw_biodata);
-            // 
-            if ($ret) {
-              if ($ret->status == 1) {
-                $retbio = ['status' => $ret->status, 'message' => $ret->message, 'perner' => $data_pekerja[0]->perner];
-                print_r(json_encode($retbio));
-                echo "<br>";
-              } else {
-                $retbio = ['status' => $ret->status, 'message' => $ret->message, 'perner' => $data_pekerja[0]->perner];
-                print_r(json_encode($retbio));
-                echo "<br>";
-              }
+          // initiate post biodata update
+          $curl6->setHeaders([
+            'token' => $access_token6->data->access_token
+          ]);
+          $raw_biodata = $curl6->setPostParams($request_data)->post('https://hrpay.ish.co.id/middleware/employee/bio');
+          // var_dump($raw_biodata);
+          // die();
+          $ret = json_decode($raw_biodata);
+          // 
+          if ($ret) {
+            if ($ret->status == 1) {
+              $retbio = ['status' => $ret->status, 'message' => $ret->message, 'perner' => $data_pekerja[0]->perner];
+              print_r(json_encode($retbio));
+            } else {
+              $retbio = ['status' => $ret->status, 'message' => $ret->message, 'perner' => $data_pekerja[0]->perner];
+              print_r(json_encode($retbio));
             }
-          } else {
-            $retlogin4 = ['status' => $access_token4->status, 'message' => $access_token4->message];
-            print_r(json_encode($retlogin4));
-            echo "<br>";
           }
         } else {
-          $retlogin1 = [
-            'status' => $access_token1->status, 'message' => $access_token1->message
-          ];
-          print_r($retlogin1);
+          $retlogin4 = ['status' => $access_token4->status, 'message' => $access_token4->message];
+          print_r(json_encode($retlogin4));
           echo "<br>";
         }
+      } else {
+        $retlogin1 = [
+          'status' => $access_token1->status, 'message' => $access_token1->message
+        ];
+        print_r($retlogin1);
+        echo "<br>";
       }
+    }
   }
 
   // update biodata hiring hrms trigger by id hiring

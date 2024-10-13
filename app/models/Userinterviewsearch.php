@@ -48,6 +48,7 @@ class Userinterviewsearch extends Userinterview
     $query = Userinterview::find();
     $query->joinWith("userprofile");
     $query->joinWith("reccandidate");
+    // $query->select(['userinterview.*', 'userprofile.userid', 'recruitmentcandidate.id','recruitmentcandidate.userid', 'recruitmentcandidate.recruitreqid']);
 
     // add conditions that should always apply here
     if (Yii::$app->user->isGuest) {
@@ -115,7 +116,7 @@ class Userinterviewsearch extends Userinterview
       'updatetime' => $this->updatetime,
       // 'scheduledate' => $this->scheduledate,
       'date' => $this->date,
-      'status' => $this->status,
+      'userinterview.status' => $this->status,
       'recruitmentcandidateid' => $this->recruitmentcandidateid,
       'officeid' => $this->officeid,
       'roomid' => $this->roomid,
@@ -125,6 +126,7 @@ class Userinterviewsearch extends Userinterview
     $query->andFilterWhere(['like', 'fullname', $this->fullname]);
     // add by kaha 23/9/2023 -> filtering data
     $query->andFilterWhere(['like', 'scheduledate', date("$this->scheduledate")]);
+    $query->andWhere(['recruitmentcandidate.job_id' => null]);
 
     return $dataProvider;
   }

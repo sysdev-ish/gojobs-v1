@@ -162,7 +162,7 @@ class UploadocumentController extends Controller
       if ($model->ijazah) {
         $assetUrl = Yii::getAlias('@app') . '/assets';
         $fileextp = $model->ijazah->extension;
-        $filep = $id . '-ijazah.' . $fileextp;
+        $filep = $id . '-' . $this->getRandomString() . '-ijazah.' . $fileextp;
         if ($model->ijazah->saveAs($assetUrl . '/upload/ijazah/' . $filep)) {
           $model->ijazah = $filep;
         }
@@ -170,7 +170,7 @@ class UploadocumentController extends Controller
       if ($model->transkipnilai) {
         $assetUrl = Yii::getAlias('@app') . '/assets';
         $fileextp = $model->transkipnilai->extension;
-        $filep = $id . '-transkipnilai.' . $fileextp;
+        $filep = $id . '-' . $this->getRandomString() . '-transkipnilai.' . $fileextp;
         if ($model->transkipnilai->saveAs($assetUrl . '/upload/transkipnilai/' . $filep)) {
           $model->transkipnilai = $filep;
         }
@@ -178,7 +178,7 @@ class UploadocumentController extends Controller
       if ($model->suratketerangansehat) {
         $assetUrl = Yii::getAlias('@app') . '/assets';
         $fileextp = $model->suratketerangansehat->extension;
-        $filep = $id . '-suratketerangansehat.' . $fileextp;
+        $filep = $id . '-' . $this->getRandomString() . '-suratketerangansehat.' . $fileextp;
         if ($model->suratketerangansehat->saveAs($assetUrl . '/upload/suratketerangansehat/' . $filep)) {
           $model->suratketerangansehat = $filep;
         }
@@ -186,7 +186,7 @@ class UploadocumentController extends Controller
       if ($model->kartukeluarga) {
         $assetUrl = Yii::getAlias('@app') . '/assets';
         $fileextp = $model->kartukeluarga->extension;
-        $filep = $id . '-kartukeluarga.' . $fileextp;
+        $filep = $id . '-' . $this->getRandomString() . '-kartukeluarga.' . $fileextp;
         if ($model->kartukeluarga->saveAs($assetUrl . '/upload/kartukeluarga/' . $filep)) {
           $model->kartukeluarga = $filep;
         }
@@ -194,7 +194,7 @@ class UploadocumentController extends Controller
       if ($model->ktp) {
         $assetUrl = Yii::getAlias('@app') . '/assets';
         $fileextp = $model->ktp->extension;
-        $filep = $id . '-ktp.' . $fileextp;
+        $filep = $id . '-' . $this->getRandomString() . '-ktp.' . $fileextp;
         if ($model->ktp->saveAs($assetUrl . '/upload/ktp/' . $filep)) {
           $model->ktp = $filep;
         }
@@ -202,7 +202,7 @@ class UploadocumentController extends Controller
       if ($model->jamsostek) {
         $assetUrl = Yii::getAlias('@app') . '/assets';
         $fileextp = $model->jamsostek->extension;
-        $filep = $id . '-jamsostek.' . $fileextp;
+        $filep = $id . '-' . $this->getRandomString() . '-jamsostek.' . $fileextp;
         if ($model->jamsostek->saveAs($assetUrl . '/upload/jamsostek/' . $filep)) {
           $model->jamsostek = $filep;
         }
@@ -210,7 +210,7 @@ class UploadocumentController extends Controller
       if ($model->bpjskesehatan) {
         $assetUrl = Yii::getAlias('@app') . '/assets';
         $fileextp = $model->bpjskesehatan->extension;
-        $filep = $id . '-bpjskesehatan.' . $fileextp;
+        $filep = $id . '-' . $this->getRandomString() . '-bpjskesehatan.' . $fileextp;
         if ($model->bpjskesehatan->saveAs($assetUrl . '/upload/bpjskesehatan/' . $filep)) {
           $model->bpjskesehatan = $filep;
         }
@@ -218,7 +218,7 @@ class UploadocumentController extends Controller
       if ($model->npwp) {
         $assetUrl = Yii::getAlias('@app') . '/assets';
         $fileextp = $model->npwp->extension;
-        $filep = $id . '-npwp.' . $fileextp;
+        $filep = $id . '-' . $this->getRandomString() . '-npwp.' . $fileextp;
         if ($model->npwp->saveAs($assetUrl . '/upload/npwp/' . $filep)) {
           $model->npwp = $filep;
         }
@@ -226,7 +226,7 @@ class UploadocumentController extends Controller
       if ($model->suratlamarankerja) {
         $assetUrl = Yii::getAlias('@app') . '/assets';
         $fileextp = $model->suratlamarankerja->extension;
-        $filep = $id . '-suratlamarankerja.' . $fileextp;
+        $filep = $id . '-' . $this->getRandomString() . '-suratlamarankerja.' . $fileextp;
         if ($model->suratlamarankerja->saveAs($assetUrl . '/upload/suratlamarankerja/' . $filep)) {
           $model->suratlamarankerja = $filep;
         }
@@ -270,7 +270,7 @@ class UploadocumentController extends Controller
         if ($model->ijazah) {
           $assetUrl = Yii::getAlias('@app') . '/assets';
           $fileextp = $model->ijazah->extension;
-          $filep = $id . '-ijazah.' . $fileextp;
+          $filep = $id . '-' . $this->getRandomString() . '-ijazah.' . $fileextp;
           if ($model->ijazah->saveAs($assetUrl . '/upload/ijazah/' . $filep)) {
             $model->ijazah = $filep;
           }
@@ -278,7 +278,7 @@ class UploadocumentController extends Controller
         if ($model->transkipnilai) {
           $assetUrl = Yii::getAlias('@app') . '/assets';
           $fileextp = $model->transkipnilai->extension;
-          $filep = $id . '-transkipnilai.' . $fileextp;
+          $filep = $id . '-' . $this->getRandomString() . '-transkipnilai.' . $fileextp;
           if ($model->transkipnilai->saveAs($assetUrl . '/upload/transkipnilai/' . $filep)) {
             $model->transkipnilai = $filep;
           }
@@ -286,7 +286,7 @@ class UploadocumentController extends Controller
         if ($model->suratketerangansehat) {
           $assetUrl = Yii::getAlias('@app') . '/assets';
           $fileextp = $model->suratketerangansehat->extension;
-          $filep = $id . '-suratketerangansehat.' . $fileextp;
+          $filep = $id . '-' . $this->getRandomString() . '-suratketerangansehat.' . $fileextp;
           if ($model->suratketerangansehat->saveAs($assetUrl . '/upload/suratketerangansehat/' . $filep)) {
             $model->suratketerangansehat = $filep;
           }
@@ -294,7 +294,7 @@ class UploadocumentController extends Controller
         if ($model->kartukeluarga) {
           $assetUrl = Yii::getAlias('@app') . '/assets';
           $fileextp = $model->kartukeluarga->extension;
-          $filep = $id . '-kartukeluarga.' . $fileextp;
+          $filep = $id . '-' . $this->getRandomString() . '-kartukeluarga.' . $fileextp;
           if ($model->kartukeluarga->saveAs($assetUrl . '/upload/kartukeluarga/' . $filep)) {
             $model->kartukeluarga = $filep;
           }
@@ -302,7 +302,7 @@ class UploadocumentController extends Controller
         if ($model->ktp) {
           $assetUrl = Yii::getAlias('@app') . '/assets';
           $fileextp = $model->ktp->extension;
-          $filep = $id . '-ktp.' . $fileextp;
+          $filep = $id . '-' . $this->getRandomString() . '-ktp.' . $fileextp;
           if ($model->ktp->saveAs($assetUrl . '/upload/ktp/' . $filep)) {
             $model->ktp = $filep;
           }
@@ -310,7 +310,7 @@ class UploadocumentController extends Controller
         if ($model->jamsostek) {
           $assetUrl = Yii::getAlias('@app') . '/assets';
           $fileextp = $model->jamsostek->extension;
-          $filep = $id . '-jamsostek.' . $fileextp;
+          $filep = $id . '-' . $this->getRandomString() . '-jamsostek.' . $fileextp;
           if ($model->jamsostek->saveAs($assetUrl . '/upload/jamsostek/' . $filep)) {
             $model->jamsostek = $filep;
           }
@@ -318,7 +318,7 @@ class UploadocumentController extends Controller
         if ($model->bpjskesehatan) {
           $assetUrl = Yii::getAlias('@app') . '/assets';
           $fileextp = $model->bpjskesehatan->extension;
-          $filep = $id . '-bpjskesehatan.' . $fileextp;
+          $filep = $id . '-' . $this->getRandomString() . '-bpjskesehatan.' . $fileextp;
           if ($model->bpjskesehatan->saveAs($assetUrl . '/upload/bpjskesehatan/' . $filep)) {
             $model->bpjskesehatan = $filep;
           }
@@ -326,7 +326,7 @@ class UploadocumentController extends Controller
         if ($model->npwp) {
           $assetUrl = Yii::getAlias('@app') . '/assets';
           $fileextp = $model->npwp->extension;
-          $filep = $id . '-npwp.' . $fileextp;
+          $filep = $id . '-' . $this->getRandomString() . '-npwp.' . $fileextp;
           if ($model->npwp->saveAs($assetUrl . '/upload/npwp/' . $filep)) {
             $model->npwp = $filep;
           }
@@ -334,7 +334,7 @@ class UploadocumentController extends Controller
         if ($model->suratlamarankerja) {
           $assetUrl = Yii::getAlias('@app') . '/assets';
           $fileextp = $model->suratlamarankerja->extension;
-          $filep = $id . '-suratlamarankerja.' . $fileextp;
+          $filep = $id . '-' . $this->getRandomString() . '-suratlamarankerja.' . $fileextp;
           if ($model->suratlamarankerja->saveAs($assetUrl . '/upload/suratlamarankerja/' . $filep)) {
             $model->suratlamarankerja = $filep;
           }
@@ -398,7 +398,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/ijazah/' . $old_filei);
         $fileextp = $model->ijazah->extension;
-        $filep = $userid . '-ijazah.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-ijazah.' . $fileextp;
         if ($model->ijazah->saveAs($assetUrl . '/upload/ijazah/' . $filep)) {
           $model->ijazah = $filep;
         }
@@ -410,7 +410,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/transkipnilai/' . $old_filetn);
         $fileextp = $model->transkipnilai->extension;
-        $filep = $userid . '-transkipnilai.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-transkipnilai.' . $fileextp;
         if ($model->transkipnilai->saveAs($assetUrl . '/upload/transkipnilai/' . $filep)) {
           $model->transkipnilai = $filep;
         }
@@ -422,7 +422,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/suratketerangansehat/' . $old_filesks);
         $fileextp = $model->suratketerangansehat->extension;
-        $filep = $userid . '-suratketerangansehat.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-suratketerangansehat.' . $fileextp;
         if ($model->suratketerangansehat->saveAs($assetUrl . '/upload/suratketerangansehat/' . $filep)) {
           $model->suratketerangansehat = $filep;
         }
@@ -434,7 +434,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/kartukeluarga/' . $old_filekk);
         $fileextp = $model->kartukeluarga->extension;
-        $filep = $userid . '-kartukeluarga.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-kartukeluarga.' . $fileextp;
         if ($model->kartukeluarga->saveAs($assetUrl . '/upload/kartukeluarga/' . $filep)) {
           $model->kartukeluarga = $filep;
         }
@@ -446,7 +446,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/ktp/' . $old_filektp);
         $fileextp = $model->ktp->extension;
-        $filep = $userid . '-ktp.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-ktp.' . $fileextp;
         if ($model->ktp->saveAs($assetUrl . '/upload/ktp/' . $filep)) {
           $model->ktp = $filep;
         }
@@ -458,7 +458,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/jamsostek/' . $old_filej);
         $fileextp = $model->jamsostek->extension;
-        $filep = $userid . '-jamsostek.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-jamsostek.' . $fileextp;
         if ($model->jamsostek->saveAs($assetUrl . '/upload/jamsostek/' . $filep)) {
           $model->jamsostek = $filep;
         }
@@ -470,7 +470,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/bpjskesehatan/' . $old_filebk);
         $fileextp = $model->bpjskesehatan->extension;
-        $filep = $userid . '-bpjskesehatan.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-bpjskesehatan.' . $fileextp;
         if ($model->bpjskesehatan->saveAs($assetUrl . '/upload/bpjskesehatan/' . $filep)) {
           $model->bpjskesehatan = $filep;
         }
@@ -482,7 +482,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/npwp/' . $old_filen);
         $fileextp = $model->npwp->extension;
-        $filep = $userid . '-npwp.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-npwp.' . $fileextp;
         if ($model->npwp->saveAs($assetUrl . '/upload/npwp/' . $filep)) {
           $model->npwp = $filep;
         }
@@ -494,7 +494,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/suratlamarankerja/' . $old_fileslk);
         $fileextp = $model->suratlamarankerja->extension;
-        $filep = $userid . '-suratlamarankerja.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-suratlamarankerja.' . $fileextp;
         if ($model->suratlamarankerja->saveAs($assetUrl . '/upload/suratlamarankerja/' . $filep)) {
           $model->suratlamarankerja = $filep;
         }
@@ -549,7 +549,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/ijazah/' . $old_filei);
         $fileextp = $model->ijazah->extension;
-        $filep = $userid . '-ijazah.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-ijazah.' . $fileextp;
         if ($model->ijazah->saveAs($assetUrl . '/upload/ijazah/' . $filep)) {
           $model->ijazah = $filep;
         }
@@ -561,7 +561,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/transkipnilai/' . $old_filetn);
         $fileextp = $model->transkipnilai->extension;
-        $filep = $userid . '-transkipnilai.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-transkipnilai.' . $fileextp;
         if ($model->transkipnilai->saveAs($assetUrl . '/upload/transkipnilai/' . $filep)) {
           $model->transkipnilai = $filep;
         }
@@ -573,7 +573,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/suratketerangansehat/' . $old_filesks);
         $fileextp = $model->suratketerangansehat->extension;
-        $filep = $userid . '-suratketerangansehat.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-suratketerangansehat.' . $fileextp;
         if ($model->suratketerangansehat->saveAs($assetUrl . '/upload/suratketerangansehat/' . $filep)) {
           $model->suratketerangansehat = $filep;
         }
@@ -585,7 +585,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/kartukeluarga/' . $old_filekk);
         $fileextp = $model->kartukeluarga->extension;
-        $filep = $userid . '-kartukeluarga.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-kartukeluarga.' . $fileextp;
         if ($model->kartukeluarga->saveAs($assetUrl . '/upload/kartukeluarga/' . $filep)) {
           $model->kartukeluarga = $filep;
         }
@@ -597,7 +597,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/ktp/' . $old_filektp);
         $fileextp = $model->ktp->extension;
-        $filep = $userid . '-ktp.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-ktp.' . $fileextp;
         if ($model->ktp->saveAs($assetUrl . '/upload/ktp/' . $filep)) {
           $model->ktp = $filep;
         }
@@ -609,7 +609,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/jamsostek/' . $old_filej);
         $fileextp = $model->jamsostek->extension;
-        $filep = $userid . '-jamsostek.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-jamsostek.' . $fileextp;
         if ($model->jamsostek->saveAs($assetUrl . '/upload/jamsostek/' . $filep)) {
           $model->jamsostek = $filep;
         }
@@ -621,7 +621,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/bpjskesehatan/' . $old_filebk);
         $fileextp = $model->bpjskesehatan->extension;
-        $filep = $userid . '-bpjskesehatan.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-bpjskesehatan.' . $fileextp;
         if ($model->bpjskesehatan->saveAs($assetUrl . '/upload/bpjskesehatan/' . $filep)) {
           $model->bpjskesehatan = $filep;
         }
@@ -633,7 +633,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/npwp/' . $old_filen);
         $fileextp = $model->npwp->extension;
-        $filep = $userid . '-npwp.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-npwp.' . $fileextp;
         if ($model->npwp->saveAs($assetUrl . '/upload/npwp/' . $filep)) {
           $model->npwp = $filep;
         }
@@ -645,7 +645,7 @@ class UploadocumentController extends Controller
         $assetUrl = Yii::getAlias('@app') . '/assets';
         @unlink($assetUrl . '/upload/suratlamarankerja/' . $old_fileslk);
         $fileextp = $model->suratlamarankerja->extension;
-        $filep = $userid . '-suratlamarankerja.' . $fileextp;
+        $filep = $userid . '-' . $this->getRandomString() . '-suratlamarankerja.' . $fileextp;
         if ($model->suratlamarankerja->saveAs($assetUrl . '/upload/suratlamarankerja/' . $filep)) {
           $model->suratlamarankerja = $filep;
         }
@@ -668,6 +668,46 @@ class UploadocumentController extends Controller
       ]);
     }
   }
+
+  public function actionDownload($filename)
+  {
+    // Check if the user is authenticated
+    if (Yii::$app->user->isGuest) {
+      throw new \yii\web\ForbiddenHttpException('You are not allowed to access this file.');
+    }
+
+    // Check if the user has permission to access the file (you can implement RBAC here)
+    // Example:
+    // if (!Yii::$app->user->can('downloadFile')) {
+    //     throw new \yii\web\ForbiddenHttpException('You are not allowed to access this file.');
+    // }
+
+    // Construct the file path
+    $filePath = Yii::getAlias('@app/uploads/') . $filename;
+
+    // Check if the file exists
+    if (!file_exists($filePath)) {
+      throw new NotFoundHttpException('The requested file does not exist.');
+    }
+
+    // Serve the file
+    return Yii::$app->response->sendFile($filePath);
+  }
+
+  // Helper method to generate random string
+  public function getRandomString()
+  {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $randomString = '';
+
+    for ($i = 0; $i < 6; $i++) {
+      $index = rand(0, strlen($characters) - 1);
+      $randomString .= $characters[$index];
+    }
+
+    return $randomString;
+  }
+
 
   /**
    * Deletes an existing Uploadocument model.

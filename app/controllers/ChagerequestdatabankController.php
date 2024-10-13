@@ -92,19 +92,21 @@ class ChagerequestdatabankController extends Controller
       $resigndate = "";
       $resignreason = "";
 
-      if ($datapekerjabyperner[0]->MASSN == "Z8") {
-        $statusresign = 2;
-        $resigndate = "";
-        $resignreason = $datapekerjabyperner[0]->MSGTX;
-        if ($datapekerjabyperner[0]->DAT35) {
-          $year = substr($datapekerjabyperner[0]->DAT35, 0, 4);
-          $month = substr($datapekerjabyperner[0]->DAT35, 4, 2);
-          $date = substr($datapekerjabyperner[0]->DAT35, 6, 2);
-          $resigndate = $year . "-" . $month . "-" . $date;
+      if ($datapekerjabyperner) {
+        if ($datapekerjabyperner[0]->MASSN == "Z8") {
+          $statusresign = 2;
+          $resigndate = "";
+          $resignreason = $datapekerjabyperner[0]->MSGTX;
+          if ($datapekerjabyperner[0]->DAT35) {
+            $year = substr($datapekerjabyperner[0]->DAT35, 0, 4);
+            $month = substr($datapekerjabyperner[0]->DAT35, 4, 2);
+            $date = substr($datapekerjabyperner[0]->DAT35, 6, 2);
+            $resigndate = $year . "-" . $month . "-" . $date;
+          }
         }
+        $resignreason = $datapekerjabyperner[0]->MSGTX;
       }
 
-      $resignreason = $datapekerjabyperner[0]->MSGTX;
       $model->statusresign = $statusresign;
       $model->resignreason = $resignreason;
       $model->resigndate = $resigndate;
@@ -154,10 +156,14 @@ class ChagerequestdatabankController extends Controller
 
     if ($id) {
       $model = $this->findModel($id);
-      $model->approvedby = 53;
-      $model->approvedby2 = 131281;
-      $model->approvedbyname = User::findOne(53)->name;
-      $model->approvedby2name = User::findOne(18608)->name;
+      $model->approvedby = 68267;
+      // $model->approvedby = 53;
+      $model->approvedby2 = 135811;
+      // $model->approvedby2 = 131281;
+      // $model->approvedbyname = User::findOne(53)->name;
+      $model->approvedbyname = User::findOne(68267)->name;
+      // $model->approvedby2name = User::findOne(131281)->name;
+      $model->approvedby2name = User::findOne(135811)->name;
       //  $name = ArrayHelper::map(Hiring::find()
       //  ->joinWith(['userprofile'])
       //  ->joinWith(['changereqdata'])
@@ -457,33 +463,43 @@ class ChagerequestdatabankController extends Controller
     $model->scenario = 'approve';
     if ($model->load(Yii::$app->request->post())) {
       if ($model->status == 4) {
-        $modelhiring = Hiring::find()->where(['userid' => $userid, 'statushiring' => 4])->one();
-        if ($modelhiring) {
-          $updatesap = $this->UpdateSapPersonaldata($id, $userid, $perner);
-          // var_dump($updatesap);die;
-          if ($updatesap) {
-            $model->remarks = $updatesap;
-            $model->status = 7;
-            $model->save();
-          } else {
-            $model->remarks = 'successful';
-            $model->approvedtime2 = date('Y-m-d H-i-s');
-            $model->save();
-            if ($userprofile) {
-              if ($crdtransbankacc) {
-                $userabout->bankid = ($crdtransbankacc->newvalue) ? $crdtransbankacc->newvalue : '';
-                $userabout->bankaccountnumber = ($crdtransbankacc->newvalue2) ? $crdtransbankacc->newvalue2 : '';
-                $userabout->passbook = ($crdtransbankacc->newdoc) ? $crdtransbankacc->newdoc : '';
-                $document->bankaccount = ($crdtransbankacc->newdoc) ? $crdtransbankacc->newdoc : '';
-              }
-              $userabout->save(false);
-              $document->save(false);
-            }
-          }
+        // $modelhiring = Hiring::find()->where(['userid' => $userid, 'statushiring' => 4])->one();
+        // if ($modelhiring) {
+        $updatesap = $this->UpdateSapPersonaldata($id, $userid, $perner);
+        // var_dump($updatesap);die;
+        if ($updatesap) {
+          $model->remarks = $updatesap;
+          $model->status = 7;
+          $model->save();
         } else {
-          Yii::$app->session->setFlash('error', "Silahkan Reject saja Perner sudah Tidak Aktif.");
+          $model->remarks = 'successful';
+          $model->approvedtime2 = date('Y-m-d H-i-s');
+          $model->save();
+          if ($userprofile) {
+
+            if ($crdtransbankacc) {
+              $userabout->bankid = ($crdtransbankacc->newvalue) ? $crdtransbankacc->newvalue : '';
+              $userabout->bankaccountnumber = ($crdtransbankacc->newvalue2) ? $crdtransbankacc->newvalue2 : '';
+              $userabout->passbook = ($crdtransbankacc->newdoc) ? $crdtransbankacc->newdoc : '';
+              if (!empty($document)) {
+                $document->bankaccount = ($crdtransbankacc->newdoc) ? $crdtransbankacc->newdoc : '';
+                $document->save(false);
+              } else {
+                $document = new Uploadocument();
+                $document->userid = $userid;
+                $document->bankaccount = ($crdtransbankacc->newdoc) ? $crdtransbankacc->newdoc : '';
+                $document->save(false);
+              }
+            }
+            $userabout->save(false);
+          }
+          Yii::$app->session->setFlash('success', "Success Approve.");
         }
+        // } else {
+          // Yii::$app->session->setFlash('error', "Silahkan Reject saja Perner sudah Tidak Aktif.");
+        // }
       } else {
+        Yii::$app->session->setFlash('success', "Approved.");
         $model->save();
       }
 
@@ -737,7 +753,7 @@ class ChagerequestdatabankController extends Controller
       // $updatecr->save(false);
 
       //addbykaha 15/3/23
-      $checkperner = Chagerequestdata::find()->where('perner = ' . $perner . ' and status > 1 and status <> 4 and status <> 5 and status <> 6 and kategorydata = 2')->one();
+      $checkperner = Chagerequestdata::find()->where('perner = ' . $perner . ' and status > 1 and status <> 4 and status <> 5 and status <> 6 and status <> 7 and kategorydata = 2')->one();
 
 
       if ($checkperner) {

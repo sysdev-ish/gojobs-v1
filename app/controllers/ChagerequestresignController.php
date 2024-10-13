@@ -208,169 +208,336 @@ class ChagerequestresignController extends Controller
       'perner' => $model->perner,
       'token' => 'ish**2019',
     ])
-      ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+      ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
     $dataprofile  = json_decode($getdatapekerja);
+    // var_dump($dataprofile);die();
     if ($dataprofile) {
-      $begda = date_create($model->resigndate);
-      $cekpaycontroll =  $curl->setPostParams([
-        'token' => 'ish@2019!',
-        'ABKRS' => $dataprofile[0]->ABKRS,
-      ])
-        ->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
-      $payrollcontrollresult  = json_decode($cekpaycontroll);
-      if ($payrollcontrollresult->status == 1) {
-        // $cek = [
-        //   'token' => 'ish@2019!',
-        //   'PERNR' => $model->perner,
-        //   'BEGDA' => date_format($begda,'Ymd'),
-        //   'MASSG' => $model->resignreason->sapid,
-        //   'WERKS' => $dataprofile[0]->WERKS,
-        //   'PERSK' => $dataprofile[0]->PERSK,
-        //   'BTRTL' => $dataprofile[0]->BTRTL,
-        //   'ABKRS' => $dataprofile[0]->ABKRS,
-        //   'ANSVH' => $dataprofile[0]->ANSVH,
-        //   'PLANS' => $dataprofile[0]->PLANS,
-        // ];
-        // var_dump($cek);die;
-        $putrfcresign =  $curl->setPostParams([
+      if ($dataprofile[0]->MASSN !== 'Z8') {
+        $begda = date_create($model->resigndate);
+        $cekpaycontroll =  $curl->setPostParams([
           'token' => 'ish@2019!',
-          'PERNR' => $model->perner,
-          'BEGDA' => date_format($begda, 'Ymd'),
-          'MASSG' => $model->resignreason->sapid,
-          'WERKS' => $dataprofile[0]->WERKS,
-          'PERSK' => $dataprofile[0]->PERSK,
-          'BTRTL' => $dataprofile[0]->BTRTL,
           'ABKRS' => $dataprofile[0]->ABKRS,
-          'ANSVH' => $dataprofile[0]->ANSVH,
-          'PLANS' => $dataprofile[0]->PLANS,
         ])
-        ->post('http://192.168.88.5/service/index.php/Rfcresign');
-        // var_dump($putrfcresign);die();
-          
-        $rfcresign  = json_decode($putrfcresign);
-        $message = 'successful';
-        if ($rfcresign->CODE == 'S') {
-          $url = "http://192.168.88.60:8080/ish-rest/ZINFHRF_00025";
-          $infotype = ['0041', '0035'];
-          $request_data = [
-            [
-              'pernr' => "$model->perner",
-              'inftypList' => $infotype,
-              'p00041List' => [
-                [
-                  'endda' => '',
-                  'begda' => '',
-                  'operation' => 'INS',
-                  'pernr' => "$model->perner",
-                  'infty' => '0041',
-                  'dar01' => '01',
-                  'dat01' => '',
-                  'dar02' => '',
-                  'dat02' => ''
-                ]
-              ],
-
-              'p00035List' => [
-                [
-                  'endda' => '31.12.9999',
-                  'begda' => date_format($begda, 'd.m.Y'),
-                  'operation' => 'INS',
-                  'pernr' => "$model->perner",
-                  'infty' => '0035',
-                  'subty' => 'Z8',
-                  'itxex' => 'X',
-                  'dat35' => date_format($begda, 'd.m.Y'),
-                ]
-              ],
-            ]
-          ];
-
-          //var_dump($request_data);
-
-          $json = json_encode($request_data);
-
-
-
-          $headers  = [
-            'Content-Type: application/json',
-            'cache-control: no-cache"=',
-          ];
-
-
-          $ch = curl_init();
-
-          curl_setopt($ch, CURLOPT_URL, $url);
-          curl_setopt($ch, CURLOPT_POST, 1);
-          curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-          curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-          curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-          // var_dump('ok');die;
-
-          $response = curl_exec($ch);
-
-          curl_close($ch);
-          $ret = json_decode($response);
-          $log = array();
-          foreach ($ret as $key => $value) {
-            if ($value->success != 1) {
-              $log  = $value->message;
+          ->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
+        $payrollcontrollresult  = json_decode($cekpaycontroll);
+        if ($payrollcontrollresult->status == 1) {
+          // $cek = [
+          //   'token' => 'ish@2019!',
+          //   'PERNR' => $model->perner,
+          //   'BEGDA' => date_format($begda,'Ymd'),
+          //   'MASSG' => $model->resignreason->sapid,
+          //   'WERKS' => $dataprofile[0]->WERKS,
+          //   'PERSK' => $dataprofile[0]->PERSK,
+          //   'BTRTL' => $dataprofile[0]->BTRTL,
+          //   'ABKRS' => $dataprofile[0]->ABKRS,
+          //   'ANSVH' => $dataprofile[0]->ANSVH,
+          //   'PLANS' => $dataprofile[0]->PLANS,
+          // ];
+          // var_dump($cek);die();
+          $putrfcresign =  $curl->setPostParams([
+            'token' => 'ish@2019!',
+            'PERNR' => $model->perner,
+            'BEGDA' => date_format($begda, 'Ymd'),
+            'MASSG' => $model->resignreason->sapid,
+            'WERKS' => $dataprofile[0]->WERKS,
+            'PERSK' => $dataprofile[0]->PERSK,
+            'BTRTL' => $dataprofile[0]->BTRTL,
+            'ABKRS' => $dataprofile[0]->ABKRS,
+            'ANSVH' => $dataprofile[0]->ANSVH,
+            'PLANS' => $dataprofile[0]->PLANS,
+          ])
+            ->post('http://192.168.88.5/service/index.php/Rfcresign');
+          // var_dump($putrfcresign);die();
+  
+          $rfcresign  = json_decode($putrfcresign);
+          $message = 'successful';
+          if ($rfcresign->CODE == 'S') {
+            $url = "http://192.168.88.60:8080/ish-rest/ZINFHRF_00025";
+            $infotype = ['0041', '0035'];
+            $request_data = [
+              [
+                'pernr' => "$model->perner",
+                'inftypList' => $infotype,
+                'p00041List' => [
+                  [
+                    'endda' => '',
+                    'begda' => '',
+                    'operation' => 'INS',
+                    'pernr' => "$model->perner",
+                    'infty' => '0041',
+                    'dar01' => '01',
+                    'dat01' => '',
+                    'dar02' => '',
+                    'dat02' => ''
+                  ]
+                ],
+  
+                'p00035List' => [
+                  [
+                    'endda' => '31.12.9999',
+                    'begda' => date_format($begda, 'd.m.Y'),
+                    'operation' => 'INS',
+                    'pernr' => "$model->perner",
+                    'infty' => '0035',
+                    'subty' => 'Z8',
+                    'itxex' => 'X',
+                    'dat35' => date_format($begda, 'd.m.Y'),
+                  ]
+                ],
+              ]
+            ];
+  
+            $json = json_encode($request_data);
+            $headers  = [
+              'Content-Type: application/json',
+              'cache-control: no-cache"=',
+            ];
+            $ch = curl_init();
+  
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+  
+            $response = curl_exec($ch);
+  
+            curl_close($ch);
+            $ret = json_decode($response);
+            $log = array();
+            foreach ($ret as $key => $value) {
+              if ($value->success != 1) {
+                $log  = $value->message;
+              }
             }
-          }
-          if ($log) {
-            $message = $log;
+            if ($log) {
+              $message = $log;
+              $model->remarks = $message;
+              $model->status = 7;
+              $model->save(false);
+              $retpos = ['status' => "OK", 'message' => $message];
+              print_r(json_encode($retpos));
+            } else {
+              $message = "successful";
+              $model->remarks = $message;
+              $model->status = 4;
+              $model->save(false);
+              $retpos = ['status' => "OK", 'message' => $message];
+              $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
+              if ($hiring) {
+                $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $model->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
+                $hiring->statushiring = 7;
+                $recruitmentcandidate->status = 26;
+                $hiring->save(false);
+                $recruitmentcandidate->save(false);
+              }
+              print_r(json_encode($retpos));
+            }
+          } else {
+            $message = $rfcresign->MESSAGE;
             $model->remarks = $message;
             $model->status = 7;
             $model->save(false);
             $retpos = ['status' => "OK", 'message' => $message];
             print_r(json_encode($retpos));
-          } else {
-            $message = "successful";
-            $model->remarks = $message;
-            $model->status = 4;
-            $model->save(false);
-            $retpos = ['status' => "OK", 'message' => $message];
-            $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
-            if ($hiring) {
-              $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $model->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
-              $hiring->statushiring = 7;
-              $recruitmentcandidate->status = 26;
-              $hiring->save(false);
-              $recruitmentcandidate->save(false);
-            }
-            print_r(json_encode($retpos));
           }
         } else {
-          $message = $rfcresign->MESSAGE;
-          $model->remarks = $message;
+          // $message = $rfcresign->MESSAGE;
+          $model->remarks = 'You have already locked payroll controll';
           $model->status = 7;
           $model->save(false);
-          $retpos = ['status' => "OK", 'message' => $message];
+          $retpos = ['status' => "NOK", 'message' => 'lock'];
           print_r(json_encode($retpos));
         }
       } else {
         // $message = $rfcresign->MESSAGE;
-        $model->remarks = 'You have already locked payroll controll';
-        $model->status = 7;
+        $model->remarks = 'Data pekerja sudah tidak ada di SAP atau sudah di resign kan';
+        $model->status = 4;
         $model->save(false);
-        $retpos = ['status' => "NOK", 'message' => 'lock'];
+        $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
+        if ($hiring) {
+          $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $model->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
+          $hiring->statushiring = 7;
+          $recruitmentcandidate->status = 26;
+          $hiring->save(false);
+          $recruitmentcandidate->save(false);
+        }
+        $retpos = ['status' => "NOK", 'message' => 'Data pekerja sudah tidak ada di SAP atau sudah di resign kan'];
         print_r(json_encode($retpos));
       }
     } else {
-      // $message = $rfcresign->MESSAGE;
-      $model->remarks = 'Data pekerja sudah tidak ada di SAP atau sudah di resign kan';
-      $model->status = 4;
+      $model->remarks = 'Data pekerja sudah tidak ditemukan';
+      $model->status = 10;
       $model->save(false);
       $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
       if ($hiring) {
         $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $model->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
-        $hiring->statushiring = 7;
-        $recruitmentcandidate->status = 26;
+        $hiring->statushiring = 6;
+        $recruitmentcandidate->status = 24;
         $hiring->save(false);
         $recruitmentcandidate->save(false);
       }
-      $retpos = ['status' => "NOK", 'message' => 'Data pekerja sudah tidak ada di SAP atau sudah di resign kan'];
+      $retpos = ['status' => "NOK", 'message' => 'Data pekerja sudah tidak ditemukan'];
       print_r(json_encode($retpos));
+    }
+  }
+
+  public function actionCronresign($id)
+  {
+    $model = $this->findModel($id);
+    if ($model->status == 7) {
+      $curl = new curl\Curl();
+      $getdatapekerja = $curl->setPostParams([
+        'perner' => $model->perner,
+        'token' => 'ish**2019',
+      ])
+        ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+      $dataprofile  = json_decode($getdatapekerja);
+      if ($dataprofile) {
+        $begda = date_create($model->resigndate);
+        $cekpaycontroll =  $curl->setPostParams([
+          'token' => 'ish@2019!',
+          'ABKRS' => $dataprofile[0]->ABKRS,
+        ])
+          ->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
+        $payrollcontrollresult  = json_decode($cekpaycontroll);
+        if ($payrollcontrollresult->status == 1) {
+
+          $putrfcresign =  $curl->setPostParams([
+            'token' => 'ish@2019!',
+            'PERNR' => $model->perner,
+            'BEGDA' => date_format($begda, 'Ymd'),
+            'MASSG' => $model->resignreason->sapid,
+            'WERKS' => $dataprofile[0]->WERKS,
+            'PERSK' => $dataprofile[0]->PERSK,
+            'BTRTL' => $dataprofile[0]->BTRTL,
+            'ABKRS' => $dataprofile[0]->ABKRS,
+            'ANSVH' => $dataprofile[0]->ANSVH,
+            'PLANS' => $dataprofile[0]->PLANS,
+          ])
+            ->post('http://192.168.88.5/service/index.php/Rfcresign');
+  
+          $rfcresign  = json_decode($putrfcresign);
+          $message = 'successful';
+          if ($rfcresign->CODE == 'S') {
+            $url = "http://192.168.88.60:8080/ish-rest/ZINFHRF_00025";
+            $infotype = ['0041', '0035'];
+            $request_data = [
+              [
+                'pernr' => "$model->perner",
+                'inftypList' => $infotype,
+                'p00041List' => [
+                  [
+                    'endda' => '',
+                    'begda' => '',
+                    'operation' => 'INS',
+                    'pernr' => "$model->perner",
+                    'infty' => '0041',
+                    'dar01' => '01',
+                    'dat01' => '',
+                    'dar02' => '',
+                    'dat02' => ''
+                  ]
+                ],
+  
+                'p00035List' => [
+                  [
+                    'endda' => '31.12.9999',
+                    'begda' => date_format($begda, 'd.m.Y'),
+                    'operation' => 'INS',
+                    'pernr' => "$model->perner",
+                    'infty' => '0035',
+                    'subty' => 'Z8',
+                    'itxex' => 'X',
+                    'dat35' => date_format($begda, 'd.m.Y'),
+                  ]
+                ],
+              ]
+            ];
+  
+            $json = json_encode($request_data);
+
+            $headers  = [
+              'Content-Type: application/json',
+              'cache-control: no-cache"=',
+            ];
+
+            $ch = curl_init();
+  
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+            $response = curl_exec($ch);
+  
+            curl_close($ch);
+            $ret = json_decode($response);
+            $log = array();
+            foreach ($ret as $key => $value) {
+              if ($value->success != 1) {
+                $log  = $value->message;
+              }
+            }
+            if ($log) {
+              $message = $log;
+              $model->remarks = $message;
+              $model->status = 7;
+              $model->save(false);
+              $retpos = ['status' => "OK", 'message' => $message];
+              print_r(json_encode($retpos));
+            } else {
+              $message = "successful";
+              $model->remarks = $message;
+              $model->status = 4;
+              $model->save(false);
+              $retpos = ['status' => "OK", 'message' => $message];
+              $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
+              if ($hiring) {
+                $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $model->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
+                $hiring->statushiring = 7;
+                $recruitmentcandidate->status = 26;
+                $hiring->save(false);
+                $recruitmentcandidate->save(false);
+              }
+              print_r(json_encode($retpos));
+            }
+          } else {
+            $message = $rfcresign->MESSAGE;
+            $model->remarks = $message;
+            $model->status = 7;
+            $model->save(false);
+            $retpos = ['status' => "OK", 'message' => $message];
+            print_r(json_encode($retpos));
+          }
+        } else {
+          // $message = $rfcresign->MESSAGE;
+          $model->remarks = 'You have already locked payroll controll';
+          $model->status = 7;
+          $model->save(false);
+          $retpos = ['status' => "NOK", 'message' => 'lock'];
+          print_r(json_encode($retpos));
+        }
+      } else {
+        // $message = $rfcresign->MESSAGE;
+        $model->remarks = 'Data pekerja sudah tidak ada di SAP atau sudah di resign kan';
+        $model->status = 4;
+        $model->save(false);
+        $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
+        if ($hiring) {
+          $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $model->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
+          $hiring->statushiring = 7;
+          $recruitmentcandidate->status = 26;
+          $hiring->save(false);
+          $recruitmentcandidate->save(false);
+        }
+        $retpos = ['status' => "NOK", 'message' => 'Data pekerja sudah tidak ada di SAP atau sudah di resign kan'];
+        print_r(json_encode($retpos));
+      }
+    } else {
+      $retpos = ['status' => "NOK", 'message' => 'Successfull resign'];
+      print_r(json_encode($retpos));      
     }
   }
 
@@ -481,10 +648,17 @@ class ChagerequestresignController extends Controller
         $status = $datapekerjabyperner[0]->MASSN;
         $flagreason = $datapekerjabyperner[0]->MASSG;
         $updatecr->fullname = $name;
-        $hiringdate = "";
+        if ($datapekerjabyperner[0]->DAT35) {
+          $year = substr($datapekerjabyperner[0]->DAT35, 0, 4);
+          $month = substr($datapekerjabyperner[0]->DAT35, 4, 2);
+          $date = substr($datapekerjabyperner[0]->DAT35, 6, 2);
+          $hiringdate = $year . "-" . $month . "-" . $date;
+        } else {
+          $hiringdate = "";
+        }
       }
 
-      $checkperner = Chagerequestresign::find()->where('perner = ' . $perner . ' and status > 1 and status <> 5 and status <> 6 and status <> 4')->one();
+      $checkperner = Chagerequestresign::find()->where('perner = ' . $perner . ' and status > 1 and status <> 5 and status <> 6 and status <> 4 and status <> 10')->one();
       //add by kaha 21/02/23      
       if ($status == "Z8") {
         $resignreason = $datapekerjabyperner[0]->MSGTX;
@@ -493,8 +667,11 @@ class ChagerequestresignController extends Controller
           $month = substr($datapekerjabyperner[0]->DAT35, 4, 2);
           $date = substr($datapekerjabyperner[0]->DAT35, 6, 2);
           $resigndate = $year . "-" . $month . "-" . $date;
+          $updatecr->resigndate = $resigndate;
+        } else {
+          $resigndate = "";
         }
-        $updatecr->resigndate = $resigndate;
+        // var_dump($resigndate);die();
         $updatecr->reason = $flagreason;
       } else {
         $resigndate = "";
@@ -670,7 +847,17 @@ class ChagerequestresignController extends Controller
    */
   public function actionDelete($id)
   {
-    $this->findModel($id)->delete();
+    $model = $this->findModel($id);
+    try {
+      if ($model->delete()) {
+        Yii::$app->session->setFlash('success', "Data Dihapus.");
+      }
+      // else {
+      //     Yii::$app->session->setFlash('error', "Data Digunakan Di Tabel Lain.");
+      // }
+    } catch (\Exception $e) {
+      Yii::$app->session->setFlash('error', "Data Digunakan Di Tabel Lain.");
+    }
 
     return $this->redirect(['index']);
   }

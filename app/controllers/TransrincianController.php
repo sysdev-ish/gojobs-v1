@@ -201,7 +201,7 @@ class TransrincianController extends Controller
   public function actionViewshort($id)
   {
     $model =  $this->findModel($id);
-    $transkomponen = Transkomponen::find()->where(['nojo' => $model->nojo, 'area' => $model->lokasi, 'jabatan' => $model->jabatan, 'level' => $model->level, 'skill' => $model->skilllayanan])->all();
+    $transkomponen = Transkomponen::find()->where(['nojo' => $model->nojo, 'area' => $model->lokasi, 'jabatan' => $model->jabatan, 'level' => $model->level, 'skill' => $model->skilllayanan, 'detail_komp' => $model->detail_komp])->all();
     $transjo = Transjo::find()->where(['nojo' => $model->nojo])->all();
     $candidate = Recruitmentcandidate::find()->where(['recruitreqid' => $model->id])->all();
     $candidatecount = Recruitmentcandidate::find()->where(['recruitreqid' => $model->id])->count();
@@ -404,5 +404,32 @@ class TransrincianController extends Controller
     }
     // var_dump($outs);die;
     return $outs;
+  }
+
+  public function actionTransrincianActive($id = null)
+  {
+    $data = Transrincian::find()
+      ->where(['id' => $id])
+      ->andWhere(['status_rekrut' => [2, 4]]) // Use IN condition for status_rekrut
+      ->one();
+
+    if ($data) {
+
+      if ($data->status_rekrut == 2) {
+        $data->status_rekrut = 1;
+      } else {
+        $data->status_rekrut = 3;
+      }
+
+      if ($data->save(false)) {
+        Yii::$app->session->setFlash('success', "Success Reset.");
+        return $this->redirect(['index']);
+      } else {
+        Yii::$app->session->setFlash('error', "Gagal Save.");
+      }
+    } else {
+      Yii::$app->session->setFlash('error', "Data tidak ada.");
+    }
+    return $this->redirect(['index']);
   }
 }

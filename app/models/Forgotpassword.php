@@ -61,7 +61,6 @@ class Forgotpassword extends Model
         return null;
       }
     }
-
     return null;
   }
 }

@@ -5,7 +5,6 @@ use app\models\Mastercity;
 use app\models\Mastersubjobfamily;
 use kartik\select2\Select2;
 use app\models\Recruitmentcandidate;
-use app\models\WoRecruitmentCandidate;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\widgets\Pjax;
@@ -22,6 +21,7 @@ use yii\widgets\Pjax;
         'timeout' => false,
         'enablePushState' => false,
     ]) ?>
+    <div id="cobaajax"></div>
     <div class="recruitmentcandidate-form">
         <blockquote>
             <p>Add Candidate for Recruitment request by No Jo <?php echo $modelrecreq->wo_number; ?>.</p>
@@ -107,7 +107,7 @@ use yii\widgets\Pjax;
                             },
 
                             'addcandidate' => function ($url, $model) use ($transrincianid) {
-                                $cekcandidate = WoRecruitmentCandidate::find()->where(['user_id' => $model->userid, 'wo_id' => $transrincianid])->one();
+                                $cekcandidate = Recruitmentcandidate::find()->where(['userid' => $model->userid, 'recruitreqid' => $transrincianid])->one();
                                 if ($cekcandidate) {
                                     $icon = '<i class="fa fa-check  text-green" style="font-size:12pt;"></i>';
                                     $disabled = true;
@@ -123,14 +123,14 @@ use yii\widgets\Pjax;
                                     . Html::a($icon, '#', [
                                         'id' => 'btnaddcandidate' . $model->id,
                                         'class' => 'btn btn-sm btn-default',
-                                        'title' => 'Add to Candidate',
+                                        'title' => 'Ad to Candidate',
                                         'style' => $display,
                                         'onclick' => "
                                if (confirm('Are you sure you want to add to candidate?') == true) {
                                    $.ajax({
                                        type: 'POST',
                                        cache: false,
-                                       url: '" . Yii::$app->urlManager->createUrl(['wocandidate/addtocandidate', 'id' => $transrincianid, 'userid' => $model->userid]) . "',
+                                       url: '" . Yii::$app->urlManager->createUrl(['recruitmentcandidate/addtocandidate', 'id' => $transrincianid, 'userid' => $model->userid]) . "',
                                        success: function (data, textStatus, jqXHR) {
                                           alert(data);
                                            $('#addcandidate2-modal').find('#btnaddcandidate" . $model->id . "').hide();

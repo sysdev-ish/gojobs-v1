@@ -24,29 +24,29 @@ class UserloginController extends Controller
      */
     public function behaviors()
     {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['index', 'update', 'create', 'view', 'delete'],
-                'rules' => [
-                    [
-                        'actions' => ['index', 'update', 'create', 'view', 'delete'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'matchCallback' => function () {
-                            return (Yii::$app->utils->permission(Yii::$app->user->identity->role, 'm15'));
-                        }
+      return [
+          'access' => [
+              'class' => AccessControl::className(),
+              'only' => ['index','update','create','view','delete'],
+              'rules' => [
+                [
+                    'actions' => ['index','update','create','view','delete'],
+                    'allow' => true,
+                    'roles' => ['@'],
+                    'matchCallback'=>function(){
+                         return (Yii::$app->utils->permission(Yii::$app->user->identity->role,'m15'));
+                     }
 
-                    ],
                 ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
+              ],
+          ],
+          'verbs' => [
+              'class' => VerbFilter::className(),
+              'actions' => [
+                  'delete' => ['POST'],
+              ],
+          ],
+      ];
     }
 
     /**
@@ -97,26 +97,27 @@ class UserloginController extends Controller
         $userrole = ArrayHelper::map(Userrole::find()->where('id != 2')->andWhere('id != 1')->asArray()->all(), 'id', 'role');
         $grouprolepermission = ArrayHelper::map(Grouprolepermission::find()->asArray()->all(), 'id', 'grouprolepermission');
         if ($model->load(Yii::$app->request->post())) {
-            $model->setScenario('create');
-            $model->status = 10;
-            $model->password_hash = Yii::$app->security->generatePasswordHash($model->password);
-            $model->auth_key = 'admin4uthk3y';
-            $model->verify_status = 1;
-            $model->created_at = date('Y-m-d H-i-s');
-            $model->updated_at = date('Y-m-d H-i-s');
-            $model->updated_at = date('Y-m-d H-i-s');
-            $model->createdby = Yii::$app->user->identity->id;
-            $model->updatedby = Yii::$app->user->identity->id;
-            $model->updatedby = date('Y-m-d H-i-s');
-            if ($model->save()) {
-                return $this->redirect(['index']);
-            } else {
-                return $this->render('create', [
-                    'model' => $model,
-                    'userrole' => $userrole,
-                    'grouprolepermission' => $grouprolepermission,
-                ]);
+          $model->setScenario('create');
+          $model->status = 10;
+          $model->password_hash = Yii::$app->security->generatePasswordHash($model->password);
+          $model->auth_key = 'admin4uthk3y';
+          $model->verify_status = 1;
+          $model->created_at = date('Y-m-d H-i-s');
+          $model->updated_at = date('Y-m-d H-i-s');
+          $model->updated_at = date('Y-m-d H-i-s');
+          $model->createdby = Yii::$app->user->identity->id;
+          $model->updatedby = Yii::$app->user->identity->id;
+          $model->updatedby = date('Y-m-d H-i-s');
+            if($model->save()){
+              return $this->redirect(['index']);
+            }else{
+              return $this->render('create', [
+                  'model' => $model,
+                  'userrole' => $userrole,
+                  'grouprolepermission' => $grouprolepermission,
+              ]);
             }
+
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -138,10 +139,10 @@ class UserloginController extends Controller
         $userrole = ArrayHelper::map(Userrole::find()->where('id != 2')->andWhere('id != 1')->asArray()->all(), 'id', 'role');
         $grouprolepermission = ArrayHelper::map(Grouprolepermission::find()->asArray()->all(), 'id', 'grouprolepermission');
         if ($model->load(Yii::$app->request->post())) {
-            $model->updated_at = date('Y-m-d H-i-s');
-            $model->updatedby = Yii::$app->user->identity->id;
-
-            $model->save(false);
+          $model->updated_at = date('Y-m-d H-i-s');
+          $model->updatedby = Yii::$app->user->identity->id;
+          
+          $model->save(false);
             return $this->redirect(['index']);
         } else {
             return $this->render('update', [

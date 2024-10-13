@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use yii\bootstrap\Modal;
 use app\models\Transrincian;
 use app\models\Hiring;
+use app\models\MappingCity;
 use app\models\Mastercity;
 use app\models\Masterstatuscandidate;
 use app\models\Recruitmentcandidate;
@@ -49,7 +50,7 @@ Modal::end();
 Modal::begin([
   'header' => '<h4 class="modal-title">Invite For Recruitment Process</h4>',
   'id' => 'invite-modal',
-  'size' => 'modal-lg',
+  'size' => 'modal-full',
   // 'clientOptions' => ['backdrop' => 'static', 'keyboard' => false],
 ]);
 
@@ -196,7 +197,8 @@ if (Yii::$app->utils->permission($role, 'm3') && Yii::$app->utils->permission($r
           'filter' => \kartik\select2\Select2::widget([
             'model' => $searchModel,
             'attribute' => 'city',
-            'data' => ArrayHelper::map(Mastercity::find()->asArray()->all(), 'kota', 'kota'),
+            // 'data' => ArrayHelper::map(Mastercity::find()->asArray()->all(), 'kota', 'kota'),
+            'data' => ArrayHelper::map(MappingCity::find()->orderBy('city_name')->asArray()->all(), 'city_name', 'city_name'),
             'options' => ['placeholder' => '--'],
             'pluginOptions' => [
               'allowClear' => true,
@@ -316,6 +318,7 @@ if (Yii::$app->utils->permission($role, 'm3') && Yii::$app->utils->permission($r
               $cekhiring = Hiring::find()->where(
                 "userid = " . $model->userid . " AND recruitreqid = " . $model->recruitreqid . " AND
                 statushiring <> 5 AND
+                statushiring <> 6 AND
                 statushiring <> 7"
               )->one();
               // if ($model->status == 4) {

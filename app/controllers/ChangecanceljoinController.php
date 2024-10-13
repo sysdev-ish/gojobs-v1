@@ -159,13 +159,15 @@ class ChangecanceljoinController extends Controller
           $model->documentevidence = $filep;
         }
       }
+      $getjo = Hiring::find()->where(['userid' => $model->userid, 'statushiring' => 4])->one();
+      $modelrecreq = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
+      $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
+
+      $model->approvedby = $getjo->approvedby;
       // var_dump($model->documentevidence);die();
       if ($model->save()) {
         // $user = User::find()->where(['id' => $model->approvedby])->one();
         if ($model->userid) {
-          $getjo = Hiring::find()->where(['userid' => $model->userid, 'statushiring' => 4])->one();
-          $modelrecreq = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
-          $userprofile = Userprofile::find()->where(['userid' => $model->userid])->one();
 
           $name = $userprofile->fullname;
           $perner = $getjo->perner;
@@ -317,40 +319,41 @@ class ChangecanceljoinController extends Controller
   public function actionConfirmcancel($id)
   {
     $model = $this->findModel($id);
-    // var_dump($model);die();
+
     $model->scenario = 'confirmation';
     if ($model->load(Yii::$app->request->post())) {
       $model->approvedtime = date('Y-m-d H-i-s');
       if ($model->status == 4) {
         $model->status = 9;
         $model->remarks = 'Successfull';
-        $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
+
         $curl = new curl\Curl();
         $getdatapekerja = $curl->setPostParams([
           'perner' => $model->perner,
           'token' => 'ish**2019',
-        ])
-          ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
-        $dataprofile  = json_decode($getdatapekerja);
-        if ($dataprofile) {
+        ])->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerja');
+        $checkPernerExist = json_decode($getdatapekerja);
+        $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
+
+        if ($checkPernerExist) {
+          // var_dump('here');
+          // die();
           if ($hiring) {
             $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $hiring->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
-            // var_dump($recruitmentcandidate);die();
             $modelrecreq = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
             if ($model->save()) {
               $hiring->statushiring = 6;
               $recruitmentcandidate->status = 24;
               $hiring->save(false);
               $recruitmentcandidate->save(false);
-              if ($modelrecreq->status_rekrut = 2) {
+              if ($modelrecreq->status_rekrut == 2) {
                 $modelrecreq->status_rekrut = 1;
-                $modelrecreq->save(false);
-              } else if ($modelrecreq->status_rekrut = 4) {
+              } else if ($modelrecreq->status_rekrut == 4) {
                 $modelrecreq->status_rekrut = 3;
-                $modelrecreq->save(false);
-              } else {
-                $modelrecreq->save(false);
               }
+
+              $modelrecreq->save(false);
+
               Yii::$app->session->setFlash('success', "Done Confirm Cancel Join.");
               return $this->redirect(['index']);
             }
@@ -358,13 +361,25 @@ class ChangecanceljoinController extends Controller
             Yii::$app->session->setFlash('error', "Tidak bisa di Approve/ Confirm Cancel Join karena sudah di proses, silakan cek data kembali.");
             return $this->redirect(['index']);
           }
+
         } else {
-          if($hiring) {
+          // var_dump('end-here');
+          // die();
+          if ($hiring) {
             $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $hiring->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
             $modelrecreq = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
           } else {
-            $hiringres = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 7])->one();
-            $modelrecreq = Transrincian::find()->where(['id' => $hiringres->recruitreqid])->one();
+            $hiringres = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 7, 'statushiring' => '6'])->one();
+            if ($hiringres) {
+              $modelrecreq = Transrincian::find()->where(['id' => $hiringres->recruitreqid])->one();
+              if ($modelrecreq->status_rekrut == 2) {
+                $modelrecreq->status_rekrut = 1;
+              } else if ($modelrecreq->status_rekrut == 4) {
+                $modelrecreq->status_rekrut = 3;
+              }
+
+              $modelrecreq->save(false);
+            }
           }
           $model->status = 9;
           if ($model->save()) {
@@ -373,15 +388,6 @@ class ChangecanceljoinController extends Controller
               $hiring->save(false);
               $recruitmentcandidate->status = 24;
               $recruitmentcandidate->save(false);
-            }
-            if ($modelrecreq->status_rekrut = 2) {
-              $modelrecreq->status_rekrut = 1;
-              $modelrecreq->save(false);
-            } else if ($modelrecreq->status_rekrut = 4) {
-              $modelrecreq->status_rekrut = 3;
-              $modelrecreq->save(false);
-            } else {
-              $modelrecreq->save(false);
             }
             Yii::$app->session->setFlash('success', "Done Confirm Cancel Join, Note: Check Perner on Resign.");
             return $this->redirect(['index']);

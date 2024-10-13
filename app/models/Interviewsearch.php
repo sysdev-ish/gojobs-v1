@@ -121,6 +121,7 @@ class Interviewsearch extends Interview
     $query->andFilterWhere(['like', 'fullname', $this->fullname]);
     // add by kaha 23/9/2023 -> filtering data
     $query->andFilterWhere(['like', 'scheduledate', date("$this->scheduledate")]);
+    $query->andWhere(['recruitmentcandidate.job_id' => null]);
 
     return $dataProvider;
   }

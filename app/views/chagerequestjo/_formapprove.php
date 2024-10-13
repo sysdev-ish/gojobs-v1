@@ -15,7 +15,7 @@ use linslin\yii2\curl;
     <blockquote>
       <p>Approval Stop Job order for Recruitment request by No Jo <?php echo $modelrecreq->nojo; ?>.</p>
       <?php if ($modelrecreq->typejo == 2): ?>
-      <small>Perner Replaced <cite title="Source Title"><?php echo $modelrecreq->perner->perner; ?></cite></small>
+      <small>Perner Replaced <cite title="Source Title"><?php echo $modelrecreq->perner ? $modelrecreq->perner->perner : '-'; ?></cite></small>
       <?php endif; ?>
       <br>
 

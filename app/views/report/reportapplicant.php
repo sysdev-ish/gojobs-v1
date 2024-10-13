@@ -337,9 +337,10 @@ app\assets\ReportAsset::register($this);
               'label' => 'Info Recruitment',
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
-              'value' => function ($data) {
-                return ($data->uabout) ? $data->uabout->masterinforec->infoofrecruitment : "";
-              }
+              'value' => 'uabout.masterinforec.infoofrecruitment'
+              // 'value' => function ($data) {
+              //   return ($data->uabout) ? $data->uabout->masterinforec->infoofrecruitment : "-";
+              // }
             ],
 
             ['class' => 'yii\grid\ActionColumn', 'urlCreator' => function () {
@@ -493,9 +494,10 @@ app\assets\ReportAsset::register($this);
               'label' => 'Info Recruitment',
               'format' => 'html',
               'contentOptions' => ['style' => 'width: 100px;'],
-              'value' => function ($data) {
-                return ($data->uabout) ? $data->uabout->masterinforec->infoofrecruitment : "";
-              }
+              'value' => 'uabout.masterinforec.infoofrecruitment'
+              // 'value' => function ($data) {
+              //   return ($data->uabout) ? $data->uabout->masterinforec->infoofrecruitment : "-";
+              // }
             ],
 
             [

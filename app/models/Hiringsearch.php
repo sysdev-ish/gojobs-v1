@@ -26,7 +26,7 @@ class Hiringsearch extends Hiring
   {
     return [
       [['id', 'userid', 'perner', 'statushiring', 'statusbiodata', 'typejo', 'typejorincian', 'status'], 'integer'],
-      [['createtime', 'updatetime', 'fullname', 'areasap', 'jabatansap', 'nojo', 'userpm', 'tglinput'], 'safe'],
+      [['createtime', 'updatetime', 'fullname', 'areasap', 'jabatansap', 'nojo', 'userpm', 'tglinput', 'awalkontrak'], 'safe'],
     ];
   }
 
@@ -67,6 +67,8 @@ class Hiringsearch extends Hiring
       return $dataProvider;
     }
 
+    $query->andWhere(['hiring.job_id' => null]);
+
     // grid filtering conditions
     $query->andFilterWhere([
       'hiring.id' => $this->id,
@@ -75,6 +77,7 @@ class Hiringsearch extends Hiring
       'updatetime' => $this->updatetime,
       'perner' => $this->perner,
       'typejo' => $this->typejo,
+      'awalkontrak' => $this->awalkontrak,
       // 'typejorincian' => $this->typejorincian,
     ]);
 

@@ -1,0 +1,52 @@
+
+**** Trace file opened at 2024-03-01, 16:25:23 GMT
+RFC Library Release: 721 Patch Level 48, Compiled on Apr 14 2018 04:51:23
+ CPIC library: 721.2018.02.03 version 3, NI library: 40, Kernel Release: 721 Patch Level 0
+ Current working directory: /var/www/html/rekrut/app/commands, Program: php
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 3.10.0-1062.12.1.el7.x86_64
+ Hostname: 88-70, IP address: 192.168.88.70, IPv6 address: 192.168.88.70
+
+ERROR The UUID daemon (uuidd) is not active.
+
+Please ask your system administrator to activate 
+uuidd according to SAP note 1391070.
+
+
+**** Trace file opened at 2024-03-01, 16:25:38 GMT
+RFC Library Release: 721 Patch Level 48, Compiled on Apr 14 2018 04:51:23
+ CPIC library: 721.2018.02.03 version 3, NI library: 40, Kernel Release: 721 Patch Level 0
+ Current working directory: /var/www/html/rekrut/app/commands, Program: php
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 3.10.0-1062.12.1.el7.x86_64
+ Hostname: 88-70, IP address: 192.168.88.70, IPv6 address: 192.168.88.70
+
+ERROR The UUID daemon (uuidd) is not active.
+
+Please ask your system administrator to activate 
+uuidd according to SAP note 1391070.
+
+
+**** Trace file opened at 2024-03-01, 16:26:02 GMT
+RFC Library Release: 721 Patch Level 48, Compiled on Apr 14 2018 04:51:23
+ CPIC library: 721.2018.02.03 version 3, NI library: 40, Kernel Release: 721 Patch Level 0
+ Current working directory: /var/www/html/rekrut/app/commands, Program: php
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 3.10.0-1062.12.1.el7.x86_64
+ Hostname: 88-70, IP address: 192.168.88.70, IPv6 address: 192.168.88.70
+
+ERROR The UUID daemon (uuidd) is not active.
+
+Please ask your system administrator to activate 
+uuidd according to SAP note 1391070.
+
+
+**** Trace file opened at 2024-05-06, 14:33:47 GMT
+RFC Library Release: 721 Patch Level 48, Compiled on Apr 14 2018 04:51:23
+ CPIC library: 721.2018.02.03 version 3, NI library: 40, Kernel Release: 721 Patch Level 0
+ Current working directory: /var/www/html/rekrut/app/commands, Program: php
+ Hardware: AMD/Intel x86_64 with Linux x86_64, Operating_system: Linux 3.10.0-1062.12.1.el7.x86_64
+ Hostname: 88-70, IP address: 192.168.88.70, IPv6 address: 192.168.88.70
+
+ERROR The UUID daemon (uuidd) is not active.
+
+Please ask your system administrator to activate 
+uuidd according to SAP note 1391070.
+

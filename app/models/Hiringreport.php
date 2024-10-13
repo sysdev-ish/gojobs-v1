@@ -104,23 +104,32 @@ class Hiringreport extends Hiring
       return $dataProvider;
     }
 
+    $query->andFilterWhere([
+      'typejo' => $this->sap,
+    ]);
+
     $datenow = date('Y-m-d');
 
     $query->andFilterWhere(['like', 'fullname', $this->fullname]);
     if ($this->startawalkontrak and $this->endawalkontrak) {
       $query->andFilterWhere(['between', 'awalkontrak', $this->startawalkontrak, $this->endawalkontrak]);
-    } else {
-      if (!$this->startresign and !$this->endresign) {
-        //   $this->startawalkontrak = $datenow;
-        //   $this->endawalkontrak = $datenow;
-        //   $query->andFilterWhere(['between', 'awalkontrak', $datenow, $datenow]);
+    }
+    else {
+      if ($this->startresign and $this->endresign) {
+        $getPerner = $this->byResigndate();
+        // var_dump($getPerner);die;
+        if ($getPerner) {
+          $getPerner = implode(',', $getPerner);
+        } else {
+          $getPerner = 0;
+        }
+        $query->andWhere('perner IN (' . $getPerner . ')');
+      } else {
         $query->where('0=1');
       }
     }
 
-    $query->andFilterWhere([
-      'typejo' => $this->sap,
-    ]);
+
 
     if ($this->area or $this->jabatan or $this->personalarea) {
       $param = [
@@ -145,16 +154,6 @@ class Hiringreport extends Hiring
         $getJoIdbyareaish = 0;
       }
       $query->andWhere('recruitreqid IN (' . $getJoIdbyareaish . ')');
-    }
-    if ($this->startresign and $this->endresign) {
-      $getPerner = $this->byResigndate();
-      // var_dump($getJoIdbyareaish);die;
-      if ($getPerner) {
-        $getPerner = implode(',', $getPerner);
-      } else {
-        $getPerner = 0;
-      }
-      $query->andWhere('perner IN (' . $getPerner . ')');
     }
 
     //Add by pwd -> pakai relasi buat filternya karena jika implode parsing data bakal habisin memory & kurang optimal
@@ -254,7 +253,8 @@ class Hiringreport extends Hiring
       'start' => $start,
       'end' => $end,
     ])
-      ->post('http://192.168.88.5/service/index.php/sap_profile/getdatabyresign');
+      ->post('http://192.168.88.5/service/index.php/sap_profile/getresignworker');
+      // ->post('http://192.168.88.5/service/index.php/sap_profile/getdatabyresign');
     $datapekerjabyresigndate  = json_decode($getdatapekerjabyresigndate);
     // $datapekerjabyresigndate  = implode(',', $getdatapekerjabyresigndate);
     if ($datapekerjabyresigndate) {

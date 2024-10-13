@@ -191,7 +191,7 @@ if (Yii::$app->utils->permission($role, 'm78') && Yii::$app->utils->permission($
 
                 [
                     'class' => 'yii\grid\ActionColumn',
-                    'contentOptions' => ['style' => 'min-width: 80px;'],
+                    'contentOptions' => ['style' => 'min-width: 150px;'],
                     'template' => '<div class="btn-group pull-right">' . $action . '</div>',
                     'buttons' => [
                         'view' => function ($url, $model, $key) {

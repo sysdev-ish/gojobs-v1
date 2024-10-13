@@ -12,7 +12,7 @@ use app\models\Changecanceljoin;
  */
 class Changecanceljoinsearch extends Changecanceljoin
 {
-    // public $approveduser;
+    public $nojo;
     /**
      * @inheritdoc
      */
@@ -20,7 +20,7 @@ class Changecanceljoinsearch extends Changecanceljoin
     {
         return [
             [['id', 'userid', 'createdby', 'perner', 'reason', 'approvedby', 'status'], 'integer'],
-            [['createtime', 'updatetime', 'approvedtime',  'fullname', 'remarks'], 'safe'],
+            [['createtime', 'updatetime', 'approvedtime',  'fullname', 'remarks', 'nojo'], 'safe'],
         ];
     }
 
@@ -91,6 +91,34 @@ class Changecanceljoinsearch extends Changecanceljoin
             // ->andFilterWhere(['like', 'user.name', $this->approveduser])
             ;
 
+        if ($this->nojo) {
+            $query->joinWith("userid");
+            $getJoId = $this->joBynojo();
+            // var_dump($getJoId);die;
+            if ($getJoId) {
+                $getJoid = implode(',', $getJoId);
+                $query->andWhere('hiring.recruitreqid IN (' . $getJoid . ')');
+            } else {
+                $query->andWhere('hiring.recruitreqid IN (null)');
+            }
+        }
         return $dataProvider;
+    }
+
+    protected function joBynojo()
+    {
+        $ret = null;
+        $nojo = $this->nojo;
+        if ($nojo) {
+            $transRincian = Transrincian::find()->andWhere('nojo like "%' . $nojo . '%"')->all();
+            if ($transRincian) {
+                $transRincianIds = array();
+                foreach ($transRincian as $tr) {
+                    $transRincianIds[] = $tr->id;
+                }
+                $ret = $transRincianIds;
+            }
+        }
+        return $ret;
     }
 }

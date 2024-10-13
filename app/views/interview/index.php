@@ -143,19 +143,12 @@ if (Yii::$app->utils->permission($role, 'm5') && Yii::$app->utils->permission($r
           ]),
           'value' => function ($data) {
 
-            if ($data->reccandidate->recrequest->hire_jabatan_sap) {
-              if (is_numeric($data->reccandidate->recrequest->hire_jabatan_sap)) {
-                if ($data->reccandidate->recrequest->jabatansap) {
-                  return $data->reccandidate->recrequest->jabatansap->value2;
-                } else {
-                  return "-";
-                }
-              } else {
-                return "-";
-              }
-            } else {
-              return "-";
+            if (!empty($data->reccandidate->recrequest->hire_jabatan_sap) && is_numeric($data->reccandidate->recrequest->hire_jabatan_sap)) {
+              return !empty($data->reccandidate->recrequest->jabatansap) ? $data->reccandidate->recrequest->jabatansap->value2 : "-";
             }
+
+            return "-";
+
           }
         ],
 
@@ -286,14 +279,19 @@ if (Yii::$app->utils->permission($role, 'm5') && Yii::$app->utils->permission($r
           'value' => function ($data) {
             if ($data->status == 0) {
               $label = 'label-warning';
+              $statusName = $data->statusprocess->statusname ?? '-';
             } elseif ($data->status == 2) {
               $label = 'label-success';
+              $statusName = $data->statusprocess->statusname ?? '-';
             } elseif ($data->status == 3) {
               $label = 'label-danger';
+              $statusName = $data->statusprocess->statusname ?? '-';
             } else {
               $label = 'label-primary';
+              $statusName = $data->statusprocess->statusname ?? '-';
             }
-            return '<span class="label ' . $label . '">' . $data->statusprocess->statusname . '</span>';
+            return '<span class="label ' . $label . '">' . $statusName . '</span>';
+            // return '<span class="label ' . $label . '">' . $data->statusprocess->statusname . '</span>';
           }
         ],
 

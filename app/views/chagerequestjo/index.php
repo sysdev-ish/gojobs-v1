@@ -1,8 +1,10 @@
 <?php
 
+use app\models\User;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Modal;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\Chagerequestjosearch */
@@ -49,7 +51,7 @@ $actionapprove = '';
 if (Yii::$app->utils->permission($role, 'm64')) {
   $actionview = '{view}';
 }
-if (Yii::$app->utils->permission($role, 'm65')) {
+if (Yii::$app->utils->permission($role, 'm65') || $role = 1) {
   $actionapprove = '{approve}';
 }
 $action = $actionview . $actionapprove;
@@ -89,6 +91,15 @@ $action = $actionview . $actionapprove;
 
         ],
         [
+          'label' => 'Area',
+          'format' => 'raw',
+          'value' => function ($data) {
+
+            return ($data->jo) ? $data->jo->areasap->value2 : '';
+          }
+
+        ],
+        [
           'attribute' => 'createdby',
           'format' => 'html',
           'value' => function ($data) {
@@ -109,20 +120,66 @@ $action = $actionview . $actionapprove;
         // 'jumlah',
         [
           'label' => 'Approval I',
-          'format' => 'raw',
+          'attribute' => 'approvedby',
+          'contentOptions' => ['style' => 'width: 140px;'],
+          'format' => 'html',
+          'filter' => \kartik\select2\Select2::widget([
+            'model' => $searchModel,
+            'attribute' => 'approvedby',
+            'data' => ArrayHelper::map(User::find()->where('role = 10 AND status = 10')->asArray()->all(), 'id', 'name'),
+            'options' => ['placeholder' => '--'],
+            'pluginOptions' => [
+              'allowClear' => true,
+              // 'width' => '120px',
+            ],
+          ]),
           'value' => function ($data) {
-            return "PM";
+            // var_dump($data->approvedbyu->name);die();
+            return ($data->approvedby) ? (($data->approvedbyu->role == 10) ? $data->approvedbyu->name : "PM") : "PM";
+            // return "PM";
           }
-
         ],
+
+        // [
+        //   'label' => 'Approval II',
+        //   'contentOptions' => ['style' => 'min-width: 100px;'],
+        //   'attribute' => 'approvedby2',
+        //   'format' => 'html',
+        //   'filter' => \kartik\select2\Select2::widget([
+        //     'model' => $searchModel,
+        //     'attribute' => 'approvedby2',
+        //     'data' => ArrayHelper::map(User::find()->where('role = 22 OR role = 23 AND status = 10')->asArray()->all(), 'id', 'name'),
+        //     'options' => ['placeholder' => '--'],
+        //     'pluginOptions' => [
+        //       'allowClear' => true,
+        //     ],
+        //   ]),
+        //   'value' => function ($data) {
+        //     return ($data->approveduser) ? $data->approveduser->name : "";
+        //   }
+        // ],
+
         [
           'label' => 'Approval II',
+          // 'attribute' => 'approveduser',
           'format' => 'html',
           'value' => function ($data) {
-            return ($data->approvedby2) ? ((Yii::$app->utils->getnamebynik($data->approvedby2)) ? Yii::$app->utils->getnamebynik($data->approvedby2) : $data->approvedby2 . '<br>' . '<i class="text-red">(NIK Unregistered HRIS)</i>') : 'No Approval';
-          }
+            // return ($data->approvedby2) ? ((Yii::$app->utils->getnamebynik($data->approvedby2)) ? Yii::$app->utils->getnamebynik($data->approvedby2) : $data->approvedby2 . '<br>' . '<i class="text-red">(NIK Unregistered HRIS)</i>') : 'No Approval';
+            $approvedBy2 = $data->approvedby2;
 
+            if ($approvedBy2) {
+              $name = Yii::$app->utils->getnamebynik($approvedBy2);
+              if ($name) {
+                return $name;
+              } else {
+                return $approvedBy2 . '<br><i class="text-red">(NIK Unregistered HRIS)</i>';
+              }
+            } else {
+              return 'No Approval';
+            }
+          }
         ],
+        
         [
           'attribute' => 'status',
           'format' => 'html',
@@ -180,10 +237,10 @@ $action = $actionview . $actionapprove;
             'approve' => function ($url, $model, $key) {
               if ($model->status ==  1 or $model->status ==  2) {
                 $disabled = true;
-                if ($model->status == 1 and (Yii::$app->user->identity->role == 10 or Yii::$app->user->identity->role == 16)) {
+                if ($model->status == 1 and (Yii::$app->user->identity->role == 10 or Yii::$app->user->identity->role == 16 || Yii::$app->user->identity->role == 1)) {
                   $disabled = false;
                 }
-                if ($model->status == 2 and $model->approvedby2 == Yii::$app->user->identity->username) {
+                if ($model->status == 2 and $model->approvedby2 == Yii::$app->user->identity->username || Yii::$app->user->identity->role == 1) {
                   $disabled = false;
                 }
               } else {

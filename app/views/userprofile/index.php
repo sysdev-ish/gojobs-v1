@@ -119,7 +119,7 @@ if (Yii::$app->utils->permission($role, 'm14')) {
             'removeButton' => false,
             'pluginOptions' => [
               'autoclose' => false,
-              'startDate' => '2000-01-01',
+              'startDate' => '1900-01-01',
               'format' => 'yyyy-mm-dd',
               'todayHighlight' => false
             ]

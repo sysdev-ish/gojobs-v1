@@ -185,11 +185,10 @@ if (Yii::$app->utils->permission($role, 'm8') && Yii::$app->utils->permission($r
               // 'width' => '120px',
             ],
           ]),
-          'value' => function ($data) {
-
-            // return $data->reccandidate->recrequest->city;
-            return ($data->reccandidate->recrequest) ? $data->reccandidate->recrequest->city->city_name : "";
-          }
+          // 'value' => function ($data) {
+          //   return ($data->reccandidate->recrequest) ? $data->reccandidate->recrequest->city->city_name : "";
+          // }
+          'value' => 'reccandidate.recrequest.city.city_name',
         ],
 
         [
@@ -288,14 +287,19 @@ if (Yii::$app->utils->permission($role, 'm8') && Yii::$app->utils->permission($r
           'value' => function ($data) {
             if ($data->status == 0) {
               $label = 'label-warning';
+              $statusName = $data->statusprocess->statusname ?? '-';
             } elseif ($data->status == 2) {
               $label = 'label-success';
+              $statusName = $data->statusprocess->statusname ?? '-';
             } elseif ($data->status == 3) {
               $label = 'label-danger';
+              $statusName = $data->statusprocess->statusname ?? '-';
             } else {
               $label = 'label-primary';
+              $statusName = $data->statusprocess->statusname ?? '-';
             }
-            return '<span class="label ' . $label . '">' . $data->statusprocess->statusname . '</span>';
+            return '<span class="label ' . $label . '">' . $statusName . '</span>';
+            // return '<span class="label ' . $label . '">' . $data->statusprocess->statusname . '</span>';
           }
         ],
 

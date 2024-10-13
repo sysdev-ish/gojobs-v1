@@ -1,35 +1,18 @@
 <style>
-    .login-form>textarea,
-    input[type="text"],
-    input[type="password"],
-    input[type="datetime"],
-    input[type="datetime-local"],
-    input[type="date"],
-    input[type="month"],
-    input[type="time"],
-    input[type="week"],
-    input[type="number"],
-    input[type="email"],
-    input[type="url"],
-    input[type="search"],
-    input[type="tel"],
-    input[type="color"],
-    .uneditable-input {
-        padding: 6px 13px;
-        color: #999999;
-        font-size: 12px;
-        height: 42px;
-        border: 1px solid #efefef;
-        border-radius: 3px;
-        background-color: #ffffff;
-    }
-
-    .form-control-feedback {
-        line-height: 60px;
-    }
+.login-form > textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+  padding: 6px 13px;
+  color: #999999;
+  font-size: 12px;
+  height: 42px;
+  border: 1px solid #efefef;
+  border-radius: 3px;
+  background-color: #ffffff;
+}
+.form-control-feedback {
+  line-height: 60px;
+}
 </style>
 <?php
-
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
@@ -53,24 +36,17 @@ $assetUrl = Yii::$app->request->baseUrl . '/assets';
 ?>
 
 <div class="row">
-    <div class="login-box">
+<div class="login-box">
 
-        <br>
+    <br>
         <p class="login-box-msg">Sign in to start your session</p>
-        <?php if (Yii::$app->session->hasFlash('error')) : ?>
-            <div class="alert alert-error alert-dismissable">
-                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                <!-- <h4><i class="icon fa fa-check"></i>Saved!</h4> -->
-                <?= Yii::$app->session->getFlash('error') ?>
-            </div>
-        <?php endif; ?>
 
         <?php $form = ActiveForm::begin(
-            [
-                'id' => 'login-form', 'enableClientValidation' => true,
-                'action' => ['site/ajax-login'],
-                'enableAjaxValidation' => true,
-            ]
+          [
+            'id' => 'login-form', 'enableClientValidation' => true,
+          'action' => ['site/ajax-login'],
+          'enableAjaxValidation' => true,
+        ]
         ); ?>
 
         <?= $form

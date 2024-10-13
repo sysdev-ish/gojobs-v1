@@ -20,25 +20,25 @@ class UserforeignlanguageController extends Controller
      */
     public function behaviors()
     {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['index', 'update', 'create', 'view', 'delete', 'views', 'cwizard', 'uwizard'],
-                'rules' => [
-                    [
-                        'actions' => ['index', 'update', 'create', 'view', 'delete', 'views', 'cwizard', 'uwizard'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
+      return [
+          'access' => [
+              'class' => AccessControl::className(),
+              'only' => ['index','update','create','view','delete','views','cwizard','uwizard'],
+              'rules' => [
+                  [
+                      'actions' => ['index','update','create','view','delete','views','cwizard','uwizard'],
+                      'allow' => true,
+                      'roles' => ['@'],
+                  ],
+              ],
+          ],
+          'verbs' => [
+              'class' => VerbFilter::className(),
+              'actions' => [
+                  'delete' => ['POST'],
+              ],
+          ],
+      ];
     }
 
     /**

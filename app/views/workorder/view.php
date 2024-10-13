@@ -30,10 +30,10 @@ $this->params['breadcrumbs'][] = 'View';
               'attribute' => 'jobfunc',
               'format' => 'html',
               'value' => function ($data) {
-                return ($data->job_code) ? $data->jobsap->jabatansap : $data->job;
+
+                return (is_numeric($data->job)) ? $data->jobfunc->name_job_function : $data->job;
               }
             ],
-
             [
               'label' => 'Project',
               'format' => 'html',
@@ -41,26 +41,19 @@ $this->params['breadcrumbs'][] = 'View';
                 return $data->project_name;
               }
             ],
-
             [
               'label' => 'Lama Project',
               'format' => 'html',
               'value' => function ($data) {
 
-                return ($data->project_end) ? $data->project_end : "-";
+                return ($data->project_end) ? $data->project_end : "";
               }
             ],
-
-            [
-              'label' => 'Type Contract',
-              'attribute' => 'type',
-              'format' => 'html',
-              'value' => function ($data) {
-                // return $data->type_contract;
-                return ($data->type_contract) ? $data->contract->contract_name : "-";
-              }
-            ],
+            // 'gender',
+            // 'pendidikan',
             'city.city_name',
+            'type_contract',
+            // 'waktu',
             'total_job',
             [
               'label' => 'Status',
@@ -88,7 +81,6 @@ $this->params['breadcrumbs'][] = 'View';
                 return $status;
               }
             ],
-
             [
               'label' => 'Personal Area (SAP)',
               'format' => 'html',
@@ -98,7 +90,6 @@ $this->params['breadcrumbs'][] = 'View';
               }
 
             ],
-
             [
               'label' => 'Area (SAP)',
               'format' => 'html',
@@ -108,7 +99,6 @@ $this->params['breadcrumbs'][] = 'View';
               }
 
             ],
-
             [
               'label' => 'Skilllayanan (SAP)',
               'format' => 'html',
@@ -118,7 +108,6 @@ $this->params['breadcrumbs'][] = 'View';
               }
 
             ],
-
             [
               'label' => 'Payroll Area (SAP)',
               'format' => 'html',
@@ -127,7 +116,6 @@ $this->params['breadcrumbs'][] = 'View';
               }
 
             ],
-
             [
               'label' => 'Jabatan (SAP)',
               'format' => 'html',
@@ -135,7 +123,6 @@ $this->params['breadcrumbs'][] = 'View';
                 return ($data->job_code) ? $data->jobsap->jabatansap . '-' . $data->job_code : "";
               }
             ],
-
             [
               'label' => 'Level (SAP)',
               'format' => 'html',

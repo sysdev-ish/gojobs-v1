@@ -85,6 +85,10 @@ class Chagerequestjo extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Userlogin::className(), ['id' => 'approvedby']);
     }
+    public function getApproveduser()
+    {
+        return $this->hasOne(Userlogin::className(), ['username' => 'approvedby2']);
+    }
     public function getJo()
     {
         return $this->hasOne(Transrincian::className(), ['id' => 'recruitreqid']);

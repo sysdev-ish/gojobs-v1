@@ -182,6 +182,9 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove;
               } else if (Yii::$app->user->identity->role == 1 and $model->status ==  7) {
                 $disabled = false;
                 $url = Yii::$app->urlManager->createUrl('chagerequestdatabank/approve2?id=' . $model->id);
+              } else if ($model->status ==  7 and Yii::$app->user->identity->id == $model->approvedby2) {
+                $disabled = false;
+                $url = Yii::$app->urlManager->createUrl('chagerequestdatabank/approve2?id=' . $model->id);
               } else {
                 $disabled = true;
                 $url = Yii::$app->urlManager->createUrl('chagerequestdatabank/approve2?id=' . $model->id);

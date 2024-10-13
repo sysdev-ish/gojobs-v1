@@ -17,7 +17,7 @@ use yii\widgets\Pjax;
   'id' => 'addcandidate',
   'timeout' => false,
   'enablePushState' => false,
-]) ?>
+  ]) ?>
 <div id="cobaajax"></div>
 <div class="recruitmentcandidate-form">
   <blockquote>
@@ -31,6 +31,7 @@ use yii\widgets\Pjax;
     <?= GridView::widget([
       'dataProvider' => $dataProviderprofile,
       'filterModel' => $searchModelprofile,
+      // 'size' => 'modal-xl',
       // 'filterModel' => true,
       // 'pjax' => true,
       'layout' => "{items}\n{summary}\n{pager}",
@@ -50,7 +51,7 @@ use yii\widgets\Pjax;
               'width' => '100px',
             ],
           ]),
-          'contentOptions' => ['style' => 'max-width: 100px;']
+          'contentOptions' => ['style' => 'max-width: 70px;']
         ],
 
         // 'birthdate',
@@ -59,6 +60,12 @@ use yii\widgets\Pjax;
         [
           'attribute' => 'phone',
           'value' => 'phone',
+          'contentOptions' => ['style' => 'width: 150px;']
+        ],
+
+        [
+          'attribute' => 'email',
+          'value' => 'userlogin.email',
           'contentOptions' => ['style' => 'width: 150px;']
         ],
 

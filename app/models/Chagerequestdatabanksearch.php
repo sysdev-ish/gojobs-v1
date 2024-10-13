@@ -73,7 +73,7 @@ class Chagerequestdatabanksearch extends Chagerequestdata
       $role = Yii::$app->user->identity->role;
     }
 
-    if ($userid == 131281 or $userid == 53) {
+    if ($userid == 131281 or $userid == 68267 or $userid == 135811 or $userid == 53) {
       // var_dump($userid);die;
       $query->andWhere([
         'or',

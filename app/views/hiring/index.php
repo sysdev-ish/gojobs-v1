@@ -50,7 +50,6 @@ Modal::begin([
 echo "<div id='hiringapprove'></div>";
 
 Modal::end();
-
 Modal::begin([
   'header' => '<h4 class="modal-title">View Recruitment Request</h4>',
   'id' => 'recreq-modal',
@@ -58,6 +57,7 @@ Modal::begin([
 ]);
 
 echo "<div id='recreqview'></div>";
+
 Modal::end();
 if (Yii::$app->user->isGuest) {
   $role = null;
@@ -65,15 +65,19 @@ if (Yii::$app->user->isGuest) {
   // $userid = Yii::$app->user->identity->id;
   $role = Yii::$app->user->identity->role;
 }
-if (Yii::$app->utils->permission($role, 'm37')) {
+
+// 
+if ($role = 1) {
+  $action = "{reset}, {approve}";
+} else if (Yii::$app->utils->permission($role, 'm37')) {
   $action = "{approve}";
 } else {
   $action = '';
 }
 ?>
 <div class="hiring-index box box-default">
-  <?php if (Yii::$app->utils->permission($role, 'm36')) : ?>
-    <div class="box-header with-border">
+  <div class="box-header with-border">
+    <?php if (Yii::$app->utils->permission($role, 'm36')) : ?>
       <?php echo Html::button('Create', [
         'value' => Yii::$app->urlManager->createUrl('hiring/addhiring'), //<---- here is where you define the action that handles the ajax request
         'class' => 'btn btn-md btn-success createhiring-modal-click',
@@ -81,8 +85,8 @@ if (Yii::$app->utils->permission($role, 'm37')) {
         'data-placement' => 'bottom',
         'title' => 'Create Hiring'
       ]); ?>
-    </div>
-  <?php endif; ?>
+    <?php endif; ?>
+  </div>
   <div class="box-body table-responsive">
     <?php // echo $this->render('_search', ['model' => $searchModel]); 
     ?>
@@ -109,6 +113,7 @@ if (Yii::$app->utils->permission($role, 'm37')) {
               'title' => 'View Profile detail'
             ]);
             return $btn;
+            // return $data->userid;
           }
         ],
 
@@ -230,25 +235,25 @@ if (Yii::$app->utils->permission($role, 'm37')) {
           }
         ],
 
-        [
-          'label' => 'SAP',
-          'attribute' => 'typejo',
-          'contentOptions' => ['style' => 'width: 80px;'],
-          'format' => 'html',
-          'filter' => \kartik\select2\Select2::widget([
-            'model' => $searchModel,
-            'attribute' => 'typejo',
-            'data' => [1 => "ISH", 2 => "Peralihan"],
-            'options' => ['placeholder' => '--'],
-            'pluginOptions' => [
-              'allowClear' => true,
-              'width' => '80px',
-            ],
-          ]),
-          'value' => function ($data) {
-            return ($data->typejo == 1) ? "ISH" : "Peralihan";
-          }
-        ],
+        // [
+        //   'label' => 'SAP',
+        //   'attribute' => 'typejo',
+        //   'contentOptions' => ['style' => 'width: 80px;'],
+        //   'format' => 'html',
+        //   'filter' => \kartik\select2\Select2::widget([
+        //     'model' => $searchModel,
+        //     'attribute' => 'typejo',
+        //     'data' => [1 => "ISH", 2 => "Peralihan"],
+        //     'options' => ['placeholder' => '--'],
+        //     'pluginOptions' => [
+        //       'allowClear' => true,
+        //       'width' => '80px',
+        //     ],
+        //   ]),
+        //   'value' => function ($data) {
+        //     return ($data->typejo == 1) ? "ISH" : "Peralihan";
+        //   }
+        // ],
 
         [
           'label' => 'Status',
@@ -330,6 +335,26 @@ if (Yii::$app->utils->permission($role, 'm37')) {
         //
         // ],
         [
+          'attribute' => 'awalkontrak',
+          'contentOptions' => ['style' => 'width: 150px;'],
+          'filter' => DatePicker::widget([
+            'model' => $searchModel,
+            'attribute' => 'awalkontrak',
+            'options' => ['placeholder' => 'Date', 'autocomplete' => 'off'],
+            'readonly' => false,
+            'removeButton' => false,
+            'pluginOptions' => [
+              'startDate' => '2000-01-01',
+              'format' => 'yyyy-mm-dd',
+              'todayHighlight' => true
+            ]
+          ]),
+          'format' => 'html',
+          'value' => function ($data) {
+            return Yii::$app->utils->indodate($data->awalkontrak);
+          }
+        ],
+        [
           'attribute' => 'tglinput',
           'contentOptions' => ['style' => 'width: 150px;'],
           'filter' => DatePicker::widget([
@@ -377,6 +402,23 @@ if (Yii::$app->utils->permission($role, 'm37')) {
                 'title' => 'Approve'
               ]);
               return $btn;
+            },
+            'reset' => function ($url, $model) {
+              if ($model->statushiring ==  7) {
+                $disabled = false;
+              } else {
+                $disabled = true;
+              }
+              return Html::a('<i class="fa fa-recycle" style="font-size:12pt;"></i>', ['hiring-active', 'id' => $model->id], [
+                'class' => 'btn btn-sm btn-info',
+                'data' => [
+                  'confirm' => 'Are you sure you want to reset this item?',
+                  'method' => 'post',
+                ],
+                'data-toggle' => 'tooltip',
+                'title' => 'reset',
+                'disabled' => $disabled,
+              ]);
             },
           ]
         ],

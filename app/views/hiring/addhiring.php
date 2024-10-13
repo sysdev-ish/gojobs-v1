@@ -7,6 +7,7 @@ use app\models\Hiring;
 use app\models\Transkomponen;
 use app\models\Transrincian;
 use app\models\Masterstatuscandidate;
+use app\models\User;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\helpers\ArrayHelper;
@@ -47,14 +48,20 @@ $url = \yii\helpers\Url::to(['transrincian/recreqlist']);
             'format' => 'raw',
             'value' => function ($data) {
               $checkcompletion = Yii::$app->checkhiring->datacompleted($data->userid);
+              $checknotcompletion = Yii::$app->checkhiring->datanotcompleted($data->userid);
               if ($checkcompletion == 1) {
                 $label = 'label-success';
-                $completed = 'Data Biodata Completed';
+                $completed = 'Biodata Completed';
               } else {
                 $label = 'label-warning';
-                $completed = 'Data Biodata Not Completed';
+                $completed = 'Biodata Not Completed: ';
+                foreach ($checknotcompletion as $obj) {
+                  $completed .= $obj . '; ';
+                }
               }
-              return $data->userprofile->fullname . '<br><span class="label ' . $label . '">' . $completed . '</span>';
+
+              // return $data->userid;
+              return $data->userprofile ? $data->userprofile->fullname . ' - ' . $data->userid  . '<br><span class="label ' . $label . '">' . $completed . '</span>' : $data->userid;
             }
           ],
 
@@ -143,7 +150,7 @@ $url = \yii\helpers\Url::to(['transrincian/recreqlist']);
             'format' => 'html',
             'value' => function ($data) {
               if ($data->recrequest) {
-                $transkomponen = Transkomponen::find()->where(['nojo' => $data->recrequest->nojo, 'area' => $data->recrequest->lokasi, 'jabatan' => $data->recrequest->jabatan, 'level' => $data->recrequest->level, 'skill' => $data->recrequest->skilllayanan, 'komponen_txt' => 'GAJI POKOK'])->one();
+                $transkomponen = Transkomponen::find()->where(['nojo' => $data->recrequest->nojo, 'area' => $data->recrequest->lokasi, 'jabatan' => $data->recrequest->jabatan, 'level' => $data->recrequest->level, 'skill' => $data->recrequest->skilllayanan, 'detail_komp' => $data->recrequest->detail_komp, 'komponen_txt' => 'GAJI POKOK'])->one();
               } else {
                 $transkomponen = "";
               }

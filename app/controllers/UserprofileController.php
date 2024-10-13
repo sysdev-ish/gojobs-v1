@@ -228,6 +228,10 @@ class UserprofileController extends Controller
 
 
     if ($model->load(Yii::$app->request->post()) && $modelvaksin->load(Yii::$app->request->post())) {
+      if ($model->kknumber == '') {
+        $model->kknumber = "0000000000000000";
+      }
+
       if ($model->havejamsostek == 0 or $model->jamsosteknumber == '') {
         $model->jamsosteknumber = "00000000000";
       }
@@ -325,6 +329,10 @@ class UserprofileController extends Controller
       $kotaktp = ArrayHelper::map(Mastercity::find()->asArray()->where(['kotaid' => $model->cityidktp])->all(), 'kotaid', 'kota');
 
       if ($model->load(Yii::$app->request->post()) && $modelvaksin->load(Yii::$app->request->post())) {
+
+        if ($model->kknumber == '') {
+          $model->kknumber = "0000000000000000";
+        }
 
         if ($model->havejamsostek == 0 or $model->jamsosteknumber == '') {
           $model->jamsosteknumber = "00000000000";
@@ -450,6 +458,10 @@ class UserprofileController extends Controller
     $kotaktp = ArrayHelper::map(Mastercity::find()->asArray()->where(['kotaid' => $model->cityidktp])->all(), 'kotaid', 'kota');
 
     if ($model->load(Yii::$app->request->post()) && $modelvaksin->load(Yii::$app->request->post())) {
+
+      if ($model->kknumber == '') {
+        $model->kknumber = "0000000000000000";
+      }
 
       if ($model->havejamsostek == 0 or $model->jamsosteknumber == '') {
         $model->jamsosteknumber = "00000000000";
@@ -580,6 +592,10 @@ class UserprofileController extends Controller
 
     if ($model->load(Yii::$app->request->post()) && $modelvaksin->load(Yii::$app->request->post())) {
 
+      if ($model->kknumber == '') {
+        $model->kknumber = "0000000000000000";
+      }
+      
       if ($model->havejamsostek == 0 or $model->jamsosteknumber == '') {
         $model->jamsosteknumber = "00000000000";
       }

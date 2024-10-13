@@ -64,7 +64,7 @@ if (Yii::$app->utils->permission($role, 'm91')) {
 if (Yii::$app->utils->permission($role, 'm92')) {
     $actionapprove = '{approve}';
 }
-if (Yii::$app->user->identity->username == '9802618' || Yii::$app->user->identity->username == '9103005' || Yii::$app->user->identity->username == "seysi" || Yii::$app->user->identity->username == '9610439' || Yii::$app->user->identity->username == '9411677' || Yii::$app->user->identity->username == '8412075') {
+if (Yii::$app->user->identity->username == '9802618' || Yii::$app->user->identity->username == '9103005' || Yii::$app->user->identity->username == "seysi" || Yii::$app->user->identity->username == '9610439' || Yii::$app->user->identity->username == '9411677' || Yii::$app->user->identity->username == '8412075'|| Yii::$app->user->identity->username == '9005226') {
     $actionconfirmation = '{confirmation}';
 }
 $action = $actionview . $actionupdate . $actiondelete . $actionapprove . $actionconfirmation;
@@ -103,13 +103,14 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove . $action
                         return $data->perner;
                     }
                 ],
-
+                
                 [
                     'label' => 'No JO',
+                    'attribute' => 'nojo',
                     'format' => 'html',
                     'value' => function ($data) {
-                        if ($data->userid) {
-                            $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
+                        if ($data->perner) {
+                            $cekhiring = Hiring::find()->where('perner =' . $data->perner . ' and (statushiring = 4 OR statushiring = 6 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
                             if ($cekhiring) {
                                 $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                                 return ($getjo) ? $getjo->nojo : '-';

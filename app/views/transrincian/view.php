@@ -153,6 +153,7 @@ Modal::end();
             'gender',
             'pendidikan',
             'city.city_name',
+            // 'lokasi',
             // 'atasan',
             'kontrak',
             'waktu',
@@ -369,7 +370,7 @@ Modal::end();
               foreach ($candidate as $key => $value) { ?>
                 <tr>
                   <td><?php echo $key + 1; ?></td>
-                  <td><?php echo $value->userprofile->fullname; ?></td>
+                  <td><?php echo ($value->userid) ? $value->userprofile->fullname : $value->userid; ?></td>
                   <td>
                     <?php
                     if ($value->status == 0) {

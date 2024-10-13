@@ -160,7 +160,7 @@ class WorkorderController extends Controller
                 }
             }
             // var_dump(Yii::$app->request->post('Workorder')['job_code']);die();
-            $model->wo_number = Yii::$app->utils->latestwo();
+            $model->wo_number = Yii::$app->utils->latestwo(); 
             $model->created_time = date('Y-m-d H-i-s');
             $model->created_by = Yii::$app->user->identity->id;
             $model->status = 1;
@@ -234,7 +234,6 @@ class WorkorderController extends Controller
         $intcount = WoRecruitmentInterview::find()->where('candidate_id IN ("' . implode('","', $candidates) . '")', [])->count();
         $psicount = WoRecruitmentPsikotest::find()->where('candidate_id IN ("' . implode('","', $candidates) . '")', [])->count();
         $uintcount = WoRecruitmentInterview::find()->where('candidate_id IN ("' . implode('","', $candidates) . '")', [])->count();
-        // var_dump($model);die();
         return $this->renderAjax('view', [
             'model' => $model,
             'candidate' => $candidate,
