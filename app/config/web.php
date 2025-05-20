@@ -3,7 +3,6 @@
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 $dbjo = require __DIR__ . '/dbjo.php';
-
 use kartik\mpdf\Pdf;
 use app\models\Userdata;
 
@@ -11,21 +10,21 @@ $config = [
     'id' => 'gojobs',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'name' => 'GO JOBS',
+    'name'=> 'GO JOBS',
 
     'language' => 'id',
 
-    'on beforeRequest' => function ($event) {
-        Yii::$app->language = Yii::$app->session->get('language', 'id');
-        if (!Yii::$app->user->isGuest) {
-            $session = Yii::$app->session;
-            if ($session->isActive) {
-                $checktoken = Userdata::find()->where(['id' => Yii::$app->user->identity->id, 'access_token' => null])->andWhere('role <> 2')->one();
-                if ($checktoken) {
-                    $session->destroy();
-                }
-            }
-        }
+    'on beforeRequest' => function($event) {
+		Yii::$app->language = Yii::$app->session->get('language', 'id');	
+		if (!Yii::$app->user->isGuest){
+			$session = Yii::$app->session;
+			if ($session->isActive){
+			  $checktoken = Userdata::find()->where(['id'=>Yii::$app->user->identity->id, 'access_token'=>null])->andWhere('role <> 2')->one();
+			  if($checktoken){
+				$session->destroy();
+			  }
+			}
+		}
     },
 
     'aliases' => [
@@ -33,7 +32,7 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
-        'user' => [
+      'user' => [
 
             'identityClass' => 'app\models\User',
             // 'enableAutoLogin' => false,
@@ -45,21 +44,20 @@ $config = [
             'class' => 'yii\web\Session',
             'timeout' => 3600,
         ],
-        'pdf' => [
+      'pdf' => [
             'class' => Pdf::classname(),
             'format' => Pdf::FORMAT_A4,
             'orientation' => Pdf::ORIENT_PORTRAIT,
             'destination' => Pdf::DEST_BROWSER,
             'methods' => [
                 // 'SetHeader'=>['Krajee Report Header'],
-                'SetFooter' => ['{PAGENO}'],
+                'SetFooter'=>['{PAGENO}'],
             ]
 
             // refer settings section for all configuration options
         ],
         'request' => [
-            // insert a secret key in the following (if it is empty) - this is required by cookie validation
-
+            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '5dc9u6xggSAU1t09t_mrJ5LX-UPgY76r',
             'enableCsrfValidation' => false,
         ],
@@ -70,12 +68,18 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        // added by kaha 21-04-2025
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false, // Set to true for testing without actually sending emails
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp-relay.brevo.com',
+                'username' => '86fcc1002@smtp-brevo.com',
+                'password' => 'c263m9PqMjN5RdSE',
+                'port' => '587',
+                'encryption' => 'tls',
+            ],
         ],
         'check' => [
             'class' => 'app\components\checkComponent',
@@ -104,13 +108,13 @@ $config = [
         'db' => $db,
         'dbjo' => $dbjo,
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                '<controller:\w+>/<action:\w+>/<id:[0-9]+>' => '<controller>/<action>',
-                '<controller:\w+>/<action:\w+>/<slug:[a-zA-Z0-9_\-]+>' => '<controller>/<action>',
-            ],
+          'enablePrettyUrl' => true,
+          'showScriptName' => false,
+          'rules' => [
+            '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+            '<controller:\w+>/<action:\w+>/<id:[0-9]+>'=>'<controller>/<action>',
+            '<controller:\w+>/<action:\w+>/<slug:[a-zA-Z0-9_\-]+>'=>'<controller>/<action>',
+          ],
         ],
 
         'i18n' => [
@@ -122,7 +126,7 @@ $config = [
                     //'sourceLanguage' => 'en-US',
                     'fileMap' => [
                         'app' => 'app.php',
-                        'skill' => 'skill.php',
+						'skill' => 'skill.php',
                         'app/error' => 'error.php',
                     ],
                 ],
@@ -132,18 +136,13 @@ $config = [
     'params' => $params,
     'modules' => [
         'gridview' => [
-            'class' => 'kartik\grid\Module',
-        ],
-        // Add the Summernote module configuration
-        'summernote' =>  [
-            'class' => 'kartik\summernote\Module',
-        ],
+        'class' => 'kartik\grid\Module',]
         // enter optional module parameters below - only if you need to
         // use your own export download action or custom translation
         // message source
         // 'downloadAction' => 'gridview/export/download',
         // 'i18n' => []
-    ],
+        ],
 ];
 
 if (YII_ENV_DEV) {

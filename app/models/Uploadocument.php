@@ -36,7 +36,7 @@ class Uploadocument extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ijazah','transkipnilai','ktp'], 'required', 'on' => 'create'],
+            [['ktp'], 'required', 'on' => 'create'],
             [['userid'], 'integer'],
             [['createtime', 'updatetime'], 'safe'],
             // [['ijazah', 'transkipnilai', 'suratketerangansehat', 'kartukeluarga', 'ktp', 'jamsostek', 'bpjskesehatan', 'npwp'], 'string', 'max' => 145],

@@ -92,9 +92,24 @@ class SignupForm extends Model
         $body = str_replace('{fullname}', $this->name, $body);
         $body = str_replace('{token}', $randomstring, $body);
 
-        //comment this for temporary if email down/limit
-        $verification = Yii::$app->utils->sendmail($to, $subject, $body, 1);
-        return $user;
+        // added by kaha 21-04-2025
+        $verification = Yii::$app->utils->sendmailbrevo($to, $subject, $body, 1);
+        if ($verification['error'] === 0) {
+          Yii::$app->session->setFlash('success', 'Email sent check your inbox');
+          return $user;
+        }
+
+        // Brevo failed, fallback to SMTP
+        $verification2 = Yii::$app->utils->sendmail($to, $subject, $body, 1);
+
+        if ($verification2['error'] === 0) {
+          Yii::$app->session->setFlash('success', 'Email sent check your inbox or spam');
+          return $user;
+        }
+
+        // Both failed
+        Yii::$app->session->setFlash('error', 'Email not sent');
+        return null;
       }
     }
 

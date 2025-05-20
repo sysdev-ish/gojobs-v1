@@ -165,11 +165,11 @@ class TransrincianController extends Controller
     $model =  $this->findModel($id);
     $transkomponen = Transkomponen::find()->where(['nojo' => $model->nojo, 'area' => $model->lokasi, 'jabatan' => $model->jabatan, 'level' => $model->level, 'skill' => $model->skilllayanan, 'detail_komp' => $model->detail_komp])->all();
     $transjo = Transjo::find()->where(['nojo' => $model->nojo])->all();
-    $candidate = Recruitmentcandidate::find()->where(['recruitreqid' => $model->id])->all();
-    $candidatecount = Recruitmentcandidate::find()->where(['recruitreqid' => $model->id])->count();
-    $onintcount = Recruitmentcandidate::find()->where(['recruitreqid' => $model->id, 'status' => 1])->count();
-    $onpsicount = Recruitmentcandidate::find()->where(['recruitreqid' => $model->id, 'status' => 2])->count();
-    $onuintcount = Recruitmentcandidate::find()->where(['recruitreqid' => $model->id, 'status' => 3])->count();
+    $candidate = Recruitmentcandidate::find()->where(['recruitreqid' => $model->id])->andWhere(['recruitmentcandidate.job_id' => null])->all();
+    $candidatecount = Recruitmentcandidate::find()->where(['recruitreqid' => $model->id])->andWhere(['recruitmentcandidate.job_id' => null])->count();
+    $onintcount = Recruitmentcandidate::find()->where(['recruitreqid' => $model->id, 'status' => 1])->andWhere(['recruitmentcandidate.job_id' => null])->count();
+    $onpsicount = Recruitmentcandidate::find()->where(['recruitreqid' => $model->id, 'status' => 2])->andWhere(['recruitmentcandidate.job_id' => null])->count();
+    $onuintcount = Recruitmentcandidate::find()->where(['recruitreqid' => $model->id, 'status' => 3])->andWhere(['recruitmentcandidate.job_id' => null])->count();
     $candidates = array();
     foreach ($candidate as $val) {
       $candidates[] = $val->id;

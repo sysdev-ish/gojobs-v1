@@ -82,7 +82,7 @@ class Userabout extends \yii\db\ActiveRecord
                   return $('#userabout-bankid').val() == '10';
                 }
             "), 'on'=>['create','update','updatepass']],
-            [['bankaccountnumber'], 'string', 'min'=> 13, 'max'=> 13, 'when' => function ($model) {
+            [['bankaccountnumber'], 'string', 'min'=> 11, 'max'=> 16, 'when' => function ($model) {
                   return $model->bankid == 4;
               }, 'whenClient' => new \yii\web\JsExpression("
                 function (attribute, value) {
@@ -96,7 +96,7 @@ class Userabout extends \yii\db\ActiveRecord
                   return $('#userabout-bankid').val() == '2';
                 }
             "), 'on'=>['create','update','updatepass']],
-            [['bankaccountnumber'], 'string', 'min'=> 12, 'max'=> 13, 'when' => function ($model) {
+            [['bankaccountnumber'], 'string', 'min'=> 11, 'max'=> 16, 'when' => function ($model) {
                   return $model->bankid == 11;
               }, 'whenClient' => new \yii\web\JsExpression("
                 function (attribute, value) {

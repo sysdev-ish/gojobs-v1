@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @link http://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
@@ -64,13 +63,13 @@ class AppfrontAsset extends AssetBundle
      */
     public function init()
     {
-        parent::init();
-        // resetting BootstrapAsset to not load own css files
-        \Yii::$app->assetManager->bundles['yii\\bootstrap\\BootstrapAsset'] = [
-            'css' => [],
-        ];
-        \Yii::$app->assetManager->bundles['yii\\web\\JqueryAsset'] = [
-            'js' => [],
-        ];
+      parent::init();
+    // resetting BootstrapAsset to not load own css files
+    \Yii::$app->assetManager->bundles['yii\\bootstrap\\BootstrapAsset'] = [
+        'css' => [],
+    ];
+    \Yii::$app->assetManager->bundles['yii\\web\\JqueryAsset'] = [
+        'js' => [],
+    ];
     }
 }

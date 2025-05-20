@@ -367,7 +367,7 @@ use yii\widgets\ActiveForm;
               </div>
               <div class="col-md-3 form-group row ">
                 <div class="col-5 col-form-label">
-                  Change Hiring
+                  Hold Joborder
                 </div>
                 <div class="col-7 col-form-label">
                   <?= $form->field($model, 'm93')->checkbox(['class' => 'my-0']); ?>

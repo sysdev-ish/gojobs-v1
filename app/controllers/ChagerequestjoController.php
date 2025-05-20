@@ -90,13 +90,13 @@ class ChagerequestjoController extends Controller
         $modelrecreq->save(false);
         $model->approvedtime2 = date('Y-m-d H-i-s');
       }
-      
+
       if ($model->status == 2) {
         $model->approvedby = Yii::$app->user->identity->id;
       }
 
       $model->approvedtime = date('Y-m-d H-i-s');
-      
+
       // var_dump($model->approvedby);die;
       $model->save();
       return $this->redirect(['index']);
@@ -143,28 +143,28 @@ class ChagerequestjoController extends Controller
       $model->jumlah = $model->oldjumlah - $model->jumlahstop;
       // var_dump($model->jumlah);die;
       switch ($role) {
-          //sales - approval only PM
+        //sales - approval only PM
         case 18:
           $model->typeapproval = 1;
           break;
-          //admin rekrut
+        //admin rekrut
         case 3:
           $model->typeapproval = 2;
           $model->approvedby2 = $modelrecreq->transjo->upd;
           break;
 
-          //operation Area
+        //operation Area
         case 22:
           $model->typeapproval = 2;
           $model->approvedby2 = $modelrecreq->transjo->upd;
           break;
 
-          //operational Pusat
+        //operational Pusat
         case 23:
           $model->typeapproval = 2;
           $model->approvedby2 = $modelrecreq->transjo->upd;
           break;
-          //assistant manager area
+        //assistant manager area
         case 25:
           $model->typeapproval = 2;
           $model->approvedby2 = $modelrecreq->transjo->upd;
@@ -180,7 +180,6 @@ class ChagerequestjoController extends Controller
       $model->documentevidence = UploadedFile::getInstance($model, 'documentevidence');
       if ($model->documentevidence) {
         $assetUrl = Yii::getAlias('@app') . '/assets';
-        // @unlink($assetUrl.'/upload/documentevidence/'. $old_filei);
         $fileextp = $model->documentevidence->extension;
         $filep = $modelrecreq->id . '-documentevidence.' . $fileextp;
         if ($model->documentevidence->saveAs($assetUrl . '/upload/documentevidence/' . $filep)) {
@@ -220,8 +219,8 @@ class ChagerequestjoController extends Controller
         $body = str_replace('{jumlah}', $model->jumlahstop, $body);
         $body = str_replace('{remarks}', $model->remarks, $body);
         $body = str_replace('{reason}', $alasanstop, $body);
-        // var_dump($body);die;
-        $verification = Yii::$app->utils->sendmail($to, $subject, $body, 11);
+        // 
+        $verification = Yii::$app->utils->sendmail($to, $subject, $body, 12);
       }
       return $this->redirect(['transrincian/view', 'id' => $modelrecreq->id]);
     } else {

@@ -80,35 +80,14 @@ Modal::end();
 
             ],
             [
-              'label' => 'Due Date JO',
-              'contentOptions' => ['style' => 'min-width: 100px;'],
+              'label' => 'Perner replaced Resign Date',
               'format' => 'html',
               'value' => function ($data) {
-                $datenow = date('Y-m-d');
-                if ($data->typejo == 1) {
-                  if ($data->transrincian) {
-                    $datenew = $data->transrincian->lup_skema;
-                    $datenewplus = date('Y-m-d', strtotime($datenew . ' + 14 days'));
-                    $datediff = (strtotime($datenewplus) - strtotime($datenow)) / (60 * 60 * 24);
-                    return ($data->transrincian) ?
-                      (($datediff < 0 && $data->status_rekrut == 1) ? '<span class="text-red">' . $datenewplus . "</span>" : $datenewplus)
-                      : '-';
-                  } else {
-                    return "-";
-                  }
-                } else {
-                  if ($data->transperner) {
-                    $daterep = $data->transperner->lup_skema;
-                    $datereplace = date('Y-m-d', strtotime($daterep . ' + 6 days'));
-                    $datediff = (strtotime($datereplace) - strtotime($datenow)) / (60 * 60 * 24);
-                    return ($data->transperner) ? (($datediff < 0 && $data->status_rekrut == 1) ? '<span class="text-red">' . $datereplace . "</span>" : $datereplace) : '-';
-                  } else {
-                    return "-";
-                  }
-                }
-              }
-            ],
 
+                return ($data->typejo == 2) ? (($data->perner) ? $data->perner->tgl_resign : "") : "";
+              }
+
+            ],
             [
               'label' => 'Approved JO',
               'format' => 'html',
@@ -120,36 +99,76 @@ Modal::end();
                   return ($data->transperner) ? (($data->transperner->lup_skema and $data->transperner->lup_skema <> '0000-00-00') ? $data->transperner->lup_skema : "") : '';
                 }
               }
-
             ],
             [
-              'label' => 'Over Due JO',
+              'label' => 'Due Date JO',
               'contentOptions' => ['style' => 'min-width: 100px;'],
               'format' => 'html',
               'value' => function ($data) {
-
-                if ($data->typejo == 1) {
-                  $datejo =  ($data->transrincian) ? date('Y-m-d', strtotime($data->transrincian->lup_skema . ' + 14 days')) : null;
-                } else {
-                  $datejo =  ($data->transperner) ? date('Y-m-d', strtotime($data->transperner->lup_skema . ' + 6 days')) : null;
+                try {
+                    $today = new DateTime('today');
+                    
+                    if ($data->typejo == 1) {
+                        if ($data->transrincian && $data->transrincian->lup_skema) {
+                            $dueDate = (new DateTime($data->transrincian->lup_skema))->modify('+14 days');
+                        } else {
+                            return '-';
+                        }
+                    } else {
+                        if ($data->transperner && $data->transperner->lup_skema) {
+                            $dueDate = (new DateTime($data->transperner->lup_skema))->modify('+6 days');
+                        } else {
+                            return '-';
+                        }
+                    }
+                    
+                    $dueDateStr = $dueDate->format('Y-m-d');
+                    $isOverdue = $today > $dueDate && $data->status_rekrut == 1;
+                    
+                    return $isOverdue ? '<span class="text-red">' . $dueDateStr . '</span>' : $dueDateStr;
+                    
+                } catch (\Exception $e) {
+                    return '-';
                 }
-                $datenow = date("Y-m-d");
-                $duedate = '';
-                if ($datejo) {
-                  $now = new DateTime($datenow);
-                  $date2 = new DateTime($datejo);
-                  $duedate = $now->diff($date2);
-                  if ($datejo < $datenow) {
-                    return $duedate->m . ' Bulan ' . $duedate->d . ' Hari';
+              }
+            ],
+            [
+              'label' => 'Over Due JO',
+              'format' => 'html',
+              'value' => function ($data) {
+                try {
+                  $today = new DateTime('today');
+
+                  // Hitung due date
+                  if ($data->typejo == 1 && $data->transrincian && $data->transrincian->lup_skema) {
+                    $dueDate = (new DateTime($data->transrincian->lup_skema))->modify('+14 days');
+                  } elseif ($data->typejo != 1 && $data->transperner && $data->transperner->lup_skema) {
+                    $dueDate = (new DateTime($data->transperner->lup_skema))->modify('+6 days');
                   } else {
                     return '-';
                   }
-                } else {
+
+                  // Cek apakah overdue
+                  if ($today <= $dueDate || $data->status_rekrut != 1) {
+                    return '-';
+                  }
+
+                  // Hitung interval selisih dari due date ke hari ini
+                  $interval = $dueDate->diff($today);
+
+                  $output = [];
+                  if ($interval->y > 0) $output[] = $interval->y . ' Tahun';
+                  if ($interval->m > 0) $output[] = $interval->m . ' Bulan';
+                  if ($interval->d > 0 || empty($output)) $output[] = $interval->d . ' Hari';
+
+                  return implode(' ', $output);
+                } catch (\Exception $e) {
                   return '-';
                 }
               }
-
             ],
+
+
             'gender',
             'pendidikan',
             'city.city_name',

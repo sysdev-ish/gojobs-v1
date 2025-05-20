@@ -210,9 +210,9 @@ class RecruitmentcandidateController extends Controller
     // $recruitreq = ArrayHelper::map(Transrincian::find()->asArray()->limit(100)->all(), 'id', 'nojo');
     // $modelrecreq = Transrincian::find()->where(['id' => $id, 'status_rekrut' => 1])->one();
     $modelrecreq = Transrincian::find()
-    ->where(['id' => $id])
-    ->andWhere(['in', 'status_rekrut', [1, 3]])
-    ->one();
+      ->where(['id' => $id])
+      ->andWhere(['in', 'status_rekrut', [1, 3]])
+      ->one();
 
     $searchModelprofile = new Userprofilesearch();
     // $searchModelprofile->select(['id', 'fullname', 'address', 'gender', 'city'])->all();
@@ -405,6 +405,15 @@ class RecruitmentcandidateController extends Controller
     }
   }
 
+  // add by kaha 22-10-2024
+  public function actionResetCandidate($user_id, $candidate_id)
+  {
+    $data_candidate = Recruitmentcandidate::find()->where(['id' => $candidate_id])->one();
+    $data_joborder = Transrincian::find()->where(['id' => $data_candidate->recruitreqid])->one();
+
+    
+  }
+
   public function actionApplyjob($userid, $jobsid)
   {
     $model = new Recruitmentcandidate();
@@ -507,7 +516,7 @@ class RecruitmentcandidateController extends Controller
   {
     $model = $this->findModel($id);
     $modelrecreq = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
-    
+
     $model->status = 24;
     if ($model->save(false)) {
       if ($modelrecreq->status_rekrut = 2) {
@@ -525,7 +534,6 @@ class RecruitmentcandidateController extends Controller
       Yii::$app->session->setFlash('error', "Cant Cancel.");
       return $this->redirect(['index']);
     }
-
   }
 
   /**

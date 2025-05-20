@@ -64,7 +64,7 @@ class checkComponent extends Component
     $userfamily = $this->cuserfamily($userid);
     $userfedu = $this->cuserfeducation($userid);
     $usernfedu = $this->cusernfeducation($userid);
-    $usernflang = $this->cuserflang($userid);
+    // $usernflang = $this->cuserflang($userid);
     $userwexp = $this->cuserwexperience($userid);
     $userorgac = $this->cuserorgac($userid);
     $userecontact = $this->cuserecontact($userid);
@@ -72,7 +72,7 @@ class checkComponent extends Component
     $userhealth = $this->cuserhealth($userid);
 
 
-    if ($userprofile && $userfamily && $userfedu  && $usernflang && $userecontact  && $userhealth) {
+    if ($userprofile && $userfamily && $userfedu && $userecontact && $userhealth) {
       $ret = 1;
     } else {
       $ret = 0;
@@ -95,16 +95,44 @@ class checkComponent extends Component
     $userhealth = $this->cuserhealth($userid);
 
     $data = [
-      'user profile' => $userprofile,
-      'user family' => $userfamily,
-      'user formal education' => $userfedu,
-      'user nonformal education' => $usernfedu,
-      'user foreign language' => $usernflang,
-      'user work experience' => $userwexp,
-      'user organization' => $userorgac,
-      'user emergencycontact' => $userecontact,
-      'user reference' => $userreff,
-      'user skill' => $userhealth
+      'profile' => $userprofile,
+      'family ' => $userfamily,
+      'formal_education' => $userfedu,
+      'nonformal_education' => $usernfedu,
+      'foreign_language' => $usernflang,
+      'work experience' => $userwexp,
+      'organization' => $userorgac,
+      'emergencycontact' => $userecontact,
+      'reference' => $userreff,
+      'skill' => $userhealth
+    ];
+    $dataarray = null;
+    foreach ($data as $key => $value) {
+      if ($value == 0) {
+        $dataarray[] = $key;
+      }
+    }
+
+    $ret = $dataarray;
+
+    return $ret;
+  }
+
+  public function datanothiring($userid)
+  {
+    $ret = null;
+    $userprofile = $this->cuserprofile($userid);
+    $userfamily = $this->cuserfamily($userid);
+    $userfedu = $this->cuserfeducation($userid);
+    $userecontact = $this->cuserecontact($userid);
+    $userinfo = $this->cuserinfo($userid);
+
+    $data = [
+      'profile' => $userprofile,
+      'family' => $userfamily,
+      'formal_education' => $userfedu,
+      'emergency_contact' => $userecontact,
+      'info(bank account)' => $userinfo
     ];
     $dataarray = null;
     foreach ($data as $key => $value) {
@@ -263,6 +291,21 @@ class checkComponent extends Component
     $userabout = Userabout::find()->where(['userid' => $userid])->one();
 
     if ($userhealth or $userabout) {
+      $ret = 1;
+    } else {
+      $ret = 0;
+    }
+
+    return $ret;
+  }
+
+  public function cuserinfo($userid)
+  {
+    $ret = null;
+    // $userhealth = Userhealth::find()->where(['userid' => $userid])->one();
+    $userabout = Userabout::find()->where(['userid' => $userid])->one();
+
+    if ($userabout) {
       $ret = 1;
     } else {
       $ret = 0;
@@ -471,7 +514,10 @@ class checkComponent extends Component
   public function checkstatusjoHired($id, $newjumlah)
   {
     $ret = null;
-    $hired = Hiring::find()->where(['recruitreqid' => $id, 'statushiring' => 4])->all();
+    // $hired = Hiring::find()->where(['recruitreqid' => $id, 'statushiring' => 4])->all();
+    $hired = Hiring::find()->where(['recruitreqid' => $id])
+          ->andWhere(['statushiring' => [4, 7]]) // Use IN condition for status_rekrut
+          ->all();
 
     if ($newjumlah == count($hired)) {
       $ret = 1;

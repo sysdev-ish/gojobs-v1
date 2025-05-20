@@ -33,7 +33,10 @@
         'items' => [
           ['label' => 'Menu', 'options' => ['class' => 'header']],
           [
-            'label' => 'Dashboard', 'visible' => (Yii::$app->utils->permission($role, 'B01')), 'icon' => 'dashboard (alias)', 'url' => ['/site/dashboard'],
+            'label' => 'Dashboard',
+            'visible' => (Yii::$app->utils->permission($role, 'B01')),
+            'icon' => 'dashboard (alias)',
+            'url' => ['/site/dashboard'],
             'active' => Yii::$app->controller->id == 'dashboard'
           ],
           [
@@ -43,27 +46,37 @@
             'visible' => (Yii::$app->utils->permission($role, 'm48')),
             'items' => [
               [
-                'label' => 'Applicant Data', 'icon' => 'circle-o', 'url' => ['/report/reportapplicant'],
+                'label' => 'Applicant Data',
+                'icon' => 'circle-o',
+                'url' => ['/report/reportapplicant'],
                 'visible' => (Yii::$app->utils->permission($role, 'm50')),
                 'active' => Yii::$app->controller->action->id == 'reportapplicant'
               ],
               [
-                'label' => 'Cancel Join', 'icon' => 'circle-o', 'url' => ['/report/reportcanceljoin'],
+                'label' => 'Cancel Join',
+                'icon' => 'circle-o',
+                'url' => ['/report/reportcanceljoin'],
                 'visible' => (Yii::$app->utils->permission($role, 'm98')),
                 'active' => Yii::$app->controller->action->id == 'reportcanceljoin'
               ],
               [
-                'label' => 'Change Hiring', 'icon' => 'circle-o', 'url' => ['/report/reportchangehiring'],
-                'visible' => (Yii::$app->utils->permission($role, 'm99')),
-                'active' => Yii::$app->controller->action->id == 'reportchangehiring'
-              ],
-              [
-                'label' => 'Hiring', 'icon' => 'circle-o', 'url' => ['/report/reporthiring'],
+                'label' => 'Hiring',
+                'icon' => 'circle-o',
+                'url' => ['/report/reporthiring'],
                 'visible' => (Yii::$app->utils->permission($role, 'm48')),
                 'active' => Yii::$app->controller->action->id == 'reporthiring'
               ],
+              // [
+              //   'label' => 'Hold Job Order',
+              //   'icon' => 'circle-o',
+              //   'url' => ['/report/reportchangehiring'],
+              //   'visible' => (Yii::$app->utils->permission($role, 'm99')),
+              //   'active' => Yii::$app->controller->action->id == 'reportchangehiring'
+              // ],
               [
-                'label' => 'Job Order', 'icon' => 'circle-o', 'url' => ['/report/reportjoborder'],
+                'label' => 'Job Order',
+                'icon' => 'circle-o',
+                'url' => ['/report/reportjoborder'],
                 'visible' => (Yii::$app->utils->permission($role, 'm66')),
                 'active' => Yii::$app->controller->action->id == 'reportjoborder'
               ],
@@ -76,59 +89,61 @@
             'visible' => (Yii::$app->utils->permission($role, 'B01')),
             'items' => [
               [
-                'label' => 'Personal Data', 'icon' => 'circle-o', 'url' => ['/chagerequestdata/index'],
+                'label' => 'Personal Data',
+                'icon' => 'circle-o',
+                'url' => ['/chagerequestdata/index'],
                 'visible' => (Yii::$app->utils->permission($role, 'm52')),
                 'active' => Yii::$app->controller->id == 'chagerequestdata'
               ],
               [
-                'label' => 'Bank Account', 'icon' => 'circle-o', 'url' => ['/chagerequestdatabank/index'],
+                'label' => 'Bank Account',
+                'icon' => 'circle-o',
+                'url' => ['/chagerequestdatabank/index'],
                 'visible' => (Yii::$app->utils->permission($role, 'm57')),
                 'active' => Yii::$app->controller->id == 'chagerequestdatabank'
               ],
               [
-                'label' => 'Cancel Join', 'icon' => 'circle-o', 'url' => ['/changecanceljoin/index'],
+                'label' => 'Cancel Join',
+                'icon' => 'circle-o',
+                'url' => ['/changecanceljoin/index'],
                 'visible' => (Yii::$app->utils->permission($role, 'm88')),
                 'active' => Yii::$app->controller->id == 'changecanceljoin'
               ],
               [
-                'label' => 'Change Hiring', 'icon' => 'circle-o', 'url' => ['/changehiring/index'],
+                'label' => 'Hold Job Order',
+                'icon' => 'circle-o',
+                'url' => ['/request-hold-job/index'],
                 'visible' => (Yii::$app->utils->permission($role, 'm93')),
-                'active' => Yii::$app->controller->id == 'changehiring'
+                'active' => Yii::$app->controller->id == 'request-hold-job'
               ],
               [
-                'label' => 'Stop Job Order', 'icon' => 'circle-o', 'url' => ['/chagerequestjo/index'],
+                'label' => 'Stop Job Order',
+                'icon' => 'circle-o',
+                'url' => ['/chagerequestjo/index'],
                 'visible' => (Yii::$app->utils->permission($role, 'm64')),
                 'active' => Yii::$app->controller->id == 'chagerequestjo'
               ],
               [
-                'label' => 'Resign', 'icon' => 'circle-o', 'url' => ['/chagerequestresign/index'],
+                'label' => 'Resign',
+                'icon' => 'circle-o',
+                'url' => ['/chagerequestresign/index'],
                 'visible' => (Yii::$app->utils->permission($role, 'm67')),
                 'active' => Yii::$app->controller->id == 'chagerequestresign'
               ],
             ],
           ],
-          // [
-          //   'label' => 'Recruitment Request',
-          //   'icon' => 'feed (alias)',
-          //   'url' => '#',
-          //   'visible' => (Yii::$app->utils->permission($role, 'm1')),
-          //   'items' => [
-          //     [
-          //       'label' => 'List', 'icon' => 'circle-o', 'url' => ['/transrincian/index'], 'visible' => (Yii::$app->utils->permission($role, 'm1')),
-          //       'active' => Yii::$app->controller->id == 'transrincian',
-          //     ],
-          //     [
-          //       'label' => 'Manages', 'icon' => 'circle-o', 'url' => ['/transrincian/manage'], 'visible' => (Yii::$app->utils->permission($role, 'm1')),
-          //       'active' => Yii::$app->controller->id == 'transrincian',
-          //     ],
-          //   ]
-          // ],
           [
-            'label' => 'Recruitment Request', 'icon' => 'feed (alias)', 'url' => ['/transrincian/index'], 'visible' => (Yii::$app->utils->permission($role, 'm1')),
+            'label' => 'Recruitment Request',
+            'icon' => 'feed (alias)',
+            'url' => ['/transrincian/index'],
+            'visible' => (Yii::$app->utils->permission($role, 'm1')),
             'active' => Yii::$app->controller->id == 'transrincian'
           ],
           [
-            'label' => 'Recruitment Candidate', 'icon' => 'user-plus', 'url' => ['/recruitmentcandidate/index'], 'visible' => (Yii::$app->utils->permission($role, 'm2')),
+            'label' => 'Recruitment Candidate',
+            'icon' => 'user-plus',
+            'url' => ['/recruitmentcandidate/index'],
+            'visible' => (Yii::$app->utils->permission($role, 'm2')),
             'active' => Yii::$app->controller->id == 'recruitmentcandidate'
           ],
 
@@ -139,38 +154,62 @@
             'visible' => (Yii::$app->utils->permission($role, 'm4') or Yii::$app->utils->permission($role, 'm7') or Yii::$app->utils->permission($role, 'm10') or Yii::$app->utils->permission($role, 'm38') or Yii::$app->utils->permission($role, 'm40') or Yii::$app->utils->permission($role, 'm42') or Yii::$app->utils->permission($role, 'm44')),
             'items' => [
               [
-                'label' => 'Psikotest', 'icon' => 'circle-o', 'url' => ['/psikotest/index'], 'visible' => (Yii::$app->utils->permission($role, 'm7')),
+                'label' => 'Psikotest',
+                'icon' => 'circle-o',
+                'url' => ['/psikotest/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm7')),
                 'active' => Yii::$app->controller->id == 'psikotest'
               ],
               [
-                'label' => 'Interview', 'icon' => 'circle-o', 'url' => ['/interview/index'], 'visible' => (Yii::$app->utils->permission($role, 'm4')),
+                'label' => 'Interview',
+                'icon' => 'circle-o',
+                'url' => ['/interview/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm4')),
                 'active' => Yii::$app->controller->id == 'interview'
               ],
               [
-                'label' => 'User Interview', 'icon' => 'circle-o', 'url' => ['/userinterview/index'], 'visible' => (Yii::$app->utils->permission($role, 'm10')),
+                'label' => 'User Interview',
+                'icon' => 'circle-o',
+                'url' => ['/userinterview/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm10')),
                 'active' => Yii::$app->controller->id == 'userinterview'
               ],
               [
-                'label' => 'Training Soft skill', 'icon' => 'circle-o', 'url' => ['/tsoftskill/index'], 'visible' => (Yii::$app->utils->permission($role, 'm38')),
+                'label' => 'Training Soft skill',
+                'icon' => 'circle-o',
+                'url' => ['/tsoftskill/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm38')),
                 'active' => Yii::$app->controller->id == 'tsoftskill'
               ],
               [
-                'label' => 'Training Hard Skill', 'icon' => 'circle-o', 'url' => ['/thardskill/index'], 'visible' => (Yii::$app->utils->permission($role, 'm40')),
+                'label' => 'Training Hard Skill',
+                'icon' => 'circle-o',
+                'url' => ['/thardskill/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm40')),
                 'active' => Yii::$app->controller->id == 'thardskill'
               ],
               [
-                'label' => 'Tandem Pasif', 'icon' => 'circle-o', 'url' => ['/tpasif/index'], 'visible' => (Yii::$app->utils->permission($role, 'm42')),
+                'label' => 'Tandem Pasif',
+                'icon' => 'circle-o',
+                'url' => ['/tpasif/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm42')),
                 'active' => Yii::$app->controller->id == 'tpasif'
               ],
               [
-                'label' => 'Tandem Aktif', 'icon' => 'circle-o', 'url' => ['/taktif/index'], 'visible' => (Yii::$app->utils->permission($role, 'm44')),
+                'label' => 'Tandem Aktif',
+                'icon' => 'circle-o',
+                'url' => ['/taktif/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm44')),
                 'active' => Yii::$app->controller->id == 'taktif'
               ],
 
             ],
           ],
           [
-            'label' => 'Hiring', 'icon' => 'circle-o', 'url' => ['/hiring'], 'visible' => (Yii::$app->utils->permission($role, 'm35')),
+            'label' => 'Hiring',
+            'icon' => 'circle-o',
+            'url' => ['/hiring'],
+            'visible' => (Yii::$app->utils->permission($role, 'm35')),
             'active' => Yii::$app->controller->id == 'hiring'
           ],
           [
@@ -180,67 +219,122 @@
             'visible' => (Yii::$app->utils->permission($role, 'm13') or Yii::$app->utils->permission($role, 'm15') or Yii::$app->utils->permission($role, 'm19') or Yii::$app->utils->permission($role, 'm23') or Yii::$app->utils->permission($role, 'm27')),
             'items' => [
               [
-                'label' => 'Applicant Master', 'icon' => 'circle-o', 'url' => ['/userprofile/index'], 'visible' => (Yii::$app->utils->permission($role, 'm13')),
+                'label' => 'Applicant Master',
+                'icon' => 'circle-o',
+                'url' => ['/userprofile/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm13')),
                 'active' => Yii::$app->controller->id == 'userprofile'
               ],
               [
-                'label' => 'Applicant Login', 'icon' => 'circle-o', 'url' => ['/applicantlogin/index'], 'visible' => (Yii::$app->utils->permission($role, 'm51')),
+                'label' => 'Applicant Login',
+                'icon' => 'circle-o',
+                'url' => ['/applicantlogin/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm51')),
                 'active' => Yii::$app->controller->id == 'applicantlogin'
               ],
               [
-                'label' => 'Area ISH', 'icon' => 'circle-o', 'url' => ['/masterareaish/index'], 'visible' => (Yii::$app->utils->permission($role, 'm51')),
+                'label' => 'Area ISH',
+                'icon' => 'circle-o',
+                'url' => ['/masterareaish/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm51')),
                 'active' => Yii::$app->controller->id == 'masterareaish'
               ],
               [
-                'label' => 'CMS', 'icon' => 'circle-o', 'url' => ['/cms/index'], 'visible' => (Yii::$app->utils->permission($role, 'm132')),
+                'label' => 'CMS',
+                'icon' => 'circle-o',
+                'url' => ['/cms/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm132')),
                 'active' => Yii::$app->controller->id == 'cms'
               ],
               [
-                'label' => 'Group User Role', 'icon' => 'circle-o', 'url' => ['/grouprolepermission/index'], 'visible' => (Yii::$app->utils->permission($role, 'm19')),
+                'label' => 'Group User Role',
+                'icon' => 'circle-o',
+                'url' => ['/grouprolepermission/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm19')),
                 'active' => Yii::$app->controller->id == 'grouprolepermission'
               ],
               [
-                'label' => 'Master Office', 'icon' => 'circle-o', 'url' => ['/masteroffice/index'], 'visible' => (Yii::$app->utils->permission($role, 'm23')),
+                'label' => 'Master Office',
+                'icon' => 'circle-o',
+                'url' => ['/masteroffice/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm23')),
                 'active' => Yii::$app->controller->id == 'masteroffice'
               ],
               [
-                'label' => 'Master Room', 'icon' => 'circle-o', 'url' => ['/masterroom/index'], 'visible' => (Yii::$app->utils->permission($role, 'm27')),
+                'label' => 'Master Room',
+                'icon' => 'circle-o',
+                'url' => ['/masterroom/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm27')),
                 'active' => Yii::$app->controller->id == 'masterroom'
               ],
               [
-                'label' => 'Master PIC', 'icon' => 'circle-o', 'url' => ['/masterpic/index'], 'visible' => (Yii::$app->utils->permission($role, 'm31')),
+                'label' => 'Master PIC',
+                'icon' => 'circle-o',
+                'url' => ['/masterpic/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm31')),
                 'active' => Yii::$app->controller->id == 'masterpic'
               ],
               [
-                'label' => 'Master Industry Type', 'icon' => 'circle-o', 'url' => ['/masterindustry/index'], 'visible' => (Yii::$app->utils->permission($role, 'm72')),
+                'label' => 'Master Industry Type',
+                'icon' => 'circle-o',
+                'url' => ['/masterindustry/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm72')),
                 'active' => Yii::$app->controller->id == 'masterindustry'
               ],
               [
-                'label' => 'Master Job Family', 'icon' => 'circle-o', 'url' => ['/masterjobfamily/index'], 'visible' => (Yii::$app->utils->permission($role, 'm76')),
+                'label' => 'Master Job Family',
+                'icon' => 'circle-o',
+                'url' => ['/masterjobfamily/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm76')),
                 'active' => Yii::$app->controller->id == 'masterjobfamily'
               ],
               [
-                'label' => 'Master Sub Job Family', 'icon' => 'circle-o', 'url' => ['/mastersubjobfamily/index'], 'visible' => (Yii::$app->utils->permission($role, 'm80')),
+                'label' => 'Master Sub Job Family',
+                'icon' => 'circle-o',
+                'url' => ['/mastersubjobfamily/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm80')),
                 'active' => Yii::$app->controller->id == 'mastersubjobfamily'
               ],
               [
-                'label' => 'Mapping Area', 'icon' => 'circle-o', 'url' => ['/mappingregionarea/index'], 'visible' => (Yii::$app->utils->permission($role, 'm51')),
+                'label' => 'Mapping Area',
+                'icon' => 'circle-o',
+                'url' => ['/mappingregionarea/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm51')),
                 'active' => Yii::$app->controller->id == 'mappingregionarea'
               ],
               [
-                'label' => 'Mapping Job Position', 'icon' => 'circle-o', 'url' => ['/mappingjob/index'], 'visible' => (Yii::$app->utils->permission($role, 'm84')),
+                'label' => 'Mapping Job Position',
+                'icon' => 'circle-o',
+                'url' => ['/mappingjob/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm84')),
                 'active' => Yii::$app->controller->id == 'mappingjob'
               ],
               [
-                'label' => 'Mapping Region', 'icon' => 'circle-o', 'url' => ['/masterregion/index'], 'visible' => (Yii::$app->utils->permission($role, 'm51')),
+                'label' => 'Mapping Industry',
+                'icon' => 'circle-o',
+                'url' => ['/mapping-industry/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm84')),
+                'active' => Yii::$app->controller->id == 'mapping-industry'
+              ],
+              [
+                'label' => 'Mapping Region',
+                'icon' => 'circle-o',
+                'url' => ['/masterregion/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm51')),
                 'active' => Yii::$app->controller->id == 'masterregion'
               ],
               [
-                'label' => 'User Login', 'icon' => 'circle-o', 'url' => ['/userlogin/index'], 'visible' => (Yii::$app->utils->permission($role, 'm15')),
+                'label' => 'User Login',
+                'icon' => 'circle-o',
+                'url' => ['/userlogin/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm15')),
                 'active' => Yii::$app->controller->id == 'userlogin'
               ],
               [
-                'label' => 'User Role', 'icon' => 'circle-o', 'url' => ['/userrole/index'], 'visible' => (Yii::$app->utils->permission($role, 'm19')),
+                'label' => 'User Role',
+                'icon' => 'circle-o',
+                'url' => ['/userrole/index'],
+                'visible' => (Yii::$app->utils->permission($role, 'm19')),
                 'active' => Yii::$app->controller->id == 'userrole'
               ],
             ],

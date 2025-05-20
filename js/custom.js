@@ -108,6 +108,23 @@ $(function () {
       $("#stopjo-modal").modal("show").find("#stopjoview").empty().append(html);
     });
   });
+
+  // begin hold job view
+  $(".hold-job-modal-click").click(function () {
+    var loading = new Loading({
+      direction: "hor",
+      discription: "Loading...",
+      defaultApply: true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr("value"), function (html) {
+      loading.out();
+      $("#hold-job-modal").modal("show").find("#hold-job-view").empty().append(html);
+    });
+  });
+
   $(".viewuserrole-modal-click").click(function () {
     var loading = new Loading({
       direction: "hor",
@@ -714,6 +731,60 @@ $(function () {
         .append(html);
     });
   });
+  $(".viewmappingindustry-modal-click").click(function (e) {
+    var loading = new Loading({
+      direction: "hor",
+      discription: "Loading...",
+      defaultApply: true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr("value"), function (html) {
+      loading.out();
+      $("#viewmappingindustry-modal")
+        .modal("show")
+        .find("#mappingindustryview")
+        .empty()
+        .append(html);
+    });
+  });
+  $(".updatemappingindustry-modal-click").click(function () {
+    var loading = new Loading({
+      direction: "hor",
+      discription: "Loading...",
+      defaultApply: true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr("value"), function (html) {
+      loading.out();
+      $("#updatemappingindustry-modal")
+        .modal("show")
+        .find("#updatemappingindustry")
+        .empty()
+        .append(html);
+    });
+  });
+  $(".createmappingindustry-modal-click").click(function () {
+    var loading = new Loading({
+      direction: "hor",
+      discription: "Loading...",
+      defaultApply: true,
+    });
+
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr("value"), function (html) {
+      loading.out();
+      $("#createmappingindustry-modal")
+        .modal("show")
+        .find("#createmappingindustry")
+        .empty()
+        .append(html);
+    });
+  });
   $(".viewmasterregion-modal-click").click(function (e) {
     var loading = new Loading({
       direction: "hor",
@@ -1271,6 +1342,40 @@ $(function () {
         .append(html);
     });
   });
+
+  // begin request hold joborder
+  $(".view-hold-job-modal-click").click(function () {
+    var loading = new Loading({
+      direction: "hor",
+      discription: "Loading...",
+      defaultApply: true,
+    });
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr("value"), function (html) {
+      loading.out();
+      $("#view-hold-job-modal").modal("show").find("#view-hold-job-view").empty().append(html);
+    });
+  });
+  $(".approve-hold-job-modal-click").click(function () {
+    var loading = new Loading({
+      direction: "hor",
+      discription: "Loading...",
+      defaultApply: true,
+    });
+    event.preventDefault();
+    this.blur();
+    $.get($(this).attr("value"), function (html) {
+      loading.out();
+      $("#approve-hold-job-modal")
+        .modal("show")
+        .find("#approve-hold-job-view")
+        .empty()
+        .append(html);
+    });
+  });
+  
+  // begin request stop joborder
   $(".viewcrjo-modal-click").click(function () {
     var loading = new Loading({
       direction: "hor",
@@ -1321,6 +1426,7 @@ $(function () {
         .append(html);
     });
   });
+
   $(".approvecrresign-modal-click").click(function () {
     var loading = new Loading({
       direction: "hor",

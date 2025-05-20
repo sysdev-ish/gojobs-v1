@@ -53,9 +53,24 @@ class Forgotpassword extends Model
           $body = Yii::$app->params['mailForgotPassword'];
           $body = str_replace('{token}', $randomstring, $body);
 
-          //comment this for temporary if email down/limit
-          $verification = Yii::$app->utils->sendmail($to, $subject, $body, 3);
-          return $modelsave->id;
+          // added by kaha 21-04-2025
+          $verification = Yii::$app->utils->sendmailbrevo($to, $subject, $body, 3);
+
+          if ($verification['error'] === 0) {
+            Yii::$app->session->setFlash('success', 'Email sent check your inbox');
+            return $modelsave->id;
+          }
+          
+          // Brevo failed, fallback to SMTP
+          $verification2 = Yii::$app->utils->sendmail($to, $subject, $body, 3);
+          if ($verification2['error'] === 0) {
+            Yii::$app->session->setFlash('success', 'Email sent check your inbox or spam');
+            return $modelsave->id;
+          }
+
+          // Both failed
+          Yii::$app->session->setFlash('error', 'Email not sent');
+          return null;
         }
       } else {
         return null;

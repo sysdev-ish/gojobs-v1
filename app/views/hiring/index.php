@@ -67,7 +67,7 @@ if (Yii::$app->user->isGuest) {
 }
 
 // 
-if ($role = 1) {
+if ($role == 1) {
   $action = "{reset}, {approve}";
 } else if (Yii::$app->utils->permission($role, 'm37')) {
   $action = "{approve}";

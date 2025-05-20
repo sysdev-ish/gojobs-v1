@@ -309,28 +309,30 @@ class ChagerequestdatabankController extends Controller
       'token' => 'ish**2019',
     ])->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
     $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-    if ($model->status == 2 or $model->status == 3 or $model->status == 7) {
-      $statusresign = 1;
-      $resigndate = "";
-      $resignreason = "";
-
-      if ($datapekerjabyperner[0]->MASSN == "Z8") {
-        $statusresign = 2;
+    if ($datapekerjabyperner) {
+      if ($model->status == 2 or $model->status == 3 or $model->status == 7) {
+        $statusresign = 1;
         $resigndate = "";
-        $resignreason = $datapekerjabyperner[0]->MSGTX;
-        if ($datapekerjabyperner[0]->DAT35) {
-          $year = substr($datapekerjabyperner[0]->DAT35, 0, 4);
-          $month = substr($datapekerjabyperner[0]->DAT35, 4, 2);
-          $date = substr($datapekerjabyperner[0]->DAT35, 6, 2);
-          $resigndate = $year . "-" . $month . "-" . $date;
+        $resignreason = "";
+  
+        if ($datapekerjabyperner[0]->MASSN == "Z8") {
+          $statusresign = 2;
+          $resigndate = "";
+          $resignreason = $datapekerjabyperner[0]->MSGTX;
+          if ($datapekerjabyperner[0]->DAT35) {
+            $year = substr($datapekerjabyperner[0]->DAT35, 0, 4);
+            $month = substr($datapekerjabyperner[0]->DAT35, 4, 2);
+            $date = substr($datapekerjabyperner[0]->DAT35, 6, 2);
+            $resigndate = $year . "-" . $month . "-" . $date;
+          }
         }
+  
+        $resignreason = $datapekerjabyperner[0]->MSGTX;
+        $model->statusresign = $statusresign;
+        $model->resignreason = $resignreason;
+        $model->resigndate = $resigndate;
+        $model->save(false);
       }
-
-      $resignreason = $datapekerjabyperner[0]->MSGTX;
-      $model->statusresign = $statusresign;
-      $model->resignreason = $resignreason;
-      $model->resigndate = $resigndate;
-      $model->save(false);
     }
     if ($userid) {
       // $userprofile = Userprofile::find()->where(['userid'=>$userid])->one();

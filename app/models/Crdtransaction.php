@@ -54,7 +54,7 @@ class Crdtransaction extends \yii\db\ActiveRecord
                   return $('#crdtransaction-newvalue').val() == '10';
                 }
             "), 'on'=>['bankaccount_1','bankaccount_2']],
-            [['newvalue2'], 'string', 'min'=> 13, 'max'=> 13, 'when' => function ($model) {
+            [['newvalue2'], 'string', 'min'=> 11, 'max'=> 16, 'when' => function ($model) {
                   return $model->newvalue == 4;
               }, 'whenClient' => new \yii\web\JsExpression("
                 function (attribute, value) {
@@ -68,7 +68,7 @@ class Crdtransaction extends \yii\db\ActiveRecord
                   return $('#crdtransaction-newvalue').val() == '2';
                 }
             "), 'on'=>['bankaccount_1','bankaccount_2']],
-            [['newvalue2'], 'string', 'min'=> 12, 'max'=> 13, 'when' => function ($model) {
+            [['newvalue2'], 'string', 'min'=> 11, 'max'=> 16, 'when' => function ($model) {
                   return $model->newvalue == 11;
               }, 'whenClient' => new \yii\web\JsExpression("
                 function (attribute, value) {

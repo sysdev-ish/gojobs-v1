@@ -321,15 +321,6 @@ if (Yii::$app->utils->permission($role, 'm3') && Yii::$app->utils->permission($r
                 statushiring <> 6 AND
                 statushiring <> 7"
               )->one();
-              // if ($model->status == 4) {
-              //   if ($cekhiring) {
-              //     $disabled = true;
-              //   } else {
-              //     $disabled = false;
-              //   }
-              // } else {
-              //   $disabled = true;
-              // }
               if ($model->status == 4 || $cekcandidate) {
                 if ($cekhiring) {
                   $disabled = true;

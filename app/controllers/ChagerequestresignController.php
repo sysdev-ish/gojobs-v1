@@ -221,19 +221,8 @@ class ChagerequestresignController extends Controller
           ->post('http://192.168.88.5/service/index.php/Rfccekpayrollcontroll');
         $payrollcontrollresult  = json_decode($cekpaycontroll);
         if ($payrollcontrollresult->status == 1) {
-          // $cek = [
-          //   'token' => 'ish@2019!',
-          //   'PERNR' => $model->perner,
-          //   'BEGDA' => date_format($begda,'Ymd'),
-          //   'MASSG' => $model->resignreason->sapid,
-          //   'WERKS' => $dataprofile[0]->WERKS,
-          //   'PERSK' => $dataprofile[0]->PERSK,
-          //   'BTRTL' => $dataprofile[0]->BTRTL,
-          //   'ABKRS' => $dataprofile[0]->ABKRS,
-          //   'ANSVH' => $dataprofile[0]->ANSVH,
-          //   'PLANS' => $dataprofile[0]->PLANS,
-          // ];
           // var_dump($cek);die();
+
           $putrfcresign =  $curl->setPostParams([
             'token' => 'ish@2019!',
             'PERNR' => $model->perner,
@@ -342,7 +331,7 @@ class ChagerequestresignController extends Controller
             print_r(json_encode($retpos));
           }
         } else {
-          // $message = $rfcresign->MESSAGE;
+
           $model->remarks = 'You have already locked payroll controll';
           $model->status = 7;
           $model->save(false);
@@ -350,7 +339,6 @@ class ChagerequestresignController extends Controller
           print_r(json_encode($retpos));
         }
       } else {
-        // $message = $rfcresign->MESSAGE;
         $model->remarks = 'Data pekerja sudah tidak ada di SAP atau sudah di resign kan';
         $model->status = 4;
         $model->save(false);
@@ -372,8 +360,8 @@ class ChagerequestresignController extends Controller
       $hiring = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 4])->one();
       if ($hiring) {
         $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $model->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
-        $hiring->statushiring = 6;
-        $recruitmentcandidate->status = 24;
+        $hiring->statushiring = 7;
+        $recruitmentcandidate->status = 26;
         $hiring->save(false);
         $recruitmentcandidate->save(false);
       }
@@ -512,7 +500,7 @@ class ChagerequestresignController extends Controller
             print_r(json_encode($retpos));
           }
         } else {
-          // $message = $rfcresign->MESSAGE;
+
           $model->remarks = 'You have already locked payroll controll';
           $model->status = 7;
           $model->save(false);
@@ -520,7 +508,6 @@ class ChagerequestresignController extends Controller
           print_r(json_encode($retpos));
         }
       } else {
-        // $message = $rfcresign->MESSAGE;
         $model->remarks = 'Data pekerja sudah tidak ada di SAP atau sudah di resign kan';
         $model->status = 4;
         $model->save(false);
@@ -539,6 +526,47 @@ class ChagerequestresignController extends Controller
       $retpos = ['status' => "NOK", 'message' => 'Successfull resign'];
       print_r(json_encode($retpos));      
     }
+  }
+
+  public function actionHrmsResign($dataResign)
+  {
+    if ($dataResign) {
+      $personal_number = $dataResign->perner;
+      $termination_date = date_format($dataResign->resigndate, 'Y-m-d');
+      $reason_code = $dataResign->resignreason->sapid;
+      $reason_desc = $dataResign->resignreason->reason;
+      $endpoint_url = 'https://hrpay.ish.co.id/middleware/hraction/z8';
+
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, $endpoint_url);      
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_POST, 1);
+      $post = array(
+        "personal_number" => $personal_number,
+        "termination_date" => $termination_date,
+        "reason_code" => $reason_code,
+        "reason_desc" => $reason_desc
+      );
+
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+      $headers = array();
+      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+      // Execute cURL request
+      $result = curl_exec($ch);
+      $response = json_decode($result, true);
+      curl_close($ch);
+
+      if ($response['code'] === 200) {
+        // add log resign hrms
+
+      }
+
+      return $response;
+      
+    }
+
+    return false;
   }
 
   /**
@@ -560,14 +588,14 @@ class ChagerequestresignController extends Controller
       $getdatapekerja = $curl->setPostParams([
         'q' => $q,
         'token' => 'ish**2019',
-      ])
+        ])
         ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-      $datapekerja  = json_decode($getdatapekerja);
-      // var_dump($datapekerja);die;
-      $out = null;
-      foreach ($datapekerja as $key => $value) {
-        $out[] = $value;
-        // $out['results'] = $value['jobfunc']['name_job_function'];
+        $datapekerja  = json_decode($getdatapekerja);
+        // var_dump($datapekerja);die;
+        $out = null;
+        foreach ($datapekerja as $key => $value) {
+          $out[] = $value;
+          // $out['results'] = $value['jobfunc']['name_job_function'];
       }
       if ($out) {
         $outs['results'] = $out;
@@ -575,7 +603,8 @@ class ChagerequestresignController extends Controller
         $outs['results'] = null;
       }
     } elseif ($id > 0) {
-
+      
+      $curl = new curl\Curl();
       $getdatapekerjabyperner =  $curl->setPostParams([
         'perner' => $id,
         'token' => 'ish**2019',

@@ -15,7 +15,6 @@ use app\models\Hiring;
 use app\models\Transrincian;
 use app\models\Mailcounter;
 use app\models\Logactivity;
-use app\models\Maillog;
 use app\models\Workorder;
 use app\modules\dashboard\models\Whatsapp;
 use app\modules\dashboard\models\Sms;
@@ -268,35 +267,39 @@ class UtilComponent extends Component
     return $response;
   }
 
-  // public function sendmail($to, $subject, $body, $identifier)
-  // {
-  //   $curl = new curl\Curl();
-  //   $verification = $curl->setPostParams([
-  //     'from' => 'noreply@gojobs.id',
-  //     'to[]' => $to,
-  //     'subject' => $subject,
-  //     'body' => $body,
-  //     'token' => 'ish@cipete',
-  //   ])->post('https://app.sintesys.id/core/openapi/sendmail');
-  //   // ])->post('http://192.168.88.27/mailgatewaygojobs/send');
-  //   if ($verification) {
-  //     $response = $verification[8];
-  //     $now = date('Y-m-d');
-  //     $updatetoday = Mailcounter::find()->where(['date' => $now, 'klasifikasi' => $identifier])->one();
-  //     if ($updatetoday) {
-  //       $addcounter = $updatetoday->count + 1;
-  //       $updatetoday->count = $addcounter;
-  //       $updatetoday->save(false);
-  //     } else {
-  //       $newtoday = new Mailcounter();
-  //       $newtoday->date = date('Y-m-d');
-  //       $newtoday->count = 1;
-  //       $newtoday->klasifikasi = $identifier;
-  //       $newtoday->save(false);
-  //     }
-  //   }
-  //   return $response;
-  // }
+  // added by kaha 21-04-2025
+  public function sendmailbrevo($to, $subject, $body, $identifier = null)
+  {
+    try {
+      Yii::$app->mailer->compose()
+        ->setFrom(['noreply@gojobs.id' => 'Gojobs'])
+        ->setTo($to)
+        ->setSubject($subject)
+        ->setHtmlBody($body)
+        ->send();
+
+      // Mail counter logic (optional)
+      if ($identifier !== null) {
+        $now = date('Y-m-d');
+        $updatetoday = Mailcounter::find()->where(['date' => $now, 'klasifikasi' => $identifier])->one();
+
+        if ($updatetoday) {
+          $updatetoday->count += 1;
+          $updatetoday->save(false);
+        } else {
+          $newtoday = new Mailcounter();
+          $newtoday->date = $now;
+          $newtoday->count = 1;
+          $newtoday->klasifikasi = $identifier;
+          $newtoday->save(false);
+        }
+      }
+
+      return ['error' => 0, 'status' => 'success', 'message' => 'Email sent via SMTP successfully'];
+    } catch (\Exception $e) {
+      return ['error' => 1, 'status' => 'error', 'message' => 'SMTP error: ' . $e->getMessage()];
+    }
+  }
 
   public function sendmailexternal($to, $subject, $body, $identifier, $userid, $fullname)
   {
@@ -312,15 +315,15 @@ class UtilComponent extends Component
     $response = $verification[8];
     // $now = date('Y-m-d');
     $now = date('Y-m-d');
-    $updatetoday = Maillog::find()->where(['date' => $now, 'klasifikasi' => $identifier, 'userid' => $userid, 'fullname' => $fullname])->one();
-    // $updatetoday = Maillog::find()->where(['date'=>$now, 'klasifikasi'=>$identifier])->one();
+    $updatetoday = Mailcounter::find()->where(['date' => $now, 'klasifikasi' => $identifier, 'userid' => $userid, 'fullname' => $fullname])->one();
+    // $updatetoday = Mailcounter::find()->where(['date'=>$now, 'klasifikasi'=>$identifier])->one();
     // var_dump($response);die;
     if ($updatetoday) {
       $addcounter = $updatetoday->count + 1;
       $updatetoday->count = $addcounter;
       $updatetoday->save(false);
     } else {
-      $newtoday = new Maillog();
+      $newtoday = new Mailcounter();
       $newtoday->date = date('Y-m-d');
       $newtoday->count = 1;
       $newtoday->klasifikasi = $identifier;
@@ -839,8 +842,8 @@ class UtilComponent extends Component
 
         if ($dataresult) {
           if ($dataresult->code == 1) {
-            $divisionid = $dataresult->data->positions[0]->division_id;
-            $divisionname = $dataresult->data->positions[0]->division_name;
+            $divisionid = $dataresult->data->positions[0]->division_id ?? null;
+            $divisionname = $dataresult->data->positions[0]->division_name ?? null;
           }
         }
 

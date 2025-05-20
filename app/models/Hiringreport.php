@@ -66,6 +66,7 @@ class Hiringreport extends Hiring
   {
     $query = Hiring::find();
     $query->joinWith("userprofile");
+    $query->andWhere(['hiring.job_id' => null]);
     // $query->joinWith("useredu");
     // $query->joinWith("recrequest");
 

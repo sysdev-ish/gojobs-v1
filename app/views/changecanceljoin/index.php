@@ -18,6 +18,14 @@ use linslin\yii2\curl;
 $this->title = 'Cancel Join';
 $this->params['breadcrumbs'][] = $this->title;
 Modal::begin([
+    'header' => '<h4 class="modal-title">View Recruitment Request</h4>',
+    'id' => 'recreq-modal',
+    'size' => 'modal-lg'
+  ]);
+echo "<div id='recreqview'></div>";
+Modal::end();
+
+Modal::begin([
     'header' => '<h4 class="modal-title">View Change Cancel Join</h4>',
     'id' => 'viewccanceljoin-modal',
     'size' => 'modal-lg'
@@ -91,7 +99,7 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove . $action
                     'attribute' => 'fullname',
                     'format' => 'html',
                     'value' => function ($data) {
-                        return $data->fullname;
+                        return $data->fullname ?? '-';
                     }
                 ],
 
@@ -100,20 +108,31 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove . $action
                     'attribute' => 'perner',
                     'format' => 'html',
                     'value' => function ($data) {
-                        return $data->perner;
+                        return $data->perner ?? '-';
                     }
                 ],
                 
                 [
                     'label' => 'No JO',
                     'attribute' => 'nojo',
-                    'format' => 'html',
+                    'format' => 'raw',
                     'value' => function ($data) {
                         if ($data->perner) {
                             $cekhiring = Hiring::find()->where('perner =' . $data->perner . ' and (statushiring = 4 OR statushiring = 6 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
                             if ($cekhiring) {
                                 $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
-                                return ($getjo) ? $getjo->nojo : '-';
+                                if ($getjo) {
+                                    $btn = Html::button($getjo->nojo, [
+                                        'value' => Yii::$app->urlManager->createUrl('transrincian/viewshort?id=' . $getjo->id),
+                                        'class' => 'btn btn-link recreq-modal-click',
+                                        'style' => 'padding:0px;',
+                                        'data-toggle' => 'tooltip',
+                                        'data-placement' => 'bottom',
+                                        'title' => 'View Recruitment Request Detail'
+                                    ]);
+                                    return $btn;
+                                }
+                                // return ($getjo) ? $getjo->nojo : '-';
                             } else {
                                 return "-";
                             }

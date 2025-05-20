@@ -34,9 +34,10 @@ class checkDataforhiring extends Component
     $usernfedu = $this->cusernfeducation($userid);
     $userecontact = $this->cuserecontact($userid);
     $userabout = $this->cuserabout($userid);
-    $document = $this->cuserdoc($userid);
+    // $document = $this->cuserdoc($userid);
 
-    if ($userprofile && $userfamily && $userfedu && $userecontact  && $userabout && $document) {
+    if ($userprofile && $userfamily && $userfedu && $userecontact  && $userabout) {
+    // if ($userprofile && $userfamily && $userfedu && $userecontact  && $userabout && $document) {
       $ret = 1;
     } else {
       $ret = 0;
@@ -52,7 +53,7 @@ class checkDataforhiring extends Component
     $userfedu = $this->cuserfeducation($userid);
     $userecontact = $this->cuserecontact($userid);
     $userabout = $this->cuserabout($userid);
-    $document = $this->cuserdoc($userid);
+    // $document = $this->cuserdoc($userid);
 
     $data = [
       'profile' => $userprofile,
@@ -60,8 +61,8 @@ class checkDataforhiring extends Component
       'formal education' => $userfedu,
       // 'user nonformal education'=>$usernfedu,
       'emergency contact' => $userecontact,
-      'document' => $document,
-      'about' => $userabout
+      // 'document' => $document,
+      'additional info' => $userabout
     ];
     $dataarray = null;
     foreach ($data as $key => $value) {
@@ -101,7 +102,6 @@ class checkDataforhiring extends Component
   {
     $ret = null;
     $userprofile = Userprofile::find()->where(['userid' => $userid])->one();
-
 
     if ($userprofile) {
       if (
@@ -254,8 +254,8 @@ class checkDataforhiring extends Component
     if ($userabout) {
       if (
         $userabout->bankid &&
-        $userabout->bankaccountnumber &&
-        $userabout->passbook
+        $userabout->bankaccountnumber
+        // $userabout->passbook
       ) {
         $ret = 1;
       } else {

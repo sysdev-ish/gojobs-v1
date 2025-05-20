@@ -282,26 +282,31 @@ app\assets\ReportAsset::register($this);
               'label' => 'Tipe Rekrut',
               'format' => 'raw',
               'value' => function ($data) {
-                // return ($data->recrequest->type_rekrut)?$data->recrequest->type_rekrut : "";
-                if ($data->recrequest) {
-                  switch ($data->recrequest->type_rekrut) {
-                    case 1:
-                      $type = "No Rekrut";
-                      break;
-                    case 2:
-                      $type = "Rekrut";
-                      break;
-                    case 3:
-                      $type = "No Rekrut Existing";
-                      break;
-                    default:
-                      $type = '';
-                      break;
+                if ($data->typejo == 1) {
+                  if ($data->recrequest->typejo == 1) {
+                    if ($data->recrequest->transrincian->type_rekrut == 1) {
+                      $type_rekrut = 'No Recruitment';
+                    } else if ($data->recrequest->transrincian->type_rekrut == 2) {
+                      $type_rekrut = 'Recruitment';
+                    } else {
+                      $type_rekrut = 'No Recruitment (Existing)';
+                    }
+                  } else {
+                    // Check the type of report based on transperner
+                    if ($data->recrequest->transperner->type_rep == 1) {
+                      $type_rekrut = 'No Recruitment';
+                    } else if ($data->recrequest->transperner->type_rep == 2) {
+                      $type_rekrut = 'Recruitment';
+                    } else {
+                      $type_rekrut = 'No Recruitment (Existing)';
+                    }
                   }
-                  return $type;
                 } else {
-                  return "";
+                  $type_rekrut = '-';
                 }
+
+
+                return $type_rekrut;
               }
             ],
             [

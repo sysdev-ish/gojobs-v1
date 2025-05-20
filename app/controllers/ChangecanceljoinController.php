@@ -363,8 +363,6 @@ class ChangecanceljoinController extends Controller
           }
 
         } else {
-          // var_dump('end-here');
-          // die();
           if ($hiring) {
             $recruitmentcandidate = Recruitmentcandidate::find()->where(['userid' => $hiring->userid, 'recruitreqid' => $hiring->recruitreqid])->one();
             $modelrecreq = Transrincian::find()->where(['id' => $hiring->recruitreqid])->one();
@@ -372,17 +370,16 @@ class ChangecanceljoinController extends Controller
             $hiringres = Hiring::find()->where(['perner' => $model->perner, 'statushiring' => 7, 'statushiring' => '6'])->one();
             if ($hiringres) {
               $modelrecreq = Transrincian::find()->where(['id' => $hiringres->recruitreqid])->one();
-              if ($modelrecreq->status_rekrut == 2) {
-                $modelrecreq->status_rekrut = 1;
-              } else if ($modelrecreq->status_rekrut == 4) {
-                $modelrecreq->status_rekrut = 3;
-              }
-
-              $modelrecreq->save(false);
             }
           }
           $model->status = 9;
           if ($model->save()) {
+            if ($modelrecreq->status_rekrut == 2) {
+              $modelrecreq->status_rekrut = 1;
+            } else if ($modelrecreq->status_rekrut == 4) {
+              $modelrecreq->status_rekrut = 3;
+            }
+            $modelrecreq->save(false);
             if ($hiring) {
               $hiring->statushiring = 6;
               $hiring->save(false);

@@ -14,6 +14,24 @@ use app\models\Transrincian;
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Chagerequestdatas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+function fetchSAPData($perner, $token = 'ish**2019')
+{
+  $curl = new curl\Curl();
+  $response = $curl->setPostParams(['perner' => $perner, 'token' => $token])
+    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
+  return json_decode($response);
+}
+
+function fetchHiringAndJob($data)
+{
+  $cekhiring = Hiring::find()->where(['userid' => $data->userid, 'perner' => $data->perner, 'statushiring' => 4])->one();
+  if ($cekhiring) {
+    return Transrincian::findOne(['id' => $cekhiring->recruitreqid]);
+  }
+  return null;
+}
+
 ?>
 <div class="chagerequestdata-view">
   <div class="row">
@@ -27,288 +45,144 @@ $this->params['breadcrumbs'][] = $this->title;
             [
               'label' => 'Perner',
               'format' => 'html',
-              'value' => function ($data) {
-                return ($data->perner) ? $data->perner : "";
-              }
+              'value' => $model->perner ?: '',
             ],
-
             [
               'label' => 'Personal Area',
               'format' => 'html',
               'value' => function ($data) {
-                if ($data->userid) {
-                  $cekhiring = Hiring::find()->where(['userid' => $data->userid, 'perner' => $data->perner, 'statushiring' => 4])->one();
-                  if ($cekhiring) {
-                    $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
-                  } else {
-                    return "Check Perner not Active";
-                  }
-                  $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap)) ? Yii::$app->utils->getpersonalarea($getjo->persa_sap) : "";
-                } else {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                  $persa = ($datapekerjabyperner) ? $datapekerjabyperner[0]->WKTXT : '';
+                $job = fetchHiringAndJob($data);
+                if ($job) {
+                  return Yii::$app->utils->getpersonalarea($job->persa_sap) ?: "Check Perner not Active";
                 }
-                return $persa;
+                $sapData = fetchSAPData($data->perner);
+                return $sapData ? $sapData[0]->WKTXT : '';
               }
             ],
-
             [
               'label' => 'Area',
               'format' => 'html',
               'value' => function ($data) {
-                if ($data->userid) {
-                  $cekhiring = Hiring::find()->where(['userid' => $data->userid, 'perner' => $data->perner, 'statushiring' => 4])->one();
-                  if ($cekhiring) {
-                    $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
-                  } else {
-                    return "Check Perner not Active";
-                  }
-                  $area = (Yii::$app->utils->getarea($getjo->area_sap)) ? Yii::$app->utils->getarea($getjo->area_sap) : "";
-                } else {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                  $area = ($datapekerjabyperner) ? $datapekerjabyperner[0]->BTRTX : '';
+                $job = fetchHiringAndJob($data);
+                if ($job) {
+                  return Yii::$app->utils->getarea($job->area_sap) ?: "Check Perner not Active";
                 }
-                return $area;
+                $sapData = fetchSAPData($data->perner);
+                return $sapData ? $sapData[0]->BTRTX : '';
               }
             ],
-
             [
               'label' => 'Skill Layanan',
               'format' => 'html',
               'value' => function ($data) {
-                if ($data->userid) {
-                  $cekhiring = Hiring::find()->where(['userid' => $data->userid, 'perner' => $data->perner, 'statushiring' => 4])->one();
-                  if ($cekhiring) {
-                    $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
-                  } else {
-                    return "Check Perner not Active";
-                  }
-                  $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap)) ? Yii::$app->utils->getskilllayanan($getjo->skill_sap) : "";
-                } else {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                  $skilllayanan = ($datapekerjabyperner) ? $datapekerjabyperner[0]->PEKTX : '';
+                $job = fetchHiringAndJob($data);
+                if ($job) {
+                  return Yii::$app->utils->getskilllayanan($job->skill_sap) ?: "Check Perner not Active";
                 }
-                return $skilllayanan;
+                $sapData = fetchSAPData($data->perner);
+                return $sapData ? $sapData[0]->PEKTX : '';
               }
             ],
-
             [
               'label' => 'Payroll Area',
               'format' => 'html',
               'value' => function ($data) {
-                if ($data->userid) {
-                  $cekhiring = Hiring::find()->where(['userid' => $data->userid, 'perner' => $data->perner, 'statushiring' => 4])->one();
-                  if ($cekhiring) {
-                    $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
-                  } else {
-                    return "Check Perner not Active";
-                  }
-                  $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap)) ? Yii::$app->utils->getpayrollarea($getjo->abkrs_sap) : "";
-                } else {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                  $payrollarea = ($datapekerjabyperner) ? $datapekerjabyperner[0]->ABTXT : '';
+                $job = fetchHiringAndJob($data);
+                if ($job) {
+                  return Yii::$app->utils->getpayrollarea($job->abkrs_sap) ?: "Check Perner not Active";
                 }
-                return $payrollarea;
+                $sapData = fetchSAPData($data->perner);
+                return $sapData ? $sapData[0]->ABTXT : '';
               }
             ],
-
             [
               'label' => 'Jabatan',
               'format' => 'html',
               'value' => function ($data) {
-                if ($data->userid) {
-                  $cekhiring = Hiring::find()->where(['userid' => $data->userid, 'perner' => $data->perner, 'statushiring' => 4])->one();
-                  if ($cekhiring) {
-                    $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
-                  } else {
-                    return "Check Perner not Active";
-                  }
-                  $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap)) ? Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap) : "";
-                } else {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                  $jabatan = ($datapekerjabyperner) ? $datapekerjabyperner[0]->PLATX : '';
+                $job = fetchHiringAndJob($data);
+                if ($job) {
+                  return Yii::$app->utils->getjabatan($job->hire_jabatan_sap) ?: "Check Perner not Active";
                 }
-                return $jabatan;
+                $sapData = fetchSAPData($data->perner);
+                return $sapData ? $sapData[0]->PLATX : '';
               }
             ],
-
             [
               'label' => 'Level',
               'format' => 'html',
               'value' => function ($data) {
-                if ($data->userid) {
-                  $cekhiring = Hiring::find()->where(['userid' => $data->userid, 'perner' => $data->perner, 'statushiring' => 4])->one();
-                  if ($cekhiring) {
-                    $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
-                  } else {
-                    return "Check Perner not Active";
-                  }
+                $job = fetchHiringAndJob($data);
+                if ($job) {
                   $curl = new curl\Curl();
-                  $getlevels = $curl->setPostParams([
-                    'level' => $getjo->level_sap,
-                    'token' => 'ish**2019',
-                  ])
+                  $response = $curl->setPostParams(['level' => $job->level_sap, 'token' => 'ish**2019'])
                     ->post('http://192.168.88.5/service/index.php/sap_profile/getlevel');
-                  $level  = json_decode($getlevels);
-                  $level = ($level) ? $level : "";
-                } else {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                  $level = ($datapekerjabyperner) ? $datapekerjabyperner[0]->TRFAR_TXT : '';
+                  return json_decode($response) ?: '';
                 }
-                return $level;
+                $sapData = fetchSAPData($data->perner);
+                return $sapData ? $sapData[0]->TRFAR_TXT : '';
               }
             ],
-
             [
               'label' => 'Status',
               'format' => 'html',
               'value' => function ($data) {
-                if ($data->status == 2 or $data->status == 3 or $data->status == 7) {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+                if (in_array($data->status, [2, 3, 7])) {
+                  $sapData = fetchSAPData($data->perner);
                   $status = "Active";
-
-                  if ($datapekerjabyperner) {
-                    if ($datapekerjabyperner[0]->MASSN == "Z8") {
-                      $status = "Resign, Silakan Reject Pengajuan Perubahan Data Bank";
-                    }
+                  if ($sapData) {
+                    // $status = $sapData[0]->MASSN == "Z8" ? "Resi"
+                    $status = $sapData && $sapData[0]->MASSN == "Z8" ? "Resign, Silakan Reject Pengajuan Perubahan Data Bank" : "Active";
                   } else {
-                    $status = "Cancel Join, Silakan Reject Pengajuan Perubahan Data Bank";
+                    $status = "Cancel Join";
                   }
                 } else {
-                  $status = ($data->statusresign == 1) ? "Active" : "Resign";
+                  $status = $data->statusresign == 1 ? "Active" : "Resign";
                 }
                 return $status;
               }
             ],
-
             [
               'label' => 'Resign Reason',
               'format' => 'html',
               'value' => function ($data) {
-                if ($data->status == 2 or $data->status == 3 or $data->status == 7) {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                  $resignreason = ($datapekerjabyperner) ? (($datapekerjabyperner[0]->MASSN == "Z8") ? $datapekerjabyperner[0]->MSGTX : "-") : "not found";
-                } else {
-                  $resignreason = $data->resignreason;
+                if (in_array($data->status, [2, 3, 7])) {
+                  $sapData = fetchSAPData($data->perner);
+                  return $sapData && $sapData[0]->MASSN == "Z8" ? $sapData[0]->MSGTX : "-";
                 }
-                return $resignreason;
+                return $data->resignreason;
               }
             ],
-
             [
               'label' => 'Resign Date',
               'format' => 'html',
               'value' => function ($data) {
-                if ($data->status == 2 or $data->status == 3 or $data->status == 7) {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                  $resigndate = "-";
-
-                  if ($datapekerjabyperner) {
-                    if ($datapekerjabyperner[0]->MASSN == "Z8") {
-                      $resigndate = "-";
-
-                      if ($datapekerjabyperner[0]->DAT35) {
-                        $year = substr($datapekerjabyperner[0]->DAT35, 0, 4);
-                        $month = substr($datapekerjabyperner[0]->DAT35, 4, 2);
-                        $date = substr($datapekerjabyperner[0]->DAT35, 6, 2);
-                        $resigndate = $year . "-" . $month . "-" . $date;
-                      }
-                    }
+                if (in_array($data->status, [2, 3, 7])) {
+                  $sapData = fetchSAPData($data->perner);
+                  if ($sapData && $sapData[0]->MASSN == "Z8") {
+                    return $sapData[0]->DAT35 ? substr($sapData[0]->DAT35, 0, 4) . "-" . substr($sapData[0]->DAT35, 4, 2) . "-" . substr($sapData[0]->DAT35, 6, 2) : "-";
                   }
-                } else {
-                  $resigndate = $data->resigndate;
                 }
-
-                return $resigndate;
+                return $data->resigndate;
               }
             ],
-
             'createtime',
             'updatetime',
             'approvedtime',
-
             [
               'label' => 'Created By',
               'format' => 'html',
-              'value' => function ($data) {
-
-                return ($data->createduser) ? $data->createduser->name : "";
-              }
+              'value' => $model->createduser->name ?: '',
             ],
-
             [
               'label' => 'Updated By',
               'format' => 'html',
-              'value' => function ($data) {
-
-                return ($data->updateduser) ? $data->updateduser->name : "";
-              }
+              'value' => $model->updateduser->name ?: '',
             ],
-
             [
               'label' => 'Approved By',
               'format' => 'html',
-              'value' => function ($data) {
-
-                return ($data->approveduser) ? $data->approveduser->name : "";
-              }
+              'value' => $model->approveduser->name ?: '',
             ],
-
-            // 'kategorydata',
           ],
         ]) ?>
       </div>
@@ -318,99 +192,42 @@ $this->params['breadcrumbs'][] = $this->title;
       <div class="box-body table-responsive">
         <table class="table no-border">
           <tbody>
-            <!-- <? //php var_dump($bankaccountoldval);die(); 
-                  ?> -->
-            <?php if ($bankaccountoldval) : ?>
-              <tr>
-                <td width="20%" style="text-align:right;"><b>Bank Account</b></td>
-                <td width="30%"><?php
-                                echo $bankaccountoldval; ?></td>
-                <td rowspan="2" style="vertical-align: middle !important;font-size:14pt;"><span class="fa fa-retweet"></span></td>
-                <td width="30%" class="text-red"><?php echo $bankaccountnewval; ?></td>
-              </tr>
-              <tr>
-                <td width="20%" style="text-align:right;"><b>Account Number</b></td>
-                <td><?php echo $bankaccountnumberoldval . '<br>' .
-                      (($bankaccountolddoc) ? Html::a('<i class="fa fa-download"></i> ' . $bankaccountolddoc, ['/app/assets/upload/bankaccount/' . $bankaccountolddoc], ['target' => '_blank', 'class' => 'btn btn-sm btn-default text-muted']) : '-'); ?></td>
-                <td width="30%" class="text-red"><?php echo $bankaccountnumbernewval . '<br>' .
-                                                    (($bankaccountnewdoc) ? Html::a('<i class="fa fa-download"></i> ' . $bankaccountnewdoc, ['/app/assets/upload/bankaccount/' . $bankaccountnewdoc], ['target' => '_blank', 'class' => 'btn btn-sm btn-default text-muted']) : '-'); ?> </td>
-              </tr>
-            <?php else : ?>
-              <tr>
-                <td width="20%" style="text-align:right;"><b>Bank Account</b></td>
-                <td width="30%"><?php
-                                echo $bankaccount; ?></td>
-                <td rowspan="2" style="vertical-align: middle !important;font-size:14pt;"><span class="fa fa-retweet"></span></td>
-                <td width="30%" class="text-red"><?php echo $bankaccountnewval; ?></td>
-              </tr>
-              <tr>
-                <td width="20%" style="text-align:right;"><b>Account Number</b></td>
-                <td><?php echo $bankaccountnumber . '<br>' .
-                      (($bankaccountfile) ? Html::a('<i class="fa fa-download"></i> ' . $bankaccountfile, ['/app/assets/upload/bankaccount/' . $bankaccountfile], ['target' => '_blank', 'class' => 'btn btn-sm btn-default text-muted']) : '-'); ?></td>
-                <td width="30%" class="text-red"><?php echo $bankaccountnumbernewval . '<br>' .
-                                                    (($bankaccountnewdoc) ? Html::a('<i class="fa fa-download"></i> ' . $bankaccountnewdoc, ['/app/assets/upload/bankaccount/' . $bankaccountnewdoc], ['target' => '_blank', 'class' => 'btn btn-sm btn-default text-muted']) : '-'); ?> </td>
-              </tr>
-            <?php endif; ?>
-
+            <tr>
+              <td width="20%" style="text-align:right;"><b>Bank Account</b></td>
+              <td width="30%"><?= $bankaccountoldval ?: $bankaccount ?></td>
+              <td rowspan="2" style="vertical-align: middle !important;font-size:14pt;"><span class="fa fa-retweet"></span></td>
+              <td width="30%" class="text-red"><?= $bankaccountnewval ?></td>
+            </tr>
+            <tr>
+              <td width="20%" style="text-align:right;"><b>Account Number</b></td>
+              <td><?= $bankaccountnumberoldval ?: $bankaccountnumber ?><br>
+                <?= ($bankaccountolddoc) ? Html::a('<i class="fa fa-download"></i> ' . $bankaccountolddoc, ['/app/assets/upload/bankaccount/' . $bankaccountolddoc], ['target' => '_blank', 'class' => 'btn btn-sm btn-default text-muted']) : '-' ?>
+              </td>
+              <td width="30%" class="text-red">
+                <?= $bankaccountnumbernewval ?><br>
+                <?= ($bankaccountnewdoc) ? Html::a('<i class="fa fa-download"></i> ' . $bankaccountnewdoc, ['/app/assets/upload/bankaccount/' . $bankaccountnewdoc], ['target' => '_blank', 'class' => 'btn btn-sm btn-default text-muted']) : '-' ?>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
+
       <?php $form = ActiveForm::begin(); ?>
       <?php
-      if ($model->status == 2) {
-        $curl = new curl\Curl();
-        $getdatapekerjabyperner =  $curl->setPostParams([
-          'perner' => $model->perner,
-          'token' => 'ish**2019',
-        ])
-          ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-        $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-
-        if ($datapekerjabyperner) {
-          if ($datapekerjabyperner[0]->MASSN == "Z8") {
-            $data = [5 => 'Reject', 6 => 'Revise'];
-          }
-          $data = [3 => 'Approve', 5 => 'Reject', 6 => 'Revise'];
-        }
-        // $cekhiring = Hiring::find()->where(['userid' => $model->userid, 'perner' => $model->perner, 'statushiring' => 4])->one();
-        // if ($cekhiring) {
-        //   $data = [3 => 'Approve', 5 => 'Reject', 6 => 'Revise'];
-        // } else {
-        //   $data = [5 => 'Reject', 6 => 'Revise'];
-        // }
+      $sapData = fetchSAPData($model->perner);
+      if ($sapData && $sapData[0]->MASSN == "Z8") {
+        $statusOptions = [5 => 'Reject', 6 => 'Revise'];
       } else {
-        $curl = new curl\Curl();
-        $getdatapekerjabyperner =  $curl->setPostParams([
-          'perner' => $model->perner,
-          'token' => 'ish**2019',
-        ])
-          ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-        $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-
-        if ($datapekerjabyperner) {
-          if ($datapekerjabyperner[0]->MASSN == "Z8") {
-            $data = [5 => 'Reject', 6 => 'Revise'];
-          }
-          $data = [4 => 'Approve', 5 => 'Reject', 6 => 'Revise'];
-        }
-        // $cekhiring = Hiring::find()->where(['userid' => $model->userid, 'perner' => $model->perner, 'statushiring' => 4])->one();
-        // if ($cekhiring) {
-        //   $data = [4 => 'Approve', 5 => 'Reject', 6 => 'Revise'];
-        // } else {
-        //   $data = [5 => 'Reject', 6 => 'Revise'];
-        // }
+        $statusOptions = $model->status == 2 ? [3 => 'Approve', 5 => 'Reject', 6 => 'Revise'] : [4 => 'Approve', 5 => 'Reject', 6 => 'Revise'];
       }
-      echo   $form->field($model, 'status')->widget(Select2::classname(), [
-        'data' => $data,
-        'options' => [
-          'placeholder' => '- select -', 'id' => 'status',
-        ],
-        'pluginOptions' => [
-          'allowClear' => false,
-          'initialize' => true,
-        ],
+
+      echo $form->field($model, 'status')->widget(Select2::classname(), [
+        'data' => $statusOptions,
+        'options' => ['placeholder' => '- select -', 'id' => 'status'],
+        'pluginOptions' => ['allowClear' => false, 'initialize' => true],
       ])->label('Action');
       ?>
+
       <?= $form->field($model, 'remarks')->textArea(['maxlength' => true]) ?>
       <div class="box-footer">
         <?= Html::submitButton('Submit', ['class' => 'btn btn-success btn-flat pull-right']) ?>
@@ -418,6 +235,4 @@ $this->params['breadcrumbs'][] = $this->title;
       <?php ActiveForm::end(); ?>
     </div>
   </div>
-
-
 </div>

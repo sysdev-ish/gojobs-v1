@@ -181,7 +181,10 @@ if (Yii::$app->utils->permission($role, 'm11') && Yii::$app->utils->permission($
           'format' => 'html',
           'value' => function ($data) {
 
-            return ($data->reccandidate) ? (($data->reccandidate->recrequest->city) ? $data->reccandidate->recrequest->city->city_name : "") : '-';
+            return isset($data->reccandidate) && isset($data->reccandidate->recrequest) && isset($data->reccandidate->recrequest->city)
+              ? $data->reccandidate->recrequest->city->city_name
+              : '-';
+
           }
         ],
 

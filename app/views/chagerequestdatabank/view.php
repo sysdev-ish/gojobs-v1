@@ -13,6 +13,13 @@ $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Chagerequestdatas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
+function fetchSAPData($perner, $token = 'ish**2019')
+{
+  $curl = new curl\Curl();
+  $response = $curl->setPostParams(['perner' => $perner, 'token' => $token])
+    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
+  return json_decode($response);
+}
 
 ?>
 <div class="chagerequestdata-view box box-solid">
@@ -42,14 +49,9 @@ $this->params['breadcrumbs'][] = $this->title;
                   $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                   $persa = (Yii::$app->utils->getpersonalarea($getjo->persa_sap)) ? Yii::$app->utils->getpersonalarea($getjo->persa_sap) : "";
                 } else {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                  $persa = ($datapekerjabyperner) ? $datapekerjabyperner[0]->WKTXT : "not found";
+                  $sapData = fetchSAPData($data->perner);
+                  $persa = $sapData ? $sapData[0]->WKTXT : '';
+                  // $persa = ($datapekerjabyperner) ? $datapekerjabyperner[0]->WKTXT : "not found";
                 }
                 return $persa;
               }
@@ -64,14 +66,9 @@ $this->params['breadcrumbs'][] = $this->title;
                   $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                   $area = (Yii::$app->utils->getarea($getjo->area_sap)) ? Yii::$app->utils->getarea($getjo->area_sap) : "";
                 } else {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                  $area = ($datapekerjabyperner) ? $datapekerjabyperner[0]->BTRTX : "not found";
+                  $sapData = fetchSAPData($data->perner);
+                  $area = $sapData ? $sapData[0]->BTRTX : '';
+                  // $area = ($datapekerjabyperner) ? $datapekerjabyperner[0]->BTRTX : "not found";
                 }
                 return $area;
               }
@@ -86,14 +83,8 @@ $this->params['breadcrumbs'][] = $this->title;
                   $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                   $skilllayanan = (Yii::$app->utils->getskilllayanan($getjo->skill_sap)) ? Yii::$app->utils->getskilllayanan($getjo->skill_sap) : "";
                 } else {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                  $skilllayanan = ($datapekerjabyperner) ? $datapekerjabyperner[0]->PEKTX : "not found";
+                  $sapData = fetchSAPData($data->perner);
+                  $skilllayanan = $sapData ? $sapData[0]->PEKTX : '';
                 }
                 return $skilllayanan;
               }
@@ -108,14 +99,8 @@ $this->params['breadcrumbs'][] = $this->title;
                   $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                   $payrollarea = (Yii::$app->utils->getpayrollarea($getjo->abkrs_sap)) ? Yii::$app->utils->getpayrollarea($getjo->abkrs_sap) : "";
                 } else {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                  $payrollarea = ($datapekerjabyperner) ? $datapekerjabyperner[0]->ABTXT : "not found";
+                  $sapData = fetchSAPData($data->perner);
+                  $payrollarea = $sapData ? $sapData[0]->ABTXT : '';
                 }
                 return $payrollarea;
               }
@@ -130,14 +115,8 @@ $this->params['breadcrumbs'][] = $this->title;
                   $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
                   $jabatan = (Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap)) ? Yii::$app->utils->getjabatan($getjo->hire_jabatan_sap) : "";
                 } else {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                  $jabatan = ($datapekerjabyperner) ? $datapekerjabyperner[0]->PLATX : "not found";
+                  $sapData = fetchSAPData($data->perner);
+                  $jabatan = $sapData ? $sapData[0]->PLATX : '';
                 }
                 return $jabatan;
               }
@@ -159,68 +138,41 @@ $this->params['breadcrumbs'][] = $this->title;
                   $level  = json_decode($getlevels);
                   $level = ($level) ? $level : "";
                 } else {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                  $level = ($datapekerjabyperner) ? $datapekerjabyperner[0]->TRFAR_TXT : "not found";
+                  $sapData = fetchSAPData($data->perner);
+                  $level = $sapData ? $sapData[0]->TRFAR_TXT : '';
                 }
                 return $level;
               }
-
             ],
             [
               'label' => 'Status',
               'format' => 'html',
               'value' => function ($data) {
-                if ($data->status == 2 or $data->status == 3 or $data->status == 7) {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
+                if (in_array($data->status, [2, 3, 7])) {
+                  $sapData = fetchSAPData($data->perner);
                   $status = "Active";
-
-                  if ($datapekerjabyperner) {
-                    if ($datapekerjabyperner[0]->MASSN == "Z8") {
-                      $status = "Resign";
-                    }
+                  if ($sapData) {
+                    // $status = $sapData[0]->MASSN == "Z8" ? "Resi"
+                    $status = $sapData && $sapData[0]->MASSN == "Z8" ? "Resign, Silakan Reject Pengajuan Perubahan Data Bank" : "Active";
                   } else {
                     $status = "Cancel Join";
                   }
                 } else {
-                  $status = ($data->statusresign == 1) ? "Active" : "Resign";
+                  $status = $data->statusresign == 1 ? "Active" : "Resign";
                 }
-
                 return $status;
               }
-
             ],
             [
               'label' => 'Resign Reason',
               'format' => 'html',
               'value' => function ($data) {
-                if ($data->status == 2 or $data->status == 3 or $data->status == 7) {
-                  $curl = new curl\Curl();
-                  $getdatapekerjabyperner =  $curl->setPostParams([
-                    'perner' => $data->perner,
-                    'token' => 'ish**2019',
-                  ])
-                    ->post('http://192.168.88.5/service/index.php/sap_profile/getdatapekerjaall');
-                  $datapekerjabyperner  = json_decode($getdatapekerjabyperner);
-                  $resignreason = ($datapekerjabyperner) ? (($datapekerjabyperner[0]->MASSN == "Z8") ? $datapekerjabyperner[0]->MSGTX : "-") : "not found";
-                } else {
-                  $resignreason = $data->resignreason;
+                if (in_array($data->status, [2, 3, 7])) {
+                  $sapData = fetchSAPData($data->perner);
+                  return $sapData && $sapData[0]->MASSN == "Z8" ? $sapData[0]->MSGTX : "-";
                 }
-
-                return $resignreason;
+                return $data->resignreason;
               }
-
             ],
             [
               'label' => 'Resign Date',

@@ -172,7 +172,7 @@ $action = $actionview . $actionapprove;
               if ($name) {
                 return $name;
               } else {
-                return $approvedBy2 . '<br><i class="text-red">(NIK Unregistered HRIS)</i>';
+                return $approvedBy2 . ' (' . $data->approveduser->name . ') <br><i class="text-red">(NIK Unregistered HRIS)</i>';
               }
             } else {
               return 'No Approval';

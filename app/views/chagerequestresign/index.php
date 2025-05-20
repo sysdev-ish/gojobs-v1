@@ -296,7 +296,7 @@ $action = $actionview . $actionupdate . $actiondelete . $actionapprove;
               return $btn;
             },
             'approve' => function ($url, $model, $key) {
-              if ($model->status == 2 || $model->status == 7) {
+              if ($model->status == 2 || $model->status == 7 || $model->status == 10) {
                 $disabled = false;
               } else {
                 $disabled = true;

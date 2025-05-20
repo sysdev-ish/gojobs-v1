@@ -273,7 +273,7 @@ app\assets\ReportAsset::register($this);
               'attribute' => 'fullname',
               'format' => 'raw',
               'value' => function ($data) {
-                return $data->userprofile->fullname;
+                return $data->userprofile->fullname ?? null;
               }
             ],
 
@@ -329,12 +329,15 @@ app\assets\ReportAsset::register($this);
               'format' => 'raw',
               'value' => function ($data) {
 
-                $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
-                if ($cekhiring) {
-                  $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+                if ($data->userid) {
+                  $cekhiring = Hiring::find()->where('userid =' . $data->userid . ' and (statushiring = 4 OR statushiring = 6 OR statushiring = 7)')->orderBy(["id" => SORT_DESC])->one();
+                  if ($cekhiring) {
+                    $getjo = Transrincian::find()->where(['id' => $cekhiring->recruitreqid])->one();
+                  }
+                  return ($getjo->transjo->segmen) ? $getjo->transjo->segmen->divisi : '-';
                 }
+                return '-';
                 // var_dump($getjo->transjo);die;
-                return ($getjo->transjo->segmen) ? $getjo->transjo->segmen->divisi : '-';
               }
             ],
 

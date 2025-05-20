@@ -626,26 +626,43 @@ class SiteController extends Controller
       ]);
     }
   }
+
   public function actionOauthhris()
   {
-    if (isset($_GET['code'])) {
-      $auth_code = $_GET['code'];
+    if (!isset($_GET['code'])) {
+      throw new HttpException(404, 'Failed to get user login code');
+    }
+
+    $auth_code = $_GET['code'];
+
+    try {
       $accesstoken = Yii::$app->oauth->getaccesstoken($auth_code);
       // var_dump($accesstoken);die;
-      $token = json_decode($accesstoken);
-      $user = Yii::$app->oauth->getuserdata($token->data->access_token);
-      // var_dump($user);die;
-      if ($user) {
-        return $this->goHome();
-      } else {
-        $this->layout = 'main-applicant';
-        throw new HttpException(404, 'fail to create session login');
+      if (empty($accesstoken)) {
+        throw new \Exception('Empty access token response');
       }
-    } else {
-      // $this->layout = 'main-applicant';
-      throw new HttpException(404, 'fail to get user login  code');
+
+      $token = json_decode($accesstoken);
+      if (!isset($token->data->access_token)) {
+        throw new \Exception('Access token not found in response');
+      }
+
+      $access_token = $token->data->access_token;
+      $user = Yii::$app->oauth->getuserdata($access_token);
+
+      if (empty($user)) {
+        throw new \Exception('User data is empty');
+      }
+
+      // Success, redirect to home
+      return $this->goHome();
+    } catch (\Exception $e) {
+      Yii::error('OAuth error: ' . $e->getMessage(), __METHOD__);
+      $this->layout = 'main-applicant';
+      throw new HttpException(500, 'Failed to authenticate via HRIS: ' . $e->getMessage());
     }
   }
+
   public function actionAjaxLogin()
   {
     if (Yii::$app->request->isAjax) {
@@ -736,8 +753,23 @@ class SiteController extends Controller
         $body = str_replace('{fullname}', $user->name, $body);
         $body = str_replace('{token}', $randomstring, $body);
 
-        //comment this if email limit make condition on top function
-        $verification = Yii::$app->utils->sendmail($to, $subject, $body, 2);
+        // added by kaha 21-04-2025
+        $verification = Yii::$app->utils->sendmailbrevo($to, $subject, $body, 2);
+        if ($verification['error'] === 0) {
+          Yii::$app->session->setFlash('success', 'Email sent check your inbox');
+          return $this->redirect('verifycode');
+        }
+
+        // Brevo failed, fallback to SMTP
+        $verification2 = Yii::$app->utils->sendmail($to, $subject, $body, 2);
+
+        if ($verification2['error'] === 0) {
+          Yii::$app->session->setFlash('success', 'Email sent check your inbox or spam');
+          return $this->redirect('verifycode');
+        }
+
+        Yii::$app->session->setFlash('error', 'Email not sent');
+        return $this->redirect('verifycode');
       }
       return $this->redirect('verifycode');
     } else {

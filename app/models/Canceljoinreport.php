@@ -54,10 +54,9 @@ class Canceljoinreport extends Changecanceljoin
     public function search($params)
     {
         $query = Changecanceljoin::find();
-
         //Add by pwd
         // $query->leftJoin('ish_catalog_baru.trans_rincian_rekrut', 'trans_rincian_rekrut.id = hiring.recruitreqid');
-
+        
         // add conditions that should always apply here
         
         $dataProvider = new ActiveDataProvider([
@@ -67,8 +66,8 @@ class Canceljoinreport extends Changecanceljoin
             'pageSize' => 10,
           ],
         ]);
-
-
+        
+        
         $this->load($params);
         //just view report if status > 2 / not in draft
         $query->where('status > 5 ');

@@ -1,5 +1,4 @@
 <?php
-
 namespace app\components;
 
 use Yii;
@@ -11,45 +10,35 @@ use app\models\Userlogin;
 
 
 
-class OauthComponent extends Component
-{
-
-
+class OauthComponent extends Component {
   //start connect hris
-  public function getaccesstoken($code)
-  {
+  public function getaccesstoken($code){
     $curl = new curl\Curl();
     $getaccesstoken = $curl->setPostParams([
       'grant_type' => 'authorization_code',
       'code' => $code,
-      'redirect_uri' => 'http://localhost/rekrut/site/oauthhris',
-      'client_id' => 'GojobsDev',
-      'client_secret' => 'so5fjnikjeood7aotoc1',
-      // 'redirect_uri' => 'https://gojobs.id/rekrut/site/oauthhris',
-      // 'client_id' => 'goj0bsid',
-      // 'client_secret' => 'e95h0gf8x8mwlek9bqgy',
+      'redirect_uri' => 'https://gojobs.id/rekrut/site/oauthhris',
+      'client_id' => 'goj0bsid',
+      'client_secret' => 'e95h0gf8x8mwlek9bqgy',
     ])
-      ->post('passport.ish.co.id/core/api/sso/token');
-    // var_dump($getaccesstoken);die();
+    ->post('https://passport.ish.co.id/core/api/sso/token');
     $response = $getaccesstoken;
     return $response;
   }
-  // 
-  public function getuserdata($token)
-  {
+
+  public function getuserdata($token){
     $curl = new curl\Curl();
     $getuserdata = $curl->setPostParams([
       'access_token' => $token,
     ])
-      ->post('http://passport.ish.co.id/core/api/sso/info');
+    ->post('https://passport.ish.co.id/core/api/sso/info');
     $useroauthdata = json_decode($getuserdata);
-    // var_dump($useroauthdata);die;
-    if ($useroauthdata->code == 1) {
+    if($useroauthdata->code == 1){
       // var_dump(Yii::$app->getUser());die;
       if ($user =  User::findByUsername($useroauthdata->data->username)) {
-        if ($user->access_token == $token) {
+        if($user->access_token == $token){
           return Yii::$app->user->login($user);
-        } else {
+        }else{
           $tokenupdate = Userlogin::findOne($user->id);
           $tokenupdate->auth_key =  $token;
           $tokenupdate->password_hash =  $token;
@@ -71,7 +60,7 @@ class OauthComponent extends Component
         $model->verify_status = 1;
         $model->created_at = date('Y-m-d H-i-s');
         $model->updated_at = date('Y-m-d H-i-s');
-        if ($model->save(false)) {
+        if($model->save(false)){
           if ($user =  User::findByUsername($useroauthdata->data->username)) {
             return Yii::$app->user->login($user);
           }
@@ -80,15 +69,17 @@ class OauthComponent extends Component
       }
     }
     return null;
+
   }
-  public function logout($id)
-  {
+  
+  public function logout($id){
     $user =  User::findIdentity($id);
+    // var_dump($user);die();
     $curl = new curl\Curl();
     $logout = $curl->setPostParams([
       'access_token' => $user->access_token,
     ])
-      ->post('passport.ish.co.id/core/api/sso/logout');
+    ->post('https://passport.ish.co.id/core/api/sso/logout');
     // var_dump($getaccesstoken);die;
     $response = $logout;
     return $response;

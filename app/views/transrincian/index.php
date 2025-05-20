@@ -24,8 +24,8 @@ Modal::begin([
 ]);
 
 echo "<div id='addcandidateform2'></div>";
-
 Modal::end();
+
 Modal::begin([
   'header' => '<h4 class="modal-title">Stop Job Order</h4>',
   'id' => 'stopjo-modal',
@@ -33,21 +33,33 @@ Modal::begin([
   'clientOptions' => ['backdrop' => 'static', 'keyboard' => false],
   // 'pjaxContainer' => '#addcandidate',
 ]);
-
 echo "<div id='stopjoview'></div>";
-
 Modal::end();
+
+Modal::begin([
+  'header' => '<h4 class="modal-title">Hold Job Order</h4>',
+  'id' => 'hold-job-modal',
+  'size' => 'modal-xl',
+  'clientOptions' => ['backdrop' => 'static', 'keyboard' => false]
+]);
+echo "<div id='hold-job-view'></div>";
+Modal::end();
+
 if (Yii::$app->user->isGuest) {
   $role = null;
 } else {
   // $userid = Yii::$app->user->identity->id;
   $role = Yii::$app->user->identity->role;
 }
+$actionHold = '';
 $actionstop = '';
 $actionview = '';
 $actionaddcandidate = '';
 if ($role = 1) {
   $actionReset = '{reset}';
+}
+if (Yii::$app->utils->permission($role, 'm94') && in_array($role, [3, 22, 23]) || $role = 1) {
+  $actionHold = '{hold}';
 }
 if (Yii::$app->utils->permission($role, 'm62')) {
   $actionstop = '{stop}';
@@ -58,7 +70,7 @@ if (Yii::$app->utils->permission($role, 'm1')) {
 if (Yii::$app->utils->permission($role, 'm63')) {
   $actionaddcandidate = '{addcandidate2}';
 }
-$action = $actionstop . $actionview . $actionaddcandidate . $actionReset;
+$action = $actionHold . $actionstop . $actionview . $actionaddcandidate . $actionReset;
 
 ?>
 <div class="transrincian-index box box-default">
@@ -198,63 +210,6 @@ $action = $actionstop . $actionview . $actionaddcandidate . $actionReset;
           }
         ],
 
-        // [
-        //   'label' => 'Gender',
-        //   'attribute' => 'gender',
-        //   'format' => 'html',
-        //   'filter' => \kartik\select2\Select2::widget([
-        //     'model' => $searchModel,
-        //     'attribute' => 'gender',
-        //     'data' => ['Pria-Wanita' => "Pria-Wanita", 'Pria' => "Pria", 'Wanita' => "Wanita"],
-        //     'options' => ['placeholder' => '--'],
-        //     'pluginOptions' => [
-        //       'allowClear' => true,
-        //       'width' => '100px',
-        //     ],
-        //   ]),
-        //   'value' => function ($data) {
-        //     return ($data->gender) ? $data->gender : "-";
-        //   }
-        // ],
-
-        // [
-        //   'label' => 'Pendidikan',
-        //   'attribute' => 'pendidikan',
-        //   'format' => 'html',
-        //   'filter' => \kartik\select2\Select2::widget([
-        //     'model' => $searchModel,
-        //     'attribute' => 'pendidikan',
-        //     'data' => ['SD' => "SD", 'SMP' => "SMP", 'SMA' => "SMA", 'D1' =>"D1", 'D2' => "D2", 'D3' =>"D3", 'S1' =>"S1", 'S2' => "S2"],
-        //     'options' => ['placeholder' => '--'],
-        //     'pluginOptions' => [
-        //       'allowClear' => true,
-        //       'width' => '100px',
-        //     ],
-        //   ]),
-        //   'value' => function ($data) {
-        //     return ($data->pendidikan) ? $data->pendidikan : "-";
-        //   }
-        // ],
-
-        // [
-        //   'label' => 'Kontrak',
-        //   'attribute' => 'kontrak',
-        //   'format' => 'html',
-        //   'filter' => \kartik\select2\Select2::widget([
-        //     'model' => $searchModel,
-        //     'attribute' => 'kontrak',
-        //     'data' => ['PKWT' => "PKWT", 'KEMITRAAN' => "KEMITRAAN", 'MAGANG' => "MAGANG", 'PART TIME' =>"PART TIME", 'THL' => "THL", 'PKWT-KEMITRAAN PB' =>"PKWT-KEMITRAAN PB"],
-        //     'options' => ['placeholder' => '--'],
-        //     'pluginOptions' => [
-        //       'allowClear' => true,
-        //       'width' => '120px',
-        //     ],
-        //   ]),
-        //   'value' => function ($data) {
-        //     return ($data->kontrak) ? $data->kontrak : "-";
-        //   }
-        // ],
-
         [
           'attribute' => 'jumlah',
           'contentOptions' => ['style' => 'width: 80px;']
@@ -300,7 +255,6 @@ $action = $actionstop . $actionview . $actionaddcandidate . $actionReset;
           }
         ],
 
-
         [
           'label' => 'Total Applied',
           'format' => 'html',
@@ -327,8 +281,6 @@ $action = $actionstop . $actionview . $actionaddcandidate . $actionReset;
             return Yii::$app->check->checkJohired($data->id, 1);
           }
         ],
-
-
 
         // 'komentar',
         // 'skema',
@@ -389,6 +341,27 @@ $action = $actionstop . $actionview . $actionaddcandidate . $actionReset;
               ]);
               return $btn;
             },
+            'hold' => function ($url, $model, $key) {
+              if ($model->status_rekrut == 2 or Yii::$app->check->checkstatuscr($model->id) || $model->is_hold_jobs != 0) {
+                $disabled = true;
+              } else {
+                $totalhired = Yii::$app->check->checkJohired($model->id, 2);
+                if ($totalhired < $model->jumlah) {
+                  $disabled = false;
+                } else {
+                  $disabled = true;
+                }
+              }
+              $button = Html::button('<i class="fa fa-gear" style="font-size:12pt;"></i>', [
+                'value' => Yii::$app->urlManager->createUrl('request-hold-job/create?recruitreqid=' . $model->id),
+                'class' => 'btn btn-sm btn-warning hold-job-modal-click',
+                'disabled' => $disabled,
+                'data-toggle' => 'tooltip',
+                'data-placement' => 'bottom',
+                'title' => 'Request Hold Job Order',
+              ]);
+              return $button;
+            },
             'stop' => function ($url, $model, $key) {
               if ($model->status_rekrut == 2 or Yii::$app->check->checkstatuscr($model->id)) {
                 $disabled = true;
@@ -413,7 +386,7 @@ $action = $actionstop . $actionview . $actionaddcandidate . $actionReset;
             'reset' => function ($url, $model) {
               if ($model->status_rekrut == 2 || $model->status_rekrut == 4) {
                 $disabled = false;
-                return Html::a('<i class="fa fa-recycle" style="font-size:12pt;"></i>', ['transrincian-active', 'id' => $model->id], [
+                return Html::a('<i class="fa fa-send" style="font-size:12pt;"></i>', ['transrincian-active', 'id' => $model->id], [
                   'class' => 'btn btn-sm btn-info',
                   'data' => [
                     'confirm' => 'Are you sure you want to reset this item?',

@@ -193,18 +193,18 @@ use yii\helpers\Url;
           var Difference_In_Days = (date2.getTime() - date1.getTime()) / (1000 * 3600 * 24);
           var Difference_In_Daysr = (date2r.getTime() - date1r.getTime()) / (1000 * 3600 * 24);
           if(startdate && enddate){
-            if (Difference_In_Days <= 240 ){
+            if (Difference_In_Days <= 365 ){
               return true;
             }else{
-              alert("Periode awal kontrak tidak boleh melebihi 240 Hari");
+              alert("Periode awal kontrak tidak boleh melebihi 365 Hari");
               return false;
             }
           }
           if(startdater && enddater){
-            if (Difference_In_Daysr <= 240 ){
+            if (Difference_In_Daysr <= 365 ){
               return true;
             }else{
-              alert("Periode awal resign tidak boleh melebihi 240 Hari");
+              alert("Periode awal resign tidak boleh melebihi 365 Hari");
               return false;
             }
           }

@@ -109,10 +109,10 @@ Modal::end();
                   <?php (Yii::$app->check->datacompleted($userid) == 1) ?>
                   <?php if (Yii::$app->user->isGuest) : ?>
                     <li>
-                      <?= Html::button('Login', ['id' => 'loginButton', 'value' => \yii\helpers\Url::to(['site/login']), 'class' => 'btn btn-sm btn-primary']) ?>
+                      <?= Html::button(Yii::t('app', 'Login'), ['id' => 'loginButton', 'value' => \yii\helpers\Url::to(['site/login']), 'class' => 'btn btn-sm btn-primary']) ?>
                     </li>
                     <li>
-                      <?= Html::button('Register', ['id' => 'signupButton', 'value' => \yii\helpers\Url::to(['site/signup']), 'class' => 'btn btn-sm btn-primary-flip']) ?>
+                      <?= Html::button(Yii::t('app', 'Register'), ['id' => 'signupButton', 'value' => \yii\helpers\Url::to(['site/signup']), 'class' => 'btn btn-sm btn-primary-flip']) ?>
                     </li>
                   <?php else : ?>
                     <li><?= Html::a(

@@ -622,6 +622,7 @@ class HiringController extends Controller
               if ($ret->status == 'OK') {
                 $model->perner = $ret->pernr;
                 $model->statushiring = 4;
+                $model->updatetime = date('Y-m-d H-i-s');
                 $model->message = $ret->message;
                 $model->save();
               } else {
@@ -686,7 +687,6 @@ class HiringController extends Controller
   {
     $model = Hiring::find()->where(['statushiring' => 3, 'statusbiodata' => 2, 'perner' => null, 'id' => $id])->one();
     if ($model) {
-      // $model = $this->findModel($id);
       //
       $transrincian = Transrincian::find()->where(['id' => $model->recruitreqid])->one();
       // var_dump($transrincian);die();
@@ -1322,6 +1322,7 @@ class HiringController extends Controller
         if ($insppjp == "S") {
           // var_dump($insppjp);die;
           $model->statusbiodata = 4;
+          $model->updatetime = date('Y-m-d H-i-s');
           $model->message = 'successful';
           // notification email if jo completed (start)
           $modelcountjohiring = Hiring::find()->where('recruitreqid = ' . $model->recruitreqid . ' AND statushiring <> 5 AND statushiring <> 6 AND statushiring <> 7')->count();
@@ -1373,17 +1374,6 @@ class HiringController extends Controller
       $retlock = ['status' => "NOK", 'message' => 'lock', 'pernr' => null];
       print_r(json_encode($retlock));
     }
-
-    // print_r($ret);
-    //  ob_start();
-    //  print_r($json);
-    //  if ($json){
-    //    echo $json;
-    //  }else{
-    //    echo json_last_error_msg();
-    //  }
-    // return ob_get_clean();
-    // return $this->redirect(['index']);
   }
 
   public function actionHiringupdatetglkontrak($id)
@@ -1403,8 +1393,6 @@ class HiringController extends Controller
     $akhirkontrak = date_create($model->akhirkontrak);
     $wedingdate = date_create($userprofile->weddingdate);
     $url = "http://192.168.88.60:8080/ish-rest/ZINFHRF_00025";
-    //p0002 = untuk applicant yang sudah menikah (input tanggal pernikahan)
-
 
     if ($transrincian->kontrak == 'PKWT') {
       $cttyp = '02';
@@ -1420,10 +1408,8 @@ class HiringController extends Controller
       $cttyp = '11';
     }
 
-
     $infotype = ['0041', '0006', '0028', '0185', '0241', '0242', '0009', '0008', '0016', '0035', '0037'];
 
-    // var_dump($usereducation);die;
     $request_data = [
       [
         'pernr' => "$model->perner",
@@ -1519,21 +1505,82 @@ class HiringController extends Controller
       $model->save();
     } else {
       $model->statusbiodata = 4;
+      $model->updatetime = date('Y-m-d H-i-s');
       $model->message = 'successful';
       $model->save();
     }
+  }
 
-    // print_r($ret);
-    //  ob_start();
-    //  print_r($json);
-    //  if ($json){
-    //    echo $json;
-    //  }else{
-    //    echo json_last_error_msg();
-    //  }
-    // return ob_get_clean();
-    // return $this->redirect(['index']);
+  public function actionHrmsHiring($dataResign, $jsonData)
+  {
+    if ($dataResign) {
+      $personal_number = $dataResign->perner;
+      $termination_date = date_format($dataResign->resigndate, 'Y-m-d');
+      $reason_code = $dataResign->resignreason->sapid;
+      $reason_desc = $dataResign->resignreason->reason;
+      $endpoint_url = 'https://hrpay.ish.co.id/middleware/hraction/z1';
 
+      // Prepare the data from the JSON
+      $post = array(
+        "wo_number" => $jsonData['wo_number'],
+        "client" => $jsonData['client'],
+        "project" => $jsonData['project'],
+        "startdate_project" => $jsonData['startdate_project'],
+        "enddate_project" => $jsonData['enddate_project'],
+        "details" => array()
+      );
+
+      foreach ($jsonData['details'] as $detail) {
+        $detailData = array(
+          "id" => $detail['id'],
+          "area" => $detail['area'],
+          "personel_area" => $detail['personel_area'],
+          "level" => $detail['level'],
+          "skill" => $detail['skill'],
+          "job" => $detail['job'],
+          "components" => array()
+        );
+
+        foreach ($detail['components'] as $component) {
+          $detailData['components'][] = array(
+            "name" => $component['name'],
+            "code" => $component['code'],
+            "value" => $component['value']
+          );
+        }
+
+        $post['details'][] = $detailData;
+      }
+
+      // Add additional fields to the post data
+      $post['personal_number'] = $personal_number;
+      $post['termination_date'] = $termination_date;
+      $post['reason_code'] = $reason_code;
+      $post['reason_desc'] = $reason_desc;
+
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, $endpoint_url);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_POST, 1);
+      curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post)); // Encode the post data as JSON
+      $headers = array(
+        'Content-Type: application/json', // Set the content type to JSON
+      );
+      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+      // Execute cURL request
+      $result = curl_exec($ch);
+      $response = json_decode($result, true);
+      curl_close($ch);
+
+      if ($response['code'] === 200) {
+        // Add log resign hrms
+      }
+
+      return $response;
+    }
+
+    return false;
   }
 
   protected function findAddressdata($model, $userprofile, $userecontact)
@@ -1966,7 +2013,7 @@ class HiringController extends Controller
         $model->perner = $newperner;
       }
       $model->approvedby = Yii::$app->user->identity->id;
-      $model->updatetime = date('Y-m-d H-i-s');
+      // $model->updatetime = date('Y-m-d H-i-s');
       $model->approvetime = date('Y-m-d H-i-s');
       $model->save();
       $model = $this->findModel($id);

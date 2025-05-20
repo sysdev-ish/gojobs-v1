@@ -51,11 +51,11 @@ if (Yii::$app->user->isGuest) {
     // $userid = Yii::$app->user->identity->id;
     $role = Yii::$app->user->identity->role;
 }
-if (Yii::$app->utils->permission($role, 'm25') && Yii::$app->utils->permission($role, 'm26')) {
+if (Yii::$app->utils->permission($role, 'm86') && Yii::$app->utils->permission($role, 'm87')) {
     $action = '{view}{update}{delete}';
-} elseif (Yii::$app->utils->permission($role, 'm25')) {
+} elseif (Yii::$app->utils->permission($role, 'm86')) {
     $action = '{view}{update}';
-} elseif (Yii::$app->utils->permission($role, 'm26')) {
+} elseif (Yii::$app->utils->permission($role, 'm87')) {
     $action = '{view}{delete}';
 } else {
     $action = '{view}';

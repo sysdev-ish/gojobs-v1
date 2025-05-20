@@ -27,7 +27,7 @@ return [
                                         <p style="margin-bottom:2px; color:#7E8299">This is your Verification Code :</p>
                                         <h1 style="margin-bottom:2px; color:#7E8299">{token}</h1>
                                     </div>
-                                    <a href="http://192.168.88.170/rekrut/site/" target="_blank" style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500; font-family:Arial,Helvetica,sans-serif;">Login</a>
+                                    <a href="https://gojobs.id/rekrut/site/" target="_blank" style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500; font-family:Arial,Helvetica,sans-serif;">Login</a>
                                 </div>
                             </td>
                         </tr>
@@ -70,7 +70,7 @@ return [
                                         <p style="margin-bottom:2px; color:#7E8299">This is your Password Reset Token :</p>
                                         <h1 style="margin-bottom:2px; color:#7E8299">{token}</h1>
                                     </div>
-                                    <a href="http://192.168.88.170/rekrut/site/" target="_blank" style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500; font-family:Arial,Helvetica,sans-serif;">Change Password</a>
+                                    <a href="https://gojobs.id/rekrut/site/" target="_blank" style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500; font-family:Arial,Helvetica,sans-serif;">Change Password</a>
                                 </div>
                             </td>
                         </tr>
@@ -696,6 +696,187 @@ return [
                                         <p style="margin-bottom:2px; color:#7E8299">Silahkan klik link berikut untuk melakukan verifikasi lebih lanjut:</p>
                                     </div>
                                     <a href="https://gojobs.id/rekrut/chagerequestresign" target="_blank" style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500; font-family:Arial,Helvetica,sans-serif;">Link</a>
+                                    <div style="font-size: 14px; font-weight: 500; margin-bottom: 27px; font-family:Arial,Helvetica,sans-serif;">
+                                        <p style="margin-bottom:2px; color:#7E8299">Thanks, Have a Great Day!</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" valign="center" style="font-size: 13px; padding:0 15px; text-align:center; font-weight: 500; color: #A1A5B7;font-family:Arial,Helvetica,sans-serif">
+                                <p>&copy; Copyright Infomedia Solusi Humanika.
+                                <a href="https://ish.co.id" rel="noopener" target="_blank" style="font-weight: 600;font-family:Arial,Helvetica,sans-serif"></a>&nbsp;</p>
+                                <p style="font-size: 10px; padding:0 15px; text-align:center; font-weight: 300; color: #A1A5B7;font-family:Arial,Helvetica,sans-serif">--You are receiving this email from gojobs.id because you registered on gojobs.id with this email address--</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    ',
+
+    'approvalHoldJob' => '
+    <div class="scroll-y flex-column-fluid px-10 py-10" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_header_nav" data-kt-scroll-offset="5px" data-kt-scroll-save-state="true" style="background-color:#D5D9E2; --kt-scrollbar-color: #d9d0cc; --kt-scrollbar-hover-color: #d9d0cc">
+        <style>html,body { padding:0; margin:0; font-family: Inter, Helvetica, "sans-serif"; } a:hover { color: #009ef7; }</style>
+        <div id="#kt_app_body_content" style="background-color:#D5D9E2; font-family:Arial,Helvetica,sans-serif; line-height: 1.5; min-height: 100%; font-weight: normal; font-size: 15px; color: #2F3044; margin:0; padding:40px 20px; width:100%;">
+            <div style="background-color:#ffffff; padding: 45px 0 34px 0; border-radius: 24px; margin:40px auto; max-width: 650px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" height="auto" style="border-collapse:collapse">
+                    <tbody>
+                        <tr>
+                            <td align="center" valign="center" style="text-align:center; padding-bottom: 10px">
+                                <div style="text-align:center; margin:0 60px 34px 60px">
+                                    <div style="margin-bottom: 10px">
+                                        <a href="https://ish.co.id" rel="noopener" target="_blank">
+                                            <img alt="ISH" src="https://gojobs.id/rekrut/images/logo-ish-new.png" style="height: 35px" />
+                                        </a>
+                                    </div>
+                                    <div style="margin-bottom: 15px">
+                                        <img alt="Gojobs" src="https://gojobs.id/rekrut/images/logo-gojobs-color.png" style="height: 50px" />
+                                    </div>
+                                    <div style="font-size: 14px; font-weight: 500; margin-bottom: 27px; font-family:Arial,Helvetica,sans-serif;">
+                                        <p style="text-align:start;margin-bottom:9px; color:#181C32; font-size: 14px; font-weight:600">Semangat Pagi,<br>
+                                        Anda mendapatkan permintaan Approval "Hold Joborder" dengan rincian sebagai berikut :</p>
+                                        <p style="text-align:start;margin-bottom:2px; color:#7E8299">
+                                            <table style="text-align:start;">
+                                                <tr>
+                                                <td valign="top">Nojo</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{nojo}</td>
+                                                </tr>
+                                                <tr>
+                                                <td valign="top">Personal Area/ Nama Project</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{client}</td>
+                                                </tr>
+                                                <tr>
+                                                <td valign="top">Area</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{area}</td>
+                                                </tr>
+                                                <tr>
+                                                <td valign="top">Jabatan</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{job}</td>
+                                                </tr>
+                                                <tr>
+                                                <td valign="top">Due Date JO Sebelumnya</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{scheme_date_old}</td>
+                                                </tr>
+                                                <tr>
+                                                <td valign="top">Start Hold JO</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{scheme_date_start}</td>
+                                                </tr>
+                                                <tr>
+                                                <td valign="top">End Hold JO</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{scheme_date_end}</td>
+                                                </tr>
+                                                <tr>
+                                                <td valign="top">Alasan Stop</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{reason}</td>
+                                                </tr>
+                                                <tr>
+                                                <td valign="top">Keterangan</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{remarks}</td>
+                                                </tr>
+                                            </table>
+                                        </p>
+                                        <p style="margin-bottom:2px; color:#7E8299">Silahkan klik link berikut untuk melakukan verifikasi lebih lanjut:</p>
+                                    </div>
+                                    <a href="https://gojobs.id/rekrut/request-hold-job" target="_blank" style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500; font-family:Arial,Helvetica,sans-serif;">Link</a>
+                                    <div style="font-size: 14px; font-weight: 500; margin-bottom: 27px; font-family:Arial,Helvetica,sans-serif;">
+                                        <p style="margin-bottom:2px; color:#7E8299">Thanks, Have a Great Day!</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" valign="center" style="font-size: 13px; padding:0 15px; text-align:center; font-weight: 500; color: #A1A5B7;font-family:Arial,Helvetica,sans-serif">
+                                <p>&copy; Copyright Infomedia Solusi Humanika.
+                                <a href="https://ish.co.id" rel="noopener" target="_blank" style="font-weight: 600;font-family:Arial,Helvetica,sans-serif"></a>&nbsp;</p>
+                                <p style="font-size: 10px; padding:0 15px; text-align:center; font-weight: 300; color: #A1A5B7;font-family:Arial,Helvetica,sans-serif">--You are receiving this email from gojobs.id because you registered on gojobs.id with this email address--</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    ',
+
+    'notificationReOpenJob' => '
+    <div class="scroll-y flex-column-fluid px-10 py-10" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_header_nav" data-kt-scroll-offset="5px" data-kt-scroll-save-state="true" style="background-color:#D5D9E2; --kt-scrollbar-color: #d9d0cc; --kt-scrollbar-hover-color: #d9d0cc">
+        <style>html,body { padding:0; margin:0; font-family: Inter, Helvetica, "sans-serif"; } a:hover { color: #009ef7; }</style>
+        <div id="#kt_app_body_content" style="background-color:#D5D9E2; font-family:Arial,Helvetica,sans-serif; line-height: 1.5; min-height: 100%; font-weight: normal; font-size: 15px; color: #2F3044; margin:0; padding:40px 20px; width:100%;">
+            <div style="background-color:#ffffff; padding: 45px 0 34px 0; border-radius: 24px; margin:40px auto; max-width: 650px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" height="auto" style="border-collapse:collapse">
+                    <tbody>
+                        <tr>
+                            <td align="center" valign="center" style="text-align:center; padding-bottom: 10px">
+                                <div style="text-align:center; margin:0 60px 34px 60px">
+                                    <div style="margin-bottom: 10px">
+                                        <a href="https://ish.co.id" rel="noopener" target="_blank">
+                                            <img alt="ISH" src="https://gojobs.id/rekrut/images/logo-ish-new.png" style="height: 35px" />
+                                        </a>
+                                    </div>
+                                    <div style="margin-bottom: 15px">
+                                        <img alt="Gojobs" src="https://gojobs.id/rekrut/images/logo-gojobs-color.png" style="height: 50px" />
+                                    </div>
+                                    <div style="font-size: 14px; font-weight: 500; margin-bottom: 27px; font-family:Arial,Helvetica,sans-serif;">
+                                        <p style="text-align:start;margin-bottom:9px; color:#181C32; font-size: 14px; font-weight:600">Semangat Pagi,<br>
+                                        Berikut adalah informasi Re Open terkait "Hold Joborder" dengan rincian :</p>
+                                        <p style="text-align:start;margin-bottom:2px; color:#7E8299">
+                                            <table style="text-align:start;">
+                                                <tr>
+                                                <td valign="top">Nojo</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{nojo}</td>
+                                                </tr>
+                                                <tr>
+                                                <td valign="top">Personal Area/ Nama Project</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{client}</td>
+                                                </tr>
+                                                <tr>
+                                                <td valign="top">Area</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{area}</td>
+                                                </tr>
+                                                <tr>
+                                                <td valign="top">Jabatan</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{job}</td>
+                                                </tr>
+                                                <tr>
+                                                <td valign="top">Due Date JO Sebelumnya</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{scheme_date_old}</td>
+                                                </tr>
+                                                <tr>
+                                                <td valign="top">Due Date JO Revisi</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{scheme_date_end}</td>
+                                                </tr>
+                                                <tr>
+                                                <td valign="top">Alasan Stop</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{reason}</td>
+                                                </tr>
+                                                <tr>
+                                                <td valign="top">Keterangan</td>
+                                                <td valign="top">:</td>
+                                                <td valign="top">{remarks}</td>
+                                                </tr>
+                                            </table>
+                                        </p>
+                                        <p style="margin-bottom:2px; color:#7E8299">Silahkan klik link berikut untuk melakukan verifikasi lebih lanjut:</p>
+                                    </div>
+                                    <a href="https://gojobs.id/rekrut/request-hold-job" target="_blank" style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500; font-family:Arial,Helvetica,sans-serif;">Link</a>
                                     <div style="font-size: 14px; font-weight: 500; margin-bottom: 27px; font-family:Arial,Helvetica,sans-serif;">
                                         <p style="margin-bottom:2px; color:#7E8299">Thanks, Have a Great Day!</p>
                                     </div>

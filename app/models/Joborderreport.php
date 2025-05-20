@@ -31,7 +31,7 @@ class Joborderreport extends Transrincian
   {
     return [
       // [['startjo','endjo'], 'required'],
-      [['typejo', 'status'], 'integer'],
+      [['typejo', 'type_rekrut', 'status'], 'integer'],
       [['startjo', 'endjo', 'area', 'personalarea', 'tanggal', 'areaish', 'region', 'jobfamily', 'subjobfamily'], 'safe'],
     ];
   }
@@ -204,6 +204,7 @@ class Joborderreport extends Transrincian
   {
     return [
       'typejo' => 'Type JO',
+      'type_rekrut' => 'Type Rekrut',
       'status' => 'Status',
       'startjo' => 'Periode Create Job Order',
       'area' => 'Area',

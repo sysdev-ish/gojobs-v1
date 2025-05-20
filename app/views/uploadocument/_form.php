@@ -60,6 +60,8 @@ use yii\helpers\Url;
                       $asdata = false;
                       $file = Html::img($assetUrl . '/app/assets/upload/ijazah/' . $model->ijazah, ['width' => '150']);
                     }
+                  } else {
+                    $asdata = false;
                   }
                   ?>
 
@@ -109,6 +111,8 @@ use yii\helpers\Url;
                       $asdata = false;
                       $file = Html::img($assetUrl . '/app/assets/upload/transkipnilai/' . $model->transkipnilai, ['width' => '150']);
                     }
+                  } else {
+                    $asdata = false;
                   }
                   ?>
 
@@ -160,6 +164,8 @@ use yii\helpers\Url;
                       $asdata = false;
                       $file = Html::img($assetUrl . '/app/assets/upload/suratketerangansehat/' . $model->suratketerangansehat, ['width' => '150']);
                     }
+                  } else {
+                    $asdata = false;
                   }
                   ?>
 
@@ -209,6 +215,8 @@ use yii\helpers\Url;
                       $asdata = false;
                       $file = Html::img($assetUrl . '/app/assets/upload/kartukeluarga/' . $model->kartukeluarga, ['width' => '150']);
                     }
+                  } else {
+                    $asdata = false;
                   }
                   ?>
 
@@ -260,6 +268,8 @@ use yii\helpers\Url;
                       $asdata = false;
                       $file = Html::img($assetUrl . '/app/assets/upload/ktp/' . $model->ktp, ['width' => '150']);
                     }
+                  } else {
+                    $asdata = false;
                   }
                   ?>
 
@@ -309,6 +319,8 @@ use yii\helpers\Url;
                       $asdata = false;
                       $file = Html::img($assetUrl . '/app/assets/upload/jamsostek/' . $model->jamsostek, ['width' => '150']);
                     }
+                  } else {
+                    $asdata = false;
                   }
                   ?>
 
@@ -360,6 +372,8 @@ use yii\helpers\Url;
                       $asdata = false;
                       $file = Html::img($assetUrl . '/app/assets/upload/bpjskesehatan/' . $model->bpjskesehatan, ['width' => '150']);
                     }
+                  } else {
+                    $asdata = false;
                   }
                   ?>
 
@@ -409,6 +423,8 @@ use yii\helpers\Url;
                       $asdata = false;
                       $file = Html::img($assetUrl . '/app/assets/upload/npwp/' . $model->npwp, ['width' => '150']);
                     }
+                  } else {
+                    $asdata = false;
                   }
                   ?>
 
@@ -460,6 +476,8 @@ use yii\helpers\Url;
                       $asdata = false;
                       $file = Html::img($assetUrl . '/app/assets/upload/suratlamarankerja/' . $model->npwp, ['width' => '150']);
                     }
+                  } else {
+                    $asdata = false;
                   }
                   ?>
                   <?= $form->field($model, 'suratlamarankerja')->widget(FileInput::className(), [
@@ -535,6 +553,8 @@ use yii\helpers\Url;
                     $asdata = false;
                     $file = Html::img($assetUrl . '/app/assets/upload/ijazah/' . $model->ijazah, ['width' => '150']);
                   }
+                } else {
+                  $asdata = false;
                 }
                 ?>
 
@@ -584,6 +604,8 @@ use yii\helpers\Url;
                     $asdata = false;
                     $file = Html::img($assetUrl . '/app/assets/upload/transkipnilai/' . $model->transkipnilai, ['width' => '150']);
                   }
+                } else {
+                  $asdata = false;
                 }
                 ?>
 
@@ -635,6 +657,8 @@ use yii\helpers\Url;
                     $asdata = false;
                     $file = Html::img($assetUrl . '/app/assets/upload/suratketerangansehat/' . $model->suratketerangansehat, ['width' => '150']);
                   }
+                } else {
+                  $asdata = false;
                 }
                 ?>
 
@@ -684,6 +708,8 @@ use yii\helpers\Url;
                     $asdata = false;
                     $file = Html::img($assetUrl . '/app/assets/upload/kartukeluarga/' . $model->kartukeluarga, ['width' => '150']);
                   }
+                } else {
+                  $asdata = false;
                 }
                 ?>
 
@@ -735,6 +761,8 @@ use yii\helpers\Url;
                     $asdata = false;
                     $file = Html::img($assetUrl . '/app/assets/upload/ktp/' . $model->ktp, ['width' => '150']);
                   }
+                } else {
+                  $asdata = false;
                 }
                 ?>
 
@@ -784,6 +812,8 @@ use yii\helpers\Url;
                     $asdata = false;
                     $file = Html::img($assetUrl . '/app/assets/upload/jamsostek/' . $model->jamsostek, ['width' => '150']);
                   }
+                } else {
+                  $asdata = false;
                 }
                 ?>
 
@@ -835,6 +865,8 @@ use yii\helpers\Url;
                     $asdata = false;
                     $file = Html::img($assetUrl . '/app/assets/upload/bpjskesehatan/' . $model->bpjskesehatan, ['width' => '150']);
                   }
+                } else {
+                  $asdata = false;
                 }
                 ?>
 
@@ -884,6 +916,8 @@ use yii\helpers\Url;
                     $asdata = false;
                     $file = Html::img($assetUrl . '/app/assets/upload/npwp/' . $model->npwp, ['width' => '150']);
                   }
+                } else {
+                  $asdata = false;
                 }
                 ?>
                 <?= $form->field($model, 'npwp')->widget(FileInput::className(), [
@@ -934,6 +968,8 @@ use yii\helpers\Url;
                     $asdata = false;
                     $file = Html::img($assetUrl . '/app/assets/upload/suratlamarankerja/' . $model->npwp, ['width' => '150']);
                   }
+                } else {
+                  $asdata = false;
                 }
                 ?>
 

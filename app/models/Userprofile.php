@@ -55,7 +55,7 @@ class Userprofile extends \yii\db\ActiveRecord
             [['userid','havejamsostek','havenpwp','havebpjs', 'npwpnumber','bpjsnumber','postalcode','postalcodektp','identitynumber','kknumber'], 'integer'],
             [['postalcode','postalcodektp'], 'string', 'min'=> 5, 'max'=> 5 ],
             [['identitynumber','kknumber'], 'string', 'min'=> 16, 'max'=> 16 ],
-            [['npwpnumber'], 'string', 'min'=> 15, 'max'=> 15],
+            [['npwpnumber'], 'string', 'min'=> 15, 'max'=> 16],
             [['jamsosteknumber','bpjsnumber'], 'string', 'min'=> 11, 'max'=> 11],
             [['createtime', 'updatetime', 'birthdate', 'weddingdate'], 'safe'],
             [['tinggibadan', 'beratbadan'], 'number'],
